@@ -1,0 +1,146 @@
+openapi: 3.0.1
+info:
+  title: LATAM Issuing APIs
+  description: APIs to VMX Server
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licences/LICENSE-2.0
+  version: '1.0'
+  contact:
+    name: API Support
+    email: juan.delangel@fiserv.com
+servers:
+  - url: ''
+    description: Generated server url
+tags:
+  - name: Push Notification
+paths:
+  /push/push-alerts:
+    post:
+      tags:
+        - Push Notification
+      x-proxy-name: Push Alerts
+      x-child-product-name: Push
+      operationId: pushAlerts
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+  /push/:
+    post:
+      tags:
+        - Push Notification
+      x-proxy-name: Push Notifications
+      x-child-product-name: Push
+      operationId: pushNotification
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOxxoParsedJsonResponse'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    OxxoParsedJsonResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
+    ResponseOxxoParsedJsonResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          $ref: '#/components/schemas/OxxoParsedJsonResponse'
