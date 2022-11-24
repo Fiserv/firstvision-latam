@@ -1,3 +1,19 @@
-# Introduction
+# Overview
 
-The Developer Studio team will meet with you to better understand your situation. If using the Developer Studio makes sense for your team, we will begin the integration process. As part of this process, we will assign a developer contact to you which will help you each step of the way. Please contact our team lead Alvin Cho (alvin.cho@fiserv.com) to setup the initial call and to begin the scoping process.
+Fiserv provides a single, consolidated processing platform for all your payment cards, loans, prepaid, and commercial card products. We are focused on the technology of the future, but also solutions that drive consumer value today, across the customer lifecycle.
+
+**FirstVision™** is our outsourced processing solution that meets your challenges head-on and transforms your technology capability. Built on core VisionPLUS® software, FirstVision™ provides an end-to-end solution that delivers global processing economies of scale plus fully integrated adjacent services that span the issuing lifecycle. An integrated suite of payment and servicing solution that drives your platform modernization and competitive edge.
+
+**FirstVision™ Restful APIs** enable you to achieve platform modernization and competitive edge delivering the following **benefits to your business.**
+
+## Accelerating Your Time to Market
+
+Extensive parameterization and service-based architecture with API enabled and a fully integrated suite of solutions for managing credit, debit, loans and payments ensures quicker application development and integration, rapid roll-out of new products and services.
+
+## Helping You Ride the Latest Wave of Innovation
+
+Platform architecture built around technology simplification and leveraging open APIs, reducing the cost of change and meeting your need for ongoing innovation to differentiate your product set – now and forward into the future.
+
+## Enables Rapid Speed of Change / Speed to Market
+
+FirstVision™ oriented architecture with open APIs enables service consumption rather than change management.
