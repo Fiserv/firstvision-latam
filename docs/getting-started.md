@@ -35,6 +35,7 @@ You can see the different APIs available for the corresponding group, on the rig
 -Try out section
 
 ![Getting started 3!](getting-started-3.jpg "Getting started 3")
+getting-started-7.jpg
 
 4. Example of body fields:
 
