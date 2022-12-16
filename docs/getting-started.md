@@ -16,13 +16,13 @@ This section deals with how to access the request execution page in an HTTP clie
 
 ### 1. Select the API group that you want explore.
 
-![Getting started 1!](/assets/images/getting-started-1.jpg "Getting started 1")
+![Getting started 1!](/assets/images/getting-started/getting-started-1.jpg "Getting started 1")
 
 ### 2. This button will redirect you to the API docs:
 
 You can see the different APIs available for the corresponding group, on the right side you can explore the model detailed definition.
 
-![Getting started 2!](/assets/images/getting-started-2.jpg "Getting started 2")
+![Getting started 2!](/assets/images/getting-started/getting-started-2.jpg "Getting started 2")
 
 ### 3. API Structure - On the page of any API resource, there is a division into segments, namely:
 
@@ -35,23 +35,23 @@ You can see the different APIs available for the corresponding group, on the rig
 - Response code
 - Try out section
 
-![Getting started 3!](/assets/images/getting-started-3.jpg "Getting started 3")
+![Getting started 3!](/assets/images/getting-started/getting-started-3.jpg "Getting started 3")
 
 ### 4. Example of body fields:
 
-![Getting started 4!](/assets/images/getting-started-4.jpg "Getting started 4")
+![Getting started 4!](/assets/images/getting-started/getting-started-4.jpg "Getting started 4")
 
 ### 5. Example of response fields:
 
-![Getting started 5!](/assets/images/getting-started-5.jpg "Getting started 5")
+![Getting started 5!](/assets/images/getting-started/getting-started-5.jpg "Getting started 5")
 
 ### 6. Example of code errors:
 
-![Getting started 6!](/assets/images/getting-started-6.jpg "Getting started 6")
+![Getting started 6!](/assets/images/getting-started/getting-started-6.jpg "Getting started 6")
 
 ### 7. Example of try out section:
 
-![Getting started 7!](/assets/images/getting-started-7.jpg "Getting started 7")
+![Getting started 7!](/assets/images/getting-started/getting-started-7.jpg "Getting started 7")
 
 ## Step 3: Make a test
 
