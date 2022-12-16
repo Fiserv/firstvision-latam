@@ -4,7 +4,7 @@ This section aims to demonstrate the initial settings that must be applied to Po
 
 If you have not used the Postman tool as an HTTP client to test requests, access the tool's official link for more information: [Postman Official](https://www.postman.com/)
 
-## Importation Collection
+## Import Collection
 
 ### 1. Open Postman and click the import button to open the provided collection.
 
