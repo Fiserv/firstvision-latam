@@ -1,4 +1,4 @@
-# Getting started...
+# Getting started Testing
 
 This portal contains the API docs and the reference guide to understand it. This page guides you through use and test our Payments API. REST API provides a powerful, convenient, and simple Web services API. Its advantages include ease of integration and development, and it’s an excellent choice of technology for use with mobile applications and Web 2.0 projects.
 
