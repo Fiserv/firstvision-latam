@@ -1,4 +1,4 @@
-# System structure
+## System structure
 
 ![System structure!](/assets/images/structure/system-structure.png "System structure")
 
