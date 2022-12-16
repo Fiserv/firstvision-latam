@@ -6,7 +6,12 @@ In order to retrieve information for account holders on the FirstVision system, 
 
 An established account typically consists of the following:
 
-### Account
+
+
+<!--
+type: tab
+titles: Account, Customer, Card
+-->
 
 Also known as an Account Base Segment.
 
@@ -18,7 +23,9 @@ Also known as an Account Base Segment.
 
 4. Typically, a statement is produced every month for an account.
 
-### Customer
+<!--
+type: tab
+-->
 
 Also known as a Name and Address record.
 
@@ -30,7 +37,9 @@ Also known as a Name and Address record.
 
 4. One customer may also be established for and associated with a single Account base Segment record for storing an alternate address.
 
-### Card
+<!--
+type: tab
+-->
 
 Also known as an embosser.
 
@@ -39,6 +48,8 @@ Also known as an embosser.
 2. The card number (also known as the PAN) is the number that is printed on the physical plastic and is subject to strict privacy rules. As a result, some clients will not store this number and can retrieve any card data from FirstVision as a masked number.
 
 3. Multiple cards can exist for one account. For example, there can be additional cards for other members of one household, that all sit under one account. These additional cards can be linked to their own customer, where this information is necessary.
+
+<!-- type: tab-end -->
 
 ![Customer!](/assets/images/terminology/customer.png "Customer")
 
