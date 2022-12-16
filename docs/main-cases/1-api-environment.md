@@ -14,6 +14,9 @@ With the use of a key known as API-KEY, which can be requested by the customer, 
 
 ## Request sample
 
+
+POST /token
+
 Response example:
 
 ```json
