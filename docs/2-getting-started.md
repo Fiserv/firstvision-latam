@@ -18,7 +18,7 @@ After these steps, you're ready to start test the Payments API.
 
 This section deals with how to access the request execution page in an HTTP client, if you already have the API credentials available, follow the steps below to understand the structure and how each part works.
 
-### 1. Select the API group that you want explore.
+### 1. Select the API group that you want explore
 
 ![Getting started 1!](/assets/images/getting-started/getting-started-1.jpg "Getting started 1")
 
