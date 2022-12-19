@@ -142,6 +142,7 @@ Request body:
 ```      
     
 ## Active Card (Cards/Activation)
+
 The API CARS/ACTIVATION activates a card already embossed. This API allow to the cardholder activate a new card number when it is received by mail or deliver in a bank branch. Card Activation date will be saved on test environment for audit reasons.
 
 If cardholder try use the card for purchase or cash advance, before it is activate, the authorization request will be rejected with reject reason “Card is not Activate”, so cardholder will be able to active his card just triggering this API.
