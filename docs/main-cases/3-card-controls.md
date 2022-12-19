@@ -26,8 +26,8 @@ Request body:
   "functionCode": "B",
   "organizationNumber": 970
 }
-```        
-    
+```
+
 ## Update Spending Limits (Cards/Spend-Limits)
 
 This API allows the customer to update online, the different spending limits associated with credit, debit, prepaid and Wallet cards. These spending limits are assigned for purchases, cash advances, internet purchases and international purchases. Spending limits assign the number of transactions and maximum amounts allowed for use on a daily, weekly, biweekly, and monthly basis.These spending limits can be assigned to the main card as well as to additional cards.
@@ -68,7 +68,7 @@ Request body:
   "spendLimitsStatusIndicator": 0
 }
 ```
-    
+
 ## Update Travel Indicator (Cards/Travel)
 
 Through the API Card/Travel, the cardholder will be able to define the destinations, outside their country, where the credit card will be used. This API activates online the dates and countries to which the cardholder is traveling in the coming months.
@@ -107,7 +107,7 @@ Request body:
   "travelIndicatorOccurrence": 1
 }          
 ```
-    
+
 ## Card Transfer Update (Cards/Transfer)
 
 This API allow the cardholder blocks their current card number and request a new card with different card number in only one trigger. Same that API Block or Unlock Card, card number can be blocked just in case cardholder believes that card information is compromise and at same time he can request a new card number, so new card will be embossed during batch process and will be ready to be deliver on next day.
@@ -139,8 +139,7 @@ Request body:
   "transferToAccount": "9706010000000000274",
   "transferToCustomer": "9704010000000001467"
 }
-```      
-
+```
 
 ## Active Card (Cards/Activation)
 
@@ -188,8 +187,8 @@ Request body:
   "newPinBlock": "ABC123ABC123ABC123",
   "organizationNumber": {{orgid}}
 }
-```      
-  
+```
+
 The description of each API field can be found within the specifications.
 
 
@@ -215,8 +214,8 @@ Request body:
   "organizationNumber": {{orgid}},
   "serviceFunctionCode": "U"
 }
-```        
-    
+```
+
 The description of each API field can be found within the specifications.
 
 
@@ -242,6 +241,6 @@ Request body:
   "pinOffset": "",
   "reqdPinBlock": "ABC234ABC234"
 }
-```          
-      
+```
+
 The description of each API field can be found within the specifications.
