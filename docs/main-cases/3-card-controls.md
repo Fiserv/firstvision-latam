@@ -140,7 +140,8 @@ Request body:
   "transferToCustomer": "9704010000000001467"
 }
 ```      
-    
+
+
 ## Active Card (Cards/Activation)
 
 The API CARS/ACTIVATION activates a card already embossed. This API allow to the cardholder activate a new card number when it is received by mail or deliver in a bank branch. Card Activation date will be saved on test environment for audit reasons.
@@ -162,10 +163,13 @@ Request body:
   "serviceType": "S",
   "userData": ""
 }
-```    
+```
+
 The description of each API field can be found within the specifications.
 
+
 ## Update Pin of Card (cards/pin)
+
 This API CARDS/PIN, allows to the cardholder reassign a new personal identification number (PIN). Normally used when new card is deliver to the cardholder and new pin needs to be setup and linked to the new card already activated using the API Cards/Activation.
 
 The API reassign and update the new PIN 100% on line so cardholder can use the new PIN after it was assigned. This API can be trigger from different channels as ATM, web pages, VCR, APP, etc. Cardholder will choose the new four digits pin and along with credit card number and Key Association (used to encrypt the new API) the bank application should be able to calculate the new Pin Block to trigger the API.
@@ -187,6 +191,7 @@ Request body:
 ```      
   
 The description of each API field can be found within the specifications.
+
 
 ## Pin Block/Unblock (cards/pin/status)
 
@@ -213,6 +218,7 @@ Request body:
 ```        
     
 The description of each API field can be found within the specifications.
+
 
 ## Change the Pin of a Card (cards/pin/pin-change)
 
