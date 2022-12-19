@@ -1,4 +1,4 @@
-# Postman Test
+# Postman Test Tutorial
 
 This section aims to demonstrate the initial settings that must be applied to Postman's Collection, before making requests to available Fiservs APIs.
 
