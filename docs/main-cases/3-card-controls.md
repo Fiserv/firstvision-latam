@@ -14,7 +14,7 @@ Information required by the API as the card number, block code, and function mus
 
 The description of each API field can be found within the specifications defined in the SandBox portal.
 
-/cards/embosser/block
+PUT /cards/embosser/block
         
 Request body:
 
@@ -38,7 +38,7 @@ The API Card/Spend-Limits, requests as required information, the card number, tr
 
 The description of each API field can be found within the specifications defined in the SandBox portal.
 
-/cards/spend-limits
+PUT /cards/spend-limits
 
 Request body:
 
@@ -81,7 +81,7 @@ The values required by the API are the card number, ISO code of the country, sta
 
 The description of each API field can be found within the specifications defined in the SandBox portal.
 
-/cards/travel
+PUT /cards/travel
 
 Request body:
 
@@ -116,7 +116,7 @@ As part of values requested by the API Cards/Transfer, is required the card numb
 
 The description of each API field can be found within the specifications defined in the SandBox portal.
 
-/cards/transfer
+PUT /cards/transfer
 
 Request body:
 
@@ -151,7 +151,7 @@ This API should be trigger each time that a new card is embossed (principal or a
 
 Require values for this API are: Card Number, bank product identification (organization) and service type (A= Activation).
 
-/cards/activation
+PUT /cards/activation
     
 Request body:
 
@@ -175,7 +175,7 @@ The API reassign and update the new PIN 100% on line so cardholder can use the n
 
 The values required for this API are: Card Number, bank organization, channel, Pin Block and Key association.
 
-/cards/pin/
+PUT /cards/pin/
       
 Request body:
 
@@ -202,7 +202,7 @@ Another function of this API, allow the cardholder unblock a card PIN when it wa
 
 Values require by this API are: Card number, channel, bank organization and service function.
 
-/cards/pin/status
+PUT /cards/pin/status
         
 Request body:
 
@@ -227,7 +227,7 @@ This API can be used when cardholder need to change the current PIN number for a
 
 Require values of this API are: Card Number, Channel, Current Pin Block, New Pin Block, Key Association (to encrypt Pin Blocks), new pin offset, and bank organization.
 
-/cards/pin/pin-change
+PUT /cards/pin/pin-change
           
 Request body:
 
