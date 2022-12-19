@@ -46,8 +46,8 @@ Request body:
     "transactionAmount": 200
   }
 }
-```      
-  
+```
+
 The description of each API field can be found within the specifications defined in the SandBox portal.
 
 ### 2.  Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
@@ -79,8 +79,8 @@ Request body:
     "identifier": "0x00"            
   }                      
 }
-```      
-  
+```
+
 The description of each API field can be found within the specifications defined in the SandBox portal. Click here view more
 
 ## Sequence Diagram
