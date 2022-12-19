@@ -53,4 +53,3 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 ![Postman!](/assets/images/postman/postman-tutorial_10.png "Postman")
 
 You are now ready to start trying out our API!
-![image](https://user-images.githubusercontent.com/111396588/208092118-88d33a4c-b8f4-4778-a781-4e2bd66a95fb.png)
