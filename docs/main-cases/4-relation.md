@@ -1543,6 +1543,7 @@ Request body:
 The description of each API field can be found within the specifications in the portal.
 
 ### Inquiry Security Values (cards/pin/security-codes)
+
 This API **CARDS/PIN/SECURITY-CODES**, allow to the user get the card security values (CVV, CVV2,ICVV, PIN number) already emboss for an specific card number.
 
 Security values provided by the API will be encrypted using a security key of 32 bytes, so user should use the same security key and 3Des algorithm to decrypt the security values.
