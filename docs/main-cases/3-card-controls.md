@@ -167,7 +167,7 @@ Request body:
 The description of each API field can be found within the specifications.
 
 
-## Update Pin of Card (cards/pin)
+## Update Pin of Card (Cards/Pin)
 
 This API CARDS/PIN, allows to the cardholder reassign a new personal identification number (PIN). Normally used when new card is deliver to the cardholder and new pin needs to be setup and linked to the new card already activated using the API Cards/Activation.
 
@@ -192,7 +192,7 @@ Request body:
 The description of each API field can be found within the specifications.
 
 
-## Pin Block/Unblock (cards/pin/status)
+## Pin Block/Unblock (Cards/Pin/Status)
 
 The API cards/pin/status is being used by a cardholder to block his current PIN number, it can be used when he believes that PIN information can be compromise. This API only block the pin number and not the card number, so customer after trigger this API to block the PIN, he can still using the card for purchases but not for cash advances.
 
@@ -219,7 +219,7 @@ Request body:
 The description of each API field can be found within the specifications.
 
 
-## Change the Pin of a Card (cards/pin/pin-change)
+## Change the Pin of a Card (Cards/Pin/Pin-Change)
 
 With this API cards/pin/pin-change, cardholder will be able to change his current pin number, for another pin number. At different of the API Update Pin of Card, this API will request the current PIN number assigned to the cardholder, so both values need to be added before trigger the API: Current Pin and New PIN.
 
