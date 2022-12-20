@@ -8,7 +8,7 @@ Each of these steps are dependent the other, this means that a card cannot be em
 
 After this information has been entered through the different APIs, it is possible to define whether this new customer will be an individual cardholder or a corporate customer defined under a relationship.
 
-The functionalities of each of these three steps currently defined in the Sandbox Portal are describe below:
+The functionalities of each of these three steps currently defined in the portal are describe below:
 
 ## Customer Management
 
@@ -100,9 +100,9 @@ Request body:
   },
   "resvData": {}
 }
-```             
-            
-The description of each API field can be found within the specifications in the portal
+```
+
+The description of each API field can be found within the specifications in the portal.
 
 ### Update Customer (customer/)
 
@@ -136,7 +136,7 @@ Request body:
 }
 ```
  
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Find an Account Number (customer/accountNumber)
 
@@ -161,7 +161,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Get Cards Details L8V4 (customer/details-L8V4)
 
@@ -185,7 +185,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Generate Customer and Account Number (customer/generation)
 
@@ -209,7 +209,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Inquire Demographic Data (customer/demographicData)
 
@@ -230,7 +230,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Customer Lookup (customer/lookup)
 
@@ -285,7 +285,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Find Relationship Number (customer/relationshipNumber)
 
@@ -305,7 +305,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Current/Prior Address Inquiry (customer/{accountNumber}/current-prior-address)
 
@@ -326,7 +326,7 @@ Required parameters:
   accountNumber       
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ## Account Management
 
@@ -337,8 +337,6 @@ This API **ACCOUNT** allow add all the Account information for any product of cr
 Account number is a unique number that is different than card number, account number is a number created by the system on randomly way.
 
 This API needs the customer number as a require value before the API can be trigger. This customer number is provide when API **CUSTOMER/AD**D is trigger to add demographic information.
-
-The description of each API field can be found within the specifications in the portal.
 
 POST/account
 
@@ -384,6 +382,8 @@ Request body:
   }
 }
 ```
+
+The description of each API field can be found within the specifications in the portal.
 
 ### Find Account Balance (account/balance/details)
 
@@ -454,7 +454,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Account to Card Details (account/card)
 
@@ -1262,7 +1262,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ## Inquire Card or PAN token (cards/embosser/card-pan)
 
@@ -1285,7 +1285,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ## Add or Update Massive Cards (/cards/mass-card-issue)
 
@@ -1350,7 +1350,7 @@ Request body:
 }
 ```
 
-The description of each API field can be found within the specifications in the portal
+The description of each API field can be found within the specifications in the portal.
 
 ### Instant Card (cards/instant-card-L8V7)
 
