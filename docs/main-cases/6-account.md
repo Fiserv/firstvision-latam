@@ -170,6 +170,7 @@ Request body:
 ```
 
 ## Update Customer Number (Account/Customer)
+
 The API ACCOUNT/CUSTOMER allow a user to change the customer number already link to a specific account information.
 
 Currently when an account information is created on the test environment through API ACCOUNT/ADD, is require add the customer number created through API CUSTOMER/ADD. This link is require to link a customer with an account created.
@@ -346,6 +347,7 @@ Request body:
 ```
 
 ## Falcon Cash-in / Cash-out (account/FL-balance)
+
 Use this API ACCOUNT/FL-BALANCE to money transfer amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. However, parameters previously defined, allow FALCON application (Card Fraud Control) audit this type of transactions.
 
 Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
