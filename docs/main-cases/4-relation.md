@@ -1154,6 +1154,7 @@ Relationship number is a unique number assigned to a Corporate Card, for example
 PUT /account/relationship/account
 
 Request body:
+
 ```json
 {
   "accountNumber": "4004894352313040331",
