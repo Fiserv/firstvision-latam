@@ -296,6 +296,7 @@ Request body:
 The description of each API field can be found within the specifications defined in the portal.
 
 ## Current/Prior Address Inquiry (customer/{accountNumber}/current-prior-address)
+
 The API **CUSTOMER/ACCOUNTNUMBER/CURRENT/PRIOR/ADDRES**S provides information from the Customer Demographic Information and the Prior Mailing Address. To retrieve information for Prior Mailing Address, parameter PRIOR ADDR should activated in First Vision.
 
 When an account or relationship number is entered as input to the service, the service returns the customer record’s primary owner and co-owner information.
