@@ -1,5 +1,7 @@
 # Relation Client-Account-Card
 
+![Relation!](/assets/images/main-cases/relation-client-account-card.png "Relation")
+
 As part of the First Vision functionality, three steps are required during the process of creating a new customer who will have a credit, debit, prepaid or wallet card. These three steps allow the bank add the customer's demographic information, define the account values and finally generate the embossing of the new card.
 
 Each of these steps are dependent the other, this means that a card cannot be embossed if there is no customer information or account information.
