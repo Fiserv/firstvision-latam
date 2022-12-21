@@ -155,8 +155,8 @@ Request body:
     }
   }
 }
-```     
-     
+```
+  
 ### 3. Embosser ADD
 
 This request is responsible for adding the information to the issuing digital card. This request requires both the customer code and the account code. See more about the Embosser API:
