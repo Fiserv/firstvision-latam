@@ -1,6 +1,6 @@
 # Card Controls
 
-This section describes the different APIs in the SandBox Portal used to take actions on the different activities related to the use of the credit, debit, prepaid or wallet card, for any of the Visa, Master Card or American Express products. Next, a description of the functionalities and characteristics of API.
+This section describes the different APIs in the Portal used to take actions on the different activities related to the use of the credit, debit, prepaid or wallet card, for any of the Visa, Master Card or American Express products. Next, a description of the functionalities and characteristics of API.
 
 As a main requirement, is important that Credit, Debit, Prepay or Wallet cards have been created in the test environment as it was detailed in section 1.0 of this document, using the API's for customer creation (Customer / Add), creation of Account (Account / Add) and Creation of Card (Embosser / Add).
 
@@ -12,7 +12,7 @@ On same way, the cardholder may carry out a preventive unlocking of his card whe
 
 Information required by the API as the card number, block code, and function must be included before API trigger.
 
-The description of each API field can be found within the specifications defined in the SandBox portal.
+The description of each API field can be found within the specifications defined in the portal.
 
 PUT /cards/embosser/block
         
@@ -36,7 +36,7 @@ The values are modified 100% online and can be adjusted as many times as require
 
 The API Card/Spend-Limits, requests as required information, the card number, transaction number and amounts for each spending limit.
 
-The description of each API field can be found within the specifications defined in the SandBox portal.
+The description of each API field can be found within the specifications defined in the portal.
 
 PUT /cards/spend-limits
 
@@ -79,7 +79,7 @@ This API allows the cardholder define the range of dates and countries where the
 
 The values required by the API are the card number, ISO code of the country, start and end date range, allowing up to a maximum of five countries to visit with their respective date ranges
 
-The description of each API field can be found within the specifications defined in the SandBox portal.
+The description of each API field can be found within the specifications defined in the portal.
 
 PUT /cards/travel
 
@@ -114,7 +114,7 @@ This API allow the cardholder blocks their current card number and request a new
 
 As part of values requested by the API Cards/Transfer, is required the card number, account number, organization and effective date.
 
-The description of each API field can be found within the specifications defined in the SandBox portal.
+The description of each API field can be found within the specifications defined in the portal.
 
 PUT /cards/transfer
 
