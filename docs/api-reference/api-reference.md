@@ -14,13 +14,17 @@ Establish cardholder relationships in CMS. Assign Account Base Segment records t
 
 <!-- type: card
 title: Cards
-Cards functions to add, inquiry and edit card records. A card record contains information about the card (or “plastic”) that is issued to the cardholder. Also includes cross reference between customer, account and card. Card level features such as card activation, issue, reissue, lost and stolen, replacement, limit management, Secured PIN management, card details, block code application and authorizations.
+Cards functions to add, inquiry and edit card records. A card record contains information about the card (or “plastic”) that is issued to the cardholder. Also includes cross reference between customer, account and card. Card level features such as card activation, issue, reissue, lost and stolen, replacement, limit management, secured PIN management, card details, block code application and authorizations.
 -->
 
 <!-- type: card
 title: Customer
 description: Customer Name Address functions such as add, inquiry and edit Customer Demographic data for owners, co-owners, and any other parties associated with an account such as authorized signers, guarantors, and other associated parties (children, spouse). Multiple accounts can be associated with a single Customer Name/Address record. Cross-reference between records customer to account to cards and relationships are also available.
 -->
+
+<!-- type: row-end -->
+
+<!-- type: row -->
 
 <!-- type: card
 title: Loyalty
