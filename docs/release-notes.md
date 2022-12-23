@@ -1,3 +1,7 @@
+---
+tags: [Release Notes, December]
+---
+
 # Release Notes
 
 ## December 31 2022
@@ -6,20 +10,20 @@ v1.0.0 (the version of openAPI Document that defines an API containing the chang
 
 ### What's New
 
-- Something new that was added or introduced like a documents or a services.
+- Migration to new portal
 
 ### Enhancements
 
-- Description of an improvement or a change.
+- Error codes, error handling and notifications.
 
 ### Fixed
 
-- github issue that was fixed. [Possible github issue link ](https://github.com/Fiserv/Support/issues)
+- N/A
 
 ### Known Issues
 
-- A persistent issue that's known and not fixed.
+- N/A
 
 ### Deprecated
 
-- An endpoint or a payload field regarded as obsolete and best avoided.
+- Old portal.
