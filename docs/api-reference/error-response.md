@@ -1,5 +1,5 @@
 ---
-tags: [Error Response, Error Code, Response Code]
+tags: [Error Response]
 ---
 
 # Error Response
@@ -29,12 +29,12 @@ JSON string format for `error`:
 
 ```json
 {
-   "error":{
-      "type":"GATEWAY",
-      "code":"XXX",
-      "field":"sourceType",
-      "message":"Missing type ID property."
-   }
+  "error": {
+    "type": "GATEWAY",
+    "code": "XXX",
+    "field": "sourceType",
+    "message": "Missing type ID property."
+  }
 }
 ```
 
@@ -53,27 +53,27 @@ titles: Error Response
 
 ```json
 {
-   "errorResponse":{
-      "gatewayResponse":{
-         "transactionType":"CANCEL",
-         "transactionState":"DECLINED",
-         "transactionOrigin":"ECOM",
-         "transactionProcessingDetails":{
-            "orderId":"CH-aafaaf45-0cfb-4f4f-8ec0-301e40c14e34",
-            "transactionTimestamp":"2021-06-20T23:42:48Z",
-            "apiTraceId":"5c059eee2388e191",
-            "clientRequestId":"30dd879c-ee2f-11db-8314-0800200c9a66",
-            "transactionId":"b2d883cdf3051598acb295f29a1e1582"
-         }
-      },
-      "error":[
-         {
-            "type":"GATEWAY",
-            "code":"703",
-            "message":"Write to downstream failed"
-         }
-      ]
-   }
+  "errorResponse": {
+    "gatewayResponse": {
+      "transactionType": "CANCEL",
+      "transactionState": "DECLINED",
+      "transactionOrigin": "ECOM",
+      "transactionProcessingDetails": {
+        "orderId": "CH-aafaaf45-0cfb-4f4f-8ec0-301e40c14e34",
+        "transactionTimestamp": "2021-06-20T23:42:48Z",
+        "apiTraceId": "5c059eee2388e191",
+        "clientRequestId": "30dd879c-ee2f-11db-8314-0800200c9a66",
+        "transactionId": "b2d883cdf3051598acb295f29a1e1582"
+      }
+    },
+    "error": [
+      {
+        "type": "GATEWAY",
+        "code": "703",
+        "message": "Write to downstream failed"
+      }
+    ]
+  }
 }
 ```
 
