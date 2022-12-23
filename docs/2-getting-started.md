@@ -1,10 +1,14 @@
+---
+tags: [Getting Started, API Key, API Credential]
+---
+
 # Getting Started
 
 This portal contains the API docs and the reference guide to understand it. This page guides you through use and test our Payments API. REST API provides a powerful, convenient, and simple Web services API. Its advantages include ease of integration and development, and it’s an excellent choice of technology for use with mobile applications and Web 2.0 projects.
 
 After these steps, you're ready to start test the Payments API.
 
-## Step 1: Get your API key
+## Step 1: Get your API Key
 
 1. Provide the bank’s or financial institution’s name, user/users full name and e-mail address and submit to latamAPIs@fiserv.com and your assigned Account Manager or Commercial representative
 
