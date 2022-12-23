@@ -49,7 +49,7 @@ type: tab
 titles: Error Response
 -->
 
-#### Example of a charge (400: Bad Request) response.
+### Example of a charge (400: Bad Request) response.
 
 ```json
 {
