@@ -1,5 +1,5 @@
 ---
-tags: [Response Code, HTTP Status Code]
+tags: [Response Handling, Response Code, HTTP Status Code]
 ---
 
 # Response Code and Message Handling
