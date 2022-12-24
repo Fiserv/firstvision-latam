@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Card Controls, Block, Unlock, Limits, Travel, Transfer, Active, Pin]
+tags: [Main Cases, Card Controls, cards, embosser, Block, Unlock, Limits, Travel, Transfer, Active, Pin]
 ---
 
 # Card Controls
