@@ -14,7 +14,7 @@ An established account typically consists of the following:
 
 <!--
 type: tab
-titles: Account, Customer, Card
+titles: Account, Customer, Cards
 -->
 
 Also known as an Account Base Segment.
