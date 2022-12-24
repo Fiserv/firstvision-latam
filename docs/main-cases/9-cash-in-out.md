@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Cash-in/Cash-out, balance]
+tags: [Main Cases, Cash-in/Cash-out, account, balance]
 ---
 
 # Cash-in/Cash-out (account/balance)
