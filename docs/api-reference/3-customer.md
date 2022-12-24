@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference]
+tags: [Getting Started, API Reference, Customer]
 ---
 
 # Customer
