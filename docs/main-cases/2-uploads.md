@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Upload Founds From a Source Account, Adjust Account Balance, Account/Balance, Adjust Account Balance Peer-to-Peer, Account/QRFL-Balance]
+tags: [Main Cases, Upload Founds From a Source Account, Adjust Account Balance, Adjust Account Balance Peer-to-Peer]
 ---
 
 
