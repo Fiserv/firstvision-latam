@@ -1,0 +1,64 @@
+---
+tags: [Getting Started, API Reference, Request Header, Request Body, Header,]
+---
+
+# Request Header
+
+Commerce Hub RESTful API has a consistent header structure based on a set of parameters. To create the header, provide the following values:
+
+| Variable | Type | Length | Description/Values |
+| -------- | :--: | :------------: | ------------------ |
+| `Content-Type` | *string* | N/A | The content type. Valid Value (application/json) |
+| `Client-Request-Id` | *string* | N/A | A client-generated ID for request tracking and signature creation, unique per request. This is also used for idempotency control. Recommended 128-bit UUID format. |
+| `Api-Key` | *string* | N/A | API Key provided to the merchant associating the requests with the appropriate app in the Developer Portal. |
+| `Timestamp` | *integer* | N/A | Epoch timestamp in milliseconds in the request from a client system. Used for Message Signature generation and time limit (5 mins). |
+| `Accept-Language` | *string* | N/A | The Accept-Language header contains information about the language preference of a user. This HTTP header is useful to multilingual sites for deciding the best language to serve to the client. example: en-US or fr-CA. |
+| `Auth-Token-Type`| *string* | N/A | Indicates Authorization type HMAC or AccessToken.|
+| `Authorization` | *string* | N/A | Used to ensure the request has not been tampered with during transmission. Valid encryption; [HMAC](?path=docs/Resources/API-Documents/Authentication-Header.md) or [AccessToken](?path=docs/Resources/API-Documents/Security/Credentials.md). |
+| `Message-Digest` | *string* | N/A | Needed only from customer browser or app to the API in Hosted Payment Page requests. |
+
+## Request Header Example
+
+```json
+"header": {
+  "Content-Type": "application/json",
+  "Client-Request-Id": "CLIENT_REQUEST_ID",
+  "Api-Key": "API_KEY",
+  "Timestamp": "TIMESTAMP",
+  "Auth-Token-Type": "AUTH_TOKEN_TYPE" ,
+  "Authorization": "ACCESS_TOKEN"
+}
+```
+
+---
+
+# Request Body
+
+The body of the transaction request differs based on the transaction being initiated. Below is the sample body for a [charge](?path=docs/Resources/API-Documents/Payments/Charges.md) request.
+
+## Request Body Example
+
+```json
+{
+  "amount": {
+    "total": "12.04",
+    "currency": "USD"
+  },
+  "paymentSource": {
+    "sourceType": "PaymentCard",
+    "card": {
+      "cardData": "4005550000000019",
+      "expirationMonth": "02",
+      "expirationYear": "2035",
+      "securityCode": "123"
+    }
+  },
+  "transactionDetails": {
+    "captureFlag": true
+  },
+  "merchantDetails": {
+    "merchantId": "123456789789567",
+    "terminalId": "123456"
+  }
+}
+```
