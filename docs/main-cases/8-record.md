@@ -10,7 +10,7 @@ This API allow add card information as card expiration date, service code, cardh
 
 The card number is calculated on randomly way by the application, and this number will not generated again (duplicated).
 
-POST /cards/embosser
+**POST** `/cards/embosser`
 
 Request body:
 
