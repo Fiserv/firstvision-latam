@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Account Management,  balance, debit, credit limit, block, unblock, credit bureau, transfer P2P, demographic data, generation, lookup, address]
+---
+
 # Account Management
 
 ## Account Add (account/)
