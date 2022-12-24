@@ -30,7 +30,7 @@ To issue a new digital card to a customer, we must follow these steps:
 
 This request includes the customer's personal data, demographic information and other information pertaining to the entity. The response to this request will bring the customer number created. See more about the Customer API:
 
-POST /customer
+**POST** `/customer`
       
 Request body: 
 
@@ -116,7 +116,7 @@ Request body:
 
 With the customer number created in the previous requisition, this requisition will propagate the account's credit limit information, payment cycle date, short name and more information inherent to the entity. See more about the Account API:
 
-POST /account
+**POST** `/account`
           
 Request body: 
 
@@ -165,7 +165,7 @@ Request body:
 
 This request is responsible for adding the information to the issuing digital card. This request requires both the customer code and the account code. See more about the Embosser API:
 
-POST /cards/embosser
+**POST** `/cards/embosser`
           
 Request body: 
 
@@ -255,7 +255,7 @@ Request body:
 
 After customer, account and embosser requests, the new card settings for the customer are applied, but not active for use. This request will activate the card and make it ready for use. See more about the Card Activation API:
 
-PUT /customer
+**PUT** `/customer`
           
 Request body: 
 
