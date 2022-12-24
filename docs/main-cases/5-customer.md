@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Customer Management,  demographic data, generation, lookup, address]
+---
+
 # Customer Management
 
 ## New Customer (customer/add)
