@@ -1,5 +1,5 @@
 ---
-tags: [Error Response]
+tags: [Getting Started, API Reference, Error Response]
 ---
 
 # Error Response
@@ -8,7 +8,7 @@ Fiserv includes the `errorResponse` as part of the `error` object along with the
 
 <!--
 type: tab
-titles: error, JSON Example
+titles: error, JSON Example, Error Response
 -->
 
 The below table identifies the parameters in the `error` object.
@@ -38,18 +38,11 @@ JSON string format for `error`:
 }
 ```
 
-<!-- type: tab-end -->
-
----
-
-## Response Example
-
 <!--
 type: tab
-titles: Error Response
 -->
 
-### Example of a charge (400: Bad Request) response
+Example of a charge (400: Bad Request) response
 
 ```json
 {
