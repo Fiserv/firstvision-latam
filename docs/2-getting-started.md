@@ -60,11 +60,3 @@ You can see the different APIs available for the corresponding group, on the rig
 ### 7. Example of try out section
 
 ![Getting started 7!](/assets/images/getting-started/getting-started-7.jpg "Getting started 7")
-
-
-[comment]: <> (## Step 3:)
-[comment]: <> (Make a test At this step you already have your credentials and know something about our APIs, so let's get down to business and do some testing!)
-[comment]: <> (Click Run.)
-[comment]: <> (<kbd>)
-[comment]: <> (  <img src="https://user-images.githubusercontent.com/81968767/145146944-6285dfe4-898a-4b9c-bda4-d351a6a9568f.gif" alt="API Explorer" />)
-[comment]: <> (</kbd> <br><br>)
