@@ -11,7 +11,6 @@ In order to retrieve information for account holders on the FirstVision system, 
 An established account typically consists of the following:
 
 
-
 <!--
 type: tab
 titles: Account, Customer, Cards
