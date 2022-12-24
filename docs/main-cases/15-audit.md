@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Audit and Monitoring]
+---
+
 # Audit and Monitoring
 
 After you implement Vision+ APIs our operations team is responsible for ensuring that the APIs are available and performing as expected to maintain a seamless experience for your consumers.
