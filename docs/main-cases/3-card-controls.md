@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Card Controls, Block or Unlock Card, Cards/Embosser/Block, Update Spending Limits, Cards/Spend-Limits, Update Travel Indicator, Cards/Travel, Card Transfer Update, Cards/Transfer), Active Card, Cards/Activation, Update Pin of Card, Cards/Pin, Pin Block/Unblock , Cards/Pin/Status, Change the Pin of a Card, Cards/Pin/Pin-Change]
+tags: [Main Cases, Card Controls, Block, Unlock, Limits, Travel, Transfer, Active, Pin]
 ---
 
 # Card Controls
