@@ -33,3 +33,14 @@ Response example:
 ## Diagram
 
 ![Diagram!](/assets/images/main-cases/api-test-environment_1.png "Diagram")
+
+---
+
+## See Also
+
+- [API Environment](docs/main-cases/1-api-environment.md)
+- [API Environment](?path=docs/main-cases/1-api-environment.md)
+- [Upload Founds](docs/main-cases/2-uploads.md)
+
+---
+        
