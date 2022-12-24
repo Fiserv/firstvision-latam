@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Card Record]
+---
+
 # Add Card Record (cards/embosser/)
 
 Use the API CARDS/EMBOSSER create a card information used to emboss a new card or plastic. This card information must have relate that an account number created through API CCOUNT/ADD and this account number must be related a customer number created through API CUSTOMER/ADD.
@@ -93,7 +97,6 @@ Request body:
 ```
 
 The description of each API field can be found within the specifications defined in the portal.
-
 
 ---
 
