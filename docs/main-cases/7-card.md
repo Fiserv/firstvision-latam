@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Card Management, embosser, pan token, security-codes, pin]
+tags: [Main Cases, Card Management, cards, embosser, pan token, security-codes, pin]
 ---
 
 # Card Management
