@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Cash-in/Cash-out, balance]
+---
+
 # Cash-in/Cash-out (account/balance)
 
 Use this API **ACCOUNT/BALANCE** to apply a money amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account.
