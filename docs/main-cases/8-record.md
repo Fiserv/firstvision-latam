@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Card Record]
+tags: [Main Cases, Card Record, cards, embosser]
 ---
 
 # Add Card Record (cards/embosser/)
