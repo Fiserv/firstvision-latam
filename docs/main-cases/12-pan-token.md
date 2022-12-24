@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Pan Token, embosser]
+tags: [Main Cases, Pan Token, cards, embosser]
 ---
 
 # Pan Token
