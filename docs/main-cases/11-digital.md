@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Digital Card Issuing]
+tags: [Main Cases, Digital Card Issuing, customer, account, cards, embosser]
 ---
 
 # Digital Card Issuing
