@@ -1269,7 +1269,7 @@ Request body:
 
 The description of each API field can be found within the specifications in the portal.
 
-## Inquire Card or PAN token (cards/embosser/card-pan)
+### Inquire Card or PAN token (cards/embosser/card-pan)
 
 Use this API **CARDS/EMBOSSER/CARD-PAN** to get the pan-token calculated for a card number.
 
@@ -1292,7 +1292,7 @@ Request body:
 
 The description of each API field can be found within the specifications in the portal.
 
-## Add or Update Massive Cards (/cards/mass-card-issue)
+### Add or Update Massive Cards (/cards/mass-card-issue)
 
 This API **CARDS/MASS-CARD-ISSUE**, allow the user add or update a request to emboss new cards on massive way. These cards can be credit, debit or prepay card. Quantity of card to emboss is a parameter request by the API.
 
