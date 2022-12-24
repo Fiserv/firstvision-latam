@@ -25,7 +25,7 @@ Each new customer will have a unique number called Customer Number, this custome
 
 This customer number is independent of the customer's personal identification number: Social Security, Cedula, CPN or Driver License entered in the API field: **IDENTIFICATIONNUMBER**.
 
-POST /customer
+**POST** `/customer`
                 
 Request body:
 
@@ -113,7 +113,7 @@ The description of each API field can be found within the specifications in the 
 
 The API **CUSTOMER** allows the updating of demographic information for a specific customer. Currently entered through the API CUSTOMER/ADD. The value required by this API is the Customer Number created through the API **Customer/Add**.
 
-PUT /customer
+**PUT** `/customer`
     
 Request body:
 
@@ -149,7 +149,7 @@ The API **CUSTOMER/ACCOUNTNUMBER** allows a cardholder to find out all the accou
 
 This information is sent in the API response message once it has been triggered. The Customer Number will be the main value used for the search of the account numbers.
 
-POST /customer/accountNumber
+**POST** `/customer/accountNumber`
 
 Request body:
 
@@ -174,7 +174,7 @@ This API **CUSTOMER/DETAILS-L8V4** allows the customer to find out all the card 
 
 This information is sent in the API response message once it has been triggered. The Customer Number will be the main value used for the search of the account numbers.
 
-POST /customer/details-l8v4
+**POST** `/customer/details-l8v4`
 
 Request body:
 
@@ -202,7 +202,7 @@ The API request the Bank id (organization), product id (logo), quantity of numbe
 
 API response will show the customer, account, card and relationship number as these were requested.
 
-POST /customer/generation
+**POST** `/customer/generation`
 
 Request body:
 
@@ -222,7 +222,7 @@ With this API **CUSTOMER/DEMOGRAPHICDATA** cardholder will be able to get all th
 
 Customer Number values will be used by the API to get customer demographic information.
 
-POST /customer/demographicData
+**POST** `/customer/demographicData`
 
 Request body:  
 
@@ -241,7 +241,7 @@ The description of each API field can be found within the specifications in the 
 
 This API **CUSTOMER/LOOKUP**, allow to the Bank look for a customer number already created, using different search criteria, as name, last name, date of birth, identification number, country code, etc. When search criteria are matching Customer Information and Customer Number will be displayed on API output message. If more than one record match with these criteria API output message will show all customer numbers, so they can be cross-referenced to account numbers and/or card numbers.
 
-POST /customer/lookup
+**POST** `/customer/lookup`
 
 Request body:  
 
@@ -298,7 +298,7 @@ This API **CUSTOMER/RELATIONSHIPNUMBER** allow to a cardholder bring all the rel
 
 Relationship number is a unique number assigned to a Corporate Card, for example Walmart with a customer number 123, is identify with a unique relationship number 567 and under this relationship number many accounts and cards are created for Walmart employs. So using the customer number 123 on this API is possible to get the relationship number 567.
 
-POST/customer/relationshipNumber
+**POST** `/customer/relationshipNumber`
 
 Request body:  
 
@@ -320,7 +320,7 @@ When an account or relationship number is entered as input to the service, the s
 
 The appropriate customer number is found by using the navigational services. When the customer number is input into the service, the data for that record is returned.
 
-GET /customer/{accountNumber}/current-prior-address
+**GET** `/customer/{accountNumber}/current-prior-address`
   
 Required parameters:
 
@@ -343,7 +343,7 @@ Account number is a unique number that is different than card number, account nu
 
 This API needs the customer number as a require value before the API can be trigger. This customer number is provide when API **CUSTOMER/AD**D is trigger to add demographic information.
 
-POST/account
+**POST** `/account`
 
 Request body:
 
@@ -398,7 +398,7 @@ This API will show the account balances information on real time, on inquiry mod
 
 This API use the account number already assigned when API **ACCOUNT/ADD** was trigger.
 
-POST /account/balance/details
+**POST** `/account/balance/details`
 
 Request body:
 
@@ -417,7 +417,7 @@ Use this API **CARDS/TEMPORARY-CREDIT-LIMIT** to increase the account credit lim
 
 This API use the account number as search parameter and values as account credit limit, new credit limit and increase expiration date needs to be set up before the API be trigger.
 
-PUT /cards/temporary-credit-limit
+**PUT** `/cards/temporary-credit-limit`
 
 Request body:
 
@@ -444,7 +444,7 @@ For Block Codes functionality please refer to CMS Screen Guide.
 
 Account number is a require value to trigger this API.
 
-PUT /account/block-code
+**PUT** `/account/block-code`
 
 Request body:
 
@@ -469,7 +469,7 @@ To trigger this API, the account number information and card information have to
 
 This API will show all the cards created under the account number, principal card and additional cards.
 
-POST /account/card
+**POST** `/account/card`
 
 Request body:
 
@@ -488,7 +488,7 @@ This API **ACCOUNT/CREDITBUREAU**, allows a user to update the credit bureau fie
 
 This API uses the account number and a flag to indicate if the account is added into the Credit Bureau report.
 
-POST /account/creditBureau
+**POST** `/account/creditBureau`
 
 Request body:
 
@@ -514,7 +514,7 @@ With API **ACCOUNTS/CUSTOMER** is possible remove this link and make a different
 
 This API use the account number as search parameter and an existing customer number that will be use to establish a new link.
 
-PUT /account/customer
+**PUT** `/account/customer`
 
 Request body:
 
@@ -543,7 +543,7 @@ Information as account status, customer number, account block codes, credit limi
 
 This API require the account number as search parameter along with banj id (organization).
 
-POST /account/details
+**POST** `/account/details`
 
 Request body:
 
@@ -567,7 +567,7 @@ After call this API, a debit and credit transactions are created for source and 
 
 This API use the account number for source account and account number for destination.
 
-PUT /account/FL-transferP2P
+**PUT** `/account/FL-transferP2P`
 
 Request body:
 
@@ -653,7 +653,7 @@ Use this API **ACCOUNT/BALANCE** to apply a money amount from a Bank Branch, ATM
 
 Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
 
-PUT /account/balance
+**PUT** `/account/balance`
 
 Request body:
 
@@ -687,7 +687,7 @@ Use this API **ACCOUNT/FL-BALANCE** to money transfer amount from a Bank Branch,
 
 Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
 
-PUT /account/FL-balance
+**PUT** `/account/FL-balance`
 
 Request body:
 
@@ -734,7 +734,7 @@ Use this API **ACCOUNT/USER** to update the values of more than 50 user fields d
 
 Values as dates, amounts, codes, etc. can be set up in the API before trigger it.
 
-PUT /account/user
+**PUT** `/account/user`
 
 Request body:
 
@@ -815,7 +815,7 @@ When API is trigger, account information, card information and balances are tran
 
 Same API can be used to make a product downgrade, it means transfer from Visa Gold to Visa Classic or from MasterCard Black to MasterCard Classic.
 
-PUT /account/transfer-promotional-product
+**PUT** `/account/transfer-promotional-product`
 
 Request body:
 
@@ -896,7 +896,7 @@ For example an account balance of $10,000 for credit plan 10002 at 5 installment
 
 This API request the account number, type of refinance, credit plan, new number of installment and new amount.
 
-GET /account/{accountNumber}/balance
+**GET** `/account/{accountNumber}/balance`
 
 The description of each API field can be found within the specifications in the portal.
 
@@ -908,7 +908,7 @@ Direct Debit and Direct Credit is a functionality to allow internal process make
 
 The saving account, current account and Routing account are values previously set up at the account level so after call this API these information have to be set up as part of account information though API **ACCOUNT/ADD**.
 
-GET /account/{accountNumber}/credit-debit
+**GET** `/account/{accountNumber}/credit-debit`
 
 The description of each API field can be found within the specifications in the portal.
 
@@ -916,7 +916,7 @@ The description of each API field can be found within the specifications in the 
 
 Use this API **ACCOUNT/{ACCOUNTNUMBER}/OVERVIEW**, to get most important account information, as account number, name, address, phone, user fields, account financial information, delinquency, etc. This API use account number a search parameter.
 
-GET/account/{accountNumber}/overview
+**GET** `/account/{accountNumber}/overview`
 
 The description of each API field can be found within the specifications in the portal.
 
@@ -932,7 +932,7 @@ For additional information about Corporate Account please refer to CMS User Manu
 
 This API use Corporate Account Number as search parameter.
 
-GET /account/{accountNumber}/relationship
+**GET** `/account/{accountNumber}/relationship`
 
 The description of each API field can be found within the specifications in the portal.
 
@@ -946,7 +946,7 @@ This API allow the user the change the installments number already set up at the
 
 This API use the account number, transactions reference number, and new number of installment as part of search parameters.
 
-PUT /account/installment-term
+**PUT** `/account/installment-term`
 
 Request body:
 
@@ -969,7 +969,7 @@ This API **ACCOUNT/ASSOCIATEDPARTIES** allow the user update selected parameters
 
 The Associated parties fields located at account level are been used to identify if the account has any relation with a third party. A third party associated can be: guarantor, consigner, authorized signer, sales representative, etc.
 
-PUT /account/associatedParties
+**PUT** `/account/associatedParties`
 
 Request body:
 
@@ -1009,7 +1009,7 @@ The Authorization Criteria table is a current functionality to define an authori
 
 For additional information please refer CMS User Manual and CMS Screen Guide.
 
-PUT /account/auth-criteria
+**PUT** `/account/auth-criteria`
 
 Request body:
 
@@ -1030,7 +1030,7 @@ The description of each API field can be found within the specifications in the 
 
 This API **ACCOUNT/BANK-BRANCH-STORE**, allow the user to update the Branch of store in where the credit was approved to create the account and card. This number is part of account information and is added for first time when account is created through API **ACCOUNT/ADD**.
 
-PUT /account/bank-branch-store
+**PUT** `/account/bank-branch-store`
 
 Request body:
 
@@ -1057,7 +1057,7 @@ Using this API is possible me make an override of the current PCT by another PCT
 
 For additional information please refer CMS User Manual and CMS Screen Guide.
 
-PUT /account/pctId
+**PUT** `/account/pctId`
 
 Request body:
 
@@ -1089,7 +1089,7 @@ When a prepay account is created using API **ACCOUNT/ADD**. The maximum and mini
 
 For additional information please refer CMS User Manual and CMS Screen Guide.
 
-PUT /account/ppd-load-limits
+**PUT** `/account/ppd-load-limits`
 
 Request body:
 
@@ -1112,7 +1112,7 @@ The description of each API field can be found within the specifications in the 
 
 Use this API **ACCOUNT/PPD-OVER-LIMIT** to update the over limit amount allowed for a specific prepay account number. This over limit amount is a fixed amount used by authorization system to validated is the authorization amount if under this amount when the account does not have more available credit.
 
-PUT /account/ppd-over-limit
+**PUT** `/account/ppd-over-limit`
 
 Request body:
 
@@ -1134,7 +1134,7 @@ Wallet is a current functionality to allow a prepay account has more than one cu
 
 This API can be used to change the status of each of one wallets.
 
-PUT /account/walletStatus
+**PUT** `/account/walletStatus`
 
 Request body:
 
@@ -1156,7 +1156,7 @@ Use this API **ACCOUNT/RELATIONSHIP/ACCOUNT** to link a new sub-account created 
 
 Relationship number is a unique number assigned to a Corporate Card, for example Walmart with a customer number 123, is identify with a unique relationship number 567 and under this relationship number many accounts and cards are created for Walmart employs. So using the relationship number 567 is possible link additional new sub-account.
 
-PUT /account/relationship/account
+**PUT** `/account/relationship/account`
 
 Request body:
 
@@ -1181,7 +1181,7 @@ This API allow add card information as card expiration date, service code, cardh
 
 The card number is calculated on randomly way by the application, and this number will not generated again (duplicated).
 
-POST /cards/embosser
+**POST** `/cards/embosser`
 
 Request body:  
 
@@ -1277,7 +1277,7 @@ Pan token is a current functionality to tokenize the card number for all banks t
 
 This API use the PAN-TOKEN to bring the card number or card number can be used to being the PAN-TOKEN.
 
-POST /cards/embosser/card-pan
+**POST** `/cards/embosser/card-pan`
 
 Request body:  
 
@@ -1298,7 +1298,7 @@ This API **CARDS/MASS-CARD-ISSUE**, allow the user add or update a request to em
 
 Cards embossed will not have an embosser name, but card number, expiration and card security values will be part of these.
 
-POST /cards/mass-card-issue
+**POST** `/cards/mass-card-issue`
 
 Request body:  
 
@@ -1345,7 +1345,7 @@ Use this API **CARDS/EMBOSSER/CARDACTION** to update the action flag used to re-
 
 This API allow to the user request a card reissue for some reason, lost/stolen, damage, card expiration, emergency replace, etc.
 
-PUT /cards/embosser/cardAction
+**PUT** `/cards/embosser/cardAction`
 
 Request body:  
 
@@ -1363,7 +1363,7 @@ This API **CARDS/INSTANT-CARD-L8V7** allow to the user request the creation of a
 
 Customer information have to be created through API CUSTOMER/ADD before call API instant card.
 
-POST /cards/instant-card-L8V7
+**POST** `/cards/instant-card-L8V7`
 
 Request body:  
 
@@ -1554,7 +1554,7 @@ This API **CARDS/PIN/SECURITY-CODES**, allow to the user get the card security v
 
 Security values provided by the API will be encrypted using a security key of 32 bytes, so user should use the same security key and 3Des algorithm to decrypt the security values.
 
-PUT /cards/pin/security-codes
+**PUT** `/cards/pin/security-codes`
 
 Request body:  
 
@@ -1575,7 +1575,7 @@ Use this API **CARDS/PIN/DYNAMIC-VALUE** to calculate and inquire a new CVV2 for
 
 Currently when card is emboss through the API CARD/EMBOSSER, the static CVV2 code is calculate and printed on sign panel on card back. The new functionality of Dynamic CVV2 allow to the cardholder call this API CARDS/PIN/DYNAMIC-VALUE to generate and calculate a new CVV2 before make a not present purchase. So when API is trigger the static CVV2 is inactivated and each time the cardholder wants to make a new not card present purchase the new CVV2 have to be calculated through this API.
 
-POST/cards/pin/dynamic-values
+**POST** `/cards/pin/dynamic-values`
 
 Request body:  
 
@@ -1599,7 +1599,7 @@ As part of security parameters, the number of invalid pin attempts are set up to
 
 Invalid Pin attempts can be reached by many reasons the most popular reason is when cardholder fails the pin number on ATM.
 
-POST /cards/pin/invalid-attempts
+**POST** `/cards/pin/invalid-attempts`
 
 Request body:  
 
@@ -1619,7 +1619,7 @@ Use this API **CARDS/PIN/VALIDATION** to confirm that current pin generated is c
 
 This API require the pin block and the card number and not the clear pin number.
 
-POST /cards/pin/validation
+**POST** `/cards/pin/validation`
 
 Request body:  
 
