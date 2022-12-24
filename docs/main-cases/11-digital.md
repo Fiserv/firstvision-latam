@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Digital Card Issuing]
+---
+
 # Digital Card Issuing
 
 ## Definition
@@ -247,7 +251,7 @@ Request body:
 }
 ```
 
-### 4. CARD ACTIVATION
+### 4. Card ACTIVATION
 
 After customer, account and embosser requests, the new card settings for the customer are applied, but not active for use. This request will activate the card and make it ready for use. See more about the Card Activation API:
 
