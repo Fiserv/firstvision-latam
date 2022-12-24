@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Card Controls, Block or Unlock Card, Cards/Embosser/Block, Update Spending Limits, Cards/Spend-Limits, Update Travel Indicator, Cards/Travel, Card Transfer Update, Cards/Transfer), Active Card, Cards/Activation, Update Pin of Card, Cards/Pin, Pin Block/Unblock , Cards/Pin/Status, Change the Pin of a Card, Cards/Pin/Pin-Change]
+---
+
 # Card Controls
 
 This section describes the different APIs in the Portal used to take actions on the different activities related to the use of the credit, debit, prepaid or wallet card, for any of the Visa, Master Card or American Express products. Next, a description of the functionalities and characteristics of API.
