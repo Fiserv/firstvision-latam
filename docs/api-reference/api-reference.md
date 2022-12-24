@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API reference, Accounts, Cards, Customer, Loyalty, Notifications, Transactions]
+tags: [Getting Started, API Reference, Accounts, Cards, Customer, Loyalty, Notifications, Transactions]
 ---
 
 # API Reference
@@ -13,7 +13,7 @@ Establish cardholder relationships in CMS. Assign Account Base Segment records t
 -->
 
 <!-- type: card
-title: Cards
+title: hello
 description: Cards functions to add, inquiry and edit card records. A card record contains information about the card (or “plastic”) that is issued to the cardholder. Also includes cross reference between customer, account and card. Card level features such as card activation, issue, reissue, lost and stolen, replacement, limit management, secured PIN management, card details, block code application and authorizations.
 -->
 
