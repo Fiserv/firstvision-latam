@@ -1637,7 +1637,6 @@ The description of each API field can be found within the specifications in the 
 - [API Environment](?path=docs/main-cases/1-api-environment.md)
 - [Upload Founds](docs/main-cases/2-uploads.md)
 - [Card Controls](?path=docs/main-cases/3-card-controls.md)
-- [Relation Client-Account-Card](?path=docs/main-cases/4-relation.md)
 - [Customer Management](?path=docs/main-cases/5-customer.md)
 - [Account Management](?path=docs/main-cases/6-account.md)
 - [Card Management](?path=docs/main-cases/7-card.md)
