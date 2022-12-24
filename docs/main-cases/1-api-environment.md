@@ -38,7 +38,6 @@ Response example:
 
 ## See Also
 
-- [API Environment](?path=docs/main-cases/1-api-environment.md)
 - [Upload Founds](docs/main-cases/2-uploads.md)
 - [Card Controls](?path=docs/main-cases/3-card-controls.md)
 - [Relation Client-Account-Card](?path=docs/main-cases/4-relation.md)
