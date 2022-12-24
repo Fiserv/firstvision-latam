@@ -26,7 +26,7 @@ However, depending on the values ​​used in the APIS, it is also possible to 
 
 The use of this API allows you to load money to a Debit, Credit, Prepaid and Wallet product, using the parameters defined in the Portal. This API takes as a source the cash received from an agency or bank branch, and will apply these funds. These funds can be in local or foreign currency. As part of its functions, this API allows to indicate through its parameters, if the money deposited to the account can be used immediately or not.
 
-PUT /account/balance
+**PUT** `/account/balance`
       
 Request body:
 
@@ -60,7 +60,7 @@ This API allows you to load money from an existing Credit, Debit, Prepaid or Wal
 
 Through the indicated parameters, it is possible to identify the account, product card from which the withdrawal of money (debit) is being made and define the account and card to which the credit will be made, it is also required as part of the API parameters, add the geographic location (latitude and longitude) of the source (sender) that is loading money. The card number from which you receive the money (receiver) is required as part of the parameters required by the API.
 
-PUT /account/QRFL-balance
+**PUT** `/account/QRFL-balance`
       
 Request body:
 
@@ -96,7 +96,6 @@ The description of each API field can be found within the specifications defined
 ### Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
 
 ![Sequence diagram!](/assets/images/main-cases/adjust-account-balance-peer-to-peer.png "Sequence diagram")
-
 
 ---
 
