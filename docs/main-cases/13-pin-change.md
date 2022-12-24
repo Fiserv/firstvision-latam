@@ -12,7 +12,7 @@ This API can be used when cardholder need to change the current PIN number for a
 
 Require values of this API are: Card Number, Channel, Current Pin Block, New Pin Block, Key Association (to encrypt Pin Blocks), new pin offset, and bank organization.
 
-PUT /cards/pin/pin-change
+**PUT** `/cards/pin/pin-change`
     
 Request body:
 
