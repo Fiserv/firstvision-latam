@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Accounts, Cards, Customer, Loyalty, Notifications, Transactions]
+tags: [Getting Started, API Reference, Account, Cards, Customer, Loyalty, Notifications, Transactions]
 ---
 
 # API Reference
@@ -7,7 +7,7 @@ tags: [Getting Started, API Reference, Accounts, Cards, Customer, Loyalty, Notif
 <!-- type: row -->
 
 <!-- type: card
-title: Accounts
+title: Account
 description: Account basic functions such as add, inquiry and edit account. Also includes account level processing options for a card account such as digital wallet options, instant card, limit management, balance and delinquency management, block code application, transaction management, product reassignment, direct debit and credit processing and other account management functions. 
 Establish cardholder relationships in CMS. Assign Account Base Segment records to a Relationship record. The Relationship record contains information that applies, and controls all linked accounts in the relationship.
 -->
