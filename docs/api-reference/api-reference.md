@@ -4,7 +4,6 @@ tags: [Getting Started, API Reference, Account, Cards, Customer, Loyalty, Notifi
 
 # API Reference
 
-
 <!--
 type: tab
 titles: Who is it for, How is it used, Potential uses
