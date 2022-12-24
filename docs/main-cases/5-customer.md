@@ -12,7 +12,7 @@ Each new customer will have a unique number called Customer Number, this custome
 
 This customer number is independent of the customer's personal identification number: Social Security, Cedula, CPN or Driver License entered in the API field: **IDENTIFICATIONNUMBER**.
 
-POST /customer
+**POST** `/customer`
                 
 Request body:
 
@@ -100,7 +100,7 @@ The description of each API field can be found within the specifications defined
 
 The API **CUSTOMER/** allows the updating of demographic information for a specific customer. Currently entered through the API **CUSTOMER/ADD**. The value required by this API is the Customer Number created through the API **Customer/Add**.
 
-PUT /customer
+**PUT** `/customer`
     
 Request body:
 
@@ -136,7 +136,7 @@ The API **CUSTOMER/ACCOUNTNUMBER** allows a cardholder to find out all the accou
 
 This information is sent in the API response message once it has been triggered. The Customer Number will be the main value used for the search of the account numbers.
 
-POST /customer/accountNumber
+**POST** `/customer/accountNumber`
 
 Request body:  
 
@@ -161,7 +161,7 @@ This API **CUSTOMER/DETAILS-L8V4** allows the customer to find out all the card 
 
 This information is sent in the API response message once it has been triggered. The Customer Number will be the main value used for the search of the account numbers.
 
-POST /customer/details-l8v4
+**POST** `/customer/details-l8v4`
 
 Request body:  
 
@@ -189,7 +189,7 @@ The API request the Bank id (organization), product id (logo), quantity of numbe
 
 API response will show the customer, account, card and relationship number as these were requested.
 
-POST /customer/generation
+**POST** `/customer/generation`
 
 Request body:  
 
@@ -209,7 +209,7 @@ With this API **CUSTOMER/DEMOGRAPHICDATA** cardholder will be able to get all th
 
 Customer Number values will be used by the API to get customer demographic information.
 
-POST /customer/demographicData
+**POST** `/customer/demographicData`
 
 Request body:  
 
@@ -228,7 +228,7 @@ The description of each API field can be found within the specifications defined
 
 This API **CUSTOMER/LOOKUP**, allow to the Bank look for a customer number already created, using different search criteria, as name, last name, date of birth, identification number, country code, etc. When search criteria are matching Customer Information and Customer Number will be displayed on API output message. If more than one record match with these criteria API output message will show all customer numbers, so they can be cross-referenced to account numbers and/or card numbers.
 
-POST /customer/lookup
+**POST** `/customer/lookup`
 
 Request body:  
 
@@ -285,7 +285,7 @@ This API **CUSTOMER/RELATIONSHIPNUMBER** allow to a cardholder bring all the rel
 
 Relationship number is a unique number assigned to a Corporate Card, for example Walmart with a customer number 123, is identify with a unique relationship number 567 and under this relationship number many accounts and cards are created for Walmart employs. So using the customer number 123 on this API is possible to get the relationship number 567.
 
-POST /customer/relationshipNumber
+**POST** `/customer/relationshipNumber`
 
 Request body:  
 
@@ -307,7 +307,7 @@ When an account or relationship number is entered as input to the service, the s
 
 The appropriate customer number is found by using the navigational services. When the customer number is input into the service, the data for that record is returned.
 
-GET /customer/{accountNumber}/current-prior-address
+**GET** `/customer/{accountNumber}/current-prior-address`
   
 Required parameters:
 
