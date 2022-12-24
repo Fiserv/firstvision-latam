@@ -8,7 +8,7 @@ Use this API **CARDS/PIN/DYNAMIC-VALUE** to calculate and inquire a new CVV2 for
 
 Currently when card is emboss through the API CARD/EMBOSSER, the static CVV2 code is calculate and printed on sign panel on card back. The new functionality of Dynamic CVV2 allow to the cardholder call this API CARDS/PIN/DYNAMIC-VALUE to generate and calculate a new CVV2 before make a not present purchase. So when API is trigger the static CVV2 is inactivated and each time the cardholder wants to make a new not card present purchase the new CVV2 have to be calculated through this API.
 
-post /cards/pin/dynamic-values
+**POST** `/cards/pin/dynamic-values`
     
 Request body:
 
@@ -23,7 +23,6 @@ Request body:
 ```
   
 The description of each API field can be found within the specifications defined in the portal.
-
 
 ---
 
