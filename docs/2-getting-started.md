@@ -61,6 +61,5 @@ You can see the different APIs available for the corresponding group, on the rig
 
 ![Getting started 7!](/assets/images/getting-started/getting-started-7.jpg "Getting started 7")
 
-## Step 3: Make a test
 
-At this step you already have your credentials and know something about our APIs, so let's get down to business and do some testing!
+[comment]: <> (## Step 3: Make a test At this step you already have your credentials and know something about our APIs, so let's get down to business and do some testing!)
