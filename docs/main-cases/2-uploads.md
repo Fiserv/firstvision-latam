@@ -2,7 +2,6 @@
 tags: [Main Cases, Upload Founds From a Source Account, Account, Balance, Peer-to-Peer]
 ---
 
-
 # Upload Founds From a Source Account
 
 ## Definition
