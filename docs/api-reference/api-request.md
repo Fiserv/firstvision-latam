@@ -6,7 +6,14 @@ tags: [Getting Started, API Reference, Request Header, Request Body, Header]
 
 ## Request Header
 
-Commerce Hub RESTful API has a consistent header structure based on a set of parameters. To create the header, provide the following values:
+RESTful API has a consistent header structure based on a set of parameters.
+
+<!--
+type: tab
+titles: Header, Request Header Example
+-->
+
+To create the header, provide the following values:
 
 | Variable | Type | Length | Description/Values |
 | -------- | :--: | :------------: | ------------------ |
@@ -19,7 +26,9 @@ Commerce Hub RESTful API has a consistent header structure based on a set of par
 | `Authorization` | *string* | N/A | Used to ensure the request has not been tampered with during transmission. Valid encryption; [HMAC](?path=docs/Resources/API-Documents/Authentication-Header.md) or [AccessToken](?path=docs/Resources/API-Documents/Security/Credentials.md). |
 | `Message-Digest` | *string* | N/A | Needed only from customer browser or app to the API in Hosted Payment Page requests. |
 
-### Request Header Example
+<!--
+type: tab
+-->
 
 ```json
 "header": {
@@ -32,13 +41,18 @@ Commerce Hub RESTful API has a consistent header structure based on a set of par
 }
 ```
 
+<!-- type: tab-end -->
+
 ---
 
 ## Request Body
 
 The body of the transaction request differs based on the transaction being initiated. Below is the sample body for a [charge](?path=docs/Resources/API-Documents/Payments/Charges.md) request.
 
-### Request Body Example
+<!--
+type: tab
+titles: Request Body Example
+-->
 
 ```json
 {
@@ -64,3 +78,7 @@ The body of the transaction request differs based on the transaction being initi
   }
 }
 ```
+
+<!-- type: tab-end -->
+
+---
