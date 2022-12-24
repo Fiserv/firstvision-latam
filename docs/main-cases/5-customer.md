@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Customer Management,  demographic data, generation, lookup, address]
+tags: [Main Cases, Customer Management, customer, demographic data, generation, lookup, address]
 ---
 
 # Customer Management
