@@ -4,6 +4,30 @@ tags: [Getting Started, API Reference, Account, Cards, Customer, Loyalty, Notifi
 
 # API Reference
 
+
+<!--
+type: tab
+titles: Who is it for, How is it used, Potential uses
+-->
+
+Any developer creating or integrating apps that need to interact with transaction data maintained on Fiserv core account processing platforms
+
+<!--
+type: tab
+-->
+
+Employ these APIs to develop apps that offer unique experiences or novel channels through which users can view and manage transactions on those accounts
+
+<!--
+type: tab
+-->
+
+Apps that enable consumers and businesses to monitor and manage their financial transactions and balances through channels they access in everyday life
+
+<!-- type: tab-end -->
+
+---
+
 <!-- type: row -->
 
 <!-- type: card
