@@ -12,7 +12,7 @@ This API allow add card information as card expiration date, service code, cardh
 
 The card number is calculated on randomly way by the application, and this number will not generated again (duplicated).
 
-POST /cards/embosser
+**POST** `/cards/embosser`
 
 Request body:  
 
@@ -108,7 +108,7 @@ Pan token is a current functionality to tokenize the card number for all banks t
 
 This API use the PAN-TOKEN to bring the card number or card number can be used to being the PAN-TOKEN.
 
-POST /cards/embosser/card-pan
+**POST** `/cards/embosser/card-pan`
 
 Request body:
 
@@ -129,7 +129,7 @@ This API **CARDS/MASS-CARD-ISSUE**, allow the user add or update a request to em
 
 Cards embossed will not have an embosser name, but card number, expiration and card security values will be part of these.
 
-POST /cards/mass-card-issue
+**POST** `/cards/mass-card-issue`
 
 Request body:  
 
@@ -176,7 +176,7 @@ Use this API **CARDS/EMBOSSER/CARDACTION** to update the action flag used to re-
 
 This API allow to the user request a card reissue for some reason, lost/stolen, damage, card expiration, emergency replace, etc.
 
-PUT /cards/embosser/cardAction
+**PUT** `/cards/embosser/cardAction`
 
 Request body:  
 
@@ -194,7 +194,7 @@ This API **CARDS/INSNTANT-CARD-L8V7** allow to the user request the creation of 
 
 Customer information have to be created through API **CUSTOMER/ADD** before call API instant card.
 
-POST /cards/instant-card-L8V7
+**POST** `/cards/instant-card-L8V7`
 
 Request body:  
 
@@ -385,7 +385,7 @@ This API **CARDS/PIN/SECURITY-CODES**, allow to the user get the card security v
 
 Security values provided by the API will be encrypted using a security key of 32 bytes, so user should use the same security key and 3Des algorithm to decrypt the security values.
 
-PUT /cards/pin/security-codes
+**PUT** `/cards/pin/security-codes`
 
 Request body:  
 
@@ -406,7 +406,7 @@ Use this API **CARDS/PIN/DYNAMIC-VALUE** to calculate and inquire a new CVV2 for
 
 Currently when card is emboss through the API **CARD/EMBOSSER**, the static CVV2 code is calculate and printed on sign panel on card back. The new functionality of Dynamic CVV2 allow to the cardholder call this API **CARDS/PIN/DYNAMIC-VALUE** to generate and calculate a new CVV2 before make a not present purchase. So when API is trigger the static CVV2 is inactivated and each time the cardholder wants to make a new not card present purchase the new CVV2 have to be calculated through this API.
 
-POST /cards/pin/dynamic-values
+**POST** `/cards/pin/dynamic-values`
 
 Request body:  
 
@@ -430,7 +430,7 @@ As part of security parameters, the number of invalid pin attempts are set up to
 
 Invalid Pin attempts can be reached by many reasons the most popular reason is when cardholder fails the pin number on ATM.
 
-POST /cards/pin/invalid-attempts
+**POST** `/cards/pin/invalid-attempts`
 
 Request body:  
 
@@ -450,7 +450,7 @@ Use this API **CARDS/PIN/VALIDATION** to confirm that current pin generated is c
 
 This API require the pin block and the card number and not the clear pin number.
 
-POST /cards/pin/validation
+**POST** `/cards/pin/validation`
 
 Request body:  
 
