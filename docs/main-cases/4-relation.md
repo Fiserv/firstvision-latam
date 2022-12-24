@@ -1,3 +1,8 @@
+---
+tags: [Main Cases, Relation Client-Account-Card, Customer Management, Account Management, Card Management]
+---
+
+
 # Relation Client-Account-Card
 
 ![Relation!](/assets/images/main-cases/relation-client-account-card.png "Relation")
@@ -1042,7 +1047,7 @@ Request body:
 
 The description of each API field can be found within the specifications in the portal.
 
-## Pricing Control Table Update (account/pctId)
+### Pricing Control Table Update (account/pctId)
 
 Use this API **ACCPUNT/PCT** to assign a new Processing Control Table (PCT) to an existing account for a range of dates.
 
