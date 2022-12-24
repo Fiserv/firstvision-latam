@@ -1,3 +1,8 @@
+---
+tags: [Main Cases, Upload Founds From a Source Account, Adjust Account Balance, Account/Balance, Adjust Account Balance Peer-to-Peer, Account/QRFL-Balance]
+---
+
+
 # Upload Founds From a Source Account
 
 ## Definition
@@ -50,7 +55,7 @@ Request body:
 
 The description of each API field can be found within the specifications defined in the portal.
 
-### 2.  Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
+### 2. Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
 
 This API allows you to load money from an existing Credit, Debit, Prepaid or Wallet account, to a new destination account of any of the products indicated above.
 
