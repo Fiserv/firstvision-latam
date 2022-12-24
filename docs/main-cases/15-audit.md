@@ -12,7 +12,6 @@ Our Monitoring helps operations teams increase API availability for application 
 
 ![image](https://user-images.githubusercontent.com/111396588/208849666-f5ea2024-b00a-4d74-936f-f975073a1731.png)
 
-
 ---
 
 ## See Also
