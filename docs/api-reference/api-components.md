@@ -1,8 +1,8 @@
 ---
-tags: [Getting Started, API Reference, Request Header, Request Body, Header,]
+tags: [Getting Started, API Reference, Request Header, Request Body, Header]
 ---
 
-# API Components
+# HTTP Request 
 
 ## Request Header
 
