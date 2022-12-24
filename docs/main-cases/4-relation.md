@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Relation Client-Account-Card, Customer Management, Account Management, Card Management]
+tags: [Main Cases, Relation Client-Account-Card, Customer, Account, Card, generation, demographic data, lookup, address, balance, credit, limit, temporary, block-code, credit bureau, transfer P2P,  user, promotional product, debit, relationship, installment-term, associated parties, auth-criteria, pctId, ppd, wallet, embosser, pan token, pin, security-codes]
 ---
 
 
