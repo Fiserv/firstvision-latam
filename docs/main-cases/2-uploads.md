@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Upload Founds From a Source Account, Adjust Account Balance, Adjust Account Balance Peer-to-Peer]
+tags: [Main Cases, Upload Founds From a Source Account, Account, Balance, Peer-to-Peer]
 ---
 
 
