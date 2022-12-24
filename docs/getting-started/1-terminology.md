@@ -1,3 +1,7 @@
+---
+tags: [Getting Started, Terminology, Account, Customer, Cards, Plan Segments]
+---
+
 # Terminology
 
 ## What are customers, accounts and cards?
