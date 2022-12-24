@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Pan Token, embosser]
+---
+
 # Pan Token
 
 Currently when a customer is not certified by the Payment Card Industry (PCI), the card number cannot be showed on any web service, ATM, POS, etc.
