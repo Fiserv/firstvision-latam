@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Pin Change, cards]
+---
+
 # Pin Change
 
 Pin change is a currently functionality to allow the cardholder change you current card PIN, the reason for change the card pin can be because it is compromise, wants the change or it is required by the issuer each X number of days.
