@@ -1,3 +1,7 @@
+---
+tags: [Getting Started, System Structure, Functional Structure]
+---
+
 # Structure
 
 ## System structure
