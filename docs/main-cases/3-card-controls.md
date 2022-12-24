@@ -264,5 +264,6 @@ The description of each API field can be found within the specifications.
 - [Pin Change](?path=docs/main-cases/13-pin-change.md)
 - [Dynamic CVV2](?path=docs/main-cases/14-dynamic.md)
 - [Audit and Monitoring](?path=docs/main-cases/15-audit.md)
-- [HMAC Signature](?path=docs/main-cases/16-hmac.md)![image](https://user-images.githubusercontent.com/111396588/209449019-37e28cb3-ba28-403f-9ce9-364a8091f45f.png)
+- [HMAC Signature](?path=docs/main-cases/16-hmac.md)
 
+---
