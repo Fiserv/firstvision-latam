@@ -11,9 +11,6 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 
 ## Import Collection
 
-<details> 
-   <summary>Click to expand!</summary>
-
 ### 1. Open Postman and click the import button to open the provided collection
 
 ![Postman!](/assets/images/postman/postman-tutorial_1.png "Postman")
@@ -22,13 +19,8 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 
 ![Postman!](/assets/images/postman/postman-tutorial_2.png "Postman")
 
-</details>
-
-
 ## Create Environment
 
-<details> 
-   <summary>Click to expand!</summary>
 
 ### 3. In this step we will configure the environment necessary to execute requests in Postman dynamically, as the requests are already configured with environment variables which we will configure next. Click the environments button and follow the next steps
 
@@ -42,12 +34,7 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 
 ![Postman!](/assets/images/postman/postman-tutorial_5.png "Postman")
 
-</details>
-
 ## Configure collection
-
-<details> 
-   <summary>Click to expand!</summary>
 
 ### 6. Now create the variables like the next example with the credentials sent, in this step you can define which variables will be used throughout the use of the Collection, such as endpoint, port and others
 
@@ -61,12 +48,7 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 
 ![Postman!](/assets/images/postman/postman-tutorial_8.png "Postman")                      
 
-</details>
-
 ## Execute first request
-
-<details> 
-   <summary>Click to expand!</summary>
 
 ### 9. Click on send button
 
@@ -77,5 +59,3 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 ![Postman!](/assets/images/postman/postman-tutorial_10.png "Postman")
 
 You are now ready to start trying out our API!
-
-</details>
