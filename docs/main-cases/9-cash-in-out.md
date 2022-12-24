@@ -8,7 +8,7 @@ Use this API **ACCOUNT/BALANCE** to apply a money amount from a Bank Branch, ATM
 
 Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
 
-PUT /account/balance
+**PUT** `/account/balance`
             
 Request body:
 
@@ -35,7 +35,6 @@ Request body:
 ```
 
 The description of each API field can be found within the specifications defined in the portal.
-
 
 ---
 
