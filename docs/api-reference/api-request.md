@@ -2,7 +2,7 @@
 tags: [Getting Started, API Reference, Request Header, Request Body, Header]
 ---
 
-# HTTP Request 
+# API Request 
 
 ## Request Header
 
