@@ -14,7 +14,7 @@ This API needs the customer number as a require value before the API can be trig
 
 The description of each API field can be found within the specifications defined in the portal.
 
-POST /account
+**POST** `/account`
 
 Request body:
 
@@ -69,7 +69,7 @@ This API use the account number already assigned when API **ACCOUNT/ADD** was tr
 
 The description of each API field can be found within the specifications defined in the portal.
 
-POST /account/balance/details
+**POST** `/account/balance/details`
 
 Request body:
 
@@ -88,7 +88,7 @@ This API use the account number as search parameter and values as account credit
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /cards/temporary-credit-limit
+**PUT** `/cards/temporary-credit-limit`
 
 Request body:
 
@@ -115,7 +115,7 @@ Account number is a require value to trigger this API.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/block-code
+**PUT** `/account/block-code`
 
 Request body:
 
@@ -140,7 +140,7 @@ This API will show all the cards created under the account number, principal car
 
 The description of each API field can be found within the specifications defined in the portal.
 
-POST /account/card
+**POST** `/account/card`
 
 Request body:
 
@@ -159,7 +159,7 @@ This API uses the account number and a flag to indicate if the account is added 
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/creditBureau
+**PUT** `/account/creditBureau`
 
 Request body:
 
@@ -185,7 +185,7 @@ This API use the account number as search parameter and an existing customer num
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/customer
+**PUT** `/account/customer`
 
 Request body:
 
@@ -214,7 +214,7 @@ This API require the account number as search parameter along with banj id (orga
 
 The description of each API field can be found within the specifications defined in the portal.
 
-POST /account/details
+**POST** `/account/details`
 
 Request body:
 
@@ -238,7 +238,7 @@ This API use the account number for source account and account number for destin
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/FL-transferP2P
+**PUT** `/account/FL-transferP2P`
 
 Request body:
 
@@ -324,7 +324,7 @@ Use API parameters to allow that money transfer can be ready to use after API wa
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/balance
+**PUT** `/account/balance`
 
 Request body:
 
@@ -358,7 +358,7 @@ Use API parameters to allow that money transfer can be ready to use after API wa
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/FL-balance
+**PUT** `/account/FL-balance`
 
 Request body:
 
@@ -405,7 +405,7 @@ Values as dates, amounts, codes, etc. can be set up in the API before trigger it
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/user
+**PUT** `/account/user`
 
 Request body:
 
@@ -486,7 +486,7 @@ Same API can be used to make a product downgrade, it means transfer from Visa Go
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/transfer-promotional-product
+**PUT** `/account/transfer-promotional-product`
 
 Request body:
 
@@ -567,7 +567,7 @@ This API request the account number, type of refinance, credit plan, new number 
 
 The description of each API field can be found within the specifications defined in the portal.
 
-GET /account/{accountNumber}/balance
+**GET** `/account/{accountNumber}/balance`
 
 ## Inquire Direct debit/credit (account/{accountNumber}/credit-debit)
 
@@ -579,7 +579,7 @@ The saving account, current account and Routing account are values previously se
 
 The description of each API field can be found within the specifications defined in the portal.
 
-GET /account/{accountNumber}/credit-debit
+**GET** `/account/{accountNumber}/credit-debit`
 
 ## Account Overview (account/{accountNumber}/overview)
 
@@ -587,7 +587,7 @@ Use this API **ACCOUNT/{ACCOUNTNUMBER}/OVERVIEW**, to get most important account
 
 The description of each API field can be found within the specifications defined in the portal.
 
-GET /account/{accountNumber}/overview
+**GET** `/account/{accountNumber}/overview`
 
 ## Find Relationship Details (account/{accountNumber}/relationship)
 
@@ -603,7 +603,7 @@ This API use Corporate Account Number as search parameter.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-GET /account/{accountNumber}/relationship
+**GET** `/account/{accountNumber}/relationship`
 
 ## Update Installment Term (account/installment-term)
 
@@ -617,7 +617,7 @@ This API use the account number, transactions reference number, and new number o
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/installment-term
+**PUT** `/account/installment-term`
 
 Request body:
 
@@ -640,7 +640,7 @@ The Associated parties fields located at account level are been used to identify
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/associatedParties
+**PUT** `/account/associatedParties`
 
 Request body:
 
@@ -680,7 +680,7 @@ For additional information please refer CMS User Manual and CMS Screen Guide.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/auth-criteria
+**PUT** `/account/auth-criteria`
 
 Request body:
 
@@ -701,7 +701,7 @@ This API **ACCOUNT/BANK-BRANCH-STORE**, allow the user to update the Branch of s
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/bank-branch-store
+**PUT** `/account/bank-branch-store`
 
 Request body:
 
@@ -728,7 +728,7 @@ For additional information please refer CMS User Manual and CMS Screen Guide.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-/account/pctId
+**PUT** `/account/pctId`
 
 Request body:
 
@@ -760,7 +760,7 @@ For additional information please refer CMS User Manual and CMS Screen Guide.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/ppd-load-limits
+**PUT** `/account/ppd-load-limits`
 
 Request body:
 
@@ -783,7 +783,7 @@ Use this API **ACCOUNT/PPD-OVER-LIMIT** to update the over limit amount allowed 
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/ppd-over-limit
+**PUT** `/account/ppd-over-limit`
 
 Request body:
 
@@ -805,7 +805,7 @@ This API can be used to change the status of each of one wallets.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/walletStatus
+**PUT** `/account/walletStatus`
 
 Request body:
 
@@ -827,7 +827,7 @@ Relationship number is a unique number assigned to a Corporate Card, for example
 
 The description of each API field can be found within the specifications defined in the portal.
 
-PUT /account/relationship/account
+**PUT** `/account/relationship/account`
 
 Request body:
 
