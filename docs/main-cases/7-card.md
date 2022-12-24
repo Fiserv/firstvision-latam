@@ -1,3 +1,7 @@
+---
+tags: [Main Cases, Card Management, embosser, pan token, security-codes, pin]
+---
+
 # Card Management
 
 ## Add Card Record (cards/embosser/)
