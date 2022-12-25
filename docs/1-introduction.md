@@ -8,23 +8,25 @@
 
 **FirstVision™ Restful APIs** enable you to achieve platform modernization and competitive edge delivering the following **benefits to your business.**
 
-<!--
-type: tab
-titles: Accelerating Your Time to Market, Helping You Ride the Latest Wave of Innovation, Enables Rapid Speed of Change / Speed to Market
--->
+---
+
+<!-- type: row -->
+
+<!-- type: card
+title: Accelerating Your Time to Market
 
 Extensive parameterization and service-based architecture with API enabled and a fully integrated suite of solutions for managing credit, debit, loans and payments ensures quicker application development and integration, rapid roll-out of new products and services.
- 
-<!--
-type: tab
 -->
+
+<!-- type: card
+title: Helping You Ride the Latest Wave of Innovation
 
 Platform architecture built around technology simplification and leveraging open APIs, reducing the cost of change and meeting your need for ongoing innovation to differentiate your product set – now and forward into the future.
-
-<!--
-type: tab
 -->
+
+<!-- type: card
+title: Enables Rapid Speed of Change / Speed to Market
 
 FirstVision™ oriented architecture with open APIs enables service consumption rather than change management.
 
-<!-- type: tab-end -->
+<!-- type: row-end -->
