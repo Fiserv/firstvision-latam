@@ -60,3 +60,13 @@ You can see the different APIs available for the corresponding group, on the rig
 ### 7. Example of try out section
 
 ![Getting started 7!](/assets/images/getting-started/getting-started-7.jpg "Getting started 7")
+
+---
+
+## See Also
+
+- [Terminology](?path=docs/getting-started/1-terminology.md)
+- [Postman Tutorial](?path=docs/getting-started/2-postman.md)
+- [Structure](?path=docs/getting-started/3-structure.md)
+
+---
