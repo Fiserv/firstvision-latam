@@ -63,3 +63,13 @@ In addition, an account will have multiple **Plan Segments**:
 - Each Plan Segment assigned to an account is uniquely identified by a combination of a 5-digit number and a record number.
 
 ![Plan segments!](/assets/images/terminology/plan-segments.png "Plan segments")
+
+---
+
+## See Also
+
+- [Getting Started](?path=docs/2-getting-started.md)
+- [Postman Tutorial](?path=docs/getting-started/2-postman.md)
+- [Structure](?path=docs/getting-started/3-structure.md)
+
+---
