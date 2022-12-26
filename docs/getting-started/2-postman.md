@@ -21,7 +21,6 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 
 ## Create Environment
 
-
 ### 3. In this step we will configure the environment necessary to execute requests in Postman dynamically, as the requests are already configured with environment variables which we will configure next. Click the environments button and follow the next steps
 
 ![Postman!](/assets/images/postman/postman-tutorial_3.png "Postman")
@@ -59,3 +58,13 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 ![Postman!](/assets/images/postman/postman-tutorial_10.png "Postman")
 
 You are now ready to start trying out our API!
+
+---
+
+## See Also
+
+- [Getting Started](?path=docs/2-getting-started.md)
+- [Terminology](?path=docs/getting-started/1-terminology.md)
+- [Structure](?path=docs/getting-started/3-structure.md)
+
+---
