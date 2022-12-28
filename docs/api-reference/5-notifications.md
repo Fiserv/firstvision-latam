@@ -67,6 +67,7 @@ type: tab
 titles: Auth Approved, Auth Declined, Payment Due
 -->
 
+```json
 {
   "securityContext": "VMX.MULTICHANNEL.769",
   "version": "R8V1",
@@ -102,11 +103,13 @@ titles: Auth Approved, Auth Declined, Payment Due
   "messageLine20": "",
   "messageLine21": ""
 }
+```
 
 <!--
 type: tab
 -->
 
+```json
 {
   "securityContext": "VMX.MULTICHANNEL.769",
   "version": "R8V1",
@@ -142,11 +145,13 @@ type: tab
   "messageLine20": "",
   "messageLine21": ""
 }
+```
 
 <!--
 type: tab
 -->
 
+```json
 {
   "securityContext": "VMX.MULTICHANNEL.770",
   "version": "R8V1",
@@ -182,11 +187,9 @@ type: tab
   "messageLine20": "",
   "messageLine21": ""
 }
+```
 
 <!-- type: tab-end -->
-
----
-
 
 ---
 
