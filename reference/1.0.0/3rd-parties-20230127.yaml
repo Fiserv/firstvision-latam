@@ -1,0 +1,2034 @@
+openapi: 3.0.1
+info:
+  title: LATAM Issuing APIs
+  description: APIs to VMX Server
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licences/LICENSE-2.0
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+tags:
+- name: Issuer
+  description: |
+    APIs that issuers use to perform
+    various token-related operations, such as provisioning and notifications.
+paths:
+  /vtis/v2/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/tokenChanged:
+    post:
+      tags:
+      - Issuer
+      summary: This API is exposed by an issuer. Visa will invoke this API call when
+        the issuer's token has been created or changed.
+      operationId: Token Create Notification
+      parameters:
+      - name: eventType
+        in: query
+        description: Event type
+        required: true
+        schema:
+          type: string
+          enum:
+          - TOKEN_CREATED
+          - TOKEN_DEACTIVATED
+          - TOKEN_SUSPEND
+          - TOKEN_RESUME
+          - DEVICE_PROVISIONING_RESULT
+          - OTP_VERIFICATION_RESULT
+          - CALL_CENTER_ACTIVATION
+          - MOBILE_BANK_APP_ACTIVATION
+          - LUK_REPLENISHMENT
+          - DEVICE_PROVISIONING_REPERSONALIZATION_RESULT
+          - TOKEN_EXPIRY_DATE_UPDATED
+          - TOKEN_DEVICE_BINDING_RESULT
+          - CARDHOLDER_STEPUP_RESULT
+          - TOKEN_DEVICE_BINDING_REMOVED
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: tokenRequestorID
+        in: path
+        description: Unique ID assigned to the initiator of the token request
+        required: true
+        schema:
+          type: string
+      - name: tokenReferenceID
+        in: path
+        description: |2-
+           Unique ID for the token associated with the PAN. This ID can
+          be used in lieu of a token for subsequent calls, such as life cycle events
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenCreateNotificationRequest'
+        required: true
+      responses:
+        "500":
+          description: Service Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "200":
+          description: Success
+        "400":
+          description: Invalid Parameter / Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+  /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/lifecycle:
+    post:
+      tags:
+      - Issuer
+      summary: Token Life Cycle
+      operationId: tokenLifeCycle
+      parameters:
+      - name: tokenRequestorID
+        in: path
+        description: Unique ID assigned to the initiator of the token request.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: tokenReferenceID
+        in: path
+        description: |-
+          Unique ID for the token associated with the PAN. This ID can
+          be used in lieu of the token for subsequent calls, such as lifecycle events.
+        required: true
+        schema:
+          maxLength: 32
+          minLength: 0
+          type: string
+      - name: apiKey
+        in: query
+        description: Client-specific API Key issued during onboarding.
+        required: true
+        schema:
+          maxLength: 64
+          minLength: 0
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenLifeCycleRequest'
+        required: true
+      responses:
+        "500":
+          description: Service Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "200":
+          description: Success
+        "400":
+          description: Invalid Parameter / Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+  /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/deviceBinding:
+    post:
+      tags:
+      - Issuer
+      summary: This API is invoked to bind an ECOM/COF token to a device.
+      operationId: Device Token Binding Request
+      parameters:
+      - name: tokenRequestorID
+        in: path
+        description: Unique ID assigned to the initiator of the token request
+        required: true
+        schema:
+          type: string
+      - name: tokenReferenceID
+        in: path
+        description: |2-
+           Unique ID for the token associated with the PAN. This ID can
+          be used in lieu of a token for subsequent calls, such as life cycle events
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceTokenBindingRequest'
+        required: true
+      responses:
+        "500":
+          description: Service Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceTokenBindingResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "400":
+          description: Invalid Parameter / Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+  /vtis/v1/pan/lifecycle:
+    post:
+      tags:
+      - Issuer
+      summary: Pan Life Cycle
+      operationId: panLifeCycle
+      parameters:
+      - name: apiKey
+        in: query
+        description: |-
+          Client-specific API Key issued during onboarding. This value
+          is passed as a query parameter.
+        required: true
+        schema:
+          maxLength: 64
+          minLength: 0
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PanLifeCycleRequest'
+        required: true
+      responses:
+        "500":
+          description: Service Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "200":
+          description: Success
+        "400":
+          description: Invalid Parameter / Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+  /vtis/v1/getSelectedCards:
+    post:
+      tags:
+      - Issuer
+      summary: This service returns card data related to one card selected by the
+        cardholder from the list of cards presented by ‘Get Available Cards’ service.
+        The last 4 digit of the card number and account number are used to retrieve
+        the respective card information.
+      operationId: Get Selected Cards
+      parameters:
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetSelectedCardsRequest'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetSelectedCardsResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Service Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+  /vtis/v1/getAvailableCards:
+    post:
+      tags:
+      - Issuer
+      summary: This service retrieves the list of available cards associated with
+        the account number requested from VISA. Visionplus validates the number of
+        active tokens in embosser level. Cards with no active tokens are considered
+        as available for tokenization.  The last 4 digits of these available cards
+        are passed to consumer’s mobile application
+      operationId: Get Available Cards
+      parameters:
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAvailableCardsRequest'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAvailableCardsResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Service Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+  /vtis/v1/checkEligibility:
+    post:
+      tags:
+      - Issuer
+      summary: "This API is invoked during the token provisioning flow on a device.\
+        \ Visa invokes this API call to the issuer with ID&V attributes and other\
+        \ relevant attributes so that the issuer can take appropriate action, such\
+        \ as approve or decline, based on those attributes to provision the token."
+      operationId: Check Eligibility
+      parameters:
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckEligibilityRequest'
+        required: true
+      responses:
+        "500":
+          description: Service Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "200":
+          description: Success
+        "400":
+          description: Invalid Parameter / Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseStructure'
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        line1:
+          maxLength: 64
+          minLength: 0
+          type: string
+          description: |
+            First line associated with the address.Must use UTF-8 characters.
+            Characters allowed are:
+            * White space
+            * Letters (a to z, A to Z)
+            * Numbers (0 to 9)
+            * Period (.)
+            * Comma (,)
+            * Single quote (‘)
+            * Hyphen (-)
+            * Underscore (_)
+            * Hashtag (#)
+            * Colon (:)
+            * Forward slash (/)
+        line2:
+          maxLength: 64
+          minLength: 0
+          type: string
+          description: |2
+             Second line associated with the address.Must use UTF-8 characters.
+            Characters allowed are:
+            * White space
+            * Letters (a to z, A to Z)
+            * Numbers (0 to 9)
+            * Period (.)
+            * Comma (,)
+            * Single quote (‘)
+            * Hyphen (-)
+            * Underscore (_)
+            * Hashtag (#)
+            * Colon (:)
+            * Forward slash (/)
+        city:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |
+            City associated with the address.Must use UTF-8 characters.
+            Characters allowed are:
+            * White space
+            * Letters (a to z, A to Z)
+            * Numbers (0 to 9)
+            * Carat (^)
+            * Period (.)
+            * Single quote (‘)
+            * Hyphen (-)
+        state:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: "State or province code associated with the address. Format:\
+            \ ISO 3166-2"
+          example: NY
+        postalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: |
+            The postal code associated with the addressCharacters allowed are:
+            • White space
+            • Letters (a to z, A to Z)
+            • Numbers (0 to 9)
+            • Hyphen (-)
+        country:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: Code for a country; default is US.Country in ISO 3166-1 alpha-2
+            format
+          example: US
+      description: Billing address associated with the payment instrument. It is required
+        for Secure Remote Commerce.
+      readOnly: true
+    CardHolderInformation:
+      required:
+      - primaryAccountNumber
+      type: object
+      properties:
+        primaryAccountNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |
+            Primary account number (PAN) of the card that is being
+            tokenized.
+        cvv2:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: |
+            Value associated with the PAN on the card.
+        name:
+          maxLength: 246
+          minLength: 0
+          type: string
+          description: |-
+            Full name on the Visa card associated with the enrolled
+            payment instrument.
+        expirationDate:
+          $ref: '#/components/schemas/ExpirationDate'
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        highValueCustomer:
+          pattern: ^(true|false)$
+          type: string
+          description: |-
+            If available, it will be provided in Check Eligibility.
+            * true— Indicates that the customer is high value.
+            * false— Indicates that the customer is not high value.
+        riskAssessmentScore:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: "Advanced Authorization (AA) Risk Score is generated by VisaNet\
+            \ on the last payment transaction for the PAN. \n* Values are 0 through\
+            \ 99, with a higher value indicating higher risk. \n* This value is calculated\
+            \ by the AA Risk engine, based on the PAN’s transaction pattern (long-term\
+            \ and short-term). \n* If available, it will be provided in Check Eligibility."
+      readOnly: true
+    DeviceInformation:
+      type: object
+      properties:
+        deviceID:
+          maxLength: 48
+          minLength: 0
+          type: string
+          description: |-
+            Device ID
+            For Secure Element (SE) wallet providers, this value will be
+            the SE ID in hex binary characters transformed to a 48-character string.
+            For Host Card Emulation (HCE) wallet providers, this field will be the
+            Device ID as determined by the digital wallet provider (DWP). All
+            alphanumeric and special characters are allowed for HCE DWPs.
+            Secure Element (SE) ID represents the device ID.
+            * For SE DWPs, this value will be the SE ID in hex binary characters
+            transformed to a 48-character string.
+            * For CBP DWPs, this field will be the device ID as determined by the
+            DWP. All alphanumeric and special characters are allowed for CBP
+            DWPs.
+            For Card-on-File (COF) wallets, this value will not be present.
+            For the initial Check Eligibility request on PAN enrollment, this value
+            may not be available, however Visa will send this value if it is available.
+        deviceLanguageCode:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Device Language Code
+            This value is any ISO 639 Version 3 Language Code, for
+            example, eng (English). This language code will be used by the issuer
+            and Visa to retrieve the Terms and Conditions (T&C). If T&Cs are not
+            found for the Language Code in the request, the T&Cs will return the
+            default :language Code of eng (English)
+        deviceType:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |
+            Device Type
+            It is one of the following values:
+            * UNKNOWN
+            * MOBILE_PHONE
+            * TABLET
+            * WATCH
+            * MOBILEPHONE_OR_TABLET
+            * PC
+            * HOUSEHOLD_DEVICE
+            * WEARABLE_DEVICE
+            * AUTOMOBILE_DEVICE
+        deviceName:
+          maxLength: 128
+          minLength: 0
+          type: string
+          description: |
+            Device Name
+            A readable name for the device. Ideally, the customer enters
+            this name. It can be used to identify the device in customer support
+            calls.
+          example: My work Phone
+        deviceNumber:
+          maxLength: 13
+          minLength: 0
+          type: string
+          description: |-
+            Device Number
+            Device number
+        osType:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Device Type
+            It is one of the following values:
+            * ANDROID
+            * IOS
+            * WINDOWS
+            * BLACKBERRY
+            * TIZEN
+            * OTHER
+        osVersion:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Os Version
+            Version of the operating system running on the device.
+          example: 4.4.4
+        osBuildID:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Os Build ID
+            Operating system build identifier
+          example: KTU84M
+        deviceIDType:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |
+            Device ID Type
+            Attribute indicating the source of the Device ID value.
+          example: "The sourcefor Device ID (deviceID) could be SecureElement, TEE,\
+            \ or Derived"
+        deviceManufacturer:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Device Manufacturer
+            Manufacturer of the device.
+          example: Samsung
+        deviceBrand:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |
+            Brand name of the device.
+            Brand name of the device.
+          example: Galaxy
+        deviceModel:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Device Model
+            Model of the device.
+          example: SGH-T999
+        deviceLocation:
+          maxLength: 25
+          minLength: 0
+          type: string
+          description: |-
+            DeviceLocation
+            Obfuscated geographic location of the device. Initially, when
+            provisioned, this contains the general location of the device.
+            Information will be supplied with latitude/longitude rounded to the
+            nearest whole digit.
+          example: +37/-121
+        deviceIndex:
+          type: string
+          description: |-
+            deviceIndex
+            The index number from Visa where the deviceID is
+            stored. This is required for token device binding.
+        deviceIPAddressV4:
+          maxLength: 15
+          minLength: 0
+          type: string
+          description: |
+            deviceIPAddressV4
+             The IP address of the device at the time of the provisioning
+            request, with the value represented in 255.255.255.255 format. An
+            octet (255) may be 1–3 digits in length but cannot contain any leading
+            zeros.
+        locationSource:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Location Source
+            Source used to identify consumer locationIt is one of the following values:
+            * WIFI
+            * CELLULAR
+            * GPS
+            * OTHER
+        tokenProtectionMethod:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |
+            Token Protection Method
+            Method of token protection. It is one of the following values:
+            * SOFTWARE
+            * TRUSTED_EXECUTION_ENVIRONMENT
+            * SECURE_ELEMENT
+            * CLOUD
+    ExpirationDate:
+      type: object
+      properties:
+        month:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |
+            The month upon which the payment instrument is set to expire.The expiration date of the  Payment instrument.
+            This is a required field for Secure Remote
+            Commerce and in the following APIs:
+            * Approve Provisioning
+            * Token Create Notification
+          example: "9"
+        year:
+          type: integer
+          description: The year upon which the payment instrument is set to expire.
+          format: int32
+          example: 2024
+      description: |-
+        The date upon which the token is set to expire. This field
+        is required in the Token Create Notification API.
+    MerchantInformation:
+      required:
+      - merchantName
+      - vmid
+      type: object
+      properties:
+        vmid:
+          maxLength: 8
+          minLength: 0
+          type: string
+          description: "Visa Merchant Identifier, assigned by GMR."
+        merchantName:
+          maxLength: 240
+          minLength: 0
+          type: string
+          description: Merchant name.
+      description: Optional for token changed. Not required for token created.
+    RiskInformation:
+      type: object
+      properties:
+        walletProviderRiskAssessment:
+          type: integer
+          description: |
+            Wallet provider risk assessment. If the DWP sends the value, Visa will
+            send it to the issuer.
+            It is one of the following values:
+            * 0— Unconditionally approved.
+            * 1— Conditionally approved with further consumer verification.
+            * 2— Not approved
+          format: int32
+        walletProviderRiskAssessmentVersion:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: |-
+            If the DWP sends this information, Visa will send it to the issuer. May
+            contain separators to indicate major and minor components, for example, periods, hyphens, slashs, and other similar characters.
+        walletProviderAccountScore:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: "The wallet provider account score. Score value is between\
+            \ 1 and 5, indicating the confidence level of the account, where 5 indicates\
+            \ the most confidence on the account."
+          example: "5"
+        walletProviderDeviceScore:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: "The wallet provider device score. Score value is between 1\
+            \ and 5, indicating the confidence level of the device, where5 indicates\
+            \ the most confidence."
+        walletProviderReasonCodes:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: "Wallet provider reason codes, in a comma-separated format."
+        deviceBluetoothMac:
+          maxLength: 24
+          minLength: 0
+          type: string
+          description: MAC address for Bluetooth.
+        deviceIMEI:
+          maxLength: 24
+          minLength: 0
+          type: string
+          description: Hardware ID of the device
+        deviceSerialNumber:
+          maxLength: 24
+          minLength: 0
+          type: string
+          description: Serial number of the mobile device.
+        deviceTimeZone:
+          maxLength: 5
+          minLength: 0
+          type: string
+          description: Time-zone abbreviation.
+          example: PDT
+        deviceTimeZoneSetting:
+          maxLength: 24
+          minLength: 0
+          type: string
+          description: Device time-zone setting
+        osID:
+          maxLength: 12
+          minLength: 0
+          type: string
+          description: |
+            It is one of the following values:
+            * NETWORK_SET
+            * CONSUMER_SET
+        simSerialNumber:
+          maxLength: 24
+          minLength: 0
+          type: string
+          description: OS ID to allow building velocity and risk rules.
+        deviceLostMode:
+          maxLength: 24
+          minLength: 0
+          type: string
+          description: |
+            SIM serial number of the mobile device.
+        daysSinceConsumerDataLastAccountChange:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: Number of days. Values are up to 9999 number of days.
+          example: "9999"
+        accountHolderName:
+          maxLength: 64
+          minLength: 0
+          type: string
+          description: Account-holder’s name
+        walletProviderPANAge:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: Length of time (in days) that a PAN has been on file for a
+            user.
+          example: "9999"
+        walletAccountHolderCardNameMatch:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |2
+             Name of the account-holder and name of cardholder matched.It is one of the following values:
+            * Y— Indicates the two names match.
+            * N— Indicates the two names do not match.
+        accountToDeviceBindingAge:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: |-
+            Number of days this device has been used by this account. If the
+            number of days exceeds 9999, it will stay at 9999
+          example: "9999"
+        userAccountAge:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: |-
+            Number of days since an account for this user has existed (how long
+            have you known this user?).
+            Values are 0 through 9999.
+          example: "9999"
+        walletAccountAge:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: |
+            Number of days since the user created a wallet account or started
+            using a wallet. If the number of days exceeds 256, it will stay at 256.
+          example: "256"
+        provisioningAttemptsOnDeviceIn24Hour:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Number of provisioning attempts on this device in the past 24 hours. If
+            the number of attempts exceeds 99, it will stay at 99.
+          example: "99"
+        distinctCardholderNames:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: Number of distinct cardholder names used in provisioning from
+            this device.
+          example: "99"
+        deviceCountry:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Country of device at time of provisioning.
+             ISO 3166-1, alpha-2; max length 2 characters
+          example: US
+        walletAccountCountry:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Country of account-holder.
+            ISO 3166-1, alpha-2; max length 2 characters
+          example: US
+        suspendedCardsInAccount:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Number of cards suspended in the account. If the number of days
+            exceeds 99, it will stay at 99.
+          example: "99"
+        daysSinceLastAccountActivity:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: |-
+            Number of days since the last activity on account. If the number of
+            days exceeds 9999, it will stay at 9999.
+          example: "9999"
+        numberOfTransactionsInLast12months:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: |-
+            Number of transactions on this account in the last 12 months. If the
+            number of transaction exceeds 9999, it will stay at 9999.
+          example: "9999"
+        numberOfActiveTokens:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Number of active tokens on this account. If the number of tokens
+            exceeds 99, it will stay at 99
+          example: "99"
+        deviceWithActiveTokens:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Number of devices for this user with the same token. If the number of
+            tokens exceeds 99, it will stay at 99
+          example: "99"
+        activeTokensOnAllDeviceForAccount:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: |-
+            Number of active tokens for this user, across all devices. If the number
+            of tokens exceeds 9999, it will stay at 9999.
+          example: "99"
+        visaTokenScore:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Value indicating the degree of risk associated with the token. Numeric
+            value is 01 through 99.
+          example: "99"
+        visaTokenDecisioning:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Results from the token provisioning service.
+            It is one of the following values:
+            * 00 – Provision and activate
+            * 05 – Do not provision
+            * 85 – Provision in inactive state (requires further consumer authentication prior to activation)
+        riskAssessmentScore:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Values are 0 through 99. A higher value indicates a higher risk. This is
+            calculated by the AA Risk Engine, based on the PAN’s transaction
+            pattern (long term and short term).
+        issuerSpecialConditionCodes:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: |-
+            Supported for issuers participating in 0100 TAR. The issuer can send
+            values for this element in the 0100 TAR response.
+            * If the issuer sends a value in the 0100 TAR, it will be sent in this element of the Get CVM.
+            * If no value is sent in 0100 TAR or if the issuer does not participate in TAR, this element will not be present.
+    TermsAndConditions:
+      required:
+      - date
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id
+        date:
+          type: string
+          description: Date.
+          format: date-time
+      description: Optional for token changed. Not required for token created.
+    TokenCreateNotificationRequest:
+      required:
+      - dateTimeOfEvent
+      - lifeCycleTraceID
+      - panReferenceID
+      - walletAccountEmailAddressHash
+      type: object
+      properties:
+        messageReason:
+          maxLength: 256
+          minLength: 0
+          type: string
+          description: |-
+            Message Reason
+            A text-based description of the notification message code.
+            The descriptions may change and issuers should use the Message
+            Reason Code for all programmatic actions. This field is for information
+            only.
+        messageReasonCode:
+          type: string
+          description: |-
+            Message Reason Code
+            String representation of the message reason, which
+            corresponds to the ISO message reason codes when applicable. Required only for token create
+          example: TOKEN_CREATED
+        dateTimeOfEvent:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Life Cycle Trace ID
+            Event date/timestamp in GMT.
+        panReferenceID:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Pan Reference ID
+             Unique ID for the PAN. This ID can be used in lieu of PAN for
+            subsequent calls, such as lifecycle events.
+        lifeCycleTraceID:
+          type: integer
+          description: |-
+            Life Cycle Trace ID
+            A message identifier that can be used to link some
+            messages associated with a provisioning request. This should be used
+            by the issuer in event/message logging.
+          enum:
+          - null
+        walletAccountEmailAddressHash:
+          maxLength: 64
+          minLength: 0
+          type: string
+          description: |-
+            Wallet Account Email Address Hash
+            Hash of the email address linked to the wallet account login ID. Required for token creation. Not required for token changed.
+        clientWalletAccountID:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Client Wallet Account ID
+            Consumer ID that identifies the wallet Account-holder entity.
+            This is provided by the client. Required for token creation. Not required for token changed.
+        panSource:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Pan Source
+            It is one of the following values:
+            * KEY_ENTERED
+            * ON_FILE
+            * MOBILE_BANKING_APP
+            * TOKEN
+            * CHIP_DIP
+            * CONTACTLESS_TAP
+            Required for token creation. Not required for token changed.
+        addressVerificationResultCode:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Address Verification Result Code
+            Visa-defined code that describes the result of an address verification.Optional for token creation. Not required for token changed.
+        cvv2ResultsCode:
+          pattern: "^([MNPSU])$"
+          type: string
+          description: |-
+            A card verification value 2 (CVV2) verification result.
+            It is one of the following values:
+            * M = CVV2 Match, indicates that Visa was able to verify the CVV2 value provided by the wallet provider
+            * N = CVV2 No Match, indicates that Visa was not able to verify the CVV2 value provided by the wallet provider.
+            * P = Not processed, indicates that Visa was unable to verify the CVV2 value provided by the wallet provider. This applies for Issuers opting for CVV2 Bypass only.
+            * S = CVV2 should be on the card: Indicates that V.I.P. or the issuer was unable to perform CVV2 verification and notifies the merchant that the card should contain a CVV2 value.
+            * U = Issuer is not available, does not participate in the CVV2 Service,or participates but has not provided Visa with encryption keys: Indicates that the issuer is notparticipating in the CVV2 Service or has not provided Visa with encryption keys needed to perform verification, or that STIP has responded to an issuer-unavailable response.
+            Optional for token creation. Not required for token changed.
+        consumerEntryMode:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Method of consumer entry
+            It is one of the following values:
+            * KEY_ENTERED
+            * CAMERA_CAPTURED
+            * UNKNOWN
+            Optional for token creation. Not required for token changed.
+        locale:
+          maxLength: 5
+          minLength: 0
+          type: string
+          description: |-
+            Locale
+            ) Language in which the app communicates with the
+            customer, based on the . The language and country should be
+            separated using a “_“. Optional for token creation. Not required for token changed.
+          example: en_US
+        activationVerificationResult:
+          type: string
+          description: |-
+            This field contains one of the following verification result
+            values for OTP_VERIFICATION_RESULT and
+            MOBILE_BANK_APP_ACTIVATION. Additional values may be available
+            in the future.* It is one of the following values:
+            * VERIFICATION_SUCCESS
+            * VERIFICATION_CODE_EXPIRED
+            * VERIFICATION_CODE_FAILED
+            * VERIFICATION_CODE_MISSING
+            * VERIFICATION_CODE_RETRIES_EXCEEDED
+            Optional for token changed. Not required for token created.
+        cardHolderStepupResult:
+          type: string
+          description: |-
+            This field contains one of the following card holder verification result values for CARDHOLDER_STEPUP_RESULT. Additional
+            values may be available in the future.
+            It is one of the following values:
+            * CARDHOLDER_STEPUP_OTP
+            * CARDHOLDER_STEPUP_CALL_CENTER
+            * CARDHOLDER_STEPUP_ISSUER_APP
+            * CARDHOLDER_STEPUP_APPROVED
+            Optional for token changed. Not required for token created.
+        deviceBindingResult:
+          type: string
+          description: |-
+            This field contains one of the following device binding
+            result values for TOKEN_DEVICE_BINDING_RESULT. Additional
+            values may be available in the future. It is one of the following values:
+            * DEVICE_BINDING_APPROVED
+            * DEVICE_BINDING_OTP
+            * DEVICE_BINDING_CALL_CENTER
+            * DEVICE_BINDING_ISSUER_APP
+            * DEVICE_BINDING_REMOVED
+            Optional for token changed. Not required for token created.
+        trustedListingResult:
+          type: string
+          description: |-
+            Reserved for future use. This field contains one of the
+            following trusted listing result values for
+            TRUSTED_LISTING_ENROLLMENT_RESULT. Additional values may
+            be available in the future.It is one of the following values:
+            * TRUSTED_LISTING_ADDED
+            * TRUSTED_LISTING_REMOVED
+            Optional for token changed. Not required for token created.
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInformation'
+        tokenUserInfo:
+          $ref: '#/components/schemas/TokenUserInformation'
+        merchantInfo:
+          $ref: '#/components/schemas/MerchantInformation'
+        termsAndConditions:
+          $ref: '#/components/schemas/TermsAndConditions'
+        encryptedData:
+          maxLength: 7000
+          minLength: 0
+          type: string
+          description: |-
+            Encrypted Data
+            Blob field that represents the encrypted payload. See the
+            object TokenNotificationPayload.
+            Required for token changed
+        actionCode:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |
+            Action Code
+            : It is one of the following values:
+            * 00— Good
+            * 85— Conditional approval (provision, but do not activate until
+            additional consumer verification is performed)
+            * 05— Error
+        tokenRequestorTspID:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: |-
+            Token Requestor Tsp ID
+            Token requestor — token service provider (TR-TSP) ID;
+            provided by token service providers.
+        tokenCreateNotificationRequestDecrypted:
+          $ref: '#/components/schemas/TokenNotificationPayload'
+      description: Token Create Notification
+    TokenInformation:
+      type: object
+      properties:
+        token:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            The account number associated with a token. This is a
+            required field in the following APIs:
+            * Token Create Notification
+            * Token Notification
+        tokenType:
+          maxLength: 14
+          minLength: 0
+          type: string
+          description: |-
+            This is a required field in the following APIs:
+            Approve Provisioning | Approve Provisioning Stand-In Notification | Token Create NotificationIt is one of the following values:
+            * SECURE_ELEMENT
+            * HCE
+            * CARD_ON_FILE
+            * ECOMMERCE
+            * QRC
+        tokenStatus:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: |-
+            This is a required field in the following APIs:
+            Token Create Notification | Token Notification It is one of the following values:
+            * ACTIVE
+            * INACTIVE
+            * SUSPENDED
+            * DEACTIVATED
+        tokenExpirationDate:
+          $ref: '#/components/schemas/ExpirationDate'
+        tokenAssuranceMethod:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Method of Issuer ID&V that has taken place at time of
+            provisioning, device binding, or cardholder initiated verification. It is
+            one of the following values:* 00 ID&V Not Performed
+            * 10 Card Issuer Account Verification
+            * 11 Card Issuer Interactive Cardholder Verification - 1 Factor
+            * 12 Card Issuer Interactive Cardholder Verification - 2 Factor
+            * 13 Card Issuer Risk Oriented Non-Interactive Cardholder Authentication
+            * 14 Card Issuer Asserted Authentication
+        numberOfActiveTokensForPAN:
+          type: integer
+          description: |-
+            Number of device tokens that are currently active for this
+            PAN.
+          format: int32
+        numberOfInactiveTokensForPAN:
+          type: integer
+          description: |-
+            Number of device tokens that are currently inactive (device
+            tokens have not been activated) for this PAN.
+          format: int32
+        numberOfSuspendedTokensForPAN:
+          type: integer
+          description: |-
+            Number of device tokens that were activated, but are
+            suspended for payments for this PAN.
+          format: int32
+        tokenActivationDate:
+          maxLength: 24
+          minLength: 0
+          type: string
+          description: |
+            System date/timestamp, in GMT, of token activation into an
+            active state. For an inactive state, this field is left empty and populated
+            only when a token transitions to an active state. If a token is
+            suspended, this field is populated with the new date/timestamp of
+            when an active state resumes. yyyy-MM-ddTHH:mm:ss.SSSZ.
+        tokenDeactivationDate:
+          type: string
+          description: Date of token deactivation.
+          format: date-time
+        lastTokenStatusUpdatedTime:
+          maxLength: 24
+          minLength: 0
+          type: string
+          description: "Date/timestamp, in GMT, of the last token status update. yyyy-MM-ddTHH:mm:ss.SSSZ"
+        originalToken:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Token account number. This field is populated when
+            performing token-for-token provisioning only.
+        originalTokenRequestorID:
+          type: integer
+          description: |2-
+             Unique ID assigned to the initiator of the token request. This
+            field is populated when performing token-for-token provisioning only.
+        originalTokenReferenceID:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Unique ID for the token associated with the PAN. This ID
+            can be used in lieu of the token for subsequent calls, such as life cycle
+            events. This field is populated when performing token-for-token
+            provisioning only
+        originalTokenType:
+          maxLength: 14
+          minLength: 0
+          type: string
+          description: |-
+            Token type of the original token. This field is populated
+            only when performing token for token provisioning and can be used
+            only in the following APIs: Approve Provisioning | Approve Provisioning Stand-In Notification | Token Create NotificationIt is one of the following values:
+            * SECURE_ELEMENT
+            * HCE
+            * CARD_ON_FILE
+            * ECOMMERCE
+            * QRC
+        originalTokenAssuranceMethod:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Original token assurance method. This field is populated
+            when performing token-for-token provisioning only. It is one of the
+            following values:
+            * 00 ID&V Not Performed
+            * 10 Card Issuer Account Verification
+            * 11 Card Issuer Interactive Cardholder Verification - 1 Factor
+            * 12 Card Issuer Interactive Cardholder Verification - 2 Factor
+            * 13 Card Issuer Risk Oriented Non-Interactive Cardholder Authentication
+            * 14 Card Issuer Asserted Authentication
+    TokenNotificationPayload:
+      type: object
+      properties:
+        cardHolderInfo:
+          $ref: '#/components/schemas/CardHolderInformation'
+        tokenInfo:
+          $ref: '#/components/schemas/TokenInformation'
+        riskInfo:
+          $ref: '#/components/schemas/RiskInformation'
+      readOnly: true
+    TokenUserInformation:
+      type: object
+      properties:
+        tokenUserID:
+          maximum: 32
+          minimum: 0
+          type: integer
+          format: int32
+        tokenUserAppType:
+          type: string
+          description: |-
+            It is one of the following values:* UNKNOWN
+            * WEB
+            * MOBILE_WEB
+            * MOBILE_APP
+            * MARKETPLACE
+            * VOICE_APP
+            * BIOMETRIC_APP
+          enum:
+          - UNKNOWN
+          - WEB
+          - MOBILE_WEB
+          - MOBILE_APP
+          - MARKETPLACE
+          - VOICE_APP
+          - BIOMETRIC_APP
+      description: The information of the user that requests the device binding
+    ErrorDetails:
+      type: object
+      properties:
+        location:
+          type: string
+          description: |-
+            The value of this field is using the XPATH expression to point to the
+            field that failed validation.
+        message:
+          type: string
+          description: Field-specific error message.
+      description: Array of fields that failed validation
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: HTTP status code
+        message:
+          type: string
+          description: Free-form text message describing the error condition.
+        reason:
+          type: string
+          description: Drives the error handling business logic for the API
+        details:
+          type: array
+          description: Array of fields that failed validation
+          items:
+            $ref: '#/components/schemas/ErrorDetails'
+    ErrorResponseStructure:
+      type: object
+      properties:
+        errorResponse:
+          $ref: '#/components/schemas/ErrorResponse'
+    TokenLifeCycleRequest:
+      required:
+      - operationReason
+      - operationType
+      type: object
+      properties:
+        operationID:
+          maxLength: 16
+          minLength: 0
+          type: string
+          description: |-
+            Operator ID of either the person or system that is
+            performing the operation.
+        operationType:
+          type: string
+          description: "Type of operation. \n It is one of the following values:\n\
+            * DELETE\n* SUSPEND\n* RESUME\n* CALL_CENTER_ACTIVATION\n* TOKEN_DEVICE_BINDING_APPROVE\n\
+            * TOKEN_DEVICE_BINDING_REMOVE\n* TOKEN_TRUSTED_LISTING_ADD\n* TOKEN_TRUSTED_LISTING_REMOVE\n\
+            * TOKEN_DEVICE_BINDING_APPROVE_CALL_CENTER\n* TOKEN_DEVICE_BINDING_APPROVE_BANK_APP\n\
+            * CARDHOLDER_STEPUP_CALL_CENTER\n* CARDHOLDER_STEPUP_APP_TO_APP"
+        operationReason:
+          maxLength: 254
+          minLength: 0
+          type: string
+          description: |-
+            Reason for operation. Free form. The reason should be
+            descriptive, such that if the issuer performs an action and the
+            consumer calls DWP Customer Support, they should be able to read
+            the reason, advise the consumer, and act accordingly. For example, if
+            the token is suspended, the Request Reason could say “Suspended due
+            to lost device”
+        deviceInformation:
+          $ref: '#/components/schemas/DeviceInformation'
+        activationCode:
+          maxLength: 8
+          minLength: 0
+          type: string
+          description: |-
+            Equivalent of Auth Code. Required if operationType is
+            CALL_CENTER_ACTIVATION.This parameter is merely used for audit
+            purposes. There is no validation on Visa’s side and the value is not
+            passed to DWP but saved into the audit log as proof that the activation
+            request was approved by the issuer
+    DeviceTokenBindingRequest:
+      required:
+      - clientWalletAccountID
+      - deviceInfo
+      - panReferenceID
+      - walletAccountEmailAddressHash
+      type: object
+      properties:
+        panReferenceID:
+          maxLength: 32
+          minLength: 1
+          type: string
+          description: |-
+            Unique ID for the PAN.This ID can be used in lieu of PAN for
+            the subsequent calls, such as life cycle events.
+          example: V-58...42
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInformation'
+        tokenUserInfo:
+          $ref: '#/components/schemas/TokenUserInformation'
+        walletAccountEmailAddressHash:
+          maxLength: 64
+          minLength: 1
+          type: string
+          description: Hash of email address linked to their wallet account login
+        clientWalletAccountID:
+          maxLength: 32
+          minLength: 1
+          type: string
+          description: |-
+            ) Consumer ID identifying the wallet account-holder entity.
+            This is provided by the client.
+        locale:
+          maxLength: 5
+          minLength: 0
+          type: string
+          description: |-
+            Language in which the app communicates with the
+            customer, based on the . The language and country should be
+            separated using a “_“.
+          example: en_US
+        merchantInfo:
+          $ref: '#/components/schemas/MerchantInformation'
+      description: Device Token Binding Request
+    DeviceTokenBindingResponse:
+      type: object
+      properties:
+        actionCode:
+          type: string
+        errorCode:
+          type: string
+    AccountLevelInfo:
+      type: object
+      properties:
+        productID:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            This is the product ID for the card number in the Account
+            Number field. It is required, when the rpinEnrollment structure is
+            provided in the request, or when the linkEnrollment structure is
+            present for either the USHNW or VIRTUAL groupType. For example if
+            the product type of the card is ‘Visa Traditional Credit’, the value of
+            productID is A.
+        rpinEnrollment:
+          $ref: '#/components/schemas/RpinEnrollmentInformationStructure'
+        customerContactInfo:
+          $ref: '#/components/schemas/CustomerContactInfo'
+        replaceEnrollment:
+          $ref: '#/components/schemas/ReplaceEnrollment'
+        linkEnrollment:
+          $ref: '#/components/schemas/LinkEnrollment'
+      description: Account level information.
+      readOnly: true
+    CustomerContactInfo:
+      required:
+      - action
+      - firstName
+      - lastName
+      type: object
+      properties:
+        action:
+          type: string
+          description: |-
+            If an action other than Add is selected, the webservice call
+            will be rejected.
+            It is one of the following values:
+            * Add— Use this to add new customer information. All required fields
+            must be provided.
+        address:
+          $ref: '#/components/schemas/Address'
+        namePrefix:
+          maxLength: 5
+          minLength: 0
+          type: string
+          description: Account holder’s name prefix.
+        firstName:
+          maxLength: 15
+          minLength: 0
+          type: string
+          description: Account holder’s first name.
+        middleInitial:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: Account holder’s middle initial.
+        lastName:
+          maxLength: 25
+          minLength: 0
+          type: string
+          description: Account holder’s last name
+        nameSuffix:
+          maxLength: 5
+          minLength: 0
+          type: string
+          description: Account holder’s name suffix.
+        prefMethodOfContact:
+          type: string
+          description: "Account holder’s preferred method of contact; if a space or\n\
+            an empty string is specified, the preferred method of contact is ‘no\n\
+            preference’. \n It is one of the following values:\n* M— Physical mail.\n\
+            * E— E mail.\n* C— Mobile telephone."
+        email:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: |-
+            Account holder’s email address. Required when
+            prefMethodOfContact is E.
+        mobileNumber:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: |-
+            Account holder’s telephone number. Required when
+            prefMethodOfContact is C.
+      description: |-
+        Contains account-number-specific information such as
+        name and address. If not provided, this will result in deletion of any
+        existing customerContactInfo for the account number in the
+        system. It is only accepted for certain Visa Product IDs but ignored for
+        all other product IDs. When specified, it must have the accompanying
+        rpinEnrollment structure in its entirety.
+    EncryptedPayloadData:
+      type: object
+      properties:
+        cardHolderInfo:
+          $ref: '#/components/schemas/EncryptedPayloadData.CardHolderInformation'
+        replaceCardholderInfo:
+          $ref: '#/components/schemas/EncryptedPayloadData.CardHolderInformation'
+        accountLevelInfo:
+          $ref: '#/components/schemas/AccountLevelInfo'
+      readOnly: true
+    EncryptedPayloadData.CardHolderInformation:
+      required:
+      - primaryAccountNumber
+      type: object
+      properties:
+        primaryAccountNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: Primary account number (PAN).
+        expirationDate:
+          $ref: '#/components/schemas/ExpirationDate'
+      description: |-
+        Device information, which includes the following fields:
+        * primaryAccountNumber
+        –New PAN
+        * expirationDate
+        –New expiration date
+      readOnly: true
+    Group:
+      required:
+      - action
+      - groupID
+      - groupType
+      type: object
+      properties:
+        action:
+          type: string
+          description: "Action taken on the record for an enrollment link. \n It is\
+            \ one of the following values:\n* Add— Record is for a new link.\n* Delete—\
+            \ Record is for removing a link.\n* Change— Can only be used to change\
+            \ the Primary Account flag."
+        groupType:
+          type: string
+          description: "Group type. \n It is one of the following values:\n* LOC—\
+            \ Groups a primary card account with authorized accounts from other cardholders.\n\
+            * CUSTOMER— Groups a set of card accounts for the same cardholder.\n*\
+            \ VIP1— A value representing the priority of treatment applied to the\
+            \ given primary account number.\n* VIRTUAL— Groups a primary card account\
+            \ with a set of virtual cards.\nNote: A value for productID must be specified.\
+            \ Contact your Visa\nrepresentative before submitting a request using\
+            \ the VIRTUAL Group\nType.\n* ISEGMENT— Issuer’s specific Customer Segment\
+            \ applied to the\ngiven primary account number. Issuers supporting multiple\
+            \ group\ntypes must submit an array of Group information..\n* USHNW\n\
+            Note: A value for productID must be specified.\nA variety of customized\
+            \ Group Types may be available, depending on\nregion, issuer, or other\
+            \ criteria. Additional Group Types and values for\nthose Group Types may\
+            \ be required, depending on region, issuer, or\nother criteria. For information\
+            \ on these Group Types, see their\nrespective Product Implementation Guides.\
+            \ Issuers should consult the\nrespective Product Implementation Guides\
+            \ for details on how to\nsubmit primary/supplementary flags to generate\
+            \ accurate billing information for those related products with associated\
+            \ card fees. For more information, contact your Visa representative.\n"
+        groupID:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Contains the issuer-supplied identifier for the group type
+            specified in the Group Type field. Must not be PAI/PII data.
+        isPrimaryAccount:
+          type: string
+          description: |-
+            Whether the account the account number is to be the
+            primary account number in the group.. Used for group types that have
+            a primary or owner account. It is required when groupType is LOC, or
+            VIRTUAL. It should be set to Y for Primary (physical plastic card).
+            Issuers should refer to the Product Implementation Guide for
+            requirements related to custom group types.
+            It is one of the following values:
+            * Y— The account number is to be the primary account number in the group.
+            * N—The account number is not the primary account number
+      description: Group.
+    LinkEnrollment:
+      type: object
+      properties:
+        group:
+          type: array
+          description: Group.
+          items:
+            $ref: '#/components/schemas/Group'
+      description: |
+        Contains linking information for the account number. Link
+        enrollment information is not required when sending request only for
+        RPIN enrollment or replace Enrollment.
+    PanLifeCycleRequest:
+      required:
+      - encryptedData
+      - operationReason
+      - operationType
+      type: object
+      properties:
+        operationId:
+          maxLength: 16
+          minLength: 0
+          type: string
+          description: ' Operator ID of either person or system performing the operation.'
+        operationType:
+          type: string
+          description: "Type of operation. \n It is one of the following values:\n\
+            * UPDATE\n* DELETE"
+        operationReason:
+          maxLength: 254
+          minLength: 0
+          type: string
+          description: |-
+            Reason for the operation. The reason should be descriptive,
+            such that if the issuer performs an action and the consumer calls
+            Customer Support, the support team should be able to read the
+            reason, advise the consumer, and act accordingly. For example, if the
+            PAN is replaced, the request reason might say “Replacement due to
+            lost card“
+        operationReasonCode:
+          type: string
+          description: |-
+            A reason code for the operation. If the reason code is
+            ACCOUNT_UPDATE or PORTFOLIO_CONVERSION (updating PAN only
+            or PAN & Expiry date), the old PAN and replacement PAN cannot be
+            the same. If the reason code is EXP_DATE_UPDATE (expiry date
+            update only), the old PAN and replacement PAN values must be the
+            same. If the reason code is UPDATE_ACCOUNT_LEVEL_RECORD, the
+            account level information in the encrypted data needs to be provided.
+            It is one of the following values:
+            * ACCOUNT_UPDATE— Account number change or Account number and Expiry date change.
+            * ACCOUNT_CLOSED— Closed account advice.
+            * EXP_DATE_UPDATE— Expiration date change.
+            * CONTACT_CARDHOLDER— Contact cardholder advice. Query account.
+            * PORTFOLIO_CONVERSION
+            * UPDATE_ACCOUNT_LEVEL_RECORD
+        updateReferenceID:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Reference ID that is needed to track all account level
+            updates. This field is required if the operation reason code is
+            UPDATE_ACCOUNT_LEVEL_RECORD.
+        encryptedData:
+          type: string
+          description: " Blob field that represents the encrypted payload; see object\n\
+            “Encrypted Payload Data” for more information. \nFor PAN update/replacement,\
+            \ the new and the PAN to be\nchanged must share the same 9-digit account\
+            \ range; the new PAN\nshould not have any tokens already associated with\
+            \ it. See Cardholder\nInformation."
+        encryptedPayloadData:
+          $ref: '#/components/schemas/EncryptedPayloadData'
+    ReplaceEnrollment:
+      required:
+      - oldAccountNumber
+      type: object
+      properties:
+        oldAccountNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            A valid account number specifying the card is being
+            replaced by the card number in the Account Number field
+        linkReasonCode:
+          type: string
+          description: "The reason for replacement. \n It is one of the following\
+            \ values:\n* L— Lost: Consumer reports the card has been lost.\n* S— Stolen:\
+            \ Consumer reports the card has been stolen.\n* U— Upgrade/Downgrade:\
+            \ Consumer has been issued a new product.\n* O— Other: Used when no other\
+            \ value applies.\n* C— Converted\n* R— Reissued\n* N— Not known\n"
+        unlinkIndicator:
+          type: string
+          description: "Unlink indicator. This must be set to Y when deleting a\n\
+            replacement relationship. \nIt is one of the following values:\n* Y— User\
+            \ is trying to unlink the account number"
+      description: |-
+        Contains information about card replacement for the
+        account number. This information can be sent independently of other
+        structures such as rpinEnrollment or linkEnrollment.
+    RpinEnrollmentInformationStructure:
+      required:
+      - accountOpenDate
+      - action
+      - rpin
+      type: object
+      properties:
+        action:
+          type: string
+          description: |-
+            Action for RPIN Enrollment.
+             It is one of the following values:
+            * Add— Use Add when submitting new card numbers; record is for a
+            new account number. All required fields must be provided.
+            * Change— Use if changing any attribute in rpinEnrollment data.
+            A change record will fully replace all data in the original record.
+            Every required field must be submitted in a change record. If issuers
+            wish to preserve previously submitted optional data, this data must
+            be resubmitted.
+            * Delete— Use if removing an account number. For delete records,
+            all other fields are optional.
+        accountOpenDate:
+          type: string
+          description: "The date the account number was first opened with the\nissuer.\
+            \ \n String in the form of YYYYMMDD."
+        rpin:
+          maxLength: 6
+          minLength: 0
+          type: string
+          description: "The six-digit Visa-provided Registered Program Identifi\x02\
+            cation Number (RPIN) in which this account is enrolled. The RPIN’s\nproduct\
+            \ ID in the Visa system must match the product ID provided in\nthe web\
+            \ service call."
+        rpinEffectiveDate:
+          type: string
+          description: "The RPIN effective date, which can be a past or future date,\n\
+            but it must be a date that is after the RPIN create-date and before the\n\
+            RPIN end-date. If the date does not follow these rules, the request is\n\
+            rejected with an Invalid Date reject reason. It will default to the current\n\
+            date if the correct date is not provided. \nFormat: YYYYMMDD"
+      description: |-
+        Contains information to enroll the account number in a
+        given Registered Program Identification Number (RPIN). This field is
+        not required when sending request only for linking or replacement. If
+        the account number has customerContactInfo accompanying it,
+        then it must be sent with rpinEnrollment to avoid deletion.
+    GetSelectedCardsRequest:
+      required:
+      - cardSuffix
+      - customerNumber
+      - keyAssociation
+      - organizationNumber
+      - walletId
+      type: object
+      properties:
+        organizationNumber:
+          type: string
+          description: Organization
+          example: "662"
+        customerNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Customer Number
+            If Customer number not present in the system, service throws an error
+        cardSuffix:
+          maxLength: 4
+          minLength: 4
+          type: string
+          description: Card Suffix
+          example: "1111"
+        keyAssociation:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: Key Assoc
+          example: AAA
+        walletId:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: "Wallet Id\nField required for get avail cards service\nIt\
+            \ is wallet id of the token \n"
+      description: Check Eligibility
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    GetSelectedCardsResponse:
+      type: object
+      properties:
+        encryptedData:
+          type: string
+          example: eeyy787&iu==
+      description: GetSelectedCardsResponse
+    GetAvailableCardsRequest:
+      required:
+      - customerNumber
+      - organizationNumber
+      - walletId
+      type: object
+      properties:
+        organizationNumber:
+          type: string
+          description: Organization
+          example: "662"
+        customerNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Customer Number
+            If Customer number not present in the system, service throws an error
+        cardSuffix:
+          maxLength: 4
+          minLength: 0
+          type: string
+          description: |
+            Card Suffix
+            if spaces, considered as GetAvailableCards and retrieve last 4 bytes of cards that are yet to be digitized
+            If not spaces, considered as GetSelectedCards and then it would be checked against the cards present under the given account. If the card number not present, then error out
+        keyAssociation:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Key Assoc
+            For Get select card the field is mandatory. Error message is thrown if it is spaces
+        walletId:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: "Wallet Id\nField required for get avail cards service\nIt\
+            \ is wallet id of the token \n"
+      description: Get Available Cards
+    CardSfxData:
+      type: object
+      properties:
+        sequence:
+          type: integer
+          format: int32
+        cardSuffix:
+          type: string
+      description: GetAvailableCardsResponse.OutputData.CardSfxData
+    GetAvailableCardsResponse:
+      type: object
+      properties:
+        numberOccurrence:
+          type: integer
+          format: int32
+        cardSfxDataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSfxData'
+      description: GetAvailableCardsResponse
+    CheckEligibilityRequest:
+      required:
+      - encryptedData
+      - lifeCycleTraceID
+      - panReferenceID
+      - panSource
+      - tokenReferenceID
+      - tokenRequestorID
+      type: object
+      properties:
+        tokenRequestorID:
+          type: integer
+          description: Unique ID assigned to the initiator of the token request
+          enum:
+          - null
+        tokenReferenceID:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Unique ID for the token associated with the PAN. This ID
+            can be used in lieu of the token for subsequent calls, such as lifecycle
+            events
+        panReferenceID:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            Unique ID for the PAN. This ID can be used in lieu of PAN
+            for subsequent calls, such as lifecycle events.
+        lifeCycleTraceID:
+          type: integer
+          description: |-
+            A message identifier that can be used to link some
+            messages associated with a provisioning request. This should be used
+            by the issuer in event/message logging.
+          enum:
+          - null
+        panSource:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: |-
+            It is one of the following values:
+            * KEY_ENTERED
+            * ON_FILE
+            * MOBILE_BANKING_APP
+            * TOKEN
+            * CHIP_DIP
+            * CONTACTLESS_TAP
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInformation'
+        encryptedData:
+          maxLength: 7000
+          minLength: 0
+          type: string
+          description: |-
+            Blob field that contains the encrypted payload; see object
+            CardHolderInformation.
+        cardHolderInfo:
+          $ref: '#/components/schemas/CardHolderInformation'
+      description: Check Eligibility
