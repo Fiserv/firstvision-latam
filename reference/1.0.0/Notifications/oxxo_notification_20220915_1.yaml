@@ -1,0 +1,190 @@
+openapi: 3.0.1
+info:
+  title: FirstVision™ Notification Service - API Documentation
+  description: This documentation describes the REST APIs provided by the FirstVision™ for alerts
+  version: "1.2"
+servers:
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
+paths:
+  /push:
+    post:
+      tags:
+      - Push
+      operationId: pushNotification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PushAlertRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushAlertResponse'
+        "403":
+          description: Forbidden
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushAlertResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushAlertResponse'
+        "401":
+          description: Unauthorized
+components:
+  schemas:
+    PushAlertRequest:
+      type: object
+      properties:
+        securityContext:
+          type: string
+          description: User´s sing-on in security system
+        version:
+          type: string
+          description: User's sing-on name
+        organizationNumber:
+          type: integer
+          description: Organization
+          format: int32
+        accountNumber:
+          type: string
+          description: Account
+        customerNumber:
+          type: string
+          description: Customer Number
+        channelType:
+          type: string
+          description: "Channel type (EMAIL, SMS, BOTH, PRINT)"
+        customerData1:
+          type: string
+          description: Customer Data
+        customerData2:
+          type: string
+          description: Customer Data
+        customerPhone:
+          type: string
+          description: Customer Phone
+        customerEmail:
+          type: string
+          description: Customer Email
+        fsaAuthCode:
+          type: string
+          description: FSA Auth Code
+        cardNumber:
+          type: string
+          description: Card Number
+        transactionAmount:
+          type: string
+          description: Transaction Amount
+        merchantName:
+          type: string
+          description: Merchant Name
+        authorizationDate:
+          type: string
+          description: Authorization Date
+        authorizationTime:
+          type: string
+          description: Authorization Time
+        currency:
+          type: string
+          description: Currency
+        processingCode:
+          type: string
+          description: Processing Code
+        merchantCode:
+          type: string
+          description: Merchant Code
+        transactionId:
+          type: string
+          description: Transaction ID
+        messageType:
+          type: string
+          description: Message Type
+        requestId:
+          type: string
+          description: Request ID
+        authorizationCode:
+          type: string
+          description: Authorization Code
+        cardHolderBillingAmount:
+          type: string
+          description: Card Holder Billing Amount
+        posEntryMode:
+          type: string
+          description: Pos Entry Mode
+        acquirerCountryCode:
+          type: string
+          description: Acquirer Country Code
+        cardAcceptorCity:
+          type: string
+          description: Card Acceptor City
+        cardAcceptorCountry:
+          type: string
+          description: Card Acceptor Country
+        terminalVerificationResults:
+          type: string
+          description: Terminal Verification Results
+        arqcValue:
+          type: string
+          description: Arqc Value
+        cardholderVerificationResults:
+          type: string
+          description: CardHolderVerificationResults
+        arqcVerify:
+          type: string
+          description: Arqc Verify
+        terminalCapability:
+          type: string
+          description: Terminal Capability
+        merchantCategoryCode:
+          type: string
+          description: Marchant Category Code
+        cardholderVerificationMethod:
+          type: string
+          description: CardHolder Verification Method
+        draftCaptureFlag:
+          type: string
+          description: Draft Capture Flag
+        description:
+          type: string
+          description: Letter Description
+        smsCode:
+          type: string
+          description: Communication Code
+        smsTitle:
+          type: string
+          description: Communication Message Title
+        smsMessageEventNumber:
+          type: integer
+          description: Communication Message Event
+          format: int32
+        cashbackAmount:
+          type: string
+          description: Cash Back Amount
+        comissionAmount:
+          type: string
+          description: Comission Amount
+        ecomFlag:
+          type: string
+    PushAlertResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
