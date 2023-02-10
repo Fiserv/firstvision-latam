@@ -202,6 +202,6 @@ tags: [Getting Started, VMX, Functionality List]
 
 ## See Also
 
-- [Messages List](?path=docs/vmx/messages-list.md)
+- [Messages List](?path=docs/VMX/messages-list.md)
 
 ---
