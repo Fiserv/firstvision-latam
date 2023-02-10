@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, VMX]
+tags: [Getting Started, VMX, Message List]
 ---
 
 # VMX Messages List
