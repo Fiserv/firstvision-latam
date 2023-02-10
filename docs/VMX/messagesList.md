@@ -2,7 +2,7 @@
 tags: [Getting Started, VMX, Message List]
 ---
 
-# VMX Messages List
+# Messages List
 
 | Service                        | Version | API                                                      | Type |
 |--------------------------------|---------|----------------------------------------------------------|------|
