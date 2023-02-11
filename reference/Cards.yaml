@@ -1,0 +1,580 @@
+openapi: 3.0.1
+info:
+  title: FirstVision™ Cards Issuing Service - API Documentation
+  description: This documentation describes the REST APIs provided by the FirstVision™ Cards Microservice, which provides functionality for the issuing, management and processing of credit cards, including bank, co-branded, private label, debit, commercial, and prepaid
+  version: "1.2"
+servers:
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
+tags:
+- name: Embosser
+  description: Embosser
+- name: Pin
+  description: Pin
+- name: Card
+  description: Card
+paths:
+  /cards/activation:
+    put:
+      tags:
+      - Card
+      summary: "Activate Card. VMX service: M.CMS.CARDACTIVATION.UPD, R8V3"
+      description: "Updates Card activation service. \nVMX service: M.CMS.CARDACTIVATION.UPD,\
+        \ R8V3"
+      operationId: Card Activation
+      parameters:
+      - name: apikey
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardActivationRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardActivationResponse'
+      x-proxy-name: Card Activation
+      x-group-name: Card
+      x-child-product-name: Cards
+  /cards/pin/security-codes:
+    post:
+      tags:
+      - Pin
+      summary: "Provides security values. VMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+      description: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
+        \ number. \nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+      operationId: Security Values Inquiry
+      parameters:
+      - name: apikey
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityCodeDetailsRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityCodeDetailsResponse'
+      x-proxy-name: Security Values Inquiry
+      x-group-name: Pin
+      x-child-product-name: Cards
+  /cards/embosser/card-pan-l8v2:
+    post:
+      tags:
+      - Embosser
+      summary: "Card or PAN Token Inquiry. VMX Service: M.CMS.CARD.PAN.INQ, L8V2.This\
+        \ API can be used only by PCI Compliant financial institutions and issuers."
+      description: "Inquiry Card number or PAN Token. \nVMX Service: M.CMS.CARD.PAN.INQ,\
+        \ L8V2"
+      operationId: Card Or PAN Token Inquiry
+      parameters:
+      - name: apikey
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardPanInquiryL8V2Request'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "422":
+          description: |
+            VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND
+            VPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
+            VPL5SCI03E - INPUT CARD NUMBER IS NOT NUMERIC
+            VPL5SCI04E - CARD SEQUENCE NUMBER IS NOT NUMERIC
+            VPL5SCI05S - REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND
+            VPL5SCI07S - ORG RECORD NOT FOUND
+            VPL5SCI09S - EMBOSSER RECORD NOT FOUND
+            VPL5SEA04E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+            VPL5SEA05E - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+            VPL5SEA16S - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+            VPL5SIE31S - ENC-FAILURE INVALID ORG
+            VPL5SIE32S - ENC-FAILURE INV LENGTH
+            VPL5SIE33S - ENC-FAILURE CALL FAILURE
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardPanInquiryL8V2Response'
+      x-proxy-name: Card Or PAN Token Inquiry
+      x-group-name: Embosser
+      x-child-product-name: Cards
+components:
+  schemas:
+    CardActivationRequest:
+      required:
+      - cardNumber
+      - serviceType
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXEAI-ORG
+          format: int32
+          example: 807
+        cardNumber:
+          maxLength: 19
+          minLength: 12
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXEAI-CARD-NBR
+          example: 000540208ID5IXX3865
+        serviceType:
+          type: string
+          description: |-
+            Length: 1
+
+            Service Type.
+
+            The values are:
+
+            A = Activate all cards for the account
+
+            S = Activate the specific embosser for the card number
+
+            T = Activate the specific embosser and update the embosser prior card activation flag to deactivate the prior card
+
+            U = Deactivate the previous card when the new card is created due to product transfer
+
+            VisionPLUS Service Data: ARXEAI-SVC-TYPE
+          example: A
+        userData:
+          type: string
+          description: |-
+            Length: 40
+
+            User Data.
+
+            VisionPLUS Service Data: ARXEAI-USER-DATA
+      description: Card Activation Request
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    CardActivationResponse:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXEAO-ORG
+          format: int32
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+
+            Logo.
+
+            VisionPLUS Service Data: ARXEAO-LOGO
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXEAO-CARD-NBR
+          example: 000540208ID5IXX3865
+        serviceType:
+          type: string
+          description: |-
+            Length: 1
+
+            Service Type. The values are:
+
+            A = Activate all cards for the account
+
+            S = Activate the specific embosser for the card number
+
+            T = Activate the specific embosser and update the embosser prior card activation flag to deactivate the prior card
+
+            U = Deactivate the previous card when the new card is created due to product transfer
+
+            VisionPLUS Service Data: ARXEAO-SVC-TYPE
+        numberCardsActivated:
+          type: integer
+          description: |-
+            Length: 4
+
+            Number Cards Activated.
+
+            VisionPLUS Service Data: ARXEAO-NBR-CARDS-ACTIVATED
+          format: int32
+        foreignOrg:
+          type: integer
+          description: |-
+            Length: 3
+
+            Foreign Organization.
+
+            VisionPLUS Service Data: ARXEAO-FOREIGN-ORG
+          format: int32
+        numberForeignCardsActivated:
+          type: integer
+          description: |-
+            Length: 4
+
+            Number Foreign Cards Activated.
+
+            VisionPLUS Service Data: ARXEAO-NBR-FORGN-CRDACTIVATED
+          format: int32
+    SecurityCodeDetailsRequest:
+      required:
+      - cardNumber
+      - channel
+      - keyAssociation
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Organization Number.
+            VisionPLUS Service Data: ARXSVI-ORG
+          format: int32
+          example: 807
+        cardNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: ARXSVI-CARD-NBR
+          example: 000540208ID5IXX3865
+        channel:
+          maxLength: 1
+          minLength: 1
+          type: string
+          description: |-
+            Length: 1
+            Insurance status code. The values are:
+            * Space = Not used
+            * I = IVR
+            * A = ATM
+            * W = Web
+            VisionPLUS Service Data: ARXSVI-CHANNEL
+          example: I
+        keyAssociation:
+          maxLength: 3
+          minLength: 1
+          type: string
+          description: |-
+            Length: 3
+            Key Association.
+            VisionPLUS Service Data: ARXSVI-KEY-ASSOC
+          example: MB
+      description: Security Code Details Request
+    SecurityCodeDetailsResponse:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: ARXSVO-ACCT-NBR
+          example: 000540208ID5IXX3865
+        ud1ec:
+          type: string
+          description: |-
+            Length: 16
+            Encrypted CVV OR CVC OR 3CSC value.
+            VisionPLUS Service Data: ARXSVO-UD1-ENCRYPT
+          example: 840B12345A690FBCA
+        ud2ec:
+          type: string
+          description: |-
+            Length: 16
+            Encrypted CVV2 OR CVC2 OR 4CSC value.
+            VisionPLUS Service Data: ARXSVO-UD2-ENCRYPT
+          example: 840B12345A690FBCA
+        ud3ec:
+          type: string
+          description: |
+            Length: 16
+            Encrypted iCVV OR iCVC OR iCSC value.
+            VisionPLUS Service Data: ARXSVO-UD3-ENCRYPT
+          example: 840B12345A690FBCA
+        pinEncrypt:
+          type: string
+          description: |-
+            Length: 9
+            Encrypted pin block.
+            VisionPLUS Service Data: ARXSVO-PIN-ENCRYPT
+          example: 840B12345
+        encrypt3csc:
+          type: string
+          description: |-
+            Length: 9
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-3CSC-ENCRYPT
+          example: 840B12345
+        encrypt4csc:
+          type: string
+          description: |-
+            Length: 9
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-4CSC-ENCRYPT
+          example: 840B12345
+        encrypt5csc:
+          type: string
+          description: |-
+            Length: 17
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-5CSC-ENCRYPT
+          example: 840B12345A690FBCAC
+        encrypt5cscCntls:
+          type: string
+          description: |-
+            Length: 17
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-5CSC-CNTLS-ENCRYPT
+          example: 840B12345A690FBCAC
+        icsc:
+          type: string
+          description: |-
+            Length: 17
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-ICSC-ENCRYPT
+          example: 840B12345A690FBCAC
+    CardPanInquiryL8V2Request:
+      required:
+      - cardNumber
+      - cardSequence
+      - functionType
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+            VisionPLUS Service Data: AZXTCI-ORG
+          format: int32
+          example: 807
+          enum:
+          - null
+        cardNumber:
+          maxLength: 19
+          minLength: 12
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: AZXTCI-CARD-PAN
+          example: 000540208ID5IXX3865
+          enum:
+          - "range[12,32]"
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Card Sequence
+            Card sequence number. Default is 1
+            VisionPLUS Service Data: AZXTCI-CARD-SEQ
+          format: int32
+          example: 1
+          enum:
+          - null
+        functionType:
+          pattern: "^(P|C){1}$"
+          type: string
+          description: |-
+            Length: 1
+
+            Function Type.
+            VisionPLUS Service Data: AZXTCI-FUNCTION-TYPE
+          example: C
+      description: 'Card or PAN Token Inquiry '
+    CardPanInquiryL8V2Response:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+            VisionPLUS Service Data: AZXTCO-ORG
+          format: int32
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+
+            Logo.
+            VisionPLUS Service Data: AZXTCO-LOGO
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 32
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: AZXTCO-CARD-NBR
+          example: 000540208ID5IXX3865657RTY43245TY
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Card Sequence.
+            VisionPLUS Service Data: AZXTCO-CARD-SEQ
+          format: int32
+        accountNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Account Number.
+            VisionPLUS Service Data: AZXTCO-ACCOUNT-NBR
+        panToken:
+          type: string
+          description: |-
+            Length: 19
+
+            PAN token. Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token)
+            VisionPLUS Service Data: AZXTCO-PAN-TOKEN
