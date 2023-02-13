@@ -9,7 +9,7 @@ paths:
   /customer/reversal:
     put:
       tags:
-      - Customer
+      - Customers
       summary: "Customer Reversal Update. VMX Service: M.CMS.CUST.REVERSAL.UPD, L8V1"
       description: "Customer Reversal Update. \nVMX Service: M.CMS.CUST.REVERSAL.UPD,\
         \ L8V1"
@@ -35,18 +35,18 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
@@ -62,11 +62,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/UpdateCustomerReversalResponse'
       x-proxy-name: Customer Reversal Update
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/:
     put:
       tags:
-      - Customer
+      - Customers
       summary: "Update Customer VMX Service: M.CMS.CUSTOMER.UPD, R8V5"
       description: "Updates the demographic and user data on the Customer record.\
         \ \nVMX Service: M.CMS.CUSTOMER.UPD, R8V5"
@@ -92,24 +92,8 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SGC01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -169,6 +153,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
         "200":
@@ -178,11 +178,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/UpdateCustomerResponse'
       x-proxy-name: Customer Update
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/relationship:
     post:
       tags:
-      - Customer
+      - Customers
       summary: "Add Customer relationship number. VMX Service: M.CMS.RELATIONSHIP.ADD,\
         \ R8V2"
       description: "Add Customer relationship number. \nVMX Service: M.CMS.RELATIONSHIP.ADD,\
@@ -207,8 +207,6 @@ paths:
               $ref: '#/components/schemas/CustomerRelationshipDetailsRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "422":
           description: |-
             VPL5SAR03S - CUSTOMER NUMBER IS INVALID
@@ -325,18 +323,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
@@ -352,11 +352,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomerRelationshipDetailsResponse'
       x-proxy-name: Relationship Number Add
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/relationshipNumber:
     post:
       tags:
-      - Customer
+      - Customers
       summary: "Find Relationship Number. VMX Service: M.CMS.CUST.TO.REL.INQ, R8V1"
       description: "Finds the Relationship number associated with A Customer number.\
         \ \nVMX Service: M.CMS.CUST.TO.REL.INQ, R8V1"
@@ -382,26 +382,24 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "422":
           description: |-
             VPL5S0009E - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
@@ -417,6 +415,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
@@ -424,11 +424,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomerToRelationshipInquiryResponse'
       x-proxy-name: Customer To Relationship Navigational Service
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/l8v2:
     post:
       tags:
-      - Customer
+      - Customers
       summary: "Add New Customer. VMX Service: M.CMS.CUSTOMER.ADD, L8V2"
       description: "Allows A Client To Add A Customer Name/Address Record. \nVMX Service:\
         \ M.CMS.CUSTOMER.ADD, L8V2"
@@ -454,18 +454,18 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SNA01E - USER DATE 3 INVALID
@@ -497,11 +497,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/AddCustomerResponseL8V2'
       x-proxy-name: Customer Add L8V2
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/generation:
     post:
       tags:
-      - Customer
+      - Customers
       summary: "Generate customer and account number. VMX Service: M.CMS.NBRGENERATION.ACT,\
         \ L8V1"
       description: "This service generates customer, relationship, account, and embosser\
@@ -528,18 +528,18 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
@@ -555,11 +555,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CmsNumberGenerationResponse'
       x-proxy-name: Generate Customer And Account Number
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/details-l8v4:
     post:
       tags:
-      - Customer
+      - Customers
       summary: "Get Cards Details l8v4. VMX Service: M.CMS.CUSTCHANNEL.INQ, L8V4"
       description: "Get Customer Cards Details version 4. \nVMX Service: M.CMS.CUSTCHANNEL.INQ,\
         \ L8V4"
@@ -585,26 +585,24 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "422":
           description: |-
             VPL5SCE06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -621,6 +619,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
@@ -628,11 +628,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomerChannelVersion4Response'
       x-proxy-name: Cards Details Inquiry L8V4
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/demographicData-l8v2:
     post:
       tags:
-      - Customer
+      - Customers
       summary: "Request Demographic Data For A Customer. VMX Service: M.CMS.DEMOGRAPHIC.INQ,\
         \ L8V2"
       description: "Request Demographic Data For A Customer. \nVMX Service: M.CMS.DEMOGRAPHIC.INQ,\
@@ -659,18 +659,18 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
@@ -686,11 +686,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/DemographicInquiryResponseL8V2'
       x-proxy-name: Demographic Data Inquiry L8V2
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/activation:
     post:
       tags:
-      - Customer
+      - Customers
       summary: "Allows A Client To Add A Customer Name/Address Record and Activate\
         \ PAN token. VMX Service: M.CMS.CUST.ACTIVATE.ADD, L8V1"
       description: "Allows A Client To Add A Customer Name/Address Record and Activate\
@@ -717,18 +717,18 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
@@ -744,11 +744,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/AddCustomerActivationResponse'
       x-proxy-name: Add New Customer with PAN Activation
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/accountNumber:
     post:
       tags:
-      - Customer
+      - Customers
       summary: "Find An Account Number. VMX Service: M.CMS.CUST.TO.ACCT.INQ, R8V3"
       description: "Finds an Account number associated with a Customer number. \n\
         VMX Service: M.CMS.CUST.TO.ACCT.INQ, R8V3"
@@ -774,18 +774,18 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SCA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -816,11 +816,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomerToAccountInquiryResponse'
       x-proxy-name: Account Number Inquiry
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/{customerNumber}/relationship:
     get:
       tags:
-      - Customer
+      - Customers
       summary: "Inquire Relationship Customer. VMX Service: M.CMS.REL.CUST.INQ, L8V1"
       description: "Obtains the Relationship number associated with the Customer number.\
         \ \nVMX Service: M.CMS.REL.CUST.INQ, L8V1"
@@ -855,8 +855,6 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
         "422":
           description: |-
             VPL5SRC06E - ORG IS NOT NUMERIC
@@ -867,18 +865,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
@@ -894,11 +894,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomerRelationshipFindDetailsResponse'
       x-proxy-name: Relationship Customer Inquiry
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/{accountNumber}/current-prior-address:
     get:
       tags:
-      - Customer
+      - Customers
       summary: "Current/Prior Address Inquiry. VMX Service: M.CMS.ADDRESS.INQ, R8V2"
       description: "The Current/Prior Address Inquiry service provides information\
         \ from the Customer Name/Address file (AMNA) and the Prior Mailing Address\
@@ -966,24 +966,8 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "422":
           description: |
             VPL5SAD01S – ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -1007,6 +991,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
         "200":
@@ -1016,11 +1016,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/CurrentPriorAddressResponse'
       x-proxy-name: Current/Prior Address Inquiry
-      x-child-product-name: Customers
+      x-group-name: Customers
   /customer/v3/cards/details:
     get:
       tags:
-      - Customer
+      - Customers
       summary: "Get Cards Details. VMX Service: M.CMS.CUSTCHANNEL.INQ, L8V5"
       description: "Get list of cards and details linked to a customer. \nVMX Service:\
         \ M.CMS.CUSTCHANNEL.INQ, L8V5"
@@ -1102,18 +1102,24 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: "Unprocessable Entity\n\nVPL5SCE06S - ORGANIZATION RECORD NOT\
             \ FOUND\n\nVPL5SCE07S - ORGANIZATION RECORD NOT FOUND\n\nVPL5SCE09E -\
@@ -1129,12 +1135,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
         "200":
@@ -1144,7 +1144,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CustomerCardsDetailsResponseV3'
       x-proxy-name: Cards Details Inquiry L8V5
-      x-child-product-name: Customers
+      x-group-name: Customers
 components:
   schemas:
     CarrierRoute:
