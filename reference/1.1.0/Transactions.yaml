@@ -1060,6 +1060,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TransactionsDetailsL8V7Request'
+            examples:
+              TransactionsSummaryDetails: {$ref: '#/components/examples/TransactionsSummaryDetailsRequest'}
         required: true
       responses:
         "401":
@@ -1090,6 +1092,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionsDetailsL8V7Response'
+              examples:
+                TransactionsSummaryDetails: {$ref: '#/components/examples/TransactionsSummaryDetailsResponse'}
         "422":
           description: |-
             VPL5STDZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
@@ -1282,6 +1286,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Request'
+            examples:
+              Outstading-Authorizations-L8V3Details: {$ref: '#/components/examples/Outstading-Authorizations-L8V3DetailsRequest'}
         required: true
       responses:
         "401":
@@ -1312,6 +1318,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response'
+              examples:
+                Outstading-Authorizations-L8V3Details: {$ref: '#/components/examples/Outstading-Authorizations-L8V3DetailsResponse'}
       x-proxy-name: Outstanding Authorizations Fas Service
       x-group-name: Transactions
   /transactions/notes-R8V3:
@@ -3292,6 +3300,144 @@ paths:
       x-proxy-name: Installment Billing Transaction Detail
       x-group-name: Transactions
 components:
+  examples:
+    TransactionsSummaryDetailsRequest:
+      value:
+        organizationNumber: 411
+        accountNumber: '0005215980100000812'
+        functionCode: B
+        transactionDateRange:
+          from: '2022-01-01'
+          to: '2023-01-30'
+        numberOfTransactions: 10
+        foreignUserIndicator: '0'
+        transactionAmountRange:
+          from: 0
+          to: 100000
+    TransactionsSummaryDetailsResponse:
+      value:
+        currencyData:
+          code: -2147483648
+          numberOfDecimal: -2147483648
+        organizationNumber: -2147483648
+        logo: -2147483648
+        foreignUseIndicator: string
+        numberOfMonths: string
+        numberOfTransactionRecords: -2147483648
+        transactionData:
+        - sequence: -2147483648
+          accountOrganizationNumber: -2147483648
+          accountLogo: -2147483648
+          accountNumber: string
+          recordNumber: -2147483648
+          cardNumber: '000540208ID5IXX3865'
+          cardSequence: -2147483648
+          cardBlockCode: string
+          cardAcceptorId: string
+          effectiveDate: '2019-08-24'
+          postDate: '2019-08-24'
+          type: string
+          transactionCode: -2147483648
+          batchDate: '2019-08-24'
+          amount: 0
+          relationshipPaymentAmount: 0
+          originalPaymentAmount: 0
+          unitPrice: 0
+          quantity: -2147483648
+          authorizationCode: string
+          planNumber: -2147483648
+          planSequenceNumber: -2147483648
+          planOpenDate: '2019-08-24'
+          salesClerk: string
+          ticketNumber: string
+          purchaseOrder: string
+          paymentReferenceNumber: 0
+          itemNumber: 0
+          referenceNumber: string
+          description: string
+          points: 0
+          programNumber: string
+          categoryCode: -2147483648
+          skuNumber: -2147483648
+          department: string
+          source: string
+          visaTransactionId: 0
+          interchangeFee: 0
+          qualificationIndicator: string
+          merchantCountryCode: string
+          insuranceProduct: string
+          ddaAccountIndicator: string
+          transferredFraudTransactionStatus: string
+          posEntryMode: string
+          originalTransactionAmount: 0
+          originalTransactionAmountFormatted: string
+          originalTransactionCurrency: string
+          originalTransactionCurrencyDescription: string
+          transactionConversionRate: -1.7976931348623157e+308
+          transactionConversionRateFormatted: string
+          merchantCity: string
+          merchantState: string
+          merchantPostalCode: string
+          merchantPhoneNumber: string
+          categoryDescription: string
+          feeAdjustmentIndicator: string
+          interestAdjustmentIndicator: string
+          chargebackIndicator: string
+          disputeIndicator: string
+          fraudIndicator: string
+          copyRequestIndicator: string
+          reversalIndicator: string
+          misappliedIndicator: string
+          issuerClearingHouseIndicator: string
+          disputeAuxiliaryFileIndicator: string
+          stopOrResumeIndicator: string
+          fraudTransferIndicator: string
+          storeNumber: -2147483648
+          logicModuleNumber: -2147483648
+          merchantName: string
+          embossedName: string
+          channelId: -2147483648
+          virtualInd: -2147483648
+        moreTransactionsAvailableFlag: string
+        nextTransactionToken: string
+        previousTransactionToken: string
+    Outstading-Authorizations-L8V3DetailsRequest:
+      value:
+        organizationNumber: 768
+        effectiveAuthorizationDate: '2024-07-05'
+        effectiveAuthorizationTime: 14
+        accountNumber: '0007686007542049771'
+        foreignUseIndicator: '0'
+        functionCode: ''
+        filter: ''
+        numberOfAuthorizationsRequested: 10
+        authorizationNumber: ''
+        logRecordTypeOfTheTransaction: 1
+        extentOfTheLogFile: 1
+        relativeByteAddress: 1
+        authorizationDateFrom: '2024-07-04'
+        authorizationDateTo: '2025-07-04'
+        cardNumber: '4191661001583250346'
+    Outstading-Authorizations-L8V3DetailsResponse:
+      value:
+          currencyNumberOfDecimals: 2
+          currencyCode: 484
+          foreignUseIndicator: Local Account
+          organizationNumber: 768
+          accountNumber: '0007686007542049771'
+          nextToken:
+            time: '000000'
+            logRecordTypeOfTheTransaction: 0
+            extentOfTheLogFile: 0
+            relativeByteAddress: 0
+          prevToken:
+            effectiveDate: '9999-12-31'
+            time: '595959'
+            logRecordTypeOfTheTransaction: 0
+            extentOfTheLogFile: 0
+            relativeByteAddress: 0
+          more: 'No'
+          numberOfAuthorizationsReturned: 0
   schemas:
     IndividualInstallmentAnticipationRequest:
       required:
