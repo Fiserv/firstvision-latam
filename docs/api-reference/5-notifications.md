@@ -4,7 +4,7 @@ tags: [Getting Started, API Reference, Notifications, Webhooks, Events]
 
 # Notifications
 
-First Vision Notification allows to enrollment and cancellation features with the flexibility to trigger Email’s basis for specific events such as authorizations, address change, card blocking, card activation, card replacement or reissue, payment due date and credit limit change. 
+First Vision Notification allows Fintechs and Finantial Institutions to receive events such as authorizations, address change, card blocking, card activation, card replacement or reissue, payment due date and credit limit change. 
 
 Flexibility to define new events/SMS in future with minimal system changes is also available.
 
