@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: FirstVision™ Loyalty Service - API Documentation
+  title: FirstVision™ Transaction Service - API Documentation
   description: This documentation describes the REST APIs provided by the FirstVision™ Cards Microservice, which provides functionality for the issuing, management and processing of credit cards, including bank, co-branded, private label, debit, commercial, and prepaid
   version: "1.2"
 servers:
@@ -10,7 +10,7 @@ paths:
     put:
       tags:
       - Loyalty
-      summary: "LMS Points Account Auto Disbursement Data Update. (VMX service: M.LMS.POINTS.ACCT.DISB.DATA.UP,\
+      summary: "Points Account Auto Disbursement Data Update. (VMX service: M.LMS.POINTS.ACCT.DISB.DATA.UP,\
         \ R8V2)"
       description: "Enables to update the disbursement data fields on the Points Account\
         \ record. \nVMX service: M.LMS.POINTS.ACCT.DISB.DATA.UP, R8V2"
@@ -34,6 +34,26 @@ paths:
               $ref: '#/components/schemas/PointsDisbursementRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsDisbursementResponse'
         "300":
           description: Redirection
           content:
@@ -42,35 +62,13 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsDisbursementResponse'
-        "400":
-          description: Bad Request
-      x-proxy-name: LMS Points Account Auto Disbursement Data Update
+      x-proxy-name: Points Account Auto Disbursement Data Update
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/pointsAdjust:
     put:
       tags:
       - Loyalty
-      summary: "LMS Account points Adjustment. (VMX service: M.LMS.POINTS.ADJ.ADD,\
-        \ R8V1)"
+      summary: "Points Account Adjustment. (VMX service: M.LMS.POINTS.ADJ.ADD, R8V1)"
       description: "Enables to adjust earned, bonus, bought and adjusted points on\
         \ a LMS Points Account record. \nVMX service: M.LMS.POINTS.ADJ.ADD, R8V1"
       operationId: pointsAdjust
@@ -93,6 +91,26 @@ paths:
               $ref: '#/components/schemas/PointsAdjustRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsAdjustResponse'
         "300":
           description: Redirection
           content:
@@ -101,29 +119,8 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsAdjustResponse'
-        "400":
-          description: Bad Request
-      x-proxy-name: LMS Account points Adjustment
+      x-proxy-name: Points Account Adjustment
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/statementLists:
     post:
       tags:
@@ -151,6 +148,26 @@ paths:
               $ref: '#/components/schemas/LoyaltyStatementListRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoyaltyStatementListResponse'
         "300":
           description: Redirection
           content:
@@ -159,29 +176,8 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LoyaltyStatementListResponse'
-        "400":
-          description: Bad Request
       x-proxy-name: Loyalty account transactions inquiry
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/redemption:
     post:
       tags:
@@ -210,6 +206,26 @@ paths:
               $ref: '#/components/schemas/RedemptionAddRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedemptionAddResponse'
         "300":
           description: Redirection
           content:
@@ -218,29 +234,8 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RedemptionAddResponse'
-        "400":
-          description: Bad Request
       x-proxy-name: Redemption Transaction Add
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/points:
     post:
       tags:
@@ -268,6 +263,26 @@ paths:
               $ref: '#/components/schemas/PointsDetailsRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsDetailsResponse'
         "300":
           description: Redirection
           content:
@@ -276,34 +291,13 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsDetailsResponse'
-        "400":
-          description: Bad Request
-      x-proxy-name: LMS Points Account Auto Disbursement Data Update
+      x-proxy-name: Points Account Inquiry
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/pointsExpireHistory:
     post:
       tags:
       - Loyalty
-      summary: "Points Expiry History. (VMX service: M.LMS.POINTS.EXPIRY.HIST.INQ,\
+      summary: "Points Expiration Details inquiry. (VMX service: M.LMS.POINTS.EXPIRY.HIST.INQ,\
         \ R8V1)"
       description: "Inquires on the points expiration details from the statement summary\
         \ for a specific date and account in LMS. \nVMX service: M.LMS.POINTS.EXPIRY.HIST.INQ,\
@@ -328,6 +322,26 @@ paths:
               $ref: '#/components/schemas/PointsExpiryHistoryRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsExpiryHistoryResponse'
         "300":
           description: Redirection
           content:
@@ -336,29 +350,8 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsExpiryHistoryResponse'
-        "400":
-          description: Bad Request
-      x-proxy-name: Points Expiry History
+      x-proxy-name: Points Expiration Details inquiry
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/pointsAccount:
     post:
       tags:
@@ -366,7 +359,7 @@ paths:
       summary: "LMS Adds Account points. (VMX service: M.LMS.POINTS.ACCT.ADD, R8V1)"
       description: "Adds an LMS Points Account Record. \nVMX service: M.LMS.POINTS.ACCT.ADD,\
         \ R8V1"
-      operationId: Add LMS account
+      operationId: Points Account Add
       parameters:
       - name: apikey
         in: header
@@ -386,6 +379,26 @@ paths:
               $ref: '#/components/schemas/PointsAccountAddRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsAccountAddResponse'
         "300":
           description: Redirection
           content:
@@ -394,29 +407,8 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsAccountAddResponse'
-        "400":
-          description: Bad Request
-      x-proxy-name: Add LMS account
+      x-proxy-name: Points Account Add
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/crossReference:
     post:
       tags:
@@ -445,6 +437,26 @@ paths:
               $ref: '#/components/schemas/CrossReferenceInquiryRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrossReferenceInquiryResponse'
         "300":
           description: Redirection
           content:
@@ -453,35 +465,13 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CrossReferenceInquiryResponse'
-        "400":
-          description: Bad Request
       x-proxy-name: Cross Reference Inquiry
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/:
     post:
       tags:
       - Loyalty
-      summary: "Loyalty account transactions inquiry. (VMX service: M.LMS.TRANSACTION.INQ,\
-        \ R8V1)"
+      summary: "Statement Lists Inquiry. (VMX service: M.LMS.TRANSACTION.INQ, R8V1)"
       description: "Inquire on transactions and their details for a given account\
         \ in LMS. \nVMX service: M.LMS.TRANSACTION.INQ, R8V1"
       operationId: inquireLmsTransactions
@@ -504,6 +494,26 @@ paths:
               $ref: '#/components/schemas/LmsTransactionInquiryRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LmsTransactionInquiryResponse'
         "300":
           description: Redirection
           content:
@@ -512,35 +522,13 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LmsTransactionInquiryResponse'
-        "400":
-          description: Bad Request
-      x-proxy-name: Loyalty account transactions inquiry
+      x-proxy-name: Statement Lists Inquiry
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/statementSummary/{accountNumber}:
     get:
       tags:
       - Loyalty
-      summary: "LMS Account Statement summary. (VMX service: M.LMS.STMT.SUMMARY.INQ,\
-        \ R8V1)"
+      summary: "Statement Summary Inquiry. (VMX service: M.LMS.STMT.SUMMARY.INQ, R8V1)"
       description: "Inquires on a statement summary account in the LMS. \nVMX service:\
         \ M.LMS.STMT.SUMMARY.INQ, R8V1"
       operationId: statementSummaryDetails
@@ -591,6 +579,26 @@ paths:
           type: string
         example: "00970"
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementSummaryResponse'
         "300":
           description: Redirection
           content:
@@ -599,34 +607,13 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatementSummaryResponse'
-        "400":
-          description: Bad Request
-      x-proxy-name: LMS Account Statement summary
+      x-proxy-name: Statement Summary Inquiry
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
   /loyalty/demographic/{accountNumber}:
     get:
       tags:
       - Loyalty
-      summary: "Inquire limits rules. (VMX service: M.LMS.DEMOGRAPHIC.INQ, R8V2)"
+      summary: "Demographic Data Inquiry. (VMX service: M.LMS.DEMOGRAPHIC.INQ, R8V2)"
       description: "Fetches demographic data of LMS account. \nVMX service: M.LMS.DEMOGRAPHIC.INQ,\
         \ R8V2"
       operationId: demographicDetails
@@ -663,6 +650,26 @@ paths:
           type: string
         example: "00970"
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemographicAccountDataResponse'
         "300":
           description: Redirection
           content:
@@ -671,29 +678,8 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DemographicAccountDataResponse'
-        "400":
-          description: Bad Request
-      x-proxy-name: Inquire limits rules
+      x-proxy-name: Demographic Data Inquiry
       x-group-name: Loyalty
-      x-child-product-name: Loyalty
 components:
   schemas:
     PointsDisbursementRequest:
@@ -2741,5 +2727,3 @@ components:
             Length: 20
             Suffix for account holder.
             VisionPLUS Service Data: GPXSDO-SUFFIX
-x-config:
-  tryItOut: true
