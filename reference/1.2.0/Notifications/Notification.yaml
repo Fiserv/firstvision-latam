@@ -11,22 +11,21 @@ paths:
     post:
       tags:
         - Notifications
+      x-proxy-name: Notification
+      x-group-name: Notifications
       summary: |-
                 Notifications for events
                 - Authorization
                 - Card Blocked
                 - Card Activation
-      x-group-name: Push Notifications
-      x-proxy-name: Notifications
-      x-child-product-name: Notifications
       operationId: Notifications v2
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
       requestBody:
         description: Push Notification
         content:
@@ -47,6 +46,8 @@ paths:
           description: Not Found
         '405':
           description: Method Not Allowed
+        '422':
+          description: Unprocessable Entity
         '500':
           description: Backend Error
           content:
