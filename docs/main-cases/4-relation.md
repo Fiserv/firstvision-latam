@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Relation Client-Account-Card, Customer, Account, Card, generation, demographic data, lookup, address, balance, credit, limit, temporary, block-code, credit bureau, transfer P2P,  user, promotional product, debit, relationship, installment-term, associated parties, auth-criteria, pctId, ppd, wallet, embosser, pan token, pin, security-codes]
+tags: [Main Cases, Relation Client-Account-Card, Customer, Account, Card, generation, demographic data, lookup, address, balance, credit, limit, temporary, block-code, credit bureau, transfer P2P,  user, promotional product, debit, relationship, installment-term, associated parties, auth-criteria, pctId, ppd, wallet, embosser, pan token, PIN, security-codes]
 ---
 
 
@@ -1591,13 +1591,13 @@ Request body:
 
 The description of each API field can be found within the specifications in the portal.
 
-### Inquire Number of Invalid Pin Attempts (cards/pin/invalid-attempts)
+### Inquire Number of Invalid PIN Attempts (cards/pin/invalid-attempts)
 
 This API CARDS/PIN/INVALID-ATTEMPTS allow to the cardholder get the number of invalid PIN attempts.
 
-As part of security parameters, the number of invalid pin attempts are set up to avoid that pin number can be calculated for frauds proposals. When this parameter is reached the pin number is block and a new pin number have to be calculated.
+As part of security parameters, the number of invalid PIN attempts are set up to avoid that PIN number can be calculated for frauds proposals. When this parameter is reached the PIN number is block and a new PIN number have to be calculated.
 
-Invalid Pin attempts can be reached by many reasons the most popular reason is when cardholder fails the pin number on ATM.
+Invalid PIN attempts can be reached by many reasons the most popular reason is when cardholder fails the PIN number on ATM.
 
 **POST** `/cards/pin/invalid-attempts`
 
@@ -1613,11 +1613,11 @@ Request body:
 
 The description of each API field can be found within the specifications in the portal.
 
-### Pin Validation (cards/pin/validation)
+### PIN Validation (cards/pin/validation)
 
-Use this API **CARDS/PIN/VALIDATION** to confirm that current pin generated is correct.
+Use this API **CARDS/PIN/VALIDATION** to confirm that current PIN generated is correct.
 
-This API require the pin block and the card number and not the clear pin number.
+This API require the PIN block and the card number and not the clear PIN number.
 
 **POST** `/cards/pin/validation`
 
@@ -1650,7 +1650,7 @@ The description of each API field can be found within the specifications in the 
 - [Falcon System Integration](?path=docs/main-cases/10-falcon.md)
 - [Digital Card Issuing](?path=docs/main-cases/11-digital.md)
 - [Pan Token](?path=docs/main-cases/12-pan-token.md)
-- [Pin Change](?path=docs/main-cases/13-pin-change.md)
+- [PIN Change](?path=docs/main-cases/13-pin-change.md)
 - [Dynamic CVV2](?path=docs/main-cases/14-dynamic.md)
 - [Audit and Monitoring](?path=docs/main-cases/15-audit.md)
 - [HMAC Signature](?path=docs/main-cases/16-hmac.md)
