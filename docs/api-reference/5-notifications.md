@@ -6,7 +6,7 @@ tags: [Getting Started, API Reference, Notifications, Webhooks, Events]
 
 First Vision Notification allows Fintechs and Finantial Institutions to receive events such as authorizations, address change, card blocking, card activation, card replacement or reissue, payment due date and credit limit change. 
 
-Flexibility to define new events/SMS in future with minimal system changes is also available.
+Flexibility to define new events in future with minimal system changes is also available.
 
 ---
 
