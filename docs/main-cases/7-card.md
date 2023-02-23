@@ -356,7 +356,7 @@ Request body:
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Inquiry Security Values (cards/pin/security-codes)
+## Inquiry Security Values (cards/PIN/security-codes)
 
 This API **CARDS/PIN/SECURITY-CODES**, allow to the user get the card security values (CVV, CVV2,ICVV, PIN number) already emboss for an specific card number.
 
@@ -399,13 +399,13 @@ Request body:
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Inquire Number of Invalid Pin Attempts (cards/pin/invalid-attempts)
+## Inquire Number of Invalid PIN Attempts (cards/pin/invalid-attempts)
 
 This API **CARDS/PIN/INVALID-ATTEMPTS** allow to the cardholder get the number of invalid PIN attempts.
 
-As part of security parameters, the number of invalid pin attempts are set up to avoid that pin number can be calculated for frauds proposals. When this parameter is reached the pin number is block and a new pin number have to be calculated.
+As part of security parameters, the number of invalid PIN attempts are set up to avoid that PIN number can be calculated for frauds proposals. When this parameter is reached the PIN number is block and a new PIN number have to be calculated.
 
-Invalid Pin attempts can be reached by many reasons the most popular reason is when cardholder fails the pin number on ATM.
+Invalid PIN attempts can be reached by many reasons the most popular reason is when cardholder fails the PIN number on ATM.
 
 **POST** `/cards/pin/invalid-attempts`
 
@@ -421,11 +421,11 @@ Request body:
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Pin Validation (cards/pin/validation)
+## PIN Validation (cards/pin/validation)
 
-Use this API **CARDS/PIN/VALIDATION** to confirm that current pin generated is correct.
+Use this API **CARDS/PIN/VALIDATION** to confirm that current PIN generated is correct.
 
-This API require the pin block and the card number and not the clear pin number.
+This API require the PIN block and the card number and not the clear PIN number.
 
 **POST** `/cards/pin/validation`
 
