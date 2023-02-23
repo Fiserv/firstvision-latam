@@ -41,7 +41,7 @@ You just need to enter the common hashing algorithm, the message and your secret
 - [Falcon System Integration](?path=docs/main-cases/10-falcon.md)
 - [Digital Card Issuing](?path=docs/main-cases/11-digital.md)
 - [Pan Token](?path=docs/main-cases/12-pan-token.md)
-- [Pin Change](?path=docs/main-cases/13-pin-change.md)
+- [PIN Change](?path=docs/main-cases/13-pin-change.md)
 - [Dynamic CVV2](?path=docs/main-cases/14-dynamic.md)
 - [Audit and Monitoring](?path=docs/main-cases/15-audit.md)
 
