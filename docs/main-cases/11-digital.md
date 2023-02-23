@@ -311,7 +311,7 @@ Request body:
 - [Cash-in/Cash-out](?path=docs/main-cases/9-cash-in-out.md)
 - [Falcon System Integration](?path=docs/main-cases/10-falcon.md)
 - [Pan Token](?path=docs/main-cases/12-pan-token.md)
-- [Pin Change](?path=docs/main-cases/13-pin-change.md)
+- [PIN Change](?path=docs/main-cases/13-pin-change.md)
 - [Dynamic CVV2](?path=docs/main-cases/14-dynamic.md)
 - [Audit and Monitoring](?path=docs/main-cases/15-audit.md)
 - [HMAC Signature](?path=docs/main-cases/16-hmac.md)
