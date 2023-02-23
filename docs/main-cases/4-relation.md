@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Relation Client-Account-Card, Customer, Account, Card, generation, demographic data, lookup, address, balance, credit, limit, temporary, block-code, credit bureau, transfer P2P,  user, promotional product, debit, relationship, installment-term, associated parties, auth-criteria, pctId, ppd, wallet, embosser, pan token, PIN, security-codes]
+tags: [Main Cases, Relation Client-Account-Card, Customer, Account, Card, generation, demographic data, lookup, address, balance, credit, limit, temporary, block-code, credit bureau, transfer P2P,  user, promotional product, debit, relationship, installment-term, associated parties, auth-criteria, pctId, ppd, wallet, embosser, PAN token, PIN, security-codes]
 ---
 
 
@@ -1271,9 +1271,9 @@ The description of each API field can be found within the specifications in the 
 
 ### Inquire Card or PAN token (cards/embosser/card-pan)
 
-Use this API **CARDS/EMBOSSER/CARD-PAN** to get the pan-token calculated for a card number.
+Use this API **CARDS/EMBOSSER/CARD-PAN** to get the PAN-token calculated for a card number.
 
-Pan token is a current functionality to tokenize the card number for all banks that are not a PCI certificate. When new card is created through API **CARD/EMBOSSER**, the pan token is calculated automatically on base a parameters previously defined.
+PAN token is a current functionality to tokenize the card number for all banks that are not a PCI certificate. When new card is created through API **CARD/EMBOSSER**, the PAN token is calculated automatically on base a parameters previously defined.
 
 This API use the PAN-TOKEN to bring the card number or card number can be used to being the PAN-TOKEN.
 
@@ -1649,7 +1649,7 @@ The description of each API field can be found within the specifications in the 
 - [Cash-in/Cash-out](?path=docs/main-cases/9-cash-in-out.md)
 - [Falcon System Integration](?path=docs/main-cases/10-falcon.md)
 - [Digital Card Issuing](?path=docs/main-cases/11-digital.md)
-- [Pan Token](?path=docs/main-cases/12-pan-token.md)
+- [PAN Token](?path=docs/main-cases/12-pan-token.md)
 - [PIN Change](?path=docs/main-cases/13-pin-change.md)
 - [Dynamic CVV2](?path=docs/main-cases/14-dynamic.md)
 - [Audit and Monitoring](?path=docs/main-cases/15-audit.md)
