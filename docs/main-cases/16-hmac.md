@@ -10,7 +10,7 @@ When you send a message to a server, with HMAC enabled, a new signature is gener
 
 Client and server must have the same secret key so they can verify the authenticity of the message and its integrity, as modified messages result in different signatures.
 
-The same message generated with the same secret key will always result in the same signature
+The same message generated with the same secret key will always result in the same signature.
 
 ![image](https://user-images.githubusercontent.com/111396588/208850051-95699fa8-b605-42c3-995b-50e1f10c0a43.png)
 
