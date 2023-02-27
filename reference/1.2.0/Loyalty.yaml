@@ -1,10 +1,13 @@
 openapi: 3.0.1
 info:
-  title: FirstVision™ Transaction Service - API Documentation
+  title: FirstVision™ Loyalty Service - API Documentation
   description: This documentation describes the REST APIs provided by the FirstVision™ Cards Microservice, which provides functionality for the issuing, management and processing of credit cards, including bank, co-branded, private label, debit, commercial, and prepaid
   version: "1.2"
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
+tags:
+- name: Loyalty
+  description: 'Provides Loyalty Management related operations'
 paths:
   /loyalty/pointsDisbursement:
     put:
@@ -18,11 +21,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -36,32 +41,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsDisbursementResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsDisbursementResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Points Account Auto Disbursement Data Update
       x-group-name: Loyalty
   /loyalty/pointsAdjust:
@@ -75,11 +80,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -93,32 +100,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsAdjustResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsAdjustResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Points Account Adjustment
       x-group-name: Loyalty
   /loyalty/statementLists:
@@ -132,11 +139,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -150,32 +159,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LoyaltyStatementListResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoyaltyStatementListResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Loyalty account transactions inquiry
       x-group-name: Loyalty
   /loyalty/redemption:
@@ -190,11 +199,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -208,32 +219,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RedemptionAddResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedemptionAddResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Redemption Transaction Add
       x-group-name: Loyalty
   /loyalty/points:
@@ -247,11 +258,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -265,32 +278,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsDetailsResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsDetailsResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Points Account Inquiry
       x-group-name: Loyalty
   /loyalty/pointsExpireHistory:
@@ -306,11 +319,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -324,32 +339,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsExpiryHistoryResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsExpiryHistoryResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Points Expiration Details inquiry
       x-group-name: Loyalty
   /loyalty/pointsAccount:
@@ -363,11 +378,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -381,32 +398,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PointsAccountAddResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointsAccountAddResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Points Account Add
       x-group-name: Loyalty
   /loyalty/crossReference:
@@ -421,11 +438,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -439,32 +458,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CrossReferenceInquiryResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrossReferenceInquiryResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Cross Reference Inquiry
       x-group-name: Loyalty
   /loyalty/:
@@ -478,11 +497,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -496,32 +517,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LmsTransactionInquiryResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LmsTransactionInquiryResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Statement Lists Inquiry
       x-group-name: Loyalty
   /loyalty/statementSummary/{accountNumber}:
@@ -569,11 +590,13 @@ paths:
         example: 2020350
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -581,32 +604,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatementSummaryResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementSummaryResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Statement Summary Inquiry
       x-group-name: Loyalty
   /loyalty/demographic/{accountNumber}:
@@ -640,11 +663,13 @@ paths:
         example: 801
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -652,32 +677,32 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DemographicAccountDataResponse'
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemographicAccountDataResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Demographic Data Inquiry
       x-group-name: Loyalty
 components:
@@ -2727,3 +2752,5 @@ components:
             Length: 20
             Suffix for account holder.
             VisionPLUS Service Data: GPXSDO-SUFFIX
+x-config:
+  tryItOut: true
