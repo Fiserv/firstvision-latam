@@ -8,10 +8,10 @@ servers:
 tags:
 - name: Embosser
   description: Embosser
-- name: Pin
-  description: Pin
 - name: Statement
   description: Statement
+- name: PIN
+  description: PIN
 - name: Card
   description: Card
 paths:
@@ -26,17 +26,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -45,22 +44,8 @@ paths:
               $ref: '#/components/schemas/TravelUpdateRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -90,6 +75,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -110,17 +109,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -129,20 +127,34 @@ paths:
               $ref: '#/components/schemas/TransferUpdateRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferUpdateResponse'
         "422":
           description: |-
             VPL5S0004E - CARD NUMBER IS NOT NUMERIC
@@ -189,20 +201,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransferUpdateResponse'
       x-proxy-name: Card Transfer
       x-group-name: Card
       x-child-product-name: Cards
@@ -218,17 +216,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       - name: signonName
         in: header
@@ -242,26 +239,28 @@ paths:
               $ref: '#/components/schemas/TemporaryCreditLimitUpdRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: |-
             VPL5SAAM4E - CREDIT LIMIT CAN NOT EXCEED RELATIONSHIP CREDIT LIMIT
@@ -298,8 +297,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -320,17 +317,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -339,22 +335,8 @@ paths:
               $ref: '#/components/schemas/CardStatusRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -386,6 +368,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -407,17 +403,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -426,28 +421,28 @@ paths:
               $ref: '#/components/schemas/SpendLimitsL8V3Request'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -460,7 +455,7 @@ paths:
   /cards/pin/status:
     put:
       tags:
-      - Pin
+      - PIN
       summary: "PIN Block/Unblock Function. VMX Service: M.CMS.PIN.BLOCK.UPD, R8V1"
       description: "Blocks and unblocks the PIN on a card. \nVMX Service: M.CMS.PIN.BLOCK.UPD,\
         \ R8V1"
@@ -468,17 +463,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -487,22 +481,8 @@ paths:
               $ref: '#/components/schemas/PinBlockUpdateRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -528,6 +508,20 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -540,25 +534,24 @@ paths:
   /cards/pin/pin-change:
     put:
       tags:
-      - Pin
+      - PIN
       summary: "Change the PIN of a Card. VMX Service: M.CMS.PIN.CHANGE, R8V2"
       description: "Manages actions on PIN for both magnetic stripe and chip-based\
         \ prepaid cards. \nVMX Service: M.CMS.PIN.CHANGE, R8V2"
-      operationId: Pin Change
+      operationId: PIN Change
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -567,22 +560,8 @@ paths:
               $ref: '#/components/schemas/PinChangeRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -625,6 +604,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -637,7 +630,7 @@ paths:
   /cards/pin/:
     put:
       tags:
-      - Pin
+      - PIN
       summary: "Update the PIN of a Card. VMX Service: M.CMS.PIN.REASSIGNMENT, R8V1"
       description: "Updates the PIN offset field for PIN change requests, initiated\
         \ from the card host system or from external channels. \nVMX Service: M.CMS.PIN.REASSIGNMENT,\
@@ -646,17 +639,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -665,12 +657,12 @@ paths:
               $ref: '#/components/schemas/PinReassignmentRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "422":
           description: |
             VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -701,22 +693,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -738,17 +730,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -757,28 +748,28 @@ paths:
               $ref: '#/components/schemas/GlobalCardActivationRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -798,17 +789,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -817,12 +807,12 @@ paths:
               $ref: '#/components/schemas/UpdateEmbosserRequestV3'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "422":
           description: "Unprocessable Entity\n\nVPL5SEUZ2S - SERVICE INPUT TO CARD\
             \ UPDATE SERVICE IS AN INCORRECT LENGTH \n\nVPL5SEU01E - ORGANIZATION\
@@ -859,22 +849,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -897,17 +887,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -916,28 +905,28 @@ paths:
               $ref: '#/components/schemas/EmbosserCardActionL8V2Request'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -958,17 +947,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -977,20 +965,34 @@ paths:
               $ref: '#/components/schemas/CardDetailsForEmbosserBlockRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
         "422":
           description: |
             VPL5SCB01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -1015,20 +1017,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
       x-proxy-name: Embosser Block Code Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1043,17 +1031,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       - name: signonName
         in: header
@@ -1067,22 +1054,8 @@ paths:
               $ref: '#/components/schemas/CreditLimitUpdateRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -1120,6 +1093,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1140,59 +1127,52 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CardActivationRequest'
-            examples:
-              CardsActivation: 
-                $ref: '#/components/examples/CardsActivationRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardActivationResponse'
-              examples:
-                CardsActivation: 
-                  $ref: '#/components/examples/CardsActivationResponse'
       x-proxy-name: Card Activation
       x-group-name: Card
       x-child-product-name: Cards
@@ -1207,17 +1187,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1226,28 +1205,8 @@ paths:
               $ref: '#/components/schemas/StatementInquiryRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: "Unprocessable Entity\n\nVPL5S0005E - ACCOUNT NUMBER IS NOT\
             \ NUMERIC OR EQUAL SPACES \n\nVPL5S0006S - REQUESTED ORG NUMBER IS NOT\
@@ -1265,6 +1224,26 @@ paths:
             \ IS BY MONTH \n\nVPL5S0071E - STATEMENT OCCURENCE NUMBER IS INVALID WHEN\
             \ REQUEST IS BY DATE \n\nVPL5S0100S - SERVICE INPUT TO SD SERVICE IS AN\
             \ INCORRECT LENGTH \n\nVPL5S9007S - LOGO RECORD NOT ON FILE \n\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -1290,17 +1269,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1309,28 +1287,8 @@ paths:
               $ref: '#/components/schemas/StatementDateInquiryRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: "Unprocessable Entity\n\nVPL5SSI02S - SERVICE INPUT TO STMT\
             \ DATES SERVICE IS AN INCORRECT LENGTH \n\nVPL5SSI06E - ORGANIZATION NUMBER\
@@ -1347,6 +1305,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1359,25 +1337,24 @@ paths:
   /cards/pin/validation:
     post:
       tags:
-      - Pin
-      summary: "Pin Validation. VMX Service: M.CMS.PIN.VALIDATE, R8V1"
+      - PIN
+      summary: "PIN Validation. VMX Service: M.CMS.PIN.VALIDATE, R8V1"
       description: "Validates the PIN of the card number or PAN Token. \nVMX Service:\
         \ M.CMS.PIN.VALIDATE, R8V1"
-      operationId: Pin Validate
+      operationId: PIN Validate
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1386,20 +1363,28 @@ paths:
               $ref: '#/components/schemas/PinValidateRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "422":
           description: |
             VPL5SVP03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -1432,14 +1417,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1452,7 +1429,7 @@ paths:
   /cards/pin/security-codes:
     post:
       tags:
-      - Pin
+      - PIN
       summary: "Provides security values. VMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
       description: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
         \ number. \nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
@@ -1460,17 +1437,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1479,28 +1455,28 @@ paths:
               $ref: '#/components/schemas/SecurityCodeDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1513,28 +1489,27 @@ paths:
   /cards/pin/invalid-attempts:
     post:
       tags:
-      - Pin
+      - PIN
       summary: "Inquire number of invalid PIN attempts. VMX Service: M.CMS.INV.PINTRIES.CTR.INQ,\
         \ L8V1"
       description: "Provides information on the total number of invalid PIN attempts\
         \ made by the cardholder and determines whether the card or PAN token is blocked\
         \ for exceeding the maximum number of invalid PIN attempts. \nVMX Service:\
         \ M.CMS.INV.PINTRIES.CTR.INQ, L8V1"
-      operationId: Invalid Attemps Inquiry
+      operationId: Invalid Attempts Inquiry
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1543,22 +1518,8 @@ paths:
               $ref: '#/components/schemas/InvalidPinAttemptsInquiryRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -1579,19 +1540,33 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidPintAttemptsInquiryResponse'
-      x-proxy-name: Invalid Attemps Inquiry
+      x-proxy-name: Invalid Attempts Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
   /cards/pin/dynamic-values:
     post:
       tags:
-      - Pin
+      - PIN
       summary: "Inquire Dynamic CVV2/CVC2/4CSC. VMX Service: M.CMS.GENERATE.DCVV2,\
         \ R8V1"
       description: "Fetches dynamic CVV2/CVC2/4CSC. \nVMX Service: M.CMS.GENERATE.DCVV2,\
@@ -1600,17 +1575,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1619,18 +1593,14 @@ paths:
               $ref: '#/components/schemas/DynamicValuesRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -1676,16 +1646,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1733,38 +1707,40 @@ paths:
         example: "00"
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
         example: "00970"
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1785,17 +1761,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1804,28 +1779,28 @@ paths:
               $ref: '#/components/schemas/MassCardIssueAddRequestL8V3'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1847,17 +1822,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1866,20 +1840,34 @@ paths:
               $ref: '#/components/schemas/SameDayEmbossingAddRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SameDayEmbossingAddResponse'
         "422":
           description: |-
             VPL5SSP03S - CMS ORG IS INVALID
@@ -1901,20 +1889,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SameDayEmbossingAddResponse'
       x-proxy-name: Same Day Plastic Add/Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1929,17 +1903,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -1948,28 +1921,28 @@ paths:
               $ref: '#/components/schemas/AddEmbosserL8VFRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1991,17 +1964,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -2010,22 +1982,8 @@ paths:
               $ref: '#/components/schemas/CardPanInquiryL8V2Request'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -2047,6 +2005,20 @@ paths:
             VPL5SIE31S - ENC-FAILURE INVALID ORG
             VPL5SIE32S - ENC-FAILURE INV LENGTH
             VPL5SIE33S - ENC-FAILURE CALL FAILURE
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -2073,21 +2045,20 @@ paths:
         \ is provided in the service input, this service provides the card numbers\
         \ associated with that organization whether it is a local or a foreign organization.\
         \ \nVMX Service: M.CMS.ACCT.TO.CARD.INQ, L8V3"
-      operationId: Account To Cards Inquiry
+      operationId: Account To Cards Inquiry L8V3
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -2096,18 +2067,8 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V3Request'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5SAEZ8S - REQUESTED ORG NOT FOUND
@@ -2126,23 +2087,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsL8V3Response'
-      x-proxy-name: Account To Cards Inquiry
+      x-proxy-name: Account To Cards Inquiry L8V3
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/details:
@@ -2156,17 +2127,16 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
-          default: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
-        example: "gMiFycrUry2G6VtnqmnfM4scugDPGt40"
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
-          default: "00970"
         example: "00970"
       requestBody:
         content:
@@ -2175,22 +2145,8 @@ paths:
               $ref: '#/components/schemas/CardDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -2211,6 +2167,20 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2264,28 +2234,20 @@ paths:
         example: A
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
         example: "00970"
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5S0002S - CMS FILE TABLE RECORD NOT FOUND
@@ -2302,16 +2264,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2322,22 +2294,6 @@ paths:
       x-group-name: Embosser
       x-child-product-name: Cards
 components:
-  examples:
-    CardsActivationRequest:
-      value:
-        organizationNumber: 902
-        cardNumber: '0005227940199707715'
-        serviceType: 'S'
-        userData: ''
-    CardsActivationResponse:
-      value:
-        organizationNumber: 902
-        logo: 408
-        cardNumber: '0004497740006835915'
-        serviceType: 'Activate the specific embosser for the card number'
-        numberCardsActivated: 0
-        foreignOrg: 0
-        numberForeignCardsActivated: 0
   schemas:
     TravelUpdateRequest:
       required:
@@ -2403,7 +2359,7 @@ components:
         travelIndicatorOccurrence:
           type: integer
           description: |-
-            Length: 1
+            Length: 2
 
             Travel indicator occurrence.
 
@@ -2430,8 +2386,6 @@ components:
         startDate:
           type: string
           description: |-
-            Length: 8
-
             Start date of travel.
 
             VisionPLUS Service Data: AZXTII-TRAVEL-STRT-DT
@@ -2439,8 +2393,6 @@ components:
         endDate:
           type: string
           description: |-
-            Length: 8
-
             End date of travel.
 
             VisionPLUS Service Data: AZXTII-TRAVEL-END-DT
@@ -3442,7 +3394,7 @@ components:
 
             VisionPLUS Service Data: ARXPAI-KEY-ASSOC
           example: AV
-      description: Pin Change
+      description: PIN Change
     PinChangeResponse:
       type: object
       properties:
@@ -4201,9 +4153,9 @@ components:
             Invalid Pin Time Stamp
             VisionPLUS Service Data: ARXEUO-INV-PIN-TIME-STAMP
           format: int32
-        numberOfInvalidPinTries:
-          type: string
         ecommerceIndicator:
+          type: string
+        numberOfInvalidPinTries:
           type: string
     EmbosserCardActionL8V2Request:
       required:
@@ -4483,9 +4435,8 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            Length: 3
-            Organization Number. VisionPLUS Service Data: ARXCBI-ORG
+          description: "Length: 3\nOrganization Number. \nVisionPLUS Service Data:\
+            \ ARXCBI-ORG"
           format: int32
           example: 807
           enum:
@@ -4494,9 +4445,9 @@ components:
           maxLength: 19
           minLength: 12
           type: string
-          description: |-
-            Length: 19
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token). VisionPLUS Service Data: ARXCBI-CARD-NBR
+          description: "Length: 19\nUnique identifier or token associated with the\
+            \ card number or payment instrument (FirstVision PAN Token). \nVisionPLUS\
+            \ Service Data: ARXCBI-CARD-NBR"
           example: 000540208ID5IXX3865
           enum:
           - "range[12,19]"
@@ -4506,6 +4457,7 @@ components:
             Length: 4
 
             Card Sequence.
+            VisionPLUS Service Data: ARXCBI-CARD-SEQ
           format: int32
           example: 1
         functionCode:
@@ -4605,9 +4557,12 @@ components:
           format: int32
         cardNumber:
           type: string
-          description: "\tstring\nLength: 19\n\nUnique identifier or token associated\
-            \ with the card number or payment instrument (FirstVision PAN Token).\n\
-            \nVisionPLUS Service Data: ARXCBO-CARD-NBR"
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXCBO-CARD-NBR
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
@@ -4620,8 +4575,18 @@ components:
           format: int32
         functionCode:
           type: string
-          description: "\tstring\nLength: 1\n\nFunction Code.\n\nThe values are:\n\
-            \nB = Block\n\nU = Unblock\n\nVisionPLUS Service Data: ARXCBO-FUNCTION"
+          description: |-
+            Length: 1
+
+            Function Code.
+
+            The values are:
+
+            B = Block
+
+            U = Unblock
+
+            VisionPLUS Service Data: ARXCBO-FUNCTION
         blockCode:
           type: string
           description: |-
@@ -4720,7 +4685,10 @@ components:
           description: |-
             Length: 1
 
-            Foreign Use Indicator.
+            The FOREIGN USE indicator is provided in the input message so the
+            requesting source can specify whether the request applies to the local
+            or foreign account when the account is in a dual currency processing
+            organization. The default is to the local account.
 
             VisionPLUS Service Data: ARXCLI-FOREIGN-USE
           example: "1"
@@ -4729,7 +4697,7 @@ components:
           description: |-
             Length: 17
 
-            Credit limit.
+            Credit limit of the account in whole monetary units.
 
             VisionPLUS Service Data: ARXCLI-CRLIM
           example: 13000000
@@ -5848,7 +5816,7 @@ components:
             Key Association used to identify the working key.
             VisionPLUS Service Data: ARXVPI-KEY-ASSOC
           example: VTU
-      description: Validate Pin Request
+      description: Validate PIN Request
     PinValidateResponse:
       type: object
       properties:
@@ -5875,8 +5843,6 @@ components:
             VisionPLUS Service Data: ARXSVI-ORG
           format: int32
           example: 807
-          enum:
-          - null
         cardNumber:
           maxLength: 19
           minLength: 19
@@ -5886,8 +5852,6 @@ components:
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
             VisionPLUS Service Data: ARXSVI-CARD-NBR
           example: 000540208ID5IXX3865
-          enum:
-          - "range[19,19]"
         channel:
           maxLength: 1
           minLength: 1
@@ -5901,17 +5865,14 @@ components:
             * W = Web
             VisionPLUS Service Data: ARXSVI-CHANNEL
           example: I
-          enum:
-          - "[I,A,W]"
         keyAssociation:
           maxLength: 3
           minLength: 1
           type: string
-          description: |-
-            Length: 3
-            Key Association.
-            VisionPLUS Service Data: ARXSVI-KEY-ASSOC
-          example: MB
+          description: "Length: 3\n\nKey Association. \"I\" + \"the key association\
+            \ defined for the customer during the implementation to the field keyAssociation.\"\
+            \ \n\nVisionPLUS Service Data: ARXSVI-KEY-ASSOC"
+          example: IYY
       description: Security Code Details Request
     SecurityCodeDetailsResponse:
       type: object
@@ -7278,25 +7239,35 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: Organization Number
+          description: |-
+            Length: 3
+
+            Organization Number.
+            VisionPLUS Service Data: AZXTCI-ORG
           format: int32
           example: 807
           enum:
           - null
         cardNumber:
-          maxLength: 32
+          maxLength: 19
           minLength: 12
           type: string
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: AZXTCI-CARD-PAN
           example: 000540208ID5IXX3865
           enum:
           - "range[12,32]"
         cardSequence:
           type: integer
-          description: |
+          description: |-
+            Length: 4
+
             Card Sequence
             Card sequence number. Default is 1
+            VisionPLUS Service Data: AZXTCI-CARD-SEQ
           format: int32
           example: 1
           enum:
@@ -7304,7 +7275,11 @@ components:
         functionType:
           pattern: "^(P|C){1}$"
           type: string
-          description: Function Type
+          description: |-
+            Length: 1
+
+            Function Type.
+            VisionPLUS Service Data: AZXTCI-FUNCTION-TYPE
           example: C
       description: 'Card or PAN Token Inquiry '
     CardPanInquiryL8V2Response:
@@ -7312,22 +7287,50 @@ components:
       properties:
         organizationNumber:
           type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+            VisionPLUS Service Data: AZXTCO-ORG
           format: int32
         logo:
           type: integer
+          description: |-
+            Length: 3
+
+            Logo.
+            VisionPLUS Service Data: AZXTCO-LOGO
           format: int32
         cardNumber:
           type: string
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
-          example: 000540208ID5IXX3865
+          description: |-
+            Length: 32
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: AZXTCO-CARD-NBR
+          example: 000540208ID5IXX3865657RTY43245TY
         cardSequence:
           type: integer
+          description: |-
+            Length: 4
+
+            Card Sequence.
+            VisionPLUS Service Data: AZXTCO-CARD-SEQ
           format: int32
         accountNumber:
           type: string
+          description: |-
+            Length: 19
+
+            Account Number.
+            VisionPLUS Service Data: AZXTCO-ACCOUNT-NBR
         panToken:
           type: string
+          description: |-
+            Length: 19
+
+            PAN token. Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token)
+            VisionPLUS Service Data: AZXTCO-PAN-TOKEN
     AccountForCardDetailsL8V3Request:
       required:
       - accountNumber
@@ -9478,3 +9481,5 @@ components:
             Length: 19
             Customer number.
             VisionPLUS Service Data: ARXENO-CUST-NBR
+x-config:
+  tryItOut: true
