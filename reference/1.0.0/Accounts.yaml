@@ -1,11 +1,184 @@
 openapi: 3.0.1
 info:
   title: FirstVision™ Account Service - API Documentation
-  description: This documentation describes the REST APIs provided by the FirstVision™ Cards Microservice, which provides functionality for the issuing, management and processing of credit cards, including bank, co-branded, private label, debit, commercial, and prepaid
+  description: This documentation describes the REST APIs provided by the FirstVision™ Account Microservice for Ualá.
   version: "1.2"
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 paths:
+  /account/qualification:
+    put:
+      tags:
+      - Account
+      summary: "Update Account qualification. (VMX Service: M.CMS.ACCT.CLOSE.CHGOFF,\
+        \ R8V2)"
+      description: "Updates the value of the Account qualification field. Emulates\
+        \ the functionality used to update the account status, from active to closed,\
+        \ in the same manner as the STATUS field on online screen ARMB01. In addition,\
+        \ this service provides the ability to initiate charge-off in the same manner\
+        \ as setting the C/O STAT field to a value of 3 (manual) on the Account Base\
+        \ Segment screen (ARMB01). \nVMX Service: M.CMS.ACCT.CLOSE.CHGOFF, R8V2"
+      operationId: Account Qualification Update
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQualificationRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "422":
+          description: |
+            VPL5SAAI6E - GQ FIELD MUST BE SPACE OR A-Z
+            VPL5SCC01S - ACCOUNT OR CARD NUMBER IS REQUIRED
+            VPL5SCC02S - ORGANIZATION NOT DETERMINED
+            VPL5SCC03S - REQUESTED ORG NUMBER IS NOT FOUND
+            VPL5SCC04S - ORGANIZATION NUMBER NOT FOUND ON FILE
+            VPL5SCC05S - FOREIGN ORG RECORD NOT FOUND ON FILE
+            VPL5SCC06S - LOGO NUMBER NOT FOUND ON FILE
+            VPL5SCC10S - INVALID INTERNAL STATUS 8
+            VPL5SCC11S - STATUS CANNOT CHANGE TO CLOSED WHEN INSURANCE IS ACTIVE
+            VPL5SCC12S - CANNOT MANUAL CHGOFF AN ACCT WITH A ZERO OR CREDIT BALANCE
+            VPL5SCC13S - CANNOT RESET CHARGEOFF ON ACCOUNT WHEN DAYS IS > 0
+            VPL5SCC14S - CANNOT MANUAL CHARGE OFF THIS ACCT
+            VPL5SCC15S - CANNOT CHARGEOFF (WITH RSN) AN ACCT WITH 0 BAL OR CREDIT BAL
+            VPL5SCC16S - VALID ENTRIES FOR RSN CODE POSITION 1 ARE C, B, F, OR T
+            VPL5SCC17S - ENTERED AUTO C/O RSN CODE - PLS CHG TO MANUAL RSN
+            VPL5SCC18S - RSN CODE MUST BE DEFINED ON ARML24
+            VPL5SCC19S - CANNOT CHARGEOFF (WITH RSN), ACCT C/O STAT MUST = 0
+            VPL5SCC21E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+            VPL5SCC22E - FOREIGN USE MUST = SPACES, 0(LOCAL) OR 1(FOREIGN)
+            VPL5SCC23E - REASON CODE IS REQUIRED FOR FUNC 2 - CHGOFF WITH RSN
+            VPL5SCC24E - VALID FUNC INDICATOR IS 0-ACCT CLS 1-MANUAL CHGOFF 2-CHGOFF RSN ON
+            VPL5SCCZAS - ACCOUNT NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateQualificationResponse'
+      x-proxy-name: Account Qualification Update
+      x-group-name: Account
+      x-child-product-name: Accounts
+  /account/block-code:
+    put:
+      tags:
+      - Account
+      summary: "Block & Unblock Account. (VMX Service: M.CMS.ACCT.BLKCD.UPD, R8V1)"
+      description: "Adds, changes or removes a block code on an Account \nVMX Service:\
+        \ M.CMS.ACCT.BLKCD.UPD, R8V1"
+      operationId: Account Block Code Update
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountForBlockCodeUpdateRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "422":
+          description: |-
+            VPL5SAB05S - CANNOT SET A BLOCK CODE ON A BILLING ACCOUNT
+            VPL5SAB06S - ACCOUNT NUMBER OR CARD NUMBER MUST BE PROVIDED
+            VPL5SAB07S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+            VPL5SAB08S - ORGANIZATION NOT DETERMINED
+            VPL5SAB10S - ORGANIZATION NUMBER NOT FOUND
+            VPL5SAB11S - LOGO NUMBER NOT FOUND
+            VPL5SAB12S - CARD NUMBER NOT FOUND
+            VPL5SAB13S - BLOCK CODE CANNOT BE REPLACED WITH ONE OF A LOWER PRIORITY
+            VPL5SAB21E - INVALID FOREIGN USE IND SPECIFIED - VALID VALUES ARE 0-2
+            VPL5SAB22E - INVALID FUNCTION CODE - VALID VALUES ARE B OR U
+            VPL5SAB23E - INVALID BLOCK CODE
+            VPL5SAB24E - BLOCK CODE MUST EQUAL SPACE TO UNBLOCK ACCOUNT
+            VPL5SAB25E - MUST SPECIFY ACCOUNT BLOCK CODE 1 OR 2 TO UNBLOCK ACCOUNT
+            VPL5SAB26E - BLOCK CODE INDICATOR MUST BE NUMERIC AND EQUAL 0 1 OR 2
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountForBlockCodeUpdateResponse'
+      x-proxy-name: Account Block Code Update
+      x-group-name: Account
+      x-child-product-name: Accounts
   /account/balance:
     put:
       tags:
@@ -14,15 +187,17 @@ paths:
       description: "Credits (cash in) or Debits (cash out) transactions from available\
         \ funds or credit open to buy in an Account \nVMX Service: M.ASM.MONETARY.ACT,\
         \ L8V2"
-      operationId: Cash-in & Cash-out
+      operationId: Cash-in & Cash-out Request
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -40,8 +215,12 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -50,18 +229,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -70,6 +245,68 @@ paths:
                 $ref: '#/components/schemas/ModifyAccountBalanceResponse'
       x-proxy-name: Cash-in & Cash-out Request
       x-group-name: Account
+      x-child-product-name: Accounts
+  /account/v2/instantCard:
+    post:
+      tags:
+      - Account
+      summary: "Instant account and digital or physical card addition. VMX service:\
+        \ M.CMS.INSTANT.CARD.ADD, L8V7"
+      description: "Add an account and digital or physical card. \nVMX service: M.CMS.INSTANT.CARD.ADD,\
+        \ L8V7"
+      operationId: Instant Card Add
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstantCardAddL8V7Request'
+        required: true
+      responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstantCardAddL8V7Response'
+      x-proxy-name: Instant Card Add
+      x-group-name: Account
+      x-child-product-name: Accounts
   /account/instant-card:
     post:
       tags:
@@ -82,11 +319,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -98,16 +337,8 @@ paths:
               $ref: '#/components/schemas/InstantCardAddRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
         "422":
           description: |-
             VPL5SIC24S - MBS SWITCH IS OFF
@@ -120,26 +351,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstantCardAddResponse'
-      x-proxy-name: Instant Card Add
+      x-proxy-name: Instant Account & Card creation
       x-group-name: Account
+      x-child-product-name: Accounts
   /account/details-L8VG:
     post:
       tags:
@@ -150,15 +390,17 @@ paths:
         \ provided. This service does not automatically switch to the new account.\
         \ This service can be called with an account number or a card number. \nVMX\
         \ Service: M.CMS.ACCOUNT.INQ, L8VG"
-      operationId: Account details L8VG
+      operationId: Account Inquiry
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -170,16 +412,8 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
         "422":
           description: |
             VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -200,18 +434,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -220,6 +462,7 @@ paths:
                 $ref: '#/components/schemas/AccountForDetailsL8vgResponse'
       x-proxy-name: Account Inquiry
       x-group-name: Account
+      x-child-product-name: Accounts
   /account/:
     post:
       tags:
@@ -233,11 +476,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -249,18 +494,10 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
@@ -683,20 +920,321 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountAddDetailsResponse'
-      x-proxy-name: Account Add
+      x-proxy-name: Add Account
       x-group-name: Account
+      x-child-product-name: Accounts
 components:
   schemas:
+    UpdateQualificationRequest:
+      required:
+      - accountNumber
+      - changeOffRSN1
+      - changeOffRSN2
+      - function
+      - globalQualificationParameter
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXCCI-ORG
+          format: int32
+          example: 807
+        accountNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+
+            Account Number.
+
+            VisionPLUS Service Data: ARXCCI-ACCT-NBR
+          example: "4513074002952958903"
+        foreignUse:
+          type: string
+          description: |-
+            Length: 1
+
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
+
+            The default is to the local account
+
+            VisionPLUS Service Data: ARXCCI-FOREIGN-USE
+          example: "0"
+          enum:
+          - "0,1"
+        function:
+          type: string
+          description: |-
+            Length: 1
+
+            Function indicator.
+
+            The values are:
+
+            0 = Account close
+
+            1 = Manual charge-off
+
+            2 = Charge-off with reason code
+
+            3 = Update global qualification
+
+            VisionPLUS Service Data: ARXCCI-FUNCTION
+          example: "3"
+        changeOffRSN1:
+          type: string
+          description: |-
+            Length: 1
+
+            Change off - RSN1.
+
+            VisionPLUS Service Data: ARXCCI-CHGOFF-RSN1
+          example: C
+        changeOffRSN2:
+          type: string
+          description: |-
+            Length: 1
+
+            Change off - RSN2.
+
+            VisionPLUS Service Data: ARXCCI-CHGOFF-RSN2
+          example: B
+        globalQualificationParameter:
+          type: string
+          description: |-
+            Length: 1
+
+            Global qualification assigned to the account.
+
+            VisionPLUS Service Data: ARXCCI-GLOBAL-QUAL
+          example: A
+      description: Update qualification Request
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    UpdateQualificationResponse:
+      type: object
+      properties:
+        response:
+          type: string
+    AccountForBlockCodeUpdateRequest:
+      required:
+      - accountNumber
+      - blockCodeIndicator
+      - foreignUse
+      - functionCode
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXABI1-ORG
+          format: int32
+          example: 807
+        accountNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+
+            Account number.
+
+            VisionPLUS Service Data: ARXABI-ACCOUNT
+          example: "5303716028446103276"
+        functionCode:
+          maxLength: 1
+          minLength: 1
+          type: string
+          description: |-
+            Length: 1
+
+            Function Code.
+
+            The values are:
+
+            B = block account
+
+            U = unblock account
+
+            VisionPLUS Service Data: ARXABI-FUNC-CODE
+          example: B
+          enum:
+          - "U,B"
+        blockCode:
+          type: string
+          description: "Block code to be assigned to the account.\n\nThe values are:\n\
+            \nA-Z = block code\n\nspace = unblock account\n\nVisionPLUS Service Data:\
+            \ ARXABI-BLOCK-CDThe values are:\n* A-Z = block code \n* space = unblock\
+            \ account\n"
+          example: Z
+          enum:
+          - "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
+        blockCodeIndicator:
+          type: integer
+          description: |-
+            Length: 1
+
+            Block code indicator.
+
+            The values are:
+
+            0 = Tests both block code 1 and 2 to determine and use the one that fits best relative to priority settings (not allowed for unblock)
+
+            1 = Block code 1
+
+            2 = Block code 2
+
+            VisionPLUS Service Data: ARXABI-BLK-CD-IND
+          format: int32
+          example: 1
+          enum:
+          - null
+        foreignUse:
+          maxLength: 1
+          minLength: 1
+          type: string
+          description: |-
+            Length: 1
+
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization. The default is to the local account.
+
+            VisionPLUS Service Data: ARXABI-FOREIGN-USE
+          example: "0"
+          enum:
+          - "0,1"
+      description: Account Update User Request
+    AccountForBlockCodeUpdateResponse:
+      type: object
+      properties:
+        localOrganization:
+          type: integer
+          description: |-
+            Length: 3
+
+            Local organization.
+
+            VisionPLUS Service Data: ARXABO-ORG
+          format: int32
+        foreignOrg:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization associated with the foreign account.
+
+            VisionPLUS Service Data: ARXABO-FOREIGN-ORG
+          format: int32
+        accountNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Account number associated with the block code update.
+
+            VisionPLUS Service Data: ARXABO-ACCOUNT
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXABO-CARD-NBR
+          example: 000540208ID5IXX3865
+        foreignUse:
+          type: string
+          description: |-
+            Length: 1
+
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization. The default is to the local account.
+
+            VisionPLUS Service Data: ARXABO-FOREIGN-USE
+        functionCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Function code.
+
+            VisionPLUS Service Data: ARXABO-FUNC-CODE
+        blockCode1Local:
+          type: string
+          description: |-
+            Length: 1
+
+            Block code 1 stored on the local Account Base Segment record after the service update is applied.
+
+            VisionPLUS Service Data: ARXABO-BLOCK-CD-1-LOCAL
+        blockCode2Local:
+          type: string
+          description: |-
+            Length: 1
+
+            Block code 2 stored on the local Account Base Segment record after the service update is applied.
+
+            VisionPLUS Service Data: ARXABO-BLOCK-CD-2-LOCAL
+        blockCode1Foreign:
+          type: string
+          description: |-
+            Length: 1
+
+            Block code 1 stored on the foreign Account Base Segment record after the service update is applied.
+
+            VisionPLUS Service Data: ARXABO-BLOCK-CD-1-FOREIGN
+        blockCode2Foreign:
+          type: string
+          description: |-
+            Length: 1
+
+            Block code 2 stored on the foreign Account Base Segment record after the service update is applied.
+
+            VisionPLUS Service Data: ARXABO-BLOCK-CD-2-FOREIGN
     ModifyAccountBalanceRequest:
       required:
       - accountNumber
@@ -879,24 +1417,6 @@ components:
       description: |-
         Length: 3
         ModifyAccountBalanceRequestTxData
-    DResponse:
-      type: object
-      properties:
-        hasError:
-          type: boolean
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        data:
-          type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
     ModifyAccountBalanceResponse:
       type: object
       properties:
@@ -1337,6 +1857,1427 @@ components:
 
             VisionPLUS Service Data: AZXMAO-CURRENCY-NOD
           format: int32
+    InstantCArdAddL8V7Request.AccountData:
+      required:
+      - billingCycle
+      type: object
+      properties:
+        accountNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 19
+            Account Number.
+            VisionPLUS Service Data: AZXICI-BS-ACCT
+          example: "840"
+        billingAccountIndicator:
+          type: integer
+          description: |-
+            Length: 1
+            Billing Account Indicator.
+            VisionPLUS Service Data: AZXICI-BILLING-ACCT-IND
+          format: int32
+          example: 1
+        relationshipPrimaryAccountFlag:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Relationship Primary Account Flag.
+            VisionPLUS Service Data: AZXICI-REL-PRIM-ACCT-FLAG
+          example: "1"
+        relationshipNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 19
+            relationship Number.
+            VisionPLUS Service Data: AZXICI-REL-NBR
+          example: "124242"
+        shortName:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: |-
+            Length: 20
+            Short name.
+            VisionPLUS Service Data: AZXICI-SHORT-NAME
+          example: Test account
+        creditLimit:
+          type: number
+          description: |-
+            Length: 17
+            Credit limit.
+            VisionPLUS Service Data: AZXICI-CREDIT-LIMIT
+          example: 3000000
+        billingCurrency:
+          type: integer
+          description: |-
+            Length: 3
+            Billing Currency.
+            VisionPLUS Service Data: AZXICI-BILLING-CURR
+          format: int32
+          example: 840
+        relationshipBillingLevel:
+          type: integer
+          description: |-
+            Length: 1
+            Relationship Billing Level.
+            VisionPLUS Service Data: AZXICI-REL-BILL-LVL
+          format: int32
+          example: 1
+        dualBillingFlag:
+          type: integer
+          description: |-
+            Length: 1
+            Dual Billing Flag.
+            VisionPLUS Service Data: AZXICI-DUAL-BILLING-FL
+          format: int32
+          example: 1
+        relationshipCardScheme:
+          type: integer
+          description: |-
+            Length: 1
+            Relationship Card Scheme.
+            VisionPLUS Service Data: AZXICI-REL-CARD-SCHEME
+          format: int32
+          example: 3
+        alternateCustomerNumberFlag:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Alternate customer
+            The values are:
+            * Space = No action; disregard alternate customer
+            * A = Alternate customer active; send statements to alternate address until expiration date
+            * B = Alternate customer active; send statements to both addresses until expiration date
+            * C = Relationship customer active; send statement to alternate address
+            VisionPLUS Service Data: AZXICI-ALT-CUST-NBR-FLAG
+          example: C
+        alternateCustomerStartDate:
+          type: string
+          description: |-
+            Effective date of the alternate customer address.
+            VisionPLUS Service Data: AZXICI-DATE-ALT-CUST-STRT
+          format: date
+        alternateCustomerExpireDate:
+          type: string
+          description: |-
+            Expiration date of the alternate customer address
+            VisionPLUS Service Data: AZXICI-DATE-ALT-CUST-EXPR
+          format: date
+        alternateCustomerNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 19
+            Alternate customer number.
+            VisionPLUS Service Data: AZXICI-ALT-CUST-NBR
+          enum:
+          - "range[0,19]"
+        dateOpened:
+          type: string
+          description: |-
+            Date opened.
+            VisionPLUS Service Data: AZXICI-DATE-OPENED
+          format: date
+        billingCycle:
+          type: integer
+          description: |-
+            Length: 2
+            Billing cycle.
+            VisionPLUS Service Data: AZXICI-BILLING-CYCLE
+          format: int32
+          example: 31
+          enum:
+          - null
+        customerSelectedDueDay:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            Customer selected due day.
+            VisionPLUS Service Data: AZXICI-CUST-SEL-DUE-DAY
+          example: ""
+        statementFlag:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Statement flag.
+            VisionPLUS Service Data: AZXICI-STATEMENT-FLAG
+        statementFrequency:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            Statement frequency.
+            VisionPLUS Service Data: AZXICI-STATEMENT-FREQ
+          example: "1"
+        blockCode1:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Block code 1.
+            VisionPLUS Service Data: AZXICI-BLOCK-CODE-1
+          example: A
+        blockCode2:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Block code .
+            VisionPLUS Service Data: AZXICI-BLOCK-CODE-2
+          example: A
+        processingControlTableControlId:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 3
+            PCT ID.
+            VisionPLUS Service Data: AZXICI-PCT-CTL-ID
+          example: "123"
+        processingControlTableStartDate:
+          type: string
+          description: |-
+            Processing Control Table Start Date.
+            VisionPLUS Service Data: AZXICI-PCT-START-DATE
+          format: date
+        processingControlTableExpireDate:
+          type: string
+          description: |-
+            Processing Control Table Expire Date.
+            VisionPLUS Service Data: AZXICI-PCT-EXPIR-DATE
+          format: date
+        processingControlTableLevel:
+          type: string
+          description: |-
+            Length: 1
+            Processing Control Table Level.
+            VisionPLUS Service Data: AZXICI-PCT-LEVEL
+          example: O
+        processingControlTableLevelStartDate:
+          type: string
+          description: |-
+            Processing Control Table Level Start Date.
+            VisionPLUS Service Data: AZXICI-PCT-LEVEL-START-DATE
+          format: date
+        processingControlTableLevelExpireDate:
+          type: string
+          description: |-
+            Processing Control Table Level Expire Date.
+            VisionPLUS Service Data: AZXICI-PCT-LEVEL-EXPIR-DATE
+          format: date
+        cashPlanNumber:
+          type: integer
+          description: |-
+            Length: 5
+            Cash Plan Number.
+            VisionPLUS Service Data: AZXICI-CASH-PLAN-NBR
+          format: int32
+          example: 12345
+        retailPlanNumber:
+          type: integer
+          description: |-
+            Length: 5
+            Retail Plan Number.
+            VisionPLUS Service Data: AZXICI-RETAIL-PLAN-NBR
+          format: int32
+          example: 12345
+        promoPlanNumber:
+          type: integer
+          description: |-
+            Length: 5
+            Promo Plan Number.
+            VisionPLUS Service Data: AZXICI-PROMO-PLAN-NBR
+          format: int32
+          example: 12345
+        ddaRoutingNumber:
+          type: integer
+          description: |-
+            Length: 9
+            DDA routing number.
+            VisionPLUS Service Data: AZXICI-DDA-RTNG-NBR
+          format: int32
+          example: 0
+        ddaAccountNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 19
+            DDA account number.
+            VisionPLUS Service Data: AZXICI-DDA-ACCT-NBR
+          example: "121535325"
+        savingsRoutingNumber:
+          type: integer
+          description: |-
+            Length: 9
+            Savings routing number.
+            VisionPLUS Service Data: AZXICI-SAV-RTNG-NBR
+          format: int32
+          example: 0
+        savingsAccountNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 19
+            Savings account number.
+            VisionPLUS Service Data: AZXICI-SAV-ACCT-NBR
+        userAccountNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 19
+            User Account Number.
+            VisionPLUS Service Data: AZXICI-USR-ACCT-NBR
+        cardTechnology:
+          type: integer
+          description: "Length: 1 \n\nCard technology \n\nFlag that identifies the\
+            \ current card technology used for this account.\n\nThe values are:\n\
+            * 0 = Magnetic-stripe card(s) are on issue\n* 1 = Smart card(s) are on\
+            \ issue\n* 2 = Magnetic-stripe contactless card(s) are on issue\n* 3 =\
+            \ Smart contactless card(s) are on issue \n\nThe following edits apply\
+            \ to this field:\n* This field can be 1, 2 or 3 only when the **DEFAULT\
+            \ CARD TECHNOLOGY** field on ARML38 is greater than 0 \nIn the add mode\
+            \ (ARAB), this field must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38)\
+            \ is 1. \n* In the maintenance mode (ARMB), this field is only open to\
+            \ input if no Embosser records are on file for the account. \n* When the\
+            \ account card numbering schema **(CRD# SCM** on ARMB01) is 2, this field\
+            \ must be 0 or 2. \n* When adding an account, CMS uses the card technology\
+            \ from the account's logo as the default value. You can override this\
+            \ default if necessary. \n\nVisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY"
+          format: int32
+          example: 0
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+        authorizationLimitOverrides:
+          type: number
+          description: |-
+            Length: 1
+            Authorization Limit Overrides.
+            VisionPLUS Service Data: AZXICI-AUTH-LIMIT-OVRRD-FLAG
+          example: 0
+        temporaryCreditLimit:
+          type: number
+          description: |-
+            Length: 17
+            Temporary credit limit.
+            VisionPLUS Service Data: AZXICI-TEMP-CRLIM
+          example: 0
+        dateTemporaryCreditLimit:
+          type: string
+          description: |-
+            Date Temporary Credit Limit.
+            VisionPLUS Service Data: AZXICI-DATE-TEMP-CRLIM-EXP
+          format: date
+        stateOfResidenceId:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Length: 3
+            State Of Residence Id.
+            VisionPLUS Service Data: AZXICI-STATE-OF-RESID
+          example: "001"
+        stateOfIssuanceId:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Length: 3
+            State Of Issuance Id.
+            VisionPLUS Service Data: AZXICI-STATE-OF-ISSUE
+          example: "001"
+        owningBranchNumber:
+          type: integer
+          description: |-
+            Length: 9
+            Owning branch number.
+            VisionPLUS Service Data: AZXICI-OWNING-BRANCH-NBR
+          format: int32
+          example: 1
+        userCode1:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 1.
+            VisionPLUS Service Data: AZXICI-USER-CODE-1
+        userCode2:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 2.
+            VisionPLUS Service Data: AZXICI-USER-CODE-2
+        userCode3:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 3.
+            VisionPLUS Service Data: AZXICI-USER-CODE-3
+        userCode4:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 4.
+            VisionPLUS Service Data: AZXICI-USER-CODE-4
+        userCode5:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 5.
+            VisionPLUS Service Data: AZXICI-USER-CODE-5
+        userCode6:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 6.
+            VisionPLUS Service Data: AZXICI-USER-CODE-6
+        userCode7:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 7.
+            VisionPLUS Service Data: AZXICI-USER-CODE-7
+        userCode8:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 8.
+            VisionPLUS Service Data: AZXICI-USER-CODE-8
+        userCode9:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 9.
+            VisionPLUS Service Data: AZXICI-USER-CODE-9
+        userCode10:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 10.
+            VisionPLUS Service Data: AZXICI-USER-CODE-10
+        userCode11:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 11.
+            VisionPLUS Service Data: AZXICI-USER-CODE-11
+        userCode12:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 12.
+            VisionPLUS Service Data: AZXICI-USER-CODE-12
+        userCode13:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 13.
+            VisionPLUS Service Data: AZXICI-USER-CODE-13
+        userCode14:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            User Code 14.
+            VisionPLUS Service Data: AZXICI-USER-CODE-14
+        userDate1:
+          type: string
+          description: |-
+            User date 1.
+            VisionPLUS Service Data: AZXICI-USER-DATE-1
+          format: date
+        userDate2:
+          type: string
+          description: |-
+            User date 2.
+            VisionPLUS Service Data: AZXICI-USER-DATE-2
+          format: date
+        userDate3:
+          type: string
+          description: |-
+            User date 3.
+            VisionPLUS Service Data: AZXICI-USER-DATE-3
+          format: date
+        userDate4:
+          type: string
+          description: |-
+            User date 4.
+            VisionPLUS Service Data: AZXICI-USER-DATE-4
+          format: date
+        userDate5:
+          type: string
+          description: |-
+            User date 5.
+            VisionPLUS Service Data: AZXICI-USER-DATE-5
+          format: date
+        userDate6:
+          type: string
+          description: |-
+            User date 6.
+            VisionPLUS Service Data: AZXICI-USER-DATE-6
+          format: date
+        userDate7:
+          type: string
+          description: |-
+            User date 7.
+            VisionPLUS Service Data: AZXICI-USER-DATE-7
+          format: date
+        userDate8:
+          type: string
+          description: |-
+            Length: 8.
+            VisionPLUS Service Data: AZXICI-USER-DATE-8
+            User date 8
+          format: date
+        userDate9:
+          type: string
+          description: |-
+            User date 9.
+            VisionPLUS Service Data: AZXICI-USER-DATE-9
+          format: date
+        userDate10:
+          type: string
+          description: |-
+            User date 10.
+            VisionPLUS Service Data: AZXICI-USER-DATE-10
+          format: date
+        userDate11:
+          type: string
+          description: |-
+            User date 11.
+            VisionPLUS Service Data: AZXICI-USER-DATE-11
+          format: date
+        userDate12:
+          type: string
+          description: |-
+            User date 12.
+            VisionPLUS Service Data: AZXICI-USER-DATE-12
+          format: date
+        userDate13:
+          type: string
+          description: |-
+            User date 13.
+            VisionPLUS Service Data: AZXICI-USER-DATE-13
+          format: date
+        userDate14:
+          type: string
+          description: |-
+            User date 14.
+            VisionPLUS Service Data: AZXICI-USER-DATE-14
+          format: date
+        userAmount1:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 1.
+            VisionPLUS Service Data: AZXICI-USER-AMT-1
+          example: 0
+        userAmount2:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 2.
+            VisionPLUS Service Data: AZXICI-USER-AMT-2
+          example: 0
+        userAmount3:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 3.
+            VisionPLUS Service Data: AZXICI-USER-AMT-3
+          example: 0
+        userAmount4:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 4.
+            VisionPLUS Service Data: AZXICI-USER-AMT-4
+          example: 0
+        userAmount5:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 5.
+            VisionPLUS Service Data: AZXICI-USER-AMT-5
+          example: 0
+        userAmount6:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 6.
+            VisionPLUS Service Data: AZXICI-USER-AMT-6
+          example: 0
+        userAmount7:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 7.
+            VisionPLUS Service Data: AZXICI-USER-AMT-7
+          example: 0
+        userAmount8:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 8.
+            VisionPLUS Service Data: AZXICI-USER-AMT-8
+          example: 0
+        userAmount9:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 9.
+            VisionPLUS Service Data: AZXICI-USER-AMT-9
+          example: 0
+        userAmount10:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 10.
+            VisionPLUS Service Data: AZXICI-USER-AMT-10
+          example: 0
+        userAmount11:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 11.
+            VisionPLUS Service Data: AZXICI-USER-AMT-11
+          example: 0
+        userAmount12:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 12.
+            VisionPLUS Service Data: AZXICI-USER-AMT-11
+          example: 0
+        userAmount13:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 13.
+            VisionPLUS Service Data: AZXICI-USER-AMT-13
+          example: 0
+        userAmount14:
+          type: number
+          description: |-
+            Lenght: 17 User Amount 14.
+            VisionPLUS Service Data: AZXICI-USER-AMT-14
+          example: 0
+        miscellaneousUser1:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: |-
+            Length: 30
+            Miscellaneous user 1.
+            VisionPLUS Service Data: AZXICI-MISC-USER-1
+        miscellaneousUser2:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Miscellaneous user 2.
+            VisionPLUS Service Data: AZXICI-MISC-USER-2
+        miscellaneousUser3:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: |-
+            Length: 11
+            Miscellaneous user 3.
+            VisionPLUS Service Data: AZXICI-MISC-USER-3
+        miscellaneousUser4:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: |-
+            Length: 11
+            Miscellaneous user 4.
+            VisionPLUS Service Data: AZXICI-MISC-USER-4
+        miscellaneousUser5:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: |-
+            Length: 11
+            Miscellaneous user 5.
+            VisionPLUS Service Data: AZXICI-MISC-USER-5
+        miscellaneousUser6:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: |-
+            Length: 11
+            Miscellaneous user 6.
+            VisionPLUS Service Data: AZXICI-MISC-USER-6
+        miscellaneousUser7:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: |-
+            Length: 11
+            Miscellaneous user 7.
+            VisionPLUS Service Data: AZXICI-MISC-USER-7
+        miscellaneousUser8:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: |-
+            Length: 11
+            Miscellaneous user 8.
+            VisionPLUS Service Data: AZXICI-MISC-USER-8
+        miscellaneousUser9:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            Miscellaneous user 9.
+            VisionPLUS Service Data: AZXICI-MISC-USER-9
+        miscellaneousUser10:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            Miscellaneous user 10.
+            VisionPLUS Service Data: AZXICI-MISC-USER-10
+        miscellaneousUser11:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            Miscellaneous user 11.
+            VisionPLUS Service Data: AZXICI-MISC-USER-11
+        miscellaneousUser12:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: |-
+            Length: 2
+            Miscellaneous user 12.
+            VisionPLUS Service Data: AZXICI-MISC-USER-12
+        prepaidPlanNumber:
+          type: integer
+          description: |-
+            Length: 5
+            Prepaid Plan Number.
+            VisionPLUS Service Data: AZXICI-PREPAID-PLAN-NBR
+          format: int32
+          example: 0
+        prepaidLoadFrequency:
+          type: integer
+          description: |-
+            Length: 1
+            Prepaid load frequency
+            The values are:
+            * 0 = Load frequency not used
+            * 1 = Load frequency daily
+            * 2 = Load frequency CTD
+            * 3 = Load frequency YTD
+            VisionPLUS Service Data: AZXICI-PREPAID-LOAD-FREQ.
+          format: int32
+          example: 0
+        prepaidLoadNumber:
+          type: integer
+          description: |-
+            Length: 2
+            Prepaid load number
+            VisionPLUS Service Data: AZXICI-PREPAID-LOAD-NBR
+          format: int32
+          example: 0
+        prepaidLoadAmount:
+          type: number
+          description: |-
+            Length: 17
+            Prepaid load amount.
+            VisionPLUS Service Data: AZXICI-PREPAID-LOAD-AMT
+          example: 0
+        minimumSingleLoadAmount:
+          type: number
+          description: |-
+            Length: 17
+            Minimum Single Amount.
+            VisionPLUS Service Data: AZXICI-MIN-SNGL-LOAD-AMT
+          example: 0
+        maximumSingleLoadAmount:
+          type: number
+          description: |-
+            Length: 17
+            Maximum Single Amount.
+            VisionPLUS Service Data: AZXICI-MAX-SNGL-LOAD-AMT
+          example: 0
+        internationalCashPlan:
+          type: integer
+          description: |-
+            Length: 5
+            International cash plan.
+            VisionPLUS Service Data: AZXICI-INTL-CASH-PLAN
+          format: int32
+          example: 0
+        internationalRetailPlan:
+          type: integer
+          description: |-
+            Length: 5
+            International retail plan.
+            VisionPLUS Service Data: AZXICI-INTL-RETAIL-PLAN
+          format: int32
+          example: 0
+        internationalInstallmentPlan:
+          type: integer
+          description: |-
+            Length: 5
+            International installment plan.
+            VisionPLUS Service Data: AZXICI-INTL-INST-PLAN
+          format: int32
+          example: 0
+        cashPlanInstallmentBilling:
+          type: integer
+          description: |-
+            Length: 5
+            Cash plan for installment billing.
+            VisionPLUS Service Data: AZXICI-IB-ISS-CASH-PLAN
+          format: int32
+          example: 0
+        retailPlanInstallmentBilling:
+          type: integer
+          description: |-
+            Length: 5
+            Retail plan for installment billing.
+            VisionPLUS Service Data: AZXICI-IB-ISS-RETAIL-PLAN
+          format: int32
+          example: 0
+        acquirerRetailPlan:
+          type: integer
+          description: |-
+            Length: 5
+            Acquirer retail plan for installment billing.
+            VisionPLUS Service Data: AZXICI-DATE-ALT-CUST-EXPR
+          format: int32
+          example: 0
+        authorizationControlTable:
+          type: integer
+          description: |-
+            Length: 4
+            Authorization control table for international banking.
+            VisionPLUS Service Data: AZXICI-IB-AUTH-CTRL-TBL
+          format: int32
+          example: 0
+        retailPlanInstallmentPayments:
+          type: integer
+          description: |-
+            Length: 5
+            Retail plan for installment payment plans.
+            VisionPLUS Service Data: AZXICI-IR-PMT-RETL-PLAN
+          format: int32
+          example: 0
+        cashPlanInstallmentPayment:
+          type: integer
+          description: |-
+            Length: 5
+            Cash plan for installment payment plans.
+            VisionPLUS Service Data: AZXICI-IR-PMT-CASH-PLAN
+          format: int32
+          example: 0
+        qualification:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Global qualification parameter. The values are A–Z.
+            VisionPLUS Service Data: AZXICI-GLOBAL-QUAL
+          example: ""
+        cardholderAffiliationGroup:
+          type: integer
+          description: |-
+            Length: 5
+            Cardholder’s affiliation or affinity group.
+            VisionPLUS Service Data: AZXICI-EMBLM-ID
+          format: int32
+          example: 0
+    InstantCArdAddL8V7Request.EmbosserData:
+      required:
+      - digitalCardFlag
+      type: object
+      properties:
+        plasticId:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: |-
+            Length: 10
+            Plastic ID.
+            VisionPLUS Service Data: AZXICI-PLASTIC-ID
+          example: ""
+        name1TypeIndicator:
+          type: integer
+          description: |-
+            Length: 1
+            Name 1 Type Indicator.
+            VisionPLUS Service Data: AZXICI-NAME1-TYPE-IND
+          format: int32
+          example: 0
+        name2TypeIndicator:
+          type: integer
+          description: |-
+            Length: 1
+            Name 2 Type Indicator.
+            VisionPLUS Service Data: AZXICI-NAME2-TYPE-IND
+          format: int32
+        embossedName1:
+          maxLength: 26
+          minLength: 0
+          type: string
+          description: |-
+            Length: 26
+            Embossed Name .
+            VisionPLUS Service Data: AZXICI-EMBOSSED-NAME-1
+          example: HELLO
+        embossedName2:
+          maxLength: 26
+          minLength: 0
+          type: string
+          description: |-
+            Length: 26
+            Embossed Name 2.
+            VisionPLUS Service Data: AZXICI-EMBOSSED-NAME-2
+          example: KIT-KAT WALLER
+        expirationDate:
+          type: string
+          description: |-
+            Card expiry date.
+            VisionPLUS Service Data: AZXICI-DATE-EXPIRE
+          format: date
+        customerNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 19
+            Customer Number.
+            VisionPLUS Service Data: AZXICI-CUST-NBR
+          example: "4513074002573466583"
+        name1:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: |-
+            Length: 40
+            Name 1.
+            VisionPLUS Service Data: AZXICI-EMBR-NAME-1
+          example: RUN DMC
+        name2:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: |-
+            Length: 40
+            Name 2.
+            VisionPLUS Service Data: AZXICI-EMBR-NAME-2
+          example: RICK ROSS
+        posServiceCode:
+          type: integer
+          description: |-
+            Length: 3
+            PO service code.
+            VisionPLUS Service Data: AZXICI-POS-SERVICE-CODE
+          format: int32
+          example: 201
+        cardholderFlag:
+          type: string
+          description: Cardholder Flag
+          example: "0"
+        addressLine1:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: |-
+            Length: 40
+            Address Line 1.
+            VisionPLUS Service Data: AZXICI-ADDR-LINE-1
+          example: PORT OF MIAMI
+        addressLine2:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: |-
+            Length: 40
+            Address Line 2.
+            VisionPLUS Service Data: AZXICI-ADDR-LINE-2
+          example: 117 E PARKWAY AVE
+        city:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: |-
+            Length: 30
+            City.
+            VisionPLUS Service Data: AZXICI-CITY
+          example: MIAMI
+        stateOrProvince:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Length: 3
+            State/Province.
+            VisionPLUS Service Data: AZXICI-ST-PR
+          example: FL
+        postalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: |-
+            Length: 10
+            Postal Code.
+            VisionPLUS Service Data: AZXICI-PSTL-CD
+          example: "38585"
+        languageCode:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Length: 3
+            Language Code.
+            VisionPLUS Service Data: AZXICI-LANG-CODE
+          example: ENG
+        atmCashNumber:
+          type: integer
+          description: |-
+            Length: 9
+            ATM(Automated Teller Machine) Cash Amount.
+            VisionPLUS Service Data: AZXICI-AUTH-ATM-CASH-NBR
+          format: int32
+          example: 0
+        atmCashAmount:
+          type: number
+          description: |-
+            Length: 17
+            ATM(Automated Teller Machine) Cash Number.
+            VisionPLUS Service Data: AZXICI-AUTH-ATM-CASH-AMT
+          example: 0
+        atmCashSingleTransactionLimit:
+          type: number
+          description: |-
+            Length: 17
+            ATM(Automated Teller Machine) Cash Transaction limit.
+            VisionPLUS Service Data: AZXICI-AUTH-ATM-CASH-SNG-TXN
+          example: 0
+        overTheCounterCashNumber:
+          type: integer
+          description: |-
+            Length: 9
+            Over The Counter Cash Number.
+            VisionPLUS Service Data: AZXICI-AUTH-OTC-CASH-NBR
+          format: int32
+          example: 0
+        overTheCounterCashAmount:
+          type: number
+          description: |-
+            Length: 17
+            Over The Counter Cash Number.
+            VisionPLUS Service Data: AZXICI-AUTH-OTC-CASH-AMT
+          example: 0
+        overTheCounterCashSingleTransactionLimit:
+          type: number
+          description: |-
+            Length: 17
+            Over The Counter Transaction .
+            VisionPLUS Service Data: AZXICI-AUTH-OTC-CASH-SNG-TXN
+          example: 0
+        retailPurchaseNumber:
+          type: integer
+          description: |-
+            Length: 9
+            Retail Amount.
+            VisionPLUS Service Data: AZXICI-AUTH-RTL-NBR
+          format: int32
+          example: 0
+        retailPurchaseAmt:
+          type: number
+          description: |-
+            Length: 17
+            Retail Number.
+            VisionPLUS Service Data: AZXICI-AUTH-RTL-AMT
+          example: 0
+        retailPurchaseSingleTransactionLimit:
+          type: number
+          description: |-
+            Length: 17
+            Retail Transaction Limit.
+            VisionPLUS Service Data: AZXICI-AUTH-RTL-SNGL-TXN
+          example: 0
+        internetPurchaseAmount:
+          type: number
+          description: |-
+            Length: 17
+            Internet Purchase Amount.
+            VisionPLUS Service Data: AZXICI-AUTH-INTRNT-AMT
+          example: 0
+        internetPurchaseNumber:
+          type: number
+          description: |-
+            Length: 9
+            Internet Purchase Number.
+            VisionPLUS Service Data: AZXICI-AUTH-INTRNT-NBR
+          example: 0
+        internetPurchaseSingleTransactionLimit:
+          type: number
+          description: |-
+            Length: 13
+            Internet Purchase Single Transaction Limit.
+            VisionPLUS Service Data: AZXICI-AUTH-INTRNT-SNGL-TXN
+          example: 0
+        user1:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: |-
+            Length: 20
+            User-defined 1.
+            VisionPLUS Service Data: AZXICI-USER-1
+          example: "1"
+        user2:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: |-
+            Length: 20
+            User-defined 2.
+            VisionPLUS Service Data: AZXICI-USER-2
+          example: "2"
+        user3:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: |-
+            Length: 19
+            User-defined 3.
+            VisionPLUS Service Data: AZXICI-USER-3
+          example: "3"
+        user4:
+          type: integer
+          description: |-
+            Length: 4
+            User-defined 4.
+            VisionPLUS Service Data: AZXICI-USER-4
+          format: int32
+          example: 4
+        user5:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            User-defined 5.
+            VisionPLUS Service Data: AZXICI-USER-5
+          example: "5"
+        user6:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            User-defined 6.
+            VisionPLUS Service Data: AZXICI-USER-6
+          example: "6"
+        user7:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            User-defined 7.
+            VisionPLUS Service Data: AZXICI-USER-7
+          example: "7"
+        user8:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            User-defined 8.
+            VisionPLUS Service Data: AZXICI-USER-8
+          example: "8"
+        userDate1:
+          type: string
+          description: User-defined Date 1
+          format: date
+        userDate2:
+          type: string
+          description: |-
+            User-defined Date 2.
+            VisionPLUS Service Data: AZXICI-USER-DATE-2
+          format: date
+        branchNumber:
+          type: integer
+          description: |-
+            Length: 9
+            Branch .
+            VisionPLUS Service Data: AZXICI-ADMIN-BRANCH
+          format: int32
+        firstIssueBranch:
+          type: integer
+          description: |-
+            Length: 9
+            First Issue Branch.
+            VisionPLUS Service Data: AZXICI-FIRST-ISS-BRANCH
+          format: int32
+          example: 0
+        deliveryOption:
+          type: integer
+          description: |-
+            Length: 1
+            Delivery option. The values are:
+            * 0 = Regular mail
+            * 1 = First class mail
+            * 2 = Registered mail
+            * 3 = Internal delivery mail
+            * 4 = User-defined
+            VisionPLUS Service Data: AZXICI-USER-DATE-1
+          format: int32
+          example: 1
+        reissueDeliveryOption:
+          type: integer
+          description: |-
+            Length: 1
+            Reissue delivery option. The values are:
+            * 0 = Regular mail
+            * 1 = First class mail
+            * 2 = Registered mail
+            * 3 = Internal delivery mail
+            * 4 = User-defined
+            VisionPLUS Service Data: AZXICI-ISSUE-DELIV-OPTION.
+          format: int32
+          example: 0
+        authorizationCriteriaTableNumber:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: |-
+            Length: 3
+            Authorization Criteria Table Number.
+            VisionPLUS Service Data: AZXICI-AUTH-CRITERIA-TBL
+          example: "0"
+        programId:
+          type: integer
+          description: |-
+            Length: 5
+            Program ID.
+            VisionPLUS Service Data: AZXICI-PROGRAM-ID
+          format: int32
+          example: 0
+        cardholderAffiliationGroupId:
+          type: integer
+          description: |-
+            Length: 5
+            Identification Of The Cardholder’S Affiliation Or Affinity Group.
+            VisionPLUS Service Data: AZXICI-AFFL-EMBLM
+          format: int32
+          example: 12348
+        cardActionReasonCode:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Card Action Reason Code.
+            VisionPLUS Service Data: AZXICI-CARD-ACTION-REASON
+        icTotalNumberTransactions:
+          type: integer
+          description: |-
+            Length: 6
+            Global spending limit number.
+            VisionPLUS Service Data: AZXICI-IC-TOT-NUM-TXNS
+          format: int32
+          example: 0
+        icAmountLimitSingleTransaction:
+          type: number
+          description: |-
+            Length: 13
+             Global spending limit for a single transaction.
+            VisionPLUS Service Data: AZXICI-IC-AMT-LMT-SNGL-TXN
+          example: 0
+        digitalCardFlag:
+          type: integer
+          description: |-
+            Length: 1
+            Code that indicates whether to add a new digital card. The values are:
+            * 0 = Do not add new digital card
+            * 1 = Add new digital card
+            VisionPLUS Service Data: AZXICI-DIGITAL-CARD-IND.
+          format: int32
+          example: 1
+          enum:
+          - null
+    InstantCardAddL8V7Request:
+      required:
+      - accountCreateFlag
+      - customerNumber
+      - firstPurchaseFlag
+      - logo
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Organization Number.
+            VisionPLUS Service Data: AZXICI-ORG
+          format: int32
+          example: 807
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+            Logo number.
+            VisionPLUS Service Data: AZXICI-LOGO
+          format: int32
+          example: 400
+        customerNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+            Customer Number.
+            VisionPLUS Service Data: AZXICI-CUSTOMER-NBR
+          example: "4513074002573466583"
+        firstPurchaseFlag:
+          maxLength: 1
+          minLength: 1
+          type: string
+          description: |-
+            Length: 1
+            First Purchase Flag.
+            VisionPLUS Service Data: AZXICI-FIRST-PURCH-SW
+          example: "Y"
+          enum:
+          - "Y,N"
+        accountCreateFlag:
+          maxLength: 1
+          minLength: 1
+          type: string
+          description: |-
+            Length: 1
+            Account Create Flag.
+            VisionPLUS Service Data: AZXICI-ACCT-CREATE
+          example: "Y"
+          enum:
+          - "Y,N"
+        sameDayProcessingType:
+          type: integer
+          description: |-
+            Length: 1
+            same Day Processing Type.
+            VisionPLUS Service Data: AZXICI-SDP-PROCESS-TYPE
+          format: int32
+          example: 1
+        cardActionFlag:
+          type: integer
+          description: |-
+            Length: 1
+            Card action flag.
+            VisionPLUS Service Data: AZXICI-CARD-ACTION
+          format: int32
+          example: 1
+        accountData:
+          $ref: '#/components/schemas/InstantCArdAddL8V7Request.AccountData'
+        embosserData:
+          $ref: '#/components/schemas/InstantCArdAddL8V7Request.EmbosserData'
+      description: Instant Card Add Request
+    InstantCardAddL8V7Response:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Organization.
+            VisionPLUS Service Data: AZXICO-ORG
+          format: int32
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+            Logo.
+            VisionPLUS Service Data: AZXICO-LOGO
+          format: int32
+        customerNumber:
+          type: string
+          description: |-
+            Length: 19
+            Customer number.
+            VisionPLUS Service Data: AZXICO-CUST-NBR
+        accountNumber:
+          type: string
+          description: |-
+            Length: 19
+            Account number.
+            VisionPLUS Service Data: AZXICO-VACCT-NBR
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: AZXICO-VCARD-NBR
+          example: 000540208ID5IXX3865
+        cardSequenceNumber:
+          type: integer
+          description: |-
+            Length: 4
+            Card sequence number.
+            VisionPLUS Service Data: AZXICO-VCARD-SEQ-NBR
+          format: int32
+        creditLimit:
+          type: number
+          description: |-
+            Length: 17
+            Credit limit.
+            VisionPLUS Service Data: AZXICO-VCRLIM
+        cardExpiryDate:
+          type: string
+          description: |-
+            Expiry date.
+            VisionPLUS Service Data: AZXICO-VCARD-DATE-EXPIRE
+          format: date
     InstantCardAddRequest:
       required:
       - accountCreateFlag
@@ -1661,24 +3602,28 @@ components:
             VisionPLUS Service Data: AZXICI-SAV-ACCT-NBR
           example: "84342430"
         cardTechnology:
-          type: string
-          description: |-
-            Length: 1
-
-            Flag that identifies the current card technology used for this account.
-
-            The values are:
-
-            0 = Magnetic-stripe card(s) are on issue
-
-            1 = Smart card(s) are on issue
-
-            2 = Magnetic-stripe contactless card(s) are on issue
-
-            3 = Smart contactless card(s) are on issue
-
-            VisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY
-          example: "3"
+          type: integer
+          description: "Length: 1 \n\nCard technology \n\nFlag that identifies the\
+            \ current card technology used for this account.\n\nThe values are:\n\
+            * 0 = Magnetic-stripe card(s) are on issue\n* 1 = Smart card(s) are on\
+            \ issue\n* 2 = Magnetic-stripe contactless card(s) are on issue\n* 3 =\
+            \ Smart contactless card(s) are on issue \n\nThe following edits apply\
+            \ to this field:\n* This field can be 1, 2 or 3 only when the **DEFAULT\
+            \ CARD TECHNOLOGY** field on ARML38 is greater than 0 \nIn the add mode\
+            \ (ARAB), this field must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38)\
+            \ is 1. \n* In the maintenance mode (ARMB), this field is only open to\
+            \ input if no Embosser records are on file for the account. \n* When the\
+            \ account card numbering schema **(CRD# SCM** on ARMB01) is 2, this field\
+            \ must be 0 or 2. \n* When adding an account, CMS uses the card technology\
+            \ from the account's logo as the default value. You can override this\
+            \ default if necessary. \n\nVisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY"
+          format: int32
+          example: 0
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
         temporaryCreditLimit:
           type: number
           description: |-
@@ -4939,3 +6884,5 @@ components:
             Account.
 
             VisionPLUS Service Data: ARXAAO-ACCOUNT-NBR
+x-config:
+  tryItOut: true
