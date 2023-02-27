@@ -16,11 +16,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -32,24 +34,34 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAccountDetailsResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: "Unprocessable Entity\n\nVPL5SBB14S - ORGANIZATION NUMBER MUST\
             \ BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SBB01E - STATE OF RESIDENCE\
@@ -89,16 +101,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateAccountDetailsResponse'
       x-proxy-name: Account Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -116,11 +118,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -132,26 +136,20 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "422":
           description: |-
             VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -171,14 +169,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForDetailsResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -193,11 +197,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -209,34 +215,8 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerNumberResponse'
         "422":
           description: |-
             VPL5SCU06S - ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999
@@ -282,6 +262,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerNumberResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Customer Number Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -301,11 +307,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -317,26 +325,22 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5SAE01E - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -355,14 +359,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account To Card Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -378,11 +386,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -394,26 +404,6 @@ paths:
               $ref: '#/components/schemas/AccountBoardingDriverRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: |-
             VPL5SZ103E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -469,14 +459,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBoardingDriverResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -493,11 +503,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -509,26 +521,22 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -945,14 +953,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountAddDetailsResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3615,16 +3627,10 @@ components:
             Installment payment cash plan number.
 
             VisionPLUS Service Data: AZXAIO-INST-PMT-CASH-PLAN
-        userDate11:
-          type: string
-          format: date
-        userDate9:
-          type: string
-          format: date
-        userDate3:
-          type: string
-          format: date
         userDate4:
+          type: string
+          format: date
+        userDate6:
           type: string
           format: date
         userDate7:
@@ -3633,33 +3639,39 @@ components:
         userDate12:
           type: string
           format: date
-        userDate14:
+        userDate5:
           type: string
           format: date
         userDate8:
           type: string
           format: date
-        userDate6:
+        userDate10:
           type: string
           format: date
-        userDate5:
+        userDate3:
+          type: string
+          format: date
+        userDate9:
           type: string
           format: date
         userDate13:
           type: string
           format: date
-        userDate10:
+        userDate11:
+          type: string
+          format: date
+        userDate14:
+          type: string
+          format: date
+        numberOfNonSufficientFunds:
+          type: number
+        dateLastCardAccountExpires:
           type: string
           format: date
         userDate1:
           type: string
           format: date
         userDate2:
-          type: string
-          format: date
-        numberOfNonSufficientFunds:
-          type: number
-        dateLastCardAccountExpires:
           type: string
           format: date
     AccountForDetailsResponse.AccountData.DelinquencyData:
@@ -5162,12 +5174,15 @@ components:
             Length: 19
 
             Account number.
+            VisionPLUS Service Data: ARXAAI-ACCOUNT-NBR
           example: "4004894352313040331"
         alternateCustomerNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: Alternate customer number
+          description: |-
+            Alternate customer number
+            VisionPLUS Service Data: ARXAAI-ALT-CUST-NBR
           example: "4004894352313040331"
         shortName:
           type: string
@@ -5260,8 +5275,6 @@ components:
         dateOpened:
           type: string
           description: |-
-            Length: 8
-
             Date Opened.
 
             VisionPLUS Service Data: ARXAAI-DATE-OPENED
@@ -5432,8 +5445,6 @@ components:
         startDate:
           type: string
           description: |-
-            Length: 8
-
             Start date of the override.
 
             VisionPLUS Service Data: ARXAAI-PCT-START-DATE
@@ -5441,8 +5452,6 @@ components:
         expireDate:
           type: string
           description: |-
-            Length: 8
-
             Expiration date of the override.
 
             VisionPLUS Service Data: ARXAAI-PCT-EXPIRE-DATE
@@ -5450,8 +5459,6 @@ components:
         levelStartDate:
           type: string
           description: |-
-            Length: 8
-
             Processing control level - start date.
 
             VisionPLUS Service Data: ARXAAI-PCT-LEVEL-START-DATE
@@ -5459,11 +5466,9 @@ components:
         levelExpireDate:
           type: string
           description: |-
-            Length: 8
-
             Processing control expiration Date.
 
-            VisionPLUS Service Data: ARXAAI-PCT-LEVEL-EXPIRE-DATE
+            VisionPLUS Service Data: ARXAAI-PCT-LEVEL-EXPIR-DATE
           format: date
       description: AccountAddDetailsRequest.AccountAddData.ProcessingControlTable
     AccountAddDetailsRequestAccountAdd.MiscUserData:
@@ -5471,28 +5476,74 @@ components:
       properties:
         miscUser1:
           type: string
+          description: |-
+            Length: 30
+
+            Miscellaneous user 1
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-1
         miscUser2:
           type: string
+          description: |-
+            Length: 1
+
+            Miscellaneous user 2
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-2
         miscUser3:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 3
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-3
         miscUser4:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 4
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-4
         miscUser5:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 5
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-5
         miscUser6:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 6
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-6
         miscUser7:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 7
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-7
         miscUser8:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 8
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-8
     AccountAddDetailsRequestAccountAddData.UserData:
       type: object
       properties:
         userDate1:
           type: string
           description: |-
-            Length: 8
-
             User date 1.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-1
@@ -5500,8 +5551,6 @@ components:
         userDate2:
           type: string
           description: |-
-            Length: 8
-
             User date 2.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-2
@@ -5509,8 +5558,6 @@ components:
         userDate3:
           type: string
           description: |-
-            Length: 8
-
             User date 3.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-3
@@ -5518,8 +5565,6 @@ components:
         userDate4:
           type: string
           description: |-
-            Length: 8
-
             User date 4.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-4
@@ -5527,8 +5572,6 @@ components:
         userDate5:
           type: string
           description: |-
-            Length: 8
-
             User date 5.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-5
@@ -5536,8 +5579,6 @@ components:
         userDate6:
           type: string
           description: |-
-            Length: 8
-
             User date 6.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-6
@@ -5545,8 +5586,6 @@ components:
         userDate7:
           type: string
           description: |-
-            Length: 8
-
             User date 7.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-7
@@ -5554,8 +5593,6 @@ components:
         userDate8:
           type: string
           description: |-
-            Length: 8
-
             User date 8.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-8
@@ -5563,8 +5600,6 @@ components:
         userDate9:
           type: string
           description: |-
-            Length: 8
-
             User date 9.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-9
@@ -5572,8 +5607,6 @@ components:
         userDate10:
           type: string
           description: |-
-            Length: 8
-
             User date 10.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-10
@@ -5581,8 +5614,6 @@ components:
         userDate11:
           type: string
           description: |-
-            Length: 8
-
             User date 11.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-11
@@ -5590,8 +5621,6 @@ components:
         userDate12:
           type: string
           description: |-
-            Length: 8
-
             User date 12.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-12
@@ -5599,8 +5628,6 @@ components:
         userDate13:
           type: string
           description: |-
-            Length: 8
-
             User date 13.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-13
@@ -5608,8 +5635,6 @@ components:
         userDate14:
           type: string
           description: |-
-            Length: 8
-
             User date 14.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-14
@@ -5650,3 +5675,5 @@ components:
             Account.
 
             VisionPLUS Service Data: ARXAAO-ACCOUNT-NBR
+x-config:
+  tryItOut: true
