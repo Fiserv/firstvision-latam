@@ -37,6 +37,10 @@ paths:
               $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Request'
         required: true
       responses:
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
@@ -49,10 +53,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
         "405":
           description: Method Not Allowed
         "403":
@@ -75,7 +75,7 @@ paths:
       description: "Provides transaction detail information for the current billing\
         \ cycle or statement transactions within a date range. \nVMX Service: M.CMS.TRANSACTIONDETAIL.INQ,\
         \ R8V6"
-      operationId: Transaction Details Inquiry
+      operationId: Transactions Details Inquiry
       parameters:
       - name: apikey
         in: header
@@ -97,20 +97,8 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "401":
+          description: Unauthorized
         "422":
           description: |
             VPL5STD01I - NO TRANSACTIONS FOUND FOR REQUEST
@@ -152,8 +140,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
         "403":
@@ -166,7 +166,7 @@ paths:
                 $ref: '#/components/schemas/TransactionsDetailsResponse'
         "404":
           description: Not Found
-      x-proxy-name: Transaction Details Inquiry
+      x-proxy-name: Transactions Details Inquiry
       x-group-name: Transactions
 components:
   schemas:

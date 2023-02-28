@@ -40,16 +40,26 @@ paths:
               $ref: '#/components/schemas/UpdateQualificationRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
         "405":
           description: Method Not Allowed
         "422":
@@ -80,16 +90,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "200":
           description: Success
           content:
@@ -103,8 +103,8 @@ paths:
     put:
       tags:
       - Account
-      summary: "Block & Unblock Account. (VMX Service: M.CMS.ACCT.BLKCD.UPD, R8V1)"
-      description: "Adds, changes or removes a block code on an Account \nVMX Service:\
+      summary: "Block & Unblock Account. VMX Service: M.CMS.ACCT.BLKCD.UPD, R8V1"
+      description: "Adds, changes or removes a block code on an Account. \nVMX Service:\
         \ M.CMS.ACCT.BLKCD.UPD, R8V1"
       operationId: Account Block Code Update
       parameters:
@@ -128,16 +128,28 @@ paths:
               $ref: '#/components/schemas/AccountForBlockCodeUpdateRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             VPL5SAB05S - CANNOT SET A BLOCK CODE ON A BILLING ACCOUNT
@@ -158,18 +170,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "200":
           description: Success
           content:
@@ -183,9 +183,9 @@ paths:
     put:
       tags:
       - Account
-      summary: "Cash-in & Cash-out. (VMX Service: M.ASM.MONETARY.ACT, L8V2)"
+      summary: "Cash-in & Cash-out. VMX Service: M.ASM.MONETARY.ACT, L8V2"
       description: "Credits (cash in) or Debits (cash out) transactions from available\
-        \ funds or credit open to buy in an Account \nVMX Service: M.ASM.MONETARY.ACT,\
+        \ funds or credit open to buy in an Account. \nVMX Service: M.ASM.MONETARY.ACT,\
         \ L8V2"
       operationId: Cash-in & Cash-out Request
       parameters:
@@ -215,28 +215,28 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -250,9 +250,9 @@ paths:
     post:
       tags:
       - Account
-      summary: "Instant account and digital or physical card addition. VMX service:\
+      summary: "Instant account and digital or physical card addition. VMX Service:\
         \ M.CMS.INSTANT.CARD.ADD, L8V7"
-      description: "Add an account and digital or physical card. \nVMX service: M.CMS.INSTANT.CARD.ADD,\
+      description: "Add an account and digital or physical card. \nVMX Service: M.CMS.INSTANT.CARD.ADD,\
         \ L8V7"
       operationId: Instant Card Add
       parameters:
@@ -276,28 +276,28 @@ paths:
               $ref: '#/components/schemas/InstantCardAddL8V7Request'
         required: true
       responses:
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -337,8 +337,24 @@ paths:
               $ref: '#/components/schemas/InstantCardAddRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
         "422":
           description: |-
             VPL5SIC24S - MBS SWITCH IS OFF
@@ -351,26 +367,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -412,8 +412,16 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |
             VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -434,26 +442,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -467,12 +467,12 @@ paths:
     post:
       tags:
       - Account
-      summary: "Add account. (VMX Service: M.CMS.ACCOUNT.ADD, R8V8)"
+      summary: "Add account. VMX Service: M.CMS.ACCOUNT.ADD, R8V8"
       description: "Adds a single Account to an existing Customer record for Single\
         \ Currency Accounts. For Dual Currency Accounts, two records with the same\
         \ Account number will be created in the local and foreign currency Organizations.\
         \ \nVMX Service: M.CMS.ACCOUNT.ADD, R8V8"
-      operationId: Add Account
+      operationId: Account Add
       parameters:
       - name: apikey
         in: header
@@ -494,16 +494,24 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
         "422":
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -920,25 +928,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountAddDetailsResponse'
-      x-proxy-name: Add Account
+      x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
 components:
