@@ -15,10 +15,12 @@ paths:
     post:
       tags:
       - Embosser
-      summary: "Data from the Embosser record V2. VMX Service: M.CMS.EMBOSSER.INQ,L8VE"
+      summary: "Data from the Embosser record V2. VMX Service: M.CMS.EMBOSSER.INQ,\
+        \ L8VE"
       description: "Provides the embosser data from the embosser record (AMED) as\
-        \ displayed online on the ARME screens. \nVMX Service: M.CMS.EMBOSSER.INQ.L8VE"
-      operationId: Embosser Inquiry V2
+        \ displayed online on the ARME screens. \nVMX Service: M.CMS.EMBOSSER.INQ,\
+        \ L8VE"
+      operationId: Embosser Inquiry
       parameters:
       - name: apikey
         in: header
@@ -40,14 +42,8 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequestV2'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
-        "401":
-          description: Unauthorized
         "422":
           description: "Unprocessable Entity\n\nVPL5SCIZ1S - SERVICE INPUT TO FS SERVICE\
             \ IS AN INCORRECT LENGTH \n\nVPL5SCIZ2S - USER HAS NOT SIGNED ON - PLEASE\
@@ -71,20 +67,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "200":
           description: Success
           content:
@@ -124,28 +126,28 @@ paths:
               $ref: '#/components/schemas/InstantCardAddL8V7Request'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "200":
           description: Success
           content:
@@ -185,28 +187,28 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "200":
           description: Success
           content:
@@ -245,26 +247,20 @@ paths:
               $ref: '#/components/schemas/AddEmbosserRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "422":
           description: |
             VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -296,8 +292,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
