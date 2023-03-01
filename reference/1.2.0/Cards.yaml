@@ -19,9 +19,9 @@ paths:
     put:
       tags:
       - Card
-      summary: "Update Travel Indicator Data. VMX service: M.CMS.TRAVELIND.UPD, L8V1"
+      summary: "Update Travel Indicator Data. VMX Service: M.CMS.TRAVELIND.UPD, L8V1"
       description: "Updates cardholder travel Indicator data (travel notice). \nVMX\
-        \ service: M.CMS.TRAVELIND.UPD, L8V1"
+        \ Service: M.CMS.TRAVELIND.UPD, L8V1"
       operationId: Travel Indicator Update
       parameters:
       - name: apikey
@@ -46,12 +46,26 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5STV02E - ORG NOT FOUND
@@ -75,20 +89,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -102,8 +102,8 @@ paths:
     put:
       tags:
       - Card
-      summary: "Card Transfer Update. VMX service: M.CMS.CARDTRANSFER.UPD, L8V5"
-      description: "Updates Card transfer service. \nVMX service: M.CMS.CARDTRANSFER.UPD,\
+      summary: "Card Transfer Update. VMX Service: M.CMS.CARDTRANSFER.UPD, L8V5"
+      description: "Updates Card transfer service. \nVMX Service: M.CMS.CARDTRANSFER.UPD,\
         \ L8V5"
       operationId: Card Transfer
       parameters:
@@ -129,32 +129,14 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransferUpdateResponse'
         "422":
           description: |-
             VPL5S0004E - CARD NUMBER IS NOT NUMERIC
@@ -201,6 +183,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferUpdateResponse'
       x-proxy-name: Card Transfer
       x-group-name: Card
       x-child-product-name: Cards
@@ -208,9 +208,9 @@ paths:
     put:
       tags:
       - Card
-      summary: "Temporary Credit Limit Update. VMX service: M.CMS.TEMP.CREDITLIMIT.UPD,\
+      summary: "Temporary Credit Limit Update. VMX Service: M.CMS.TEMP.CREDITLIMIT.UPD,\
         \ R8V2"
-      description: "Updates the temporary credit limit for an account. \nVMX service:\
+      description: "Updates the temporary credit limit for an account. \nVMX Service:\
         \ M.CMS.TEMP.CREDITLIMIT.UPD, R8V2"
       operationId: Temporary Credit Limit Update
       parameters:
@@ -241,6 +241,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -249,14 +251,6 @@ paths:
           description: Method Not Allowed
         "300":
           description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
           content:
             application/json:
               schema:
@@ -297,6 +291,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -310,8 +310,8 @@ paths:
     put:
       tags:
       - Card
-      summary: "Card Status Update. VMX service: M.CMS.CARD.STATUS.UPD, L8V1"
-      description: "Card Status Update Service. \nVMX service: M.CMS.CARD.STATUS.UPD,\
+      summary: "Card Status Update. VMX Service: M.CMS.CARD.STATUS.UPD, L8V1"
+      description: "Card Status Update Service. \nVMX Service: M.CMS.CARD.STATUS.UPD,\
         \ L8V1"
       operationId: Card Status Update
       parameters:
@@ -337,12 +337,6 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: |
             VPL5SCSZ6S - REQUESTED ORGANIZATION NOT FOUND
@@ -368,14 +362,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -395,9 +395,9 @@ paths:
     put:
       tags:
       - Card
-      summary: "Spending limits update. VMX service: M.CMS.CARDSPENDLIMITS.UPD, L8V3"
+      summary: "Spending limits update. VMX Service: M.CMS.CARDSPENDLIMITS.UPD, L8V3"
       description: "Card Spending Limits Update Service enables a user to update the\
-        \ spending limit fields a card. \nVMX service: M.CMS.CARDSPENDLIMITS.UPD,\
+        \ spending limit fields a card. \nVMX Service: M.CMS.CARDSPENDLIMITS.UPD,\
         \ L8V3"
       operationId: Spending Limits Update
       parameters:
@@ -423,6 +423,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -435,8 +437,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -449,7 +449,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpendLimitsL8V3Response'
-      x-proxy-name: Spending limits Update
+      x-proxy-name: Spending Limits Update
       x-group-name: Card
       x-child-product-name: Cards
   /cards/pin/status:
@@ -483,10 +483,20 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SRP03E - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -506,16 +516,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -562,12 +562,12 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SCP06S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 998
@@ -604,14 +604,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -659,10 +659,10 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: |
             VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -693,6 +693,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
         "405":
           description: Method Not Allowed
         "300":
@@ -701,8 +703,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -750,6 +750,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -762,8 +764,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -809,10 +809,32 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateEmbosserResponseV3'
         "422":
           description: "Unprocessable Entity\n\nVPL5SEUZ2S - SERVICE INPUT TO CARD\
             \ UPDATE SERVICE IS AN INCORRECT LENGTH \n\nVPL5SEU01E - ORGANIZATION\
@@ -849,28 +871,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateEmbosserResponseV3'
       x-proxy-name: Embosser Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -907,6 +907,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -919,8 +921,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -967,32 +967,6 @@ paths:
       responses:
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
         "422":
           description: |
             VPL5SCB01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -1017,6 +991,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
       x-proxy-name: Embosser Block Code Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1024,8 +1024,8 @@ paths:
     put:
       tags:
       - Card
-      summary: "Update Credit Limit. VMX service: M.CMS.CREDITLIMIT.UPD, R8V1"
-      description: "Updates the credit limit amount of an Account. \nVMX service:\
+      summary: "Update Credit Limit. VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1"
+      description: "Updates the credit limit amount of an Account. \nVMX Service:\
         \ M.CMS.CREDITLIMIT.UPD, R8V1"
       operationId: Credit Limit Update
       parameters:
@@ -1056,12 +1056,26 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |
             VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -1093,20 +1107,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1120,8 +1120,8 @@ paths:
     put:
       tags:
       - Card
-      summary: "Activate Card. VMX service: M.CMS.CARDACTIVATION.UPD, R8V3"
-      description: "Updates Card activation service. \nVMX service: M.CMS.CARDACTIVATION.UPD,\
+      summary: "Activate Card. VMX Service: M.CMS.CARDACTIVATION.UPD, R8V3"
+      description: "Updates Card activation service. \nVMX Service: M.CMS.CARDACTIVATION.UPD,\
         \ R8V3"
       operationId: Card Activation
       parameters:
@@ -1147,6 +1147,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -1159,8 +1161,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -1207,6 +1207,20 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: "Unprocessable Entity\n\nVPL5S0005E - ACCOUNT NUMBER IS NOT\
             \ NUMERIC OR EQUAL SPACES \n\nVPL5S0006S - REQUESTED ORG NUMBER IS NOT\
@@ -1228,20 +1242,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -1289,6 +1289,32 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementDateInquiryResponse'
         "422":
           description: "Unprocessable Entity\n\nVPL5SSI02S - SERVICE INPUT TO STMT\
             \ DATES SERVICE IS AN INCORRECT LENGTH \n\nVPL5SSI06E - ORGANIZATION NUMBER\
@@ -1305,32 +1331,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatementDateInquiryResponse'
       x-proxy-name: Statement Details By Date Inquiry
       x-group-name: Statement
       x-child-product-name: Cards
@@ -1365,26 +1365,14 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "422":
           description: |
             VPL5SVP03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -1413,6 +1401,18 @@ paths:
             VPL5SVP31S - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
             VPL5SVP32S - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
             VPL5SVP33S - REQUEST CARD NBR IS PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -1457,6 +1457,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -1469,8 +1471,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -1520,10 +1520,20 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |
             VPZ5SPT03S - ORG IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -1538,16 +1548,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -1595,12 +1595,10 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -1646,14 +1644,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -1721,6 +1721,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -1733,8 +1735,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -1753,9 +1753,9 @@ paths:
     post:
       tags:
       - Card
-      summary: "Add or Update massive issued cards Version L8v3. VMX service: M.CMS.MASS.CARD.ISSUE.UPD,\
+      summary: "Add or Update massive issued cards Version L8v3. VMX Service: M.CMS.MASS.CARD.ISSUE.UPD,\
         \ L8V3"
-      description: "Mass Card Issue Update version L8V3. \nVMX service: M.CMS.MASS.CARD.ISSUE.UPD,\
+      description: "Mass Card Issue Update version L8V3. \nVMX Service: M.CMS.MASS.CARD.ISSUE.UPD,\
         \ L8V3"
       operationId: Mass Card Issue Update
       parameters:
@@ -1781,6 +1781,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -1793,8 +1795,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -1842,32 +1842,14 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SameDayEmbossingAddResponse'
         "422":
           description: |-
             VPL5SSP03S - CMS ORG IS INVALID
@@ -1889,6 +1871,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SameDayEmbossingAddResponse'
       x-proxy-name: Same Day Plastic Add/Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1923,6 +1923,8 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -1935,8 +1937,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -1984,12 +1984,12 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: |
             VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND
@@ -2009,14 +2009,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -2069,6 +2069,26 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SAEZ8S - REQUESTED ORG NOT FOUND
@@ -2087,33 +2107,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsL8V3Response'
-      x-proxy-name: Account To Cards Inquiry L8V3
+      x-proxy-name: Account To Card Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/details:
@@ -2147,10 +2147,20 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SEI03E - ORGANIZATION IS NOT NUMERIC OR VALUE MUST BE BETWEEN 000 AND 999
@@ -2165,16 +2175,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -2248,6 +2248,14 @@ paths:
       responses:
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             VPL5S0002S - CMS FILE TABLE RECORD NOT FOUND
@@ -2264,20 +2272,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
@@ -5492,9 +5492,9 @@ components:
             Length: 2
             Statement number months
             VisionPLUS Service Data: ARXSDO-STATEMENT-NBRMONTHS
-        cashCreditLimit:
-          type: number
         cashAvailable:
+          type: number
+        cashCreditLimit:
           type: number
         debitAmount:
           type: number
@@ -6125,9 +6125,9 @@ components:
         dcvv2:
           type: string
           description: "dCVV2. VisionPLUS Service Data: ARXGDO-DCVV2"
-        dcvv2GenerationTime:
-          type: string
         dcvv2ExpiryMinutes:
+          type: string
+        dcvv2GenerationTime:
           type: string
     MassCardIssueAddRequestL8V3:
       required:
@@ -7249,13 +7249,13 @@ components:
           enum:
           - null
         cardNumber:
-          maxLength: 19
+          maxLength: 32
           minLength: 12
           type: string
           description: |-
             Length: 19
 
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            Card number encrypted.
             VisionPLUS Service Data: AZXTCI-CARD-PAN
           example: 000540208ID5IXX3865
           enum:
@@ -7306,9 +7306,9 @@ components:
           description: |-
             Length: 32
 
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            Card number encrypted.
             VisionPLUS Service Data: AZXTCO-CARD-NBR
-          example: 000540208ID5IXX3865657RTY43245TY
+          example: 936E507C7EF44EB5AC1D95FEB0AC0AAF
         cardSequence:
           type: integer
           description: |-
