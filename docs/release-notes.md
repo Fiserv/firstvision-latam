@@ -8,7 +8,7 @@ tags: [Release Notes, January, February]
 
 ### What's New
 
-Tokenization
+New Tokenization API's
 
 - /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/deviceBinding
 - /vtis/v1/getAvailableCards
