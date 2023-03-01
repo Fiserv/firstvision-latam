@@ -20,7 +20,7 @@ Tokenization
 
 ### Enhancements
 
-- Improved APIs' description:
+**-Improved APIs' description:**
   - Account 
 	  - /account/v2/instantCard
 		- /account/v2/details
@@ -62,7 +62,7 @@ Tokenization
 		- /transactions/currency-rate
 	- Customer 
 		- /customer/
-- Added description:
+**- Added description:**
 	- Account 
 		- /account/enrollment
 		- /account/v2/accountBoardingDriver
@@ -81,7 +81,7 @@ Tokenization
 		- /transactions/v2/installmentTransactions/{installmentTransaction-Id}/terms
 	- Notification 
 		- /v2/pushNotification
-- Improved title name:
+**- Improved title name:**
 	- Cards 
 		- Embosser 
 			- /cards/embosser/card-details-L8V3
@@ -103,7 +103,7 @@ Tokenization
 	- Transactions 
 		- /transactions/details
 		- /transactions/installmentConversion
-- Improved fields' description:
+**- Improved fields' description:**
 	- Cards 
 		- Embosser 
 			- /cards/embosser/card-pan-l8v2
