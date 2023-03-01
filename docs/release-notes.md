@@ -62,6 +62,7 @@ Tokenization
 		- /transactions/currency-rate
 	- Customer 
 		- /customer/
+
 **- Added description:**
 	- Account 
 		- /account/enrollment
@@ -81,6 +82,7 @@ Tokenization
 		- /transactions/v2/installmentTransactions/{installmentTransaction-Id}/terms
 	- Notification 
 		- /v2/pushNotification
+
 **- Improved title name:**
 	- Cards 
 		- Embosser 
@@ -103,6 +105,7 @@ Tokenization
 	- Transactions 
 		- /transactions/details
 		- /transactions/installmentConversion
+
 **- Improved fields' description:**
 	- Cards 
 		- Embosser 
