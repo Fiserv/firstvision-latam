@@ -18,6 +18,8 @@ Tokenization
 - /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/lifecycle
 - /vtis/v1/checkEligibility
 
+### Enhancements
+
 - Improved APIs' description:
   - Account 
 	  - /account/v2/instantCard
