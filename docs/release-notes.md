@@ -64,57 +64,57 @@ Tokenization
 		- /customer/
 
 **- Added description:**
-	- Account 
-		- /account/enrollment
-		- /account/v2/accountBoardingDriver
-	- Transactions 
-		- /transactions/br/v1/installmentTransactions/{installmentTransaction-Id}/terms
-		- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/anticipationAmount/simulation
-		- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsAnticipationNumber/simulation
-		- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsIdAnticipation/simulation
-		- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/simulation
-		- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsIdAnticipation/simulation
-		- /transactions/v1/installmentTransactions/{installmentTransaction-Id}
-		- /transactions/v1/installmentTransactions/terms
-		- /transactions/v1/installmentTransactions/terms
-		- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/terms/termsIdAnticipation/simulation
-		- /transactions/v2/installmentTransactions
-		- /transactions/v2/installmentTransactions/{installmentTransaction-Id}/terms
-	- Notification 
-		- /v2/pushNotification
+- Account 
+	- /account/enrollment
+	- /account/v2/accountBoardingDriver
+- Transactions 
+	- /transactions/br/v1/installmentTransactions/{installmentTransaction-Id}/terms
+	- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/anticipationAmount/simulation
+	- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsAnticipationNumber/simulation
+	- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsIdAnticipation/simulation
+	- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/simulation
+	- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsIdAnticipation/simulation
+	- /transactions/v1/installmentTransactions/{installmentTransaction-Id}
+	- /transactions/v1/installmentTransactions/terms
+	- /transactions/v1/installmentTransactions/terms
+	- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/terms/termsIdAnticipation/simulation
+	- /transactions/v2/installmentTransactions
+	- /transactions/v2/installmentTransactions/{installmentTransaction-Id}/terms
+- Notification 
+	- /v2/pushNotification
 
 **- Improved title name:**
-	- Cards 
-		- Embosser 
-			- /cards/embosser/card-details-L8V3
-		- PIN:
-			- /cards/pin/
-			- /cards/pin/status
-			- /cards/pin/validation
-			- /cards/pin/invalid-attempts
-			- /cards/pin/dynamic-values
-	- Account 
-		- /account/
-		- /account/transfer
-		- /account/ppd-load-limits
-		- /account/ppd-over-limit
-		- /account/v1/statementInstallments/{numberOfTerms}
-		- /account/v1/statementInstallments
-		- /account/vinculation-reversal
-		- /account/organizationNumber/level-limits/validate-amount
-	- Transactions 
-		- /transactions/details
-		- /transactions/installmentConversion
+- Cards 
+	- Embosser 
+		- /cards/embosser/card-details-L8V3
+	- PIN:
+		- /cards/pin/
+		- /cards/pin/status
+		- /cards/pin/validation
+		- /cards/pin/invalid-attempts
+		- /cards/pin/dynamic-values
+- Account 
+	- /account/
+	- /account/transfer
+	- /account/ppd-load-limits
+	- /account/ppd-over-limit
+	- /account/v1/statementInstallments/{numberOfTerms}
+	- /account/v1/statementInstallments
+	- /account/vinculation-reversal
+	- /account/organizationNumber/level-limits/validate-amount
+- Transactions 
+	- /transactions/details
+	- /transactions/installmentConversion
 
 **- Improved fields' description:**
-	- Cards 
-		- Embosser 
-			- /cards/embosser/card-pan-l8v2
-		- PIN:
-			- /cards/pin/security-codes 
-				- Field keyAssociation in the Request
-	- Account 
-		- /account/organizationNumber/level-limits/validate-amount
+- Cards 
+	- Embosser 
+		- /cards/embosser/card-pan-l8v2
+	- PIN:
+		- /cards/pin/security-codes 
+			- Field keyAssociation in the Request
+- Account 
+	- /account/organizationNumber/level-limits/validate-amount
 
 ### Fixed
 
