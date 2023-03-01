@@ -20,15 +20,7 @@ New Tokenization API's
 
 ### Enhancements
 
-**- Updated fields values:**
-- Cards 
-	- Embosser 
-		- /cards/embosser/card-pan-l8v2
-	- PIN:
-		- /cards/pin/security-codes 
-			- Field keyAssociation in the Request
-- Account 
-	- /account/organizationNumber/level-limits/validate-amount
+N/A
 
 ### Fixed
 
@@ -40,7 +32,7 @@ New Tokenization API's
 
 ### Deprecated
 
-- N/A
+- /account/card version R8V3
 
 ---
 
