@@ -34,10 +34,6 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
         "300":
@@ -85,10 +81,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "401":
           description: Unauthorized
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -101,6 +99,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAccountDetailsResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Account Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -136,10 +136,6 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
         "300":
@@ -148,22 +144,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "401":
           description: Unauthorized
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountForDetailsResponse'
         "422":
           description: |-
             VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -183,6 +175,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountForDetailsResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Account Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -215,10 +215,6 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
         "300":
@@ -227,6 +223,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5SCU06S - ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999
@@ -272,10 +272,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -288,6 +286,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateCustomerNumberResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Customer Address Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -321,10 +321,6 @@ paths:
               $ref: '#/components/schemas/AccountBoardingDriverRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
         "300":
@@ -333,22 +329,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "401":
           description: Unauthorized
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountBoardingDriverResponse'
         "422":
           description: |-
             VPL5SZ103E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -404,6 +396,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBoardingDriverResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -438,10 +438,6 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "405":
           description: Method Not Allowed
         "300":
@@ -450,16 +446,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "401":
           description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -876,12 +866,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountAddDetailsResponse'
+        "404":
+          description: Not Found
       x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3544,9 +3544,10 @@ components:
             Installment payment cash plan number.
 
             VisionPLUS Service Data: AZXAIO-INST-PMT-CASH-PLAN
-        numberOfNonSufficientFunds:
-          type: number
-        dateLastCardAccountExpires:
+        userDate2:
+          type: string
+          format: date
+        userDate3:
           type: string
           format: date
         userDate5:
@@ -3558,7 +3559,22 @@ components:
         userDate4:
           type: string
           format: date
+        userDate11:
+          type: string
+          format: date
+        userDate7:
+          type: string
+          format: date
+        userDate8:
+          type: string
+          format: date
         userDate13:
+          type: string
+          format: date
+        userDate12:
+          type: string
+          format: date
+        userDate6:
           type: string
           format: date
         userDate14:
@@ -3567,28 +3583,12 @@ components:
         userDate9:
           type: string
           format: date
-        userDate2:
-          type: string
-          format: date
-        userDate3:
-          type: string
-          format: date
-        userDate6:
-          type: string
-          format: date
-        userDate7:
-          type: string
-          format: date
-        userDate11:
-          type: string
-          format: date
-        userDate8:
-          type: string
-          format: date
-        userDate12:
-          type: string
-          format: date
         userDate10:
+          type: string
+          format: date
+        numberOfNonSufficientFunds:
+          type: number
+        dateLastCardAccountExpires:
           type: string
           format: date
     AccountForDetailsResponse.AccountData.DelinquencyData:
