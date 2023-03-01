@@ -14,17 +14,21 @@ paths:
       description: "Update account details. \nVMX Service: M.CMS.ACCTMNT.UPD, L8V1"
       operationId: details
       parameters:
-      - name: apikey
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -32,24 +36,12 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
+        "404":
+          description: Not Found
         "422":
           description: "Unprocessable Entity\n\nVPL5SBB14S - ORGANIZATION NUMBER MUST\
             \ BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SBB01E - STATE OF RESIDENCE\
@@ -89,10 +81,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -114,17 +118,21 @@ paths:
         \ or a card number. \nVMX Service: M.CMS.ACCOUNT.INQ, L8V5"
       operationId: Account Inquiry
       parameters:
-      - name: apikey
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -132,6 +140,12 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "300":
           description: Redirection
           content:
@@ -140,18 +154,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: |-
             VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -171,8 +181,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
@@ -187,21 +195,25 @@ paths:
       tags:
       - Account
       summary: "Update Customer Number. (VMX Service: M.CMS.ACCTCUSTNBR.UPD, L8V1)"
-      description: "Updates the Customer number on the Account \nVMX Service: M.CMS.ACCTCUSTNBR.UPD,\
+      description: "Updates the Customer number on the Account. \nVMX Service: M.CMS.ACCTCUSTNBR.UPD,\
         \ L8V1"
-      operationId: Customer Number Update
+      operationId: Customer Address Update
       parameters:
-      - name: apikey
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -209,34 +221,12 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerNumberResponse'
         "422":
           description: |-
             VPL5SCU06S - ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999
@@ -282,41 +272,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-      x-proxy-name: Customer Number Update
-      x-group-name: Account
-      x-child-product-name: Accounts
-  /account/card:
-    post:
-      tags:
-      - Account
-      summary: "Account to card details. (VMX Service: M.CMS.ACCT.TO.CARD.INQ, R8V3)"
-      description: "Provides the card number uses the account number or the account\
-        \ and organization number to find it. If only the account number is provided\
-        \ in the service input in a dual currency processing environment, this service\
-        \ provides the card numbers for the local account. If the organization number\
-        \ is provided in the service input, this service provides the card numbers\
-        \ associated with that organization whether it is a local or a foreign organization.\
-        \ \nVMX Service: M.CMS.ACCT.TO.CARD.INQ, R8V3"
-      operationId: Account to Card Inquiry
-      parameters:
-      - name: apikey
-        in: header
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountForCardDetailsRequest'
-        required: true
-      responses:
         "300":
           description: Redirection
           content:
@@ -325,44 +280,87 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "422":
-          description: |-
-            VPL5SAE01E - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-            VPL5SAE01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
-            VPL5SAE02E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
-            VPL5SAE02S - ORGANIZATION NUMBER NOT FOUND
-            VPL5SAE03E - SERVICE FUNCTION INVALID - VALID VALUES ARE P N OR SPACE
-            VPL5SAE03S - CARD NUMBER NOT FOUND
-            VPL5SAE04E - INPUT START CARD ORG NOT NUMERIC
-            VPL5SAE04S - ACCOUNT NUMBER NOT FOUND
-            VPL5SAE05E - INPUT START CARD NUMBER NOT NUMERIC
-            VPL5SAE06E - INPUT START CARD SEQUENCE NOT NUMERIC
-            VPL5SAE07E - NO VALID CARDS FOUND FOR THE ACCOUNT
-            VPL5SAEZ8S - REQUESTED ORG NOT FOUND
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountForCardDetailsResponse'
+                $ref: '#/components/schemas/UpdateCustomerNumberResponse'
+      x-proxy-name: Customer Address Update
+      x-group-name: Account
+      x-child-product-name: Accounts
+  /account/card-L8V2:
+    post:
+      tags:
+      - Account
+      summary: "Account to card details_1. (VMX Service: M.CMS.ACCT.TO.CARD.INQ, L8V2)"
+      description: "Provides the card number uses the account number or the account\
+        \ and organization number to find it. If only the account number is provided\
+        \ in the service input in a dual currency processing environment, this service\
+        \ provides the card numbers for the local account. If the organization number\
+        \ is provided in the service input, this service provides the card numbers\
+        \ associated with that organization whether it is a local or a foreign organization.\
+        \ \nVMX Service: M.CMS.ACCT.TO.CARD.INQ, L8V2"
+      operationId: Account To Card Inquiry
+      parameters:
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountForCardDetailsL8V2Request'
+        required: true
+      responses:
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountForCardDetailsL8V2Response'
       x-proxy-name: Account To Card Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -376,17 +374,21 @@ paths:
         \ Service: M.CMS.CUST.ACCT.CRD.DRV, L8V1"
       operationId: Account Boarding Driver Request
       parameters:
-      - name: apikey
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -394,6 +396,12 @@ paths:
               $ref: '#/components/schemas/AccountBoardingDriverRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "300":
           description: Redirection
           content:
@@ -402,18 +410,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: |-
             VPL5SZ103E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -469,8 +473,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
@@ -484,24 +486,28 @@ paths:
     post:
       tags:
       - Account
-      summary: "Add account. (VMX Service: M.CMS.ACCOUNT.ADD, R8V8)"
+      summary: "Add account. VMX Service: M.CMS.ACCOUNT.ADD, R8V8"
       description: "Adds a single Account to an existing Customer record for Single\
         \ Currency Accounts. For Dual Currency Accounts, two records with the same\
         \ Account number will be created in the local and foreign currency Organizations.\
         \ \nVMX Service: M.CMS.ACCOUNT.ADD, R8V8"
       operationId: Account Add
       parameters:
-      - name: apikey
-        in: header
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -509,6 +515,12 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "300":
           description: Redirection
           content:
@@ -517,18 +529,20 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountAddDetailsResponse'
         "422":
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -945,14 +959,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountAddDetailsResponse'
       x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3615,13 +3621,7 @@ components:
             Installment payment cash plan number.
 
             VisionPLUS Service Data: AZXAIO-INST-PMT-CASH-PLAN
-        userDate11:
-          type: string
-          format: date
-        userDate9:
-          type: string
-          format: date
-        userDate3:
+        userDate6:
           type: string
           format: date
         userDate4:
@@ -3630,38 +3630,44 @@ components:
         userDate7:
           type: string
           format: date
-        userDate12:
+        userDate2:
           type: string
           format: date
-        userDate14:
+        userDate3:
+          type: string
+          format: date
+        userDate9:
           type: string
           format: date
         userDate8:
           type: string
           format: date
-        userDate6:
+        userDate10:
+          type: string
+          format: date
+        userDate11:
           type: string
           format: date
         userDate5:
           type: string
           format: date
-        userDate13:
-          type: string
-          format: date
-        userDate10:
+        userDate12:
           type: string
           format: date
         userDate1:
           type: string
           format: date
-        userDate2:
+        userDate13:
+          type: string
+          format: date
+        userDate14:
+          type: string
+          format: date
+        dateLastCardAccountExpires:
           type: string
           format: date
         numberOfNonSufficientFunds:
           type: number
-        dateLastCardAccountExpires:
-          type: string
-          format: date
     AccountForDetailsResponse.AccountData.DelinquencyData:
       type: object
       properties:
@@ -4102,9 +4108,10 @@ components:
             Transfer account (part of the transfer key).
 
             VisionPLUS Service Data: AZXAIO-XFR-ACCT
-    AccountForCardDetailsRequest:
+    AccountForCardDetailsL8V2Request:
       required:
       - accountNumber
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -4120,6 +4127,7 @@ components:
         accountNumber:
           maxLength: 19
           minLength: 19
+          pattern: "^[0-9]{19}$"
           type: string
           description: |-
             Length: 19
@@ -4128,8 +4136,55 @@ components:
 
             VisionPLUS Service Data: ARXAEI-ACCT-NBR
           example: "5303716028446103276"
-      description: Account Card Detail Request
-    AccountForCardDetailsResponse:
+        functionCode:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+
+            Function code for navigating results.
+
+            VisionPLUS Service Data: ARXAEI-SVC-FUNC-CODE
+          example: "N"
+        startItem:
+          $ref: '#/components/schemas/AccountForCardDetailsL8V2Request.SItem'
+      description: Account Card Detail Request Version 2
+    AccountForCardDetailsL8V2Request.SItem:
+      type: object
+      properties:
+        startCardOrganization:
+          type: integer
+          description: |-
+            Length: 3
+
+            Start card organization number.
+
+            VisionPLUS Service Data: ARXAEI-SVC-START-CARD-ORG
+          format: int32
+          example: 123
+        startCardNumber:
+          maxLength: 19
+          minLength: 16
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXAEI-SVC-START-CARD-NBR
+          example: 000540208ID5IXX3865
+        startCardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Start card sequence number.
+
+            VisionPLUS Service Data: ARXAEI-SVC-START-CARD-SEQ
+          format: int32
+          example: 1
+    AccountForCardDetailsL8V2Response:
       type: object
       properties:
         numberOfOccurrences:
@@ -4156,20 +4211,25 @@ components:
 
             VisionPLUS Service Data: ARXAEO-CT-MORE
         cardTable:
-          $ref: '#/components/schemas/AccountForCardDetailsResponse.CardTable'
-    AccountForCardDetailsResponse.CardTable:
+          $ref: '#/components/schemas/AccountForCardDetailsL8V2Response.CardTable'
+    AccountForCardDetailsL8V2Response.CardTable:
       type: object
       properties:
         cardTableList:
           type: array
           items:
-            $ref: '#/components/schemas/AccountForCardDetailsResponse.CardTable.CardTableList'
-    AccountForCardDetailsResponse.CardTable.CardTableList:
+            $ref: '#/components/schemas/AccountForCardDetailsL8V2Response.CardTable.CardTableList'
+    AccountForCardDetailsL8V2Response.CardTable.CardTableList:
       type: object
       properties:
         sequence:
           type: integer
-          description: Sequence.
+          description: |-
+            Length: 4
+
+            Card sequence number.
+
+            VisionPLUS Service Data: AZXAEO-CARD-SEQ
           format: int32
         organization:
           type: integer
@@ -4185,9 +4245,10 @@ components:
           description: |-
             Length: 19
 
-            Card number.
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ARXAEO-CARD-NBR
+          example: 000540208ID5IXX3865
         cardSequence:
           type: integer
           description: |-
@@ -4216,7 +4277,7 @@ components:
         cardEmbosserName1:
           type: string
           description: |-
-            Length: 26
+            Length: 40
 
             Name of the cardholder.
 
@@ -4224,9 +4285,9 @@ components:
         cardEmbosserName2:
           type: string
           description: |-
-            Length: 26
+            Length: 40
 
-            Name of the cardholder.
+            Name of the cardholder used for mailing the card and PIN mailers.
 
             VisionPLUS Service Data: ARXAEO-EMBOSSER-NAME2
         cardActivationDate:
@@ -4254,7 +4315,202 @@ components:
 
             Flag that indicates if the current card has been activated.
 
+            The values are:
+
+            N = No, current card has not been activated
+
+            Y = Yes, current card has been activated
+
             VisionPLUS Service Data: ARXAEO-FIRST-USAGE-FLAG
+        digitalIndicator:
+          type: string
+          description: |-
+            Length: 1
+
+            Defines if this is a digital card.
+
+            VisionPLUS Service Data: AZXAEO-DIG-CARD-IND
+        status:
+          type: string
+          description: |-
+            Length: 1
+
+            Status on the card.
+
+            VisionPLUS Service Data: AZXAEO-STATUS
+        blockCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Block condition on the card.
+
+            VisionPLUS Service Data: AZXAEO-BLOCK-CODE
+        dateCardBlocked:
+          type: string
+          description: |-
+            Length: 8
+
+            Date on which the card was blocked.
+
+            VisionPLUS Service Data: AZXAEO-DATE-BLOCKED
+          format: date
+        transferredDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Date the trasfer was done.
+
+            VisionPLUS Service Data: AZXAEO-DATE-XFR-EFF
+          format: date
+        cardTechnology:
+          type: string
+          description: |-
+            Length: 1
+
+            Technology used ton the card issued.
+
+            VisionPLUS Service Data: AZXAEO-CARD-TECHNOLOGY
+        dateOpened:
+          type: string
+          description: |-
+            Length: 8
+
+            Date the card was record created.
+
+            VisionPLUS Service Data: AZXAEO-DATE-OPENED
+          format: date
+        dateLastMaintained:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last maintenance done on the card.
+
+            VisionPLUS Service Data: AZXAEO-DATE-LAST-MAINT
+          format: date
+        cardAction:
+          type: integer
+          description: |-
+            Length: 1
+
+            Card Action Pending on the card.
+
+            VisionPLUS Service Data: AZXAEO-CARD-ACTION
+          format: int32
+        lastCardAction:
+          type: integer
+          description: |-
+            Length: 1
+
+            Last action taken on a card.
+
+            VisionPLUS Service Data: AZXAEO-LAST-CARD-ACTION
+          format: int32
+        transferCardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Transfer from/to card number.
+
+            VisionPLUS Service Data: AZXAEO-XFR-CARD-NBR
+        transferAccountNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Transfer from/to accoount number.
+
+            VisionPLUS Service Data: AZXAEO-XFR-ACCT
+        customerNumber:
+          type: string
+          description: |-
+            Length: 1
+
+            Customer number of the account.
+
+            VisionPLUS Service Data: AZXAEO-CUSTOMER-NBR
+        cardholderType:
+          type: integer
+          description: |-
+            Length: 1
+
+            Type of card holder.
+
+            VisionPLUS Service Data: AZXAEO-CARDHOLDER-TYPE
+          format: int32
+        user1:
+          type: string
+          description: |-
+            Length: 20
+
+            User user1 number.
+
+            VisionPLUS Service Data: AZXAEO-USER-1
+        user2:
+          type: string
+          description: |-
+            Length: 20
+
+            User user2 number.
+
+            VisionPLUS Service Data: AZXAEO-USER-2
+        user3:
+          type: string
+          description: |-
+            Length: 19
+
+            User user3 number.
+
+            VisionPLUS Service Data: AZXAEO-USER-3
+        user4:
+          type: integer
+          description: |-
+            Length: 4
+
+            User user4 number.
+
+            VisionPLUS Service Data: AZXAEO-USER-4
+          format: int32
+        user5:
+          type: string
+          description: |-
+            Length: 1
+
+            User user5 number.
+
+            VisionPLUS Service Data: AZXAEO-USER-5
+        user6:
+          type: string
+          description: "\tstring\nLength: 1\n\nUser user6 number.\n\nVisionPLUS Service\
+            \ Data: AZXAEO-USER-6"
+        user7:
+          type: string
+          description: |-
+            Length: 1
+
+            User user7 number.
+
+            VisionPLUS Service Data: AZXAEO-USER-7
+        user8:
+          type: string
+          description: |-
+            Length: 1
+
+            User user8 number.
+
+            VisionPLUS Service Data: AZXAEO-USER-8
+        typeOfCard:
+          type: integer
+          description: |-
+            Length: 2
+
+            Type card issued.
+
+            VisionPLUS Service Data: AZXAEO-TYPE-OF-CARD
+          format: int32
     AccountBoardingDriverRequest:
       required:
       - logo
@@ -5162,12 +5418,15 @@ components:
             Length: 19
 
             Account number.
+            VisionPLUS Service Data: ARXAAI-ACCOUNT-NBR
           example: "4004894352313040331"
         alternateCustomerNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: Alternate customer number
+          description: |-
+            Alternate customer number
+            VisionPLUS Service Data: ARXAAI-ALT-CUST-NBR
           example: "4004894352313040331"
         shortName:
           type: string
@@ -5260,8 +5519,6 @@ components:
         dateOpened:
           type: string
           description: |-
-            Length: 8
-
             Date Opened.
 
             VisionPLUS Service Data: ARXAAI-DATE-OPENED
@@ -5432,8 +5689,6 @@ components:
         startDate:
           type: string
           description: |-
-            Length: 8
-
             Start date of the override.
 
             VisionPLUS Service Data: ARXAAI-PCT-START-DATE
@@ -5441,8 +5696,6 @@ components:
         expireDate:
           type: string
           description: |-
-            Length: 8
-
             Expiration date of the override.
 
             VisionPLUS Service Data: ARXAAI-PCT-EXPIRE-DATE
@@ -5450,8 +5703,6 @@ components:
         levelStartDate:
           type: string
           description: |-
-            Length: 8
-
             Processing control level - start date.
 
             VisionPLUS Service Data: ARXAAI-PCT-LEVEL-START-DATE
@@ -5459,11 +5710,9 @@ components:
         levelExpireDate:
           type: string
           description: |-
-            Length: 8
-
             Processing control expiration Date.
 
-            VisionPLUS Service Data: ARXAAI-PCT-LEVEL-EXPIRE-DATE
+            VisionPLUS Service Data: ARXAAI-PCT-LEVEL-EXPIR-DATE
           format: date
       description: AccountAddDetailsRequest.AccountAddData.ProcessingControlTable
     AccountAddDetailsRequestAccountAdd.MiscUserData:
@@ -5471,28 +5720,74 @@ components:
       properties:
         miscUser1:
           type: string
+          description: |-
+            Length: 30
+
+            Miscellaneous user 1
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-1
         miscUser2:
           type: string
+          description: |-
+            Length: 1
+
+            Miscellaneous user 2
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-2
         miscUser3:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 3
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-3
         miscUser4:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 4
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-4
         miscUser5:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 5
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-5
         miscUser6:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 6
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-6
         miscUser7:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 7
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-7
         miscUser8:
           type: string
+          description: |-
+            Length: 11
+
+            Miscellaneous user 8
+
+            VisionPLUS Service Data: ARXAAI-MISC-USER-8
     AccountAddDetailsRequestAccountAddData.UserData:
       type: object
       properties:
         userDate1:
           type: string
           description: |-
-            Length: 8
-
             User date 1.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-1
@@ -5500,8 +5795,6 @@ components:
         userDate2:
           type: string
           description: |-
-            Length: 8
-
             User date 2.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-2
@@ -5509,8 +5802,6 @@ components:
         userDate3:
           type: string
           description: |-
-            Length: 8
-
             User date 3.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-3
@@ -5518,8 +5809,6 @@ components:
         userDate4:
           type: string
           description: |-
-            Length: 8
-
             User date 4.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-4
@@ -5527,8 +5816,6 @@ components:
         userDate5:
           type: string
           description: |-
-            Length: 8
-
             User date 5.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-5
@@ -5536,8 +5823,6 @@ components:
         userDate6:
           type: string
           description: |-
-            Length: 8
-
             User date 6.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-6
@@ -5545,8 +5830,6 @@ components:
         userDate7:
           type: string
           description: |-
-            Length: 8
-
             User date 7.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-7
@@ -5554,8 +5837,6 @@ components:
         userDate8:
           type: string
           description: |-
-            Length: 8
-
             User date 8.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-8
@@ -5563,8 +5844,6 @@ components:
         userDate9:
           type: string
           description: |-
-            Length: 8
-
             User date 9.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-9
@@ -5572,8 +5851,6 @@ components:
         userDate10:
           type: string
           description: |-
-            Length: 8
-
             User date 10.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-10
@@ -5581,8 +5858,6 @@ components:
         userDate11:
           type: string
           description: |-
-            Length: 8
-
             User date 11.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-11
@@ -5590,8 +5865,6 @@ components:
         userDate12:
           type: string
           description: |-
-            Length: 8
-
             User date 12.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-12
@@ -5599,8 +5872,6 @@ components:
         userDate13:
           type: string
           description: |-
-            Length: 8
-
             User date 13.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-13
@@ -5608,8 +5879,6 @@ components:
         userDate14:
           type: string
           description: |-
-            Length: 8
-
             User date 14.
 
             VisionPLUS Service Data: ARXAAI-USER-DATE-14
@@ -5650,3 +5919,5 @@ components:
             Account.
 
             VisionPLUS Service Data: ARXAAO-ACCOUNT-NBR
+x-config:
+  tryItOut: true

@@ -17,11 +17,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -33,20 +35,34 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerRequest'
         required: true
       responses:
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "400":
           description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerResponse'
         "422":
           description: |-
             VPL5SGC01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -106,37 +122,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerResponse'
       x-proxy-name: Customer Update
       x-group-name: Customers
     post:
       tags:
       - Customers
-      summary: "Add new Customer. VMX Service: M.CMS.CUSTOMER.ADD ,R8V4"
+      summary: "Add new Customer. VMX Service: M.CMS.CUSTOMER.ADD, R8V4"
       description: "Creates a Customer number and adds demographical information to\
-        \ the Customer record. \nVMX Service: M.CMS.CUSTOMER.ADD ,R8V4"
-      operationId: Customer Add
+        \ the Customer record. \nVMX Service: M.CMS.CUSTOMER.ADD, R8V4"
+      operationId: New Customer Add
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -148,6 +152,18 @@ paths:
               $ref: '#/components/schemas/AddCustomerRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SNA03S – N/A SERVICE INPUT AREA IS NOT OF CORRECT SIZE
@@ -211,35 +227,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddCustomerResponse'
-      x-proxy-name: Customer Add
+      x-proxy-name: New Customer Add
       x-group-name: Customers
   /customer/details-l8v4:
     post:
@@ -252,11 +256,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -268,10 +274,26 @@ paths:
               $ref: '#/components/schemas/CustomerChannelVersion4Request'
         required: true
       responses:
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "403":
           description: Forbidden
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SCE06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -288,24 +310,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
@@ -325,11 +331,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -341,6 +349,8 @@ paths:
               $ref: '#/components/schemas/DemographicInquiryRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5SND02S – ORGANIZATION NUMBER NOT FOUND
@@ -359,28 +369,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+        "405":
+          description: Method Not Allowed
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
@@ -2367,7 +2375,6 @@ components:
         dateOfBirth:
           type: string
           description: |-
-            Length: 8
             Date of birth of the customer.
             VisionPLUS Service Data: ARXNAI-C-DOB
           format: date
@@ -2413,7 +2420,9 @@ components:
           example: "123456789"
         dateOfFile:
           type: string
-          description: "Length 7 \n Date Of File\nVisionPLUS Service Data: ARXNAI-C-1099C-W9-DATE-FILED"
+          description: |-
+            Date Of File
+            VisionPLUS Service Data: ARXNAI-C-1099C-W9-DATE-FILED
           format: date
         statementMessageIndicator:
           type: integer
@@ -2890,7 +2899,7 @@ components:
             * 8 = Closed
             * 9 = To be purged after reload.
             VisionPLUS Service Data: ARXNAI-STATUS.
-          example: "1"
+          example: "9"
     OwnerData:
       required:
       - postalCode
@@ -3152,7 +3161,6 @@ components:
         dateOfBirth:
           type: string
           description: |-
-            Length: 7
             Date of birth of the customer
             VisionPLUS Service Data: ARXNAI-DOB
           format: date
@@ -3191,13 +3199,12 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \nIdentification Number\nVisionPLUS Service Data:\
+          description: "Length 25 \nIdentification Number\nVisionPLUS Service Data:\
             \ ARXNAI-SSAN"
           example: "123456789"
         dateOfFile:
           type: string
           description: |-
-            Length: 7
             Date Of File For 1099C/W9
             VisionPLUS Service Data: ARXNAI-1099C-W9-DATE-FILED
           format: date
@@ -3563,73 +3570,105 @@ components:
       properties:
         reservedCode1:
           type: string
-          description: Reserved For Future Use
+          description: |-
+            Length: 20
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-CODE-1
         reservedCode2:
           type: string
-          description: Reserved For Future Use
+          description: |-
+            Length: 20
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-CODE-2
         reservedCode3:
           type: string
-          description: Reserved For Future Use
+          description: |-
+            Length: 20
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-CODE-3
         reservedCode4:
           type: string
-          description: Reserved For Future Use
+          description: |-
+            Length: 20
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-CODE-4
         reservedCode5:
           type: string
-          description: Reserved For Future Use
+          description: |-
+            Length: 20
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-CODE-5
         reservedDate1:
           type: string
-          description: Reserved For Future Use
+          description: |-
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-DATE-1
           format: date
         reservedDate2:
           type: string
-          description: Reserved For Future Use
+          description: "Reserved For Future \nVisionPLUS Service Data: ARXNAI-RESV-DATE-2"
           format: date
         reservedDate3:
           type: string
-          description: Reserved For Future Use
+          description: "Reserved For Future \nVisionPLUS Service Data: ARXNAI-RESV-DATE-3"
           format: date
         reservedDate4:
           type: string
-          description: Reserved For Future Use
+          description: "Reserved For Future \nVisionPLUS Service Data: ARXNAI-RESV-DATE-4"
           format: date
         reservedDate5:
           type: string
-          description: Reserved For Future Use
+          description: "Reserved For Future \nVisionPLUS Service Data: ARXNAI-RESV-DATE-5"
           format: date
         reservedAmt1:
           type: number
-          description: Reserved For Future Use
+          description: |-
+            Length: 17
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-AMT-1
         reservedAmt2:
           type: number
-          description: Reserved For Future Use
+          description: |-
+            Length: 17
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-AMT-2
         reservedAmt3:
           type: number
-          description: Reserved For Future Use
+          description: |-
+            Length: 17
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-AMT-3
         reservedAmt4:
           type: number
-          description: Reserved For Future Use
+          description: |-
+            Length: 17
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-AMT-4
         reservedAmt5:
           type: number
-          description: Reserved For Future Use
+          description: |-
+            Length: 17
+            Reserved For Future Use
+            VisionPLUS Service Data: ARXNAI-RESV-AMT-5
     AddCustomerResponse:
       type: object
       properties:
         organizationNumber:
           type: integer
           description: |-
-            Local customer organization.
+            Length: 3 Local customer organization.
             VisionPLUS Service Data: ARXNAO-LOCAL-CUST-ORG
           format: int32
         organizationAssociatedToForeignAccount:
           type: integer
           description: |-
-            Organization associated with the foreign account.
+            Length: 3 Organization associated with the foreign account.
             VisionPLUS Service Data: ARXNAO-FOREIGN-ACCT-ORG
           format: int32
         foreignCustomerOrganization:
           type: integer
           description: |-
-            Foreign customer organization.
+            Length: 3 Foreign customer organization.
             VisionPLUS Service Data: ARXNAO-FOREIGN-CUST-ORG
           format: int32
         accountNumber:
@@ -3640,61 +3679,98 @@ components:
         customerNumber:
           type: string
           description: |-
-            Length: 19Customer number that identifies the Customer Name/Address record to which this account is assigned.
+            Length: 19 Customer number that identifies the Customer Name/Address record to which this account is assigned.
             A valid customer name and address must be on file for this account.
             VisionPLUS Service Data: ARXNAO-CUST-NBR
         reservedCode1:
           type: integer
-          description: Reserved For Future Use.
+          description: |-
+            Length: 20
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-CODE-1
           format: int32
         reservedCode2:
           type: integer
-          description: Reserved For Future Use.
+          description: |-
+            Length: 20
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-CODE-2
           format: int32
         reservedCode3:
           type: integer
-          description: Reserved For Future Use.
+          description: |-
+            Length: 20
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-CODE-3
           format: int32
         reservedCode4:
           type: integer
-          description: Reserved For Future Use.
+          description: |-
+            Length: 20
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-CODE-4
           format: int32
         reservedCode5:
           type: integer
-          description: Reserved For Future Use.
+          description: |-
+            Length: 20
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-CODE-5
           format: int32
         reservedDate1:
           type: string
-          description: "Length: 8Reserved For Future Use."
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-DATE-1
           format: date
         reservedDate2:
           type: string
-          description: "Length: 8Reserved For Future Use."
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-DATE-2
           format: date
         reservedDate3:
           type: string
-          description: "Length: 8Reserved For Future Use."
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-DATE-3
           format: date
         reservedDate4:
           type: string
-          description: "Length: 8Reserved For Future Use."
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-DATE-4
           format: date
         reservedDate5:
           type: string
-          description: "Length: 8Reserved For Future Use."
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-DATE-5
           format: date
         reservedAmt1:
           type: number
-          description: Reserved For Future Use.
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-AMT-1
         reservedAmt2:
           type: number
-          description: Reserved For Future Use.
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-AMT-2
         reservedAmt3:
           type: number
-          description: Reserved For Future Use.
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-AMT-3
         reservedAmt4:
           type: number
-          description: Reserved For Future Use.
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-AMT-4
         reservedAmt5:
           type: number
-          description: Reserved For Future Use.
+          description: |-
+            Reserved For Future Use.
+            VisionPLUS Service Data: ARXNAO-RESV-AMT-5
+x-config:
+  tryItOut: true
