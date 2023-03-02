@@ -1,5 +1,5 @@
 ---
-tags: [Main Cases, Card Controls, cards, embosser, Block, Unlock, Limits, Travel, Transfer, Active, Pin]
+tags: [Main Cases, Card Controls, cards, embosser, Block, Unlock, Limits, Travel, Transfer, Active, PIN]
 ---
 
 # Card Controls
@@ -171,13 +171,13 @@ Request body:
 The description of each API field can be found within the specifications.
 
 
-## Update Pin of Card (Cards/Pin)
+## Update PIN of Card (Cards/PIN)
 
-This API CARDS/PIN, allows to the cardholder reassign a new personal identification number (PIN). Normally used when new card is deliver to the cardholder and new pin needs to be setup and linked to the new card already activated using the API Cards/Activation.
+This API CARDS/PIN, allows to the cardholder reassign a new personal identification number (PIN). Normally used when new card is deliver to the cardholder and new PIN needs to be setup and linked to the new card already activated using the API Cards/Activation.
 
-The API reassign and update the new PIN 100% on line so cardholder can use the new PIN after it was assigned. This API can be trigger from different channels as ATM, web pages, VCR, APP, etc. Cardholder will choose the new four digits pin and along with credit card number and Key Association (used to encrypt the new API) the bank application should be able to calculate the new Pin Block to trigger the API.
+The API reassign and update the new PIN 100% on line so cardholder can use the new PIN after it was assigned. This API can be trigger from different channels as ATM, web pages, VCR, APP, etc. Cardholder will choose the new four digits PIN and along with credit card number and Key Association (used to encrypt the new API) the bank application should be able to calculate the new PIN Block to trigger the API.
 
-The values required for this API are: Card Number, bank organization, channel, Pin Block and Key association.
+The values required for this API are: Card Number, bank organization, channel, PIN Block and Key association.
 
 **PUT** `/cards/pin/`
       
@@ -196,13 +196,13 @@ Request body:
 The description of each API field can be found within the specifications.
 
 
-## Pin Block/Unblock (Cards/Pin/Status)
+## PIN Block/Unblock (Cards/PIN/Status)
 
-The API cards/pin/status is being used by a cardholder to block his current PIN number, it can be used when he believes that PIN information can be compromise. This API only block the pin number and not the card number, so customer after trigger this API to block the PIN, he can still using the card for purchases but not for cash advances.
+The API cards/pin/status is being used by a cardholder to block his current PIN number, it can be used when he believes that PIN information can be compromise. This API only block the PIN number and not the card number, so customer after trigger this API to block the PIN, he can still using the card for purchases but not for cash advances.
 
-Using same API, cardholder is able the un-block a pin number already blocked, just triggering the API with a different value on field Function Code.
+Using same API, cardholder is able the un-block a PIN number already blocked, just triggering the API with a different value on field Function Code.
 
-Another function of this API, allow the cardholder unblock a card PIN when it was already blocked by exceed of pin tries from ATM.
+Another function of this API, allow the cardholder unblock a card PIN when it was already blocked by exceed of PIN tries from ATM.
 
 Values require by this API are: Card number, channel, bank organization and service function.
 
@@ -223,13 +223,13 @@ Request body:
 The description of each API field can be found within the specifications.
 
 
-## Change the Pin of a Card (Cards/Pin/Pin-Change)
+## Change the PIN of a Card (Cards/PIN/PIN-Change)
 
-With this API cards/pin/pin-change, cardholder will be able to change his current pin number, for another pin number. At different of the API Update Pin of Card, this API will request the current PIN number assigned to the cardholder, so both values need to be added before trigger the API: Current Pin and New PIN.
+With this API cards/pin/pin-change, cardholder will be able to change his current PIN number, for another PIN number. At different of the API Update PIN of Card, this API will request the current PIN number assigned to the cardholder, so both values need to be added before trigger the API: Current PIN and New PIN.
 
-This API can be used when cardholder need to change the current PIN number for another pin number just in case that this information is compromise. This API can be trigger from ATRM, VCR, APP, Web Service etc and is 100% on line.
+This API can be used when cardholder need to change the current PIN number for another PIN number just in case that this information is compromise. This API can be trigger from ATRM, VCR, APP, Web Service etc and is 100% on line.
 
-Require values of this API are: Card Number, Channel, Current Pin Block, New Pin Block, Key Association (to encrypt Pin Blocks), new pin offset, and bank organization.
+Require values of this API are: Card Number, Channel, Current PIN Block, New PIN Block, Key Association (to encrypt PIN Blocks), new PIN offset, and bank organization.
 
 **PUT** `/cards/pin/pin-change`
           
@@ -263,8 +263,8 @@ The description of each API field can be found within the specifications.
 - [Cash-in/Cash-out](?path=docs/main-cases/9-cash-in-out.md)
 - [Falcon System Integration](?path=docs/main-cases/10-falcon.md)
 - [Digital Card Issuing](?path=docs/main-cases/11-digital.md)
-- [Pan Token](?path=docs/main-cases/12-pan-token.md)
-- [Pin Change](?path=docs/main-cases/13-pin-change.md)
+- [PAN Token](?path=docs/main-cases/12-pan-token.md)
+- [PIN Change](?path=docs/main-cases/13-pin-change.md)
 - [Dynamic CVV2](?path=docs/main-cases/14-dynamic.md)
 - [Audit and Monitoring](?path=docs/main-cases/15-audit.md)
 - [HMAC Signature](?path=docs/main-cases/16-hmac.md)

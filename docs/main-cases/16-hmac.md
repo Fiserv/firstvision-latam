@@ -10,7 +10,7 @@ When you send a message to a server, with HMAC enabled, a new signature is gener
 
 Client and server must have the same secret key so they can verify the authenticity of the message and its integrity, as modified messages result in different signatures.
 
-The same message generated with the same secret key will always result in the same signature
+The same message generated with the same secret key will always result in the same signature.
 
 ![image](https://user-images.githubusercontent.com/111396588/208850051-95699fa8-b605-42c3-995b-50e1f10c0a43.png)
 
@@ -40,8 +40,8 @@ You just need to enter the common hashing algorithm, the message and your secret
 - [Cash-in/Cash-out](?path=docs/main-cases/9-cash-in-out.md)
 - [Falcon System Integration](?path=docs/main-cases/10-falcon.md)
 - [Digital Card Issuing](?path=docs/main-cases/11-digital.md)
-- [Pan Token](?path=docs/main-cases/12-pan-token.md)
-- [Pin Change](?path=docs/main-cases/13-pin-change.md)
+- [PAN Token](?path=docs/main-cases/12-pan-token.md)
+- [PIN Change](?path=docs/main-cases/13-pin-change.md)
 - [Dynamic CVV2](?path=docs/main-cases/14-dynamic.md)
 - [Audit and Monitoring](?path=docs/main-cases/15-audit.md)
 

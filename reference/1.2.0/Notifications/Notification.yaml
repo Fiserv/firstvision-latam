@@ -12,20 +12,25 @@ paths:
       tags:
         - Notifications
       x-proxy-name: Notification
-      x-group-name: Notifications
+      x-child-product-name: Notifications
       summary: |-
+                Notifications for events
+                - Authorization
+                - Card Blocked
+                - Card Activation
+      description: |-
                 Notifications for events
                 - Authorization
                 - Card Blocked
                 - Card Activation
       operationId: Notifications v2
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
       requestBody:
         description: Push Notification
         content:
@@ -46,8 +51,6 @@ paths:
           description: Not Found
         '405':
           description: Method Not Allowed
-        '422':
-          description: Unprocessable Entity
         '500':
           description: Backend Error
           content:
@@ -83,19 +86,19 @@ components:
           maxLength: 4
           example: "0001"
           description:  |-
-            <p>SMS event code.</p>
+            <p>Event code.</p>
         eventTitle:
           type: string
           maxLength: 40
           example: "TRANSACTION ALERTS"
           description:  |-
-            <p>SMS event title.</p>
+            <p>Event title.</p>
         eventNumber:
           type: integer
           maxLength: 2
           example: 1
           description:  |-
-            <p>SMS event number.</p>
+            <p>Event number.</p>
         organizationNumber:
           type: integer
           maxLength: 3
@@ -173,7 +176,7 @@ components:
           maxLength: 65
           example: "00000000010.00"
           description:  |-
-            <p>For Authorization Event: Transaction Amount in original currency. ISO element DE4 from authorization. For blocked card SMS the line contains block code</p>
+            <p>For Authorization Event: Transaction Amount in original currency. ISO element DE4 from authorization. For blocked card the line contains block code</p>
         messageLine8:
           type: string
           maxLength: 65

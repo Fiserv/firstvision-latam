@@ -2,7 +2,7 @@
 tags: [Main Cases, Pan Token, cards, embosser]
 ---
 
-# Pan Token
+# PAN Token
 
 Currently when a customer is not certified by the Payment Card Industry (PCI), the card number cannot be showed on any web service, ATM, POS, etc.
 
@@ -12,7 +12,7 @@ The PAN-TOKEN is calculated automatically using a security KEY and it can has nu
 
 PAN-TOKEN can be showed on a web service, ATM, POS, or any other device or service without compromise the real card number.
 
-Pan token, can be visible using the API **CARDS/EMBOSSER/CARD-PAN-L8V2**, so the API user can get the PAN-TOKEN number sending the Card Number, in the API input message or can get the card number just sending the PAN-TOKEN number.
+PAN token, can be visible using the API **CARDS/EMBOSSER/CARD-PAN-L8V2**, so the API user can get the PAN-TOKEN number sending the Card Number, in the API input message or can get the card number just sending the PAN-TOKEN number.
 
 **POST** `/cards/embosser/card-pan-l8v2`
 
@@ -44,7 +44,7 @@ The description of this API fields can be found within the specifications define
 - [Cash-in/Cash-out](?path=docs/main-cases/9-cash-in-out.md)
 - [Falcon System Integration](?path=docs/main-cases/10-falcon.md)
 - [Digital Card Issuing](?path=docs/main-cases/11-digital.md)
-- [Pin Change](?path=docs/main-cases/13-pin-change.md)
+- [PIN Change](?path=docs/main-cases/13-pin-change.md)
 - [Dynamic CVV2](?path=docs/main-cases/14-dynamic.md)
 - [Audit and Monitoring](?path=docs/main-cases/15-audit.md)
 - [HMAC Signature](?path=docs/main-cases/16-hmac.md)

@@ -1,12 +1,42 @@
 ---
-tags: [Release Notes, December]
+tags: [Release Notes, January, February]
 ---
 
 # Release Notes
 
-## December 31 2022
+## February 2023
 
-v1.0.0 (the version of openAPI Document that defines an API containing the change)
+### What's New
+
+New Tokenization API's
+
+- /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/deviceBinding
+- /vtis/v1/getAvailableCards
+- /vtis/v1/getSelectedCards
+- /vtis/v1/pan/lifecycle
+- /vtis/v2/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/tokenChanged
+- /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/lifecycle
+- /vtis/v1/checkEligibility
+
+### Enhancements
+
+N/A
+
+### Fixed
+
+- N/A
+
+### Known Issues
+
+- N/A
+
+### Deprecated
+
+- /account/card version R8V3
+
+---
+
+## January 2023
 
 ### What's New
 
@@ -27,3 +57,5 @@ v1.0.0 (the version of openAPI Document that defines an API containing the chang
 ### Deprecated
 
 - Old portal.
+
+---

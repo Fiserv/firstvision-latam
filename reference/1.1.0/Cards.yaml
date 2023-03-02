@@ -15,18 +15,22 @@ paths:
     post:
       tags:
       - Embosser
-      summary: "Data from the Embosser record V2. VMX Service: M.CMS.EMBOSSER.INQ,L8VE"
+      summary: "Data from the Embosser record V2. VMX Service: M.CMS.EMBOSSER.INQ,\
+        \ L8VE"
       description: "Provides the embosser data from the embosser record (AMED) as\
-        \ displayed online on the ARME screens. \nVMX Service: M.CMS.EMBOSSER.INQ.L8VE"
-      operationId: Embosser Inquiry V2
+        \ displayed online on the ARME screens. \nVMX Service: M.CMS.EMBOSSER.INQ,\
+        \ L8VE"
+      operationId: Embosser Inquiry
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -38,22 +42,8 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequestV2'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "422":
           description: "Unprocessable Entity\n\nVPL5SCIZ1S - SERVICE INPUT TO FS SERVICE\
             \ IS AN INCORRECT LENGTH \n\nVPL5SCIZ2S - USER HAS NOT SIGNED ON - PLEASE\
@@ -77,18 +67,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponseV2'
-        "405":
-          description: Method Not Allowed
       x-proxy-name: Embosser Inquiry V2
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -104,11 +108,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -120,34 +126,34 @@ paths:
               $ref: '#/components/schemas/InstantCardAddL8V7Request'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstantCardAddL8V7Response'
-        "405":
-          description: Method Not Allowed
       x-proxy-name: Instant Card Add
       x-group-name: Card
       x-child-product-name: Cards
@@ -163,11 +169,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -179,34 +187,34 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponse'
-        "405":
-          description: Method Not Allowed
       x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -221,11 +229,13 @@ paths:
       parameters:
       - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
       - name: X-ClientID
         in: header
+        description: Client ID
         required: true
         schema:
           type: string
@@ -237,34 +247,28 @@ paths:
               $ref: '#/components/schemas/AddEmbosserRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
-        "200":
-          description: Success
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddEmbosserResponse'
-        "405":
-          description: Method Not Allowed
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "422":
           description: |
             VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -296,6 +300,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddEmbosserResponse'
       x-proxy-name: Embosser Add
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -4711,3 +4721,5 @@ components:
             Current Chip Sequence Number.
             VisionPLUS Service Data: AZXAPO-CURR-CHIP-SEQ
           format: int32
+x-config:
+  tryItOut: true
