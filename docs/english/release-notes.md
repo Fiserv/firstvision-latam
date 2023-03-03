@@ -8,7 +8,7 @@ tags: [Release Notes, January, February]
 
 ### What's New
 
-Spanish documentation!
+- Spanish documentation!
 
 ### Enhancements
 
