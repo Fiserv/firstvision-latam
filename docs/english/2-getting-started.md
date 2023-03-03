@@ -65,8 +65,8 @@ You can see the different APIs available for the corresponding group, on the rig
 
 ## See Also
 
-- [Terminology](?path=docs/english/getting-started/1-terminology.md)
-- [Postman Tutorial](?path=docs/english/getting-started/2-postman.md)
-- [Structure](?path=docs/getting-started/english/3-structure.md)
+- [Postman Tutorial](?path=docs/english/getting-started/1-postman.md)
+- [Structure](?path=docs/getting-started/english/2-structure.md)
+- [Terminology](?path=docs/english/getting-started/3-terminology.md)
 
 ---
