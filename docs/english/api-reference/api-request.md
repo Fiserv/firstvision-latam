@@ -86,7 +86,7 @@ titles: Request Body Example
 ## See Also
 
 - [API Glossary](?path=docs/english/api-reference/api-glossary.md)
-- [Error Response](?path=docs/english/api-reference/error-response.md)
 - [Error Handling](?path=docs/english/api-reference/response-handling.md)
+- [Error Response](?path=docs/english/api-reference/error-response.md)
 
 ---
