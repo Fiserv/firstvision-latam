@@ -326,10 +326,10 @@ type: tab
 
 ## See Also
 
-- [Account](?path=docs/api-reference/1-account.md)
-- [Cards](?path=docs/api-reference/2-cards.md)
-- [Customer](?path=docs/api-reference/3-customer.md)
-- [Loyalty](?path=docs/api-reference/4-loyalty.md)
-- [Transactions](?path=docs/api-reference/6-transactions.md)
+- [Account](?path=docs/english/api-reference/1-account.md)
+- [Cards](?path=docs/english/api-reference/2-cards.md)
+- [Customer](?path=docs/english/api-reference/3-customer.md)
+- [Loyalty](?path=docs/english/api-reference/4-loyalty.md)
+- [Transactions](?path=docs/english/api-reference/6-transactions.md)
 
 ---
