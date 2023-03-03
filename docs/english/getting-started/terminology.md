@@ -68,7 +68,7 @@ In addition, an account will have multiple **Plan Segments**:
 
 ## See Also
 
-- [Getting Started](?path=docs/english/2-getting-started.md)
+- [Getting Started](?path=docs/english/getting-started.md)
 - [Postman Tutorial](?path=docs/english/getting-started/postman.md)
 - [Structure](?path=docs/english/getting-started/structure.md)
 
