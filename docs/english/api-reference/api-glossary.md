@@ -126,7 +126,7 @@ titles: General Terms, Acronyms , Account Types, Legacy Service Name
 
 ## See Also
 
-- [API Reference](?path=docs/english/api-reference/api-request.md)
+- [API Request](?path=docs/english/api-reference/api-request.md)
 - [Error Response](?path=docs/english/api-reference/error-response.md)
 - [Error Handling](?path=docs/english/api-reference/response-handling.md)
 
