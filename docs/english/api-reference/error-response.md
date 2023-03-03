@@ -76,7 +76,8 @@ Example of a charge (400: Bad Request) response
 
 ## See Also
 
-- [API Reference](?path=docs/api-reference/api-request.md)
-- [Error Handling](?path=docs/api-reference/response-handling.md)
+- [API Glossary](?path=docs/english/api-reference/api-glossary.md)
+- [API Request](?path=docs/english/api-reference/api-request.md)
+- [Error Handling](?path=docs/english/api-reference/response-handling.md)
 
 ---
