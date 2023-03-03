@@ -17,7 +17,7 @@ tags: [Getting Started, System Structure, Functional Structure]
 ## See Also
 
 - [Getting Started](?path=docs/english/2-getting-started.md)
-- [Terminology](?path=docs/english/getting-started/1-terminology.md)
-- [Postman Tutorial](?path=docs/english/getting-started/2-postman.md)
+- [Postman Tutorial](?path=docs/english/getting-started/1-postman.md)
+- [Terminology](?path=docs/english/getting-started/3-terminology.md)
 
 ---
