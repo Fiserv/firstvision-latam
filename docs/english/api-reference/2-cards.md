@@ -29,14 +29,15 @@ Apps that enable consumers and businesses to monitor and manage their financial 
 
 <!-- type: tab-end -->
 
+
 ---
 
 ## See Also
 
-- [Account](?path=docs/api-reference/1-account.md)
-- [Customer](?path=docs/api-reference/3-customer.md)
-- [Loyalty](?path=docs/api-reference/4-loyalty.md)
-- [Notifications ](?path=docs/api-reference/5-notifications.md)
-- [Transactions](?path=docs/api-reference/6-transactions.md)
+- [Account](?path=docs/english/api-reference/1-account.md)
+- [Customer](?path=docs/english/api-reference/3-customer.md)
+- [Loyalty](?path=docs/english/api-reference/4-loyalty.md)
+- [Notifications ](?path=docs/english/api-reference/5-notifications.md)
+- [Transactions](?path=docs/english/api-reference/6-transactions.md)
 
 ---
