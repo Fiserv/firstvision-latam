@@ -24,7 +24,6 @@ Falcon works with real time transactions that are scored in Falcon and a score f
 - [Customer Management](?path=docs/english/main-cases/customer.md)
 - [Digital Card Issuing](?path=docs/english/main-cases/digital.md)
 - [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
-- [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
 - [HMAC Signature](?path=docs/english/main-cases/hmac.md)
 - [PAN Token](?path=docs/english/main-cases/pan-token.md)
 - [PIN Change](?path=docs/english/main-cases/pin-change.md)
