@@ -64,7 +64,7 @@ You are now ready to start trying out our API!
 ## See Also
 
 - [Getting Started](?path=docs/english/2-getting-started.md)
-- [Structure](?path=docs/english/getting-started/2-structure.md)
-- [Terminology](?path=docs/english/getting-started/3-terminology.md)
+- [Structure](?path=docs/english/getting-started/structure.md)
+- [Terminology](?path=docs/english/getting-started/terminology.md)
 
 ---
