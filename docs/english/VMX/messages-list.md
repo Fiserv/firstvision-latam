@@ -169,6 +169,6 @@ tags: [Getting Started, VMX, Message List]
 
 ## See Also
 
-- [Functionality List](?path=docs/VMX/functionality-list.md)
+- [Functionality List](?path=docs/english/VMX/functionality-list.md)
 
 ---
