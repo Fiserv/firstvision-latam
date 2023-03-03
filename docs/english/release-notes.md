@@ -4,6 +4,31 @@ tags: [Release Notes, January, February]
 
 # Release Notes
 
+## March 2023
+
+### What's New
+
+Spanish documentation!
+
+### Enhancements
+
+N/A
+
+### Fixed
+
+- N/A
+
+### Known Issues
+
+- N/A
+
+### Deprecated
+
+- N/A
+
+---
+
+
 ## February 2023
 
 ### What's New
