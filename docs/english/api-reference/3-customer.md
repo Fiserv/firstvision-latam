@@ -33,10 +33,10 @@ Apps that enable consumers and businesses to monitor and manage their financial 
 
 ## See Also
 
-- [Account](?path=docs/api-reference/1-account.md)
-- [Cards](?path=docs/api-reference/2-cards.md)
-- [Loyalty](?path=docs/api-reference/4-loyalty.md)
-- [Notifications ](?path=docs/api-reference/5-notifications.md)
-- [Transactions](?path=docs/api-reference/6-transactions.md)
+- [Account](?path=docs/english/api-reference/1-account.md)
+- [Cards](?path=docs/english/api-reference/2-cards.md)
+- [Loyalty](?path=docs/english/api-reference/4-loyalty.md)
+- [Notifications ](?path=docs/english/api-reference/5-notifications.md)
+- [Transactions](?path=docs/english/api-reference/6-transactions.md)
 
 ---
