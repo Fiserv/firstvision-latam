@@ -184,10 +184,6 @@ tags: [Getting Started, VMX, Message List]
 
 ## See Also
 
----
-
-## See Also
-
 - [Getting Started](?path=docs/english/getting-started.md)
 - [Postman Tutorial](?path=docs/english/getting-started/postman.md)
 - [Structure](?path=docs/english/getting-started/structure.md)
