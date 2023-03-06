@@ -12,7 +12,7 @@ tags: [Release Notes, January, February]
 
 ### Enhancements
 
-N/A
+- VMX list updated
 
 ### Fixed
 
