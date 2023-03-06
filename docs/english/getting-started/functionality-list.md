@@ -202,6 +202,10 @@ tags: [Getting Started, VMX, Functionality List]
 
 ## See Also
 
+- [Getting Started](?path=docs/english/getting-started.md)
 - [Messages List](?path=docs/english/getting-started/messages-list.md)
+- [Postman Tutorial](?path=docs/english/getting-started/postman.md)
+- [Structure](?path=docs/english/getting-started/structure.md)
+- [Terminology](?path=docs/english/getting-started/terminology.md)
 
 ---
