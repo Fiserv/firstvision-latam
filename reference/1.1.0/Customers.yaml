@@ -6,14 +6,14 @@ info:
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 paths:
-  /customer/:
-    put:
+  /customer/details-l8v4:
+    post:
       tags:
       - Customers
-      summary: "Update Customer VMX Service: M.CMS.CUSTOMER.UPD, R8V5"
-      description: "Updates the demographic and user data on the Customer record.\
-        \ \nVMX Service: M.CMS.CUSTOMER.UPD, R8V5"
-      operationId: Customer Update
+      summary: "Get Cards Details l8v4. VMX Service: M.CMS.CUSTCHANNEL.INQ, L8V4"
+      description: "Get Customer Cards Details version 4. \nVMX Service: M.CMS.CUSTCHANNEL.INQ,\
+        \ L8V4"
+      operationId: Cards Details Inquiry
       parameters:
       - name: apikey
         in: header
@@ -32,105 +32,140 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCustomerRequest'
+              $ref: '#/components/schemas/CustomerChannelVersion4Request'
         required: true
       responses:
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "422":
+          description: |-
+            VPL5SCE06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
+            VPL5SCE07E - ACCT/CARD BLOCKED OR CARD NOT ACTIVATED OR NO ACCT ON CUST NBR
+            VPL5SCE08E - INVALID FUCNTION CODE PASSED TO SERVICE
+            VPL5SCE09E - SERVICE FUNCTION CODE IS INVALID
+            VPL5SCE10S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+            VPL5SCE11S - REQUESTED ORGANIZATION NOT FOUND
+            VPL5SCE15S - ACCOUNT NUMBER NOT FOUND
+            VPL5SCE17S - ACCOUNT/CARD CROSS REFERENCE FILE UNAVAILABLE
+            VPL5SCE18S - GETMAIN FAILURE ON N/A SERVICE INPUT AREA
+            VPL5SCE19S - GETMAIN FAILURE ON N/A SERVICE OUTPUT AREA
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateCustomerResponse'
-        "422":
-          description: |-
-            VPL5SGC01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-            VPL5SGC01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
-            VPL5SGC02E - CUSTOMER, ACCOUNT OR CARD NUMBER REQUIRED
-            VPL5SGC02S - ORGANIZATION NUMBER NOT FOUND
-            VPL5SGC03E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0 OR 1
-            VPL5SGC03S - ACCOUNT NUMBER NOT FOUND
-            VPL5SGC04E - INVALID NUMBER TYPE INDICATOR - VALID VALUES ARE SPACE, 0 OR 1
-            VPL5SGC04S - CUSTOMER NUMBER NOT FOUND
-            VPL5SGC05E - ORGANIZATION NUMBER REQUIRED WHEN NUMBER TYPE 1
-            VPL5SGC06E - INVALID DEMOGRAPHIC DATA INDICATOR - VALID VALUES ARE SPACE,0,1,2
-            VPL5SGC07E - INVALID USER DATA INDICATOR - VALID VALUES ARE SPACE, 0, 1 OR 2
-            VPL5SGC08E - DEMOGRAPHIC DATA AND USER DATA INDICATORS MUST BE CORRESPONDING
-            VPL5SGC09E - STATUS MUST BE NUMERIC AND VALID VALUES ARE 0, 1 OR 2 ONLY
-            VPL5SGC10E - VIP STATUS MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1 ONLY
-            VPL5SGC11E - SIC CODE MUST BE NUMERIC
-            VPL5SGC12E - MARITAL STATUS MUST BE NUMERIC AND VALUES ARE 0 THRU 4
-            VPL5SGC13E - NAME TYPE 1 IND MUST BE NUMERIC AND VALID VALUES ARE 0, 1 OR 2
-            VPL5SGC14E - NAME TYPE 2 IND MUST BE NUMERIC AND VALID VALUES ARE 0, 1 OR 2
-            VPL5SGC15E - NAME TYPE 3 IND MUST BE NUMERIC AND VALID VALUES ARE 0, 1 OR 2
-            VPL5SGC16E - POSTAL CODE MUST BE ALPHA, SPACE, DASH OR NUMBER
-            VPL5SGC17E - RESIDENCE CODE MUST BE NUMERIC AND VALID VALUES ARE 0 THRU 3
-            VPL5SGC18E - CONTACT IND MUST BE NUMERIC
-            VPL5SGC19E - CARRIER ROUTE LAST 2 CHARACTERS MUST BE NUMERIC
-            VPL5SGC20E - SENT DATE MUST BE NUMERIC AND HAS VALUE ZERO OR VALID DATE FORMAT
-            VPL5SGC21E - SENT DATE MUST BE <= THAN NEXT PROCESSING DATE OR ZERO
-            VPL5SGC22E - STATEMENT MESSAGE INDICATOR MUST BE NUMERIC
-            VPL5SGC23E - DATE OF BIRTH MUST BE ZERO OR HAVE VALID DATE FORMAT
-            VPL5SGC24E - TAX IDENTIFICATION MUST BE NUMERIC AND VALID VALUES ARE 0, 1 OR 2
-            VPL5SGC25E - WHEN TAX ID = 0 FIRST 9 CHARACTERS TAX ID NUMBER MUST BE NUMERIC
-            VPL5SGC26E - FILED DATE MUST BE ZERO OR HAVE VALID DATE FORMAT
-            VPL5SGC27E - FILED DATE MUST BE <= THAN NEXT PROCESSING DATE OR ZERO
-            VPL5SGC28E - FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
-            VPL5SGC29E - NUMBER OF DEPENDANTS MUST BE NUMERIC
-            VPL5SGC30E - USER 10 DATE MUST BE ZERO OR VALID DATE FORMAT
-            VPL5SGC31E - USER 11 DATE MUST BE ZERO OR VALID DATE FORMAT
-            VPL5SGC33E - CAN NOT CHANGE STATUS TO PURGE WITH ACTIVE RELATIONSHIP
-            VPL5SGC34E - CAN NOT CHANGE STATUS TO PURGE WITH ACTIVE ACCOUNT
-            VPL5SGC35E - COUNTRY CODE MUST EXIST IN THE SECURITY SUBSYSTEM
-            VPL5SGC36E - HOME PHONE FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
-            VPL5SGC37E - FAX PHONE FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
-            VPL5SGC38E - MOBILE PHONE FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
-            VPL5SGC39E - EMAIL FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
-            VPL5SGC40E - GENDER CODE MUST BE NUMERIC AND VALID VALUES ARE 0, 1 OR 2
-            VPL5SGC41E - SMS FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
-            VPL5SGC42E - AMONG HOME,WORK,FAX,MOBILE AND EMAIL IND, ONE CAN HAVE VALUE 2
-            VPL5SGC44E - WHEN HOME PHONE FLAG IS 1 OR 2, ENTRY REQUIRED FOR HOME PHONE
-            VPL5SGC45E - WHEN FAX PHONE FLAG IS 1 OR 2, ENTRY REQUIRED FOR FAX PHONE
-            VPL5SGC46E - WHEN MOBILE PHONE FLAG IS 1 OR 2, ENTRY REQUIRED FOR MOBILE PHONE
-            VPL5SGC47E - WHEN EMAIL FLAG IS 1 OR 2, ENTRY REQUIRED FOR EMAIL
-            VPL5SGC53E - DATE OF BIRTH MUST BE LESS THAN NEXT PROCESSING DATE
-            VPL5SGC54E - NAME-LINE-1 NOT MAINTAINABLE WHEN EXTENDED LOOKUP IS ACTIVE
-            VPL5SGCZ4S - REQUESTED ORG NUMBER IS NOT FOUND
-            VPL5SGCZ8S - FOREIGN ORGANIZATION NUMBER NOT FOUND
+                $ref: '#/components/schemas/CustomerChannelVersion4Response'
+      x-proxy-name: Cards Details Inquiry
+      x-group-name: Customers
+  /customer/demographicData:
+    post:
+      tags:
+      - Customers
+      summary: "Inquire demographic data. VMX Service: M.CMS.DEMOGRAPHIC.INQ, R8V4"
+      description: "Requests demographic data from a Customer number. \nVMX Service:\
+        \ M.CMS.DEMOGRAPHIC.INQ, R8V4"
+      operationId: Demographic Inquiry
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DemographicInquiryRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-      x-proxy-name: Customer Update
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "422":
+          description: |-
+            VPL5SND02S – ORGANIZATION NUMBER NOT FOUND
+            VPL5SND05S – ORG RECORD NOT FOUND
+            VPL5SND06S – DUAL ORG RECORD NOT FOUND
+            VPL5SND07S – ACCOUNT/CARD CAN NOT BE FOUND IN AMBS FILE
+            VPL5SND08S – LOGO RECORD NOT FOUND
+            VPL5SND09S – CUSTOMER CAN NOT BE FOUND
+            VPL5SND10S – ACCOUNT/CARD CAN NOT BE FOUND IN AMNA FILE
+            VPL5SND11E – INVALID ORG FORMAT-VALID VALUES ARE SPACES/001 TO 998
+            VPL5SND12E – ACCOUNT/CARD/CUSTOMER NUMBER SHOULD BE PROVIDED AND BE NUMERIC
+            VPL5SND13E – INVALID DUAL FLAG-VALID VALUES ARE SPACES/0/1
+            VPL5SND14E – NUMBER TYPE IS INVALID-VALID VALUES ARE SPACE/0/1
+            VPL5SNDZ4S – ORGANIZATION NOT DETERMINED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemographicInquiryResponse'
+      x-proxy-name: Demographic Inquiry
       x-group-name: Customers
+  /customer/:
     post:
       tags:
       - Customers
       summary: "Add new Customer. VMX Service: M.CMS.CUSTOMER.ADD, R8V4"
       description: "Creates a Customer number and adds demographical information to\
         \ the Customer record. \nVMX Service: M.CMS.CUSTOMER.ADD, R8V4"
-      operationId: New Customer Add
+      operationId: Customer Add
       parameters:
       - name: apikey
         in: header
@@ -152,18 +187,6 @@ paths:
               $ref: '#/components/schemas/AddCustomerRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SNA03S – N/A SERVICE INPUT AREA IS NOT OF CORRECT SIZE
@@ -227,856 +250,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddCustomerResponse'
-      x-proxy-name: New Customer Add
-      x-group-name: Customers
-  /customer/details-l8v4:
-    post:
-      tags:
-      - Customers
-      summary: "Get Cards Details l8v4. VMX Service: M.CMS.CUSTCHANNEL.INQ, L8V4"
-      description: "Get Customer Cards Details version 4. \nVMX Service: M.CMS.CUSTCHANNEL.INQ,\
-        \ L8V4"
-      operationId: Cards Details Inquiry
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerChannelVersion4Request'
-        required: true
-      responses:
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "422":
-          description: |-
-            VPL5SCE06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
-            VPL5SCE07E - ACCT/CARD BLOCKED OR CARD NOT ACTIVATED OR NO ACCT ON CUST NBR
-            VPL5SCE08E - INVALID FUCNTION CODE PASSED TO SERVICE
-            VPL5SCE09E - SERVICE FUNCTION CODE IS INVALID
-            VPL5SCE10S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-            VPL5SCE11S - REQUESTED ORGANIZATION NOT FOUND
-            VPL5SCE15S - ACCOUNT NUMBER NOT FOUND
-            VPL5SCE17S - ACCOUNT/CARD CROSS REFERENCE FILE UNAVAILABLE
-            VPL5SCE18S - GETMAIN FAILURE ON N/A SERVICE INPUT AREA
-            VPL5SCE19S - GETMAIN FAILURE ON N/A SERVICE OUTPUT AREA
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerChannelVersion4Response'
-      x-proxy-name: Cards Details Inquiry
-      x-group-name: Customers
-  /customer/demographicData:
-    post:
-      tags:
-      - Customers
-      summary: "Inquire demographic data. VMX Service: M.CMS.DEMOGRAPHIC.INQ, R8V4"
-      description: "Requests demographic data from a Customer number. \nVMX Service:\
-        \ M.CMS.DEMOGRAPHIC.INQ, R8V4"
-      operationId: Demographic Inquiry
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DemographicInquiryRequest'
-        required: true
-      responses:
-        "400":
-          description: Bad Request
-        "422":
-          description: |-
-            VPL5SND02S – ORGANIZATION NUMBER NOT FOUND
-            VPL5SND05S – ORG RECORD NOT FOUND
-            VPL5SND06S – DUAL ORG RECORD NOT FOUND
-            VPL5SND07S – ACCOUNT/CARD CAN NOT BE FOUND IN AMBS FILE
-            VPL5SND08S – LOGO RECORD NOT FOUND
-            VPL5SND09S – CUSTOMER CAN NOT BE FOUND
-            VPL5SND10S – ACCOUNT/CARD CAN NOT BE FOUND IN AMNA FILE
-            VPL5SND11E – INVALID ORG FORMAT-VALID VALUES ARE SPACES/001 TO 998
-            VPL5SND12E – ACCOUNT/CARD/CUSTOMER NUMBER SHOULD BE PROVIDED AND BE NUMERIC
-            VPL5SND13E – INVALID DUAL FLAG-VALID VALUES ARE SPACES/0/1
-            VPL5SND14E – NUMBER TYPE IS INVALID-VALID VALUES ARE SPACE/0/1
-            VPL5SNDZ4S – ORGANIZATION NOT DETERMINED
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DemographicInquiryResponse'
-      x-proxy-name: Demographic Inquiry
+      x-proxy-name: Customer Add
       x-group-name: Customers
 components:
   schemas:
-    CarrierRoute:
-      type: object
-      properties:
-        carrierRoute1and2:
-          maxLength: 2
-          minLength: 0
-          type: string
-          description: |-
-            Length: 2
-            Two-part field that identifies the carrier route used for mail sorting purposes.
-            Carrier route used to sort mail for postal delivery purposes.
-            VisionPLUS Service Data: ARXGCI-CR-1-2
-          example: C1
-        carrierRoute3and4:
-          maximum: 2
-          minimum: 0
-          type: integer
-          description: |-
-            Length: 2
-            Two-part field that identifies the carrier route used for mail sorting purposes.
-            Carrier route used to sort mail for postal delivery purposes.
-            VisionPLUS Service Data: ARXGCI-CR-3-4
-          format: int32
-    DriverLicense:
-      type: object
-      properties:
-        driverLicenseNumber:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: |-
-            Length: 20
-
-            Three-part field that identifies the driver license number of the owner, state or province of issue, and the country of issue.
-
-            VisionPLUS Service Data: AZXNDO-DL-NBR
-        driverLicenseState:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: "Length: 3 \nDriver's License State.\n\nVisionPLUS Service\
-            \ Data: AZXNDO-DL-NBR"
-        driverLicenseCountry:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: "Length: 3 \nDriver’s License state\n\nVisionPLUS Service Data:\
-            \ AZXNDO-DL-STATE"
-    UpdateCustomerRequest:
-      required:
-      - customerNumber
-      - organizationNumber
-      - postalCode
-      - sicCode
-      - status
-      - vipStatus
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: "Length 999 \nOrganization Number\nVisionPLUS Service Data:\
-            \ ARXGCI-ORG"
-          format: int32
-          example: 807
-        customerNumber:
-          type: string
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
-          example: 000540208ID5IXX3865
-        numberType:
-          type: string
-          description: |-
-            Length: 1
-            Type of number in the ARXGCI-CARD-NBR field. The values are:
-            * Zero, space, or low values = Card number
-            * 1 = Customer number
-            If zero, space, or low values is specified, the primary customer record associated with the account will be updated with the information provided to the service.
-            * If an alternate customer record, a correspondence customer record, or a customer record associated with a card is needed, use the customer number.
-            VisionPLUS Service Data: ARXGCI-NBR-TYPE
-          example: "1"
-        foreignUseIndicator:
-          type: string
-          description: |-
-            Length: 1
-            Foreign Use Indicator. The values are :
-            * Zero, space, or low values = Local account
-            * 1 = Foreign account
-            VisionPLUS Service Data: ARXGCI-FOREIGN-USE-FLAG
-          example: "0"
-        demographicDataIndicator:
-          type: string
-          description: |-
-            Length: 1
-            Demographic Data Indicator. The values are :
-            * Zero, space, or low values = Do not update
-            * 1 = Update owner
-            * 2 = Update co-owner
-            VisionPLUS Service Data: ARXGCI-DEMOGRAPHIC-DATAIND
-          example: "1"
-        userDataIndicator:
-          type: string
-          description: |-
-            Length: 1
-            User Data Indicator. The values are :
-            * Zero, space, or low values = Do not update
-            * 1 = Update owner
-            * 2 = Update co-owner
-            VisionPLUS Service Data: ARXGCI-USER-DATA-IND
-          example: "1"
-        vipStatus:
-          type: integer
-          description: |-
-            Length: 1
-            VIP Status Indicator. The values are:
-            * 0 = Not VIP customer
-            * 1 = VIP customer
-            VisionPLUS Service Data: ARXGCI-VIP-STATUS
-          format: int32
-          example: 1
-        status:
-          type: integer
-          description: |-
-            Length: 1
-            Status Of The Account
-            VisionPLUS Service Data: ARXGCI-STATUS
-          format: int32
-          example: 1
-        sicCode:
-          type: integer
-          description: |-
-            Length: 6
-            Standard Industrial Classification code used to identify the industry to which the commercial card customer is associated.
-            VisionPLUS Service Data: ARXGCI-SIC-CODE
-          format: int32
-          example: 123456
-        title:
-          type: string
-          description: "Length 40 \nTitle\nVisionPLUS Service Data: ARXGCI-TITLE"
-          example: Monsieur
-        maritalStatus:
-          type: string
-          description: "Length: 1 \nMarital Status\nVisionPLUS Service Data: ARXGCI-MARITAL-STATUS"
-          example: "1"
-        nameLine1:
-          type: string
-          description: "Length 40 \n Name Line 1\nVisionPLUS Service Data: ARXGCI-NAME-LINE-1"
-          example: OWN NAME L1
-        nameTypeIndicator1:
-          type: integer
-          description: |-
-            Length: 1
-            Name Type Indicator 1. indicates the type of name. The values are -
-            * 0 = Personal name (Default)
-            * 1 = Business name
-            * 2 = Store name
-            * 3 = Generic name
-            VisionPLUS Service Data: ARXGCI-NAME-LINE-1-TYP
-          format: int32
-          example: 0
-        nameLine2:
-          type: string
-          description: "Length 40 \n Name Line 2\nVisionPLUS Service Data: ARXGCI-NAME-LINE-2"
-          example: OWN NAME L2 TEST9
-        nameTypeIndicator2:
-          type: integer
-          description: |-
-            Length: 1Name Type Indicator 2. indicates the type of name. The values are -
-            * 0 = Personal name (Default)
-            * 1 = Business name
-            * 2 = Store name
-            * 3 = Generic name
-            VisionPLUS Service Data: ARXGCI-NAME-LINE-2-TYP
-          format: int32
-          example: 0
-        nameLine3:
-          type: string
-          description: "Length 40 \n Name Line 3\nVisionPLUS Service Data: ARXGCI-NAME-LINE-3"
-          example: OWN NAME L3
-        nameTypeIndicator3:
-          type: integer
-          description: |-
-            Length: 1
-            Name Type Indicator 3. indicates the type of name. The values are -
-            * 0 = Personal name (Default)
-            * 1 = Business name
-            * 2 = Store name
-            * 3 = Generic name
-            VisionPLUS Service Data: ARXGCI-NAME-LINE-3-TYP
-          format: int32
-          example: 0
-        houseNumber:
-          type: string
-          description: "Length 20 \nInternal number of the residence\nVisionPLUS Service\
-            \ Data: ARXGCI-HOUSE-NBR"
-          example: "12349"
-        houseName:
-          type: string
-          description: "Length 40 \nHouse name\nVisionPLUS Service Data: ARXGCI-HOUSE-NAME"
-          example: LILY RESIDENCE
-        houseAddress1:
-          type: string
-          description: "Length 40 \nHouse Address 1\nVisionPLUS Service Data: ARXGCI-ADDR-1"
-          example: OWN ADDR L19
-        houseAddress2:
-          type: string
-          description: "Length 40 \nHouse Address 2\nVisionPLUS Service Data: ARXGCI-ADDR-2"
-          example: OWN ADDR L19
-        houseAddress3:
-          type: string
-          description: "Length 40 \nHouse Address 3\nVisionPLUS Service Data: ARXGCI-ADDR-3"
-          example: OWN ADDR L19
-        houseAddress4:
-          type: string
-          description: "Length 40 \nHouse Address 4\nVisionPLUS Service Data: ARXGCI-ADDR-4"
-          example: OWN ADDR L19
-        city:
-          type: string
-          description: "Length: 30 \nResidence City.\nVisionPLUS Service Data: ARXGCI-CITY"
-          example: SUNSHINE
-        state:
-          type: string
-          description: |-
-            Length: 3
-            Residence state. This is derived based on the state code.
-            VisionPLUS Service Data: ARXGCI-STATE
-          example: FL
-        postalCode:
-          type: string
-          description: |-
-            Length: 10
-            Residence Postal Code
-            VisionPLUS Service Data: ARXGCI-PSTL-CD
-          example: "12345679"
-        countryCode:
-          type: string
-          description: |-
-            Length: 30
-            Code that identifies the country in which this organization is located.
-            VisionPLUS Service Data: ARXGCI-CNTRY-CD
-          example: USA
-        ownOrRentResidenceFlag:
-          type: integer
-          description: |-
-            Length: 1
-            Code indicating whether the primary residence is owned or rented
-            VisionPLUS Service Data: ARXGCI-OWN-RENT-RESID-FLAG
-          format: int32
-          example: 2
-        languageIndicator:
-          type: string
-          description: "Length: 3 \nSpoken Language Indicator\nVisionPLUS Service\
-            \ Data: ARXGCI-LANGUAGE-IND"
-          example: ENG
-        mailingList:
-          type: string
-          description: |-
-            Length: 1
-            Code indicating whether the owner wants to be on a mailing List
-            VisionPLUS Service Data: ARXGCI-MAILING-LIST
-          example: "1"
-        contactIndicator:
-          type: integer
-          description: |-
-            Length: 2
-            Code Indicating Whether Customer Contact Is Restricted or Not.
-            The values are:
-            * 00 = No restriction (Default)
-            * 01 = Do not telephone
-            * 02 = Do not mail
-            * 03 = Do not mail or telephone
-            * 04–09 = Reserved for future use
-            * 10–99 = User-defined by client.
-            VisionPLUS Service Data: ARXGCI-CONTACT-IND
-          format: int32
-          example: 12
-        genderCode:
-          type: integer
-          description: |-
-            Length: 1
-            Gender code. The values are:
-            * 0 = Unspecified (Default)
-            * 1 = Male
-            * 2 = Female
-            VisionPLUS Service Data: ARXGCI-GENDER-CODE
-          format: int32
-          example: 1
-        homePhoneNumber:
-          type: string
-          description: |-
-            Length: 20
-            Three-part field that indicates the fax number of the customer, whether you have the customer’s permission to contact the customer at this number, and the date on which the fax number was last modified
-            VisionPLUS Service Data: ARXGCI-HOME-PHONE
-          example: 123-456-9990
-        homePhoneIndicator:
-          type: integer
-          description: |-
-            Length: 1
-            Call indicator specifying whether you can contact the customer at this number. The values are :
-            * 0 = Customer may not be contacted using this number
-            * 1 = Customer may be contacted using this number (Default)
-            VisionPLUS Service Data: ARXGCI-HOME-PHONE-IND
-          format: int32
-          example: 1
-          enum:
-          - null
-        faxPhoneNumber:
-          type: string
-          description: "Length 20 \nFAX Phone Number\nVisionPLUS Service Data: ARXGCI-FAX-PHONE"
-          example: 223-456-7890
-        faxPhoneIndicator:
-          type: integer
-          description: |-
-            Length: 1
-            Call indicator specifying whether you can contact the customer at this number. The values are :
-            * 0 = Customer may not be contacted using this number
-            * 1 = Customer may be contacted using this number (Default)
-            VisionPLUS Service Data: ARXGCI-FAX-PHONE-IND
-          format: int32
-          example: 1
-        mobilePhoneNumber:
-          type: string
-          description: "Length 20 \n Mobile Phone Number\nVisionPLUS Service Data:\
-            \ ARXGCI-MOBILE-PHONE"
-          example: 323-456-7890
-        mobilePhoneIndicator:
-          type: integer
-          description: |-
-            Length: 1
-            Call indicator specifying whether you can contact the customer at this number. The values are:
-            * 0 = Customer may not be contacted using this number
-            * 1 = Customer may be contacted using this number (Default)
-            VisionPLUS Service Data: ARXGCI-MOBILE-PHONE-IND
-          format: int32
-          example: 1
-          enum:
-          - null
-        dateOfBirth:
-          type: string
-          description: |-
-            Length: 10
-            Date of birth of the customer.
-            VisionPLUS Service Data: ARXGCI-DOB
-          format: date
-        driverLicense:
-          $ref: '#/components/schemas/DriverLicense'
-        taxIdType:
-          type: integer
-          description: "Length 1 \nTAX ID Type\nVisionPLUS Service Data: ARXGCI-TAX-ID-TYP"
-          format: int32
-          example: 1
-        taxIdNumber:
-          type: string
-          description: "Length 25 \nTAX ID Number\nVisionPLUS Service Data: ARXGCI-TAX-ID"
-          example: "123456789"
-        dateFiledForm:
-          type: string
-          description: |-
-            Length: 10
-            Date on which the tax identification number of the owner was recorded in the Customer Name/Address record as a result of receiving the W-9 form.
-            VisionPLUS Service Data: ARXGCI-1099C-W9-DATE-FILE
-          format: date
-        employerName:
-          type: string
-          description: "Length 40 \nEmployer Name.\nVisionPLUS Service Data: ARXGCI-EMPLOYER"
-          example: Milton
-        employerAddress1:
-          type: string
-          description: |-
-            Length: 40
-            Two-part field that indicates the mailing address of the employer of the owner.
-            VisionPLUS Service Data: ARXGCI-EMPLOYER-ADDR-1
-          example: EMP ADDR L1
-        employerAddress2:
-          type: string
-          description: |-
-            Length: 40
-            Two-part field that indicates the mailing address of the employer of the owner.
-            VisionPLUS Service Data: ARXGCI-EMPLOYER-ADDR-2
-          example: EMP ADDR L2
-        employerPhoneNumber:
-          type: string
-          description: "Length 20 \nEmployer Phone Number\nVisionPLUS Service Data:\
-            \ ARXGCI-EMPLOYER-ADDR-1"
-          example: 123-456-7890
-        employerExtensionPhoneNumber:
-          type: string
-          description: "Length 6 \nEmployee Phone Extension.\nVisionPLUS Service Data:\
-            \ ARXGCI-EMP-PHONE-EXTN"
-          example: "123456"
-        employerPhoneFlag:
-          type: integer
-          description: |-
-            Length: 1
-            Employer Phone Flag. The values are:
-            * 0 = Do not fax
-            * 1 = May be faxed
-            * 2 = Prefers to be faxed
-            VisionPLUS Service Data: ARXGCI-EMP-PHONE-FLAG
-          format: int32
-          example: 1
-        position:
-          type: string
-          description: |-
-            Length: 4
-            User-defined code to indicate the position or job title of the owner.
-            VisionPLUS Service Data: ARXGCI-POSITION
-          example: CEO
-        relativeName:
-          type: string
-          description: "Length 40 \n Relative Name\nVisionPLUS Service Data: ARXGCI-RELATIVE-NAME"
-          example: Relative Name
-        numberOfDependents:
-          type: integer
-          description: "Length 3 \nNumber of Dependents\nVisionPLUS Service Data:\
-            \ ARXGCI-NBR-OF-DEPENDENTS"
-          format: int32
-          example: 999
-        email:
-          type: string
-          description: "Length: 19 \nEmail of customer.\nVisionPLUS Service Data:\
-            \ ARXGCI-EMAIL"
-          example: ABC.DEF@yahoo.com
-        emailIndicator:
-          type: integer
-          description: |-
-            Length: 1
-            The values are:
-            * 0 = Do not e-mail
-            * 1 = May be e-mailed
-            * 2 = Prefers to be e-mailed
-            VisionPLUS Service Data: ARXGCI-EMAIL-IND
-          format: int32
-          example: 1
-        smsIndicator:
-          type: integer
-          description: |-
-            Length: 1
-            Short message service (sms) indicator. The values are :
-            * 0 = No, do not send message
-            * 1 = yes, you can send message
-            VisionPLUS Service Data: ARXGCI-SMS-IND
-          format: int32
-          example: 1
-          enum:
-          - null
-        firstName:
-          type: string
-          description: "Length 40 \nFirst name\nVisionPLUS Service Data: ARXGCI-FIRST-NAME"
-          example: FirstName
-        middleName:
-          type: string
-          description: "Length 40 \n Middle name\nVisionPLUS Service Data: ARXGCI-MIDDLE-NAME"
-          example: MiddleName
-        lastName:
-          type: string
-          description: "Length: 40 \nLast name\nVisionPLUS Service Data: ARXGCI-LAST-NAME"
-          example: LastName
-        suffix:
-          type: string
-          description: |-
-            Length 20
-            VisionPLUS Service Data: ARXGCI-SUFFIX
-          example: Sr
-        county:
-          type: string
-          description: |-
-            Length: 30
-            County portion of the mailing address of the owner.
-            VisionPLUS Service Data: ARXGCI-COUNTY
-          example: Orange
-        memo1:
-          type: string
-          description: "Length 60 \nMemo 1\nVisionPLUS Service Data: ARXGCI-MEMO-2"
-          example: Memo 1
-        memo2:
-          type: string
-          description: "Length 60 \nMemo 2\nVisionPLUS Service Data: ARXGCI-MEMO-2"
-          example: Memo 2
-        user1:
-          type: string
-          description: "Length 2 \nUser 1\nVisionPLUS Service Data: ARXGCI-MEMO-1"
-          example: U1
-        user2:
-          type: string
-          description: "Length 2 \nUser 2\nVisionPLUS Service Data: ARXGCI-MEMO-2"
-          example: U2
-        user3:
-          type: string
-          description: "Length 7 \nUser 3\nVisionPLUS Service Data: ARXGCI-MEMO-3"
-          example: U323323
-        user4:
-          type: string
-          description: "Length 1 \nUser 4\nVisionPLUS Service Data: ARXGCI-MEMO-4"
-          example: U
-        user5:
-          type: string
-          description: "Length 1 \nUser 5\nVisionPLUS Service Data: ARXGCI-MEMO-5"
-          example: U
-        user6:
-          type: string
-          description: "Length 2 \nUser 6\nVisionPLUS Service Data: ARXGCI-MEMO-6"
-          example: U6
-        user7:
-          type: string
-          description: "Length 2 \nUser 7\nVisionPLUS Service Data: ARXGCI-MEMO-7"
-          example: U7
-        user8:
-          type: string
-          description: "Length 2 \nUser 8\nVisionPLUS Service Data: ARXGCI-MEMO-8"
-          example: U8
-        user9:
-          type: string
-          description: "Length 2 \nUser 9\nVisionPLUS Service Data: ARXGCI-MEMO-9"
-          example: U8
-        user10:
-          type: integer
-          description: "Length 7 \nUser 10\nVisionPLUS Service Data: ARXGCI-MEMO-10"
-          format: int32
-          example: 2011031
-        user11:
-          type: integer
-          description: "Length 7 \nUser 11\nVisionPLUS Service Data: ARXGCI-MEMO-11"
-          format: int32
-          example: 2011032
-        user12:
-          type: string
-          description: "Length 30 \nUser 12\nVisionPLUS Service Data: ARXGCI-MEMO-12"
-          example: U12
-        user13:
-          type: string
-          description: "Length 30 \nUser 13\nVisionPLUS Service Data: ARXGCI-MEMO-13"
-          example: U13
-        user14:
-          type: string
-          description: "Length 20 \n User 14\nVisionPLUS Service Data: ARXGCI-MEMO-14"
-          example: U14
-        user15:
-          type: string
-          description: "Length 20 \n User 15\nVisionPLUS Service Data: ARXGCI-MEMO-15"
-          example: U15
-        userDemographic1:
-          type: string
-          description: |-
-            Length: 20
-            Demographic 1. User-defined demographic data or other information for an ownerr.
-            VisionPLUS Service Data: ARXGCI-USER-DEMO-1
-          example: USER DEMO 1
-        userDemographic2:
-          type: string
-          description: |-
-            Length: 20
-            Demographic 2. User-defined demographic data or other information for an owner.
-            VisionPLUS Service Data: ARXGCI-USER-DEMO-2
-          example: USER DEMO 2
-        userDemographic3:
-          type: string
-          description: |-
-            Length: 20
-            Demographic 3. User-defined demographic data or other information for an owner.
-            VisionPLUS Service Data: ARXGCI-USER-DEMO-3
-          example: USER DEMO 3
-        foreignFormIndicator:
-          type: string
-          description: |-
-            Length: 1
-            1099C foreign indicator. The values are:
-            * Blank = Does not live in a foreign country (Default)
-            * Any character = Lives in a foreign country. Format the address to the IRS standard.
-            VisionPLUS Service Data: ARXGCI-1099C-FOREIGN-IND
-          example: A
-        carrierRoute:
-          $ref: '#/components/schemas/CarrierRoute'
-        formDateSent:
-          type: string
-          description: "Length: 10 \nC1099/W9 Date Sent\nVisionPLUS Service Data:\
-            \ ARXGCI-1099C-W9-DATE-SENT"
-          format: date
-        statementMessageIndicator:
-          type: integer
-          description: "Length 1 \nStatement Message Indicator\nVisionPLUS Service\
-            \ Data: ARXGCI-STMT-MSG-INDIC"
-          format: int32
-          example: 1
-      description: Update Customer Request
-    DResponse:
-      type: object
-      properties:
-        hasError:
-          type: boolean
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        data:
-          type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-    UpdateCustomerResponse:
-      type: object
-      properties:
-        outputArea:
-          $ref: '#/components/schemas/UpdateCustomerResponse.OutputArea'
-    UpdateCustomerResponse.OutputArea:
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: |-
-            Length: 3
-            Organization Number.
-            VisionPLUS Service Data: ARXGCO-ORG
-          format: int32
-          example: 998
-        customerNumber:
-          type: string
-          description: |-
-            Length: 19
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-          example: 000540208ID5IXX3865
-        numberType:
-          type: string
-          description: "Length: 1\nType Of Number In The 'idNumber' Field. The values\
-            \ are :\n* Zero, space, or low values = Card number\n* 1 = Customer number\
-            \ \n * If zero, space, or low values is specified, the primary customer\
-            \ record associated with the account will be updated with the information\
-            \ provided to the service.\n* If an alternate customer record, a correspondence\
-            \ customer record, or a customer record associated with a card is needed,\
-            \ use the customer number.\nVisionPLUS Service Data: ARXGCO-NBR-TYPE"
-          example: "1"
-        foreignUseIndicator:
-          type: string
-          description: |-
-            Length: 1
-            Foreign Use Indicator. The values are :
-            * Zero, space, or low values = Local account
-            * 1 = Foreign account
-            VisionPLUS Service Data: ARXGCO-FOREIGN-USE-FLAG
-          example: "1"
-        demographicDataIndicator:
-          type: string
-          description: |-
-            Length: 1
-            Demographic Data Indicator. The values are :
-            * Zero, space, or low values = Do not update
-            * 1 = Update owner
-            * 2 = Update co-owner
-            VisionPLUS Service Data: ARXGCO-DEMOGRAPHIC-DATAIND
-          example: "1"
-        userDataIndicator:
-          type: string
-          description: |-
-            Length: 1
-            User Data Indicator. The values are :
-            * Zero, space, or low values = Do not update
-            * 1 = Update owner
-            * 2 = Update co-owner
-            VisionPLUS Service Data: ARXGCI-USER-DATA-IND
-          example: "1"
-        cmsOrganizationNumber:
-          type: integer
-          description: |-
-            Length: 3
-            Organization Number.
-            VisionPLUS Service Data: ARXGCO-ORG
-          format: int32
-          example: 998
-        accountNumber:
-          type: string
-          description: |-
-            Length: 19
-            Identification of the account number associated with the customer number (demographic data) that you want to modify or view.
-            VisionPLUS Service Data: ARXGCO-ACCT-NBR
-          example: "1234567890123450000"
     CustomerChannelVersion4Request:
       required:
       - customerNumber
@@ -1124,6 +329,24 @@ components:
             Length: 19
             Start Organization.
             VisionPLUS Service Data: ARXCEI-SVC-START-ACCT-ORG
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
     CustomerChannelVersion4Response:
       type: object
       properties:
