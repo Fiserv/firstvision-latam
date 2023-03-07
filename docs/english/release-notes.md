@@ -16,7 +16,15 @@ tags: [Release Notes, January, February]
 
 ### Fixed
 
-- N/A
+Endpoints moved to version 1.1.0:
+
+- /account/balance
+- /account/transfer
+- /account/QR-balance
+- /account/QR-transfer
+- /account/QRFL-balance
+- /account/FL-balance
+- /account/FL-transferP2P
 
 ### Known Issues
 
