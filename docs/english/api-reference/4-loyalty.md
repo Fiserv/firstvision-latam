@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Loyalty]
+tags: [API Reference, Loyalty]
 ---
 
 # Loyalty
