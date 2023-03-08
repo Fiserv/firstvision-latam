@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Cards]
+tags: [API Reference, Cards]
 ---
 
 # Cards
