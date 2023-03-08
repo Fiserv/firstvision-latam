@@ -7,11 +7,11 @@ tags: [API Reference, Glosario API]
 
 <!-- 
 type: tab 
-titles: General Terms, Acronyms , Account Types, Legacy Service Name
+titles: Terminos Generales, Acronimos , Tipos de Cuentas, Nombre del Servicio Legacy
 -->
 
 | Term                  | Definition      |
-| :-----------------------|------------------------|
+| -----------------------|------------------------|
 | Access Token          | A cryptographically secure credential that allows merchants to access the API. |
 | Account               | A system record tied to a customer, which contains balance, history, and other monetary information.     |
 | Alien                 | A foreign-born, non-U.S. citizen who lives in the U.S.                                                                                                              |
@@ -41,7 +41,7 @@ titles: General Terms, Acronyms , Account Types, Legacy Service Name
 <!-- type: tab -->
 
 | Acronym                  | Definition                                                                                                                                                         |
-|:-----------------------|:---------------------|
+|-----------------------|---------------------|
 | ACH                   | ACH (Automated Clearing House network) is an electronic fund transfer made between banks and credit unions.                                                         |
 | CLT                   | Cleartouch                                                                                                                                                          |
 | DNA                   | DNA                                                                                                                                                                 |
@@ -70,7 +70,7 @@ titles: General Terms, Acronyms , Account Types, Legacy Service Name
 <!-- type: tab -->
 
 | Term      | Description |
-| :---        | :----     | 
+| ---        | ----     | 
 | CDA| Certificate of Deposit Account. Account offered by banks and credit unions that offers an interest rate premium in exchange for the customer agreeing to deposit a lump-sum amount for a predetermined period of time.|
 | CRD | Card (EFT Debit Card). A debit card is a card that deducts money from a designated checking account to pay for goods or services. It can be used anywhere Visa® or MasterCard® debit cards are accepted and no interest is charged. A debit card can also be used at ATMs to withdraw cash from accounts linked to that debit card. |
 | DDA | Demand Deposit Account. Account with a bank or other financial institution that allows the depositor to withdraw their funds without prior notice or with less than seven days notice. Also known as a Checking Account. |
@@ -90,7 +90,7 @@ titles: General Terms, Acronyms , Account Types, Legacy Service Name
 
 <!-- type: tab -->
 
-| Legacy Term               | Updated Term                           |
+| Legacy Term               | Updated Term                |
 |--------------------|------------------------------------|
 | Acct               | Account Service                    |
 | AcctCollateralRel  | Account Collateral Service         |
