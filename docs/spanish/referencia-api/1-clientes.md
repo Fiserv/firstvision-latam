@@ -1,5 +1,5 @@
 ---
-tags: [Referencia de la API , Clientes]
+tags: [Referencia de la API, Clientes]
 ---
 
 # Clientes
