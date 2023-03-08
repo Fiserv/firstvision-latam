@@ -1,40 +1,41 @@
 ---
-tags: [API Reference, Accounts]
+tags: [Referencia de la API , Cuentas]
 ---
 
-# Account
+# Cuentas
 
-Account basic functions such as add, inquiry and edit account.  Also includes account level processing options for a card account such as digital wallet options, instant card, limit management, balance and delinquency management, block code application, transaction management, product reassignment, direct debit and credit processing and other account management functions, establish cardholder relationships in CMS, assign Account Base Segment records to a Relationship record. The Relationship record contains information that applies, and controls all linked accounts in the relationship. 
-
-<!--
-type: tab
-titles: Who is it for, How is it used, Potential uses
--->
-
-Any developer creating or integrating apps that need to interact with transaction data maintained on Fiserv core account processing platforms
+Funciones básicas de Cuenta como agregar, consultar y editar cuenta. También incluye opciones de procesamiento a nivel de cuenta para una cuenta de tarjeta, como opciones de monedero digital, tarjeta instantánea, gestión de límites, gestión de saldos y morosidad, aplicación de código de bloqueo, gestión de transacciones, reasignación de productos, procesamiento de débito y crédito directo y otras funciones de gestión de cuentas, establecimiento de relaciones de tarjetahabientes en CMS, asignación de registros de segmentos base de cuentas a un registro de Relación. El registro de relación contiene información que se aplica y controla todas las cuentas vinculadas en la relación.
 
 <!--
 type: tab
+titles: ¿Para quién es?, ¿Cómo se usa?, Usos potenciales
 -->
 
-Employ these APIs to develop apps that offer unique experiences or novel channels through which users can view and manage transactions on those accounts
+Cualquier desarrollador que cree o integre aplicaciones que necesiten interactuar con datos de transacciones mantenidos en plataformas de procesamiento de cuentas centrales de Fiserv.
 
 <!--
 type: tab
 -->
 
-Apps that enable consumers and businesses to monitor and manage their financial transactions and balances through channels they access in everyday life
+Utilice estas API para desarrollar aplicaciones que ofrezcan experiencias únicas o canales novedosos a través de los cuales los usuarios puedan ver y administrar transacciones en esas cuentas.
+
+<!--
+type: tab
+-->
+
+Aplicaciones que permiten a los consumidores y las empresas monitorear y administrar sus transacciones y saldos financieros a través de los canales a los que acceden en la vida cotidiana.
 
 <!-- type: tab-end -->
 
 ---
 
-## See Also
+## Ver también
 
-- [Cards](?path=docs/english/api-reference/2-cards.md)
-- [Customer](?path=docs/english/api-reference/3-customer.md)
-- [Loyalty](?path=docs/english/api-reference/4-loyalty.md)
-- [Notifications ](?path=docs/english/api-reference/5-notifications.md)
-- [Transactions](?path=docs/english/api-reference/6-transactions.md)
+- [Clientes](?path=docs/spanish/referencia-api/1-clientes.md)
+- [Cuentas](?path=docs/spanish/referencia-api/2-cuentas.md)
+- [Lealtad](?path=docs/spanish/referencia-api/3-lealtad.md)
+- [Notificationes](?path=docs/spanish/referencia-api/4-notificationes.md)
+- [Tarjetas](?path=docs/spanish/referencia-api/5-tarjetas.md)
+- [Transacciones](?path=docs/spanish/referencia-api/6-transacciones.md)
 
 ---
