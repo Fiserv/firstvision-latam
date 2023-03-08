@@ -43,20 +43,20 @@ To use webhooks, FirstVision can send an HTTP POST request to a designated endpo
 
 ### Webhooks Events
 
-|Event Number|Description|
-|------------|-----------|
-|01|Authorization event (approved and declined)|
-|02|Payment due date trigger|
-|03|CMS Account cycling event|
-|04|Available Credit event|
-|05|Payment Posted event|
-|06|Change of Address|
-|07|Card Blocking (Declined / Pick up Auth action only)|
-|08|Card Activation|
-|09|Card Embossing|
-|10|Payment due date change|
-|11|Credit limit change|
-|12|Falcon event trigger during Authorization and Card Level Blocks|
+| Event Number | Description                                                     |
+|--------------|-----------------------------------------------------------------|
+| 01           | Authorization event (approved and declined)                     |
+| 02           | Payment due date trigger                                        |
+| 03           | CMS Account cycling event                                       |
+| 04           | Available Credit event                                          |
+| 05           | Payment Posted event                                            |
+| 06           | Change of Address                                               |
+| 07           | Card Blocking (Declined / Pick up Auth action only)             |
+| 08           | Card Activation                                                 |
+| 09           | Card Embossing                                                  |
+| 10           | Payment due date change                                         |
+| 11           | Credit limit change                                             |
+| 12           | Falcon event trigger during Authorization and Card Level Blocks |
 
 ### Webhooks Examples
 
