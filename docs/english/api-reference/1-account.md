@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Accounts]
+tags: [API Reference, Accounts]
 ---
 
 # Account
