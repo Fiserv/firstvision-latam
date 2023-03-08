@@ -2,7 +2,7 @@
 tags: [Main Cases, HMAC Signature]
 ---
 
-# What is HMAC Signature
+# What is HMAC Signature?
 
 HMAC, a hash-based message authentication code, is a security check that generates a hash signature for every message sent from one point to another.
 
@@ -15,11 +15,11 @@ The same message generated with the same secret key will always result in the sa
 ![image](https://user-images.githubusercontent.com/111396588/208850051-95699fa8-b605-42c3-995b-50e1f10c0a43.png)
 
 
-## Why use
+## Why use?
 
 With HMAC verification enabled, you can guarantee the authenticity of the message sender and certify that the message has not been intercepted and modified by hackers.
 
-## How to use
+## How to use?
 
 You'll need a tool to generate your HMAC messages, based on your secret key. Most programming languages have a many librabries that can help you to send or verify sender authenticity and message integrity.
 
