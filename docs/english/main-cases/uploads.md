@@ -16,11 +16,11 @@ Each API will allow load money from different source products to different desti
 
 The creation of Credit, Debit, and Prepaid accounts are a requirement that must be completed before execute any of the APIs used to load money. Which must be created using the APIs for Customer Creation (Customer/Add), Account Creation (Account/Add) and Card Creation (Embosser/Add).If you have any questions.
 
-However, depending on the values ​​used in the APIS, it is also possible to load money using direct financial amounts, received in cash from a bank branch.
+However, depending on the values used in the APIS, it is also possible to load money using direct financial amounts, received in cash from a bank branch.
 
 ## Use Case
 
-![Use case!](/assets/images/main-cases/add-funds-from-origin-account.png "Use case")
+![image](https://user-images.githubusercontent.com/111396588/223830477-4419c5ea-679d-436f-bf3e-08907e1c56be.png)
 
 ### 1. Adjust Account Balance (Account/Balance)
 
@@ -91,11 +91,11 @@ The description of each API field can be found within the specifications defined
 
 ### Adjust Account Balance (Account/Balance)
 
-![Sequence diagram!](/assets/images/main-cases/adjust-account-balance.png "Sequence diagram")
+![image](https://user-images.githubusercontent.com/111396588/223830380-f4df931f-4c23-408f-a494-cde4463cce64.png)
 
 ### Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
 
-![Sequence diagram!](/assets/images/main-cases/adjust-account-balance-peer-to-peer.png "Sequence diagram")
+![image](https://user-images.githubusercontent.com/111396588/223830333-a3dcc4b4-bdfc-4920-a653-fd615b5a92bd.png)
 
 ---
 
