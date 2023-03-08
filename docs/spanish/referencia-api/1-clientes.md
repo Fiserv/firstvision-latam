@@ -1,42 +1,42 @@
 ---
-tags: [API Reference, Customer]
+tags: [Referencia de la API , Clientes]
 ---
 
-# Customer
+# Clientes
 
-Customer Name Address functions such as add, inquiry and edit Customer Demographic data for owners, co-owners, and any other parties associated with an account such as authorized signers, guarantors, and other associated parties (children, spouse).
+Funciones de la dirección del nombre del Cliente, como agregar, consultar y editar datos demográficos del Cliente para propietarios, copropietarios y cualquier otra parte asociada con una Cuenta, como firmantes autorizados, garantes y otras partes asociadas (hijos, cónyuge).
 
-Multiple accounts can be associated with a single Customer Name/Address record.  Cross-reference between records customer to account to cards and relationships are also available.
-
-<!--
-type: tab
-titles: Who is it for, How is it used, Potential uses
--->
-
-Any developer creating or integrating apps that need to interact with transaction data maintained on Fiserv core account processing platforms
+Se pueden asociar varias cuentas con un solo registro de nombre/dirección de cliente. También están disponibles las referencias cruzadas entre los registros del cliente, la cuenta, las tarjetas y las relaciones.
 
 <!--
 type: tab
+titles: ¿Para quién es?, ¿Cómo se usa?, Usos potenciales
 -->
 
-Employ these APIs to develop apps that offer unique experiences or novel channels through which users can view and manage transactions on those accounts
+Cualquier desarrollador que cree o integre aplicaciones que necesiten interactuar con datos de transacciones mantenidos en plataformas de procesamiento de cuentas centrales de Fiserv.
 
 <!--
 type: tab
 -->
 
-Apps that enable consumers and businesses to monitor and manage their financial transactions and balances through channels they access in everyday life
+Utilice estas API para desarrollar aplicaciones que ofrezcan experiencias únicas o canales novedosos a través de los cuales los usuarios puedan ver y administrar transacciones en esas cuentas.
+
+<!--
+type: tab
+-->
+
+Aplicaciones que permiten a los consumidores y las empresas monitorear y administrar sus transacciones y saldos financieros a través de los canales a los que acceden en la vida cotidiana.
 
 <!-- type: tab-end -->
 
 ---
 
-## See Also
+## Ver también
 
-- [Account](?path=docs/english/api-reference/1-account.md)
-- [Cards](?path=docs/english/api-reference/2-cards.md)
-- [Loyalty](?path=docs/english/api-reference/4-loyalty.md)
-- [Notifications ](?path=docs/english/api-reference/5-notifications.md)
-- [Transactions](?path=docs/english/api-reference/6-transactions.md)
+- [Cuentas](?path=docs/spanish/referencia-api/2-cuentas.md)
+- [Lealtad](?path=docs/spanish/referencia-api/3-lealtad.md)
+- [Notificationes](?path=docs/spanish/referencia-api/4-notificationes.md)
+- [Tarjetas](?path=docs/spanish/referencia-api/5-tarjetas.md)
+- [Transacciones](?path=docs/spanish/referencia-api/6-transacciones.md)
 
 ---
