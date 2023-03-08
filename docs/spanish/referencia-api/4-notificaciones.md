@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Notifications, Webhooks, Events]
+tags: [API Reference, Notifications, Webhooks, Events]
 ---
 
 # Notifications
