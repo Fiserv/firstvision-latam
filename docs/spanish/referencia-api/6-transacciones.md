@@ -1,5 +1,5 @@
 ---
-tags: [Referencia de la API , Transacciones]
+tags: [Referencia de la API, Transacciones]
 ---
 
 # Transacciones
