@@ -6,11 +6,11 @@ tags: [Getting Started, System Structure, Functional Structure]
 
 ## System structure
 
-![System structure!](/assets/images/structure/system-structure.png "System structure")
+![image](https://user-images.githubusercontent.com/111396588/223825562-87fc2df1-6d53-4af0-9934-35f5dba4b77e.png)
 
 ## Functional structure
 
-![Functional structure!](/assets/images/structure/functional-structure.png "Functional structure")
+![image](https://user-images.githubusercontent.com/111396588/223825581-a74ef113-5162-47b0-979e-9378ab46ae59.png)
 
 ---
 
