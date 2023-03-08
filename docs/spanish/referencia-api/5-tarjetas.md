@@ -1,43 +1,42 @@
 ---
-tags: [API Reference, Cards]
+tags: [Referencia de la API , Tarjetas]
 ---
 
-# Cards
+# Tarjetas
 
-Cards functions to add, inquiry and edit card records. A card record contains information about the card (or “plastic”) that is issued to the cardholder. Also includes cross reference between customer, account and card. 
+Funciones de tarjetas para agregar, consultar y editar registros de tarjetas. Un registro de tarjeta contiene información sobre la tarjeta (o "plástico") que se emite al tarjetahabiente. También incluye referencias cruzadas entre el cliente, la cuenta y la tarjeta.
 
-Card level features such as card activation, issue, reissue, lost and stolen, replacement, limit management, Secured PIN management, card details, block code application and authorizations. 
-
-<!--
-type: tab
-titles: Who is it for, How is it used, Potential uses
--->
-
-Any developer creating or integrating apps that need to interact with transaction data maintained on Fiserv core account processing platforms
+Funciones a nivel de tarjeta como activación de tarjeta, emisión, reemisión, pérdida y robo, reemplazo, gestión de límites, gestión de PIN seguro, detalles de la tarjeta, solicitud de código de bloqueo y autorizaciones.
 
 <!--
 type: tab
+titles: ¿Para quién es?, ¿Cómo se usa?, Usos potenciales
 -->
 
-Employ these APIs to develop apps that offer unique experiences or novel channels through which users can view and manage transactions on those accounts
+Cualquier desarrollador que cree o integre aplicaciones que necesiten interactuar con datos de transacciones mantenidos en plataformas de procesamiento de cuentas centrales de Fiserv.
 
 <!--
 type: tab
 -->
 
-Apps that enable consumers and businesses to monitor and manage their financial transactions and balances through channels they access in everyday life
+Utilice estas API para desarrollar aplicaciones que ofrezcan experiencias únicas o canales novedosos a través de los cuales los usuarios puedan ver y administrar transacciones en esas cuentas.
+
+<!--
+type: tab
+-->
+
+Aplicaciones que permiten a los consumidores y las empresas monitorear y administrar sus transacciones y saldos financieros a través de los canales a los que acceden en la vida cotidiana.
 
 <!-- type: tab-end -->
 
-
 ---
 
-## See Also
+## Ver también
 
-- [Account](?path=docs/english/api-reference/1-account.md)
-- [Customer](?path=docs/english/api-reference/3-customer.md)
-- [Loyalty](?path=docs/english/api-reference/4-loyalty.md)
-- [Notifications ](?path=docs/english/api-reference/5-notifications.md)
-- [Transactions](?path=docs/english/api-reference/6-transactions.md)
+- [Clientes](?path=docs/spanish/referencia-api/1-clientes.md)
+- [Cuentas](?path=docs/spanish/referencia-api/2-cuentas.md)
+- [Lealtad](?path=docs/spanish/referencia-api/3-lealtad.md)
+- [Notificationes](?path=docs/spanish/referencia-api/4-notificationes.md)
+- [Transacciones](?path=docs/spanish/referencia-api/6-transacciones.md)
 
 ---
