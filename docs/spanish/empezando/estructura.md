@@ -1,24 +1,24 @@
 ---
-tags: [Getting Started, System Structure, Functional Structure]
+tags: [Empezando, Estructura del Sistema, Estructura Funcional]
 ---
 
-# Structure
+# Estructura
 
-## System structure
+## Estructura del Sistema
 
 ![System structure!](/assets/images/structure/system-structure.png "System structure")
 
-## Functional structure
+## Estructura Funcional
 
 ![Functional structure!](/assets/images/structure/functional-structure.png "Functional structure")
 
 ---
 
-## See Also
+## Ver también
 
-- [Getting Started](?path=docs/english/getting-started.md)
-- [Messages List](?path=docs/english/getting-started/messages-list.md)
-- [Postman Tutorial](?path=docs/english/getting-started/postman.md)
-- [Terminology](?path=docs/english/getting-started/terminology.md)
+- [Empezando](?path=docs/spanish/empezando.md)
+- [Lista Servicios](?path=docs/spanish/empezando/lista-servicios.md)
+- [Postman](?path=docs/spanish/empezando/postman.md)
+- [Terminología](?path=docs/spanish/empezando/terminologia.md)
 
 ---
