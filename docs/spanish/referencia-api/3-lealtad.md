@@ -1,5 +1,5 @@
 ---
-tags: [Referencia de la API , Lealtad]
+tags: [Referencia de la API, Lealtad]
 ---
 
 # Lealtad
