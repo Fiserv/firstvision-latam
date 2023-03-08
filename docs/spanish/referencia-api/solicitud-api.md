@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Request Header, Request Body, Header]
+tags: [API Reference, Request Header, Request Body, Header]
 ---
 
 # API Request 
