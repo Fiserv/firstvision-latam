@@ -48,7 +48,7 @@ Ejemplo de respuesta:
 - [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
 - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
 - [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
-- [Gestión de Clientes(?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
 - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
 - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
 - [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
