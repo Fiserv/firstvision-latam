@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Error Response]
+tags: [API Reference, Error Response]
 ---
 
 # Error Response
