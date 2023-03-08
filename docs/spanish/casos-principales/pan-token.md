@@ -1,22 +1,22 @@
 ---
-tags: [Main Cases, Pan Token, cards, embosser]
+tags: [Casos Principales, Registro de Tarjetas, Tarjetas, Embozador]
 ---
 
 # PAN Token
 
-Currently when a customer is not certified by the Payment Card Industry (PCI), the card number cannot be showed on any web service, ATM, POS, etc.
+Actualmente, cuando un Cliente no está certificado por la Industria de Tarjetas de Pago (PCI), el número de tarjeta no se puede mostrar en ningún servicio web, cajero automático, POS, etc.
 
-To keep this security value safe, is require to use a PAN-TOKEN instead of card number, so when a card number is created, the current functionality generate the PAN-TOKEN as substitute of the card number.
+Para mantener seguro este valor de seguridad, se requiere utilizar un PAN-TOKEN en lugar de un número de tarjeta. Por lo tanto, cuando se crea un número de tarjeta, la funcionalidad actual genera el PAN-TOKEN en lugar del número de tarjeta.
 
-The PAN-TOKEN is calculated automatically using a security KEY and it can has numeric and alphanumeric values.
+El PAN-TOKEN se calcula automáticamente mediante una CLAVE de seguridad y puede tener valores numéricos y alfanuméricos.
 
-PAN-TOKEN can be showed on a web service, ATM, POS, or any other device or service without compromise the real card number.
+El PAN-TOKEN se puede mostrar en un servicio web, cajero automático, POS o cualquier otro dispositivo o servicio sin comprometer el número real de la tarjeta.
 
-PAN token, can be visible using the API **CARDS/EMBOSSER/CARD-PAN-L8V2**, so the API user can get the PAN-TOKEN number sending the Card Number, in the API input message or can get the card number just sending the PAN-TOKEN number.
+PAN Token, puede ser visible usando la API **CARDS/EMBOSSER/CARD-PAN-L8V2**, por lo que el usuario de la API puede obtener el número de PAN-TOKEN enviando el número de tarjeta en el mensaje de datos de entrada de la API o puede obtener el número de tarjeta simplemente enviando el número de PAN-TOKEN.
 
 **POST** `/cards/embosser/card-pan-l8v2`
 
-Request body:
+Cuerpo de la Solicitud:
 
 ```json
 {
@@ -27,26 +27,26 @@ Request body:
 }
 ```
 
-The description of this API fields can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ---
 
-## See Also
+## Ver también
 
-- [Account Management](?path=docs/english/main-cases/account.md)
-- [API Environment](?path=docs/english/main-cases/api-environment.md)
-- [Audit and Monitoring](?path=docs/english/main-cases/audit.md)
-- [Card Controls](?path=docs/english/main-cases/card-controls.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Card Record](?path=docs/english/main-cases/record.md)
-- [Cash-in/Cash-out](?path=docs/english/main-cases/cash-in-out.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
-- [Digital Card Issuing](?path=docs/english/main-cases/digital.md)
-- [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
-- [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
-- [HMAC Signature](?path=docs/english/main-cases/hmac.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
-- [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
-- [Upload Founds](?path=docs/english/main-cases/uploads.md)
+- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+- [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
+- [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
+- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
