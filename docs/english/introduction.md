@@ -1,30 +1,28 @@
+# Introduction
 
+**Fiserv** provides a single, consolidated processing platform for all your payment cards, loans, prepaid, and commercial card products. We are focused on the technology of the future, but also solutions that drive consumer value today, across the customer lifecycle.
 
-# Introducción
+**FirstVision™** is our outsourced processing solution that meets your challenges head-on and transforms your technology capability. Built on core VisionPLUS® software, **FirstVision™** provides an end-to-end solution that delivers global processing economies of scale plus fully integrated adjacent services that span the issuing lifecycle. An integrated suite of payment and servicing solution that drives your platform modernization and competitive edge.
 
-**Fiserv** proporciona una plataforma de procesamiento única y consolidada para todos sus productos de tarjetas de pago, préstamos, tarjetas prepago y tarjetas comerciales. Estamos enfocados en la tecnología del futuro, pero también en soluciones que impulsan el valor del consumidor hoy, a lo largo del ciclo de vida del cliente.
-
-**FirstVision™** es nuestra solución subcontratada de procesamiento que enfrenta sus desafíos y transforma su capacidad tecnológica. Basado en el software VisionPLUS®, **FirstVision™** proporciona una solución integral que brinda economías de escala de procesamiento global más servicios adyacentes completamente integrados que abarcan el ciclo de vida de la emisión. Un conjunto integrado de soluciones de pagos y servicios que impulsa la modernización de su plataforma y su ventaja competitiva.
-
-Las **APIs Restful de FirstVision™** le permite lograr la modernización de la plataforma y la ventaja competitiva al ofrecer los siguientes **beneficios para su negocio.**
+**FirstVision™ Restful APIs** enable you to achieve platform modernization and competitive edge delivering the following **benefits to your business.**
 
 ---
 
 <!-- type: row -->
 
 <!-- type: card
-title: Aceleración de su tiempo de salida al mercado
-description: La extensa parametrización y la arquitectura basada en servicios por medio de APIs y una suite de soluciones totalmente integrada para administrar crédito, débito, préstamos y pagos garantizan una mayor velocidad de desarrollo e integración de aplicaciones, así como una rápida implementación de productos y servicios nuevos.
+title: Accelerating Your Time to Market
+description: Extensive parameterization and service-based architecture with API enabled and a fully integrated suite of solutions for managing credit, debit, loans and payments ensures quicker application development and integration, rapid roll-out of new products and services.
 -->
 
 <!-- type: card
-title: Ayudándole a montar la última ola de innovación
-description: La arquitectura de la plataforma construida en torno a la simplificación de la tecnología y el aprovechamiento de las API abiertas, reduce el costo del cambio y satisface su necesidad de innovación continua para diferenciar sus productos - tanto ahora como en el futuro.
+title: Helping You Ride the Latest Wave of Innovation
+description: Platform architecture built around technology simplification and leveraging open APIs, reducing the cost of change and meeting your need for ongoing innovation to differentiate your product set – now and forward into the future.
 -->
 
 <!-- type: card
-title: Permite una rápida velocidad de cambio y mayor velocidad de salida al mercado
-description: La arquitectura orientada a FirstVision™ con API abiertas permite el consumo de servicios en lugar de la gestión de cambios.
+title: Enables Rapid Speed of Change / Speed to Market
+description: FirstVision™ oriented architecture with open APIs enables service consumption rather than change management.
 -->
 
 <!-- type: row-end -->
