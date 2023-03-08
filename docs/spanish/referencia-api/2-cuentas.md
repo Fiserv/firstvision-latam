@@ -1,5 +1,5 @@
 ---
-tags: [Referencia de la API , Cuentas]
+tags: [Referencia de la API, Cuentas]
 ---
 
 # Cuentas
@@ -32,7 +32,6 @@ Aplicaciones que permiten a los consumidores y las empresas monitorear y adminis
 ## Ver también
 
 - [Clientes](?path=docs/spanish/referencia-api/1-clientes.md)
-- [Cuentas](?path=docs/spanish/referencia-api/2-cuentas.md)
 - [Lealtad](?path=docs/spanish/referencia-api/3-lealtad.md)
 - [Notificationes](?path=docs/spanish/referencia-api/4-notificationes.md)
 - [Tarjetas](?path=docs/spanish/referencia-api/5-tarjetas.md)
