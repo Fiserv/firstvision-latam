@@ -1,10 +1,10 @@
 ---
-tags: [Getting Started, VMX, Message List]
+tags: [Empezando, VMX, Lista de Servicios]
 ---
 
-# Messages List
+# Lista de Servicios
 
-| Service                        | Version | API endpoint                                                                                              | Method |
+| Servicio                       | Version | API                                                                                                       | Método |
 |--------------------------------|---------|-----------------------------------------------------------------------------------------------------------|--------|
 | M.CMS.ACCOUNT.ADD              | R8V8    | /account/                                                                                                 | POST   |
 | M.CMS.CUST.ACCT.CRD.DRV        | L8V1    | /account/account-boarding-driver                                                                          | POST   |
@@ -182,11 +182,11 @@ tags: [Getting Started, VMX, Message List]
 
 ---
 
-## See Also
+## Ver también
 
-- [Getting Started](?path=docs/english/getting-started.md)
-- [Postman Tutorial](?path=docs/english/getting-started/postman.md)
-- [Structure](?path=docs/english/getting-started/structure.md)
-- [Terminology](?path=docs/english/getting-started/terminology.md)
+- [Empezando](?path=docs/spanish/empezando.md)
+- [Estructura](?path=docs/spanish/empezando/estructura.md)
+- [Postman](?path=docs/spanish/empezando/postman.md)
+- [Terminología](?path=docs/spanish/empezando/terminologia.md)
 
 ---
