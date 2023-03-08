@@ -53,7 +53,7 @@ También conocido como grabador en relieve o embozador.
 
 <!-- type: tab-end -->
 
-![Customer!](/assets/images/terminology/customer.png "Customer")
+![image](https://user-images.githubusercontent.com/111396588/223825911-aba5e5da-3fe3-48c6-8e51-0a9085cdd041.png)
 
 Además, una cuenta tendrá varios **Segmentos del Plan**:
 
@@ -63,7 +63,7 @@ Además, una cuenta tendrá varios **Segmentos del Plan**:
 
 - Cada segmento del plan asignado a una cuenta se identifica de manera única mediante una combinación de un número de 5 dígitos y un número de registro.
 
-![Plan segments!](/assets/images/terminology/plan-segments.png "Plan segments")
+![image](https://user-images.githubusercontent.com/111396588/223825942-c86f84ef-1565-4664-8230-f731e74c6512.png)
 
 ---
 
