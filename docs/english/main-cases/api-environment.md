@@ -35,7 +35,7 @@ Response example:
 
 ## Diagram
 
-![Diagram!](/assets/images/main-cases/api-test-environment_1.png "Diagram")
+![image](https://user-images.githubusercontent.com/111396588/223832354-107c98dd-4a1d-4b19-b97b-c1e662df3c6b.png)
 
 ---
 
