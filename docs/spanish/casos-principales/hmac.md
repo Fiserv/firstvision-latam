@@ -1,48 +1,49 @@
 ---
-tags: [Main Cases, HMAC Signature]
+tags: [Casos Principales, Firma HMAC]
 ---
 
-# What is HMAC Signature
+# ¿Qué es la firma HMAC?
 
-HMAC, a hash-based message authentication code, is a security check that generates a hash signature for every message sent from one point to another.
+HMAC, un código de autenticación de mensajes basado en algoritmos Hash. Es un control de seguridad que genera una firma Hash para cada mensaje enviado de un punto a otro.
 
-When you send a message to a server, with HMAC enabled, a new signature is generated for your message, according to your secret key.
+Cuando se envía un mensaje a un servidor con HMAC habilitado, se genera una nueva firma para su mensaje de acuerdo con su llave secreta.
 
-Client and server must have the same secret key so they can verify the authenticity of the message and its integrity, as modified messages result in different signatures.
+El cliente y el servidor deben tener la misma llave secreta para que puedan verificar la autenticidad del mensaje y su integridad, ya que los mensajes modificados dan como resultado firmas diferentes.
 
-The same message generated with the same secret key will always result in the same signature.
+El mismo mensaje generado con la misma llave secreta siempre dará como resultado la misma firma.
 
 ![image](https://user-images.githubusercontent.com/111396588/208850051-95699fa8-b605-42c3-995b-50e1f10c0a43.png)
 
+## ¿Por qué se debe usar?
 
-## Why use
+Al habilitar la verificación HMAC, se puede garantizar la autenticidad del remitente del mensaje y certificar que el mensaje no ha sido interceptado ni modificado por piratas informáticos.
 
-With HMAC verification enabled, you can guarantee the authenticity of the message sender and certify that the message has not been intercepted and modified by hackers.
+## ¿Cómo se debe utilizar?
 
-## How to use
+Necesitará una herramienta para generar sus mensajes HMAC con base en su llave secreta. La mayoría de los lenguajes de programación tienen muchas bibliotecas que pueden ayudar a enviar o verificar la autenticidad del remitente y la integridad del mensaje.
 
-You'll need a tool to generate your HMAC messages, based on your secret key. Most programming languages have a many librabries that can help you to send or verify sender authenticity and message integrity.
-
-You just need to enter the common hashing algorithm, the message and your secret key to generate your signed HMAC message.
+Solo se requiere ingresar el algoritmo hash común, el mensaje y la llave secreta para generar un mensaje HMAC firmado.
+age.
 
 ---
 
-## See Also
+## Ver también
 
-- [Account Management](?path=docs/english/main-cases/account.md)
-- [API Environment](?path=docs/english/main-cases/api-environment.md)
-- [Audit and Monitoring](?path=docs/english/main-cases/audit.md)
-- [Card Controls](?path=docs/english/main-cases/card-controls.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Card Record](?path=docs/english/main-cases/record.md)
-- [Cash-in/Cash-out](?path=docs/english/main-cases/cash-in-out.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
-- [Digital Card Issuing](?path=docs/english/main-cases/digital.md)
-- [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
-- [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
-- [PAN Token](?path=docs/english/main-cases/pan-token.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
-- [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
-- [Upload Founds](?path=docs/english/main-cases/uploads.md)
+- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+- [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
+- [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
+- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
+- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
