@@ -1,5 +1,5 @@
 ---
-tags: [Referencia de la API , Tarjetas]
+tags: [Referencia de la API, Tarjetas]
 ---
 
 # Tarjetas
