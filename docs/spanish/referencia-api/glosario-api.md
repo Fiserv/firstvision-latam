@@ -1,9 +1,9 @@
 ---
-tags: [API Reference, API Glossary]
+tags: [API Reference, Glosario API]
 ---
 
 
-# API Glossary
+# Glosario API
 
 <!-- 
 type: tab 
@@ -124,10 +124,10 @@ titles: General Terms, Acronyms , Account Types, Legacy Service Name
 
 ---
 
-## See Also
+## Ver también
 
-- [API Request](?path=docs/english/api-reference/api-request.md)
-- [Error Handling](?path=docs/english/api-reference/response-handling.md)
-- [Error Response](?path=docs/english/api-reference/error-response.md)
+- [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
+- [Respuesta de error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Solicitud de API](?path=docs//spanish/referencia-api/solicitud-api.md)
 
 ---
