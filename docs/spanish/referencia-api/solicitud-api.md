@@ -1,30 +1,30 @@
 ---
-tags: [API Reference, Request Header, Request Body, Header]
+tags: [Referencia de la API, Encabezado de Solicitudes, Cuerpo de Solicitudes, Encabezado]
 ---
 
-# API Request 
+# Solicitud de API
 
-## Request Header
+## Encabezado de Solicitud
 
-RESTful API has a consistent header structure based on a set of parameters.
+RESTful API tiene una estructura de encabezado coherente basada en un set de parámetros.
 
 <!--
 type: tab
-titles: Header, Request Header Example
+titles: Header, Ejemplo de Encabezado de Solicitud
 -->
 
 To create the header, provide the following values:
 
-| Variable | Type | Length | Description/Values |
-| -------- | :--: | :------------: | ------------------ |
-| `Content-Type` | *string* | N/A | The content type. Valid Value (application/json) |
-| `Client-Request-Id` | *string* | N/A | A client-generated ID for request tracking and signature creation, unique per request. This is also used for idempotency control. Recommended 128-bit UUID format. |
-| `Api-Key` | *string* | N/A | API Key provided to the merchant associating the requests with the appropriate app in the Developer Portal. |
-| `Timestamp` | *integer* | N/A | Epoch timestamp in milliseconds in the request from a client system. Used for Message Signature generation and time limit (5 mins). |
-| `Accept-Language` | *string* | N/A | The Accept-Language header contains information about the language preference of a user. This HTTP header is useful to multilingual sites for deciding the best language to serve to the client. example: en-US or fr-CA. |
-| `Auth-Token-Type`| *string* | N/A | Indicates Authorization type HMAC or AccessToken.|
-| `Authorization` | *string* | N/A | Used to ensure the request has not been tampered with during transmission. |
-| `Message-Digest` | *string* | N/A | Needed only from customer browser or app to the API in Hosted Payment Page requests. |
+| Variable            | Tipo      | Longitud | Descripción/Valores                                                                                                                                                                                                                        |
+|---------------------|-----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Content-Type`      | *string*  | N/A      | Los tipos de contenido. Valor Válido (Aplicación/JSON).                                                                                                                                                                                    |
+| `Client-Request-Id` | *string*  | N/A      | Una identificación generada por el Cliente para el seguimiento de solicitudes y la creación de firmas, única por solicitud. Esto también se utiliza para el control de idempotencia. Se recomienda un Formato UUID de 128 bits.            |
+| `Api-Key`           | *string*  | N/A      | API Key proporcionada al comercio que asocia las solicitudes con la aplicación adecuada en el Developer Portal.                                                                                                                            |
+| `Timestamp`         | *integer* | N/A      | Marca de tiempo de época en milisegundos en la solicitud de un sistema Cliente. Se utiliza para la generación de firmas de mensajes y el límite de tiempo (5 minutos).                                                                     |
+| `Accept-Language`   | *string*  | N/A      | El encabezado Accept-Language contiene información sobre la preferencia de idioma de un usuario. Este encabezado HTTP es útil para sitios multilingües para decidir el mejor idioma para dar servicios al Cliente. ejemplo: en-US o fr-CA. |
+| `Auth-Token-Type`   | *string*  | N/A      | Indica el tipo de autorización HMAC o AccessToken..                                                                                                                                                                                        |
+| `Authorization`     | *string*  | N/A      | Se utiliza para garantizar que la solicitud no haya sido manipulada durante la transmisión.                                                                                                                                                |
+| `Message-Digest`    | *string*  | N/A      | Solo se necesita desde el navegador o la aplicación del Cliente a la API en las solicitudes de la página de pago hospedada.                                                                                                                |
 
 <!--
 type: tab
@@ -45,13 +45,13 @@ type: tab
 
 ---
 
-## Request Body
+## Cuerpo de la Solicitud
 
-The body of the transaction request differs based on the transaction being initiated.
+El cuerpo de la solicitud de transacción difiere según la transacción que se inicie.
 
 <!--
 type: tab
-titles: Request Body Example
+titles: Ejemplo de Cuerpo de Solicitud
 -->
 
 ```json
@@ -83,10 +83,11 @@ titles: Request Body Example
 
 ---
 
-## See Also
+## Ver también
 
-- [API Glossary](?path=docs/english/api-reference/api-glossary.md)
-- [Error Handling](?path=docs/english/api-reference/response-handling.md)
-- [Error Response](?path=docs/english/api-reference/error-response.md)
+- [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
+- [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
+- [Respuesta de error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Solicitud de API](?path=docs//spanish/referencia-api/solicitud-api.md)
 
 ---
