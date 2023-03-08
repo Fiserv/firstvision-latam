@@ -23,39 +23,39 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 
 ### 3. In this step we will configure the environment necessary to execute requests in Postman dynamically, as the requests are already configured with environment variables which we will configure next. Click the environments button and follow the next steps
 
-![Postman!](/assets/images/postman/postman-tutorial_3.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223825081-8f5e489e-04b0-4450-9e2e-a2a0adffa375.png)
 
 ### 4. Click on the button again in the Environment section to create an environment to execute requests
 
-![Postman!](/assets/images/postman/postman-tutorial_4.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223825110-985fce44-fbfd-4713-83f9-ddd85954b08a.png)
 
 ### 5. Click on the environment and after define the name of this environment
 
-![Postman!](/assets/images/postman/postman-tutorial_5.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223825130-b65824be-7525-4df5-80e5-bc9934e4dcd6.png)
 
 ## Configure collection
 
 ### 6. Now create the variables like the next example with the credentials sent, in this step you can define which variables will be used throughout the use of the Collection, such as endpoint, port and others
 
-![Postman!](/assets/images/postman/postman-tutorial_6.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223825150-eae49a0b-c45c-46d5-a365-982e08e69922.png)
 
 ### 7. In the upper right corner, select the environment created to apply the settings of the environment variables created in the previous step
 
-![Postman!](/assets/images/postman/postman-tutorial_7.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223825174-82bca4fb-bcd5-4b6e-b2ba-f93651088a00.png)
 
 ### 8. If you have followed the steps so far correctly, the environment is ready to send requests to the APIs. Click on Get Access Token API to start the API test
 
-![Postman!](/assets/images/postman/postman-tutorial_8.png "Postman")                      
+![image](https://user-images.githubusercontent.com/111396588/223825212-38ced20b-4446-4b54-b3d5-2b1b1f291ec4.png)                 
 
 ## Execute first request
 
 ### 9. Click on send button
 
-![Postman!](/assets/images/postman/postman-tutorial_9.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223825243-f72d7a6c-89bf-4281-b055-6ff96b718ba6.png)
 
 ### 10. You will notice that you have got an "access_token" which is automatically set in the "token" environment variable and has an expiration date. When the token expires, you'll need to repeat the step above
 
-![Postman!](/assets/images/postman/postman-tutorial_10.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223825263-3f1a2342-9731-417d-9de5-a7ba28628b1d.png)
 
 You are now ready to start trying out our API!
 
