@@ -13,11 +13,11 @@ If you have not used the Postman tool as an HTTP client to test requests, access
 
 ### 1. Open Postman and click the import button to open the provided collection
 
-![Postman!](/assets/images/postman/postman-tutorial_1.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223823808-2d79de52-0b42-4500-b6ee-31bf49c818ad.png)
 
 ### 2. After importing the collection, you will see the next one contains the requests divided by folders according to each entity and also initial requests, for example, "Get Access Token"
 
-![Postman!](/assets/images/postman/postman-tutorial_2.png "Postman")
+![image](https://user-images.githubusercontent.com/111396588/223823863-c76ef596-2ab8-473a-b801-9cd0980edea7.png)
 
 ## Create Environment
 
