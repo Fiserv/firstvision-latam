@@ -1,72 +1,73 @@
 ---
-tags: [Getting Started, API Key, API Credential]
+tags: [Empezando, API Key, Credenciales API]
 ---
 
-# Getting Started
+# Empezando
 
-This portal contains the API docs and the reference guide to understand it. This page guides you through use and test our Payments API. REST API provides a powerful, convenient, and simple Web services API. Its advantages include ease of integration and development, and it’s an excellent choice of technology for use with mobile applications and Web 2.0 projects.
+Este portal contiene los documentos de las API y la guía de referencia para entenderlos. Esta página lo guía a través del uso y la prueba de nuestra API de pagos. La API REST proporciona una API de servicios web potente, cómoda y sencilla. Sus ventajas incluyen la facilidad de integración y desarrollo, y es una excelente opción de tecnología para usar con aplicaciones móviles y proyectos Web 2.0.
 
-After these steps, you're ready to start test the Payments API.
+Después de estos pasos, estará listo para comenzar a probar la API de pagos.
 
-## Step 1: Get your API Key
+## Paso 1: Obtenga su API Key
 
-1. Provide the bank’s or financial institution’s name, user/users full name and e-mail address and submit to latamAPIs@fiserv.com and your assigned Account Manager or Commercial representative
+1. Envíe el nombre del banco o institución financiera, el nombre completo del usuario o los usuarios y una dirección de correo electrónico a latamAPIs@fiserv.com y a su Gerente de Cuenta o representante comercial asignado
 
-2. Expect a confirmation e-mail from Fiserv’s assigned Account Manager or Client Partner with the assigned credentials.
+2. Espere un correo electrónico de confirmación del administrador de cuentas asignado de Fiserv o de su Client Partner con las credenciales asignadas.
 
-### How to get an API Credential
+### Cómo obtener credenciales para la API
 
 ![API credential!](/assets/images/getting-started/getting-started_step-1.png "API credential")
 
-## Step 2: Explore our API
+## Paso 2: Explore nuestra API
 
-This section deals with how to access the request execution page in an HTTP client, if you already have the API credentials available, follow the steps below to understand the structure and how each part works.
+Esta sección trata sobre cómo acceder a la página de ejecución de solicitudes en un cliente HTTP. Si ya posee credenciales para la API, siga los siguientes pasos para comprender la estructura y cómo funciona cada parte.
 
-### 1. Select the API group that you want explore
+### 1. Seleccione el grupo de la API que desea explorar
 
 ![Getting started 1!](/assets/images/getting-started/getting-started-1.jpg "Getting started 1")
 
-### 2. This button will redirect you to the API docs
+### 2. Este botón lo redirigirá a los documentos de la API
 
-You can see the different APIs available for the corresponding group, on the right side you can explore the model detailed definition.
+Puede ver las diferentes APIs disponibles para el grupo correspondiente. En el lado derecho, usted puede explorar la definición detallada del modelo.
 
 ![Getting started 2!](/assets/images/getting-started/getting-started-2.jpg "Getting started 2")
 
-### 3. API Structure - On the page of any API resource, there is a division into segments, namely
+### 3. Estructura de la API: en la página de cualquier recurso de API, usted encontrará una división en segmentos
 
-- API description
-- Download API specification
-- Download Postman collection
-- Request parameters
-- Request body
-- Response body
-- Response code
-- Try out section
-
+- Descripción de la API
+- Descargar especificaciones de la API
+- Descargar la colección de Postman
+- Parámetros de la solicitud
+- Cuerpo de la solicitud
+- Cuerpo de la respuesta
+- Código de la respuesta
+- Sección de Prueba
+- 
 ![Getting started 3!](/assets/images/getting-started/getting-started-3.jpg "Getting started 3")
 
-### 4. Example of body fields
+### 4. Ejemplo de campos del cuerpo
 
 ![Getting started 4!](/assets/images/getting-started/getting-started-4.jpg "Getting started 4")
 
-### 5. Example of response fields
+### 5. Ejemplo de campos de la respuesta
 
 ![Getting started 5!](/assets/images/getting-started/getting-started-5.jpg "Getting started 5")
 
-### 6. Example of code errors
+### 6. Ejemplo de códigos de error
 
 ![Getting started 6!](/assets/images/getting-started/getting-started-6.jpg "Getting started 6")
 
-### 7. Example of try out section
+### 7. Ejemplo de la Sección de Prueba
 
 ![Getting started 7!](/assets/images/getting-started/getting-started-7.jpg "Getting started 7")
 
 ---
 
-## See Also
+## Ver también
 
-- [Postman Tutorial](?path=docs/english/getting-started/postman.md)
-- [Structure](?path=docs/getting-started/english/structure.md)
-- [Terminology](?path=docs/english/getting-started/terminology.md)
+- [Estructura](?path=docs/spanish/empezando/estructura.md)
+- [Lista Servicios](?path=docs/spanish/empezando/lista-servicios.md)
+- [Postman](?path=docs/spanish/empezando/postman.md)
+- [Terminologia](?path=docs/spanish/empezando/terminologia.md)
 
 ---
