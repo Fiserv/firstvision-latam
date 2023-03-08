@@ -16,7 +16,7 @@ Después de estos pasos, estará listo para comenzar a probar la API de pagos.
 
 ### Cómo obtener credenciales para la API
 
-![API credential!](/assets/images/getting-started/getting-started_step-1.png "API credential")
+![image](https://user-images.githubusercontent.com/111396588/223824102-ee737d0e-462a-44ef-b4aa-eb5d0d062f23.png)
 
 ## Paso 2: Explore nuestra API
 
@@ -24,13 +24,13 @@ Esta sección trata sobre cómo acceder a la página de ejecución de solicitude
 
 ### 1. Seleccione el grupo de la API que desea explorar
 
-![Getting started 1!](/assets/images/getting-started/getting-started-1.jpg "Getting started 1")
+![image](https://user-images.githubusercontent.com/111396588/223824143-0d2577da-4e91-476d-821e-9c665dd01457.png)
 
 ### 2. Este botón lo redirigirá a los documentos de la API
 
 Puede ver las diferentes APIs disponibles para el grupo correspondiente. En el lado derecho, usted puede explorar la definición detallada del modelo.
 
-![Getting started 2!](/assets/images/getting-started/getting-started-2.jpg "Getting started 2")
+![image](https://user-images.githubusercontent.com/111396588/223824184-806af113-9dbe-4a01-808a-24cdff61630f.png)
 
 ### 3. Estructura de la API: en la página de cualquier recurso de API, usted encontrará una división en segmentos
 
@@ -43,23 +43,23 @@ Puede ver las diferentes APIs disponibles para el grupo correspondiente. En el l
 - Código de la respuesta
 - Sección de Prueba
 - 
-![Getting started 3!](/assets/images/getting-started/getting-started-3.jpg "Getting started 3")
+![image](https://user-images.githubusercontent.com/111396588/223824217-3d03cb76-1bb1-4ea3-bde3-e40f939a64f8.png)
 
 ### 4. Ejemplo de campos del cuerpo
 
-![Getting started 4!](/assets/images/getting-started/getting-started-4.jpg "Getting started 4")
+![image](https://user-images.githubusercontent.com/111396588/223824246-d2174d9c-9d0a-4e1b-a287-2ba18d02514d.png)
 
 ### 5. Ejemplo de campos de la respuesta
 
-![Getting started 5!](/assets/images/getting-started/getting-started-5.jpg "Getting started 5")
+![image](https://user-images.githubusercontent.com/111396588/223824287-f11215ff-a306-4522-ad54-9c254e24dd5b.png)
 
 ### 6. Ejemplo de códigos de error
 
-![Getting started 6!](/assets/images/getting-started/getting-started-6.jpg "Getting started 6")
+![image](https://user-images.githubusercontent.com/111396588/223824322-689bbbd6-c8b5-4d85-8f14-70fb6a7bf91e.png)
 
 ### 7. Ejemplo de la Sección de Prueba
 
-![Getting started 7!](/assets/images/getting-started/getting-started-7.jpg "Getting started 7")
+![image](https://user-images.githubusercontent.com/111396588/223824344-69875caf-2cae-4b95-bac5-1b8d715bef43.png)
 
 ---
 
