@@ -1,72 +1,70 @@
 ---
-tags: [API Reference, Response Handling, Response Code, HTTP Status Code]
+tags: [Referencia de la API, Gestión de Respuestas, Código de Respuesta, Código de Estado HTTP]
 ---
 
-# Response Code and Message Handling
+# Código de Respuesta y Gestión de Mensajes
 
-Response codes identify the final status of the transaction from the Gateway, Host and/or Server (HTTP). The codes and messages are unique per transaction status which includes; approvals, declines and errors. 
+Los códigos de respuesta identifican el estado final de la transacción desde la puerta de enlace, el host y/o el servidor (HTTP). Los códigos y mensajes son únicos por estado de transacción que incluye: aprobaciones, rechazos y errores.
 
 ---
 
-## HTTP Status Codes
+## Códigos de Estado HTTP
 
-The state of the transaction can be determined by the three-digit HTTP status code from the response. These status codes are grouped in to three different classes, and the first digit can be used to quickly identify the class of a status code.
+El estado de la transacción se puede determinar mediante el código de estado HTTP de tres dígitos de la respuesta. Estos códigos de estado se agrupan en tres clases diferentes, y el primer dígito se puede usar para identificar rápidamente la clase de un código de estado.
 
-- **2xx: Success** – Indicates that the request was processed successfully by Commerce Hub and will return the `processorResponseDetails` object along with the `responseCode` and `responseMessage`. This can be the issuer response or a processor error response.
-- **4xx: Client Error** – Indicates that incorrect data in request and will return the `errorResponse` object along with the code, message, and field.
-- **5xx: Server Error** – Indicates that the server was unable to process the request and will return the `errorResponse` object along with the code, message, and field.
+- **2xx: Correcto** - Indica que se procesó correctamente la solicitud y devolverá el objeto ProcessResponseDetails junto con el `responseCode` y  `responseMessage`. Esta puede ser la respuesta del emisor o una respuesta de error del procesador.
+- **4xx: Error del Cliente** - Indica datos incorrectos en la solicitud y devolverá el objeto `errorResponse` junto con el código, el mensaje y el campo.
+- **5xx: Error del Servidor**  - Indica que el servidor no pudo procesar la solicitud y devolverá el objeto `errorResponse` junto con el código, el mensaje y el campo.
 
 <!--
 type: tab
 titles: 2xx, 4xx, 5xx
 -->
 
-### Success Status code and description
+### Código de Estado de Éxito y Descripción
 
-| Code | Message | Description |
-| --------- | --- | ------- |
-| 200 | Success | Indicates that a request has succeeded |
-| 201 | Created | Indicates that a request has succeeded and a new resource has been created as a result |
-| 204 | No Content | Indicates that a request has succeeded and that the client doesn't need to navigate away from its current page |
+| Código | Mensaje          | Descripción                                                                                                    |
+|--------|------------------|----------------------------------------------------------------------------------------------------------------|
+| 200    | Success          | Indica que una solicitud ha tenido éxito.                                                                      |
+| 201    | Created          | Indica que una solicitud se ha realizado correctamente y, como resultado, se ha creado un nuevo recurso.       |
+| 204    | No Content       | Indica que una solicitud se ha realizado correctamente y que el Cliente no necesita salir de su página actual. |
 
-
-<!--
-type: tab
--->
-
-### Client Error Status code, description and resolution
-
-| Code | Message  | Description | Resolution |
-| --------- | --- | ------- | --------- |
-| 400 | Bad Request | The request could not be understood due to incorrect syntax. | The merchant should do the modifications and repeat the request. |
-| 401 | Unauthorized | Indicates that the request requires user authentication information. | The merchant may repeat the request with a suitable Authorization header field. |
-| 403 | Forbidden | Unauthorized request. The merchant does not have access rights to the content. | Please contact Account Representative for an access. |
-| 404 | Not Found | Commerce Hub can not find the requested resource. | Please check API Explorer for more information. |
-| 408 | Request Time Out | The response to the request did not received till set period time. | Please try after some time. |
-| 415 | Unsupported Media Type | Commerce Hub not able to process the supplied media type, as indicated by the Content-Type request header. | Merchant to correct the data and resend. |
-| 425 | Too Early | The request was sent too early. | Merchant to wait for sometime and send request. |
-| 429 | Too Many Requests | Merchant had sent too many requests in a given amount of time. | Merchant to wait for sometime and send request. |
 
 <!--
 type: tab
 -->
 
-### Server Error Status code, description and resolution
+### Código descripción y resolución de estado de error del Cliente
 
-| Code | Message | Description | Resolution |
-| --------- | ---- | ------ | ------- |
-| 500 | Internal Server Error | Commerce Hub encountered an unexpected condition which prevented it from fulfilling the request. | Report the error to Commerce Hub support team. |
-| 503 | Service Unavailable | The application server is not ready to handle the request. | Please try after sometime. |
-| 504 | Gateway Timeout | Commerce Hub did not received response from upstream application. | Please try after sometime. |
+| Código | Mensaje                | Descripción                                                                                                        | Resolución                                                                                  |
+|--------|------------------------|--------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| 400    | Bad Request            | No se pudo entender la solicitud debido a una sintaxis incorrecta.                                                 | El comercio debe hacer las modificaciones y repetir la solicitud.                           |
+| 401    | Unauthorized           | Indica que la solicitud requiere información de autenticación del usuario.                                         | El comercio puede repetir la solicitud con un campo de encabezado de Autorización adecuado. |
+| 403    | Forbidden              | Solicitud no autorizada. El comercio no tiene derechos de acceso al contenido.                                     | Solicite acceso.                                                                            |
+| 404    | Not Found              | No se puede encontrar el recurso solicitado.                                                                       | Revise el listado de APIs.                                                                  |
+| 408    | Request Time Out       | No se recibió una respuesta a la solicitud durante el período de tiempo establecido.                               | Por favor intente más tarde.                                                                |
+| 415    | Unsupported Media Type | No se pudo procesar el tipo de medio proporcionado, tal como se indica en el encabezado de solicitud Content-Type. | El comercio debe corregir los datos y volver a enviar.                                      |
+| 425    | Too Early              | La solicitud se envió demasiado pronto.                                                                            | El comercio debe esperar un tiempo y enviar la solicitud.                                   |
+| 429    | Too Many Requests      | El comercio envío demasiadas solicitudes en un período de tiempo determinado.                                      | El comercio debe esperar un tiempo y enviar la solicitud.                                   |
+<!--
+type: tab
+-->
+
+### Código, descripción y resolución de estado de error del Servidor
+| Código | Mensaje               | Descripción                                                                   | Resolución                       |
+|--------|-----------------------|-------------------------------------------------------------------------------|----------------------------------|
+| 500    | Internal Server Error | Se encontró una condición inesperada que le impidió cumplir con la solicitud. | Informe el error.                |
+| 503    | Service Unavailable   | El servidor de aplicaciones no está listo para manejar la solicitud.          | Intente después de algún tiempo. |
+| 504    | Gateway Timeout       | No se recibió respuesta de la aplicación.                                     | Intente después de algún tiempo. |
 
 <!-- type: tab-end -->
 
 ---
 
-## See Also
+## Ver también
 
-- [API Glossary](?path=docs/english/api-reference/api-glossary.md)
-- [API Request](?path=docs/english/api-reference/api-request.md)
-- [Error Response](?path=docs/english/api-reference/error-response.md)
+- [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
+- [Respuesta de error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Solicitud de API](?path=docs//spanish/referencia-api/solicitud-api.md)
 
 ---
