@@ -45,7 +45,7 @@ The description of this API fields can be found within the specifications define
 - [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
 - [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
 - [HMAC Signature](?path=docs/english/main-cases/hmac.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
+- [PAN Token](?path=docs/english/main-cases/pan-token.md)
 - [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
 - [Upload Founds](?path=docs/english/main-cases/uploads.md)
 
