@@ -12,7 +12,7 @@ Client and server must have the same secret key so they can verify the authentic
 
 The same message generated with the same secret key will always result in the same signature.
 
-![image](https://user-images.githubusercontent.com/111396588/208850051-95699fa8-b605-42c3-995b-50e1f10c0a43.png)
+![image](https://user-images.githubusercontent.com/111396588/223831325-86b618a5-1ee4-4134-a82f-f5ce04766e01.png)
 
 
 ## Why use?
