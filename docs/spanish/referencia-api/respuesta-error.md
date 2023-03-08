@@ -1,31 +1,31 @@
 ---
-tags: [API Reference, Error Response]
+tags: [Referencia de la API, Respuesta de Error]
 ---
 
-# Error Response
+# Respuesta de Error
 
-Fiserv includes the `errorResponse` as part of the `error` object along with the corresponding data in `type`, `code`, `field` and `message` fields. 
-
-<!--
-type: tab
-titles: error, JSON Example, Error Response
--->
-
-The below table identifies the parameters in the `error` object.
-
-| Variable | Type| Maximum Length | Description |
-|---------|----------|----------------|---------|
-| `type` | *string* | 256 | The type of response either from the HOST, GATEWAY, NETWORK, or APIM |
-| `code` | *string* | 256 | Error response code from the host, gateway or network |
-| `field` | *string* | 256 | The property or attribute associated with the error |
-| `message` | *string* | 256 | Information specific to a property or attribute |
-
+Fiserv incluye el `errorResponse` como parte del objeto de error unto con los datos correspondientes en los campos`type`, `code`, `field` y `message` fields. 
 
 <!--
 type: tab
+titles: error, Ejemplo JSON, Respuesta de Error
 -->
 
-JSON string format for `error`:
+La siguiente tabla identifica los parámetros en el objeto de error.
+
+| Variable  | Tipo     | Longitud Máxima | Descripción                                                          |
+|-----------|----------|-----------------|----------------------------------------------------------------------|
+| `type`    | *string* | 256             | El tipo de respuesta del HOST, GATEWAY, NETWORK o APIM.              |
+| `code`    | *string* | 256             | Código de respuesta de error del host, la puerta de enlace o la red. |
+| `field`   | *string* | 256             | La propiedad o atributo asociado con el error.                       |
+| `message` | *string* | 256             | Información específica de una propiedad o atributo.                  |
+
+
+<!--
+type: tab
+-->
+
+Formato de cadena JSON para `error`:
 
 ```json
 {
@@ -42,7 +42,7 @@ JSON string format for `error`:
 type: tab
 -->
 
-Example of a charge (400: Bad Request) response
+Ejemplo de una respuesta de cargo (400: Solicitud Incorrecta)
 
 ```json
 {
@@ -74,10 +74,10 @@ Example of a charge (400: Bad Request) response
 
 ---
 
-## See Also
+## Ver también
 
-- [API Glossary](?path=docs/english/api-reference/api-glossary.md)
-- [API Request](?path=docs/english/api-reference/api-request.md)
-- [Error Handling](?path=docs/english/api-reference/response-handling.md)
+- [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
+- [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
+- [Solicitud de API](?path=docs//spanish/referencia-api/solicitud-api.md)
 
 ---
