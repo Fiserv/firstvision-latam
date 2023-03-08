@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Transactions]
+tags: [API Reference, Transactions]
 ---
 
 # Transactions
