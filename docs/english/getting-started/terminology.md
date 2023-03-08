@@ -54,7 +54,7 @@ Also known as an embosser.
 
 <!-- type: tab-end -->
 
-![Customer!](/assets/images/terminology/customer.png "Customer")
+![image](https://user-images.githubusercontent.com/111396588/223825911-aba5e5da-3fe3-48c6-8e51-0a9085cdd041.png)
 
 In addition, an account will have multiple **Plan Segments**:
 
@@ -62,7 +62,7 @@ In addition, an account will have multiple **Plan Segments**:
 - Each plan has a certain 'type'; for example, retail, cash or balance transfer. It contains monetary information and other details about transactions that fit that time, including interest rate, overrides and deferment options, plan balance and billed-not-paid components.
 - Each Plan Segment assigned to an account is uniquely identified by a combination of a 5-digit number and a record number.
 
-![Plan segments!](/assets/images/terminology/plan-segments.png "Plan segments")
+![image](https://user-images.githubusercontent.com/111396588/223825942-c86f84ef-1565-4664-8230-f731e74c6512.png)
 
 ---
 
