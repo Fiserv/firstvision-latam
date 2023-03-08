@@ -1,33 +1,34 @@
 ---
-tags: [Main Cases, Falcon, fraud, detection, prevention, management]
+tags: [Casos Principales, Falcon, Fraude, Detección, Prevención, Gestión]
 ---
 
-# Falcon System Integration
+# Integración con el sistema Falcon
 
-Falcon is a fraud detection, prevention and management application. Falcon examines all incoming transactions and determines the probability of the transaction being fraudulent. Falcon has it’s own neural network which asses the transaction coming to falcon. Based on several factors, scores the transaction and provides a Falcon score, which tells the likelihood of a fraudulent transaction.
+Falcon es una aplicación de detección, prevención y gestión de fraudes. Falcon examina todas las transacciones entrantes y determina la probabilidad de que la transacción sea fraudulenta. Falcon tiene su propia red neuronal que evalúa las transacciones que llegan a Falcon. Con base en varios factores, Falcon le asigna una calificación a cada transacción, que indica la probabilidad de una transacción sea fraudulenta.
 
-Falcon works with real time transactions that are scored in Falcon and a score from zero to 999 will be generated for each of one. These transaction furthers traverse through the different set of rules as per business need to identify fraud. At end, Falcon will send the scoring response message to the Authorization Host system, e.g. decline the Authorization and block the card. Activating parameter on First Vision, is possible integrate with Falcon, so authorization transactions processed by FirstVision will be routed to Falcon to stablish a fraud control.
+Falcon les asigna una puntuación de cero a 999 a cada una de las transacciones que recibe en tiempo real. Luego, cada transacción atraviesa un conjunto de reglas establecidas según las distintas necesidades de negocio para identificar el fraude. Al final, Falcon enviará el mensaje de respuesta al sistema de host de autorización como, por ejemplo, indicando que se debe rechazar la autorización y bloquear la tarjeta. Al activar el parámetro en First Vision, es posible realizar una integración con Falcon, por lo que las transacciones de autorización procesadas por FirstVision se enrutarán a Falcon para establecer un control de fraude.
 
 ![image](https://user-images.githubusercontent.com/111396588/208846621-4b1bd3c3-0355-48ff-a23a-0d6f313ec3d0.png)
 
 ---
 
-## See Also
+## Ver también
 
-- [Account Management](?path=docs/english/main-cases/account.md)
-- [API Environment](?path=docs/english/main-cases/api-environment.md)
-- [Audit and Monitoring](?path=docs/english/main-cases/audit.md)
-- [Card Controls](?path=docs/english/main-cases/card-controls.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Card Record](?path=docs/english/main-cases/record.md)
-- [Cash-in/Cash-out](?path=docs/english/main-cases/cash-in-out.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
-- [Digital Card Issuing](?path=docs/english/main-cases/digital.md)
-- [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
-- [HMAC Signature](?path=docs/english/main-cases/hmac.md)
-- [PAN Token](?path=docs/english/main-cases/pan-token.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
-- [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
-- [Upload Founds](?path=docs/english/main-cases/uploads.md)
+- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+- [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
+- [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
+- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
+- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
