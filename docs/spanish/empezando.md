@@ -68,6 +68,6 @@ Puede ver las diferentes APIs disponibles para el grupo correspondiente. En el l
 - [Estructura](?path=docs/spanish/empezando/estructura.md)
 - [Lista Servicios](?path=docs/spanish/empezando/lista-servicios.md)
 - [Postman](?path=docs/spanish/empezando/postman.md)
-- [Terminologia](?path=docs/spanish/empezando/terminologia.md)
+- [Terminología](?path=docs/spanish/empezando/terminologia.md)
 
 ---
