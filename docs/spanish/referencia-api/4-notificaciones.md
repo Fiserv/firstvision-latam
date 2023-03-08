@@ -1,70 +1,66 @@
 ---
-tags: [API Reference, Notifications, Webhooks, Events]
+tags: [Referencia de la API, Notificationes, Webhooks, Eventos]
 ---
 
-# Notifications
+# Notificationes
 
-First Vision Notification allows Fintechs and Finantial Institutions to receive events such as authorizations, address change, card blocking, card activation, card replacement or reissue, payment due date and credit limit change. 
+Las notificaciones de First Vision les permite a las empresas de tecnología financiera y a las instituciones financieras recibir eventos como autorizaciones, cambios de dirección, bloqueos de tarjeta, activación de tarjetas, reemplazos o reemisiones de tarjetas, fechas de vencimiento de pagos y cambios de Límite de Crédito.
 
-Flexibility to define new events in future with minimal system changes is also available.
-
----
+También está disponible la flexibilidad para definir nuevos eventos/SMS en el futuro con cambios mínimos en el sistema.
 
 <!--
 type: tab
-titles: Who is it for, How is it used, Potential uses
+titles: ¿Para quién es?, ¿Cómo se usa?, Usos potenciales
 -->
 
-Any developer creating or integrating apps that need to interact with transaction data maintained on Fiserv core account processing platforms
-
-<!--
-type: tab
--->
-
-Employ these APIs to develop apps that offer unique experiences or novel channels through which users can view and manage transactions on those accounts
+Cualquier desarrollador que cree o integre aplicaciones que necesiten interactuar con datos de transacciones mantenidos en plataformas de procesamiento de cuentas centrales de Fiserv.
 
 <!--
 type: tab
 -->
 
-Apps that enable consumers and businesses to monitor and manage their financial transactions and balances through channels they access in everyday life
+Utilice estas API para desarrollar aplicaciones que ofrezcan experiencias únicas o canales novedosos a través de los cuales los usuarios puedan ver y administrar transacciones en esas cuentas.
+
+<!--
+type: tab
+-->
+
+Aplicaciones que permiten a los consumidores y las empresas monitorear y administrar sus transacciones y saldos financieros a través de los canales a los que acceden en la vida cotidiana.
 
 <!-- type: tab-end -->
 
----
-
 ## Webhooks
 
-Webhooks are a way for systems to send real-time notifications about events that have occurred. They work by allowing a client to provide a service that can receive notifications whenever certain events happen in Fiserv systems . With webhooks, applications can be kept up-to-date on things like authorization changes, card or account updates, and fraud alerts.
+Los webhooks son una forma en que los sistemas envían notificaciones en tiempo real sobre eventos que han ocurrido. Funcionan al permitir que un Cliente brinde un servicio que puede recibir notificaciones cada vez que ocurren ciertos eventos en los sistemas de Fiserv. Con los webhooks, las aplicaciones se pueden mantener actualizadas sobre cosas como cambios de autorización, actualizaciones de tarjetas o cuentas y alertas de fraude.
 
-To use webhooks, FirstVision can send an HTTP POST request to a designated endpoint whenever an event occurs. This sends a notification to the receiving application, which can then take any necessary action in response. Webhooks provide a quick and efficient way for different systems to communicate and stay informed about important events.
+Para usar webhooks, FirstVision puede enviar una solicitud HTTP POST a un punto final designado siempre que ocurra un evento. Esto envía una notificación a la aplicación receptora, que luego puede tomar las medidas necesarias en respuesta. Los webhooks proporcionan una forma rápida y eficiente para que los diferentes sistemas se comuniquen y se mantengan informados sobre eventos importantes.
 
 ![image](https://user-images.githubusercontent.com/111396588/209873236-86eb54b6-f214-4f8f-9652-51c03ad8d604.png)
 
 ### Webhooks Events
 
-|Event Number|Description|
-|------------|-----------|
-|01|Authorization event (approved and declined)|
-|02|Payment due date trigger|
-|03|CMS Account cycling event|
-|04|Available Credit event|
-|05|Payment Posted event|
-|06|Change of Address|
-|07|Card Blocking (Declined / Pick up Auth action only)|
-|08|Card Activation|
-|09|Card Embossing|
-|10|Payment due date change|
-|11|Credit limit change|
-|12|Falcon event trigger during Authorization and Card Level Blocks|
+| Numero de Evento | Descripción                                                                        |
+|------------------|------------------------------------------------------------------------------------|
+| 01               | Evento de Autorización (aprobado y rechazado)                                      |
+| 02               | Disparador de Fecha Límite de Pago                                                 |
+| 03               | Evento de Generación de Ciclos de la Cuenta CMS                                    |
+| 04               | Evento de Crédito Disponible                                                       |
+| 05               | Evento de Pago Posteado                                                            |
+| 06               | Cambio de Dirección                                                                |
+| 07               | Bloqueos de tarjetas (Solo acción de Rechazada / Recoger Autorización)             |
+| 08               | Activación de Tarjetas                                                             |
+| 09               | Embozado de Tarjetas                                                               |
+| 10               | Cambio de Fecha Límite de Pago                                                     |
+| 11               | Cambio de cupo                                                                     |
+| 12               | Disparador de Evento de Falcon durante autorización y bloqueos de nivel de tarjeta |
 
-### Webhooks Examples
+### Ejemplos de Webhooks
 
 ---
 
 <!--
 type: tab
-titles: Auth Approved, Auth Declined, Payment Due
+titles: Autorización aprobada, Autorización rechazada, Fecha de Pago
 -->
 
 ```json
@@ -195,7 +191,7 @@ type: tab
 
 <!--
 type: tab
-titles: Card Blocking, Card Activation, Change of Address
+titles: Bloqueo de Tarjeta, Activación de Tarjetas, Cambio de Dirección
 -->
 
 ```json
@@ -324,12 +320,12 @@ type: tab
 
 ---
 
-## See Also
+## Ver también
 
-- [Account](?path=docs/english/api-reference/1-account.md)
-- [Cards](?path=docs/english/api-reference/2-cards.md)
-- [Customer](?path=docs/english/api-reference/3-customer.md)
-- [Loyalty](?path=docs/english/api-reference/4-loyalty.md)
-- [Transactions](?path=docs/english/api-reference/6-transactions.md)
+- [Clientes](?path=docs/spanish/referencia-api/1-clientes.md)
+- [Cuentas](?path=docs/spanish/referencia-api/2-cuentas.md)
+- [Lealtad](?path=docs/spanish/referencia-api/3-lealtad.md)
+- [Tarjetas](?path=docs/spanish/referencia-api/5-tarjetas.md)
+- [Transacciones](?path=docs/spanish/referencia-api/6-transacciones.md)
 
 ---
