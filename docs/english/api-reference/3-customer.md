@@ -10,7 +10,7 @@ Multiple accounts can be associated with a single Customer Name/Address record. 
 
 <!--
 type: tab
-titles: Who is it for, How is it used, Potential uses
+titles: Who is it for?, How is it used?, Potential uses
 -->
 
 Any developer creating or integrating apps that need to interact with transaction data maintained on Fiserv core account processing platforms
