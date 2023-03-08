@@ -13,13 +13,12 @@ titles: error, JSON Example, Error Response
 
 The below table identifies the parameters in the `error` object.
 
-| Variable | Type| Maximum Length | Description |
-|---------|----------|----------------|---------|
-| `type` | *string* | 256 | The type of response either from the HOST, GATEWAY, NETWORK, or APIM |
-| `code` | *string* | 256 | Error response code from the host, gateway or network |
-| `field` | *string* | 256 | The property or attribute associated with the error |
-| `message` | *string* | 256 | Information specific to a property or attribute |
-
+| Variable  | Type     | Maximum Length | Description                                                          |
+|-----------|----------|----------------|----------------------------------------------------------------------|
+| `type`    | *string* | 256            | The type of response either from the HOST, GATEWAY, NETWORK, or APIM |
+| `code`    | *string* | 256            | Error response code from the host, gateway or network                |
+| `field`   | *string* | 256            | The property or attribute associated with the error                  |
+| `message` | *string* | 256            | Information specific to a property or attribute                      |
 
 <!--
 type: tab
