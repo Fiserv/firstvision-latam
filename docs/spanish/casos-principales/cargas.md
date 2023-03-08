@@ -1,8 +1,8 @@
 ---
-tags: [Main Cases, Upload Founds From a Source Account, Account, Balance, Peer-to-Peer]
+tags: [Casos Principales, Cargar Fondos desde una Cuenta Origen, Cuenta, Balance, Punto a Punto]
 ---
 
-# Upload Founds From a Source Account
+# Cargar Fondos desde una Cuenta Origen
 
 ## Definition
 
