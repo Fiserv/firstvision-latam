@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, API Reference, Account, Cards, Customer, Loyalty, Notifications, Transactions]
+tags: [API Reference, Account, Cards, Customer, Loyalty, Notifications, Transactions]
 ---
 
 # API Reference
