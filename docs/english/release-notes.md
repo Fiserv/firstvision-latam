@@ -22,8 +22,6 @@ Endpoints moved to version 1.1.0:
 - /account/transfer
 - /account/QR-balance
 - /account/QR-transfer
-- /account/QRFL-balance
-- /account/FL-balance
 - /account/FL-transferP2P
 
 ### Known Issues
@@ -32,7 +30,7 @@ Endpoints moved to version 1.1.0:
 
 ### Deprecated
 
-- N/A
+- /account/QRFL-balance
 
 ---
 
