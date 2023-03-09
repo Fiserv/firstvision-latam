@@ -100,7 +100,7 @@ Request body:
 
 The description of each API field can be found within the specifications defined in the portal.
 
-### Inquire Card or PAN token (cards/embosser/card-pan)
+## Inquire Card or PAN token (cards/embosser/card-pan)
 
 Use this API **CARDS/EMBOSSER/CARD-PAN** to get the PAN-token calculated for a card number.
 
