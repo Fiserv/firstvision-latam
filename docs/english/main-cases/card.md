@@ -100,6 +100,29 @@ Request body:
 
 The description of each API field can be found within the specifications defined in the portal.
 
+### Inquire Card or PAN token (cards/embosser/card-pan)
+
+Use this API **CARDS/EMBOSSER/CARD-PAN** to get the PAN-token calculated for a card number.
+
+PAN token is a current functionality to tokenize the card number for all banks that are not a PCI certificate. When new card is created through API **CARD/EMBOSSER**, the PAN token is calculated automatically on base a parameters previously defined.
+
+This API use the PAN-TOKEN to bring the card number or card number can be used to being the PAN-TOKEN.
+
+**POST** `/cards/embosser/card-pan`
+
+Request body:  
+
+```json
+{
+  "cardSequence": 1,
+  "functionType": "C",
+  "organizationNumber": {{orgid}},
+  "cardNumber": "{{cardNumber}}"
+}
+```
+
+The description of each API field can be found within the specifications in the portal.
+
 ## Add or Update Massive Cards (/cards/mass-card-issue)
 
 This API **CARDS/MASS-CARD-ISSUE**, allow the user add or update a request to emboss new cards on massive way. These cards can be credit, debit or prepay card. Quantity of card to emboss is a parameter request by the API.
