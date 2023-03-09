@@ -14,9 +14,24 @@ Una vez ingresada esta información a través de las diferentes APIs, es posible
 
 A continuación, se describen las funcionalidades de cada uno de estos tres pasos actualmente definidos en el portal:
 
-- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
-- [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
-- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+<!-- type: row -->
+
+<!-- type: card
+title: Gestión de Clientes
+description: Permite la gestión de la información demográfica del tarjetahabiente como nombre, dirección, números de teléfono, etc.
+-->
+
+<!-- type: card
+title:  Gestión de Cuentas
+description: Permite la gestión de una cuenta que contiene información financiera del Crédito disponible/utilizado.
+-->
+
+<!-- type: card
+title: Gestión de Tarjetas
+description: Permite la gestión del instrumento de pago que se utiliza para realizar transacciones financieras, como tarjetas físicas, tarjetas virtuales, monederos digitales.
+-->
+
+<!-- type: row-end -->
 
 ---
 
