@@ -15,9 +15,25 @@ After this information has been entered through the different APIs, it is possib
 
 The functionalities of each of these three steps currently defined in the portal are describe below:
 
-- [Account Management](?path=docs/english/main-cases/account.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
+<!-- type: row -->
+
+<!-- type: card
+title: Account Management
+description: Allows management of an accounts that holds financial information of Credit available/used.
+-->
+
+<!-- type: card
+title:  Cards Management
+description: Allows management of payment instrument that is used to perform financial transaction such as physical Card, Virtual Card, Wallet Token.
+-->
+
+<!-- type: card
+title: Customer Management
+description: Allows management of a cardholder's demographic information like Name, Address, phone numbers, etc.
+-->
+
+<!-- type: row-end -->
+
 
 ---
 
