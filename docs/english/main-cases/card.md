@@ -24,7 +24,7 @@ PAN token is a current functionality to tokenize the card number for all banks t
 
 This API use the PAN-TOKEN to bring the card number or card number can be used to being the PAN-TOKEN.
 
-**POST** `/cards/embosser/card-pan`
+**POST** `/cards/embosser/card-pan-l8v2`
 
 The description of each API field can be found within the specifications in the portal.
 
