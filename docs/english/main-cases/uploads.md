@@ -20,7 +20,7 @@ However, depending on the values used in the APIS, it is also possible to load m
 
 ## Use Case
 
-![image](https://user-images.githubusercontent.com/111396588/223830477-4419c5ea-679d-436f-bf3e-08907e1c56be.png)
+![image](https://user-images.githubusercontent.com/111396588/224208640-605f6900-ab7a-40e3-9062-d40563b0ed8f.png)
 
 ### Adjust Account Balance and Account Balance Peer-to-Pee
 
@@ -34,13 +34,9 @@ The description of each API field can be found within the specifications defined
 
 ## Sequence Diagram
 
-### Adjust Account Balance (Account/Balance)
+### Adjust Account Balance / Adjust Account Balance Peer-to-Peer 
 
-![image](https://user-images.githubusercontent.com/111396588/223830380-f4df931f-4c23-408f-a494-cde4463cce64.png)
-
-### Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
-
-![image](https://user-images.githubusercontent.com/111396588/223830333-a3dcc4b4-bdfc-4920-a653-fd615b5a92bd.png)
+![image](https://user-images.githubusercontent.com/111396588/224208900-25a90498-2011-4a85-96b0-9b5a8accab98.png)
 
 ---
 
