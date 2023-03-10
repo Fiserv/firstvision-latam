@@ -14,20 +14,6 @@ Los valores requeridos para esta API son el número de tarjeta, el canal, el PIN
 
 **PUT** `/cards/pin/pin-change`
     
-Cuerpo de la Solicitud:
-
-```json
-{
-  "cardNumber": "{{cardNumber}}",
-  "channel": "W",
-  "currPinBlock": "123ABC123ABC123",
-  "keyAssociationNumber": "AV",
-  "organizationNumber": {{orgid}},
-  "pinOffset": "",
-  "reqdPinBlock": "123ABC123A"
-}
-```
-
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ---
