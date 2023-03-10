@@ -22,8 +22,6 @@ Sin embargo, dependiendo de los valores utilizados en APIS, también es posible 
 
 ![image](https://user-images.githubusercontent.com/111396588/224208640-605f6900-ab7a-40e3-9062-d40563b0ed8f.png)
 
-### Ajustar Saldo de Cuentas y Ajustar Saldo de Cuenta Punto a Punto 
-
 El uso de esta API le permite cargar dinero a un producto de Débito, Crédito, Tarjeta Prepago y Monedero, utilizando los parámetros definidos en el Portal. Esta API toma como fuente el efectivo recibido de una agencia o sucursal bancaria y aplicará estos fondos. Estos fondos pueden ser en moneda nacional o extranjera. Como parte de sus funciones, esta API permite indicar a través de sus parámetros, si el dinero depositado en la Cuenta puede ser utilizado de forma inmediata o no.
 
 A través de los parámetros indicados es posible identificar la cuenta, tarjeta del producto desde la cual se está realizando el retiro de dinero (débito) y definir la cuenta y tarjeta a la cual se realizará el abono, también se requiere que, como parte de los parámetros de la API, se agregue la ubicación geográfica (latitud y longitud) de la fuente (remitente) que está cargando dinero. También se requiere el número de tarjeta del que se recibe el dinero (beneficiario) como parte de los parámetros requeridos por la API.
@@ -33,8 +31,6 @@ A través de los parámetros indicados es posible identificar la cuenta, tarjeta
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## Diagrama de Secuencia
-
-### Ajustar Saldo de Cuentas / Ajustar Saldo de Cuenta Punto a Punto
 
 ![image](https://user-images.githubusercontent.com/111396588/224208900-25a90498-2011-4a85-96b0-9b5a8accab98.png)
 
