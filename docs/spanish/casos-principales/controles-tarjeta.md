@@ -16,8 +16,6 @@ On same way, the cardholder may carry out a preventive unlocking of his card whe
 
 Information required by the API as the card number, block code, and function must be included before API trigger.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/cards/embosser/block`
 
 The description of each API field can be found within the specifications.
@@ -29,8 +27,6 @@ This API allows the customer to update online, the different spending limits ass
 The values are modified 100% online and can be adjusted as many times as required.
 
 The API Card/Spend-Limits, requests as required information, the card number, transaction number and amounts for each spending limit.
-
-The description of each API field can be found within the specifications defined in the portal.
 
 **PUT** `/cards/spend-limits-L8V3`
 
@@ -46,8 +42,6 @@ This API allows the cardholder define the range of dates and countries where the
 
 The values required by the API are the card number, ISO code of the country, start and end date range, allowing up to a maximum of five countries to visit with their respective date ranges
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/cards/travel`
 
 The description of each API field can be found within the specifications.
@@ -57,8 +51,6 @@ The description of each API field can be found within the specifications.
 This API allow the cardholder blocks their current card number and request a new card with different card number in only one trigger. Same that API Block or Unlock Card, card number can be blocked just in case cardholder believes that card information is compromise and at same time he can request a new card number, so new card will be embossed during batch process and will be ready to be deliver on next day.
 
 As part of values requested by the API Cards/Transfer, is required the card number, account number, organization and effective date.
-
-The description of each API field can be found within the specifications defined in the portal.
 
 **PUT** `/cards/transfer`
 
@@ -118,22 +110,22 @@ The description of each API field can be found within the specifications.
 
 ---
 
-## See Also
+## Ver también
 
-- [Account Management](?path=docs/english/main-cases/account.md)
-- [API Environment](?path=docs/english/main-cases/api-environment.md)
-- [Audit and Monitoring](?path=docs/english/main-cases/audit.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Card Record](?path=docs/english/main-cases/record.md)
-- [Cash-in/Cash-out](?path=docs/english/main-cases/cash-in-out.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
-- [Digital Card Issuing](?path=docs/english/main-cases/digital.md)
-- [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
-- [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
-- [HMAC Signature](?path=docs/english/main-cases/hmac.md)
-- [PAN Token](?path=docs/english/main-cases/pan-token.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
-- [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
-- [Upload Founds](?path=docs/english/main-cases/uploads.md)
+- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
+- [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
+- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
+- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
