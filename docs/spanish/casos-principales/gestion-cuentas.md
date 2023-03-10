@@ -4,7 +4,7 @@ tags: [Main Cases, Account Management, account, balance, debit, credit limit, bl
 
 # Account Management
 
-## Account Add (account/)
+## Account Add 
 
 This API **ACCOUNT/** allow add all the Account information for any product of credit, debit, prepay and Wallet. Information as credit limit, billing cycle, Customer Short Name, account block codes, customer number, card tech etc can be added as part of this API fields.
 
@@ -12,54 +12,11 @@ Account number is a unique number that is different than card number, account nu
 
 This API needs the customer number as a require value before the API can be trigger. This customer number is provide when API **CUSTOMER/ADD** is trigger to add demographic information.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **POST** `/account`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountData": {
-    "billingCurrency": 0,
-    "billingCycle": 31,
-    "billingLevel": 1,
-    "blockCode1": "",
-    "cardholderAffiliationGroup": 0,
-    "creditLimit": 10000,
-    "customerNumber": "9704010000000001467",
-    "customerSelectedDueDay": 0,
-    "dualBillingFlag": 0,
-    "issuanceId": "",
-    "logo": 401,
-    "organization": 970,
-    "owningBranch": 999999998,
-    "prepaidPlanNumber": 0,
-    "processingControlTable": {
-      "level": "O",
-      "startDate": "",
-      "tableId": ""
-    },
-    "qualification": "A",
-    "relationshipNumber": "",
-    "residenceId": "1",
-    "shortName": "Vishal",
-    "sourceCode": "sourceCode",
-    "statement": "1",
-    "statementFrequency": 0,
-    "userAccountNumber": "",
-    "userData": {
-      "userApplication1": "12"
-    },
-    "miscUserData": {
-      "miscUser6": "",
-      "miscUser8": ""
-    }
-  }
-}
-```
-
-## Find Account Balance (account/balance/details)
+## Find Account Balance
 
 This API **ACCOUNT/BALANCE/DETAIL**, can be used by the cardholder to get the information about account current balance. Using the account number as search parameter, API will show the account current balance, available credit, cash balance, credit limit, etc. in the API output message.
 
@@ -67,43 +24,21 @@ This API will show the account balances information on real time, on inquiry mod
 
 This API use the account number already assigned when API **ACCOUNT/ADD** was trigger.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **POST** `/account/balance/details`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "organizationNumber": 970
-}
-```
-
-## Temporary Credit Limit Update (cards/temporary-credit-limit)
+## Temporary Credit Limit Update
 
 Use this API **CARDS/TEMPORARY-CREDIT-LIMIT** to increase the account credit limit for a specific number of days. This API is very useful when cardholder does not have more available credit limit and he request a credit limit increase for a specific number of day, so when time limit is complete, the original credit limit is set back as current credit limit.
 
 This API use the account number as search parameter and values as account credit limit, new credit limit and increase expiration date needs to be set up before the API be trigger.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/cards/temporary-credit-limit`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountOrCardNumber": 4099854036361291300,
-  "currentCreditLimit": 300000000,
-  "foreignUse": 1,
-  "organizationNumber": 807,
-  "tempCreditLimitExpDate": "2021-07-01",
-  "temporaryCreditLimit": 300000001
-}
-```
-
-## Block & Unblock Account (account/block-code)
+## Block & Unblock Account
 
 This API **ACCOUNT/BLOCK-CODE** can be used by the cardholder to block/unblock the account, not the card. Currently as part of First Vision functionality, a cardholder, need to have the customer information, account information and card information already created through API’s **Customer/ADD**, **Account/ADD** and **Card/ADD**.
 
@@ -113,24 +48,11 @@ For Block Codes functionality please refer to CMS Screen Guide.
 
 Account number is a require value to trigger this API.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/block-code`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "blockCode": "Z",
-  "blockCodeIndicator": 1,
-  "foreignUse": 0,
-  "functionCode": "B",
-  "organizationNumber": 970
-}
-```
-
-## Account to Card Details (account/card)
+## Account to Card Details
 
 The API **ACCOUNT/CARD** allow a user to find out all the cards already created under an account number. With only the Account number provided as input for a dual currency Account, the API call will return the Card number for the local Account. If the Organization number is provided in the input, the response provides the card numbers associated with that Organization, whether it is local or foreign Organization.
 
@@ -138,18 +60,11 @@ To trigger this API, the account number information and card information have to
 
 This API will show all the cards created under the account number, principal card and additional cards.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **POST** `/account/card`
 
 Request body:
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "organizationNumber": 970
-}
-```
+The description of each API field can be found within the specifications defined in the portal.
 
 ## Credit Bureau
 
@@ -157,23 +72,13 @@ This API **ACCOUNT/CREDITBUREAU**, allows a user to update the credit bureau fie
 
 This API uses the account number and a flag to indicate if the account is added into the Credit Bureau report.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/creditBureau`
 
 Request body:
 
-```json
-{
-  "accountNumber": "5303716028446103276",
-  "bureauDate": "2020-02-28",
-  "creditBureauSpecificComment": "Y",
-  "foreignUse": 0,
-  "organizationNumber": 807
-}
-```
+The description of each API field can be found within the specifications defined in the portal.
 
-## Update Customer Number (Account/Customer)
+## Update Customer Number
 
 The API **ACCOUNT/CUSTOMER** allow a user to change the customer number already link to a specific account information.
 
@@ -183,28 +88,11 @@ With API **ACCOUNTS/CUSTOMER** is possible remove this link and make a different
 
 This API use the account number as search parameter and an existing customer number that will be use to establish a new link.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/customer`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "alternateCustomer": {
-    "expirationDate": "",
-    "status": "0"
-  },
-  "customerNumber": "9704010000000001467",
-  "customerTypeIndicator": 0,
-  "foreignUseIndicator": 0,
-  "organizationNumber": 970,
-  "qualification": "2"
-}
-```
-
-## Find Account Detail (account/details)
+## Find Account Detail
 
 The API **ACCOUNT/DETAI**L allow a user the get all the account information previously added through the API **ACCOUNT/ADD** in a test environment, this account information is received in API response message after the API is called.
 
@@ -212,21 +100,11 @@ Information as account status, customer number, account block codes, credit limi
 
 This API require the account number as search parameter along with banj id (organization).
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **POST** `/account/details`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "foreignUse": 0,
-  "organizationNumber": 970
-}
-```
-
-## Account to Account funds Transfer (account/transferP2P)
+## Account to Account Funds Transfer
 
 This API **ACCOUNT/TRANSFERP2P** allows a user to transfer a specific amount of money PEER TO PEER, between two different accounts: from credit to debit, from debit to debit, from credit to prepay or from debit to prepay, wallets etc.
 
@@ -236,247 +114,41 @@ After call this API, a debit and credit transactions are created for source and 
 
 This API use the account number for source account and account number for destination.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/FL-transferP2P`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "asmRepId": "X01",
-  "effectiveDate": "2020-11-03",
-  "organizationNumber": 970,
-  "referralOption": "",
-  "referralRepID": "",
-  "transactionAmount": 1,
-  "updateIndicator": 1,
-  "from": {
-    "accountNumber": "9704010000000001467",
-    "accountOrganizationNumber": 970,
-    "actionCode": "8001",
-    "actionCodePriority": "1",
-    "authorizationCode": "1432",
-    "cardNumber": "",
-    "cardSequence": 1,
-    "currencyNumber": "",
-    "departmentCode": "PPLD",
-    "foreignUse": "0",
-    "institutionNumber": 13,
-    "insuranceCode": "12",
-    "letterCode": "",
-    "letterOrganizationNumber": 970,
-    "planNumber": 60000,
-    "planSequence": 1,
-    "memoLine1": "ab",
-    "memoLine2": "ab",
-    "memoLine3": "a",
-    "memoLine4": "a",
-    "memoLine5": "a",
-    "purchaseOrderNumber": 2,
-    "referenceNumber": 12,
-    "referralReferenceNumber": 12,
-    "salesClerk": 12,
-    "skuNumber": 12,
-    "storeNumber": 12,
-    "ticketNumber": 12,
-    "transactionDescription": "sender"
-  },
-  "to": {
-    "accountNumber": "9706010000000000274",
-    "accountOrganizationNumber": 970,
-    "actionCode": "8002",
-    "actionCodePriority": "1",
-    "authorizationCode": "1222",
-    "cardNumber": "",
-    "cardSequence": 1,
-    "currencyNumber": "",
-    "departmentCode": "PPLD",
-    "foreignUse": "0",
-    "institutionNumber": 1,
-    "insuranceCode": "2",
-    "letterCode": "",
-    "letterOrganizationNumber": 970,
-    "planNumber": 60000,
-    "planSequence": 1,
-    "memoLine1": "1",
-    "memoLine2": "1",
-    "memoLine3": "1",
-    "memoLine4": "1",
-    "memoLine5": "1",
-    "purchaseOrderNumber": 1,
-    "referenceNumber": 1,
-    "referralReferenceNumber": 1,
-    "salesClerk": 1,
-    "skuNumber": 1,
-    "storeNumber": 1,
-    "ticketNumber": 1,
-    "transactionDescription": "Receiver"
-  }
-}
-```
-
-## Cash-in / Cash-out (account/balance)
+## Cash-in / Cash-out 
 
 Use this API **ACCOUNT/BALANCE** to apply a money amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account.
 
 Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/balance`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "asmOrganizationNumber": 970,
-  "accountNumber": "9704010000000001467",
-  "representativeId": "A",
-  "transactionData": {
-    "actionCode": "FUND",
-    "cardNumber": "0004444440000000558",
-    "cardSequence": 123,
-    "description": "CASH_IN_VIA_CARD",
-    "effectiveDate": "2021-11-20",
-    "otbUpdateIndicator": 1,
-    "planNumber": 1,
-    "planSequence": 1,
-    "referenceNumber": 123,
-    "resolutionReferenceNumber": 123,
-    "storeNumber": 1,
-    "transactionAmount": 200
-  }
-}
-```
-
-## Falcon Cash-in / Cash-out (account/FL-balance)
+## Falcon Cash-in / Cash-out
 
 Use this API **ACCOUNT/FL-BALANCE** to money transfer amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. However, parameters previously defined, allow FALCON application (Card Fraud Control) audit this type of transactions.
 
 Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/FL-balance`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "organizationNumber": 970,
-  "representativeId": "A00",
-  "transactionData": {
-    "actionCode": 8000,
-    "authorizationCode": "291012",
-    "description": "Description",
-    "effectiveDate": "2021-02-15",
-    "transactionAmount": 1,
-    "beneficiaryAccount": "9706010000000000274",
-    "box": 1,
-    "counterpartInstitution": 96545,
-    "crPlaza": "10MON",
-    "crStore": "50EDI",
-    "device": "898ds-090ds-9d0s9-0ds9d0-0d9sd00",
-    "frcUprkBeneficiary": "MACE881212TR3",
-    "identifier": "UBCF",
-    "ip": "999.999.200.200",
-    "keyTracking": "UBCF202007158252885919",
-    "latitude": "109.699.951",
-    "longitude": "23.062.283",
-    "operatingInstitution": 90646,
-    "orderingFrcUprk": "MACE881212TR3",
-    "orderingName": "Diego Martinez Cruz",
-    "paidConcept": "Money for groseries",
-    "paymentSourceId": "tok_test_visa_4242",
-    "recipientName": "Eduardo Martinez Cruz",
-    "storeNumber": 999999998,
-    "senderAccount": "95005080626124382311"
-  }
-}
-```
-
-## Update Account user-defined fields (account/user)
+## Update Account User-defined Fields
 
 Use this API **ACCOUNT/USER** to update the values of more than 50 user fields defined at account level information, this user fields are discretionary use fields that can be use by the user to add additional information at the account.
 
 Values as dates, amounts, codes, etc. can be set up in the API before trigger it.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/user`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "cardholderAffinityGroup": 0,
-  "foreignUse": 0,
-  "miscellaneousUser1": "",
-  "miscellaneousUser10": "",
-  "miscellaneousUser11": "",
-  "miscellaneousUser12": "",
-  "miscellaneousUser2": "",
-  "miscellaneousUser3": "",
-  "miscellaneousUser4": "",
-  "miscellaneousUser5": "",
-  "miscellaneousUser6": "",
-  "miscellaneousUser7": "",
-  "miscellaneousUser8": "",
-  "miscellaneousUser9": "",
-  "organizationNumber": 970,
-  "sourceCode": "",
-  "userAmount1": 0,
-  "userAmount10": 0,
-  "userAmount11": 0,
-  "userAmount12": 0,
-  "userAmount13": 0,
-  "userAmount14": 0,
-  "userAmount2": 0,
-  "userAmount3": 0,
-  "userAmount4": 0,
-  "userAmount5": 0,
-  "userAmount6": 0,
-  "userAmount7": 0,
-  "userAmount8": 0,
-  "userAmount9": 0,
-  "userApplicationData1": "",
-  "userApplicationData2": "",
-  "userApplicationData3": "",
-  "userCode1": "",
-  "userCode10": "",
-  "userCode11": "",
-  "userCode12": "",
-  "userCode13": "",
-  "userCode14": "",
-  "userCode2": "",
-  "userCode3": "",
-  "userCode4": "",
-  "userCode5": "",
-  "userCode6": "",
-  "userCode7": "",
-  "userCode8": "",
-  "userCode9": "",
-  "userDate1": "",
-  "userDate10": "",
-  "userDate11": "",
-  "userDate12": "",
-  "userDate13": "",
-  "userDate14": "",
-  "userDate2": "",
-  "userDate3": "",
-  "userDate4": "",
-  "userDate5": "",
-  "userDate6": "",
-  "userDate7": "",
-  "userDate8": "",
-  "userDate9": ""
-}
-```
-
-## Account Transfer Promotional Product Upgrade (account/transfer-promotional-product)
+## Account Transfer Promotional Product Upgrade
 
 Use this API **ACCOUNT/TRANSFER-PROMOTIONAL-PRODUCT** to upgrade a current product type of card into another one, for example upgrade from Visa Classic to Visa Gold, or from MasterCard Classic to MasterCard Black.
 
@@ -484,80 +156,11 @@ When API is trigger, account information, card information and balances are tran
 
 Same API can be used to make a product downgrade, it means transfer from Visa Gold to Visa Classic or from MasterCard Black to MasterCard Classic.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/transfer-promotional-product`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "cardholderAffinityGroup": 0,
-  "foreignUse": 0,
-  "miscellaneousUser1": "",
-  "miscellaneousUser10": "",
-  "miscellaneousUser11": "",
-  "miscellaneousUser12": "",
-  "miscellaneousUser2": "",
-  "miscellaneousUser3": "",
-  "miscellaneousUser4": "",
-  "miscellaneousUser5": "",
-  "miscellaneousUser6": "",
-  "miscellaneousUser7": "",
-  "miscellaneousUser8": "",
-  "miscellaneousUser9": "",
-  "organizationNumber": 970,
-  "sourceCode": "",
-  "userAmount1": 0,
-  "userAmount10": 0,
-  "userAmount11": 0,
-  "userAmount12": 0,
-  "userAmount13": 0,
-  "userAmount14": 0,
-  "userAmount2": 0,
-  "userAmount3": 0,
-  "userAmount4": 0,
-  "userAmount5": 0,
-  "userAmount6": 0,
-  "userAmount7": 0,
-  "userAmount8": 0,
-  "userAmount9": 0,
-  "userApplicationData1": "",
-  "userApplicationData2": "",
-  "userApplicationData3": "",
-  "userCode1": "",
-  "userCode10": "",
-  "userCode11": "",
-  "userCode12": "",
-  "userCode13": "",
-  "userCode14": "",
-  "userCode2": "",
-  "userCode3": "",
-  "userCode4": "",
-  "userCode5": "",
-  "userCode6": "",
-  "userCode7": "",
-  "userCode8": "",
-  "userCode9": "",
-  "userDate1": "",
-  "userDate10": "",
-  "userDate11": "",
-  "userDate12": "",
-  "userDate13": "",
-  "userDate14": "",
-  "userDate2": "",
-  "userDate3": "",
-  "userDate4": "",
-  "userDate5": "",
-  "userDate6": "",
-  "userDate7": "",
-  "userDate8": "",
-  "userDate9": ""
-}
-```
-
-## Find Balance, Refinance and restructure information (account/{accountNumber}/balance)
+## Find Balance, Refinance and Restructure Information
 
 This API **ACCOUNT/{ACCOUNT}/BALANCE**, allow a user select an specific balance amount from an account credit plan and refinance or restructure this balance into a new number of installment or fixed amount.
 
@@ -565,11 +168,11 @@ For example an account balance of $10,000 for credit plan 10002 at 5 installment
 
 This API request the account number, type of refinance, credit plan, new number of installment and new amount.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **GET** `/account/{accountNumber}/balance`
 
-## Inquire Direct debit/credit (account/{accountNumber}/credit-debit)
+The description of each API field can be found within the specifications defined in the portal.
+
+## Inquire Direct Debit/Credit
 
 The API **ACCOUNT/{ACCOUNTNUMBER}/CREDIT-DEBIT** allow the user the bring all the information about values previously set up at the account level o generate a Direct Debit o Direct Credit.
 
@@ -577,19 +180,19 @@ Direct Debit and Direct Credit is a functionality to allow internal process make
 
 The saving account, current account and Routing account are values previously set up at the account level so after call this API these information have to be set up as part of account information though API **ACCOUNT/ADD**.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **GET** `/account/{accountNumber}/credit-debit`
 
-## Account Overview (account/{accountNumber}/overview)
+The description of each API field can be found within the specifications defined in the portal.
+
+## Account Overview 
 
 Use this API **ACCOUNT/{ACCOUNTNUMBER}/OVERVIEW**, to get most important account information, as account number, name, address, phone, user fields, account financial information, delinquency, etc.This API use account number a search parameter.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **GET** `/account/{accountNumber}/overview`
 
-## Find Relationship Details (account/{accountNumber}/relationship)
+The description of each API field can be found within the specifications defined in the portal.
+
+## Find Relationship Details
 
 This API **ACCOUNT/{ACCOUNTNUMBER}/RELATIONSHIP**, allow the user to bring all account number already created under a relationship number.
 
@@ -605,7 +208,7 @@ The description of each API field can be found within the specifications defined
 
 **GET** `/account/{accountNumber}/relationship`
 
-## Update Installment Term (account/installment-term)
+## Update Installment Term
 
 Use API **ACCOUNT/INSTALLMENT-TERM**, to allow user change or update the installment term of a transactions already posted into account.
 
@@ -615,62 +218,22 @@ This API allow the user the change the installments number already set up at the
 
 This API use the account number, transactions reference number, and new number of installment as part of search parameters.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/installment-term`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "9704010000000001467",
-  "installmentTermToBeUpdated": 1,
-  "organizationNumber": 970,
-  "recordNumber": 1,
-  "recordType": 1,
-  "transactionReferenceNumber": "123456"
-}
-```
-
-## Associated Partied Update Service (account/associatedParties)
+## Associated Partied Update Service
 
 This API **ACCOUNT/ASSOCIATEDPARTIES** allow the user update selected parameters at account level information, related with Associated Parties fields.
 
 The Associated parties fields located at account level are been used to identify if the account has any relation with a third party. A third party associated can be: guarantor, consigner, authorized signer, sales representative, etc.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/associatedParties`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "string",
-  "associationLetterFee1": 0,
-  "associationLetterFee2": 0,
-  "associationLetterFee3": 0,
-  "associationLetterFlag1": 0,
-  "associationLetterFlag2": 0,
-  "associationLetterFlag3": 0,
-  "associationNumberOccurrences": 1,
-  "associationPartyData": [
-    {
-      "associationAccountNumber": "string",
-      "associationAmount": 0,
-      "associationDate": "2021-12-16",
-      "associationRelationshipType": 0,
-      "associationType": 0
-    }
-  ],
-  "associationStatementFlag1": 0,
-  "associationStatementFlag2": 0,
-  "associationStatementFlag3": 0,
-  "organizationNumber": 950
-}
-```
 
-## Account-Embosser Authorization Criteria Update (account/auth-criteria)
+## Account-Embosser Authorization Criteria Update
 
 This API **ACCOUNT/AUTH-CRITERIA**, allow the user create and update a relation between card authorization transactions and an authorization criteria table.
 
@@ -678,45 +241,19 @@ The Authorization Criteria table is a current functionality to define an authori
 
 For additional information please refer CMS User Manual and CMS Screen Guide.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/auth-criteria`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "4004894350058245552",
-  "authorizationCriteria": 0,
-  "cardSequence": 1,
-  "foreignUse": 0,
-  "functionCode": 1,
-  "organizationNumber": 823
-}
-```
-
-## Pending Bank, Branch and Store Update (account/bank-branch-store)
+## Pending Bank, Branch and Store Update
 
 This API **ACCOUNT/BANK-BRANCH-STORE**, allow the user to update the Branch of store in where the credit was approved to create the account and card. This number is part of account information and is added for first time when account is created through API ACCOUNT/ADD.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/bank-branch-store`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "4513074002573466583",
-  "foreignUse": 0,
-  "organizationNumber": 807,
-  "pendingBankNumber": 12345,
-  "pendingBranchNumber": 123456789,
-  "pendingStoreNumber": 123456789
-}
-```
-
-## Pricing Control Table Update (account/pctId)
+## Pricing Control Table Update
 
 Use this API **ACCOUNT/PCT** to assign a new Processing Control Table (PCT) to an existing account for a range of dates.
 
@@ -726,31 +263,11 @@ Using this API is possible me make an override of the current PCT by another PCT
 
 For additional information please refer CMS User Manual and CMS Screen Guide.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/pctId`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": "4004894352313040331",
-  "foreignUse": 0,
-  "issuanceId": "string",
-  "organizationNumber": 950,
-  "pricingControlTable": {
-    "pctExpirationDate": "2021-12-16",
-    "pctId": "string",
-    "pctLevel": "string",
-    "pctLevelExpirationDate": "2021-12-16",
-    "pctLevelStartDate": "2021-12-16",
-    "pctStartDate": "2021-12-16"
-  },
-  "residenceId": "string"
-}
-```
-
-## Prepaid load limits update (account/ppd-load-limits)
+## Prepaid Load Limits Update
 
 The API **ACCOUNT/PPD-LOAD-LIMITS** allow a user to update the current maximum and minimum limits of amount allow for prepay accounts.
 
@@ -758,44 +275,19 @@ When a prepay account is created using API **ACCOUNT/ADD**. The maximum and mini
 
 For additional information please refer CMS User Manual and CMS Screen Guide.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/ppd-load-limits`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": 4004894352313040400,
-  "loadFrequency": 2,
-  "loadNumber": 12,
-  "logo": 400,
-  "maximumSingleLoadAmount": 2,
-  "minimumSingleLoadAmount": 2,
-  "organizationNumber": 823,
-  "prepaidLoadAmount": 2
-}
-```
-
-## Prepaid Over Limits update (account/ppd-over-limit)
+## Prepaid Over Limits Update
 
 Use this API **ACCOUNT/PPD-OVER-LIMIT** to update the over limit amount allowed for a specific prepay account number. This over limit amount is a fixed amount used by authorization system to validated is the authorization amount if under this amount when the account does not have more available credit.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/ppd-over-limit`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": 4004894352313040400,
-  "organizationNumber": 823,
-  "prepaidOverlimitAmount": 2
-}
-```
-
-## Account Wallet status Update (account/walletStatus)
+## Account Wallet Status Update
 
 The API **ACCOUNT/WALLETSTATUS** allow the user to change the current wallet status to active, inactive or suspend.
 
@@ -803,42 +295,19 @@ Wallet is a current functionality to allow a prepay account has more than one cu
 
 This API can be used to change the status of each of one wallets.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/walletStatus`
 
-Request body:
+The description of each API field can be found within the specifications defined in the portal.
 
-```json
-{
-  "accountNumber": 4513074002952959000,
-  "organizationNumber": 807,
-  "status": 2,
-  "subsidyCode": "C",
-  "wallet": 3
-}
-```
-
-## Account Relationship Number Update (account/relationship/account)
+## Account Relationship Number Update
 
 Use this API **ACCOUNT/RELATIONSHIP/ACCOUNT** to link a new sub-account created through API **ACCOUNT/ADD** with a relationship account previously created.
 
 Relationship number is a unique number assigned to a Corporate Card, for example Walmart with a customer number 123, is identify with a unique relationship number 567 and under this relationship number many accounts and cards are created for Walmart employs. So using the relationship number 567 is possible link additional new sub-account.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **PUT** `/account/relationship/account`
 
-Request body:
-
-```json
-{
-  "accountNumber": "4004894352313040331",
-  "foreignUse": "0",
-  "organizationNumber": 823,
-  "relationshipNumber": "4004894352313040331"
-}
-```
+The description of each API field can be found within the specifications defined in the portal.
 
 ---
 
