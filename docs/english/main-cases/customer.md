@@ -1,10 +1,10 @@
 ---
-tags: [Main Cases, Customer Management, customer, demographic data, generation, lookup, address]
+tags: [Main Cases, Customer Management, customer, demographic data, generation, address]
 ---
 
 # Customer Management
 
-## New Customer (customer/add)
+## New Customer
 
 The API **CUSTOMER/ADD** allows a Bank to enter extensive customer demographic information, as name, address, telephone number, email, identification number, etc. will be added through this API.
 
@@ -12,125 +12,19 @@ Each new customer will have a unique number called Customer Number, this custome
 
 This customer number is independent of the customer's personal identification number: Social Security, Cedula, CPN or Driver License entered in the API field: **IDENTIFICATIONNUMBER**.
 
-**POST** `/customer`
+**POST** `/customer/l8v2`
                 
-Request body:
-
-```json
-{
-  "customerData": {
-    "customerKeyData": {
-      "accountNumber": {{accountNumber}},
-      "coOwnerIndicator": 1,
-      "dualFlag": 0
-    },
-    "customerMiscellaneousData": {
-      "vipStatus": 1
-    },
-    "ownerCoOwnerData": {
-      "coOwnerData": {},
-      "ownerData": {
-        "city": "BUENOS AIRES",
-        "contactIndicator": 12,
-        "countryCode": "ARG",
-        "county": "CABA",
-        "dateOfBirth": "2010-09-11",
-        "demographic1": "USER DEMO 1",
-        "demographic2": "USER DEMO 2",
-        "demographic3": "USER DEMO 3",
-        "driverLicenseCountry": "",
-        "driverLicenseNumber": "123421",
-        "driverLicenseState": "",
-        "email": "ABC.DEF@yahoo.com",
-        "emailFlag": 1,
-        "employerAddress1": "EMP ADDR L1",
-        "employerAddress2": "EMP ADDR L2",
-        "employerExtensionPhoneNumber": 123456,
-        "employerName": "FISERV",
-        "employerPhoneFlag": 1,
-        "employerPhoneNumber": "123-456-7890",
-        "faxPhoneFlag": 1,
-        "firstName": "Pavan",
-        "foreignIndicator": "A",
-        "genderCode": 1,
-        "homeFaxPhoneNumber": "223-456-7890",
-        "homePhoneFlag": 1,
-        "homePhoneNumber": "123-456-9990",
-        "houseAddress1": "OWN ADDR L19",
-        "houseAddress2": "OWN ADDR L29",
-        "houseAddress3": "OWN ADDR L39",
-        "houseAddress4": "OWN ADDR L49",
-        "houseName": "Could be apartment's name",
-        "houseNumber": 12349,
-        "identificationNumber": 123456789,
-        "identificationNumberFlag": 2,
-        "languageIndicator": "ENG",
-        "lastName": "Sivale",
-        "mailingList": 1,
-        "maritalStatus": 1,
-        "memo1": "Memo 1",
-        "memo2": "Memo 2",
-        "middleName": "",
-        "mobilePhoneFlag": 1,
-        "mobilePhoneNumber": "323-456-7890",
-        "nameLine1": "string",
-        "nameLine2": "OWN NAME L2 TEST9",
-        "nameLine3": "OWN NAME L3",
-        "nameTypeIndicator1": 0,
-        "nameTypeIndicator2": 1,
-        "nameTypeIndicator3": 1,
-        "numberOfDependents": 999,
-        "ownOrRentResidenceFlag": 2,
-        "position": "CEO",
-        "relativeName": "Relative Name",
-        "smsFlag": 1,
-        "state": "BA",
-        "statementMessageIndicator": 1,
-        "suffix": "Sr"
-      }
-    }
-  },
-  "resvData": {}
-}
-```
-
 The description of each API field can be found within the specifications defined in the portal.
 
-## Update Customer (customer/)
+## Update Customer
 
 The API **CUSTOMER/** allows the updating of demographic information for a specific customer. Currently entered through the API **CUSTOMER/ADD**. The value required by this API is the Customer Number created through the API **Customer/Add**.
 
 **PUT** `/customer`
-    
-Request body:
-
-```json
-{
-  "carrierRoute": {},
-  "city": "",
-  "countryCode": "",
-  "county": "",
-  "customerNumber": "{{customerNumber}}",
-  "dateOfBirth": "",
-  "demographicDataIndicator": 1,
-  "driverLicense": {},
-  "email": "",
-  "employerPhoneNumber": "",
-  "firstName": "",
-  "homePhoneNumber": "",
-  "houseAddress1": "",
-  "houseAddress2": "",
-  "lastName": "",
-  "mobilePhoneNumber": "",
-  "numberType": 1,
-  "organizationNumber": {{orgid}},
-  "state": ""
-}
-```
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Find an Account Number (customer/accountNumber)
+## Find an Account Number
 
 The API **CUSTOMER/ACCOUNTNUMBER** allows a cardholder to find out all the account numbers of the Credit, Debt, Prepaid, Wallets products, created under the Customer Number, previously created with the API **Customer/Add**.
 
@@ -138,48 +32,19 @@ This information is sent in the API response message once it has been triggered.
 
 **POST** `/customer/accountNumber`
 
-Request body:  
-
-```json
-{
-  "customerNumber": "{{customerNumber}}",
-  "functionCode": "P",
-  "organizationNumber": {{orgid}},
-  "startToken": {
-    "accountNumber": "{{accountNumber}}",
-    "accountOrganizationNumber": {{orgid}},
-    "associationType": 0
-  }
-}
-```
-
 The description of each API field can be found within the specifications defined in the portal.
 
-## Get Cards Details L8V4 (customer/details-L8V4)
+## Get Cards Details
 
 This API **CUSTOMER/DETAILS-L8V4** allows the customer to find out all the card numbers created under this customer number for products credit, debit, prepaid or wallets.
 
 This information is sent in the API response message once it has been triggered. The Customer Number will be the main value used for the search of the account numbers.
 
-**POST** `/customer/details-l8v4`
-
-Request body:  
-
-```json
-{
-  "customerNumber": 4513074002573466600,
-  "functionCode": "string",
-  "organizationNumber": 807,
-  "startItem": {
-    "startAccount": "string",
-    "startOrganization": "string"
-  }
-}
-```
+**POST** `/customer/v4/cards/details`
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Generate Customer and Account Number (customer/generation)
+## Generate Customer and Account Number
 
 This API **CUSTOMER/GENERATION** allow the bank generate on massive way a defined quantity of customers, cards, accounts and relationship numbers. The numbers requested will be reserved by the system, so these number will not be generated again.
 
@@ -191,95 +56,19 @@ API response will show the customer, account, card and relationship number as th
 
 **POST** `/customer/generation`
 
-Request body:  
-
-```json
-{
-  "dualIndicator": "1",
-  "logo": "401",
-  "organizationNumber": 970
-}
-```
-
 The description of each API field can be found within the specifications defined in the portal.
 
-## Inquire Demographic Data (customer/demographicData)
+## Inquire Demographic Data
 
 With this API **CUSTOMER/DEMOGRAPHICDATA** cardholder will be able to get all the demographic information already add thought the API CUSTOMER/ADD when new customer is created. Same information will be displayed on API response message. Customer demographic information will be only displayed and will not be able to be updated or deleted.
 
 Customer Number values will be used by the API to get customer demographic information.
 
-**POST** `/customer/demographicData`
-
-Request body:  
-
-```json
-{
-  "customerAccountCardNumber": "{{customerNumber}}",
-  "foreignUseIndicator": 0,
-  "numberType": 1,
-  "organizationNumber": {{orgid}}
-}
-```
+**POST** `/customer/demographicData-l8v2`
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Customer Lookup (customer/lookup)
-
-This API **CUSTOMER/LOOKUP**, allow to the Bank look for a customer number already created, using different search criteria, as name, last name, date of birth, identification number, country code, etc. When search criteria are matching Customer Information and Customer Number will be displayed on API output message. If more than one record match with these criteria API output message will show all customer numbers, so they can be cross-referenced to account numbers and/or card numbers.
-
-**POST** `/customer/lookup`
-
-Request body:  
-
-```json
-{
-  "clientId": "12345",
-  "countryFuzzySwitch": 0,
-  "firstNameFuzzySwitch": 0,
-  "identifierFuzzySwitch": 0,
-  "lastNameFuzzySwitch": 0,
-  "middleNameFuzzySwitch": 0,
-  "numberOfRecords": 50,
-  "optionalDataMatch": 0,
-  "optionalSearchData": {
-    "countryCode": "USA",
-    "dateOfBirth": "2010-09-11",
-    "firstName": "FirstName",
-    "middleName": "MiddleName",
-    "suffix": "Sr",
-    "title": "Monsieur",
-    "user14": "User14",
-    "user15": "User15"
-  },
-  "organizationNumber": 0,
-  "phoneFuzzySwitch": 0,
-  "postalFuzzySwitch": 0,
-  "primarySearchData": {
-    "identifier": "123456789",
-    "lastBusinessName": "lastBusinessName",
-    "phoneNumber": "123-456-9990",
-    "postalCode": "12345679"
-  },
-  "requestOptionData": {
-    "identifierOption": 0,
-    "lastNameOption": 0,
-    "phoneNumberOption": 0,
-    "postalCodeOption": 0
-  },
-  "returnDataOption": "0",
-  "serviceFunctionCode": "N",
-  "startToken": "string",
-  "suffixFuzzySwitch": 0,
-  "titleFuzzySwitch": 0,
-  "user14FuzzySwitch": 0,
-  "user15FuzzySwitch": 0
-}
-```
-
-The description of each API field can be found within the specifications defined in the portal.
-
-## Find Relationship Number (customer/relationshipNumber)
+## Find Relationship Number
 
 This API **CUSTOMER/RELATIONSHIPNUMBER** allow to a cardholder bring all the relationship numbers already created under same Customer Number.
 
@@ -287,19 +76,9 @@ Relationship number is a unique number assigned to a Corporate Card, for example
 
 **POST** `/customer/relationshipNumber`
 
-Request body:  
-
-```json
-{
-  "customerNumber": {{customerNumber}},
-  "functionCode": "",
-  "organizationNumber": {{orgid}}
-}
-```
-
 The description of each API field can be found within the specifications defined in the portal.
 
-## Current/Prior Address Inquiry (customer/{accountNumber}/current-prior-address)
+## Current/Prior Address Inquiry
 
 The API **CUSTOMER/ACCOUNTNUMBER/CURRENT/PRIOR/ADDRES**S provides information from the Customer Demographic Information and the Prior Mailing Address. To retrieve information for Prior Mailing Address, parameter PRIOR ADDR should activated in First Vision.
 
@@ -308,15 +87,6 @@ When an account or relationship number is entered as input to the service, the s
 The appropriate customer number is found by using the navigational services. When the customer number is input into the service, the data for that record is returned.
 
 **GET** `/customer/{accountNumber}/current-prior-address`
-  
-Required parameters:
-
-```json
-- Header
-  apikey
-- Path
-  accountNumber       
-```
 
 The description of each API field can be found within the specifications defined in the portal.
 
