@@ -28,25 +28,25 @@ Para emitir una tarjeta digital nueva a un cliente, debemos seguir estos pasos:
 
 ### 1. Customer ADD
 
-Esta solicitud incluye datos personales del cliente, información demográfica y otra información relativa a la entidad. La respuesta a esta solicitud traerá el Número de Cliente creado. Ver más sobre la API del Cliente:
+Esta solicitud incluye datos personales del cliente, información demográfica y otra información relativa a la entidad. La respuesta a esta solicitud traerá el Número de Cliente creado.
 
 **POST** `/customer/l8v2`
       
 ### 2. Account ADD
 
-Con el Número de Cliente creado en la solicitud anterior, esta solicitud propagará la información del límite de crédito de la Cuenta, la fecha del ciclo de pago, el nombre corto y más información inherente a la entidad. Ver más sobre la API del Cuentas:
+Con el Número de Cliente creado en la solicitud anterior, esta solicitud propagará la información del límite de crédito de la Cuenta, la fecha del ciclo de pago, el nombre corto y más información inherente a la entidad.
 
 **POST** `/account/add-L8V3`
           
 ### 3. Embosser ADD
 
-Esta solicitud se encarga de agregar la información a la tarjeta digital emitida. Esta solicitud requiere tanto el Código de Cliente como el Código de Cuenta. Ver más sobre la API del Embozador:
+Esta solicitud se encarga de agregar la información a la tarjeta digital emitida. Esta solicitud requiere tanto el Código de Cliente como el Código de Cuenta.
 
 **POST** `/cards/embosser/l8vf`
           
 ### 4. Card ACTIVATION
 
-Después de las solicitudes del cliente, la cuenta y el embozador, se aplican las nuevas configuraciones de tarjeta para el cliente, pero no están activas para su uso. Esta solicitud activará la tarjeta y la dejará lista para usar. Ver más sobre la API de Activación de Tarjeta:
+Después de las solicitudes del cliente, la cuenta y el embozador, se aplican las nuevas configuraciones de tarjeta para el cliente, pero no están activas para su uso. Esta solicitud activará la tarjeta y la dejará lista para usar.
 
 **PUT** `/customer`
           
