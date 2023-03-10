@@ -1,319 +1,73 @@
 ---
-tags: [Main Cases, Digital Card Issuing, customer, account, cards, embosser]
+tags: [Casos Principales, Emisión de Tarjetas Digitales, Cliente, Cuenta, Tarjetas, Embozador]
 ---
 
-# Digital Card Issuing
+# Emisión de Tarjetas Digitales
 
-## Definition
+## Definición
 
-The following section aims to define the issuance of a digital card on the FirstVision platform.
+La siguiente sección tiene como objetivo definir la emisión de una tarjeta digital en la plataforma FirstVision.
 
-A digital card will behave like a wallet funded by the account's credit limit and customers can make e-commerce purchases (with the co-branded retailer only) using the digital wallet instead of using a physical card. A single FirstVision account can have a physical credit card and a digital card as separate embossers. Accounts can be boarded to have physical card only or a digital card only or have both.
+Una tarjeta digital se comportará como un monedero financiado por el límite de crédito de la cuenta y los clientes pueden realizar compras de comercio electrónico (solo con el comercio de marca compartida) usando el monedero digital en lugar de usar una tarjeta física. Una sola Cuenta de FirstVision puede tener una tarjeta de crédito física y una tarjeta digital como embozadores independientes. Durante la apertura de las cuentas, se puede definir si van tener solo una tarjeta física o solo una tarjeta digital o ambas.
 
-## Purpose
+## Propósito
 
-The purpose of this user case is to issue a new digital card to a customer on the FirstVision platform.
+El propósito de este caso de usuario es emitir una tarjeta digital nueva a un cliente en la plataforma FirstVision.
 
-## Use Case
+## Casos de Uso
 
-The user case below determines the actions required to issue a new digital card.
+El siguiente caso de usuario determina las acciones requeridas para emitir una tarjeta digital nueva.
 
 ![image](https://user-images.githubusercontent.com/111396588/208847157-3b0caa4b-f73d-469a-8cb6-7461af6317a3.png)
 
-## Sequence Diagram
+## Diagrama de Secuencia
 
 ![image](https://user-images.githubusercontent.com/111396588/208847202-038f4634-9a8b-4de2-8446-028b386e1211.png)
 
-To issue a new digital card to a customer, we must follow these steps:
+Para emitir una tarjeta digital nueva a un cliente, debemos seguir estos pasos:
 
 ### 1. Customer ADD
 
-This request includes the customer's personal data, demographic information and other information pertaining to the entity. The response to this request will bring the customer number created. See more about the Customer API:
+Esta solicitud incluye datos personales del cliente, información demográfica y otra información relativa a la entidad. La respuesta a esta solicitud traerá el Número de Cliente creado. Ver más sobre la API del Cliente:
 
-**POST** `/customer`
+**POST** `/customer/l8v2`
       
-Request body: 
-
-```json
-{
-  "customerData": {
-    "customerKeyData": {
-      "accountNumber": 9704010000000002000,
-      "coOwnerIndicator": 1,
-      "dualFlag": 0
-    },
-    "customerMiscellaneousData": {
-      "vipStatus": 1
-    },
-    "ownerCoOwnerData": {
-      "coOwnerData": {},
-      "ownerData": {
-        "city": "BUENOS AIRES",
-        "contactIndicator": 12,
-        "countryCode": "ARG",
-        "county": "CABA",
-        "dateOfBirth": "2010-09-11",
-        "demographic1": "USER DEMO 1",
-        "demographic2": "USER DEMO 2",
-        "demographic3": "USER DEMO 3",
-        "driverLicenseCountry": "",
-        "driverLicenseNumber": "123421",
-        "driverLicenseState": "",
-        "email": "ABC.DEF@yahoo.com",
-        "emailFlag": 1,
-        "employerAddress1": "EMP ADDR L1",
-        "employerAddress2": "EMP ADDR L2",
-        "employerExtensionPhoneNumber": 123456,
-        "employerName": "FISERV",
-        "employerPhoneFlag": 1,
-        "employerPhoneNumber": "123-456-7890",
-        "faxPhoneFlag": 1,
-        "firstName": "Pavan",
-        "foreignIndicator": "A",
-        "genderCode": 1,
-        "homeFaxPhoneNumber": "223-456-7890",
-        "homePhoneFlag": 1,
-        "homePhoneNumber": "123-456-9990",
-        "houseAddress1": "OWN ADDR L19",
-        "houseAddress2": "OWN ADDR L29",
-        "houseAddress3": "OWN ADDR L39",
-        "houseAddress4": "OWN ADDR L49",
-        "houseName": "Could be apartment's name",
-        "houseNumber": 12349,
-        "identificationNumber": 123456789,
-        "identificationNumberFlag": 2,
-        "languageIndicator": "ENG",
-        "lastName": "Sivale",
-        "mailingList": 1,
-        "maritalStatus": 1,
-        "memo1": "Memo 1",
-        "memo2": "Memo 2",
-        "middleName": "",
-        "mobilePhoneFlag": 1,
-        "mobilePhoneNumber": "323-456-7890",
-        "nameLine1": "string",
-        "nameLine2": "OWN NAME L2 TEST9",
-        "nameLine3": "OWN NAME L3",
-        "nameTypeIndicator1": 0,
-        "nameTypeIndicator2": 1,
-        "nameTypeIndicator3": 1,
-        "numberOfDependents": 999,
-        "ownOrRentResidenceFlag": 2,
-        "position": "CEO",
-        "relativeName": "Relative Name",
-        "smsFlag": 1,
-        "state": "BA",
-        "statementMessageIndicator": 1,
-        "suffix": "Sr"
-      }
-    }
-  },
-  "resvData": {}
-}
-```
- 
 ### 2. Account ADD
 
-With the customer number created in the previous requisition, this requisition will propagate the account's credit limit information, payment cycle date, short name and more information inherent to the entity. See more about the Account API:
+Con el Número de Cliente creado en la solicitud anterior, esta solicitud propagará la información del límite de crédito de la Cuenta, la fecha del ciclo de pago, el nombre corto y más información inherente a la entidad. Ver más sobre la API del Cuentas:
 
-**POST** `/account`
+**POST** `/account/add-L8V3`
           
-Request body: 
-
-```json
-{
-  "accountData": {
-    "billingCurrency": 0,
-    "billingCycle": 31,
-    "billingLevel": 1,
-    "blockCode1": "",
-    "cardholderAffiliationGroup": 0,
-    "creditLimit": 10000,
-    "customerNumber": "9704010000000001467",
-    "customerSelectedDueDay": 0,
-    "dualBillingFlag": 0,
-    "issuanceId": "",
-    "logo": 401,
-    "organization": 970,
-    "owningBranch": 999999998,
-    "prepaidPlanNumber": 0,
-    "processingControlTable": {
-      "level": "O",
-      "startDate": "",
-      "tableId": ""
-    },
-    "qualification": "A",
-    "relationshipNumber": "",
-    "residenceId": "1",
-    "shortName": "Vishal",
-    "sourceCode": "sourceCode",
-    "statement": "1",
-    "statementFrequency": 0,
-    "userAccountNumber": "",
-    "userData": {
-      "userApplication1": "12"
-    },
-    "miscUserData": {
-      "miscUser6": "",
-      "miscUser8": ""
-    }
-  }
-}
-```
-  
 ### 3. Embosser ADD
 
-This request is responsible for adding the information to the issuing digital card. This request requires both the customer code and the account code. See more about the Embosser API:
+Esta solicitud se encarga de agregar la información a la tarjeta digital emitida. Esta solicitud requiere tanto el Código de Cliente como el Código de Cuenta. Ver más sobre la API del Embozador:
 
-**POST** `/cards/embosser`
+**POST** `/cards/embosser/l8vf`
           
-Request body: 
-
-```json
-{
-  "addressLine1": "ADDRESS LINE 1",
-  "addressLine2": "ADDRESS LINE 2",
-  "assignedSpendingLimits": {
-    "maximumSpendingLimit": 0,
-    "spendingFrequency": 0,
-    "spendingTransaction": 0
-  },
-  "atmCashAmount": 0,
-  "atmCashNumber": 0,
-  "atmCashSingleTransactionLimit": 0,
-  "authorizationCriteriaTableNumber": "",
-  "authorizationSpendingLimitTable": "",
-  "blockCode": "",
-  "branchNumber": 0,
-  "cardAction": 1,
-  "cardActionReasonCode": "",
-  "cardDelayDays": 0,
-  "cardNumber": "",
-  "cardSequence": 1,
-  "cardholderAffiliationGroupId": "",
-  "cardholderFlag": "",
-  "city": "CABA",
-  "currentCardActivation": "",
-  "customerNumber": "",
-  "deliveryOption": 0,
-  "deviceIndicator": "",
-  "embossedName1": "Sivale TESTING 1",
-  "embossedName2": "",
-  "enrollmentStatusVBV": " ",
-  "expirationDate": "",
-  "firstIssueBranch": 0,
-  "internetPurchaseAmount": 0,
-  "internetPurchaseNumber": 0,
-  "internetPurchaseSingleTransactionLimit": 0,
-  "languageCode": "ENG",
-  "maximumAuthorizationFrequency": 0,
-  "name1": "Pavan",
-  "name1TypeIndicator": 0,
-  "name2": "",
-  "name2TypeIndicator": 0,
-  "nextCardExpirationDate": "",
-  "numberOfCardsRequested": 1,
-  "organizationNumber": 970,
-  "overTheCounterCashAmount": 0,
-  "overTheCounterCashNumber": 0,
-  "overTheCounterCashSingleTransactionLimit": 0,
-  "pinMailerDelayDays": 0,
-  "pinOffset": 0,
-  "pinSuppression": 0,
-  "plasticId": "",
-  "posServiceCode": 101,
-  "postToAccount": "9704010000000001467",
-  "postalCode": 38585,
-  "processType": 0,
-  "programId": 0,
-  "reissueDeliveryOption": 0,
-  "requestedCardType": "",
-  "retailPurchaseAmt": 0,
-  "retailPurchaseNumber": 0,
-  "retailPurchaseSingleTransactionLimit": 0,
-  "securedCodeActivate": 0,
-  "stateOrProvince": "BA",
-  "typeCardMailer": "",
-  "typeOfCard": "",
-  "user1": 1,
-  "user2": 2,
-  "user3": 3,
-  "user4": 4,
-  "user5": 5,
-  "user6": 6,
-  "user7": 7,
-  "user8": 8,
-  "userDate1": "",
-  "userDate2": "",
-  "vbvPassword": "",
-  "visaMiniIndicator": "0",
-  "visaPlusIndicator": " "
-}
-```
-
 ### 4. Card ACTIVATION
 
-After customer, account and embosser requests, the new card settings for the customer are applied, but not active for use. This request will activate the card and make it ready for use. See more about the Card Activation API:
+Después de las solicitudes del cliente, la cuenta y el embozador, se aplican las nuevas configuraciones de tarjeta para el cliente, pero no están activas para su uso. Esta solicitud activará la tarjeta y la dejará lista para usar. Ver más sobre la API de Activación de Tarjeta:
 
 **PUT** `/customer`
           
-Request body: 
-
-```json
-{
-  "addressLine1": "PORT OF MIAMI",
-  "addressLine2": "117 E PARKWAY AVE",
-  "adminBranchNumber": 0,
-  "cardNumber": "0004444440000000558",
-  "cardSequence": 1,
-  "cardholderAffiliationGroupId": 12348,
-  "cardholderFlag": 0,
-  "cardholderName1": "RUN DMC",
-  "cardholderName2": "",
-  "cardholderType": 1,
-  "city": "Miami",
-  "customerNumber": "",
-  "embossedName1": "MY NAME IS",
-  "embossedName2": "KIT-KAT WALLER",
-  "firstIssueBranchNumber": 0,
-  "foreignUseIndicator": 0,
-  "issueDeliveryOption": 1,
-  "languageCode": "ENG",
-  "organizationNumber": 970,
-  "postalCode": 123456,
-  "reissueDeliveryOption": 1,
-  "stateOrProvince": "FL",
-  "user1": 1,
-  "user2": 2,
-  "user3": 3,
-  "user4": 4,
-  "user5": 5,
-  "user6": 6,
-  "user7": 7,
-  "user8": 8,
-  "userDate1": "2020-03-03",
-  "userDate2": "2020-03-03"
-}
-```
-
 ---
 
-## See Also
+## Ver también
 
-- [Account Management](?path=docs/english/main-cases/account.md)
-- [API Environment](?path=docs/english/main-cases/api-environment.md)
-- [Audit and Monitoring](?path=docs/english/main-cases/audit.md)
-- [Card Controls](?path=docs/english/main-cases/card-controls.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Card Record](?path=docs/english/main-cases/record.md)
-- [Cash-in/Cash-out](?path=docs/english/main-cases/cash-in-out.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
-- [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
-- [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
-- [HMAC Signature](?path=docs/english/main-cases/hmac.md)
-- [PAN Token](?path=docs/english/main-cases/pan-token.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
-- [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
-- [Upload Founds](?path=docs/english/main-cases/uploads.md)
+- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+- [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
+- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
+- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
