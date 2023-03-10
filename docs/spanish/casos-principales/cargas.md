@@ -1,120 +1,62 @@
 ---
-tags: [Main Cases, Upload Founds From a Source Account, Account, Balance, Peer-to-Peer]
+tags: [Casos Principales, Cargar Fondos desde una Cuenta Origen, Cuenta Balance, Punto a Punto]
 ---
 
-# Upload Founds From a Source Account
+# Cargar Fondos desde una Cuenta Origen 
 
-## Definition
+## Definición
 
-Through API'S currently created and located in the portal, it is possible to load money from a Debit account to a Credit or Prepaid account, moving money from a Credit account to a Debit or Prepaid account or carry out charges of money from a prepaid account to another prepaid account.
+A través de las API'S actualmente creadas y ubicadas en el portal, es posible cargar dinero de una Cuenta de Tarjeta de Débito a una Cuenta de Tarjeta de Crédito o Tarjeta Prepago, mover dinero de una Cuenta Crédito a una Cuenta Débito o Prepago o realizar cargos de dinero desde una Cuenta de Tarjeta Prepago a otra Cuenta de Tarjeta Prepago.
 
-These APIs are designed to allow potential customers, customers and developers to test online and directly in a real testing environment, if you haven't already set up your testing environment.
+Estas API están diseñadas para permitir que los clientes potenciales, los clientes y los desarrolladores realicen pruebas en línea y directamente en un ambiente de prueba real, si aún no ha configurado su ambiente de prueba.
 
-Each API will allow load money from different source products to different destination products. With the use of the different options or parameters, these APIs control, credit and debit the money from the source and the money receiver for each account, allowing online updates or not of the available credit use by the card, according to the parameter defined in the API before it is trigger.
+Cada API permitirá cargar dinero desde diferentes productos de origen a diferentes productos de destino. Con el uso de las diferentes opciones o parámetros, estas APIs controlan, acreditan y debitan el dinero de la fuente y del receptor de dinero para cada Cuenta, permitiendo actualizaciones en línea o no del uso de crédito disponible por parte de la tarjeta, según el parámetro definido en la API antes de que se active.
 
 ## Purpose
 
-The creation of Credit, Debit, and Prepaid accounts are a requirement that must be completed before execute any of the APIs used to load money. Which must be created using the APIs for Customer Creation (Customer/Add), Account Creation (Account/Add) and Card Creation (Embosser/Add).If you have any questions.
+La creación de cuentas de Crédito, Débito y Prepago son un requisito que se debe completar antes de ejecutar cualquiera de las APIs utilizadas para cargar dinero. La cual debe ser creada usando las APIs para Creación de Clientes (Customer/Add), Creación de Cuentas (Account/Add) y Creación de Tarjetas (Embosser/Add). Si tiene alguna pregunta.
 
-However, depending on the values used in the APIS, it is also possible to load money using direct financial amounts, received in cash from a bank branch.
+Sin embargo, dependiendo de los valores utilizados en APIS, también es posible cargar dinero utilizando montos financieros directos, recibidos en efectivo de una sucursal bancaria.
 
-## Use Case
+## Casos de Uso
 
-![image](https://user-images.githubusercontent.com/111396588/223830477-4419c5ea-679d-436f-bf3e-08907e1c56be.png)
+![image](https://user-images.githubusercontent.com/111396588/224208640-605f6900-ab7a-40e3-9062-d40563b0ed8f.png)
 
-### 1. Adjust Account Balance (Account/Balance)
+### Ajustar Saldo de Cuentas y Ajustar Saldo de Cuenta Punto a Punto 
 
-The use of this API allows you to load money to a Debit, Credit, Prepaid and Wallet product, using the parameters defined in the Portal. This API takes as a source the cash received from an agency or bank branch, and will apply these funds. These funds can be in local or foreign currency. As part of its functions, this API allows to indicate through its parameters, if the money deposited to the account can be used immediately or not.
+El uso de esta API le permite cargar dinero a un producto de Débito, Crédito, Tarjeta Prepago y Monedero, utilizando los parámetros definidos en el Portal. Esta API toma como fuente el efectivo recibido de una agencia o sucursal bancaria y aplicará estos fondos. Estos fondos pueden ser en moneda nacional o extranjera. Como parte de sus funciones, esta API permite indicar a través de sus parámetros, si el dinero depositado en la Cuenta puede ser utilizado de forma inmediata o no.
 
-**PUT** `/account/balance`
+A través de los parámetros indicados es posible identificar la cuenta, tarjeta del producto desde la cual se está realizando el retiro de dinero (débito) y definir la cuenta y tarjeta a la cual se realizará el abono, también se requiere que, como parte de los parámetros de la API, se agregue la ubicación geográfica (latitud y longitud) de la fuente (remitente) que está cargando dinero. También se requiere el número de tarjeta del que se recibe el dinero (beneficiario) como parte de los parámetros requeridos por la API.
+
+**PUT** `/account/FL-balance`
       
-Request body:
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-```json
-{
-  "asmOrganizationNumber": {{orgid}},
-  "accountNumber": "{{accountNumber}}",
-  "representativeId": "A",
-  "transactionData" : {
-    "actionCode": "FUND",
-    "cardNumber": "{{cardNumber}}",
-    "cardSequence": 123,
-    "description": "CASH_IN_VIA_CARD",
-    "effectiveDate": "2021-11-20",
-    "otbUpdateIndicator": 1,
-    "planNumber": 1,
-    "planSequence": 1,
-    "referenceNumber": 123,
-    "resolutionReferenceNumber": 123,
-    "storeNumber": 1,
-    "transactionAmount": 200
-  }
-}
-```
+## Diagrama de Secuencia
 
-The description of each API field can be found within the specifications defined in the portal.
+### Ajustar Saldo de Cuentas / Ajustar Saldo de Cuenta Punto a Punto
 
-### 2. Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
-
-This API allows you to load money from an existing Credit, Debit, Prepaid or Wallet account, to a new destination account of any of the products indicated above.
-
-Through the indicated parameters, it is possible to identify the account, product card from which the withdrawal of money (debit) is being made and define the account and card to which the credit will be made, it is also required as part of the API parameters, add the geographic location (latitude and longitude) of the source (sender) that is loading money. The card number from which you receive the money (receiver) is required as part of the parameters required by the API.
-
-**PUT** `/account/QRFL-balance`
-      
-Request body:
-
-```json
-{                                             
-  "accountNumber": "{{accountNumber}}",
-  "organizationNumber": {{orgid}},                       
-   "transactionData": {                        
-    "actionCode": "000",                     
-    "authorizationCode": "123123",                             
-    "description": "Description",             
-    "effectiveDate": "2021-02-15",            
-    "memoPostedIndicator": " ",               
-    "n1n2ByPass": "N",                                      
-    "suppressMonetaryTransaction": "Y",       
-    "transactionAmount": 1,  
-    "box": 1,                                   
-    "crPlaza": "10m00",                         
-    "crStore": "500d",                         
-    "identifier": "0x00"            
-  }                      
-}
-```
-
-The description of each API field can be found within the specifications defined in the portal.
-
-## Sequence Diagram
-
-### Adjust Account Balance (Account/Balance)
-
-![image](https://user-images.githubusercontent.com/111396588/223830380-f4df931f-4c23-408f-a494-cde4463cce64.png)
-
-### Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
-
-![image](https://user-images.githubusercontent.com/111396588/223830333-a3dcc4b4-bdfc-4920-a653-fd615b5a92bd.png)
+![image](https://user-images.githubusercontent.com/111396588/224208900-25a90498-2011-4a85-96b0-9b5a8accab98.png)
 
 ---
 
-## See Also
+## Ver también
 
-- [Account Management](?path=docs/english/main-cases/account.md)
-- [API Environment](?path=docs/english/main-cases/api-environment.md)
-- [Audit and Monitoring](?path=docs/english/main-cases/audit.md)
-- [Card Controls](?path=docs/english/main-cases/card-controls.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Card Record](?path=docs/english/main-cases/record.md)
-- [Cash-in/Cash-out](?path=docs/english/main-cases/cash-in-out.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
-- [Digital Card Issuing](?path=docs/english/main-cases/digital.md)
-- [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
-- [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
-- [HMAC Signature](?path=docs/english/main-cases/hmac.md)
-- [PAN Token](?path=docs/english/main-cases/pan-token.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
-- [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
+- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+- [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
+- [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
+- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
+- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
