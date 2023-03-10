@@ -6,95 +6,95 @@ tags: [Casos Principales, Gestión de Tarjetas, Tarjetas, Embozador, PAN Token, 
 
 ## Agregar Registro de Tarjetas 
 
-Use the API **CARDS/EMBOSSER** create a card information used to emboss a new card or plastic. This card information must have relate that an account number created through API **ACCOUNT/ADD** and this account number must be related a customer number created through API **CUSTOMER/ADD**.
+La API **CARDS/EMBOSSER** permite crear información de tarjeta utilizada para grabar una tarjeta o plástico nuevos en relieve. Esta información de la tarjeta debe tener relación con un número de cuenta creado a través de API **ACCOUNT/ADD** y este número de cuenta debe estar relacionado con un número de cliente creado a través de API **CUSTOMER/ADD**.
 
-This API allow add card information as card expiration date, service code, cardholder name, address to where the card will be deliver, spending limits, etc.
+Esta API permite agregar información de la tarjeta como la fecha de vencimiento de la tarjeta, el código de servicio, el nombre del tarjetahabiente, la dirección donde se entregará la tarjeta, los límites para compras, etc.
 
-The card number is calculated on randomly way by the application, and this number will not generated again (duplicated).
+El número de tarjeta se calcula de forma aleatoria por la aplicación, y este número no se generará de nuevo (duplicado).
 
 **POST** `/cards/embosser/l8vf`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Inquire Card or PAN token
+## Consultar Tarjeta o PAN Token
 
-Use this API **CARDS/EMBOSSER/CARD-PAN** to get the PAN-token calculated for a card number.
+Usa esta API **CARDS/EMBOSSER/CARD-PAN** para obtener el pan-token calculado para un número de tarjeta.
 
-PAN token is a current functionality to tokenize the card number for all banks that are not a PCI certificate. When new card is created through API **CARD/EMBOSSER**, the PAN token is calculated automatically on base a parameters previously defined.
+El PAN Token es una funcionalidad actual para tokenizar el número de tarjeta para todos los bancos que no poseen un certificado PCI. Cuando se crea una nueva tarjeta a través de la API **CARD/EMBOSSER**, el PAN Token se calcula automáticamente en base a un parámetro previamente definido.
 
-This API use the PAN-TOKEN to bring the card number or card number can be used to being the PAN-TOKEN.
+Esta API usa el PAN-TOKEN para traer el número de tarjeta o bien el número de tarjeta se puede usar para el PAN-TOKEN.
 
 **POST** `/cards/embosser/card-pan-l8v2`
 
-The description of each API field can be found within the specifications in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Add or Update Massive Cards
+## Agregar o Actualizar Tarjetas Masivas 
 
-This API **CARDS/MASS-CARD-ISSUE**, allow the user add or update a request to emboss new cards on massive way. These cards can be credit, debit or prepay card. Quantity of card to emboss is a parameter request by the API.
+Esta API **CARDS/MASS-CARD-ISSUE**, permite al usuario agregar o actualizar una solicitud para grabar nuevas tarjetas de forma masiva. Estas tarjetas pueden ser de crédito, débito o prepago. La cantidad de tarjetas que serán embozadas es un parámetro solicitado por la API.
 
-Cards embossed will not have an embosser name, but card number, expiration and card security values will be part of these.
+Las tarjetas embozadas no tendrán un nombre de embozador, pero el número de tarjeta, la fecha de expiración y los valores de seguridad de la tarjeta serán parte de ellos.
 
 **POST** `/cards/mass-card-issue-L8V3`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Card Action Update
+## Actualización de la Acción de la Tarjeta 
 
-Use this API **CARDS/EMBOSSER/CARDACTION** to update the action flag used to re-emboss (re-issue) a specific card number.
+Use esta API **CARDS/EMBOSSER/CARDACTION** para actualizar la bandera de acción utilizada para volver a grabar (reemitir) un número de tarjeta específico.
 
-This API allow to the user request a card reissue for some reason, lost/stolen, damage, card expiration, emergency replace, etc.
+Esta API le permite al usuario solicitar la reemisión de una tarjeta por algún motivo como pérdida/robo, daño, expiración de la tarjeta, reemplazo de emergencia, etc.
 
 **PUT** `/cards/embosser/cardAction-L8V2`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Instant Card
+## Tarjeta Instantánea 
 
-This API **CARDS/INSNTANT-CARD-L8V7** allow to the user request the creation of account and card on instantly way. Card information will be ready to be use for purchases.
+Esta API **CARDS/INSTANT-CARD** le permite al usuario solicitar la creación de cuenta y tarjeta de forma instantánea. La información de la tarjeta estará lista para ser utilizada para compras.
 
-Customer information have to be created through API **CUSTOMER/ADD** before call API instant card.
+La información del cliente debe ser creada por medio de la API **CUSTOMER/ADD** antes de llamar a la API de tarjeta instantánea.
 
 **POST** `/account/v2/instantCard`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Inquiry Security Values
+## Consulta de Valores de Seguridad 
 
-This API **CARDS/PIN/SECURITY-CODES**, allow to the user get the card security values (CVV, CVV2,ICVV, PIN number) already emboss for an specific card number.
+Esta API **CARDS/PIN/SECURITY-CODES**, le permite al usuario obtener los valores de seguridad de la tarjeta (CVV, CVV2,ICVV, número PIN) ya grabados en relieve para un número de tarjeta específico.
 
-Security values provided by the API will be encrypted using a security key of 32 bytes, so user should use the same security key and 3Des algorithm to decrypt the security values.
+Los valores de seguridad proporcionados por la API se cifrarán mediante una clave de seguridad de 32 bytes, por lo que el usuario debe utilizar la misma clave de seguridad y el algoritmo 3Des para descifrar los valores de seguridad.
 
 **POST** `/cards/pin/security-codes`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Inquire Dynamic CVV2/CVC2/4CSC
+## Consultar Valores CVV2/CVC2/4CSC Dinámicos
 
-Use this API **CARDS/PIN/DYNAMIC-VALUE** to calculate and inquire a new CVV2 for not present card purchases.
+Use esta API **CARDS/PIN/DYNAMIC-VALUE** para calcular y consultar un nuevo CVV2 para compras con tarjeta no presente.
 
-Currently when card is emboss through the API **CARD/EMBOSSER**, the static CVV2 code is calculate and printed on sign panel on card back. The new functionality of Dynamic CVV2 allow to the cardholder call this API **CARDS/PIN/DYNAMIC-VALUE** to generate and calculate a new CVV2 before make a not present purchase. So when API is trigger the static CVV2 is inactivated and each time the cardholder wants to make a new not card present purchase the new CVV2 have to be calculated through this API.
+Actualmente, cuando la tarjeta se graba en relieve a través de API **CARD/EMBOSSER**, el código CVV2 estático se calcula y se imprime en el panel de firma en el reverso de la tarjeta. La nueva funcionalidad de Dynamic CVV2 le permite al tarjetahabiente llamar a esta API **CARDS/PIN/DYNAMIC-VALUE** para generar y calcular un nuevo CVV2 antes de realizar una compra no presente. Por lo tanto, cuando se activa la API, el CVV2 estático se desactiva y cada vez que el tarjetahabiente desea realizar una nueva compra sin tarjeta presente, se deberá calcular el CVV2 nuevo por medio de esta API.
 
 **POST** `/cards/pin/dynamic-values`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Inquire Number of Invalid PIN Attempts
+## Consultar Número de Intentos de PIN No Válidos 
 
-This API **CARDS/PIN/INVALID-ATTEMPTS** allow to the cardholder get the number of invalid PIN attempts.
+Esta API **CARDS/PIN/INVALID-ATTEMPTS** permite al tarjetahabiente obtener el número de intentos de PIN no válidos.
 
-As part of security parameters, the number of invalid PIN attempts are set up to avoid that PIN number can be calculated for frauds proposals. When this parameter is reached the PIN number is block and a new PIN number have to be calculated.
+Como parte de los parámetros de seguridad, se configura el número de intentos de PIN no válidos para evitar que se pueda calcular el número de PIN para propuestas de fraude. Cuando se alcanza este parámetro, el número PIN se bloquea y se debe calcular un nuevo número PIN.
 
-Invalid PIN attempts can be reached by many reasons the most popular reason is when cardholder fails the PIN number on ATM.
+Los intentos de PIN no válidos pueden ocurrir por muchas razones. La razón más popular es cuando el tarjetahabiente comete un error al ingresar el número de PIN en el cajero automático.
 
 **POST** `/cards/pin/invalid-attempts`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## PIN Validation
+## Validación PIN
 
-Use this API **CARDS/PIN/VALIDATION** to confirm that current PIN generated is correct.
+Use esta API **CARDS/PIN/VALIDATION** para confirmar que el PIN generado sea correcto.
 
-This API require the PIN block and the card number and not the clear PIN number.
+Esta API requiere el PIN Block y el número de tarjeta y no el PIN en claro.
 
 **POST** `/cards/pin/validation`
 
