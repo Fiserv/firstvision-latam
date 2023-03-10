@@ -1,24 +1,24 @@
 ---
-tags: [Main Cases, Card Controls, cards, embosser, Block, Unlock, Limits, Travel, Transfer, Active, PIN]
+tags: [Casos Principales, Controles de Tarjeta, Tarjetas, Embozador, Bloquear, Desbloquear, Límites, Viajes, Transferir, Activar, PIN]
 ---
 
-# Card Controls
+# Controles de Tarjetas
 
-This section describes the different APIs in the Portal used to take actions on the different activities related to the use of the credit, debit, prepaid or wallet card, for any of the Visa, Master Card or American Express products. Next, a description of the functionalities and characteristics of API.
+En esta sección se describen las diferentes APIs del Portal que se utilizan para tomar acciones sobre las diferentes actividades relacionadas con el uso de la tarjeta de crédito, débito, tarjeta prepago o monedero, para cualquiera de los productos Visa, MasterCard o American Express. A continuación, una descripción de las funcionalidades y características de la API.
 
-As a main requirement, is important that Credit, Debit, Prepay or Wallet cards have been created in the test environment as it was detailed in this document, using the API's for customer creation (Customer / Add), creation of Account (Account / Add) and Creation of Card (Embosser / Add).
+Como requisito principal, es importante que las tarjetas de crédito, tarjetas de débito, tarjetas prepago o monederos digitales hayan sido creados en el ambiente de prueba como se detalló en este documento, utilizando las APIs para la Creación de Clientes (Client/Add), Creación de Cuentas (Account/Add) y Creación de Tarjetas (Embosser/Add).
 
-## Block or Unlock Card (Cards/Embosser/Block)
+## Bloquear o Desbloquear Tarjeta (Cards/Embosser/Block)
 
-Through this API, the cardholder will be able to make preventive and definitive blocks on the credit card information, debit, prepaid and wallet. In order to prevent any possible fraud when the cardholder suspects that card information may be compromised.
+A través de esta API, el tarjetahabiente podrá realizar bloqueos preventivos y definitivos sobre la información de su tarjeta de crédito, tarjeta de débito, tarjeta prepago y monedero. Con el fin de prevenir cualquier posible fraude cuando el tarjetahabiente sospeche que la información de la tarjeta puede estar comprometida.
 
-On same way, the cardholder may carry out a preventive unlocking of his card when he is sure that the information on his card is not compromised.
+De igual forma, el tarjetahabiente podrá realizar un desbloqueo preventivo de su tarjeta cuando esté seguro de que la información de su tarjeta no está comprometida.
 
-Information required by the API as the card number, block code, and function must be included before API trigger.
+La información requerida por la API, como el número de tarjeta, el código de bloqueo y la función, debe incluirse antes de la activación de la API.
 
 **PUT** `/cards/embosser/block`
 
-The description of each API field can be found within the specifications.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## Update Spending Limits (Cards/Spend-Limits)
 
@@ -30,7 +30,7 @@ The API Card/Spend-Limits, requests as required information, the card number, tr
 
 **PUT** `/cards/spend-limits-L8V3`
 
-The description of each API field can be found within the specifications.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## Update Travel Indicator (Cards/Travel)
 
@@ -44,7 +44,7 @@ The values required by the API are the card number, ISO code of the country, sta
 
 **PUT** `/cards/travel`
 
-The description of each API field can be found within the specifications.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## Card Transfer Update (Cards/Transfer)
 
@@ -54,7 +54,7 @@ As part of values requested by the API Cards/Transfer, is required the card numb
 
 **PUT** `/cards/transfer`
 
-The description of each API field can be found within the specifications.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## Active Card (Cards/Activation)
 
@@ -68,7 +68,7 @@ Require values for this API are: Card Number, bank product identification (organ
 
 **PUT** `/cards/activation`
 
-The description of each API field can be found within the specifications.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## Update PIN of Card (Cards/PIN)
 
@@ -80,7 +80,7 @@ The values required for this API are: Card Number, bank organization, channel, P
 
 **PUT** `/cards/pin/`
 
-The description of each API field can be found within the specifications.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## PIN Block/Unblock (Cards/PIN/Status)
 
@@ -94,7 +94,7 @@ Values require by this API are: Card number, channel, bank organization and serv
 
 **PUT** `/cards/pin/status`
 
-The description of each API field can be found within the specifications.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## Change the PIN of a Card (Cards/PIN/PIN-Change)
 
@@ -106,7 +106,7 @@ Require values of this API are: Card Number, Channel, Current PIN Block, New PIN
 
 **PUT** `/cards/pin/pin-change`
 
-The description of each API field can be found within the specifications.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ---
 
