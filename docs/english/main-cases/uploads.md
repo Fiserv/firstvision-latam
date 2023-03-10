@@ -22,69 +22,14 @@ However, depending on the values used in the APIS, it is also possible to load m
 
 ![image](https://user-images.githubusercontent.com/111396588/223830477-4419c5ea-679d-436f-bf3e-08907e1c56be.png)
 
-### 1. Adjust Account Balance (Account/Balance)
+### Adjust Account Balance and Account Balance Peer-to-Pee
 
 The use of this API allows you to load money to a Debit, Credit, Prepaid and Wallet product, using the parameters defined in the Portal. This API takes as a source the cash received from an agency or bank branch, and will apply these funds. These funds can be in local or foreign currency. As part of its functions, this API allows to indicate through its parameters, if the money deposited to the account can be used immediately or not.
 
-**PUT** `/account/balance`
-      
-Request body:
-
-```json
-{
-  "asmOrganizationNumber": {{orgid}},
-  "accountNumber": "{{accountNumber}}",
-  "representativeId": "A",
-  "transactionData" : {
-    "actionCode": "FUND",
-    "cardNumber": "{{cardNumber}}",
-    "cardSequence": 123,
-    "description": "CASH_IN_VIA_CARD",
-    "effectiveDate": "2021-11-20",
-    "otbUpdateIndicator": 1,
-    "planNumber": 1,
-    "planSequence": 1,
-    "referenceNumber": 123,
-    "resolutionReferenceNumber": 123,
-    "storeNumber": 1,
-    "transactionAmount": 200
-  }
-}
-```
-
-The description of each API field can be found within the specifications defined in the portal.
-
-### 2. Adjust Account Balance Peer-to-Peer (Account/QRFL-Balance)
-
-This API allows you to load money from an existing Credit, Debit, Prepaid or Wallet account, to a new destination account of any of the products indicated above.
-
 Through the indicated parameters, it is possible to identify the account, product card from which the withdrawal of money (debit) is being made and define the account and card to which the credit will be made, it is also required as part of the API parameters, add the geographic location (latitude and longitude) of the source (sender) that is loading money. The card number from which you receive the money (receiver) is required as part of the parameters required by the API.
 
-**PUT** `/account/QRFL-balance`
+**PUT** `/account/FL-balance`
       
-Request body:
-
-```json
-{                                             
-  "accountNumber": "{{accountNumber}}",
-  "organizationNumber": {{orgid}},                       
-   "transactionData": {                        
-    "actionCode": "000",                     
-    "authorizationCode": "123123",                             
-    "description": "Description",             
-    "effectiveDate": "2021-02-15",            
-    "memoPostedIndicator": " ",               
-    "n1n2ByPass": "N",                                      
-    "suppressMonetaryTransaction": "Y",       
-    "transactionAmount": 1,  
-    "box": 1,                                   
-    "crPlaza": "10m00",                         
-    "crStore": "500d",                         
-    "identifier": "0x00"            
-  }                      
-}
-```
-
 The description of each API field can be found within the specifications defined in the portal.
 
 ## Sequence Diagram
