@@ -12,13 +12,13 @@ Account number is a unique number that is different than card number, account nu
 
 This API needs the customer number as a require value before the API can be trigger. This customer number is provide when API **CUSTOMER/ADD** is trigger to add demographic information.
 
-**POST** `/account`
+**POST** `/account/add-L8V3`
 
 The description of each API field can be found within the specifications defined in the portal.
 
 ## Find Account Balance
 
-This API **ACCOUNT/BALANCE/DETAIL**, can be used by the cardholder to get the information about account current balance. Using the account number as search parameter, API will show the account current balance, available credit, cash balance, credit limit, etc. in the API output message.
+This API **ACCOUNT/BALANCE/DETAILS**, can be used by the cardholder to get the information about account current balance. Using the account number as search parameter, API will show the account current balance, available credit, cash balance, credit limit, etc. in the API output message.
 
 This API will show the account balances information on real time, on inquiry mode, so no account balance values can be update.
 
@@ -60,9 +60,7 @@ To trigger this API, the account number information and card information have to
 
 This API will show all the cards created under the account number, principal card and additional cards.
 
-**POST** `/account/card`
-
-Request body:
+**POST** `/account/card-L8V2`
 
 The description of each API field can be found within the specifications defined in the portal.
 
@@ -73,8 +71,6 @@ This API **ACCOUNT/CREDITBUREAU**, allows a user to update the credit bureau fie
 This API uses the account number and a flag to indicate if the account is added into the Credit Bureau report.
 
 **PUT** `/account/creditBureau`
-
-Request body:
 
 The description of each API field can be found within the specifications defined in the portal.
 
@@ -88,19 +84,19 @@ With API **ACCOUNTS/CUSTOMER** is possible remove this link and make a different
 
 This API use the account number as search parameter and an existing customer number that will be use to establish a new link.
 
-**PUT** `/account/customer`
+**PUT** `/account/v2/customer`
 
 The description of each API field can be found within the specifications defined in the portal.
 
 ## Find Account Detail
 
-The API **ACCOUNT/DETAI**L allow a user the get all the account information previously added through the API **ACCOUNT/ADD** in a test environment, this account information is received in API response message after the API is called.
+The API **ACCOUNT/DETAIL** allow a user the get all the account information previously added through the API **ACCOUNT/ADD** in a test environment, this account information is received in API response message after the API is called.
 
 Information as account status, customer number, account block codes, credit limit, waive flags, etc, will be display with this API.
 
-This API require the account number as search parameter along with banj id (organization).
+This API require the account number as search parameter along with bank id (organization).
 
-**POST** `/account/details`
+**POST** `/account/details-L8VG`
 
 The description of each API field can be found within the specifications defined in the portal.
 
@@ -114,23 +110,13 @@ After call this API, a debit and credit transactions are created for source and 
 
 This API use the account number for source account and account number for destination.
 
-**PUT** `/account/FL-transferP2P`
+**PUT** `/account/transferP2P`
 
 The description of each API field can be found within the specifications defined in the portal.
 
 ## Cash-in / Cash-out 
 
-Use this API **ACCOUNT/BALANCE** to apply a money amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account.
-
-Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
-
-**PUT** `/account/balance`
-
-The description of each API field can be found within the specifications defined in the portal.
-
-## Falcon Cash-in / Cash-out
-
-Use this API **ACCOUNT/FL-BALANCE** to money transfer amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. However, parameters previously defined, allow FALCON application (Card Fraud Control) audit this type of transactions.
+Use this API **ACCOUNT/BALANCE** to apply a money amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. Also can be used to money transfer amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. However, parameters previously defined, allow Card Fraud Control)audit this type of transactions.
 
 Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
 
@@ -200,13 +186,11 @@ A relationship number is defined as a Corporate Account, it means that all accou
 
 Use API **ACCOUNT/ADD** to created Corporated Accoount and sub-accounts that will be part of this account.
 
-For additional information about Corporate Account please refer to CMS User Manual.
-
 This API use Corporate Account Number as search parameter.
 
-The description of each API field can be found within the specifications defined in the portal.
-
 **GET** `/account/{accountNumber}/relationship`
+
+The description of each API field can be found within the specifications defined in the portal.
 
 ## Update Installment Term
 
@@ -231,7 +215,6 @@ The Associated parties fields located at account level are been used to identify
 **PUT** `/account/associatedParties`
 
 The description of each API field can be found within the specifications defined in the portal.
-
 
 ## Account-Embosser Authorization Criteria Update
 
