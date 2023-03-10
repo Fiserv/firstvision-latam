@@ -16,17 +16,6 @@ PAN Token, puede ser visible usando la API **CARDS/EMBOSSER/CARD-PAN-L8V2**, por
 
 **POST** `/cards/embosser/card-pan-l8v2`
 
-Cuerpo de la Solicitud:
-
-```json
-{
-  "cardSequence": 1,
-  "functionType": "C",
-  "organizationNumber": {{orgid}},
-  "cardNumber": "{{cardNumber}}"
-}
-```
-
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ---
