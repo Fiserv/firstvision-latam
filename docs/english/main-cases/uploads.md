@@ -22,8 +22,6 @@ However, depending on the values used in the APIS, it is also possible to load m
 
 ![image](https://user-images.githubusercontent.com/111396588/224208640-605f6900-ab7a-40e3-9062-d40563b0ed8f.png)
 
-### Adjust Account Balance and Account Balance Peer-to-Pee
-
 The use of this API allows you to load money to a Debit, Credit, Prepaid and Wallet product, using the parameters defined in the Portal. This API takes as a source the cash received from an agency or bank branch, and will apply these funds. These funds can be in local or foreign currency. As part of its functions, this API allows to indicate through its parameters, if the money deposited to the account can be used immediately or not.
 
 Through the indicated parameters, it is possible to identify the account, product card from which the withdrawal of money (debit) is being made and define the account and card to which the credit will be made, it is also required as part of the API parameters, add the geographic location (latitude and longitude) of the source (sender) that is loading money. The card number from which you receive the money (receiver) is required as part of the parameters required by the API.
@@ -33,8 +31,6 @@ Through the indicated parameters, it is possible to identify the account, produc
 The description of each API field can be found within the specifications defined in the portal.
 
 ## Sequence Diagram
-
-### Adjust Account Balance / Adjust Account Balance Peer-to-Peer 
 
 ![image](https://user-images.githubusercontent.com/111396588/224208900-25a90498-2011-4a85-96b0-9b5a8accab98.png)
 
