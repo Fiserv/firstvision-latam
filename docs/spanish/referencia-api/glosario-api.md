@@ -1,5 +1,5 @@
 ---
-tags: [API Reference, Glosario API]
+tags: [Referencia de la API, Glosario API]
 ---
 
 
@@ -7,13 +7,13 @@ tags: [API Reference, Glosario API]
 
 <!-- 
 type: tab 
-titles: Terminos Generales, Acronimos , Tipos de Cuentas, Nombre del Servicio Legacy
+titles: Terminos Generales, Acrónimos , Tipos de Cuentas, Nombre del Servicio Legacy
 -->
 
-| Term                  | Definition      |
-| -----------------------|------------------------|
-| Access Token          | A cryptographically secure credential that allows merchants to access the API. |
-| Account               | A system record tied to a customer, which contains balance, history, and other monetary information.     |
+| Term                  | Definition                                                                                                                                                          |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Access Token          | A cryptographically secure credential that allows merchants to access the API.                                                                                      |
+| Account               | A system record tied to a customer, which contains balance, history, and other monetary information.                                                                |
 | Alien                 | A foreign-born, non-U.S. citizen who lives in the U.S.                                                                                                              |
 | Authentication        | Process to validate the credentials of the merchant to access the API.                                                                                              |
 | Authorization         | Process of allowing merchants to access certain resources based on the privileges they have.                                                                        |
