@@ -16,23 +16,6 @@ Each of these validation scenarios have been created for the regions of Colombia
 
 With the use of a key known as API-KEY, which can be requested by the customer, each API's can be addressed to test the franchise, product and region that is desired.
 
-## Request sample
-
-**POST** `/token`
-
-Response example:
-
-```json
-{
-    "token_type": "BearerToken",
-    "issued_at": "11111111111111",
-    "client_id": "ABC123ABC123ABC123",
-    "access_token": "ABC123abc123ABC123abc123",
-    "expires_in": "1799",
-    "status": "approved"
-}
-```
-
 ## Diagram
 
 ![image](https://user-images.githubusercontent.com/111396588/223832354-107c98dd-4a1d-4b19-b97b-c1e662df3c6b.png)
