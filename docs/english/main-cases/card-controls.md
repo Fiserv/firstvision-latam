@@ -8,7 +8,7 @@ This section describes the different APIs in the Portal used to take actions on 
 
 As a main requirement, is important that Credit, Debit, Prepay or Wallet cards have been created in the test environment as it was detailed in this document, using the API's for customer creation (Customer / Add), creation of Account (Account / Add) and Creation of Card (Embosser / Add).
 
-## Block or Unlock Card (Cards/Embosser/Block)
+## Block or Unlock Card
 
 Through this API, the cardholder will be able to make preventive and definitive blocks on the credit card information, debit, prepaid and wallet. In order to prevent any possible fraud when the cardholder suspects that card information may be compromised.
 
@@ -20,7 +20,7 @@ Information required by the API as the card number, block code, and function mus
 
 The description of each API field can be found within the specifications.
 
-## Update Spending Limits (Cards/Spend-Limits)
+## Update Spending Limits
 
 This API allows the customer to update online, the different spending limits associated with credit, debit, prepaid and Wallet cards. These spending limits are assigned for purchases, cash advances, internet purchases and international purchases. Spending limits assign the number of transactions and maximum amounts allowed for use on a daily, weekly, biweekly, and monthly basis.These spending limits can be assigned to the main card as well as to additional cards.
 
@@ -32,7 +32,7 @@ The API Card/Spend-Limits, requests as required information, the card number, tr
 
 The description of each API field can be found within the specifications.
 
-## Update Travel Indicator (Cards/Travel)
+## Update Travel Indicator
 
 Through the API Card/Travel, the cardholder will be able to define the destinations, outside their country, where the credit card will be used. This API activates online the dates and countries to which the cardholder is traveling in the coming months.
 
@@ -46,7 +46,7 @@ The values required by the API are the card number, ISO code of the country, sta
 
 The description of each API field can be found within the specifications.
 
-## Card Transfer Update (Cards/Transfer)
+## Card Transfer Update
 
 This API allow the cardholder blocks their current card number and request a new card with different card number in only one trigger. Same that API Block or Unlock Card, card number can be blocked just in case cardholder believes that card information is compromise and at same time he can request a new card number, so new card will be embossed during batch process and will be ready to be deliver on next day.
 
@@ -56,7 +56,7 @@ As part of values requested by the API Cards/Transfer, is required the card numb
 
 The description of each API field can be found within the specifications.
 
-## Active Card (Cards/Activation)
+## Active Card
 
 The API CARS/ACTIVATION activates a card already embossed. This API allow to the cardholder activate a new card number when it is received by mail or deliver in a bank branch. Card Activation date will be saved on test environment for audit reasons.
 
@@ -70,7 +70,7 @@ Require values for this API are: Card Number, bank product identification (organ
 
 The description of each API field can be found within the specifications.
 
-## Update PIN of Card (Cards/PIN)
+## Update PIN of Card
 
 This API CARDS/PIN, allows to the cardholder reassign a new personal identification number (PIN). Normally used when new card is deliver to the cardholder and new PIN needs to be setup and linked to the new card already activated using the API Cards/Activation.
 
@@ -82,7 +82,7 @@ The values required for this API are: Card Number, bank organization, channel, P
 
 The description of each API field can be found within the specifications.
 
-## PIN Block/Unblock (Cards/PIN/Status)
+## PIN Block/Unblock
 
 The API cards/pin/status is being used by a cardholder to block his current PIN number, it can be used when he believes that PIN information can be compromise. This API only block the PIN number and not the card number, so customer after trigger this API to block the PIN, he can still using the card for purchases but not for cash advances.
 
@@ -96,7 +96,7 @@ Values require by this API are: Card number, channel, bank organization and serv
 
 The description of each API field can be found within the specifications.
 
-## Change the PIN of a Card (Cards/PIN/PIN-Change)
+## Change the PIN of a Card
 
 With this API cards/pin/pin-change, cardholder will be able to change his current PIN number, for another PIN number. At different of the API Update PIN of Card, this API will request the current PIN number assigned to the cardholder, so both values need to be added before trigger the API: Current PIN and New PIN.
 
