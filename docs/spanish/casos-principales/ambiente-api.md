@@ -16,23 +16,6 @@ Cada uno de estos escenarios de validación fueron creados para las regiones de 
 
 Con el uso de una clave conocida como API-KEY, la cual puede ser solicitada por el Cliente, cada API's puede ser direccionada para probar la franquicia, el producto y la región que se desee.
 
-## Ejemplo de solicitud
-
-**POST** `/token`
-
-Ejemplo de respuesta:
-
-```json
-{
-    "token_type": "BearerToken",
-    "issued_at": "11111111111111",
-    "client_id": "ABC123ABC123ABC123",
-    "access_token": "ABC123abc123ABC123abc123",
-    "expires_in": "1799",
-    "status": "approved"
-}
-```
-
 ## Diagrama
 
 ![image](https://user-images.githubusercontent.com/111396588/223832470-d7a8406b-b39b-45e3-ae5c-3afb434e98e8.png)
