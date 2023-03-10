@@ -1,47 +1,35 @@
 ---
-tags: [Main Cases, Dynamic CVV 2, cards, PIN, dynamic-values]
+tags: [Casos Principales, CVV 2 Dinámico, Tarjetas, PIN, Valores Dinámicos]
 ---
 
-# Dynamic CVV 2
+# CVV 2 Dinámico
 
-Use this API **CARDS/PIN/DYNAMIC-VALUE** to calculate and inquire a new CVV2 for not present card purchases.
+Esta API **CARDS/PIN/DYNAMIC-VALUE** permite calcular y consultar un nuevo CVV2 para compras con tarjeta no presente.
 
-Currently when card is emboss through the API CARD/EMBOSSER, the static CVV2 code is calculate and printed on sign panel on card back. The new functionality of Dynamic CVV2 allow to the cardholder call this API CARDS/PIN/DYNAMIC-VALUE to generate and calculate a new CVV2 before make a not present purchase. So when API is trigger the static CVV2 is inactivated and each time the cardholder wants to make a new not card present purchase the new CVV2 have to be calculated through this API.
+Actualmente, cuando la tarjeta se graba en relieve a través de API CARD/EMBOSSER, el código CVV2 estático se calcula y se imprime en el panel de firma en el reverso de la tarjeta. La nueva funcionalidad de Dynamic CVV2 le permite al tarjetahabiente llamar a esta API CARDS/PIN/DYNAMIC-VALUE para generar y calcular un nuevo CVV2 antes de realizar una compra no presente. Por lo tanto, cuando se activa la API, el CVV2 estático se desactiva y cada vez que el tarjetahabiente desea realizar una nueva compra sin tarjeta presente, se deberá calcular el CVV2 nuevo por medio de esta API.
 
 **POST** `/cards/pin/dynamic-values`
-    
-Request body:
 
-```json
-{
-  "cardNumber": "{{cardNumber}}",
-  "channel": "I",
-  "disableDCVV2": "N",
-  "keyAssociation": "OV1",
-  "organizationNumber": {{orgid}}
-}
-```
-  
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ---
 
-## See Also
+## Ver también
 
-- [Account Management](?path=docs/english/main-cases/account.md)
-- [API Environment](?path=docs/english/main-cases/api-environment.md)
-- [Audit and Monitoring](?path=docs/english/main-cases/audit.md)
-- [Card Controls](?path=docs/english/main-cases/card-controls.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Card Record](?path=docs/english/main-cases/record.md)
-- [Cash-in/Cash-out](?path=docs/english/main-cases/cash-in-out.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
-- [Digital Card Issuing](?path=docs/english/main-cases/digital.md)
-- [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
-- [HMAC Signature](?path=docs/english/main-cases/hmac.md)
-- [PAN Token](?path=docs/english/main-cases/pan-token.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
-- [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
-- [Upload Founds](?path=docs/english/main-cases/uploads.md)
+- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+- [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
+- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
+- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
