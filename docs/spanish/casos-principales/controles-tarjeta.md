@@ -6,7 +6,7 @@ tags: [Main Cases, Card Controls, cards, embosser, Block, Unlock, Limits, Travel
 
 This section describes the different APIs in the Portal used to take actions on the different activities related to the use of the credit, debit, prepaid or wallet card, for any of the Visa, Master Card or American Express products. Next, a description of the functionalities and characteristics of API.
 
-As a main requirement, is important that Credit, Debit, Prepay or Wallet cards have been created in the test environment as it was detailed in section 1.0 of this document, using the API's for customer creation (Customer / Add), creation of Account (Account / Add) and Creation of Card (Embosser / Add).
+As a main requirement, is important that Credit, Debit, Prepay or Wallet cards have been created in the test environment as it was detailed in this document, using the API's for customer creation (Customer / Add), creation of Account (Account / Add) and Creation of Card (Embosser / Add).
 
 ## Block or Unlock Card (Cards/Embosser/Block)
 
@@ -19,18 +19,8 @@ Information required by the API as the card number, block code, and function mus
 The description of each API field can be found within the specifications defined in the portal.
 
 **PUT** `/cards/embosser/block`
-        
-Request body:
 
-```json
-{
-  "blockCode": "Z",
-  "cardNumber": "0004444440000000558",
-  "cardSequence": 1,
-  "functionCode": "B",
-  "organizationNumber": 970
-}
-```
+The description of each API field can be found within the specifications.
 
 ## Update Spending Limits (Cards/Spend-Limits)
 
@@ -42,36 +32,9 @@ The API Card/Spend-Limits, requests as required information, the card number, tr
 
 The description of each API field can be found within the specifications defined in the portal.
 
-**PUT** `/cards/spend-limits`
+**PUT** `/cards/spend-limits-L8V3`
 
-Request body:
-
-```json
-{
-  "automatedTellerMachineCashAmount": 10000,
-  "automatedTellerMachineCashNumber": 3,
-  "automatedTellerMachineCashSingleTransactionLimit": 3123232,
-  "cardNumber": "0004444440000001309",
-  "cardSequence": 1,
-  "foreignUse": 0,
-  "frequency": 1,
-  "globalSpendingLimitNumber": 99999999,
-  "globalSpendingLimitAmount": 100000000000000000,
-  "globalSpendingLimitForSingleTransaction": 100000000000000000,
-  "internetPurchaseAmount": 213456,
-  "internetPurchaseNumber": 9,
-  "internetPurchaseSingleTransactionLimit": 123456,
-  "logoThreshIndustry": 1,
-  "organizationNumber": 970,
-  "overTheCounterCashAmount": 123112,
-  "overTheCounterCashNumber": 9,
-  "overTheCounterCashSingleTransactionLimit": 121345,
-  "retailPurchaseAmount": 415678,
-  "retailPurchaseNumber": 81,
-  "retailPurchaseSingleTransactionLimit": 121332,
-  "spendLimitsStatusIndicator": 0
-}
-```
+The description of each API field can be found within the specifications.
 
 ## Update Travel Indicator (Cards/Travel)
 
@@ -87,30 +50,7 @@ The description of each API field can be found within the specifications defined
 
 **PUT** `/cards/travel`
 
-Request body:
-
-```json
-{
-  "cardNumber": "0004444440000000558",
-  "cardSequence": 1,
-  "foreignUseIndicator": 1,
-  "organizationNumber": 970,
-  "travel": [
-    {
-      "country": "ARG",
-      "endDate": "2020-10-10",
-      "startDate": "2020-09-09"
-    },
-    {
-      "country": "ARG",
-      "endDate": "2020-10-10",
-      "startDate": "2020-09-09"
-    }
-  ],
-  "travelIndicator": 1,
-  "travelIndicatorOccurrence": 1
-}          
-```
+The description of each API field can be found within the specifications.
 
 ## Card Transfer Update (Cards/Transfer)
 
@@ -122,28 +62,7 @@ The description of each API field can be found within the specifications defined
 
 **PUT** `/cards/transfer`
 
-Request body:
-
-```json
-{
-  "accountNumberBase": 9704010000000002000,
-  "blockCode": "S",
-  "cardNumber": "0004444440000000558",
-  "customerOrg": 970,
-  "effectiveDate": "2019-08-12",
-  "function": "T",
-  "logo": 401,
-  "operatorId": "VFM",
-  "organizationNumber": 970,
-  "processType": 0,
-  "reasonCode": "A",
-  "startDate": "2019-08-30",
-  "terminalId": 1,
-  "transferRepresentative": 0,
-  "transferToAccount": "9706010000000000274",
-  "transferToCustomer": "9704010000000001467"
-}
-```
+The description of each API field can be found within the specifications.
 
 ## Active Card (Cards/Activation)
 
@@ -156,20 +75,8 @@ This API should be trigger each time that a new card is embossed (principal or a
 Require values for this API are: Card Number, bank product identification (organization) and service type (A= Activation).
 
 **PUT** `/cards/activation`
-    
-Request body:
-
-```json
-{
-  "cardNumber": "{{cardNumber}}",
-  "organizationNumber": {{orgid}},
-  "serviceType": "S",
-  "userData": ""
-}
-```
 
 The description of each API field can be found within the specifications.
-
 
 ## Update PIN of Card (Cards/PIN)
 
@@ -180,21 +87,8 @@ The API reassign and update the new PIN 100% on line so cardholder can use the n
 The values required for this API are: Card Number, bank organization, channel, PIN Block and Key association.
 
 **PUT** `/cards/pin/`
-      
-Request body:
-
-```json
-{
-  "cardNumber": "{{cardNumber}}",
-  "channel": "W",
-  "keyAssociationNumber": "MOX",
-  "newPinBlock": "ABC123ABC123ABC123",
-  "organizationNumber": {{orgid}}
-}
-```
 
 The description of each API field can be found within the specifications.
-
 
 ## PIN Block/Unblock (Cards/PIN/Status)
 
@@ -207,21 +101,8 @@ Another function of this API, allow the cardholder unblock a card PIN when it wa
 Values require by this API are: Card number, channel, bank organization and service function.
 
 **PUT** `/cards/pin/status`
-        
-Request body:
-
-```json
-{
-  "cardNumber": "{{cardNumber}}",
-  "cardSequenceNumber": 1,
-  "channel": "W",
-  "organizationNumber": {{orgid}},
-  "serviceFunctionCode": "U"
-}
-```
 
 The description of each API field can be found within the specifications.
-
 
 ## Change the PIN of a Card (Cards/PIN/PIN-Change)
 
@@ -232,20 +113,6 @@ This API can be used when cardholder need to change the current PIN number for a
 Require values of this API are: Card Number, Channel, Current PIN Block, New PIN Block, Key Association (to encrypt PIN Blocks), new PIN offset, and bank organization.
 
 **PUT** `/cards/pin/pin-change`
-          
-Request body:
-
-```json
-{
-  "cardNumber": "{{cardNumber}}",
-  "channel": "W",
-  "currPinBlock": "ABC123ABC123",
-  "keyAssociationNumber": "AV",
-  "organizationNumber": {{orgid}},
-  "pinOffset": "",
-  "reqdPinBlock": "ABC234ABC234"
-}
-```
 
 The description of each API field can be found within the specifications.
 
