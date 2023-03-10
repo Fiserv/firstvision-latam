@@ -13,6 +13,7 @@ tags: [Release Notes, January, February, March]
 ### Enhancements
 
 - VMX list updated
+- 
 
 ### Fixed
 
@@ -31,6 +32,7 @@ Endpoints moved to version 1.1.0:
 ### Deprecated
 
 - /account/QRFL-balance
+- /cards/instant-card-L8V7
 
 ---
 
