@@ -60,7 +60,7 @@ To trigger this API, the account number information and card information have to
 
 This API will show all the cards created under the account number, principal card and additional cards.
 
-**POST** `/account/card-L8V2`
+**POST** `/cards/embosser/card-details-L8V3`
 
 The description of each API field can be found within the specifications defined in the portal.
 
