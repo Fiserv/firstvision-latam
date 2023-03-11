@@ -6,7 +6,7 @@ tags: [Casos Principales, Controles de Tarjeta, Tarjetas, Embozador, Bloquear, D
 
 En esta sección se describen las diferentes APIs del Portal que se utilizan para tomar acciones sobre las diferentes actividades relacionadas con el uso de la tarjeta de crédito, débito, tarjeta prepago o monedero, para cualquiera de los productos Visa, MasterCard o American Express. A continuación, una descripción de las funcionalidades y características de la API.
 
-Como requisito principal, es importante que las tarjetas de crédito, tarjetas de débito, tarjetas prepago o monederos digitales hayan sido creados en el ambiente de prueba como se detalló en este documento, utilizando las APIs para la Creación de Clientes (Client/Add), Creación de Cuentas (Account/Add) y Creación de Tarjetas (Embosser/Add).
+Como requisito principal, es importante que las tarjetas de crédito, tarjetas de débito, tarjetas prepago o monederos digitales hayan sido creados en el ambiente de prueba como se detalló en este documento, utilizando las APIs para la Creación de Clientes (Client Add), Creación de Cuentas (Account Add) y Creación de Tarjetas (Embosser Add).
 
 ## Bloquear o Desbloquear Tarjeta
 
@@ -26,7 +26,7 @@ Esta API le permite al cliente actualizar en línea, los diferentes límites par
 
 Los valores se modifican 100% en línea y se pueden ajustar tantas veces como se requiera.
 
-La API de Card/Spend-Limits solicita como información requerida el número de tarjeta, el número de transacción y los montos para cada Límite para Compras.
+Esta API solicita como información requerida el número de tarjeta, el número de transacción y los montos para cada Límite para Compras.
 
 **PUT** `/cards/spend-limits-L8V3`
 
@@ -34,7 +34,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Actualizar Indicador de Viaje
 
-A través de la API Tarjetas/Viajes, el tarjetahabiente podrá definir los destinos, fuera de su país donde utilizará la tarjeta de crédito. Esta API activa en línea las fechas y países a los que viajará el tarjetahabiente en los próximos meses.
+A través de la API, el tarjetahabiente podrá definir los destinos, fuera de su país donde utilizará la tarjeta de crédito. Esta API activa en línea las fechas y países a los que viajará el tarjetahabiente en los próximos meses.
 
 Si la tarjeta se usa en un país o rango de fechas que no ha sido definido por esta API, la solicitud de autorización será rechazada con la respuesta: “Transacción no está permitida”.
 
@@ -50,7 +50,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 Esta API permite que el tarjetahabiente bloquee su número de tarjeta actual y solicite una tarjeta nueva con un número de tarjeta diferente en un solo disparador. Al igual que API de bloqueo o desbloqueo de tarjetas, el número de tarjeta se puede bloquear en caso de que el tarjetahabiente crea que la información de la tarjeta esté comprometida y, al mismo tiempo, puede solicitar un número nuevo de tarjeta, por lo que la nueva tarjeta se grabará en relieve durante el proceso por lotes y estará lista para ser entregada al día siguiente.
 
-Como parte de los valores solicitados por la API Cards/Transfer, se requiere el número de tarjeta, número de cuenta, la organización y la fecha efectiva.
+Como parte de los valores solicitados por la API, se requiere el número de tarjeta, número de cuenta, la organización y la fecha efectiva.
 
 **PUT** `/cards/transfer`
 
@@ -58,7 +58,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Activar Tarjeta
 
-La API CARD/ACTIVATION activa una tarjeta que ya fue embozada. Esta API le permite al tarjetahabiente activar un número nuev de tarjeta cuando la recibe por correo o la recoge en una sucursal bancaria. La fecha de activación de la tarjeta se guardará en el ambiente de prueba por motivos de auditoría.
+La API activa una tarjeta que ya fue embozada. Esta API le permite al tarjetahabiente activar un número nuevo de tarjeta cuando la recibe por correo o la recoge en una sucursal bancaria. La fecha de activación de la tarjeta se guardará en el ambiente de prueba por motivos de auditoría.
 
 Si el tarjetahabiente intenta utilizar la tarjeta para realizar compras o adelantos en efectivo, antes de que se active, la solicitud de autorización se rechazará con el motivo de rechazo "La tarjeta no está activada", por lo que el tarjetahabiente podrá activar su tarjeta al disparar esta API.
 
@@ -72,7 +72,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Actualizar PIN de Tarjeta
 
-Esta API CARDS/PIN le permite al tarjetahabiente reasignar un nuevo número de identificación personal (PIN). Normalmente se usa cuando se entrega una nueva tarjeta al tarjetahabiente y es necesario configurar un nuevo PIN y vincularlo a la nueva tarjeta ya activada mediante la API Cards/Activation.
+Esta API le permite al tarjetahabiente reasignar un nuevo número de identificación personal (PIN). Normalmente se usa cuando se entrega una nueva tarjeta al tarjetahabiente y es necesario configurar un nuevo PIN y vincularlo a la nueva tarjeta ya activada mediante la API Cards Activation.
 
 La API reasigna y actualiza el nuevo PIN 100% en línea para que el tarjetahabiente pueda usar el nuevo PIN después de que se haya asignado. Esta API se puede disparar 
 desde diferentes canales como cajero automático, páginas web, VCR, APP, etc. El tarjetahabiente elegirá el nuevo PIN de cuatro dígitos y, junto con el número de tarjeta de crédito y la asociación de clave (utilizada para cifrar la nueva API), la aplicación bancaria debería poder calcular el PIN Block nuevo para activar la API.
@@ -85,7 +85,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Bloquear/Desbloquear PIN
 
-El API cards/pin/status le permite al tarjetahabiente bloquear su número PIN actual. Esto se puede usar cuando cree que la información del PIN puede verse comprometida. Esta API solo bloquea el número PIN y no el número de tarjeta, por lo que el Cliente después de disparar esta API para bloquear el PIN, aún puede usar la tarjeta para compras pero no para adelantos en efectivo.
+El API le permite al tarjetahabiente bloquear su número PIN actual. Esto se puede usar cuando cree que la información del PIN puede verse comprometida. Esta API solo bloquea el número PIN y no el número de tarjeta, por lo que el Cliente después de disparar esta API para bloquear el PIN, aún puede usar la tarjeta para compras pero no para adelantos en efectivo.
 
 Usando la misma API, el tarjetahabiente puede desbloquear un número PIN que ya haya sido bloqueado, simplemente disparado la API con un valor diferente en el campo Código de Función.
 
@@ -99,7 +99,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Cambiar el PIN de una Tarjeta
 
-Con esta API cards/pin/pin-change, el tarjetahabiente podrá cambiar su número PIN actual por otro número PIN. A diferencia de la API de actualización del PIN de la tarjeta, esta API solicitará el número de PIN actual asignado al tarjetahabiente, por lo que ambos valores deben ser agregados antes de activar la API: PIN Actual y PIN Nuevo.
+Con esta API, el tarjetahabiente podrá cambiar su número PIN actual por otro número PIN. A diferencia de la API de actualización del PIN de la tarjeta, esta API solicitará el número de PIN actual asignado al tarjetahabiente, por lo que ambos valores deben ser agregados antes de activar la API: PIN Actual y PIN Nuevo.
 
 Esta API se puede utilizar cuando el tarjetahabiente necesite cambiar el número PIN actual por otro número PIN en caso de que esta información se vea comprometida. 
 
