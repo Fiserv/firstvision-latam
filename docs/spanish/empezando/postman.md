@@ -53,8 +53,7 @@ Si no ha utilizado la herramienta Postman como cliente HTTP para probar solicitu
 
 ![image](https://user-images.githubusercontent.com/111396588/223825243-f72d7a6c-89bf-4281-b055-6ff96b718ba6.png)
 
-### 10. You will notice that you have got an "access_token" which is automatically set in the "token" environment variable and has an expiration date. When the token expires, you'll need to repeat the step above
-Notará que tiene un "access_token" que se configura automáticamente en la variable de ambiente "token" y tiene una fecha de expiración. Cuando el token expire, deberá repetir el paso anterior
+### 10. Notará que tiene un "access_token" que se configura automáticamente en la variable de ambiente "token" y tiene una fecha de expiración. Cuando el token expire, deberá repetir el paso anterior
 
 ![image](https://user-images.githubusercontent.com/111396588/223825263-3f1a2342-9731-417d-9de5-a7ba28628b1d.png)
 
