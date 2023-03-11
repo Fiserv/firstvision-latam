@@ -38,7 +38,9 @@ titles: Terminos Generales, Acrónimos , Tipos de Cuentas, Nombre del Servicio L
 | Transacciones P2P      | Una transacción P2P (peer-to-peer o punto a punto) es una transferencia de fondos entre dos partes realizada a través de una aplicación intermediaria.                                                                      |
 | Xfer                   | Transferencia de dinero entre cuentas.                                                                                                                                                                                      |
 
-<!-- type: tab -->
+<!--
+type: tab
+-->
 
 | Acrónimo               | Definición                                                                                                                                                                                                                  |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -68,7 +70,9 @@ titles: Terminos Generales, Acrónimos , Tipos de Cuentas, Nombre del Servicio L
 | Transacciones P2P      | Una transacción P2P (peer-to-peer o punto a punto) es una transferencia de fondos entre dos partes realizada a través de una aplicación intermediaria.                                                                      |
 | Xfer                   | Transferencia de dinero entre cuentas.                                                                                                                                                                                      |
 
-<!-- type: tab -->
+<!--
+type: tab
+-->
 
 | Término | Descripción                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -88,7 +92,9 @@ titles: Terminos Generales, Acrónimos , Tipos de Cuentas, Nombre del Servicio L
 | SDA     | Cuentas de Ahorros. Una cuenta de depósito que devenga intereses sin un vencimiento establecido, a diferencia de un depósito a plazo.                                                                                                                                                                                                                                                                                       |
 | SDB     | Cajas de Seguridad. También conocida como caja de seguridad, es un contenedor individual de seguridad que generalmente guardado dentro de una caja fuerte o bóveda de banco más grande. Las cajas de seguridad generalmente se encuentran en bancos, oficinas de correos u otras instituciones.                                                                                                                             |
 
-<!-- type: tab -->
+<!--
+type: tab
+-->
 
 | Término de Legacy         | Término Actualizado                               |
 |---------------------------|---------------------------------------------------|
