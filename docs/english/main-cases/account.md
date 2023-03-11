@@ -16,7 +16,7 @@ This API needs the customer number as a require value before the API can be trig
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Account Balance Inquiry
+## Find Account Balance
 
 This API **ACCOUNT/BALANCE/DETAILS**, can be used by the cardholder to get the information about account current balance. Using the account number as search parameter, API will show the account current balance, available credit, cash balance, credit limit, etc. in the API output message.
 
@@ -38,13 +38,11 @@ This API use the account number as search parameter and values as account credit
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Account Block Code Update
+## Block & Unblock Account
 
 This API **ACCOUNT/BLOCK-CODE** can be used by the cardholder to block/unblock the account, not the card. Currently as part of First Vision functionality, a cardholder, need to have the customer information, account information and card information already created through API’s **Customer/ADD**, **Account/ADD** and **Card/ADD**.
 
 The use of this API, blocks the account for any reason, with more than 25 types of block codes already defined at product level, so depending of block code trigger in the API, all the card under this account number can be blocked automatically to avoid authorizations approve.
-
-For Block Codes functionality please refer to CMS Screen Guide.
 
 Account number is a require value to trigger this API.
 
@@ -52,7 +50,7 @@ Account number is a require value to trigger this API.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Account To Card Inquiry
+## Account to Card Details
 
 The API **ACCOUNT/CARD** allow a user to find out all the cards already created under an account number. With only the Account number provided as input for a dual currency Account, the API call will return the Card number for the local Account. If the Organization number is provided in the input, the response provides the card numbers associated with that Organization, whether it is local or foreign Organization.
 
@@ -64,7 +62,7 @@ This API will show all the cards created under the account number, principal car
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Credit Bureau Update
+## Credit Bureau
 
 This API **ACCOUNT/CREDITBUREAU**, allows a user to update the credit bureau fields at account level, so the account will be add into Credit Bureau report generated on daily basis. This report is been use to inform to a Credit Bureau institution about the cardholder credit situation and classification.
 
@@ -74,7 +72,7 @@ This API uses the account number and a flag to indicate if the account is added 
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Customer Address Update
+## Update Customer Number
 
 The API **ACCOUNT/CUSTOMER** allow a user to change the customer number already link to a specific account information.
 
@@ -88,7 +86,7 @@ This API use the account number as search parameter and an existing customer num
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Account Inquiry
+## Find Account Detail
 
 The API **ACCOUNT/DETAIL** allow a user the get all the account information previously added through the API **ACCOUNT/ADD** in a test environment, this account information is received in API response message after the API is called.
 
@@ -114,7 +112,7 @@ This API use the account number for source account and account number for destin
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Cash-in & Cash-out Request
+## Cash-in / Cash-out 
 
 Use this API **ACCOUNT/BALANCE** to apply a money amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. Also can be used to money transfer amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. However, parameters previously defined, allow Card Fraud Control)audit this type of transactions.
 
@@ -124,7 +122,7 @@ Use API parameters to allow that money transfer can be ready to use after API wa
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Account User Update
+## Update Account User-defined Fields
 
 Use this API **ACCOUNT/USER** to update the values of more than 50 user fields defined at account level information, this user fields are discretionary use fields that can be use by the user to add additional information at the account.
 
@@ -134,7 +132,7 @@ Values as dates, amounts, codes, etc. can be set up in the API before trigger it
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Transfer Promotional Product Upgrade
+## Account Transfer Promotional Product Upgrade
 
 Use this API **ACCOUNT/TRANSFER-PROMOTIONAL-PRODUCT** to upgrade a current product type of card into another one, for example upgrade from Visa Classic to Visa Gold, or from MasterCard Classic to MasterCard Black.
 
@@ -146,7 +144,7 @@ Same API can be used to make a product downgrade, it means transfer from Visa Go
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Restructure and Refinance Inquiry
+## Find Balance, Refinance and Restructure Information
 
 This API **ACCOUNT/{ACCOUNT}/BALANCE**, allow a user select an specific balance amount from an account credit plan and refinance or restructure this balance into a new number of installment or fixed amount.
 
@@ -158,7 +156,7 @@ This API request the account number, type of refinance, credit plan, new number 
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Direct Debit-Credit Inquiry
+## Inquire Direct Debit/Credit
 
 The API **ACCOUNT/{ACCOUNTNUMBER}/CREDIT-DEBIT** allow the user the bring all the information about values previously set up at the account level o generate a Direct Debit o Direct Credit.
 
@@ -170,7 +168,7 @@ The saving account, current account and Routing account are values previously se
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Account Overview Inquiry 
+## Account Overview 
 
 Use this API **ACCOUNT/{ACCOUNTNUMBER}/OVERVIEW**, to get most important account information, as account number, name, address, phone, user fields, account financial information, delinquency, etc.This API use account number a search parameter.
 
@@ -178,7 +176,7 @@ Use this API **ACCOUNT/{ACCOUNTNUMBER}/OVERVIEW**, to get most important account
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Account Relationship Inquiry
+## Find Relationship Details
 
 This API **ACCOUNT/{ACCOUNTNUMBER}/RELATIONSHIP**, allow the user to bring all account number already created under a relationship number.
 
@@ -192,7 +190,7 @@ This API use Corporate Account Number as search parameter.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Installment Terms Update
+## Update Installment Term
 
 Use API **ACCOUNT/INSTALLMENT-TERM**, to allow user change or update the installment term of a transactions already posted into account.
 
@@ -206,7 +204,7 @@ This API use the account number, transactions reference number, and new number o
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Associated Parties Update
+## Associated Partied Update Service
 
 This API **ACCOUNT/ASSOCIATEDPARTIES** allow the user update selected parameters at account level information, related with Associated Parties fields.
 
@@ -216,13 +214,11 @@ The Associated parties fields located at account level are been used to identify
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## AAccount Authorization Criteria Update
+## Account-Embosser Authorization Criteria Update
 
 This API **ACCOUNT/AUTH-CRITERIA**, allow the user create and update a relation between card authorization transactions and an authorization criteria table.
 
 The Authorization Criteria table is a current functionality to define an authorization approval criteria table on base of merchant activity or MCC, hours, day of the week, country code, postal code, so the amount of the authorization is validated to approve or decline the authorization. This table information has to be added before use this API.
-
-For additional information please refer CMS User Manual and CMS Screen Guide.
 
 **PUT** `/account/auth-criteria`
 
@@ -244,8 +240,6 @@ Currently when a new account is created using API **ACCOUNT/ADD**, the PCT numbe
 
 Using this API is possible me make an override of the current PCT by another PCT with different parameters.
 
-For additional information please refer CMS User Manual and CMS Screen Guide.
-
 **PUT** `/account/pctId`
 
 The description of each API field can be found within the specifications defined in the portal.
@@ -255,8 +249,6 @@ The description of each API field can be found within the specifications defined
 The API **ACCOUNT/PPD-LOAD-LIMITS** allow a user to update the current maximum and minimum limits of amount allow for prepay accounts.
 
 When a prepay account is created using API **ACCOUNT/ADD**. The maximum and minimum amounts that a prepay card can has, are set up. However this limits can change with the time, so the API will help customer to set up the new parameters.
-
-For additional information please refer CMS User Manual and CMS Screen Guide.
 
 **PUT** `/account/ppd-load-limits`
 
