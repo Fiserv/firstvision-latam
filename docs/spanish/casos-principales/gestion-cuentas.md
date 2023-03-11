@@ -40,7 +40,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Bloquear y Desbloquear Cuentas
 
-Esta API puede ser utilizada por el tarjetahabiente para bloquear/desbloquear la cuenta, no la tarjeta. Actualmente, como parte de la funcionalidad de First Vision, un tarjetahabiente debe tener la información del cliente, la información de la cuenta y la información de la tarjeta ya creada por medio de las APIs: **Customer Add**, **Account Add**y **Card Add**.
+Esta API puede ser utilizada por el tarjetahabiente para bloquear/desbloquear la cuenta, no la tarjeta. Actualmente, como parte de la funcionalidad de First Vision, un tarjetahabiente debe tener la información del cliente, la información de la cuenta y la información de la tarjeta ya creada por medio de las APIs: **Customer Add**, **Account Add** y **Card Add**.
 
 El uso de esta API bloquea la cuenta por cualquier motivo, con más de 25 tipos de códigos de bloqueo ya hayan sido definidos a nivel de producto. Por lo tanto, dependiendo de la activación del código de bloqueo en la API, todas las tarjetas bajo este número de cuenta pueden ser bloqueadas automáticamente para evitar aprobar autorizaciones.
 
@@ -54,7 +54,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 La API le permite a un usuario averiguar todas las tarjetas que han sido creadas bajo un mismo número de cuenta. Si solo se proporciona el número de cuenta como entrada para una cuenta de doble moneda, la llamada a la API devolverá el número de tarjeta para la cuenta local. Si se proporciona un número de Organización en los datos de entrada, la respuesta proporciona los números de tarjeta asociados con esa Organización, ya sea una Organización local o extranjera.
 
-Para activar esta API, la información del número de cuenta y la información de la tarjeta deben haberse creado previamente utilizando las API: **Customer Add**, **Account Add**y **Card Add**.
+Para activar esta API, la información del número de cuenta y la información de la tarjeta deben haberse creado previamente utilizando las API: **Customer Add**, **Account Add** y **Card Add**.
 
 Esta API mostrará todas las tarjetas creadas bajo el número de cuenta, la tarjeta principal y las tarjetas adicionales.
 
@@ -88,7 +88,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Buscar Detalles de Cuentas
 
-La API permite que un usuario obtenga toda la información de la cuenta que fue previamente agregada por medio de la API **Account Add**en un ambiente de prueba. Esta información de la cuenta se recibe en el mensaje de respuesta de la API después de llamar a la API.
+La API permite que un usuario obtenga toda la información de la cuenta que fue previamente agregada por medio de la API **Account Add** en un ambiente de prueba. Esta información de la cuenta se recibe en el mensaje de respuesta de la API después de llamar a la API.
 
 Esta API mostrará Información como el estado de la cuenta, el número de cliente, los códigos de bloqueo de la cuenta, el límite de crédito, las banderas de exención, etc.
 
