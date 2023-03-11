@@ -6,7 +6,7 @@ tags: [Casos Principales, Controles de Tarjeta, Tarjetas, Embozador, Bloquear, D
 
 En esta sección se describen las diferentes APIs del Portal que se utilizan para tomar acciones sobre las diferentes actividades relacionadas con el uso de la tarjeta de crédito, débito, tarjeta prepago o monedero, para cualquiera de los productos Visa, MasterCard o American Express. A continuación, una descripción de las funcionalidades y características de la API.
 
-Como requisito principal, es importante que las tarjetas de crédito, tarjetas de débito, tarjetas prepago o monederos digitales hayan sido creados en el ambiente de prueba como se detalló en este documento, utilizando las APIs para la Creación de Clientes (Client Add), Creación de Cuentas (Account Add) y Creación de Tarjetas (Embosser Add).
+Como requisito principal, es importante que las tarjetas de crédito, tarjetas de débito, tarjetas prepago o monederos digitales hayan sido creados en el ambiente de prueba como se detalló en este documento, utilizando las APIs para la Creación de Clientes **(Client Add)**, Creación de Cuentas **(Account Add) **y Creación de Tarjetas **(Card Add)**.
 
 ## Bloquear o Desbloquear Tarjeta
 
