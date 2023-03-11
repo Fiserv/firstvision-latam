@@ -6,7 +6,7 @@ tags: [Casos Principales, Cambio de PIN, Tarjetas]
 
 El cambio de PIN es una funcionalidad actual para permitir que el tarjetahabiente cambie el PIN de su tarjeta actual. El motivo para cambiar el PIN de la tarjeta puede ser porque el PIN se vió comprometido, el tarjetahabiente desea realizar el cambio o el emisor así lo requiere después de un cierto número de días.
 
-Con esta API **cards/pin/pin-change**, el tarjetahabiente podrá cambiar su número PIN actual por otro número PIN. A diferencia de la API de actualización del PIN de la tarjeta, esta API solicitará el número de PIN actual asignado al tarjetahabiente, por lo que ambos valores deben ser agregados antes de activar la API: PIN Actual y PIN Nuevo.
+Con esta API, el tarjetahabiente podrá cambiar su número PIN actual por otro número PIN. A diferencia de la API de actualización del PIN de la tarjeta, esta API solicitará el número de PIN actual asignado al tarjetahabiente, por lo que ambos valores deben ser agregados antes de activar la API: PIN Actual y PIN Nuevo.
 
 Esta API se puede utilizar cuando el tarjetahabiente necesite cambiar el número PIN actual por otro número PIN en caso de que esta información se vea comprometida. Esta API se puede activar desde ATRM, VCR, APP, Servicio Web, etc. y está 100 % en línea.
 
