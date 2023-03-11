@@ -43,10 +43,6 @@ Endpoints moved to version 1.1.0:
 - /account/QR-transfer
 - /account/FL-transferP2P
 
-### Known Issues
-
-- N/A
-
 ### Deprecated
 
 - /account/QRFL-balance
@@ -78,10 +74,6 @@ N/A
 
 - N/A
 
-### Known Issues
-
-- N/A
-
 ### Deprecated
 
 - /account/card version R8V3
@@ -99,10 +91,6 @@ N/A
 - Error codes, error handling and notifications.
 
 ### Fixed
-
-- N/A
-
-### Known Issues
 
 - N/A
 
