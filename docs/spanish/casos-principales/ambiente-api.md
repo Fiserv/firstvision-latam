@@ -26,11 +26,11 @@ Con el uso de una clave conocida como API-KEY, la cual puede ser solicitada por 
 
 - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
 - [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
-- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md)
 - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
 - [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
 - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
-- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md)
 - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
 - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
 - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
