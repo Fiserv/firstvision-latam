@@ -2,7 +2,7 @@
 tags: [Main Cases, Dynamic CVV 2, cards, PIN, dynamic-values]
 ---
 
-# Dynamic CVV 2
+# Dynamic Values Inquiry
 
 Use this API **CARDS/PIN/DYNAMIC-VALUE** to calculate and inquire a new CVV2 for not present card purchases.
 
