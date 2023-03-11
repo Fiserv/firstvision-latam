@@ -12,7 +12,7 @@ The PAN-TOKEN is calculated automatically using a security KEY and it can has nu
 
 PAN-TOKEN can be showed on a web service, ATM, POS, or any other device or service without compromise the real card number.
 
-PAN token, can be visible using the API **CARDS/EMBOSSER/CARD-PAN-L8V2**, so the API user can get the PAN-TOKEN number sending the Card Number, in the API input message or can get the card number just sending the PAN-TOKEN number.
+PAN token, can be visible using this API, so the API user can get the PAN-TOKEN number sending the Card Number, in the API input message or can get the card number just sending the PAN-TOKEN number.
 
 **POST** `/cards/embosser/card-pan-l8v2`
 
