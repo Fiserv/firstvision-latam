@@ -6,7 +6,7 @@ tags: [Release Notes, January, February, March]
 
 ## March 2023
 
-### What's New
+### What's New?
 
 - Spanish documentation!
 - API Glossary
@@ -58,7 +58,7 @@ Endpoints moved to version 1.1.0:
 
 ## February 2023
 
-### What's New
+### What's New?
 
 New Tokenization API's
 
@@ -90,7 +90,7 @@ N/A
 
 ## January 2023
 
-### What's New
+### What's New?
 
 - Migration to new portal
 
