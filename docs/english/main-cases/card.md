@@ -4,7 +4,7 @@ tags: [Main Cases, Card Management, cards, embosser, PAN token, security-codes, 
 
 # Card Management
 
-## Add Card Record
+## Embosser Add
 
 Use the API **CARDS/EMBOSSER** create a card information used to emboss a new card or plastic. This card information must have relate that an account number created through API **ACCOUNT/ADD** and this account number must be related a customer number created through API **CUSTOMER/ADD**.
 
@@ -16,7 +16,7 @@ The card number is calculated on randomly way by the application, and this numbe
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Inquire Card or PAN token
+## Card Or PAN Token Inquiry
 
 Use this API **CARDS/EMBOSSER/CARD-PAN** to get the PAN-token calculated for a card number.
 
@@ -28,7 +28,7 @@ This API use the PAN-TOKEN to bring the card number or card number can be used t
 
 The description of each API field can be found within the specifications in the portal.
 
-## Add or Update Massive Cards
+## Mass Card Issue Update
 
 This API **CARDS/MASS-CARD-ISSUE**, allow the user add or update a request to emboss new cards on massive way. These cards can be credit, debit or prepay card. Quantity of card to emboss is a parameter request by the API.
 
@@ -48,7 +48,7 @@ This API allow to the user request a card reissue for some reason, lost/stolen, 
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Instant Card
+## Instant Card Add
 
 This API **CARDS/INSNTANT-CARD-L8V7** allow to the user request the creation of account and card on instantly way. Card information will be ready to be use for purchases.
 
@@ -58,7 +58,7 @@ Customer information have to be created through API **CUSTOMER/ADD** before call
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Inquiry Security Values
+## Security Values Inquiry
 
 This API **CARDS/PIN/SECURITY-CODES**, allow to the user get the card security values (CVV, CVV2,ICVV, PIN number) already emboss for an specific card number.
 
@@ -68,7 +68,7 @@ Security values provided by the API will be encrypted using a security key of 32
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Inquire Dynamic CVV2/CVC2/4CSC
+## Dynamic Values Inquiry
 
 Use this API **CARDS/PIN/DYNAMIC-VALUE** to calculate and inquire a new CVV2 for not present card purchases.
 
@@ -78,7 +78,7 @@ Currently when card is emboss through the API **CARD/EMBOSSER**, the static CVV2
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Inquire Number of Invalid PIN Attempts
+## Invalid Attempts Inquiry
 
 This API **CARDS/PIN/INVALID-ATTEMPTS** allow to the cardholder get the number of invalid PIN attempts.
 
