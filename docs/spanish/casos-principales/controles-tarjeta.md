@@ -20,88 +20,92 @@ La información requerida por la API, como el número de tarjeta, el código de 
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Update Spending Limits
+## Actualizar Límites para Compras 
 
-This API allows the customer to update online, the different spending limits associated with credit, debit, prepaid and Wallet cards. These spending limits are assigned for purchases, cash advances, internet purchases and international purchases. Spending limits assign the number of transactions and maximum amounts allowed for use on a daily, weekly, biweekly, and monthly basis.These spending limits can be assigned to the main card as well as to additional cards.
+Esta API le permite al cliente actualizar en línea, los diferentes límites para compras asociados a las tarjetas de crédito, tarjetas de débito, tarjetas prepago y monederos digitales. Estos límites para compras se asignan para compras en comercios, adelantos de efectivo, compras por Internet y compras internacionales. Los límites para compras asignan el número de transacciones y los montos máximos permitidos para su uso en forma diaria, semanal, quincenal y mensual. Estos límites para compras se pueden asignar tanto a la tarjeta principal como a tarjetas adicionales.
 
-The values are modified 100% online and can be adjusted as many times as required.
+Los valores se modifican 100% en línea y se pueden ajustar tantas veces como se requiera.
 
-The API Card/Spend-Limits, requests as required information, the card number, transaction number and amounts for each spending limit.
+La API de Card/Spend-Limits solicita como información requerida el número de tarjeta, el número de transacción y los montos para cada Límite para Compras.
 
 **PUT** `/cards/spend-limits-L8V3`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Update Travel Indicator
+## Actualizar Indicador de Viaje
 
-Through the API Card/Travel, the cardholder will be able to define the destinations, outside their country, where the credit card will be used. This API activates online the dates and countries to which the cardholder is traveling in the coming months.
+A través de la API Tarjetas/Viajes, el tarjetahabiente podrá definir los destinos, fuera de su país donde utilizará la tarjeta de crédito. Esta API activa en línea las fechas y países a los que viajará el tarjetahabiente en los próximos meses.
 
-In the event that the card is used in a country or date range that has not been defined by this API, the authorization request will be rejected with the response: “Transaction not allowed”.
+Si la tarjeta se usa en un país o rango de fechas que no ha sido definido por esta API, la solicitud de autorización será rechazada con la respuesta: “Transacción no está permitida”.
 
-This API allows the cardholder define the range of dates and countries where the card will be used, it also allows him to modify and delete countries and dates already defined.
+Esta API le permite al tarjetahabiente definir el rango de fechas y países donde se usará la tarjeta, también le permite modificar y eliminar países y fechas ya definidas.
 
-The values required by the API are the card number, ISO code of the country, start and end date range, allowing up to a maximum of five countries to visit with their respective date ranges
+Los valores requeridos por la API son el número de tarjeta, código ISO del país, rango de fechas de inicio y fin, permitiendo hasta un máximo de cinco países a visitar con sus respectivos rangos de fechas
 
 **PUT** `/cards/travel`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ## Card Transfer Update
-This API allow the cardholder blocks their current card number and request a new card with different card number in only one trigger. Same that API Block or Unlock Card, card number can be blocked just in case cardholder believes that card information is compromise and at same time he can request a new card number, so new card will be embossed during batch process and will be ready to be deliver on next day.
 
-As part of values requested by the API Cards/Transfer, is required the card number, account number, organization and effective date.
+Esta API permite que el tarjetahabiente bloquee su número de tarjeta actual y solicite una tarjeta nueva con un número de tarjeta diferente en un solo disparador. Al igual que API de bloqueo o desbloqueo de tarjetas, el número de tarjeta se puede bloquear en caso de que el tarjetahabiente crea que la información de la tarjeta esté comprometida y, al mismo tiempo, puede solicitar un número nuevo de tarjeta, por lo que la nueva tarjeta se grabará en relieve durante el proceso por lotes y estará lista para ser entregada al día siguiente.
+
+Como parte de los valores solicitados por la API Cards/Transfer, se requiere el número de tarjeta, número de cuenta, la organización y la fecha efectiva.
 
 **PUT** `/cards/transfer`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Active Card
+## Activar Tarjeta
 
-The API CARS/ACTIVATION activates a card already embossed. This API allow to the cardholder activate a new card number when it is received by mail or deliver in a bank branch. Card Activation date will be saved on test environment for audit reasons.
+La API CARD/ACTIVATION activa una tarjeta que ya fue embozada. Esta API le permite al tarjetahabiente activar un número nuev de tarjeta cuando la recibe por correo o la recoge en una sucursal bancaria. La fecha de activación de la tarjeta se guardará en el ambiente de prueba por motivos de auditoría.
 
-If cardholder try use the card for purchase or cash advance, before it is activate, the authorization request will be rejected with reject reason “Card is not Activate”, so cardholder will be able to active his card just triggering this API.
+Si el tarjetahabiente intenta utilizar la tarjeta para realizar compras o adelantos en efectivo, antes de que se active, la solicitud de autorización se rechazará con el motivo de rechazo "La tarjeta no está activada", por lo que el tarjetahabiente podrá activar su tarjeta al disparar esta API.
 
-This API should be trigger each time that a new card is embossed (principal or additional), to activate each card embossed.
+Esta API debe ser disparada cada vez que se emboza una tarjeta nueva (principal o adicional), para activar cada tarjeta que sea embozada.
 
-Require values for this API are: Card Number, bank product identification (organization) and service type (A= Activation).
+Los valores requeridos para esta API son número de tarjeta, identificación del producto bancario (Organización) y tipo de servicio (A= Activación).
 
 **PUT** `/cards/activation`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Update PIN of Card
+## Actualizar PIN de Tarjeta
 
-This API CARDS/PIN, allows to the cardholder reassign a new personal identification number (PIN). Normally used when new card is deliver to the cardholder and new PIN needs to be setup and linked to the new card already activated using the API Cards/Activation.
+Esta API CARDS/PIN le permite al tarjetahabiente reasignar un nuevo número de identificación personal (PIN). Normalmente se usa cuando se entrega una nueva tarjeta al tarjetahabiente y es necesario configurar un nuevo PIN y vincularlo a la nueva tarjeta ya activada mediante la API Cards/Activation.
 
-The API reassign and update the new PIN 100% on line so cardholder can use the new PIN after it was assigned. This API can be trigger from different channels as ATM, web pages, VCR, APP, etc. Cardholder will choose the new four digits PIN and along with credit card number and Key Association (used to encrypt the new API) the bank application should be able to calculate the new PIN Block to trigger the API.
+La API reasigna y actualiza el nuevo PIN 100% en línea para que el tarjetahabiente pueda usar el nuevo PIN después de que se haya asignado. Esta API se puede disparar 
+desde diferentes canales como cajero automático, páginas web, VCR, APP, etc. El tarjetahabiente elegirá el nuevo PIN de cuatro dígitos y, junto con el número de tarjeta de crédito y la asociación de clave (utilizada para cifrar la nueva API), la aplicación bancaria debería poder calcular el PIN Block nuevo para activar la API.
 
-The values required for this API are: Card Number, bank organization, channel, PIN Block and Key association.
+Los valores requeridos para esta API son número de tarjeta, organización bancaria, canal, PIN Block y asociación de clave.
 
 **PUT** `/cards/pin/`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## PIN Block/Unblock
+## Bloquear/Desbloquear PIN
 
-The API cards/pin/status is being used by a cardholder to block his current PIN number, it can be used when he believes that PIN information can be compromise. This API only block the PIN number and not the card number, so customer after trigger this API to block the PIN, he can still using the card for purchases but not for cash advances.
+El API cards/pin/status le permite al tarjetahabiente bloquear su número PIN actual. Esto se puede usar cuando cree que la información del PIN puede verse comprometida. Esta API solo bloquea el número PIN y no el número de tarjeta, por lo que el Cliente después de disparar esta API para bloquear el PIN, aún puede usar la tarjeta para compras pero no para adelantos en efectivo.
 
-Using same API, cardholder is able the un-block a PIN number already blocked, just triggering the API with a different value on field Function Code.
+Usando la misma API, el tarjetahabiente puede desbloquear un número PIN que ya haya sido bloqueado, simplemente disparado la API con un valor diferente en el campo Código de Función.
 
-Another function of this API, allow the cardholder unblock a card PIN when it was already blocked by exceed of PIN tries from ATM.
+Otra función de esta API es permitir que el tarjetahabiente desbloquee un PIN de la tarjeta después de que haya sido bloqueado por exceso de intentos fallidos de PIN en el cajero automático.
 
-Values require by this API are: Card number, channel, bank organization and service function.
+Los valores requeridos por esta API son el número de tarjeta, el canal, la organización del banco y la función del servicio.
 
 **PUT** `/cards/pin/status`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Change the PIN of a Card
+## Cambiar el PIN de una Tarjeta
 
-With this API cards/pin/pin-change, cardholder will be able to change his current PIN number, for another PIN number. At different of the API Update PIN of Card, this API will request the current PIN number assigned to the cardholder, so both values need to be added before trigger the API: Current PIN and New PIN.
+Con esta API cards/pin/pin-change, el tarjetahabiente podrá cambiar su número PIN actual por otro número PIN. A diferencia de la API de actualización del PIN de la tarjeta, esta API solicitará el número de PIN actual asignado al tarjetahabiente, por lo que ambos valores deben ser agregados antes de activar la API: PIN Actual y PIN Nuevo.
 
-This API can be used when cardholder need to change the current PIN number for another PIN number just in case that this information is compromise. This API can be trigger from ATRM, VCR, APP, Web Service etc and is 100% on line.
+Esta API se puede utilizar cuando el tarjetahabiente necesite cambiar el número PIN actual por otro número PIN en caso de que esta información se vea comprometida. 
 
-Require values of this API are: Card Number, Channel, Current PIN Block, New PIN Block, Key Association (to encrypt PIN Blocks), new PIN offset, and bank organization.
+Esta API se puede activar desde ATRM, VCR, APP, Servicio Web, etc. y está 100 % en línea.
+
+Los valores requeridos para esta API son el número de tarjeta, el canal, el PIN Block actual, el PIN Block nuevo, la asociación de claves (para cifrar los bloqueos de PIN), el PIN Offset nuevo y la organización bancaria.
 
 **PUT** `/cards/pin/pin-change`
 
