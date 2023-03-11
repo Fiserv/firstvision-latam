@@ -26,29 +26,29 @@ The user case below determines the actions required to issue a new digital card.
 
 To issue a new digital card to a customer, we must follow these steps:
 
-### 1. Customer ADD
+### 1. Customer Add
 
 This request includes the customer's personal data, demographic information and other information pertaining to the entity. The response to this request will bring the customer number created.
 
 **POST** `/customer/l8v2`
       
-### 2. Account ADD
+### 2. Account Add
 
 With the customer number created in the previous requisition, this requisition will propagate the account's credit limit information, payment cycle date, short name and more information inherent to the entity.
 
 **POST** `/account/add-L8V3`
           
-### 3. Embosser ADD
+### 3. Embosser Add
 
 This request is responsible for adding the information to the issuing digital card. This request requires both the customer code and the account code.
 
 **POST** `/cards/embosser/l8vf`
           
-### 4. Card ACTIVATION
+### 4. Card Activation
 
 After customer, account and embosser requests, the new card settings for the customer are applied, but not active for use. This request will activate the card and make it ready for use.
 
-**PUT** `/customer`
+**PUT** `/cards/activation`
           
 ---
 
