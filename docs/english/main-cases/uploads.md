@@ -14,7 +14,7 @@ Each API will allow load money from different source products to different desti
 
 ## Purpose
 
-The creation of Credit, Debit, and Prepaid accounts are a requirement that must be completed before execute any of the APIs used to load money. Which must be created using the APIs for Customer Creation (Customer/Add), Account Creation (Account/Add) and Card Creation (Embosser/Add).If you have any questions.
+The creation of Credit, Debit, and Prepaid accounts are a requirement that must be completed before execute any of the APIs used to load money. Which must be created using the APIs for Customer Creation (Customer/Add), Account Creation (Account/Add) and Card Creation (Embosser/Add).
 
 However, depending on the values used in the APIS, it is also possible to load money using direct financial amounts, received in cash from a bank branch.
 
