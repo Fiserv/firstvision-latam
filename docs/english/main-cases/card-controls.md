@@ -6,7 +6,7 @@ tags: [Main Cases, Card Controls, cards, embosser, Block, Unlock, Limits, Travel
 
 This section describes the different APIs in the Portal used to take actions on the different activities related to the use of the credit, debit, prepaid or wallet card, for any of the Visa, Master Card or American Express products. Next, a description of the functionalities and characteristics of API.
 
-As a main requirement, is important that Credit, Debit, Prepay or Wallet cards have been created in the test environment as it was detailed in this document, using the API's for customer creation (Customer Add), creation of Account (Account Add) and Creation of Card (Embosser Add).
+As a main requirement, is important that Credit, Debit, Prepay or Wallet cards have been created in the test environment as it was detailed in this document, using the API's for customer creation **(Customer Add)**, creation of Account **(Account Add)** and Creation of Card **(Card Add)**.
 
 ## Embosser Block Code Update
 
