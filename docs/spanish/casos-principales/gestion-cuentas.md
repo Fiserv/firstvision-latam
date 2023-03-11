@@ -182,7 +182,7 @@ Esta API le permite al usuario agrupar todos los números de cuenta ya creados b
 
 Un número de relación se define como una Cuenta Corporativa, lo que significa que todas las cuentas y tarjetas que forman parte de esta Corporación deben ser creadas bajo esta Cuenta Corporativa.
 
-La API **Account Add**permite crear cuentas corporativas y las subcuentas que formarán parte de estas cuentas.
+La API **Account Add** permite crear cuentas corporativas y las subcuentas que formarán parte de estas cuentas.
 
 Esta API utiliza el Número de Cuenta Corporativa como parámetro de búsqueda.
 
@@ -276,7 +276,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Actualización de Número de Relación de Cuenta 
 
-Esta API permite vincular una subcuenta nueva creada por medio de la API **Account Add**con una cuenta de relación previamente creada.
+Esta API permite vincular una subcuenta nueva creada por medio de la API **Account Add** con una cuenta de relación previamente creada.
 
 El número de Relación es un número único asignado a una Tarjeta Corporativa; por ejemplo, Walmart con un número de cliente 123, se identifica con un número de relación único 567 y bajo este número de relación se crean muchas cuentas y tarjetas para los empleados de Walmart. Entonces, usando el número de relación 567 es posible vincular una subcuenta nueva adicional.
 
