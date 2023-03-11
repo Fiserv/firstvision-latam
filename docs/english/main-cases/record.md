@@ -4,7 +4,7 @@ tags: [Main Cases, Card Record, cards, embosser]
 
 # Embosser Add
 
-Use the API CARDS/EMBOSSER create a card information used to emboss a new card or plastic. This card information must have relate that an account number created through API ACCOUNT/ADD and this account number must be related a customer number created through API CUSTOMER/ADD.
+Use this API to create a card information used to emboss a new card or plastic. This card information must have relate that an account number created through API **Account Add** and this account number must be related a customer number created through API **Customer Add**.
 
 This API allow add card information as card expiration date, service code, cardholder name, address to where the card will be deliver, spending limits, etc.
 
