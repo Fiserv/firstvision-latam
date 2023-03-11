@@ -42,7 +42,7 @@ Puede ver las diferentes APIs disponibles para el grupo correspondiente. En el l
 - Cuerpo de la respuesta
 - Código de la respuesta
 - Sección de Prueba
-- 
+
 ![image](https://user-images.githubusercontent.com/111396588/223824217-3d03cb76-1bb1-4ea3-bde3-e40f939a64f8.png)
 
 ### 4. Ejemplo de campos del cuerpo
