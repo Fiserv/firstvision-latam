@@ -12,7 +12,7 @@ El PAN-TOKEN se calcula automáticamente mediante una CLAVE de seguridad y puede
 
 El PAN-TOKEN se puede mostrar en un servicio web, cajero automático, POS o cualquier otro dispositivo o servicio sin comprometer el número real de la tarjeta.
 
-PAN Token, puede ser visible usando la API **CARDS/EMBOSSER/CARD-PAN-L8V2**, por lo que el usuario de la API puede obtener el número de PAN-TOKEN enviando el número de tarjeta en el mensaje de datos de entrada de la API o puede obtener el número de tarjeta simplemente enviando el número de PAN-TOKEN.
+PAN Token, puede ser visible usando esta API, por lo que el usuario de la API puede obtener el número de PAN-TOKEN enviando el número de tarjeta en el mensaje de datos de entrada de la API o puede obtener el número de tarjeta simplemente enviando el número de PAN-TOKEN.
 
 **POST** `/cards/embosser/card-pan-l8v2`
 
