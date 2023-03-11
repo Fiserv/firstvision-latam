@@ -4,7 +4,7 @@ tags: [Casos Principales, Entrada/Salida de Efectivo, Cuenta, Saldo]
 
 # Entrada / Salida de Efectivo
 
-Esta API **ACCOUNT/BALANCE** permite aplicar un monto de dinero de una sucursal bancaria, cajero automático, servicio web, etc. Esta transferencia de dinero no realiza un débito de una cuenta existente de tarjeta de crédito, tarjeta de débito o tarjeta prepago, si no que esta API postea un monto de dinero específico a una cuenta destino.
+Esta API permite aplicar un monto de dinero de una sucursal bancaria, cajero automático, servicio web, etc. Esta transferencia de dinero no realiza un débito de una cuenta existente de tarjeta de crédito, tarjeta de débito o tarjeta prepago, si no que esta API postea un monto de dinero específico a una cuenta destino.
 
 Use los parámetros de la API para permitir que la transferencia de dinero esté lista para usar después de llamar a la API o espere hasta el día siguiente.
 
