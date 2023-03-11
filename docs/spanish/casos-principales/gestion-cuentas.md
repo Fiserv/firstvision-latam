@@ -1,315 +1,307 @@
 ---
-tags: [Main Cases, Account Management, account, balance, debit, credit limit, block, unblock, credit bureau, transfer P2P, demographic data, generation, lookup, address]
+tags: [Casos Principales, Gestión de Cuentas, Cuenta, Saldo, Débito, Límite de Crédito, Bloquear, Desbloquear, Buró de Crédito, Transferencias P2P, Datos Demográficos, Generación, Dirección]
 ---
 
-# Account Management
+# Gestión de Cuentas
 
-## Account Add 
+## Agregar Cuenta
 
-This API **ACCOUNT/** allow add all the Account information for any product of credit, debit, prepay and Wallet. Information as credit limit, billing cycle, Customer Short Name, account block codes, customer number, card tech etc can be added as part of this API fields.
+Esta API **ACCOUNT/ADD** apermite agregar toda la información de la Cuenta para cualquier producto de tarjetas de crédito, tarjetas de débito, tarjetas prepago y monederos digitales. Información como límites de crédito, ciclos de facturación, nombre corto del cliente, códigos de bloqueo de la cuenta, número de cliente, tecnología de la tarjeta, etc. se puede agregar como parte de los campos de esta API.
 
-Account number is a unique number that is different than card number, account number is a number created by the system on randomly way.
+El número de cuenta es un número único que es diferente al número de tarjeta, el número de cuenta es un número creado por el sistema de forma aleatoria.
 
-This API needs the customer number as a require value before the API can be trigger. This customer number is provide when API **CUSTOMER/ADD** is trigger to add demographic information.
+Esta API necesita el número de cliente como un valor obligatorio antes de que se pueda activar la API. Este número de cliente se proporciona cuando se activa la API **CUSTOMER/ADD** para agregar información demográfica.
 
 **POST** `/account/add-L8V3`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account Balance Inquiry
+## Buscar Saldos de Cuentas 
 
-This API **ACCOUNT/BALANCE/DETAILS**, can be used by the cardholder to get the information about account current balance. Using the account number as search parameter, API will show the account current balance, available credit, cash balance, credit limit, etc. in the API output message.
+Esta API **ACCOUNT/BALANCE/DETAILS**, puede ser utilizada por el tarjetahabiente para obtener información sobre el saldo actual de la cuenta. Utilizando el número de cuenta como parámetro de búsqueda, la API mostrará el saldo actual de la cuenta, el crédito disponible, el saldo de efectivo, el límite de crédito, etc. en el mensaje de salida de la API.
 
-This API will show the account balances information on real time, on inquiry mode, so no account balance values can be update.
+Esta API mostrará la información de los saldos de la cuenta en tiempo real, en modo de consulta, por lo que no se pueden actualizar los valores del saldo de la cuenta.
 
-This API use the account number already assigned when API **ACCOUNT/ADD** was trigger.
+Esta API usa el número de cuenta que fue asignado cuando la API **ACCOUNT/ADD** fue activada.
 
 **POST** `/account/balance/details`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Temporary Credit Limit Update
+## Actualización del límite de crédito temporal 
 
-Use this API **CARDS/TEMPORARY-CREDIT-LIMIT** to increase the account credit limit for a specific number of days. This API is very useful when cardholder does not have more available credit limit and he request a credit limit increase for a specific number of day, so when time limit is complete, the original credit limit is set back as current credit limit.
+Use esta API **CARDS/TEMPORARY-CREDIT-LIMIT** para aumentar el límite de crédito de la cuenta por un número específico de días. Esta API es muy útil cuando el tarjetahabiente no tiene más límite de crédito disponible y solicita un aumento del límite de crédito para un número específico de días, por lo que cuando se completa el límite de tiempo, el límite de crédito original se restablece como límite de crédito actual.
 
-This API use the account number as search parameter and values as account credit limit, new credit limit and increase expiration date needs to be set up before the API be trigger.
+Esta API utiliza el número de cuenta como parámetro de búsqueda y se deben configurar los valores como límite de crédito de la cuenta, límite de crédito nuevo y aumentar la fecha de expiración antes de que se active la API.
 
 **PUT** `/cards/temporary-credit-limit`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account Block Code Update
+## Bloquear y Desbloquear Cuentas
 
-This API **ACCOUNT/BLOCK-CODE** can be used by the cardholder to block/unblock the account, not the card. Currently as part of First Vision functionality, a cardholder, need to have the customer information, account information and card information already created through API’s **Customer/ADD**, **Account/ADD** and **Card/ADD**.
+Esta API **ACCOUNT/BLOCK-CODE** puede ser utilizada por el tarjetahabiente para bloquear/desbloquear la cuenta, no la tarjeta. Actualmente, como parte de la funcionalidad de First Vision, un tarjetahabiente debe tener la información del cliente, la información de la cuenta y la información de la tarjeta ya creada por medio de las APIs: **Customer/ADD**, **Account/ADD** y **Card/ADD**.
 
-The use of this API, blocks the account for any reason, with more than 25 types of block codes already defined at product level, so depending of block code trigger in the API, all the card under this account number can be blocked automatically to avoid authorizations approve.
+El uso de esta API bloquea la cuenta por cualquier motivo, con más de 25 tipos de códigos de bloqueo ya hayan sido definidos a nivel de producto. Por lo tanto, dependiendo de la activación del código de bloqueo en la API, todas las tarjetas bajo este número de cuenta pueden ser bloqueadas automáticamente para evitar aprobar autorizaciones.
 
-For Block Codes functionality please refer to CMS Screen Guide.
-
-Account number is a require value to trigger this API.
+El número de cuenta es un valor obligatorio para activar esta API.
 
 **PUT** `/account/block-code`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account To Card Inquiry
+## Detalles de la Cuenta a la Tarjeta 
 
-The API **ACCOUNT/CARD** allow a user to find out all the cards already created under an account number. With only the Account number provided as input for a dual currency Account, the API call will return the Card number for the local Account. If the Organization number is provided in the input, the response provides the card numbers associated with that Organization, whether it is local or foreign Organization.
+La API **ACCOUNT/CARD** le permite a un usuario averiguar todas las tarjetas que han sido creadas bajo un mismo número de cuenta. Si solo se proporciona el número de cuenta como entrada para una cuenta de doble moneda, la llamada a la API devolverá el número de tarjeta para la cuenta local. Si se proporciona un número de Organización en los datos de entrada, la respuesta proporciona los números de tarjeta asociados con esa Organización, ya sea una Organización local o extranjera.
 
-To trigger this API, the account number information and card information have to be created previously using the API’s **Customer/ADD**, **Account/ADD** and **Card/ADD**.
+Para activar esta API, la información del número de cuenta y la información de la tarjeta deben haberse creado previamente utilizando las API: **Customer/ADD**, **Account/ADD** y **Card/ADD**.
 
-This API will show all the cards created under the account number, principal card and additional cards.
+Esta API mostrará todas las tarjetas creadas bajo el número de cuenta, la tarjeta principal y las tarjetas adicionales.
 
 **POST** `/cards/embosser/card-details-L8V3`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Credit Bureau Update
+## Actualización de Buró de Crédito
 
-This API **ACCOUNT/CREDITBUREAU**, allows a user to update the credit bureau fields at account level, so the account will be add into Credit Bureau report generated on daily basis. This report is been use to inform to a Credit Bureau institution about the cardholder credit situation and classification.
+Esta API **ACCOUNT/CREDITBUREAU**, le permite a un usuario actualizar los campos del buró de crédito a nivel de cuenta, por lo que la cuenta se agregará al informe del buró de crédito generado diariamente. Este informe se utiliza para informar a una institución de Buró de Crédito sobre la situación y clasificación del crédito del tarjetahabiente.
 
-This API uses the account number and a flag to indicate if the account is added into the Credit Bureau report.
+Esta API utiliza el número de cuenta y una bandera para indicar si la cuenta se debe agregar al informe del Buró de Crédito.
 
 **PUT** `/account/creditBureau`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Customer Address Update
+## Actualizar Dirección de Cliente
 
-The API **ACCOUNT/CUSTOMER** allow a user to change the customer number already link to a specific account information.
+La API **ACCOUNT/CUSTOMER** permite que un usuario cambie el número de cliente ya vinculado a una información de cuenta específica.
 
-Currently when an account information is created on the test environment through API **ACCOUNT/ADD**, is require add the customer number created through API **CUSTOMER/ADD**. This link is require to link a customer with an account created.
+Actualmente, cuando se crea una información de cuenta en el ambiente de prueba a través de la API **ACCOUNT/ADD**, se requiere agregar el número de cliente creado a través de su API **CUSTOMER/ADD**. Este enlace es necesario para vincular un cliente con una cuenta creada.
 
-With API **ACCOUNTS/CUSTOMER** is possible remove this link and make a different link between the account number and a different customer number already created on test environment.
+Por medio de la API **ACCOUNTS/CUSTOMER** es posible eliminar este enlace y hacer un enlace diferente entre el número de cuenta y un número de cliente diferente que ya fue creado en el ambiente de prueba.
 
-This API use the account number as search parameter and an existing customer number that will be use to establish a new link.
+Esta API utiliza el número de cuenta como parámetro de búsqueda y un número de cliente existente que se utilizará para establecer un enlace nuevo.
 
 **PUT** `/account/v2/customer`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account Inquiry
+## Buscar Detalles de Cuentas
 
-The API **ACCOUNT/DETAIL** allow a user the get all the account information previously added through the API **ACCOUNT/ADD** in a test environment, this account information is received in API response message after the API is called.
+La API **ACCOUNT/DETAIL** permite que un usuario obtenga toda la información de la cuenta que fue previamente agregada por medio de la API **ACCOUNT/ADD** en un ambiente de prueba. Esta información de la cuenta se recibe en el mensaje de respuesta de la API después de llamar a la API.
 
-Information as account status, customer number, account block codes, credit limit, waive flags, etc, will be display with this API.
+Esta API mostrará Información como el estado de la cuenta, el número de cliente, los códigos de bloqueo de la cuenta, el límite de crédito, las banderas de exención, etc.
 
-This API require the account number as search parameter along with bank id (organization).
+Esta API requiere el Número de Cuenta como parámetro de búsqueda junto con la identificación del banco (organización).
 
 **POST** `/account/details-L8VG`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account to Account Funds Transfer
+## Transferencia de Fondos de Cuenta a Cuenta 
 
-This API **ACCOUNT/TRANSFERP2P** allows a user to transfer a specific amount of money PEER TO PEER, between two different accounts: from credit to debit, from debit to debit, from credit to prepay or from debit to prepay, wallets etc.
+Esta API **ACCOUNT/TRANSFERP2P** le permite a un usuario transferir una cantidad específica de dinero PUNTO A PUNTO entre dos cuentas diferentes: de tarjeta de crédito a tarjeta de débito, de tarjeta de débito a tarjeta de débito, de tarjeta de crédito a tarjeta prepago o tarjeta de débito a tarjeta prepago, monederos digitales, etc.
 
-This transfer can be immediately, so account receiver can use the money after API is called or can be on next day, this depend of the API parameters.
+Esta transferencia puede ser inmediata, por lo que el destinatario de la cuenta puede usar dinero después de que se llame a la API o puede ser al día siguiente, esto depende de los parámetros de la API.
 
-After call this API, a debit and credit transactions are created for source and destination accounts.
+Después de llamar a esta API, se crean transacciones de débito y crédito para las cuentas origen y destino.
 
-This API use the account number for source account and account number for destination.
+Esta API usa el número de cuenta de la cuenta origen y el número de cuenta de la cuenta destino.
 
 **PUT** `/account/transferP2P`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Cash-in & Cash-out Request
+## Entrada / Salida de Efectivo
 
-Use this API **ACCOUNT/BALANCE** to apply a money amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. Also can be used to money transfer amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. However, parameters previously defined, allow Card Fraud Control)audit this type of transactions.
+Esta API **ACCOUNT/BALANCE** permite aplicar un monto de dinero de una sucursal bancaria, cajero automático, servicio web, etc. Esta transferencia de dinero no realiza un débito de una cuenta existente de tarjeta de crédito, tarjeta de débito o tarjeta prepago, si no que esta API postea un monto de dinero específico a una cuenta destino.
 
-Use API parameters to allow that money transfer can be ready to use after API was call or wait until next day.
+Use los parámetros de la API para permitir que la transferencia de dinero esté lista para usar después de llamar a la API o espere hasta el día siguiente.
 
 **PUT** `/account/FL-balance`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account User Update
+## Actualizar los campos definidos por el usuario de la cuenta 
 
-Use this API **ACCOUNT/USER** to update the values of more than 50 user fields defined at account level information, this user fields are discretionary use fields that can be use by the user to add additional information at the account.
+Esta API **ACCOUNT/USER** permite actualizar los valores de más de 50 campos de usuario definidos en la información de nivel de cuenta. Estos campos de usuario son campos de uso discrecional que el usuario puede usar para agregar información adicional en la cuenta.
 
-Values as dates, amounts, codes, etc. can be set up in the API before trigger it.
+Valores como fechas, cantidades, códigos, etc. se puede configurar en la API antes de dispararla.
 
 **PUT** `/account/user`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Transfer Promotional Product Upgrade
+## Actualización de Producto Promocional de Transferencia de Cuenta
 
-Use this API **ACCOUNT/TRANSFER-PROMOTIONAL-PRODUCT** to upgrade a current product type of card into another one, for example upgrade from Visa Classic to Visa Gold, or from MasterCard Classic to MasterCard Black.
+Use esta API **ACCOUNT/TRANSFER-PROMOTIONAL-PRODUCT** para actualizar un tipo de tarjeta de producto actual a otro; por ejemplo, actualizar de Visa Classic a Visa Gold, o de MasterCard Classic a MasterCard Black.
 
-When API is trigger, account information, card information and balances are transfer into new account and card. Customer information will be the same. Account Statements will be kipped on old account, but transactions cycle to date will be transfer into new account.
+Cuando se activa la API, la información de la cuenta, la información de la tarjeta y los saldos se transfieren a una cuenta y tarjeta nuevas. La información del cliente será la misma. Los estados de cuenta se eliminarán de la cuenta anterior, pero el ciclo de transacciones hasta la fecha se transferirá a la cuenta nueva.
 
-Same API can be used to make a product downgrade, it means transfer from Visa Gold to Visa Classic or from MasterCard Black to MasterCard Classic.
+Se puede usar la misma API para hacer una degradación del producto, es decir, transferir de Visa Gold a Visa Classic o de MasterCard Black a MasterCard Classic.
 
 **PUT** `/account/transfer-promotional-product`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Restructure and Refinance Inquiry
+## Información de Saldos, Refinanciamiento y Reestructuración 
 
-This API **ACCOUNT/{ACCOUNT}/BALANCE**, allow a user select an specific balance amount from an account credit plan and refinance or restructure this balance into a new number of installment or fixed amount.
+Esta API **ACCOUNT/{ACCOUNT}/BALANCE**, le permite a un usuario seleccionar un monto de saldo específico de un plan de crédito de cuenta y refinanciar o reestructurar este saldo en un número nuevo de cuotas o en un monto fijo.
 
-For example an account balance of $10,000 for credit plan 10002 at 5 installments has a fixed payment of $2,000 per month, using this API, to refinance or restructure this balance, the new number of installment can be 10 with a minimum payment of $1,000 per month.
+Por ejemplo, un saldo de cuenta de $10.000 para el plan de crédito 10002 a 5 cuotas tiene un pago fijo de $2.000 mensuales. Utilizando esta API, para refinanciar o reestructurar este saldo, el nuevo número de cuotas puede ser 10 con un pago mínimo de $1.000 por mes.
 
-This API request the account number, type of refinance, credit plan, new number of installment and new amount.
+Esta API solicita el número de cuenta, el tipo de refinanciamiento, el plan de crédito, nuevo número de cuotas y el monto nuevo.
 
 **GET** `/account/{accountNumber}/balance`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Direct Debit-Credit Inquiry
+## Consultar Débito/Crédito Directo 
 
-The API **ACCOUNT/{ACCOUNTNUMBER}/CREDIT-DEBIT** allow the user the bring all the information about values previously set up at the account level o generate a Direct Debit o Direct Credit.
+La API **ACCOUNT/{ACCOUNTNUMBER}/CREDIT-DEBIT** le permite al usuario traer toda la información sobre valores previamente configurados a nivel de cuenta o generar un Débito Directo o Crédito Directo.
 
-Direct Debit and Direct Credit is a functionality to allow internal process make a debit or credit of a Banking account (Current or saving) and this amount can be used to pay statement minimum or full balance.
+El Débito Directo y el Crédito Directo es una funcionalidad para permitir que el proceso interno realice un débito o crédito de una Cuenta Bancaria (cuenta corriente o cuenta de ahorro) y este monto puede ser utilizado para pagar el saldo mínimo o completo del Estado de Cuenta.
 
-The saving account, current account and Routing account are values previously set up at the account level so after call this API these information have to be set up as part of account information though API **ACCOUNT/ADD**.
+La cuenta de ahorros, la cuenta corriente y la cuenta de enrutamiento son valores configurados previamente a nivel de cuenta, por lo que, después de llamar a esta API, esta información debe ser configurada como parte de la información de la cuenta a través de la API **ACCOUNT/ADD**.
 
 **GET** `/account/{accountNumber}/credit-debit`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account Overview Inquiry 
+## Resumen de la Cuenta 
 
-Use this API **ACCOUNT/{ACCOUNTNUMBER}/OVERVIEW**, to get most important account information, as account number, name, address, phone, user fields, account financial information, delinquency, etc.This API use account number a search parameter.
+Use esta API **ACCOUNT/{ACCOUNTNUMBER}/OVERVIEW**, para obtener la información más importante de la cuenta, como el número de cuenta, el nombre del cliente, su dirección y número de teléfono, los campos del usuario, la información financiera de la cuenta, el nivel de morosidad, etc. Esta API utiliza el número de cuenta como parámetro de búsqueda.
 
 **GET** `/account/{accountNumber}/overview`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account Relationship Inquiry
+## Buscar Detalles de Relaciones
 
-This API **ACCOUNT/{ACCOUNTNUMBER}/RELATIONSHIP**, allow the user to bring all account number already created under a relationship number.
+Esta API **ACCOUNT/{ACCOUNTNUMBER}/RELATIONSHIP**, le permite al usuario agrupar todos los números de cuenta ya creados bajo un mismo número de relación.
 
-A relationship number is defined as a Corporate Account, it means that all accounts and cards that are part of this corporate, should be created under this Corporate Account.
+Un número de relación se define como una Cuenta Corporativa, lo que significa que todas las cuentas y tarjetas que forman parte de esta Corporación deben ser creadas bajo esta Cuenta Corporativa.
 
-Use API **ACCOUNT/ADD** to created Corporated Accoount and sub-accounts that will be part of this account.
+La API **ACCOUNT/ADD** permite crear cuentas corporativas y las subcuentas que formarán parte de estas cuentas.
 
-This API use Corporate Account Number as search parameter.
+Esta API utiliza el Número de Cuenta Corporativa como parámetro de búsqueda.
 
 **GET** `/account/{accountNumber}/relationship`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Installment Terms Update
+## Actualizar Plazo de Cuota 
 
-Use API **ACCOUNT/INSTALLMENT-TERM**, to allow user change or update the installment term of a transactions already posted into account.
+Use API **ACCOUNT/INSTALLMENT-TERM**, permite que el usuario cambie o actualice el plazo de pago de una transacción que ya fue posteada en la cuenta.
 
-In some Latam countries, when a purchase transaction is posted into the account, it can be financed in an specific number of installments, so a fixed payment amount should be calculated for this transactions.
+En algunos países de LATAM, cuando se registra una transacción de compra en la Cuenta, se puede financiar en un número específico de cuotas, por lo que se debe calcular un monto de pago fijo para estas transacciones.
 
-This API allow the user the change the installments number already set up at the transactions level.
+Esta API le permite al usuario cambiar el número de cuotas que ya fue configurado a nivel de transacciones.
 
-This API use the account number, transactions reference number, and new number of installment as part of search parameters.
+Esta API utiliza el número de cuenta, el número de referencia de transacciones y el nuevo número de cuotas como parte de los parámetros de búsqueda.
 
 **PUT** `/account/installment-term`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Associated Parties Update
+## Actualización de Partes Asociadas 
 
-This API **ACCOUNT/ASSOCIATEDPARTIES** allow the user update selected parameters at account level information, related with Associated Parties fields.
+Esta API **ACCOUNT/ASSOCIATEDPARTIES** permite que el usuario actualice los parámetros seleccionados a nivel de información de la cuenta, relacionados con los campos de las Partes Asociadas.
 
-The Associated parties fields located at account level are been used to identify if the account has any relation with a third party. A third party associated can be: guarantor, consigner, authorized signer, sales representative, etc.
+Los campos de Parte Asociada ubicados a nivel de Cuenta se utilizan para identificar si la Cuenta tiene alguna relación con un tercero. Un tercero asociado puede ser: un garante, un co-deudor, un firmante autorizado, un representante de ventas, etc.
 
 **PUT** `/account/associatedParties`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## AAccount Authorization Criteria Update
+## Actualización de los Criterios de Autorización de Cuenta-Embozador 
 
-This API **ACCOUNT/AUTH-CRITERIA**, allow the user create and update a relation between card authorization transactions and an authorization criteria table.
+Esta API **ACCOUNT/AUTH-CRITERIA**, le permite al usuario crear y actualizar una relación entre las transacciones de autorización de tarjetas y una tabla de criterios de autorización.
 
-The Authorization Criteria table is a current functionality to define an authorization approval criteria table on base of merchant activity or MCC, hours, day of the week, country code, postal code, so the amount of the authorization is validated to approve or decline the authorization. This table information has to be added before use this API.
-
-For additional information please refer CMS User Manual and CMS Screen Guide.
+La tabla de criterios de autorización es una funcionalidad actual para definir una tabla de criterios de aprobación de autorizaciones en función de la actividad comercial o MCC, las horas, el día de la semana, el código del país, el código postal, de modo que el monto de la autorización pueda ser validado para aprobar o rechazar la autorización. . La información de esta tabla debe ser agregada antes de usar esta API.
 
 **PUT** `/account/auth-criteria`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Pending Bank, Branch and Store Update
+## Actualización de Banco, Sucursal y Tienda Pendiente 
 
-This API **ACCOUNT/BANK-BRANCH-STORE**, allow the user to update the Branch of store in where the credit was approved to create the account and card. This number is part of account information and is added for first time when account is created through API ACCOUNT/ADD.
+Esta API **ACCOUNT/BANK-BRANCH-STORE**,le permite al usuario actualizar la Sucursal de la tienda en donde se aprobó el crédito para crear la cuenta y la tarjeta. Este número es parte de la información de la cuenta y se agrega por primera vez cuando se crea la cuenta a través de la API **ACCOUNT/ADD**.
 
 **PUT** `/account/bank-branch-store`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Pricing Control Table Update
+## Actualización de la Tabla de Control de Definición de Precios 
 
-Use this API **ACCOUNT/PCT** to assign a new Processing Control Table (PCT) to an existing account for a range of dates.
+Esta API **ACCOUNT/PCT** permite asignar una Tabla de Control de Procesamiento (PCT) nueva a una Cuenta existente para un rango de fechas.
 
-Currently when a new account is created using API **ACCOUNT/ADD**, the PCT number as to be added. This PCT table contains the processing parameter use by the account to process interests, fees, taxes, etc.
+Actualmente, cuando se crea una cuenta nueva usando la API **ACCOUNT/ADD**, se debe agregar el número PCT. Esta tabla PCT contiene el parámetro de procesamiento utilizado por la cuenta para procesar intereses, cargos, impuestos, etc.
 
-Using this API is possible me make an override of the current PCT by another PCT with different parameters.
-
-For additional information please refer CMS User Manual and CMS Screen Guide.
+Usando esta API es posible cambiar manualmente la Tabla PCT actual por otra Tabla PCT con diferentes parámetros.
 
 **PUT** `/account/pctId`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Prepaid Load Limits Update
+## Actualización de Límites de Carga de Tarjetas Prepago 
 
-The API **ACCOUNT/PPD-LOAD-LIMITS** allow a user to update the current maximum and minimum limits of amount allow for prepay accounts.
+Esta API **ACCOUNT/PPD-LOAD-LIMITS** permite que un usuario actualice los límites máximos y mínimos actuales de la cantidad permitida para las cuentas de tarjetas prepago.
 
-When a prepay account is created using API **ACCOUNT/ADD**. The maximum and minimum amounts that a prepay card can has, are set up. However this limits can change with the time, so the API will help customer to set up the new parameters.
-
-For additional information please refer CMS User Manual and CMS Screen Guide.
+Cuando se crea una cuenta de tarjeta prepago mediante la API **ACCOUNT/ADD**. Se establecen los montos máximos y mínimos que puede tener una tarjeta prepago. Sin embargo, estos límites pueden cambiar con el tiempo, por lo que la API ayudará al cliente a configurar los parámetros nuevos.
 
 **PUT** `/account/ppd-load-limits`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Prepaid Over Limits Update
+## Actualización de Sobrelímites de Tarjetas Prepago 
 
-Use this API **ACCOUNT/PPD-OVER-LIMIT** to update the over limit amount allowed for a specific prepay account number. This over limit amount is a fixed amount used by authorization system to validated is the authorization amount if under this amount when the account does not have more available credit.
+Esta API **ACCOUNT/PPD-OVER-LIMIT** permite actualizar el monto de sobrelímite permitido para un número de cuenta de tarjeta prepago específico. Este monto de sobrelímite es un monto fijo utilizado por el sistema de autorización para validar el monto de autorización si está por debajo de este monto cuando la cuenta no tiene más crédito disponible.
 
 **PUT** `/account/ppd-over-limit`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account Wallet Status Update
+## Actualización del estado del monedero digital de la cuenta
 
-The API **ACCOUNT/WALLETSTATUS** allow the user to change the current wallet status to active, inactive or suspend.
+La API **ACCOUNT/WALLETSTATUS** le permite al usuario cambiar el estado actual del monedero digital a activo, inactivo o suspendido.
 
-Wallet is a current functionality to allow a prepay account has more than one currency code bucket called wallet to upload money. A prepay account can has a wallet to upload $US Dollar, Local currency and other currency codes.
+El Monedero Digital es una funcionalidad actual que permite que una cuenta de tarjeta prepago tenga más de un bucket de código de moneda llamado "Monedero Digital" para cargar dinero. Una cuenta de tarjeta prepago puede tener una monedero para cargar USD, moneda local y otros códigos de moneda.
 
-This API can be used to change the status of each of one wallets.
+Esta API se puede usar para cambiar el estado de cada una de los monederos.
 
 **PUT** `/account/walletStatus`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Account Relationship Number Update
+## Actualización de Número de Relación de Cuenta 
 
-Use this API **ACCOUNT/RELATIONSHIP/ACCOUNT** to link a new sub-account created through API **ACCOUNT/ADD** with a relationship account previously created.
+Esta API **ACCOUNT/RELATIONSHIP/ACCOUNT** permite vincular una subcuenta nueva creada por medio de la API **ACCOUNT/ADD** con una cuenta de relación previamente creada.
 
-Relationship number is a unique number assigned to a Corporate Card, for example Walmart with a customer number 123, is identify with a unique relationship number 567 and under this relationship number many accounts and cards are created for Walmart employs. So using the relationship number 567 is possible link additional new sub-account.
+El número de Relación es un número único asignado a una Tarjeta Corporativa; por ejemplo, Walmart con un número de cliente 123, se identifica con un número de relación único 567 y bajo este número de relación se crean muchas cuentas y tarjetas para los empleados de Walmart. Entonces, usando el número de relación 567 es posible vincular una subcuenta nueva adicional.
 
 **PUT** `/account/relationship/account`
 
-The description of each API field can be found within the specifications defined in the portal.
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
 ---
 
-## See Also
+## Ver también
 
-- [API Environment](?path=docs/english/main-cases/api-environment.md)
-- [Audit and Monitoring](?path=docs/english/main-cases/audit.md)
-- [Card Controls](?path=docs/english/main-cases/card-controls.md)
-- [Card Management](?path=docs/english/main-cases/card.md)
-- [Card Record](?path=docs/english/main-cases/record.md)
-- [Cash-in/Cash-out](?path=docs/english/main-cases/cash-in-out.md)
-- [Customer Management](?path=docs/english/main-cases/customer.md)
-- [Digital Card Issuing](?path=docs/english/main-cases/digital.md)
-- [Dynamic CVV2](?path=docs/english/main-cases/dynamic.md)
-- [Falcon System Integration](?path=docs/english/main-cases/falcon.md)
-- [HMAC Signature](?path=docs/english/main-cases/hmac.md)
-- [PAN Token](?path=docs/english/main-cases/pan-token.md)
-- [PIN Change](?path=docs/english/main-cases/pin-change.md)
-- [Relation Client-Account-Card](?path=docs/english/main-cases/relation.md)
-- [Upload Founds](?path=docs/english/main-cases/uploads.md)
+- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+- [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
+- [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+- [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+- [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
+- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
