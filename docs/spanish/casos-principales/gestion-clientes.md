@@ -18,7 +18,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Actualizar Cliente
 
-Esta API permite la actualización de la información demográfica de un cliente específico. Actualmente se ingresa a través de la API ** Customer Add **. El valor requerido por esta API es el número de cliente creado a través de la API ** Customer Add **.
+Esta API permite la actualización de la información demográfica de un cliente específico. Actualmente se ingresa a través de la API **Customer Add**. El valor requerido por esta API es el número de cliente creado a través de la API **Customer Add**.
 
 **PUT** `/customer`
 
@@ -60,7 +60,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Consultar Datos Demográficos
 
-Con esta API el tarjetahabiente podrá obtener toda la información demográfica ya agregada a través de la API ** Customer Add** cuando se crea un cliente nuevo. La misma información se mostrará en el mensaje de respuesta de la API. La información demográfica del cliente solo se mostrará y no podrá ser actualizada ni eliminada.
+Con esta API el tarjetahabiente podrá obtener toda la información demográfica ya agregada a través de la API **Customer Add** cuando se crea un cliente nuevo. La misma información se mostrará en el mensaje de respuesta de la API. La información demográfica del cliente solo se mostrará y no podrá ser actualizada ni eliminada.
 
 La API utilizará los valores del Número de Cliente para obtener la información demográfica del cliente.
 
