@@ -4,7 +4,7 @@ tags: [Main Cases, Customer Management, customer, demographic data, generation, 
 
 # Customer Management
 
-## New Customer
+## Customer Add
 
 The API **CUSTOMER/ADD** allows a Bank to enter extensive customer demographic information, as name, address, telephone number, email, identification number, etc. will be added through this API.
 
@@ -16,7 +16,7 @@ This customer number is independent of the customer's personal identification nu
                 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Update Customer
+## Customer Update
 
 The API **CUSTOMER/** allows the updating of demographic information for a specific customer. Currently entered through the API **CUSTOMER/ADD**. The value required by this API is the Customer Number created through the API **Customer/Add**.
 
@@ -24,7 +24,7 @@ The API **CUSTOMER/** allows the updating of demographic information for a speci
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Find an Account Number
+## Account Number Inquiry
 
 The API **CUSTOMER/ACCOUNTNUMBER** allows a cardholder to find out all the account numbers of the Credit, Debt, Prepaid, Wallets products, created under the Customer Number, previously created with the API **Customer/Add**.
 
@@ -34,7 +34,7 @@ This information is sent in the API response message once it has been triggered.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Get Cards Details
+## Cards Details Inquiry
 
 This API **CUSTOMER/DETAILS-L8V4** allows the customer to find out all the card numbers created under this customer number for products credit, debit, prepaid or wallets.
 
@@ -44,7 +44,7 @@ This information is sent in the API response message once it has been triggered.
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Generate Customer and Account Number
+## Customer and Account Number Generate
 
 This API **CUSTOMER/GENERATION** allow the bank generate on massive way a defined quantity of customers, cards, accounts and relationship numbers. The numbers requested will be reserved by the system, so these number will not be generated again.
 
@@ -58,7 +58,7 @@ API response will show the customer, account, card and relationship number as th
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Inquire Demographic Data
+## Demographic Inquiry
 
 With this API **CUSTOMER/DEMOGRAPHICDATA** cardholder will be able to get all the demographic information already add thought the API CUSTOMER/ADD when new customer is created. Same information will be displayed on API response message. Customer demographic information will be only displayed and will not be able to be updated or deleted.
 
@@ -68,7 +68,7 @@ Customer Number values will be used by the API to get customer demographic infor
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Find Relationship Number
+## Relationship Number Add
 
 This API **CUSTOMER/RELATIONSHIPNUMBER** allow to a cardholder bring all the relationship numbers already created under same Customer Number.
 
