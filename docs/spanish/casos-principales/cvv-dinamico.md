@@ -4,9 +4,9 @@ tags: [Casos Principales, CVV 2 Dinámico, Tarjetas, PIN, Valores Dinámicos]
 
 # Solicitud de valores dinámicos
 
-Esta API **CARDS/PIN/DYNAMIC-VALUE** permite calcular y consultar un nuevo CVV2 para compras con tarjeta no presente.
+Esta API permite calcular y consultar un nuevo CVV2 para compras con tarjeta no presente.
 
-Actualmente, cuando la tarjeta se graba en relieve a través de API CARD/EMBOSSER, el código CVV2 estático se calcula y se imprime en el panel de firma en el reverso de la tarjeta. La nueva funcionalidad de Dynamic CVV2 le permite al tarjetahabiente llamar a esta API CARDS/PIN/DYNAMIC-VALUE para generar y calcular un nuevo CVV2 antes de realizar una compra no presente. Por lo tanto, cuando se activa la API, el CVV2 estático se desactiva y cada vez que el tarjetahabiente desea realizar una nueva compra sin tarjeta presente, se deberá calcular el CVV2 nuevo por medio de esta API.
+Actualmente, cuando la tarjeta se graba en relieve a través de API **Card Embosser**, el código CVV2 estático se calcula y se imprime en el panel de firma en el reverso de la tarjeta. La nueva funcionalidad de Dynamic CVV2 le permite al tarjetahabiente llamar a esta API para generar y calcular un nuevo CVV2 antes de realizar una compra no presente. Por lo tanto, cuando se activa la API, el CVV2 estático se desactiva y cada vez que el tarjetahabiente desea realizar una nueva compra sin tarjeta presente, se deberá calcular el CVV2 nuevo por medio de esta API.
 
 **POST** `/cards/pin/dynamic-values`
 
