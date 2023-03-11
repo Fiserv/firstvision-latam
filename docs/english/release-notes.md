@@ -50,6 +50,7 @@ Endpoints moved to version 1.1.0:
 
 - /account/QRFL-balance
 - /cards/instant-card-L8V7
+- /transactions/organization-update
 
 ---
 
