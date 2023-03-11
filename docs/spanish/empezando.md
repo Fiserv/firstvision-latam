@@ -14,7 +14,7 @@ Después de estos pasos, estará listo para comenzar a probar la API de pagos.
 
 2. Espere un correo electrónico de confirmación del administrador de cuentas asignado de Fiserv o de su Client Partner con las credenciales asignadas.
 
-### Cómo obtener credenciales para la API
+### ¿Cómo obtener credenciales para la API?
 
 ![image](https://user-images.githubusercontent.com/111396588/223824102-ee737d0e-462a-44ef-b4aa-eb5d0d062f23.png)
 
