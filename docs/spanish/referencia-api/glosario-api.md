@@ -10,115 +10,114 @@ type: tab
 titles: Terminos Generales, Acrónimos , Tipos de Cuentas, Nombre del Servicio Legacy
 -->
 
-| Term                  | Definition                                                                                                                                                          |
-|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Access Token          | A cryptographically secure credential that allows merchants to access the API.                                                                                      |
-| Account               | A system record tied to a customer, which contains balance, history, and other monetary information.                                                                |
-| Alien                 | A foreign-born, non-U.S. citizen who lives in the U.S.                                                                                                              |
-| Authentication        | Process to validate the credentials of the merchant to access the API.                                                                                              |
-| Authorization         | Process of allowing merchants to access certain resources based on the privileges they have.                                                                        |
-| Collateral            | An asset or item that holds a value and can be pledged for an account associated with the Loan.                                                                     |
-| Core                  | Core banking product of Fiserv.                                                                                                                                     |
-| Credit Line           | Flexible loan option offered by financial institution which consists of defined amount of money that can be accessed whenever needed by customer.                   |
-| Customer              | A person who does business with a bank and has a customer information file (CIF) and/or account record in the system.                                               |
-| EFT Card              | Electronic Fund Transfer card (EFT card) is a plastic card that is used to transfer funds electronically.                                                           |
-| EFX                   | A web service message framework used for exchange of information between service-providers, clients and vendors.                                                    |
-| Escrow Account        | A third-party account used to manage and disburse the funds to an ultimate party or an account.                                                                     |
-| ESF                   | Enterprise Service Framework (ESF) is designed to enable multiple Fiserv products/systems to communicate with one another.                                          |
-| Fees                  | Amount charged for a service.                                                                                                                                       |
-| Financial Institution | An organization that manages financial and monetary transactions such as deposits, loans and currency exchange.                                                     |
-| GL Accounts           | General Ledger accounts (GL accounts) include all the transaction-related data required to produce the income statement, balance sheet and other financial reports. |
-| Liability             | An obligation between a guarantor and endorser under certain conditions in which loan is offered.                                                                   |
-| Memo                  | A continuous message sent to the officers from financial institution which does not require any action.                                                             |
-| Open Banking          | A system that allows access and control of consumer banking and financial accounts through third party applications using APIs.                                     |
-| P2P Transaction       | P2P (peer-to-peer) transaction is transfer of funds between two parties done through an intermediary application.                                                   |
-| Party                 | A person or organization who has a relationship with the financial institution.                                                                                     |
-| Sandbox               | A testing environment that simulates a production environment to test the application prior to deploying it into the production.                                    |
-| Service Provider      | An organization that provides services to an individual or an organization. For example, Financial Institution.                                                     |
-| Tickler               | A one-time or recurring message sent to the officers from financial institutions which may require an action.                                                       |
-| Xfer                  | Transfer of money between accounts.                                                                                                                                 |
+| Término                | Definición                                                                                                                                                                                                                  |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Ambiente Sandbox       | Un ambiente de prueba que simula un ambiente de producción para probar la aplicación antes de implementarla en producción.                                                                                                  |
+| Autenticación          | Proceso usado para validar las credenciales del comercio con el fin de acceder a la API.                                                                                                                                    |
+| Autorización           | Proceso que permite que los comercios accedan a ciertos recursos con base en los privilegios que poseen.                                                                                                                    |
+| Banca Abierta          | Un sistema que permite el acceso y control de cuentas bancarias y financieras de consumo a través de aplicaciones de terceros utilizando APIs.                                                                              |
+| Cargos                 | Importe cobrado por un servicio.                                                                                                                                                                                            |
+| Cliente                | Persona que hace negocios con un banco y tiene un archivo de información del cliente (CIF) y/o registro de cuenta en el sistema.                                                                                            |
+| Core                   | Producto de Core Bancario de Fiserv.                                                                                                                                                                                        |
+| Cuenta                 | Un registro del sistema vinculado a un cliente que contiene saldo, historial y otra información monetaria.                                                                                                                  |
+| Cuentas en Custodia    | Una cuenta externa utilizada para administrar y desembolsar los fondos a una parte o cuenta final.                                                                                                                          |
+| Cuentas LM             | Las cuentas contables o cuentas del Libro Mayor (Cuentas LM) incluyen todos los datos relacionados con las transacciones necesarios para producir el estado de resultados, el balance general y otros informes financieros. |
+| EFX                    | Un marco de mensajería de servicios web utilizado para el intercambio de información entre proveedores de servicios, clientes y proveedores.                                                                                |
+| ESF                    | El Marco de Servicios Empresariales (ESF) está diseñado para permitir que múltiples productos/sistemas de Fiserv se comuniquen entre sí.                                                                                    |
+| Extranjero             | Una persona que nació en el extranjero. Un ciudadano no estadounidense que reside en los EE.UU.                                                                                                                             |
+| Garantías              | Un activo o artículo que posee un valor y puede ser pignorado a una cuenta asociada con el Préstamo.                                                                                                                        |
+| Institución Financiera | Una organización que gestiona transacciones financieras y monetarias como depósitos, préstamos y cambio de divisas.                                                                                                         |
+| Línea de Crédito       | Opción de préstamo flexible ofrecida por la institución financiera que consiste en una cantidad definida de dinero a la que se puede acceder cuando el cliente lo necesite.                                                 |
+| Memo                   | Un mensaje continúo enviado a los funcionarios de la institución financiera que no requiere ninguna acción.                                                                                                                 |
+| Parte                  | Una persona u organización que tiene una relación con la institución financiera.                                                                                                                                            |
+| Pasivo                 | Obligación entre el garante y el endosante bajo ciertas condiciones en las que se ofrece préstamo.                                                                                                                          |
+| Proveedor de Servicio  | Una organización que proporciona servicios a un individuo o a una organización. Por ejemplo, un Institución Financiera.                                                                                                     |
+| Recordatorio           | Un mensaje recurrente o no recurrente que puede requerir una acción y que es enviado a los funcionarios de instituciones financieras.                                                                                       |
+| Tarjeta EFT            | La tarjeta de Transferencia Electrónica de Fondos (tarjeta EFT) es una tarjeta de plástico que se utiliza para transferir fondos de forma electrónica.                                                                      |
+| Token de Acceso        | Una credencial criptográficamente segura que le permite a los comercios acceder a la API.                                                                                                                                   |
+| Transacciones P2P      | Una transacción P2P (peer-to-peer o punto a punto) es una transferencia de fondos entre dos partes realizada a través de una aplicación intermediaria.                                                                      |
+| Xfer                   | Transferencia de dinero entre cuentas.                                                                                                                                                                                      |
 
 <!-- type: tab -->
 
-| Acronym                  | Definition                                                                                                                                                         |
-|-----------------------|---------------------|
-| ACH                   | ACH (Automated Clearing House network) is an electronic fund transfer made between banks and credit unions.                                                         |
-| CLT                   | Cleartouch                                                                                                                                                          |
-| DNA                   | DNA                                                                                                                                                                 |
-| JSON                  | JavaScript Object Notation. A lightweight syntax that contains object and arrays, usually used to return the response from REST API.                                |
-| NACHA                 | NACHA (National Automated Clearing House Association) is an organization that sets and enforces the rules which the ACH network needs to abide by.                  |
-| PRC                   | Precision                                                                                                                                                           |
-| PRM                   | Premier                                                                                                                                                             |
-| PRT                   | Portico                                                                                                                                                             |
-| SIG                   | Signature                                                                                                                                                           |
-| EFT Card              | Electronic Fund Transfer card (EFT card) is a plastic card that is used to transfer funds electronically.                                                           |
-| EFX                   | A web service message framework used for exchange of information between service-providers, clients and vendors.                                                    |
-| Escrow Account        | A third-party account used to manage and disburse the funds to an ultimate party or an account.                                                                     |
-| ESF                   | Enterprise Service Framework (ESF) is designed to enable multiple Fiserv products/systems to communicate with one another.                                          |
-| Fees                  | Amount charged for a service.                                                                                                                                       |
-| Financial Institution | An organization that manages financial and monetary transactions such as deposits, loans and currency exchange.                                                     |
-| GL Accounts           | General Ledger accounts (GL accounts) include all the transaction-related data required to produce the income statement, balance sheet and other financial reports. |
-| Liability             | An obligation between a guarantor and endorser under certain conditions in which loan is offered.                                                                   |
-| Memo                  | A continuous message sent to the officers from financial institution which does not require any action.                                                             |
-| Open Banking          | A system that allows access and control of consumer banking and financial accounts through third party applications using APIs.                                     |
-| P2P Transaction       | P2P (peer-to-peer) transaction is transfer of funds between two parties done through an intermediary application.                                                   |
-| Party                 | A person or organization who has a relationship with the financial institution.                                                                                     |
-| Sandbox               | A testing environment that simulates a production environment to test the application prior to deploying it into the production.                                    |
-| Service Provider      | An organization that provides services to an individual or an organization. For example, Financial Institution.                                                     |
-| Tickler               | A one-time or recurring message sent to the officers from financial institutions which may require an action.                                                       |
-| Xfer                  | Transfer of money between accounts.                                                                                                                                 |
-<!-- type: tab -->
-
-| Term      | Description |
-| ---        | ----     | 
-| CDA| Certificate of Deposit Account. Account offered by banks and credit unions that offers an interest rate premium in exchange for the customer agreeing to deposit a lump-sum amount for a predetermined period of time.|
-| CRD | Card (EFT Debit Card). A debit card is a card that deducts money from a designated checking account to pay for goods or services. It can be used anywhere Visa® or MasterCard® debit cards are accepted and no interest is charged. A debit card can also be used at ATMs to withdraw cash from accounts linked to that debit card. |
-| DDA | Demand Deposit Account. Account with a bank or other financial institution that allows the depositor to withdraw their funds without prior notice or with less than seven days notice. Also known as a Checking Account. |
-| DDL | Demand Deposit Loan. An overdraft banking account that is tied to a checking account. |
-| EXT | External Account. Accounts that belong to the customer in other financial institutions. They are stored for reference information. |
-| GLA | General Ledger Account. A general ledger account is an account or record used to sort, store and summarize a company's transactions. These accounts are arranged in the general ledger (and in the chart of accounts) with the balance sheet accounts appearing first followed by the income statement accounts. |
-| ILA | Installment Loan Account. A loan repaid with interest owed, in equal periodic payments of principal and interest. |
-| LEAS | Leasing. A lease is a contract outlining the terms under which one party agrees to rent property owned by another party. |
-| LOAN | Loan Account. The loan account is used to track transactions related to the loan, which include interest, repayment, and any applicable charges. The loan account is a specific instance of a loan product, with a specified interest rate and an account number, and it is owned by a specified financial institution customer. |
-| LOC | Line of Credit. A line of credit is a preset amount of money that a bank or credit union has agreed to lend a customer. Customers can draw from the line of credit when they need it, up to the maximum amount. |
-| MLA | Mortgage Loan Account. An extension of real estate credit, usually on a long-term basis. The real estate is the lenders security. This is a loan type account. |
-| SDA | Savings Deposit Account. An interest-bearing deposit account without a stated maturity, as opposed to a time deposit. |
-| SDB | Safe Deposit Box. Also known as a safety deposit box, is an individually secured container, usually held within a larger safe or bank vault. Safe deposit boxes are generally located in banks, post offices or other institutions. |
-| RRA | Retiree Reimbursement Account. A retiree reimbursement arrangement (RRA) helps pay for health care costs in retirement, including health plan premiums. Available to public and private sector employers, RRAs allow you to sustain a valued benefit on your financial terms. |
-| RET | Retirement account (IRA). This account allows you to save money for retirement in a tax-advantaged way. An IRA is an account set up at a financial institution that allows an individual to save for retirement with tax-free growth or on a tax-deferred basis. |
-
+| Acrónimo               | Definición                                                                                                                                                                                                                  |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ACH                    | ACH (Red de Cámara de Compensación Automatizada) es una transferencia electrónica de fondos realizada entre bancos y cooperativas de crédito.                                                                               |
+| Ambiente Sandbox       | Un ambiente de prueba que simula un ambiente de producción para probar la aplicación antes de implementarla en producción.                                                                                                  |
+| Banca Abierta          | Un sistema que permite el acceso y control de cuentas bancarias y financieras de consumo a través de aplicaciones de terceros utilizando APIs.                                                                              |
+| Cargos                 | Importe cobrado por un servicio.                                                                                                                                                                                            |
+| CLT                    | ClearTouch                                                                                                                                                                                                                  |
+| Cuentas en Custodia    | Una cuenta externa utilizada para administrar y desembolsar los fondos a una parte o cuenta final.                                                                                                                          |
+| Cuentas LM             | Las cuentas contables o cuentas del Libro Mayor (Cuentas LM) incluyen todos los datos relacionados con las transacciones necesarios para producir el estado de resultados, el balance general y otros informes financieros. |
+| DNA                    | DNA                                                                                                                                                                                                                         |
+| EFX                    | Un marco de mensajería de servicios web utilizado para el intercambio de información entre proveedores de servicios, clientes y proveedores.                                                                                |
+| ESF                    | El Marco de Servicios Empresariales (ESF) está diseñado para permitir que múltiples productos/sistemas de Fiserv se comuniquen entre sí.                                                                                    |
+| Institución Financiera | Una organización que gestiona transacciones financieras y monetarias como depósitos, préstamos y cambio de divisas.                                                                                                         |
+| JSON                   | Notación de Objetos JavaScript. Una sintaxis ligera que contiene objetos y matrices, generalmente utilizada para devolver la respuesta de la API REST.                                                                      |
+| Memo                   | Un mensaje continuo enviado a los funcionarios de la institución financiera que no requiere ninguna acción.                                                                                                                 |
+| NACHA                  | NACHA (Asociación Nacional de Cámaras de Compensación Automatizadas) es una organización que establece y hace cumplir las reglas que debe cumplir la red ACH.                                                               |
+| Parte                  | Una persona u organización que tiene una relación con la institución financiera.                                                                                                                                            |
+| Pasivo                 | Obligación entre el garante y el endosante bajo ciertas condiciones en las que se ofrece préstamo.                                                                                                                          |
+| PRC                    | Precision                                                                                                                                                                                                                   |
+| PRM                    | Premier                                                                                                                                                                                                                     |
+| Proveedor de Servicio  | Una organización que proporciona servicios a un individuo o a una organización. Por ejemplo, un Institución Financiera.                                                                                                     |
+| PRT                    | Pórtico                                                                                                                                                                                                                     |
+| Recordatorio           | Un mensaje recurrente o no recurrente que puede requerir una acción y que es enviado a los funcionarios de instituciones financieras.                                                                                       |
+| SIG                    | Signature                                                                                                                                                                                                                   |
+| Tarjeta EFT            | La tarjeta de Transferencia Electrónica de Fondos (tarjeta EFT) es una tarjeta de plástico que se utiliza para transferir fondos de forma electrónica.                                                                      |
+| Transacciones P2P      | Una transacción P2P (peer-to-peer o punto a punto) es una transferencia de fondos entre dos partes realizada a través de una aplicación intermediaria.                                                                      |
+| Xfer                   | Transferencia de dinero entre cuentas.                                                                                                                                                                                      |
 
 <!-- type: tab -->
 
-| Legacy Term               | Updated Term                |
-|--------------------|------------------------------------|
-| Acct               | Account Service                    |
-| AcctCollateralRel  | Account Collateral Service         |
-| AcctHold           | Account Hold Service               |
-| AcctTrn            | Account Transaction Service        |
-| Addr               | Address Service                    |
-| Card               | Card Service                       |
-| CardAcctRel        | Card Account Relationship Service  |
-| ClientDefinedField | Client Defined Field Service       |
-| Collateral         | Collateral Service                 |
-| Credit             | Credit Service                     |
-| CreditLine         | Credit Line Service                |
-| Debit              | Debit Service                      |
-| Document           | Document Service                   |
-| EnumTable          | Enumeration Table Service          |
-| ePreference        | Document Preferences Service       |
-| Escrow             | Escrow Service                     |
-| HostSystem         | Host System Service                |
-| IndirectLiability  | Loan Indirect Liability Service    |
-| MemoTickler        | Memo Tickler Service               |
-| MultiAcct          | Multi Account Service              |
-| Party              | Party Service                      |
-| PartyAcctRel       | Party Account Relationship Service |
-| PartyPartyRel      | Party Parties Service              |
-| SafeDepositBox     | Safe Deposit Box Service           |
-| StopChk            | Stop Check Service                 |
-| Xfer               | Transfer Service                   |
+| Término | Descripción                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CDA     | Cuenta de Certificado de Depósito. Cuenta ofrecida por bancos y cooperativas de crédito que ofrece una prima de tasa de interés a cambio de que el cliente acepte depositar una suma global por un período de tiempo predeterminado.                                                                                                                                                                                        |
+| CRD     | Tarjeta (Tarjeta de Débito EFT). Una tarjeta de débito es una tarjeta que deduce dinero de una cuenta corriente designada para pagar bienes o servicios. Se puede utilizar en cualquier lugar donde se acepten las tarjetas de débito Visa® o MasterCard® y no se cobran intereses. Una tarjeta de débito también se puede usar en cajeros automáticos para retirar efectivo de cuentas vinculadas a esa tarjeta de débito. |
+| DDA     | Cuentas de Depósito a la Vista. Cuenta con un banco u otra institución financiera que permite al depositante retirar sus fondos sin previo aviso o con menos de siete días de anticipación. También son conocida como Cuentas Corrientes.                                                                                                                                                                                   |
+| DDL     | Cuentas de Préstamos a la Vista. Una cuenta bancaria de sobregiro que está vinculada a una cuenta corriente.                                                                                                                                                                                                                                                                                                                |
+| EXT     | Cuenta Externa. Cuentas en otras entidades financieras que pertenecen al mismo cliente. Se almacenan como información de referencia.                                                                                                                                                                                                                                                                                        |
+| GLA     | Cuenta del Libro Mayor. Una cuenta contable o Cuenta LM es una cuenta o registro que se utiliza para clasificar, almacenar y resumir las transacciones de una compañía. Estas cuentas se organizan en el libro mayor (y en el plan de cuentas) donde las cuentas del balance general que aparecen primero, seguidas por cuentas del estado de resultados.                                                                   |
+| ILA     | Cuenta de Préstamo a Plazos. Un préstamo reembolsado con los intereses adeudados, en pagos periódicos iguales de capital e intereses.                                                                                                                                                                                                                                                                                       |
+| LEAS    | Arrendamientos Financieros (Leasing). Un arrendamiento es un contrato que describe los términos bajo los cuales una parte acuerda alquilar una propiedad que pertenece a otra parte.                                                                                                                                                                                                                                        |
+| LOAN    | Préstamo. La cuenta de préstamo se utiliza para realizar un seguimiento de las transacciones relacionadas con el préstamo, que incluyen intereses, reembolso y cualquier cargo aplicable. La cuenta de préstamo es una instancia específica de un producto de préstamo, con una tasa de interés específica y un número de cuenta, y es propiedad de un cliente específico de una institución financiera.                    |
+| LOC     | Línea de Crédito. Una línea de crédito es una cantidad preestablecida de dinero que un banco o cooperativa de crédito ha acordado prestar a un cliente. Los clientes pueden disponer de la línea de crédito cuando lo necesiten, hasta el monto máximo.                                                                                                                                                                     |
+| MLA     | Cuenta de Préstamo Hipotecario. Una extensión de crédito inmobiliario, generalmente a largo plazo. La propiedad inmobiliaria es la seguridad de los prestamistas. Esta es una cuenta de tipo préstamo.                                                                                                                                                                                                                      |
+| RET     | Cuenta de Pensiones (IRA). Esta cuenta le permite ahorrar dinero para la jubilación con ventajas tributarias. Una Cuenta IRA es una cuenta establecida en una institución financiera que permite a una persona ahorrar para su jubilación con un crecimiento libre de impuestos o con impuestos diferidos.                                                                                                                  |
+| RRA     | Cuenta de Reembolso para Jubilados. Un arreglo de reembolso para jubilados (RRA) ayuda a pagar los costos de atención médica durante la jubilación, incluyendo las primas del plan de salud. Los RRA les permiten a los patronos de los sectores públicos y privados mantener un beneficio valioso en sus términos financieros.                                                                                             |
+| SDA     | Cuentas de Ahorros. Una cuenta de depósito que devenga intereses sin un vencimiento establecido, a diferencia de un depósito a plazo.                                                                                                                                                                                                                                                                                       |
+| SDB     | Cajas de Seguridad. También conocida como caja de seguridad, es un contenedor individual de seguridad que generalmente guardado dentro de una caja fuerte o bóveda de banco más grande. Las cajas de seguridad generalmente se encuentran en bancos, oficinas de correos u otras instituciones.                                                                                                                             |
 
+<!-- type: tab -->
+
+| Término de Legacy         | Término Actualizado                               |
+|---------------------------|---------------------------------------------------|
+| Acct                      | Servicios a Cuentas                               |
+| AcctCollateralRel         | Servicio de Garantías de Cuentas                  |
+| AcctHold                  | Servicio de Retención de Cuentas                  |
+| AcctTrn                   | Servicio de Transacciones de Cuentas              |
+| Addr                      | Servicio de Direcciones                           |
+| Card                      | Servicios de Tarjetas                             |
+| CardAcctRel               | Servicio de Relación de Cuentas de Tarjetas       |
+| ClientDefinedField        | Servicio de Campos Definidos por el Cliente       |
+| CreditLine                | Servicio de Línea de Crédito                      |
+| Crédito                   | Servicio de Crédito                               |
+| Custodia                  | Servicio de Depósitos en Garantía                 |
+| Débito                    | Servicio de Débito                                |
+| Documento                 | Servicio de Documentos                            |
+| EnumTable                 | Servicio de Tabla de Enumeración                  |
+| ePreference               | Servicio de Preferencias de Documentos            |
+| Garantías                 | Servicio de Garantías                             |
+| HostSystem                | Servicio del Sistema Anfitrión                    |
+| MemoTickler               | Servicio de Recordatorio/Memos                    |
+| MultiAcct                 | Servicio Multicuenta                              |
+| Parte                     | Servicio de Partes                                |
+| PartyAcctRel              | Servicio de Relación de Cuentas de Partes         |
+| PartyPartyRel             | Servicio de Parte de Partes                       |
+| Responsabilidad Indirecta | Servicio de Responsabilidad Indirecta de Préstamo |
+| SafeDepositBox            | Servicio de Cajas de Seguridad                    |
+| StopChk                   | Servicio de Suspención de Cheques                 |
+| Xfer                      | Servicio de Transferencias                        |
 
 <!-- type: tab-end -->
 
