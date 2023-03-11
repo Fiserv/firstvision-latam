@@ -12,7 +12,7 @@ Estas API están diseñadas para permitir que los clientes potenciales, los clie
 
 Cada API permitirá cargar dinero desde diferentes productos de origen a diferentes productos de destino. Con el uso de las diferentes opciones o parámetros, estas APIs controlan, acreditan y debitan el dinero de la fuente y del receptor de dinero para cada Cuenta, permitiendo actualizaciones en línea o no del uso de crédito disponible por parte de la tarjeta, según el parámetro definido en la API antes de que se active.
 
-## Purpose
+## Propósito
 
 La creación de cuentas de Crédito, Débito y Prepago son un requisito que se debe completar antes de ejecutar cualquiera de las APIs utilizadas para cargar dinero. La cual debe ser creada usando las APIs para Creación de Clientes **(Customer Add)**, Creación de Cuentas **(Account Add)** y Creación de Tarjetas **(Embosser Add)**.
 
