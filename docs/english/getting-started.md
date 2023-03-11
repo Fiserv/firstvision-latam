@@ -14,7 +14,7 @@ After these steps, you're ready to start test the Payments API.
 
 2. Expect a confirmation e-mail from Fiserv’s assigned Account Manager or Client Partner with the assigned credentials.
 
-### How to get an API Credential
+### How to get an API Credential?
 
 ![image](https://user-images.githubusercontent.com/111396588/223824102-ee737d0e-462a-44ef-b4aa-eb5d0d062f23.png)
 
