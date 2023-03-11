@@ -1,47 +1,62 @@
 ---
-tags: [Release Notes, January, February, March]
+tags: [Release Notes, Enero, Febrero, Marzo]
 ---
 
 # Release Notes
 
-## March 2023
+## Marzo 2023
 
-### What's New
+### ¿Qué hay de nuevo?
 
-- Spanish documentation!
+- Documentación en español.
+- Glosario API.
 
-### Enhancements
+### Mejoras
 
-- VMX list updated
+- Lista VMX actualizada agregando nombre de endpoint.
+- Casos Principales actualizados:
+  - [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
+  - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
+  - [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
+  - [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+  - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+  - [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
+  - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+  - [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
+  - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
+  - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
+  - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
+  - [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
+  - [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+  - [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
+  - [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+  - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
-### Fixed
 
-Endpoints moved to version 1.1.0:
+### Problemas solucionados
+
+Endpoints se movieron a la versión 1.1.0:
 
 - /account/balance
 - /account/transfer
 - /account/QR-balance
 - /account/QR-transfer
-- /account/QRFL-balance
-- /account/FL-balance
 - /account/FL-transferP2P
 
-### Known Issues
+### Deprecado
 
-- N/A
-
-### Deprecated
-
-- N/A
+- /account/QRFL-balance
+- /cards/instant-card-L8V7
+- /transactions/organization-update
 
 ---
 
 
-## February 2023
+## Febrero 2023
 
-### What's New
+### ¿Qué hay de nuevo?
 
-New Tokenization API's
+Nuevas API's Tokenization
 
 - /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/deviceBinding
 - /vtis/v1/getAvailableCards
@@ -51,44 +66,36 @@ New Tokenization API's
 - /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/lifecycle
 - /vtis/v1/checkEligibility
 
-### Enhancements
+### Mejoras
 
 N/A
 
-### Fixed
+### Problemas solucionados
 
 - N/A
 
-### Known Issues
-
-- N/A
-
-### Deprecated
+### Deprecado
 
 - /account/card version R8V3
 
 ---
 
-## January 2023
+## Enero 2023
 
-### What's New
+### ¿Qué hay de nuevo?
 
-- Migration to new portal
+- Migración al nuevo portal.
 
-### Enhancements
+### Mejoras
 
-- Error codes, error handling and notifications.
+- Códigos de error, manejo de errores y notificaciones.
 
-### Fixed
-
-- N/A
-
-### Known Issues
+### Problemas solucionados
 
 - N/A
 
-### Deprecated
+### Deprecado
 
-- Old portal.
+- Portal anterior.
 
 ---
