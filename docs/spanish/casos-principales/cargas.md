@@ -14,7 +14,7 @@ Cada API permitirá cargar dinero desde diferentes productos de origen a diferen
 
 ## Purpose
 
-La creación de cuentas de Crédito, Débito y Prepago son un requisito que se debe completar antes de ejecutar cualquiera de las APIs utilizadas para cargar dinero. La cual debe ser creada usando las APIs para Creación de Clientes (Customer/Add), Creación de Cuentas (Account/Add) y Creación de Tarjetas (Embosser/Add).
+La creación de cuentas de Crédito, Débito y Prepago son un requisito que se debe completar antes de ejecutar cualquiera de las APIs utilizadas para cargar dinero. La cual debe ser creada usando las APIs para Creación de Clientes **(Customer Add)**, Creación de Cuentas **(Account Add)** y Creación de Tarjetas **(Embosser Add)**.
 
 Sin embargo, dependiendo de los valores utilizados en APIS, también es posible cargar dinero utilizando montos financieros directos, recibidos en efectivo de una sucursal bancaria.
 
