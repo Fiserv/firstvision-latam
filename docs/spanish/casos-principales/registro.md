@@ -4,7 +4,7 @@ tags: [Main Cases, Card Record, cards, embosser]
 
 # Agregar Registro de Tarjetas
 
-La API CARDS/EMBOSSER permite crear información de tarjeta utilizada para grabar una tarjeta o plástico nuevos en relieve. Esta información de la tarjeta debe tener relación con un número de cuenta creado a través de API ACCOUNT/ADD y este número de cuenta debe estar relacionado con un número de cliente creado a través de API CUSTOMER/ADD.
+Esta API permite crear información de tarjeta utilizada para grabar una tarjeta o plástico nuevos en relieve. Esta información de la tarjeta debe tener relación con un número de cuenta creado a través de API **Account Add** y este número de cuenta debe estar relacionado con un número de cliente creado a través de API **Customer Add**.
 
 Esta API permite agregar información de la tarjeta como la fecha de vencimiento de la tarjeta, el código de servicio, el nombre del tarjetahabiente, la dirección donde se entregará la tarjeta, los límites para compras, etc.
 
