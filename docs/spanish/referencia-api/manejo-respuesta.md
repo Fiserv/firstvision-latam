@@ -51,6 +51,7 @@ type: tab
 -->
 
 ### Código, descripción y resolución de estado de error del Servidor
+
 | Código | Mensaje               | Descripción                                                                   | Resolución                       |
 |--------|-----------------------|-------------------------------------------------------------------------------|----------------------------------|
 | 500    | Internal Server Error | Se encontró una condición inesperada que le impidió cumplir con la solicitud. | Informe el error.                |
