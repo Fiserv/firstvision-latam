@@ -10,7 +10,7 @@ Después de estos pasos, estará listo para comenzar a probar la API de pagos.
 
 ## Paso 1: Obtenga su API Key
 
-1. Envíe el nombre del banco o institución financiera, el nombre completo del usuario o los usuarios y una dirección de correo electrónico a latamAPIs@fiserv.com y a su Gerente de Cuenta o representante comercial asignado
+1. Envíe el nombre del banco o institución financiera, el nombre completo del usuario o los usuarios y una dirección de correo electrónico a latamAPIs@fiserv.com y a su Gerente de Cuenta o representante comercial asignado. Si es un usuario nuevo, envíe su nombre y dirección de correo electrónico a latamAPIs@fiserv.com y nos pondremos en contacto con usted.
 
 2. Espere un correo electrónico de confirmación del administrador de cuentas asignado de Fiserv o de su Client Partner con las credenciales asignadas.
 
