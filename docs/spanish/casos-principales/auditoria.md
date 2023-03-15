@@ -13,12 +13,11 @@ proporcionar información contextual en tiempo real sobre el rendimiento de la A
 
 ![image](https://user-images.githubusercontent.com/111396588/208849666-f5ea2024-b00a-4d74-936f-f975073a1731.png)
 
----
 
 ## Ver también
 
 - [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
-- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md)
 - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
 - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
 - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
