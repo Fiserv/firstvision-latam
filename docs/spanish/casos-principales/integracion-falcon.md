@@ -2,7 +2,7 @@
 tags: [Casos Principales, Falcon, Fraude, Detección, Prevención, Gestión]
 ---
 
-# Integración con el sistema Falcon
+# Integración con el Sistema Falcon
 
 Falcon es una aplicación de detección, prevención y gestión de fraudes. Falcon examina todas las transacciones entrantes y determina la probabilidad de que la transacción sea fraudulenta. Falcon tiene su propia red neuronal que evalúa las transacciones que llegan a Falcon. Con base en varios factores, Falcon le asigna una calificación a cada transacción, que indica la probabilidad de una transacción sea fraudulenta.
 
