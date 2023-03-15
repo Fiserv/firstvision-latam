@@ -132,7 +132,7 @@ type: tab
 ## Ver también
 
 - [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
-- [Respuesta de error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
 - [Solicitud de API](?path=docs//spanish/referencia-api/solicitud-api.md)
 
 ---
