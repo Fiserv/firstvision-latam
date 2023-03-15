@@ -35,7 +35,7 @@ Aplicaciones que permiten a los consumidores y las empresas monitorear y adminis
 
 - [Cuentas](?path=docs/spanish/referencia-api/2-cuentas.md)
 - [Lealtad](?path=docs/spanish/referencia-api/3-lealtad.md)
-- [Notificationes](?path=docs/spanish/referencia-api/4-notificationes.md)
+- [Notificationes](?path=docs/spanish/referencia-api/4-notificaciones.md)
 - [Tarjetas](?path=docs/spanish/referencia-api/5-tarjetas.md)
 - [Transacciones](?path=docs/spanish/referencia-api/6-transacciones.md)
 
