@@ -65,7 +65,7 @@ type: tab
 ## Ver también
 
 - [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
-- [Respuesta de error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
 - [Solicitud de API](?path=docs//spanish/referencia-api/solicitud-api.md)
 
 ---
