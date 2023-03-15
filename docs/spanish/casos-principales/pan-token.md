@@ -34,7 +34,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
 - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
 - [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
-- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [Integración con el Sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
 - [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
 - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
