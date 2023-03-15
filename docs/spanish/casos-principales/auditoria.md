@@ -18,7 +18,6 @@ proporcionar información contextual en tiempo real sobre el rendimiento de la A
 ## Ver también
 
 - [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
-- [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
 - [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
 - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
 - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
