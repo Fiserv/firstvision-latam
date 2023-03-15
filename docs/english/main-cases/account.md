@@ -113,7 +113,7 @@ This API use the account number for source account and account number for destin
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Cash-in / Cash-out 
+## Cash-in / Cash-out Request
 
 Use this API to apply a money amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. Also can be used to money transfer amount from a Bank Branch, ATM, Web service etc, this money transfer does not make a debit from an existing account of credit, debit, or prepay, just this API post an specific money amount to a destination account. However, parameters previously defined, allow Card Fraud Control)audit this type of transactions.
 
