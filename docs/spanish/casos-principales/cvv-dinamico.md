@@ -2,7 +2,7 @@
 tags: [Casos Principales, CVV 2 Dinámico, Tarjetas, PIN, Valores Dinámicos]
 ---
 
-# Solicitud de valores dinámicos
+# Solicitud de Valores Dinámicos
 
 Esta API permite calcular y consultar un nuevo CVV2 para compras con tarjeta no presente.
 
