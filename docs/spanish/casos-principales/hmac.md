@@ -25,25 +25,18 @@ Necesitará una herramienta para generar sus mensajes HMAC con base en su llave 
 Solo se requiere ingresar el algoritmo hash común, el mensaje y la llave secreta para generar un mensaje HMAC firmado.
 age.
 
----
 
 ## Ver también
 
 - [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
 - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
-- [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
 - [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md)
 - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
-- [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
 - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
-- [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md)
 - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
 - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
 - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
-- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
-- [Integración con el Sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
-- [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
-- [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
+- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
 - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---
