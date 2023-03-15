@@ -18,11 +18,13 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ## Consultar Tarjeta o PAN Token
 
-Usa esta API para obtener el pan-token calculado para un número de tarjeta.
+Actualmente, cuando un cliente no está certificado por la industria de tarjetas de pago (PCI), el número de tarjeta no se puede mostrar en ningún servicio web, cajero automático, POS, etc. PAN-TOKEN se puede mostrar en un servicio web, cajero automático, POS o cualquier otro dispositivo o servicio sin comprometer el número de tarjeta real.
 
-El PAN Token es una funcionalidad actual para tokenizar el número de tarjeta para todos los bancos que no poseen un certificado PCI. Cuando se crea una nueva tarjeta a través de la API **Card Embosser**, el PAN Token se calcula automáticamente en base a un parámetro previamente definido.
+Para mantener seguro este valor de seguridad, se requiere utilizar un PAN-TOKEN en lugar de un número de tarjeta, por lo que cuando se crea un número de tarjeta, la funcionalidad actual genera el PAN-TOKEN como sustituto del número de tarjeta.
 
-Esta API usa el PAN-TOKEN para traer el número de tarjeta o bien el número de tarjeta se puede usar para el PAN-TOKEN.
+Cuando se crea una nueva tarjeta a través de la API **Card Embosser**, el PAN-TOKEN se calcula automáticamente utilizando una CLAVE de seguridad y puede tener valores numéricos y alfanuméricos.
+
+Utilice esta API para obtener el token PAN calculado para un número de tarjeta.
 
 **POST** `/cards/embosser/card-pan-l8v2`
 
