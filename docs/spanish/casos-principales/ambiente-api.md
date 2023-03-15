@@ -20,12 +20,11 @@ Con el uso de una clave conocida como API-KEY, la cual puede ser solicitada por 
 
 ![image](https://user-images.githubusercontent.com/111396588/223832470-d7a8406b-b39b-45e3-ae5c-3afb434e98e8.png)
 
----
 
 ## Ver también
 
 - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
-- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
+- [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md)
 - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
 - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
 - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
