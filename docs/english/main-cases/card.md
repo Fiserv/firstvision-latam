@@ -18,15 +18,17 @@ The description of each API field can be found within the specifications defined
 
 ## Card Or PAN Token Inquiry
 
+Currently when a customer is not certified by the Payment Card Industry (PCI), the card number cannot be showed on any web service, ATM, POS, etc. PAN-TOKEN can be showed on a web service, ATM, POS, or any other device or service without compromise the real card number.
+
+To keep this security value safe, is require to use a PAN-TOKEN instead of card number, so when a card number is created, the current functionality generate the PAN-TOKEN as substitute of the card number. 
+
+When new card is created through API **Card Embosser**, the PAN-TOKEN is calculated automatically using a security KEY and it can have numeric and alphanumeric values.
+
 Use this API to get the PAN-token calculated for a card number.
-
-PAN token is a current functionality to tokenize the card number for all banks that are not a PCI certificate. When new card is created through API **Card Embosser**, the PAN token is calculated automatically on base a parameters previously defined.
-
-This API use the PAN-TOKEN to bring the card number or card number can be used to being the PAN-TOKEN.
 
 **POST** `/cards/embosser/card-pan-l8v2`
 
-The description of each API field can be found within the specifications in the portal.
+The description of this API fields can be found within the specifications defined in the portal.
 
 ## Mass Card Issue Update
 
