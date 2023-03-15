@@ -24,7 +24,6 @@ Con el uso de una clave conocida como API-KEY, la cual puede ser solicitada por 
 
 ## Ver también
 
-- [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
 - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
 - [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
 - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
