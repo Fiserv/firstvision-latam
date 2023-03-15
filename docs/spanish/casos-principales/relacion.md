@@ -49,7 +49,7 @@ description: Permite la gestión del instrumento de pago que se utiliza para rea
 - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
 - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
 - [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
-- [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
+- [Integración con el Sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
 - [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
 - [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
 - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
