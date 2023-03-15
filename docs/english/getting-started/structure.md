@@ -1,0 +1,24 @@
+---
+tags: [Getting Started, System Structure, Functional Structure]
+---
+
+# Structure
+
+## System structure
+
+![image](https://user-images.githubusercontent.com/111396588/223825562-87fc2df1-6d53-4af0-9934-35f5dba4b77e.png)
+
+## Functional structure
+
+![image](https://user-images.githubusercontent.com/111396588/223825581-a74ef113-5162-47b0-979e-9378ab46ae59.png)
+
+---
+
+## See Also
+
+- [Getting Started](?path=docs/english/getting-started.md)
+- [Messages List](?path=docs/english/getting-started/messages-list.md)
+- [Postman Tutorial](?path=docs/english/getting-started/postman.md)
+- [Terminology](?path=docs/english/getting-started/terminology.md)
+
+---
