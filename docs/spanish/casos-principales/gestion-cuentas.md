@@ -284,6 +284,7 @@ El número de Relación es un número único asignado a una Tarjeta Corporativa;
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
+---
 
 ## Ver también
 
