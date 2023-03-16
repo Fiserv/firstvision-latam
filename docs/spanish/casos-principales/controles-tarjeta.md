@@ -113,6 +113,7 @@ Los valores requeridos para esta API son el número de tarjeta, el canal, el PIN
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
+---
 
 ## Ver también
 
