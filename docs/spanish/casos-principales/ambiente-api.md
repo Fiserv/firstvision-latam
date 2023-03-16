@@ -20,6 +20,7 @@ Con el uso de una clave conocida como API-KEY, la cual puede ser solicitada por 
 
 ![image](https://user-images.githubusercontent.com/111396588/223832470-d7a8406b-b39b-45e3-ae5c-3afb434e98e8.png)
 
+---
 
 ## Ver también
 
