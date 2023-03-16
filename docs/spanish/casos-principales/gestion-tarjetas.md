@@ -102,6 +102,7 @@ Esta API requiere el PIN Block y el número de tarjeta y no el PIN en claro.
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
+---
 
 ## Ver también
 

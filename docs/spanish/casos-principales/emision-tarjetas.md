@@ -50,6 +50,7 @@ Después de las solicitudes del cliente, la cuenta y el embozador, se aplican la
 
 **PUT** `/cards/activation`
           
+---
 
 ## Ver también
 

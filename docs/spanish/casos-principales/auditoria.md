@@ -13,6 +13,7 @@ proporcionar información contextual en tiempo real sobre el rendimiento de la A
 
 ![image](https://user-images.githubusercontent.com/111396588/208849666-f5ea2024-b00a-4d74-936f-f975073a1731.png)
 
+---
 
 ## Ver también
 
