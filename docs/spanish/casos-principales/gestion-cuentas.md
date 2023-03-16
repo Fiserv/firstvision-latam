@@ -28,7 +28,7 @@ Esta API usa el número de cuenta que fue asignado cuando la API **Account Add**
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Actualización del límite de crédito temporal 
+## Actualización del Límite de Crédito Temporal 
 
 Use esta API para aumentar el límite de crédito de la cuenta por un número específico de días. Esta API es muy útil cuando el tarjetahabiente no tiene más límite de crédito disponible y solicita un aumento del límite de crédito para un número específico de días, por lo que cuando se completa el límite de tiempo, el límite de crédito original se restablece como límite de crédito actual.
 
@@ -122,7 +122,7 @@ Use los parámetros de la API para permitir que la transferencia de dinero esté
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Actualizar los campos definidos por el usuario de la cuenta 
+## Actualizar los Campos Definidos por el Usuario de la Cuenta 
 
 Esta API permite actualizar los valores de más de 50 campos de usuario definidos en la información de nivel de cuenta. Estos campos de usuario son campos de uso discrecional que el usuario puede usar para agregar información adicional en la cuenta.
 
@@ -262,7 +262,7 @@ Esta API permite actualizar el monto de sobrelímite permitido para un número d
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Actualización del estado del monedero digital de la cuenta
+## Actualización del Estado del Monedero Digital de la Cuenta
 
 La API le permite al usuario cambiar el estado actual del monedero digital a activo, inactivo o suspendido.
 
@@ -284,6 +284,7 @@ El número de Relación es un número único asignado a una Tarjeta Corporativa;
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
+---
 
 ## Ver también
 

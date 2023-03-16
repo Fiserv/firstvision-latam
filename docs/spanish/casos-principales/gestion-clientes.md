@@ -6,7 +6,7 @@ tags: [Casos Principales, Gestión de Clientes, Cliente, Datos Demográficos, Ge
 
 ## Cliente Nuevo
 
-Esta API **Customer Add** le permite a un Banco ingresar información demográfica del cliente, como nombre, dirección, número de teléfono, correo electrónico, número de identificación, etc. se agregará por medio de esta API.
+Esta API le permite a un Banco ingresar información demográfica del cliente, como nombre, dirección, número de teléfono, correo electrónico, número de identificación, etc. se agregará por medio de esta API.
 
 Cada cliente nuevo tendrá un número único llamado Número de Cliente, este Número de Cliente puede ser generado aleatoriamente por el sistema o puede ser ingresado como parte de los valores de la API.
 
@@ -24,7 +24,7 @@ Esta API permite la actualización de la información demográfica de un cliente
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Encuentre un número de cuenta
+## Encuentre un Número de Cuenta
 
 Esta API le permite a un tarjetahabiente conocer todos los números de cuenta de los productos de Crédito, Deuda, Prepago, Monedero, creados bajo el Número de Cliente, previamente creado con la API **Customer Add**.
 
@@ -90,6 +90,7 @@ El número de cliente adecuado se encuentra utilizando los servicios de navegaci
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
+---
 
 ## Ver también
 

@@ -10,7 +10,6 @@ Falcon les asigna una puntuación de cero a 999 a cada una de las transacciones 
 
 ![image](https://user-images.githubusercontent.com/111396588/208846621-4b1bd3c3-0355-48ff-a23a-0d6f313ec3d0.png)
 
-
 ---
 
 ## Ver también

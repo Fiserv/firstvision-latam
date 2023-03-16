@@ -34,6 +34,7 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 
 ![image](https://user-images.githubusercontent.com/111396588/224208900-25a90498-2011-4a85-96b0-9b5a8accab98.png)
 
+---
 
 ## Ver también
 
