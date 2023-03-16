@@ -24,7 +24,7 @@ Esta API permite la actualización de la información demográfica de un cliente
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Encuentre un número de cuenta
+## Encuentre un Número de Cuenta
 
 Esta API le permite a un tarjetahabiente conocer todos los números de cuenta de los productos de Crédito, Deuda, Prepago, Monedero, creados bajo el Número de Cliente, previamente creado con la API **Customer Add**.
 
