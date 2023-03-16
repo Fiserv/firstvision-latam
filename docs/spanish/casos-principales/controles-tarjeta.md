@@ -46,7 +46,7 @@ Los valores requeridos por la API son el número de tarjeta, código ISO del pa�
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Card Transfer Update
+## Actualizar Transferencia de Tarjeta
 
 Esta API permite que el tarjetahabiente bloquee su número de tarjeta actual y solicite una tarjeta nueva con un número de tarjeta diferente en un solo disparador. Al igual que API de bloqueo o desbloqueo de tarjetas, el número de tarjeta se puede bloquear en caso de que el tarjetahabiente crea que la información de la tarjeta esté comprometida y, al mismo tiempo, puede solicitar un número nuevo de tarjeta, por lo que la nueva tarjeta se grabará en relieve durante el proceso por lotes y estará lista para ser entregada al día siguiente.
 
