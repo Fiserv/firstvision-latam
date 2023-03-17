@@ -9,7 +9,7 @@ tags: [Release Notes, Enero, Febrero, Marzo]
 ### ¿Qué hay de nuevo?
 
 - Documentación en español.
-- Documentación en portugues.
+- Documentación en portugués.
 - Glosario API.
 
 ### Mejoras
