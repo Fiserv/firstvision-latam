@@ -2,7 +2,7 @@
 tags: [Começando, Postman, Tutorial]
 ---
 
-# Tutorial de teste do Postman
+# Tutorial de Teste do Postman
 
 Esta seção tem como objetivo demonstrar a configuração inicial que deve ser aplicada à coleção Postman, antes de fazer requisições às APIs Fiserv disponíveis.
 
