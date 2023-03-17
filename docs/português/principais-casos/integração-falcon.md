@@ -15,6 +15,7 @@ O Falcon atribui uma pontuação de zero a 999 para cada uma das transações qu
 ## Veja também
 
 - [Ambiente API](?path=docs/português/principais-casos/ambiente-api.md)
+- [Assinatura HMAC](?path=docs/português/principais-casos/hmac.md)
 - [Auditoria e Monitoramento](?path=docs/português/principais-casos/auditoria.md)
 - [Carregar Fundos](?path=docs/português/principais-casos/carregar-fundos.md)
 - [Controles de Cartão](?path=docs/português/principais-casos/controles-cartão.md)
@@ -22,7 +23,6 @@ O Falcon atribui uma pontuação de zero a 999 para cada uma das transações qu
 - [Gestão de Cartões](?path=docs/português/principais-casos/gestão-cartões.md)
 - [Gestão de Clientes](?path=docs/português/principais-casos/gestão-clientes.md)
 - [Gestão de Contas](?path=docs/português/principais-casos/gestão-contas.md)
-- [HMAC](?path=docs/português/principais-casos/hmac.md)
 - [Relacionamento Cliente-Conta-Cartão](?path=docs/português/principais-casos/relação.md)
 
 ---
