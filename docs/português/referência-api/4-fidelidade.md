@@ -1,8 +1,8 @@
 ---
-tags: [Referência da API, Lealdade]
+tags: [Referência da API, Fidelidade]
 ---
 
-# Lealdade
+# Fidelidade
 
 O programa Fidelidade trabalha para recompensar os clientes pela sua preferência. Os programas de fidelidade também são conhecidos como programa de recompensas ou programa de pontos.
 
