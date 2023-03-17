@@ -1,20 +1,21 @@
 ---
-tags: [Release Notes, Enero, Febrero, Marzo]
+tags: [Release Notes, Janeiro, Fevereiro, Março ]
 ---
 
 # Release Notes
 
-## Marzo 2023
+## Março 2023
 
-### ¿Qué hay de nuevo?
+### O que há de novo?
 
-- Documentación en español.
-- Glosario API.
+- Documentação em espanhol!
+- Documentação em português!
+- Glossário da API
 
-### Mejoras
+### Melhorias
 
-- Lista VMX actualizada agregando nombre de endpoint.
-- Casos Principales actualizados:
+- Lista VMX atualizada adicionando nome de endpoint.
+- Documentação atualizada de casos principais:
   - [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
   - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
   - [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
@@ -31,19 +32,21 @@ tags: [Release Notes, Enero, Febrero, Marzo]
   - [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
   - [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
   - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
-
+- Melhoria de descrição das APIs:
+  - /account/walletStatus versão L8V1
+  - /cards/details versão L8V1
+  - /account/transferP2P versão L8V2
 
 ### Problemas solucionados
 
-Endpoints se movieron a la versión 1.1.0:
-
+Endpoints movidos para a versão 1.1.0:
 - /account/balance
 - /account/transfer
 - /account/QR-balance
 - /account/QR-transfer
 - /account/FL-transferP2P
 
-### Deprecado
+### Descontinuado
 
 - /account/QRFL-balance
 - /cards/instant-card-L8V7
@@ -51,13 +54,11 @@ Endpoints se movieron a la versión 1.1.0:
 
 ---
 
+## Fevereiro 2023
 
-## Febrero 2023
+### O que há de novo?
 
-### ¿Qué hay de nuevo?
-
-Nuevas API's Tokenization
-
+Novas API de Tokenização:
 - /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/deviceBinding
 - /vtis/v1/getAvailableCards
 - /vtis/v1/getSelectedCards
@@ -66,7 +67,7 @@ Nuevas API's Tokenization
 - /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/lifecycle
 - /vtis/v1/checkEligibility
 
-### Mejoras
+### Melhorias
 
 N/A
 
@@ -74,28 +75,28 @@ N/A
 
 - N/A
 
-### Deprecado
+### Descontinuado
 
 - /account/card version R8V3
 
 ---
 
-## Enero 2023
+## Janeiro 2023
 
-### ¿Qué hay de nuevo?
+### O que há de novo?
 
-- Migración al nuevo portal.
+Migração para o novo portal
 
-### Mejoras
+### Melhorias
 
-- Códigos de error, manejo de errores y notificaciones.
+Códigos de erro, manipulação de erros e notificações.
 
 ### Problemas solucionados
 
 - N/A
 
-### Deprecado
+### Descontinuado
 
-- Portal anterior.
+Antigo portal.
 
 ---
