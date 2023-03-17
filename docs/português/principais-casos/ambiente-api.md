@@ -24,6 +24,7 @@ Com o uso de uma chave conhecida como API-KEY, que pode ser solicitada pelo Clie
 
 ## Veja também
 
+- [Assinatura HMAC](?path=docs/português/principais-casos/hmac.md)
 - [Auditoria e Monitoramento](?path=docs/português/principais-casos/auditoria.md)
 - [Carregar Fundos](?path=docs/português/principais-casos/carregar-fundos.md)
 - [Controles de Cartão](?path=docs/português/principais-casos/controles-cartão.md)
@@ -31,7 +32,6 @@ Com o uso de uma chave conhecida como API-KEY, que pode ser solicitada pelo Clie
 - [Gestão de Cartões](?path=docs/português/principais-casos/gestão-cartões.md)
 - [Gestão de Clientes](?path=docs/português/principais-casos/gestão-clientes.md)
 - [Gestão de Contas](?path=docs/português/principais-casos/gestão-contas.md)
-- [HMAC](?path=docs/português/principais-casos/hmac.md)
 - [Integração com o Sistema Falcon](?path=docs/português/principais-casos/integração-falcon.md)
 - [Relacionamento Cliente-Conta-Cartão](?path=docs/português/principais-casos/relação.md)
 
