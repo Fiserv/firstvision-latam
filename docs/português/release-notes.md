@@ -16,22 +16,17 @@ tags: [Release Notes, Janeiro, Fevereiro, Março ]
 
 - Lista VMX atualizada adicionando nome de endpoint.
 - Documentação atualizada de casos principais:
-  - [Ambiente de API](?path=docs/spanish/casos-principales/ambiente-api.md)
-  - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
-  - [Cambio de PIN](?path=docs/spanish/casos-principales/cambio-pin.md)
-  - [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md.md)
-  - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
-  - [CVV2 Dinámico](?path=docs/spanish/casos-principales/cvv-dinamico.md)
-  - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
-  - [Entrada/Salida de Efectivo](?path=docs/spanish/casos-principales/entrada-salida-efectivo.md.md)
-  - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
-  - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
-  - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
-  - [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
-  - [Integración con el sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
-  - [PAN Token](?path=docs/spanish/casos-principales/pan-token.md)
-  - [Registro de Tarjeta](?path=docs/spanish/casos-principales/registro.md)
-  - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
+  - [Ambiente API](?path=docs/português/principais-casos/ambiente-api.md)
+  - [Auditoria e Monitoramento](?path=docs/português/principais-casos/auditoria.md)
+  - [Carregar Fundos](?path=docs/português/principais-casos/carregar-fundos.md)
+  - [Controles de Cartão](?path=docs/português/principais-casos/controles-cartão.md)
+  - [Emissão de Cartões Digitais](?path=docs/português/principais-casos/emissão-cartões.md)
+  - [Gestão de Cartões](?path=docs/português/principais-casos/gestão-cartões.md)
+  - [Gestão de Clientes](?path=docs/português/principais-casos/gestão-clientes.md)
+  - [Gestão de Contas](?path=docs/português/principais-casos/gestão-contas.md)
+  - [HMAC](?path=docs/português/principais-casos/hmac.md)
+  - [Integração com o Sistema Falcon](?path=docs/português/principais-casos/integração-falcon.md)
+  - [Relacionamento Cliente-Conta-Cartão](?path=docs/português/principais-casos/relação.md)
 - Melhoria de descrição das APIs:
   - /account/walletStatus versão L8V1
   - /cards/details versão L8V1
