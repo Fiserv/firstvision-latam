@@ -38,6 +38,7 @@ description: Permite a gestão do instrumento de pagamento utilizado para realiz
 ## Veja também
 
 - [Ambiente API](?path=docs/português/principais-casos/ambiente-api.md)
+- [Assinatura HMAC](?path=docs/português/principais-casos/hmac.md)
 - [Auditoria e Monitoramento](?path=docs/português/principais-casos/auditoria.md)
 - [Carregar Fundos](?path=docs/português/principais-casos/carregar-fundos.md)
 - [Controles de Cartão](?path=docs/português/principais-casos/controles-cartão.md)
@@ -45,7 +46,6 @@ description: Permite a gestão do instrumento de pagamento utilizado para realiz
 - [Gestão de Cartões](?path=docs/português/principais-casos/gestão-cartões.md)
 - [Gestão de Clientes](?path=docs/português/principais-casos/gestão-clientes.md)
 - [Gestão de Contas](?path=docs/português/principais-casos/gestão-contas.md)
-- [HMAC](?path=docs/português/principais-casos/hmac.md)
 - [Integração com o Sistema Falcon](?path=docs/português/principais-casos/integração-falcon.md)
 
 ---
