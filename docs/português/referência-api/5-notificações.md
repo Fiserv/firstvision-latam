@@ -60,7 +60,7 @@ Para usar webhooks, o FirstVision pode enviar uma solicitação HTTP POST para u
 
 <!--
 type: tab
-titles: •	Autorização aprovada, •	Autorização recusada, •	Pagamento devido
+titles: Autorização aprovada, Autorização recusada, Pagamento devido
 -->
 
 ```json
@@ -191,7 +191,7 @@ type: tab
 
 <!--
 type: tab
-titles: Bloqueamento de cartão, •	Ativação do cartão, Mudança de endereço
+titles: Bloqueamento de cartão, Ativação do cartão, Mudança de endereço
 -->
 
 ```json
