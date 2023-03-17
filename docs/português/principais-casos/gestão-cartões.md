@@ -105,13 +105,13 @@ A descrição de cada campo da API está dentro das especificações definidas n
 ## Veja também
 
 - [Ambiente API](?path=docs/português/principais-casos/ambiente-api.md)
+- [Assinatura HMAC](?path=docs/português/principais-casos/hmac.md)
 - [Auditoria e Monitoramento](?path=docs/português/principais-casos/auditoria.md)
 - [Carregar Fundos](?path=docs/português/principais-casos/carregar-fundos.md)
 - [Controles de Cartão](?path=docs/português/principais-casos/controles-cartão.md)
 - [Emissão de Cartões Digitais](?path=docs/português/principais-casos/emissão-cartões.md)
 - [Gestão de Clientes](?path=docs/português/principais-casos/gestão-clientes.md)
 - [Gestão de Contas](?path=docs/português/principais-casos/gestão-contas.md)
-- [HMAC](?path=docs/português/principais-casos/hmac.md)
 - [Integração com o Sistema Falcon](?path=docs/português/principais-casos/integração-falcon.md)
 - [Relacionamento Cliente-Conta-Cartão](?path=docs/português/principais-casos/relação.md)
 
