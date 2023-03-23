@@ -1,0 +1,3829 @@
+openapi: 3.0.1
+info:
+  title: FirstVision™ Cards Service - API Documentation
+  description: This documentation describes the REST APIs provided by the FirstVision™ Cards Microservice for Ualá.
+  version: "1.2"
+servers:
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
+tags:
+- name: Embosser
+  description: Embosser
+- name: PIN
+  description: PIN
+- name: Card
+  description: Card
+paths:
+  /cards/travel:
+    put:
+      tags:
+      - Card
+      summary: "Update Travel Indicator Data. VMX Service: M.CMS.TRAVELIND.UPD, L8V1"
+      description: "Updates cardholder travel Indicator data (travel notice). \nVMX\
+        \ Service: M.CMS.TRAVELIND.UPD, L8V1"
+      operationId: Travel Indicator Update
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TravelUpdateRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "422":
+          description: |-
+            VPL5STV02E - ORG NOT FOUND
+            VPL5STV04S - CARD NUMBER NOT FOUND
+            VPL5STV06E - FOREIGN USE IND - NON VALID VALUES OTHER THAN ("0","1" & SPACES)
+            VPL5STVZ4S - ORG LOGO NOT FOUND
+            VPL5STVZ5S - REQUESTED ORGANIZATION NOT FOUND
+            VPL5STV14S - ORG REC NOT FOUND
+            VPL5STV15I - INCOMING ORG NOT FOUND AND ALSO NOT MATCHING WITH DUAL ORG
+            VPL5STV16S - ORG RECORD NOT FOUND OR ORG RECORD STATUS IS PENDING
+            VPL5STV18S - CARD NUMBER NOT FOUND OR ADD PENDING OR PURGED
+            VPL5STV19S - LOGO RECORD NOT FOUND OR ADD PENDING
+            VPL5STV20S - ALPHA COUNTRY NOT FOUND
+            VPL5STV08E - INVALID AMED TRAVEL START/END DATE FOR 1ST OCCURANCE
+            VPL5STV09E - INVALID AMED TRAVEL START/END DATE FOR 2ND OCCURANCE
+            VPL5STV10E - INVALID AMED TRAVEL START/END DATE FOR 3RD OCCURANCE
+            VPL5STV11E - INVALID AMED TRAVEL START/END DATE FOR 4TH OCCURANCE
+            VPL5STV12E - INVALID AMED TRAVEL START/END DATE FOR 5TH OCCURANCE
+            VPL5STV07E - VALID TRAVEL IND VALUES ARE 0,1,OR 2
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TravelUpdateResponse'
+      x-proxy-name: Travel Indicator Update
+      x-group-name: Card
+      x-child-product-name: Cards
+  /cards/pin/:
+    put:
+      tags:
+      - PIN
+      summary: "Update the PIN of a Card. VMX Service: M.CMS.PIN.REASSIGNMENT, R8V1"
+      description: "Updates the PIN offset field for PIN change requests, initiated\
+        \ from the card host system or from external channels. \nVMX Service: M.CMS.PIN.REASSIGNMENT,\
+        \ R8V1"
+      operationId: PIN Reassign
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PinReassignmentRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "422":
+          description: |
+            VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+            VPL5SPA04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
+            VPL5SPA05S - INVALID NEW PIN BLOCK VALUE
+            VPL5SPA06S - CHANNEL MUST BE GREATER THAN SPACES
+            VPL5SPA07S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
+            VPL5SPA09S - INVALID ACCOUNT STATUS, PIN CHANGED NOT ALLOWED
+            VPL5SPA10S - INVALID ACCOUNT TYPE, PIN CHANGED NOT ALLOWED
+            VPL5SPA11S - ACCOUNT BLOCKED, PIN CHANGED NOT ALLOWED
+            VPL5SPA12S - ACCOUNT DOES NOT HAVE ACTIVE CARDS, PIN CHANGED NOT ALLOWED
+            VPL5SPA13S - INVALID CARD STATUS, PIN CHANGED NOT ALLOWED
+            VPL5SPA14S - CARD BLOCKED, PIN CHANGED NOT ALLOWED
+            VPL5SPA15S - CARD IS NOT ACTIVATED, PIN CHANGED NOT ALLOWED
+            VPL5SPA16S - CARD IS EXPIRED, PIN CHANGED NOT ALLOWED
+            VPL5SPA17S - INVALID PIN KEY INDEX ON THE EMBOSSER
+            VPL5SPA18S - INVALID PIN OFFSET VALUE ON THE EMBOSSER
+            VPL5SPA19S - LOGO RECORD NOT FOUND ON FILE
+            VPL5SPA20S - INVALID PRODUCT TYPE
+            VPL5SPA25S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+            VPL5SPA26S - REQUESTED ORGANIZATION NOT FOUND
+            VPL5SPA27S - REQUESTED PIN NOT ALLOWED, KEY IN A DIFFERENT PIN
+            VPL5SPA28S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
+            VPL5SPA31S = INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+            VPL5SPA32S = CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+            VPL5SPA33S = REQUEST CARD NBR IS PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PinReassignmentResponse'
+      x-proxy-name: PIN Reassign
+      x-group-name: PIN
+      x-child-product-name: Cards
+  /cards/embosser/cardAction:
+    put:
+      tags:
+      - Embosser
+      summary: "Card Action Update. VMX Service: M.CMS.EMB.CARDACTION.UPD, R8V4"
+      description: "Enables a user to update the card action field on the embosser\
+        \ record with all possible user available actions. \nVMX Service: M.CMS.EMB.CARDACTION.UPD,\
+        \ R8V4"
+      operationId: cardActionUpdate
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbosserCardActionRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "422":
+          description: |-
+            VPL5SCP29S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
+            VPL5SPR01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+            VPL5SPR01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
+            VPL5SPR02E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
+            VPL5SPR02S - ORG NUMBER NOT FOUND
+            VPL5SPR03E - CARD SEQUENCE IS NOT NUMERIC
+            VPL5SPR03S - REQUEST FOR LOCAL ORG, BUT PASSED FOREIGN ORG
+            VPL5SPR04E - INVALID INPUT CARD ACTION - VALID VALUES ARE 0 TO 6
+            VPL5SPR04S - CARD NUMBER NOT FOUND
+            VPL5SPR05E - NUMBER OF CARDS REQUESTED IS NOT NUMERIC
+            VPL5SPR05S - ACCOUNT NUMBER NOT FOUND
+            VPL5SPR06E - NUMBER OF CARDS RETURNED IS NOT NUMERIC
+            VPL5SPR06S - LOGO NUMBER NOT FOUND
+            VPL5SPR07E - VALID BANCOLOMBIA REASON CODES ARE A/B/C/D/E/F/G/K & SPACES
+            VPL5SPR07S - ACTION OF '2' IS NOT ALLOWED FOR SMART CARD
+            VPL5SPR08S - ACTION OF '1' ALLOWED ONLY IF THE DATE LAST PLASTIC IS ZERO
+            VPL5SPR09S - INVALID ACTION,VALID ACTION IS '0' OR '1' WHEN DATE LAST PLASTIC IS ZERO
+            VPL5SPR10S - # CARD REQ MUST BE GREATER THAN ZERO FOR ACTION 1 OR 2 OR 3 OR 6
+            VPL5SPR11S - NBR OF CARD RETURNED MUST BE GREATER THAN ZERO WHEN ACTION OF '4'
+            VPL5SPR12S - NBR OF CRDS RETURNED CAN NOT BE GREATER THAN THE NBR OUTSTANDING
+            VPL5SPR13S - # CARD REQ CAN NOT BE GREATER THAN # OUTSTANDNG FOR ACTION 3 OR 6
+            VPL5SPR14S - CARD CANNOT BE REISSUED - SEQ OUT OF RANGE FOR SMART CARD
+            VPL5SPR15S - CANNOT REISSUE EMBOSSER WITH STATUS OF 'S' FOR SMART CARD
+            VPL5SPR16S - SMART CARD EMBOSSING RECORD NOT FOUND
+            VPL5SPR17S - CARD REQUESTED MUST BE ZERO WHEN ACTION 0 OR 4 OR 5
+            VPL5SPR18S - ONLY ACTION OF '4' ALLOWED NBR CARD RETURNED GREATER THAN ZERO
+            VPL5SPR19S - INVALID NUMBER REQUEST FOR SMART CARD, VALID VALUE IS'1'
+            VPL5SPR20S - SMART CARD PROGRAM NOT FOUND
+            VPL5SPR21S - INVALID SEQ NBR FOR CARD SCHEME '3' - VALID VALUE IS '0' OR '1'
+            VPL5SPR22S - SEQ NBR MUST BE GREATER THAN ZERO FOR CARD SCHEME 0 OR 1 OR 2
+            VPL5SPR23S - SDP REQUEST IS IN PROCESS, CARD ACTION CAN NOT BE UPDATED
+            VPL5SPR24E - INVALID PROCESS TYPE, VALID VALUES ARE 0,1,SPACES
+            VPL5SPR25E - SYSTEM RECORD NOT FOUND
+            VPL5SPR26E - SDP REQUEST NOT SUPPORTED BY LOGO
+            VPL5SPR27E - SDP REQUEST NOT SUPPORTED BY SYSTEM
+            VPL5SPR28S - SDP REQUEST CAN BE 0 OR 1 ONLY IF CARD ACTION IS 1 OR 3 OR 6
+            VPL5SPR29S - RANDOM PIN GEN CAN BE ACTIVE ONLY IF CARD ACTION IS 5
+            VPL5SPR30S - RANDOM PIN GEN SHOULD BE INACTIVE WHEN OFFLINE PIN IS 1
+            VPL5SPRZ5S - INVALID ORG
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbosserCardActionResponse'
+      x-proxy-name: Card Action Update
+      x-group-name: Embosser
+      x-child-product-name: Cards
+  /cards/embosser/block:
+    put:
+      tags:
+      - Embosser
+      summary: "Block or unblock Card. VMX Service: M.CMS.EMB.BLKCD.UPD, R8V1"
+      description: "Provides the ability to apply or remove a block code on a Card\
+        \ associated to an Account. \nVMX Service: M.CMS.EMB.BLKCD.UPD, R8V1"
+      operationId: Embosser Block Code Update
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardDetailsForEmbosserBlockRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "422":
+          description: |
+            VPL5SCB01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+            VPL5SCB01S - CARD NUMBER REQUIRED
+            VPL5SCB02E - CARD SEQUENCE MUST BE NUMERIC AND VALID VALUES ARE 0001 - 9998
+            VPL5SCB02S - ORGANIZATION NOT DETERMINED
+            VPL5SCB03E - BLOCK CODE MUST BE SPACE FOR UNBLOCK REQUEST
+            VPL5SCB03S - REQUESTED ORG NUMBER IS NOT FOUND
+            VPL5SCB04E - BLOCK CODE REQUIRED FOR UPDATE REQUEST
+            VPL5SCB04S - ORGANIZATION NUMBER NOT FOUND
+            VPL5SCB05E - INVALID FUNCTION CODE
+            VPL5SCB05S - CARD NUMBER NOT FOUND
+            VPL5SCB06E - BLOCK CODE MUST BE A CHARACTER A THROUGH Z
+            VPL5SCB06S - LOGO NUMBER NOT FOUND
+            VPL5SCB07S - UNBLOCK NOT ALLOWED AS BLOCK CODE HAS NOT BEEN UPDATED
+            VPL5SCB08S - CARD SEQUENCE NUMBER REQUIRED FOR THIS CARD SCHEME
+            VPL5SCB09S - EMBOSSER BLOCK CODE SERVICE IS NOT AVAILABLE FOR THIS CARD SCHEME
+            VPL5SCB10S - BLOCK CODE CANNOT BE REPLACED WITH A LOWER OR SAME PRIORITY
+            VPL5SCB11S - CARD NUMBER REQUIRED
+            VPL5SCB15S - CARD NUMBER NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
+      x-proxy-name: Embosser Block Code Update
+      x-group-name: Embosser
+      x-child-product-name: Cards
+  /cards/credit-limit:
+    put:
+      tags:
+      - Card
+      summary: "Update Credit Limit. VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1"
+      description: "Updates the credit limit amount of an Account. \nVMX Service:\
+        \ M.CMS.CREDITLIMIT.UPD, R8V1"
+      operationId: Credit Limit Update
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      - name: signonName
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditLimitUpdateRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "422":
+          description: |
+            VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
+            VPL5SCL04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
+            VPL5SCL05E - CREDIT LIMIT - DOES NOT CONFORM TO CURRENCY NOD
+            VPL5SCL06E - CREDIT LIMIT MUST BE NUMERIC
+            VPL5SCL07E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0 OR 1
+            VPL5SCL08I - CREDIT LIMIT UNCHANGED, UPDATE BYPASSED
+            VPL5SCL10S - ORGANIZATION NOT FOUND ON FILE
+            VPL5SCL11S - FOREIGN ORGANIZATION NOT FOUND ON FILE
+            VPL5SCL12S - ACCOUNT NOT FOUND ON FILE
+            VPL5SCL13S - RELATIONSHIP ACCOUNT NOT FOUND ON FILE
+            VPL5SCL14S - LOGO NOT FOUND ON FILE
+            VPL5SCL15E - CREDIT LIMIT INVALID FOR PREPAID/DEBIT ACCOUNT TYPES
+            VPL5SCL16E - CREDIT LIMIT INVALID FOR RELATIONSHIP SUB-ACCOUNT
+            VPL5SCL17E - CREDIT LIMIT CAN NOT EXCEED LOGO CREDIT LIMIT
+            VPL5SCL19E - CREDIT LIMIT EXCEEDS SECURED AMOUNT
+            VPL5SCL20E - CREDIT LIMIT CAN NOT EXCEED COMPANY NODE CREDIT AVAILABLE
+            VPL5SCL21E - CREDIT LIMIT CAN NOT EXCEED PARENT NODE CREDIT AVAILABLE
+            VPL5SCL23I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
+            VPL5SCL24E - CREDIT LIMIT SHOULD BE ZERO FOR FOREIGN ACCOUNT
+            VPL5SCL25E - CREDIT LIMIT CANNOT BE LESS THAN ACCT FLOOR LIMIT
+            VPL5SCL40E - DELQ AMT EXCEEDED FOR CREDIT LIMIT INCREASE
+            VPL5SCL41E - DELQ LVL EXCEEDED FOR CREDIT LIMIT INCREASE
+            VPL5SCL42E - ACCT BLOCKED FOR CREDIT LIMIT INCREASE
+            VPL5SCLZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+            VPL5SCLZ5S - REQUESTED ORGANIZATION NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditLimitUpdateResponse'
+      x-proxy-name: Credit Limit Update
+      x-group-name: Card
+      x-child-product-name: Cards
+  /cards/activation:
+    put:
+      tags:
+      - Card
+      summary: "Activate Card. VMX Service: M.CMS.CARDACTIVATION.UPD, R8V3"
+      description: "Updates Card activation service. \nVMX Service: M.CMS.CARDACTIVATION.UPD,\
+        \ R8V3"
+      operationId: Card Activation
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardActivationRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardActivationResponse'
+      x-proxy-name: Card Activation
+      x-group-name: Card
+      x-child-product-name: Cards
+  /cards/pin/security-codes:
+    post:
+      tags:
+      - PIN
+      summary: "Provides security values. VMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+      description: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
+        \ number. \nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+      operationId: Security Values Inquiry
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityCodeDetailsRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityCodeDetailsResponse'
+      x-proxy-name: Security Values Inquiry
+      x-group-name: PIN
+      x-child-product-name: Cards
+  /cards/embosser/details-L8VB:
+    post:
+      tags:
+      - Embosser
+      summary: "Data from the Embosser record. VMX Service: M.CMS.EMBOSSER.INQ, L8VB"
+      description: "Provides the embosser data from the embosser record (AMED) as\
+        \ displayed online on the ARME screens. \nVMX Service: M.CMS.EMBOSSER.INQ,\
+        \ L8VB"
+      operationId: embosserL8vbDetails
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbosserDetailsL8VBRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "422":
+          description: |
+            VPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
+            VPL5SCI02E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE/0/1
+            VPL5SCI03E - INPUT CARD NUMBER IS NOT NUMERIC
+            VPL5SCI04E - CARD SEQUENCE NUMBER IS NOT NUMERIC
+            VPL5SCI05S - REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND
+            VPL5SCI06S - LOGO RECORD NOT FOUND
+            VPL5SCI07S - ORGANIZATION RECORD NOT FOUND
+            VPL5SCI08S - FOREIGN ORGANIZATION RECORD NOT FOUND
+            VPL5SCI09S - EMBOSSER RECORD NOT FOUND
+            VPL5SCI11S - ACCOUNT NUMBER NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbosserDetailsL8VBResponse'
+      x-proxy-name: Data from the Embosser record
+      x-group-name: Embosser
+      x-child-product-name: Cards
+  /cards/embosser/card-pan-l8v2:
+    post:
+      tags:
+      - Embosser
+      summary: "Card or PAN Token Inquiry. VMX Service: M.CMS.CARD.PAN.INQ, L8V2.This\
+        \ API can be used only by PCI Compliant financial institutions and issuers."
+      description: "Inquiry Card number or PAN Token. \nVMX Service: M.CMS.CARD.PAN.INQ,\
+        \ L8V2"
+      operationId: Card Or PAN Token Inquiry
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardPanInquiryL8V2Request'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "422":
+          description: |
+            VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND
+            VPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
+            VPL5SCI03E - INPUT CARD NUMBER IS NOT NUMERIC
+            VPL5SCI04E - CARD SEQUENCE NUMBER IS NOT NUMERIC
+            VPL5SCI05S - REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND
+            VPL5SCI07S - ORG RECORD NOT FOUND
+            VPL5SCI09S - EMBOSSER RECORD NOT FOUND
+            VPL5SEA04E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+            VPL5SEA05E - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+            VPL5SEA16S - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+            VPL5SIE31S - ENC-FAILURE INVALID ORG
+            VPL5SIE32S - ENC-FAILURE INV LENGTH
+            VPL5SIE33S - ENC-FAILURE CALL FAILURE
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardPanInquiryL8V2Response'
+      x-proxy-name: Card Or PAN Token Inquiry
+      x-group-name: Embosser
+      x-child-product-name: Cards
+components:
+  schemas:
+    TravelUpdateRequest:
+      required:
+      - cardNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: AZXTII-ORG
+          format: int32
+          example: 807
+        cardNumber:
+          maxLength: 19
+          minLength: 12
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: AZXTII-CARD
+          example: 000540208ID5IXX3865
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Card Sequence.
+
+            VisionPLUS Service Data: AZXTII-SEQ
+          format: int32
+          example: 1
+        foreignUseIndicator:
+          type: string
+          description: |-
+            Length: 1
+
+            Foreign Use Indicator.
+
+            The values are:
+
+            Zero, space, low values = Local account
+
+            1 = Foreign account
+
+            VisionPLUS Service Data: AZXTII-FOREIGN-USE
+          example: "1"
+        travelIndicator:
+          type: integer
+          description: |-
+            Length: 1
+
+            Travel indicator.
+
+            VisionPLUS Service Data: AZXTII-TRAVEL-IND
+          format: int32
+          example: 1
+        travelIndicatorOccurrence:
+          type: integer
+          description: |-
+            Length: 2
+
+            Travel indicator occurrence.
+
+            VisionPLUS Service Data: AZXTII-TABLE-OCCURS
+          format: int32
+          example: 1
+        travel:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelUpdateRequest.Travel'
+      description: Update Travel Request
+    TravelUpdateRequest.Travel:
+      type: object
+      properties:
+        country:
+          type: string
+          description: |-
+            Length: 3
+
+            Country of travel.
+
+            VisionPLUS Service Data: AZXTII-TRAVEL-COUNTRY
+          example: ARG
+        startDate:
+          type: string
+          description: |-
+            Start date of travel.
+
+            VisionPLUS Service Data: AZXTII-TRAVEL-STRT-DT
+          format: date
+        endDate:
+          type: string
+          description: |-
+            End date of travel.
+
+            VisionPLUS Service Data: AZXTII-TRAVEL-END-DT
+          format: date
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    TravelUpdateResponse:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: AZXTIO-ORG
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: AZXTIO-CARD
+          example: 000540208ID5IXX3865
+    PinReassignmentRequest:
+      required:
+      - cardNumber
+      - channel
+      - keyAssociationNumber
+      - newPinBlock
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXPAI-ORG
+          format: int32
+          example: 807
+        cardNumber:
+          maxLength: 19
+          minLength: 12
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXPAI-CARD-NBR
+          example: 000540208ID5IXX3865
+        newPinBlock:
+          type: string
+          description: |-
+            Length: 16
+
+            New PIN encrypted under a zone PIN key.
+
+            VisionPLUS Service Data: ARXPAI-NEW-PIN-BLOCK
+          example: 702E2D0E979B9FFF
+        channel:
+          type: string
+          description: |-
+            Length: 1
+
+            Code that indicates the source for reporting purposes.
+
+            The values are:
+
+            A = ATM
+
+            B = Issuing Bank
+
+            C = Call Center
+
+            F = Fraud
+
+            I = Interactive Voice Response [IVR]
+
+            W = Web
+
+            VisionPLUS Service Data: ARXPAI-CHANNEL
+          example: W
+          enum:
+          - "A,B,C,F,I,W"
+        keyAssociationNumber:
+          type: string
+          description: |-
+            Length: 3
+
+            Association number that provides the information necessary for KMS to locate the working key shared between the issuer and the calling program.
+
+            VisionPLUS Service Data: ARXPAI-KEY-ASSOC
+          example: AV
+      description: PIN Reassignment Request
+    PinReassignmentResponse:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXPAO-CARD-NBR
+          example: 000540208ID5IXX3865
+    EmbossedCardActionRequest.UserData:
+      type: object
+      properties:
+        userDate:
+          type: string
+          description: |-
+            User Date.
+            VisionPLUS Service Data: ARXPRI-USER-DATE
+          format: date
+        userAmount:
+          type: number
+          description: |-
+            Length: 17
+            User Amount.
+            VisionPLUS Service Data: ARXPRI-USER-AMOUNT
+          example: 0
+        userCode:
+          type: integer
+          description: |-
+            Length: 20
+            User Code.
+            VisionPLUS Service Data: ARXPRI-USER-CODE
+          format: int32
+          example: 0
+    EmbosserCardActionRequest:
+      required:
+      - cardAction
+      - cardNumber
+      - cardSequence
+      - organizationNumber
+      - randomPin
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Organization .
+            VisionPLUS Service Data: ARXPRI-ORG
+          format: int32
+          example: 807
+          enum:
+          - null
+        cardNumber:
+          maxLength: 19
+          minLength: 12
+          type: string
+          description: |-
+            Length: 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: ARXPRI-CARD-NBR
+          example: 000540208ID5IXX3865
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+            Card Sequence.
+            VisionPLUS Service Data: ARXPRI-CARD-SEQ
+          format: int32
+          example: 1
+        cardAction:
+          type: integer
+          description: |-
+            Length: 1
+            Card action is the card issue action code that determines the action CMS performs during the next run of the Card Issue program.
+            The values are:
+            * 0 = No action. No cards requested.
+            * 1 = Issue new card(s). If applicable, also issue a PIN mailer. The numberCardsRequested field indicates the number of new cards to issue.
+            * 2 = Issue additional card(s). The numberCardsRequested field indicates the number of additional cards to issue. Value 2 is not valid for smart cards.
+            * 3 = Issue replacement card(s). The numberCardsRequested field indicates the number of replacement cards to issue
+            * 4 = Returned cards. The numberCardsReturned field indicates the number of cards to cancel.
+            * 5 = Produce a new PIN mailer.
+            * 6 = Issue emergency replacement card(s). Use this value if a card is lost or stolen and the replacement card is to be embossed and mailed within 24 hours. The numberCardsRequested field indicates the number of replacement cards to issue. If no value is entered in numberCardsRequested, CMS uses the numberCardsReturned value
+            * 7 = Reissue card. CMS automatically sets this system-generated value after running the Reissue Preview program
+            * 8 = Reissue card with different card numbering scheme (CNS). This system-generated value indicates that CMS will reissue the card and update the card numbering scheme of the account (CRD# SCM on ARMB01) from 1 (duplicate card numbers with unique record numbers) to 3 (unique card numbers)
+            * 9 = Card technology reissue. This system-generated value applies only to Embosser records in the local organization; this value does not appear on an Embosser record in a foreign organization.
+            VisionPLUS Service Data: ARXPRI-ACTION
+          format: int32
+          example: 6
+          enum:
+          - null
+        numberCardsRequested:
+          type: integer
+          description: |-
+            Length: 2
+            Number of Cards Requested.
+            VisionPLUS Service Data: ARXPRI-NBR-RET-CARDS
+          format: int32
+          example: 1
+        numberCardsReturned:
+          type: integer
+          description: |-
+            Length: 2
+            Number of Cards Returned.
+            VisionPLUS Service Data: ARXPRI-NBR-REQ-CARDS
+          format: int32
+          example: 0
+        randomPin:
+          type: integer
+          description: |-
+            Length: 1
+            Random PIN Generate.The values are:
+            * 0 = Do not generate new random PIN (default)
+            * 1 = Generate new random PIN
+            VisionPLUS Service Data: ARXPRI-RANDOM-PIN-GEN
+          format: int32
+          example: 0
+        userData:
+          $ref: '#/components/schemas/EmbossedCardActionRequest.UserData'
+        processingType:
+          type: string
+          description: |-
+            Length: 1
+            Processing Type.
+            VisionPLUS Service Data: ARXPRI-SDP-PROCESS-TYPE
+          example: "0"
+        cardActionReason:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: |-
+            Length: 1
+            Reason code associated with the card issue action codes.
+            VisionPLUS Service Data: ARXPRI-CARD-ACTION-REASON
+          example: "N"
+      description: Embosser Card Action Update Request
+    EmbosserCardActionResponse:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Organization number.
+            VisionPLUS Service Data: ARXPRO-ORG
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: ARXPRO-CARD-NBR
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+            Card sequence number.
+            VisionPLUS Service Data: ARXPRO-CARD-SEQ
+          format: int32
+        cardAction:
+          type: integer
+          description: |-
+            Length: 1
+            Card action.
+            VisionPLUS Service Data: ARXPRO-ACTION
+          format: int32
+        numberCardsRequested:
+          type: integer
+          description: |-
+            Length: 2
+            Number of cards requested.
+            VisionPLUS Service Data: ARXPRO-NBR-REQ-CARDS
+          format: int32
+        numberCardsReturned:
+          type: integer
+          description: |-
+            Length: 2
+            Number of cards returned.
+            VisionPLUS Service Data: ARXPRO-NBR-RET-CARDS
+          format: int32
+        randomPin:
+          type: integer
+          description: |-
+            Length: 1
+            Flag that indicates whether to generate a new random PIN for the existing card.
+            VisionPLUS Service Data: ARXPRO-RANDOM-PIN-GEN
+          format: int32
+        userData:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbosserCardActionResponse.UserData'
+    EmbosserCardActionResponse.UserData:
+      type: object
+      properties:
+        userDate:
+          type: string
+          description: |-
+            User amount filler.
+            VisionPLUS Service Data: ARXPRI-USER-AMOUNT
+          format: date
+        userAmount:
+          type: number
+          description: |-
+            Length: 17
+            User amount filler.
+            VisionPLUS Service Data: ARXPRI-USER-AMOUNT
+        userCode:
+          type: integer
+          description: |-
+            Length: 20
+            User code filler.
+            VisionPLUS Service Data: ARXPRI-USER-CODE
+          format: int32
+    CardDetailsForEmbosserBlockRequest:
+      required:
+      - blockCode
+      - cardNumber
+      - cardSequence
+      - functionCode
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: "Length: 3\nOrganization Number. \nVisionPLUS Service Data:\
+            \ ARXCBI-ORG"
+          format: int32
+          example: 807
+          enum:
+          - null
+        cardNumber:
+          maxLength: 19
+          minLength: 12
+          type: string
+          description: "Length: 19\nUnique identifier or token associated with the\
+            \ card number or payment instrument (FirstVision PAN Token). \nVisionPLUS\
+            \ Service Data: ARXCBI-CARD-NBR"
+          example: 000540208ID5IXX3865
+          enum:
+          - "range[12,19]"
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Card Sequence.
+            VisionPLUS Service Data: ARXCBI-CARD-SEQ
+          format: int32
+          example: 1
+        functionCode:
+          maxLength: 1
+          minLength: 1
+          type: string
+          description: |-
+            Length: 1
+
+            Function Code.
+
+            The Values Are:
+
+            B = Block
+
+            U = Unblock
+
+            VisionPLUS Service Data: ARXCBI-FUNCTION
+          example: U
+          enum:
+          - "B,U"
+        blockCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Block Code.
+
+            VisionPLUS Service Data: ARXCBI-BLOCK-CODE
+          example: Z
+        processingFlags:
+          $ref: '#/components/schemas/CardsDetailsForEmbosserBlockRequest.ProcessingFlags'
+      description: Card Embosser Block Request
+    CardsDetailsForEmbosserBlockRequest.ProcessingFlags:
+      type: object
+      properties:
+        processingFlag1:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 1.
+
+            VisionPLUS Service Data: ARXCBI-P-FLAG-1
+        processingFlag2:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 2.
+
+            VisionPLUS Service Data: ARXCBI-P-FLAG-2
+        processingFlag3:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 3.
+
+            VisionPLUS Service Data: ARXCBI-P-FLAG-3
+        processingFlag4:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 4.
+
+            VisionPLUS Service Data: ARXCBI-P-FLAG-4
+        processingFlag5:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 5.
+
+            VisionPLUS Service Data: ARXCBI-P-FLAG-5
+    CardsDetailsForEmbosserBlockResponse:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXCBO-ORG
+          format: int32
+        foreignOrg:
+          type: integer
+          description: |-
+            Length: 3
+
+            Foreign Organization.
+
+            VisionPLUS Service Data: ARXCBO-ORG-FRGN
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXCBO-CARD-NBR
+          example: 000540208ID5IXX3865
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Card Sequence.
+
+            VisionPLUS Service Data: ARXCBO-CARD-SEQ
+          format: int32
+        functionCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Function Code.
+
+            The values are:
+
+            B = Block
+
+            U = Unblock
+
+            VisionPLUS Service Data: ARXCBO-FUNCTION
+        blockCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Block Code.
+
+            VisionPLUS Service Data: ARXCBO-BLOCK-CODE
+        warningCode1:
+          type: string
+          description: |-
+            Length: 1
+
+            Warning Code 1.
+
+            VisionPLUS Service Data: ARXCBO-WARNING-CD-1
+        warningCode7:
+          type: string
+          description: |-
+            Length: 1
+
+            Warning Code 7.
+
+            VisionPLUS Service Data: ARXCBO-WARNING-CD-2
+        processingFlag1:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 1.
+
+            VisionPLUS Service Data: ARXCBO-P-FLAG-1
+        processingFlag2:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 2.
+
+            VisionPLUS Service Data: ARXCBO-P-FLAG-2
+        processingFlag3:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 3.
+
+            VisionPLUS Service Data: ARXCBO-P-FLAG-3
+        processingFlag4:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 4.
+
+            VisionPLUS Service Data: ARXCBO-P-FLAG-4
+        processingFlag5:
+          type: string
+          description: |-
+            Length: 1
+
+            Processing Flag 5.
+
+            VisionPLUS Service Data: ARXCBO-P-FLAG-5
+    CreditLimitUpdateRequest:
+      required:
+      - accountNumber
+      - creditLimit
+      - foreignUseIndicator
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXCLI-ORG
+          format: int32
+          example: 807
+        accountNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+
+            Account Number.
+
+            VisionPLUS Service Data: ARXCLI-ACCT-NBR
+          example: "4513074002573466583"
+        foreignUseIndicator:
+          type: string
+          description: |-
+            Length: 1
+
+            The FOREIGN USE indicator is provided in the input message so the
+            requesting source can specify whether the request applies to the local
+            or foreign account when the account is in a dual currency processing
+            organization. The default is to the local account.
+
+            VisionPLUS Service Data: ARXCLI-FOREIGN-USE
+          example: "1"
+        creditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Credit limit of the account in whole monetary units.
+
+            VisionPLUS Service Data: ARXCLI-CRLIM
+          example: 13000000
+        creditLimitBeforeUpdate:
+          type: number
+          description: |-
+            Length: 17
+
+            Current Credit Limit before update.
+
+            VisionPLUS Service Data: ARXCLI-CURR-CRLIM
+          example: 12000000
+      description: Credit Limit Update Request
+    CreditLimitUpdateResponse:
+      type: object
+      properties:
+        currencyData:
+          $ref: '#/components/schemas/CreditLimitUpdateResponse.CurrencyData'
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization.
+
+            VisionPLUS Service Data: ARXCLO-ORG
+          format: int32
+        foreignOrganization:
+          type: integer
+          description: |-
+            Length: 3
+
+            Foreign organization for dual currency.
+
+            VisionPLUS Service Data: ARXCLO-FOREIGN-ORG
+          format: int32
+        foreignUseIndicator:
+          type: string
+          description: |-
+            Length: 1
+
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
+
+            The default is to the local account.
+
+            VisionPLUS Service Data: ARXCLO-FOREIGN-USE
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+
+            Logo.
+
+            VisionPLUS Service Data: ARXCLO-LOGO
+          format: int32
+        accountNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Account number.
+
+            VisionPLUS Service Data: ARXCLO-ACCT-NBR
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXCLO-CARD-NBR
+          example: 000540208ID5IXX3865
+        creditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Credit limit.
+
+            VisionPLUS Service Data: ARXCLO-CRLIM
+        availableCredit:
+          type: number
+          description: "Length: 17 \n\nAvailable credit. \n\nVisionPLUS Service Data:\
+            \ AARXCLO-AVAIL-CREDIT"
+        foreignCreditLimit:
+          type: number
+          description: "Length: 17\n\nForeign Credit Limit. \n\nVisionPLUS Service\
+            \ Data: ARXCLO-CRLIM-FGN"
+    CreditLimitUpdateResponse.CurrencyData:
+      type: object
+      properties:
+        numberOfDecimals:
+          type: integer
+          description: |-
+            Length: 1
+
+            Number of decimal positions to the right of the decimal point (or other decimal character) in monetary amount fields.
+
+            VisionPLUS Service Data: ARXCLO-CURR-NOD
+          format: int32
+        isoCurrencyCode:
+          type: integer
+          description: |-
+            Length: 3
+
+            ISO currency code that identifies the unit of currency for monetary amount fields.
+
+            VisionPLUS Service Data: ARXCLO-CURR-CODE
+          format: int32
+    CardActivationRequest:
+      required:
+      - cardNumber
+      - serviceType
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXEAI-ORG
+          format: int32
+          example: 807
+        cardNumber:
+          maxLength: 19
+          minLength: 12
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXEAI-CARD-NBR
+          example: 000540208ID5IXX3865
+        serviceType:
+          type: string
+          description: |-
+            Length: 1
+
+            Service Type.
+
+            The values are:
+
+            A = Activate all cards for the account
+
+            S = Activate the specific embosser for the card number
+
+            T = Activate the specific embosser and update the embosser prior card activation flag to deactivate the prior card
+
+            U = Deactivate the previous card when the new card is created due to product transfer
+
+            VisionPLUS Service Data: ARXEAI-SVC-TYPE
+          example: A
+        userData:
+          type: string
+          description: |-
+            Length: 40
+
+            User Data.
+
+            VisionPLUS Service Data: ARXEAI-USER-DATA
+      description: Card Activation Request
+    CardActivationResponse:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: ARXEAO-ORG
+          format: int32
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+
+            Logo.
+
+            VisionPLUS Service Data: ARXEAO-LOGO
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXEAO-CARD-NBR
+          example: 000540208ID5IXX3865
+        serviceType:
+          type: string
+          description: |-
+            Length: 1
+
+            Service Type. The values are:
+
+            A = Activate all cards for the account
+
+            S = Activate the specific embosser for the card number
+
+            T = Activate the specific embosser and update the embosser prior card activation flag to deactivate the prior card
+
+            U = Deactivate the previous card when the new card is created due to product transfer
+
+            VisionPLUS Service Data: ARXEAO-SVC-TYPE
+        numberCardsActivated:
+          type: integer
+          description: |-
+            Length: 4
+
+            Number Cards Activated.
+
+            VisionPLUS Service Data: ARXEAO-NBR-CARDS-ACTIVATED
+          format: int32
+        foreignOrg:
+          type: integer
+          description: |-
+            Length: 3
+
+            Foreign Organization.
+
+            VisionPLUS Service Data: ARXEAO-FOREIGN-ORG
+          format: int32
+        numberForeignCardsActivated:
+          type: integer
+          description: |-
+            Length: 4
+
+            Number Foreign Cards Activated.
+
+            VisionPLUS Service Data: ARXEAO-NBR-FORGN-CRDACTIVATED
+          format: int32
+    SecurityCodeDetailsRequest:
+      required:
+      - cardNumber
+      - channel
+      - keyAssociation
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Organization Number.
+            VisionPLUS Service Data: ARXSVI-ORG
+          format: int32
+          example: 807
+        cardNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: ARXSVI-CARD-NBR
+          example: 000540208ID5IXX3865
+        channel:
+          maxLength: 1
+          minLength: 1
+          type: string
+          description: |-
+            Length: 1
+            Insurance status code. The values are:
+            * Space = Not used
+            * I = IVR
+            * A = ATM
+            * W = Web
+            VisionPLUS Service Data: ARXSVI-CHANNEL
+          example: I
+        keyAssociation:
+          maxLength: 3
+          minLength: 1
+          type: string
+          description: "Length: 3\n\nKey Association. \"I\" + \"the key association\
+            \ defined for the customer during the implementation to the field keyAssociation.\"\
+            \ \n\nVisionPLUS Service Data: ARXSVI-KEY-ASSOC"
+          example: IYY
+      description: Security Code Details Request
+    SecurityCodeDetailsResponse:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: ARXSVO-ACCT-NBR
+          example: 000540208ID5IXX3865
+        ud1ec:
+          type: string
+          description: |-
+            Length: 16
+            Encrypted CVV OR CVC OR 3CSC value.
+            VisionPLUS Service Data: ARXSVO-UD1-ENCRYPT
+          example: 840B12345A690FBCA
+        ud2ec:
+          type: string
+          description: |-
+            Length: 16
+            Encrypted CVV2 OR CVC2 OR 4CSC value.
+            VisionPLUS Service Data: ARXSVO-UD2-ENCRYPT
+          example: 840B12345A690FBCA
+        ud3ec:
+          type: string
+          description: |
+            Length: 16
+            Encrypted iCVV OR iCVC OR iCSC value.
+            VisionPLUS Service Data: ARXSVO-UD3-ENCRYPT
+          example: 840B12345A690FBCA
+        pinEncrypt:
+          type: string
+          description: |-
+            Length: 9
+            Encrypted pin block.
+            VisionPLUS Service Data: ARXSVO-PIN-ENCRYPT
+          example: 840B12345
+        encrypt3csc:
+          type: string
+          description: |-
+            Length: 9
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-3CSC-ENCRYPT
+          example: 840B12345
+        encrypt4csc:
+          type: string
+          description: |-
+            Length: 9
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-4CSC-ENCRYPT
+          example: 840B12345
+        encrypt5csc:
+          type: string
+          description: |-
+            Length: 17
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-5CSC-ENCRYPT
+          example: 840B12345A690FBCAC
+        encrypt5cscCntls:
+          type: string
+          description: |-
+            Length: 17
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-5CSC-CNTLS-ENCRYPT
+          example: 840B12345A690FBCAC
+        icsc:
+          type: string
+          description: |-
+            Length: 17
+            Encrypted Security values for AMEX.
+            VisionPLUS Service Data: ARXSVO-ICSC-ENCRYPT
+          example: 840B12345A690FBCAC
+    EmbosserDetailsL8VBRequest:
+      required:
+      - cardNumber
+      - cardSequence
+      - foreignUse
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Organization Number.
+            VisionPLUS Service Data: AZXCII-ORG
+          format: int32
+          example: 807
+          enum:
+          - null
+        cardNumber:
+          maxLength: 19
+          minLength: 12
+          type: string
+          description: |-
+            Length: 19
+            Card Number.
+            VisionPLUS Service Data: AZXCII-CARD
+          example: "0004513070406598974"
+          enum:
+          - "range[12,19]"
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+            Card sequence.
+            VisionPLUS Service Data: AZXCII-SEQ
+          format: int32
+          example: 1
+        foreignUse:
+          type: string
+          description: |-
+            Length: 1
+            Foreign Use.
+            VisionPLUS Service Data: AZXCII-FOREIGN-USE
+          example: "1"
+      description: Card Embosser Block Request
+    EmbosserDetailsInquiryResponse.CardInformationData.AssignedSpendLimits:
+      type: object
+      properties:
+        spendingLimit:
+          type: integer
+          description: |-
+            Spending Limit.
+            VisionPLUS Service Data: AZXCIO-MAX
+          format: int64
+        transactionAllowed:
+          type: integer
+          description: |-
+            Transaction Allowed.
+            VisionPLUS Service Data: AZXCIO-NBR
+          format: int32
+        frequencyCommercialCard:
+          type: integer
+          description: |-
+            Frequency Commercial Card.
+            VisionPLUS Service Data: AZXCIO-FREQ
+          format: int32
+    EmbosserDetailsInquiryResponse.CustomUserData:
+      type: object
+      properties:
+        falconMarking:
+          type: string
+          description: |-
+            Falcon Marking.
+            VisionPLUS Service Data: AZXCIO-FLC-MARK
+        falconMarkingStartDate:
+          type: string
+          description: |-
+            Falcon Marking Start Date.
+            VisionPLUS Service Data: AZXCIO-FLC-MARK-ST-DATE
+          format: date
+        falconMarkingEndDate:
+          type: string
+          description: |-
+            Falcon Marking End Date.
+            VisionPLUS Service Data: AZXCIO-FLC-MARK-END-DATE
+          format: date
+        spendLimitsStatus:
+          type: string
+          description: |-
+            Spend Limits Status.
+            VisionPLUS Service Data: AZXCIO-SPEND-LIMITS-STATUS
+        retailPercentDaily:
+          type: integer
+          description: |-
+            Retail Percent Daily.
+            VisionPLUS Service Data: AZXCIO-RETAIL-PERCENT-DAILY
+          format: int32
+        retailPercentMonthToDate:
+          type: integer
+          description: |-
+            Retail Percent Month To Date.
+            VisionPLUS Service Data: AZXCIO-RETAIL-PERCENT-MTD
+          format: int32
+        retailPercentYearToDate:
+          type: integer
+          description: |-
+            Retail Percent Year To Date.
+            VisionPLUS Service Data: AZXCIO-RETAIL-PERCENT-YTD
+          format: int32
+        retailAmountDaily:
+          type: number
+          description: |-
+            Retail Amount Daily.
+            VisionPLUS Service Data: AZXCIO-RETAIL-AMOUNT-DAILY
+        retailAmountMonthToDate:
+          type: number
+          description: |-
+            Retail Amount Month To Date.
+            VisionPLUS Service Data: AZXCIO-RETAIL-AMOUNT-MTD
+        retailAmountYearToDate:
+          type: number
+          description: |-
+            Retail Amount Year To Date.
+            VisionPLUS Service Data: AZXCIO-RETAIL-AMOUNT-YTD
+        cashPercentDaily:
+          type: integer
+          description: |-
+            Cash Percent Daily.
+            VisionPLUS Service Data: AZXCIO-CASH-PERCENT-DAILY
+          format: int32
+        cashPercentMonthToDay:
+          type: integer
+          description: |-
+            Cash Percent Month To Day.
+            VisionPLUS Service Data: AZXCIO-CASH-PERCENT-MTD
+          format: int32
+        cashPercentYearToDay:
+          type: integer
+          description: |-
+            Cash Percent Year To Day.
+            VisionPLUS Service Data: AZXCIO-CASH-PERCENT-YTD
+          format: int32
+        cashAmountDaily:
+          type: number
+          description: |-
+            Cash Amount Daily.
+            VisionPLUS Service Data: AZXCIO-CASH-AMOUNT-DAILY
+        cashAmountMonthToDate:
+          type: number
+          description: |-
+            Cash Amount Month To Date.
+            VisionPLUS Service Data: AZXCIO-CASH-AMOUNT-MTD
+        cashAmountYearToDate:
+          type: number
+          description: |-
+            Cash Amount Year To Date.
+            VisionPLUS Service Data: AZXCIO-CASH-AMOUNT-YTD.
+        cashPostedTodayNumber:
+          type: number
+          description: |-
+            Cash Posted Today Number.
+            VisionPLUS Service Data: AZXCIO-CASH-POSTED-TODAYNBR
+        cashPostedMonthToDateNumber:
+          type: number
+          description: |-
+            Cash Posted Month To Date Number.
+            VisionPLUS Service Data: AZXCIO-CASH-POSTED-MTD-NBR
+        cashPostedYearToDateNumber:
+          type: number
+          description: |-
+            Cash Posted Year To Date Number.
+            VisionPLUS Service Data: AZXCIO-CASH-POSTED-YTD-NBR
+        cashPostedTodayAmount:
+          type: number
+          description: |-
+            Cash Posted Today Amount.
+            VisionPLUS Service Data: AZXCIO-CASH-POSTED-TODAYAMT
+        cashPostedMonthToDateAmount:
+          type: number
+          description: |-
+            Cash Posted Month To Date Amount.
+            VisionPLUS Service Data: AZXCIO-CASH-POSTED-MTD-AMT
+        cashPostedYearToDateAmount:
+          type: number
+          description: |-
+            Cash Posted Year To Date Amount.
+            VisionPLUS Service Data: AZXCIO-CASH-POSTED-YTD-AMT
+        cashDeclineTodayNumber:
+          type: number
+          description: |-
+            Cash Decline Today Number.
+            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-TODAYNBR
+        cashDeclineMonthToDayNumber:
+          type: number
+          description: |-
+            Cash Decline Month To Day Number.
+            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-MTD-NBR
+        cashDeclineYearToDayNumber:
+          type: number
+          description: |-
+            Cash Decline Year To Day Number.
+            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-YTD-NBR
+        cashDeclineTodayAmount:
+          type: number
+          description: |-
+            Cash Decline Today Amount.
+            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-TODAYAMT
+        cashDeclineMonthToDayAmount:
+          type: number
+          description: Cash Decline Month To Day Amount.
+        cashDeclineYearToDayAmount:
+          type: number
+          description: |-
+            Cash Decline Year To Day Amount.
+            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-YTD-AMT
+        retailPostedTodayNumber:
+          type: number
+          description: |-
+            Retail Posted Today Number.
+            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-TODAYNBR
+        retailPostedMonthToDayNumber:
+          type: number
+          description: |-
+            Retail Posted Month To Day Number.
+            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-MTDNBR
+        retailPostedYearToDayNumber:
+          type: number
+          description: |-
+            Retail Posted Year To Day Number.
+            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-YTDNBR
+        retailPostedTodayAmount:
+          type: number
+          description: |-
+            Retail Posted Today Amount.
+            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-TODAYAMT
+        retailPostedMonthToDayAmount:
+          type: number
+          description: |-
+            Retail Posted Month To Day Amount.
+            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-MTDAMT
+        retailPostedYearToDayAmount:
+          type: number
+          description: |-
+            Retail Posted Year To Day Amount.
+            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-YTDAMT
+        retailDeclineTodayNumber:
+          type: number
+          description: |-
+            Retail Decline Today Number.
+            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-TODAYNBR
+        retailDeclineMonthToDayNumber:
+          type: number
+          description: |-
+            Retail Decline Month To Day Number.
+            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-MTDNBR
+        retailDeclineYearToDayNumber:
+          type: number
+          description: |-
+            Retail Decline Year To Day Number.
+            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-YTDNBR
+        retailDeclineToday:
+          type: number
+          description: |-
+            Retail Decline Today.
+            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-TODAYAMT
+        retailDeclineMountToDayAmount:
+          type: number
+          description: |-
+            Retail Decline Month To Day Amount.
+            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-MTDAMT
+        retailDeclineYearToDayAmount:
+          type: number
+          description: |-
+            Retail Decline Year To Day Amount.
+            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-YTDAMT
+    EmbosserDetailsL8V8Response.AuthorizationData:
+      type: object
+      properties:
+        retailAmount:
+          type: string
+          description: "Length: 17\n\nMaximum amount in monetary units and subunits\
+            \ of retail authorizations allowed for \nthis Embosser record for the\
+            \ frequency defined in the FREQ field.\n\nVisionPLUS Service Data: AZXCIO-AUTH-RTL-AMT"
+        retailNumber:
+          type: number
+          description: "Length: 9\n\nMaximum number of retail authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-AUTH-RTL-NBR"
+        automatedTellerMachineCashAutomatedTellerMachine:
+          type: string
+          description: "Length: 17\n\nMaximum amount of ATM cash authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-AMT"
+        automatedTellerMachineCashNumber:
+          type: number
+          description: "Length: 9\n\nMaximum number of ATM cash authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-NBR"
+        overTheCounterAmount:
+          type: string
+          description: "Length: 17\n\nMaximum amount in monetary units and subunits\
+            \ of OTC cash authorizations allowed \nfor this Embosser record for the\
+            \ frequency defined in the FREQ field.\n\nVisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-AMT"
+        overTheCounterCashNumber:
+          type: number
+          description: "Length: 9\n\nMaximum number of OTC authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-NBR"
+        automatedTellerMachineCashSingleTransaction:
+          type: string
+          description: |-
+            Length: 17
+
+            Maximum authorization amount in monetary units and subunits of a single ATM transaction allowed for this Embosser record for the frequency defined in the FREQ field.
+
+            VisionPLUS Service Data: AZXCIO--AUTH-ATM-CASH-SNGL-TXN
+        overTheCounterCashSingleTransaction:
+          type: string
+          description: |-
+            Length: 17
+
+            Maximum authorization amount in monetary units and subunits of a single OTC cash
+            transaction allowed for this Embosser record for the frequency defined in the FREQ
+            field.
+
+            VisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-SNGL-TXN
+        retailSingleTransaction:
+          type: string
+          description: "Length: 17\n\nMaximum authorization amount in monetary units\
+            \ and subunits of a single retail \ntransaction allowed for this Embosser\
+            \ record for the frequency defined in the FREQ\nfield.\n\nVisionPLUS Service\
+            \ Data: AZXCIO-AUTH-RTL-SNGL-TXN"
+        globalSpendingLimitNumber:
+          type: string
+          description: |-
+            Length: 9
+
+            Global spending limit number.
+
+            VisionPLUS Service Data: AZXCIO-AUTH-GLBSPL-NBR
+        globalSpendingLimitAmount:
+          type: string
+          description: |-
+            Length: 17
+
+            Global spending limit amount.
+
+            VisionPLUS Service Data: AZXCIO-AUTH-GLBSPL-AMT
+        globalSpendingLimitForSingleTransaction:
+          type: string
+          description: |-
+            Length: 17
+
+            Global spending limit for a single transaction.
+
+            VisionPLUS Service Data: AZXCIO-AUTH-GLBSPL-SNGL-TXN
+    EmbosserDetailsL8V8Response.CardInformationData:
+      type: object
+      properties:
+        codeIdentificationNumberSpendingLimits:
+          type: string
+          description: |-
+            Length: 2
+
+            Code that identifies each of the commercial card spending categories.
+
+            VisionPLUS Service Data: AZXCIO-CRD-SP
+        assignedSpendLimits:
+          $ref: '#/components/schemas/EmbosserDetailsInquiryResponse.CardInformationData.AssignedSpendLimits'
+    EmbosserDetailsL8V8Response.InternetPurchaseAmountData:
+      type: object
+      properties:
+        today:
+          type: number
+          description: |-
+            Length: 17
+
+            Total amount of internet transactions for this card today.
+
+            VisionPLUS Service Data: AZXCIO-
+        cycleToDate:
+          type: number
+          description: |-
+            Length: 17
+
+            Total amount of internet transactions for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO-INET-PUR-AMT-CTD
+        yearToDate:
+          type: number
+          description: |-
+            Length: 17
+
+            Total amount of internet transactions for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-INET-PUR-AMT-YTD
+        lifeToDate:
+          type: number
+          description: |-
+            Length: 17
+
+            Total amount of internet transactions for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-INET-PUR-AMT-LTD
+    EmbosserDetailsL8V8Response.InternetPurchaseData:
+      type: object
+      properties:
+        purchaseNumber:
+          type: number
+          description: "Length: 9\n\nMaximum number of internet authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-INET-PUR-NBR"
+        purchaseAmount:
+          type: string
+          description: "Length: 17\n\nMaximum amount in monetary units and subunits\
+            \ of internet cash authorizations \nallowed for this Embosser record for\
+            \ the frequency defined in the FREQ field.\n\nVisionPLUS Service Data:\
+            \ AZXCIO-INET-PUR-AMT"
+        purchaseSingleTransactionLimit:
+          type: string
+          description: "Length: 13\n\nMaximum authorization amount in monetary units\
+            \ and subunits of a single internet \ntransaction allowed for this Embosser\
+            \ record for the frequency defined in the FREQ\nfield.\n\nVisionPLUS Service\
+            \ Data: AZXCIO-INET-PUR-SNGL-TXN"
+    EmbosserDetailsL8V8Response.InternetPurchaseNumberData:
+      type: object
+      properties:
+        today:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of internet transactions for this card today.
+
+            VisionPLUS Service Data: AZXCIO-INET-PUR-NBR-TODAY
+          format: int32
+        cycleToDate:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of internet transactions for this card cycle-to-date
+            .
+
+            VisionPLUS Service Data: AZXCIO-INET-PUR-NBR-CTD
+          format: int32
+        yearToDate:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of internet transactions for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-INET-PUR-NBR-YTD
+          format: int32
+        lifeToDate:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of internet transactions for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-INET-PUR-NBR-LTD
+          format: int32
+    EmbosserDetailsL8V8Response.PrepaidLimits:
+      type: object
+      properties:
+        spendAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Amount of the spending limit prepayment transaction that resulted in a temporary
+            increase in the spending limit for the cardholder.
+
+            VisionPLUS Service Data: AZXCIO-PREPAY-SPND-AMT
+        spendAvailable:
+          type: integer
+          description: |-
+            Length: 17
+
+            Current amount of the temporary increase in the spending limit for this cardholder as a
+            result of a spending limit prepayment transaction.
+
+            VisionPLUS Service Data: AZXCIO-PREPAY-SPND-AVAIL
+          format: int32
+        spendExpirationDate:
+          type: string
+          description: |-
+            Date on which the temporary increase in the spending limit expires for this cardholder.
+
+            VisionPLUS Service Data: AZXCIO-PREPAY-SPND-EXP-DTE
+          format: date
+    EmbosserDetailsL8V8Response.RetailAmountData:
+      type: object
+      properties:
+        today:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of retail transactions for this card today.
+
+            VisionPLUS Service Data: AZXCIO-RTL-DLY-AUTH-AMT-ACCUM
+        cycleToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of retail transactions for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO-RTL-CTD-AUTH-AMT-ACCUM
+        yearToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of retail transactions for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-RTL-YTD-AUTH-AMT-ACCUM
+        lifeToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of retail transactions for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-RTL-LTD-AUTH-AMT-ACCUM
+    EmbosserDetailsL8V8Response.RetailNumberData:
+      type: object
+      properties:
+        today:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of retail transactions for this card today.
+
+            VisionPLUS Service Data: AZXCIO-RTL-DLY-AUTH-NBR-ACCUM
+          format: int32
+        cycleToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of retail transactions for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO--RTL-CTD-AUTH-NBR-ACCUM
+          format: int32
+        yearToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of retail transactions for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-RTL-YTD-AUTH-NBR-ACCUM
+          format: int32
+        lifeToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of retail transactions for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-RTL-LTD-AUTH-NBR-ACCUM
+          format: int32
+    EmbosserDetailsL8V8Response.SpendingLimitsData:
+      type: object
+      properties:
+        totalDailyAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this card today.
+
+            VisionPLUS Service Data: AZXCIO-SLS-DAILY-AMT
+        totalDailyNumber:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card today.
+
+            VisionPLUS Service Data: AZXCIO-SLS-DAILY-NBR
+          format: int32
+        totalWeekToDateAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this card week-to-date (Sunday through Saturday).
+
+            VisionPLUS Service Data: AZXCIO-SLS-WTD-AMT
+        totalWeekToDateNumber:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card week-to-date
+            (Sunday through Saturday).
+
+            VisionPLUS Service Data: AZXCIO-SLS-WTD-NBR
+          format: int32
+        totalCycleToDateAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO-SLS-CTD-AMT
+        totalCycleToDateNumber:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO-SLS-CTD-NBR
+          format: int32
+        totalYearToDateAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-SLS-YTD-AMT
+        totalYearToDateNumber:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-SLS-YTD-NBR
+          format: int32
+        totalLifeToDateAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-SLS-LTD-AMT
+        totalLifeToDateNumber:
+          type: integer
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-SLS-LTD-NBR
+          format: int32
+    EmbosserDetailsL8V8Response.TravelData:
+      type: object
+      properties:
+        travelCountry:
+          type: string
+          description: |-
+            Length: 3
+
+            Country code of the foreign country associated with each trip.
+
+            VisionPLUS Service Data: AZXCIO-TRAVEL-COUNTRY
+        travelStartDt:
+          type: string
+          description: |-
+            Start date of the first five trips. You can enter the dates of these trips and not the past
+            trip details. The format is CCYY-MM-DD.
+
+            VisionPLUS Service Data: AZXCIO-TRAVEL-STRT-DT
+        travelEndDt:
+          type: string
+          description: |-
+            End dates of the corresponding trips for which start dates were entered. You cannot
+            enter details of the past trips or the end dates cannot be earlier than the start date
+            mentioned in the START DATE field. The format is CCYY-MM-DD.
+
+            VisionPLUS Service Data: AZXCIO-TRAVEL-END-DT
+      description: Travel Data
+    EmbosserDetailsL8V8Response.UseAutomatedTellerMachineCashAmountData:
+      type: object
+      properties:
+        today:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of ATM cash transactions for this card today.
+
+            VisionPLUS Service Data: AZXCIO-ATM-DLY-AUTH-AMT-ACCUM
+        cycleToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of ATM cash transactions for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO-ATM-CTD-AUTH-AMT-ACCUM
+        yearToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of ATM cash transactions for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-ATM-YTD-AUTH-AMT-ACCUM
+        lifeToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of ATM cash transactions for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-ATM-LTD-AUTH-AMT-ACCUM
+    EmbosserDetailsL8V8Response.UseAutomatedTellerMachineCashNumberData:
+      type: object
+      properties:
+        today:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of ATM cash transactions for this card today.
+
+            VisionPLUS Service Data: AZXCIO-ATM-DLY-AUTH-NBR-ACCUM
+          format: int32
+        cycleToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of ATM cash transactions for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO-ATM-CTD-AUTH-NBR-ACCUM
+          format: int32
+        yearToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of ATM cash transactions for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO--ATM-YTD-AUTH-NBR-ACCUM
+          format: int32
+        lifeToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of ATM cash transactions for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-ATM-LTD-AUTH-NBR-ACCUM
+          format: int32
+    EmbosserDetailsL8V8Response.UseOverTheCounterCashAmountData:
+      type: object
+      properties:
+        today:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of OTC cash transactions for this card today.
+
+            VisionPLUS Service Data: AZXCIO-OTC-DLY-AUTH-AMT-ACCUM
+        cycleToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of OTC cash transactions for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO-OTC-CTD-AUTH-AMT-ACCUM
+        yearToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of OTC cash transactions for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-OTC-YTD-AUTH-AMT-ACCUM
+        lifeToDate:
+          type: number
+          description: |-
+            Length: 11
+
+            Total amount of OTC cash transactions for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-OTC-LTD-AUTH-AMT-ACCUM
+    EmbosserDetailsL8V8Response.UseOverTheCounterCashNumberData:
+      type: object
+      properties:
+        today:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of OTC cash transactions for this card today.
+
+            VisionPLUS Service Data: AZXCIO-OTC-DLY-AUTH-NBR-ACCUM
+          format: int32
+        cycleToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of OTC cash transactions for this card cycle-to-date.
+
+            VisionPLUS Service Data: AZXCIO-OTC-CTD-AUTH-NBR-ACCUM
+          format: int32
+        yearToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of OTC cash transactions for this card year-to-date.
+
+            VisionPLUS Service Data: AZXCIO-OTC-YTD-AUTH-NBR-ACCUM
+          format: int32
+        lifeToDate:
+          type: integer
+          description: |-
+            Length: 4
+
+            Total number of OTC cash transactions for this card life-to-date.
+
+            VisionPLUS Service Data: AZXCIO-OTC-LTD-AUTH-NBR-ACCUM
+          format: int32
+    EmbosserDetailsL8V8Response.UserData:
+      type: object
+      properties:
+        user1:
+          type: string
+          description: |-
+            Length: 20
+
+            User-defined code 1 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-1
+        user2:
+          type: string
+          description: |-
+            Length: 20
+
+            User-defined code 2 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-2
+        user3:
+          type: string
+          description: |-
+            Length: 19
+
+            User-defined code 3 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-3
+        user4:
+          type: integer
+          description: |-
+            Length: 4
+
+            User-defined code 4 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-4
+          format: int32
+        user5:
+          type: string
+          description: |-
+            Length: 1
+
+            User-defined code 5 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-5
+        user6:
+          type: string
+          description: |-
+            Length: 1
+
+            User-defined code 6 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-6
+        user7:
+          type: string
+          description: |-
+            Length: 1
+
+            User-defined code 7 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-7
+        user8:
+          type: string
+          description: |-
+            Length: 1
+
+            User-defined code 8 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-8
+        userData1:
+          type: string
+          description: |-
+            User-defined date 1 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-DATE-1
+          format: date
+        userData2:
+          type: string
+          description: |-
+            User-defined date 2 for the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-USER-DATE-2
+          format: date
+    EmbosserDetailsL8VBResponse:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization.
+
+            VisionPLUS Service Data: AZXCIO-ORG
+          format: int32
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+
+            Logo.
+
+            VisionPLUS Service Data: AZXCIO-LOGO
+          format: int32
+        foreignUse:
+          type: integer
+          description: |-
+            Length: 1
+
+            The FOREIGN USE indicator is provided in the input message so the requesting
+            source can specify whether the request applies to the local or foreign account when
+            the account is in a dual currency processing organization.
+
+            The default is to the local account.
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Card number.
+
+            VisionPLUS Service Data: AZXCIO-CARD
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Card sequence.
+
+            VisionPLUS Service Data: AZXCIO-SEQ
+          format: int32
+        cardTechnology:
+          type: integer
+          description: |-
+            Length: 1
+
+            Card technology.
+
+            VisionPLUS Service Data: AZXCIO-CARD-TECHNOLOGY
+          format: int32
+        postToAccount:
+          type: string
+          description: |-
+            Length: 19
+
+            Post-to account.
+
+            VisionPLUS Service Data: AZXCIO-POST-TO-ACCT
+        fraud:
+          type: string
+          description: |-
+            Length: 19
+
+            Number of the fraud account to which this Embosser record was transferred.
+
+            VisionPLUS Service Data: AZXCIO-FRAUD
+        prepaidIndicator:
+          type: integer
+          description: |-
+            Length: 1
+
+             Prepaid indicator.
+
+            VisionPLUS Service Data: AZXCIO-PREPAID-FLAG
+          format: int32
+        statusCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Embosser record status.
+
+            VisionPLUS Service Data: AZXCIO-STATUS-CODE
+        dateStatus:
+          type: string
+          description: |-
+            Date on which the status was last changed.
+
+            VisionPLUS Service Data: AZXCIO-DATE-STATUS
+        statusSecureId:
+          type: string
+          description: |-
+            Length: 3
+
+            Operator ID of the person who changed the status.
+
+            VisionPLUS Service Data: AZXCIO-STATUS-SECURE-ID
+        fraudEffectiveDate:
+          type: string
+          description: |-
+            Date that a fraud card transfer for this embosser became effective.
+
+            VisionPLUS Service Data: AZXCIO-FRAUD-EFFE-DATE
+          format: date
+        embosserRecordReplacement:
+          type: string
+          description: |-
+            Length: 19
+
+            Number of the Embosser record replacement associated with a fraud card transfer.
+
+            VisionPLUS Service Data: AZXCIO-EMB-REPL
+        numberCardsOutstanding:
+          type: integer
+          description: |-
+            Length: 3
+
+            Number of outstanding cards.
+
+            VisionPLUS Service Data: AZXCIO-NBR-CARDS-OUTST
+          format: int32
+        numberCardsReturned:
+          type: integer
+          description: |-
+            Length: 3
+
+            Number of returned cards.
+
+            VisionPLUS Service Data: AZXCIO-NBR-CARDS-RTN
+          format: int32
+        currentChipSequence:
+          type: integer
+          description: |-
+            Length: 2
+
+            Chip sequence number of the most recently issued card.
+
+            VisionPLUS Service Data: AZXCIO-CURR-CHIP-SEQ
+          format: int32
+        cardIssueAction:
+          type: integer
+          description: |-
+            Length: 1
+
+            Card issue action code.
+
+            VisionPLUS Service Data: AZXCIO-CARD-ACTION
+          format: int32
+        numberCardsRequested:
+          type: integer
+          description: |-
+            Length: 2
+
+            Number of cards requested.
+
+            VisionPLUS Service Data: AZXCIO-NBR-RQTD
+          format: int32
+        chipSequenceNumber:
+          type: integer
+          description: |-
+            Length: 2
+
+            Chip sequence number of the card issued prior to the most recently issued card.
+
+            VisionPLUS Service Data: AZXCIO-PREV-CHIP-SEQ
+          format: int32
+        typeOfCard:
+          type: integer
+          description: |-
+            Length: 2
+
+            Type of plastic stock to use to produce the requested card.
+
+            VisionPLUS Service Data: AZXCIO-TYPE-OF-CARD
+          format: int32
+        requestedCardType:
+          type: integer
+          description: |-
+            Length: 2
+
+            Type of card requested.
+
+            VisionPLUS Service Data: AZXCIO-RQTD-CARD-TYPE
+          format: int32
+        typeCardMailer:
+          type: string
+          description: |-
+            Length: 2
+
+            Type of mailer to use.
+
+            VisionPLUS Service Data: AZXCIO-TYPE-CARD-MAILER
+        plasticId:
+          type: string
+          description: |-
+            Length: 10
+
+            User-defined code that identifies the plastic stock used to create a card for this Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-PLASTIC-ID
+        secureActivation:
+          type: integer
+          description: |-
+            Length: 1
+
+            Secure code activation indicator.
+
+            VisionPLUS Service Data: AZXCIO-SC-ACTIVE
+          format: int32
+        embosserNameType1:
+          type: integer
+          description: |-
+            Length: 1
+
+            Type of name for EMBOSSED NAME 1.
+
+            VisionPLUS Service Data: AZXCIO-EMB-NAME-1-TYPE
+          format: int32
+        embosserNameType2:
+          type: integer
+          description: |-
+            Length: 1
+
+            Type of name for EMBOSSED NAME 2.
+
+            VisionPLUS Service Data: AZXCIO-EMB-NAME-2-TYPE
+          format: int32
+        embosserName1:
+          type: string
+          description: |-
+            Length: 26
+
+            Name to be embossed on the first embossing line of the card.
+
+            VisionPLUS Service Data: AZXCIO-EMBOSSED-NAME-1
+        embosserName2:
+          type: string
+          description: |-
+            Length: 26
+
+            Name to be embossed on the second embossing line of the card.
+
+            VisionPLUS Service Data: AZXCIO-EMBOSSED-NAME-2
+        cardHolderName1:
+          type: string
+          description: |-
+            Length: 40
+
+            Name of the cardholder.
+
+            VisionPLUS Service Data: AZXCIO-EMBR-NAME-1
+        cardHolderName2:
+          type: string
+          description: |-
+            Length: 40
+
+            Name of the cardholder used for mailing the card and PIN mailers.
+
+            VisionPLUS Service Data: AZXCIO-EMBR-NAME-2
+        addressLine1:
+          type: string
+          description: |-
+            Length: 40
+
+            Address line 1 used for mailing the card and PIN mailers.
+
+            VisionPLUS Service Data: AZXCIO-ADDR-LINE-1
+        addressLine2:
+          type: string
+          description: |-
+            Length: 40
+
+            Address line 2 used for mailing the card and PIN mailers.
+
+            VisionPLUS Service Data: AZXCIO-ADDR-LINE-2
+        stateProvince:
+          type: string
+          description: |-
+            Length: 3
+
+            State or province portion of the mailing address for card and PIN mailers.
+
+            VisionPLUS Service Data: AZXCIO-ST-PR
+        cityPortion:
+          type: string
+          description: |-
+            Length: 30
+
+            City portion of the mailing address for card and PIN mailers.
+
+            VisionPLUS Service Data: AZXCIO-CITY
+        postalCodePortion:
+          type: string
+          description: |-
+            Length: 10
+
+            Postal code portion of the mailing address for card and PIN mailers.
+
+            VisionPLUS Service Data: AZXCIO-PSTL-CD
+        plusIndicator:
+          type: integer
+          description: |-
+            Length: 1
+
+            Flag that indicates whether the PLUS symbol is displayed on the card.
+
+            VisionPLUS Service Data: AZXCIO-PLUS
+          format: int32
+        dateExpire:
+          type: string
+          description: |-
+            Date on which the card expires.
+
+            VisionPLUS Service Data: AZXCIO-DATE-EXPIRE
+        customerNumber:
+          type: string
+          description: "Length: 19\n\nCustomer number that identifies the Customer\
+            \ Name/Address record that lists the \nmailing address of the cardholder.\n\
+            \nVisionPLUS Service Data: AZXCIO-CUSTOMER-NBR"
+        currentPinOffset:
+          type: integer
+          description: |-
+            Length: 7
+
+            Current PIN offset.
+
+            VisionPLUS Service Data: AZXCIO-PIN-OFFSET
+          format: int32
+        previousPinOffset:
+          type: integer
+          description: |-
+            Length: 7
+
+            Previous PIN offset.
+
+            VisionPLUS Service Data: AZXCIO-PREV-PIN-OFFSET
+          format: int32
+        pinDelayDays:
+          type: integer
+          description: "Length: 2\n\nNumber of processing days between the date when\
+            \ CMS receives notification that a \nmagnetic-stripe card was produced\
+            \ and the date when CMS generates the associated \nPIN mailer for the\
+            \ card.\n\nVisionPLUS Service Data: AZXCIO-PIN-DELAY-DAYS"
+          format: int32
+        typeOfPointOfSale:
+          type: integer
+          description: |-
+            Length: 3
+
+            Type of point-of-sale service in effect for a card.
+
+            VisionPLUS Service Data: AZXCIO-POS-SERVICE-CODE
+          format: int32
+        cardHolderFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Code that indicates whether the card is issued as a primary or secondary card.
+
+            VisionPLUS Service Data: AZXCIO-CARDHOLDER-FLAG
+        dateWarningBulletin:
+          type: string
+          description: |-
+            Date on which the account last appeared on a warning bulletin.
+
+            VisionPLUS Service Data: AZXCIO-DTE-WARNING-BULLETIN
+          format: date
+        regionCode:
+          type: string
+          description: |-
+            Length: 9
+
+            Region code for distribution of the Recovery Card List or the Card Recovery Bulletin.
+
+            VisionPLUS Service Data: AZXCIO-REGION-CODE
+        languageCode:
+          type: string
+          description: |-
+            Length: 3
+
+            User-defined code to indicate the language spoken by the cardholder.
+
+            VisionPLUS Service Data: AZXCIO-LANG-CODE
+        visaMiniCardVersion:
+          type: integer
+          description: |-
+            Length: 1
+
+            Visa Mini card version.
+
+            VisionPLUS Service Data: AZXCIO-MINI
+          format: int32
+        pinSuppression:
+          type: integer
+          description: |-
+            Length: 1
+
+            Flag that indicates whether the PIN number and PIN mailer are produced.
+
+            VisionPLUS Service Data: AZXCIO-PIN-SUPPRESSION
+          format: int32
+        blockCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Block code assigned to the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-BLK-CODE
+        dateBlock:
+          type: string
+          description: |-
+            Effective date of the block code.
+
+            VisionPLUS Service Data: AZXCIO-DATE-BLOCK
+        blockSecureId:
+          type: string
+          description: |-
+            Length: 3
+
+            Operator ID of the person who entered the block code.
+
+            VisionPLUS Service Data: AZXCIO-BLOCK-SECUR-ID
+        warningCode1:
+          type: string
+          description: |-
+            Length: 1
+
+            Warning code 1.
+
+            VisionPLUS Service Data: AZXCIO-WARNING-CODE-1
+        warningCode7:
+          type: string
+          description: |-
+            Length: 1
+
+            Warning code 7.
+
+            VisionPLUS Service Data: AZXCIO-WARNING-CODE-7
+        numberOfIssueAttemptsRemaining:
+          type: integer
+          description: |-
+            Length: 3
+
+            Number of issue or reissue attempts remaining for the card.
+
+            VisionPLUS Service Data: AZXCIO-REISSUE-ATTMPTS
+          format: int32
+        currentDateExpirationDate:
+          type: string
+          description: |-
+            Current card expiration date.
+
+            VisionPLUS Service Data: AZXCIO-CURR-CRD-EXP-DATE
+          format: date
+        currentCardActivation:
+          type: string
+          description: |-
+            Length: 1
+
+            Current card activation flag.
+
+            VisionPLUS Service Data: AZXCIO-CURR-CRD-ACT
+        dateEmbossedMagneticStripeCard:
+          type: string
+          description: |-
+            Date embossed on a magnetic-stripe card that indicates when the card becomes valid.
+
+            VisionPLUS Service Data: AZXCIO-CURR-CRD-FROM
+          format: date
+        dateCurrentMagneticCardMailed:
+          type: string
+          description: |-
+            Date the current magnetic-stripe card was mailed to the cardholder.
+
+            VisionPLUS Service Data: AZXCIO-CURR-CRD-MAIL
+          format: date
+        lastExpirationDate:
+          type: string
+          description: |-
+            Previous card expiration date.
+
+            VisionPLUS Service Data: AZXCIO-DATE-LAST-EXPR
+          format: date
+        lastCardActivation:
+          type: string
+          description: |-
+            Length: 1
+
+            Previous card activation flag.
+
+            VisionPLUS Service Data: AZXCIO-LAST-CARD-ACTION
+        dateFirstCardVerify:
+          type: string
+          description: |-
+            Date on which the first card was verified.
+
+            VisionPLUS Service Data: AZXCIO-DATE-FIRST-CARD-VERIFY
+          format: date
+        dateLastPlasticIssue:
+          type: string
+          description: |-
+            Date on which the most recently issued card was produced.
+
+            VisionPLUS Service Data: AZXCIO-DATE-LST-PLASTIC-ISSUE
+          format: date
+        frequencyMaximumAuthorizationParameters:
+          type: integer
+          description: |-
+            Length: 1
+
+            Frequency defined for the maximum authorization parameters.
+
+            VisionPLUS Service Data: AZXCIO-AUTH-ATM-OTC-RTL-FREQ
+          format: int32
+        authorizationData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.AuthorizationData'
+        internetPurchaseData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.InternetPurchaseData'
+        identificationNumberAuthorization:
+          type: string
+          description: |-
+            Length: 3
+
+            Identification number of the Authorization Criteria table assigned to the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-AUTH-CRIT-TBL-NBR
+        identificationNumberSpendingLimitsTable:
+          type: string
+          description: |-
+            Length: 3
+
+            Identification number of the HCS Spending Limits table assigned to the account.
+
+            VisionPLUS Service Data: AZXCIO-AUTH-SPD-LIM-TBL
+        userData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.UserData'
+        numberCurrentlyDisplayedEmbosserRecord:
+          type: string
+          description: "Length: 19\n\nCard number of the currently displayed embosser\
+            \ record, or account number that \nprovides a cross-reference between\
+            \ this embosser record and the associated account \nrecords after an account\
+            \ transfer.\n\nVisionPLUS Service Data: AZXCIO-TRAN-DATA-CRD-NBR"
+        adminNumberBranch:
+          type: integer
+          description: "Length: 9\n\nBranch number that identifies the card mailing\
+            \ location for all reissued cards when the \nbranch delivery option is\
+            \ used.\n\nVisionPLUS Service Data: AZXCIO-ADMIN-BRANCH"
+          format: int32
+        nextExpirationDateOfTheCard:
+          type: string
+          description: |-
+            Next expiration date of the card.
+
+            VisionPLUS Service Data: AZXCIO-DATE-NEXT-EXPR
+          format: date
+        branchIdentifierCardMailingLocation:
+          type: integer
+          description: "Length: 9\n\nBranch number that identifies the card mailing\
+            \ location for the issue of all new cards \nwhen the branch delivery option\
+            \ is used.\n\nVisionPLUS Service Data: AZXCIO-FIRST-ISS-BRANCH"
+          format: int32
+        cardInformationData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.CardInformationData'
+        useAutomatedTellerMachineCashNumberData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.UseAutomatedTellerMachineCashNumberData'
+        useAutomatedTellerMachineCashAmountData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.UseAutomatedTellerMachineCashAmountData'
+        useOverTheCounterCashNumberData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.UseOverTheCounterCashNumberData'
+        useOverTheCounterCashAmountData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.UseOverTheCounterCashAmountData'
+        retailNumberData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.RetailNumberData'
+        retailAmountData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.RetailAmountData'
+        internetPurchaseNumberData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.InternetPurchaseNumberData'
+        internetPurchaseAmountData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.InternetPurchaseAmountData'
+        prepaidLimits:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.PrepaidLimits'
+        spendingLimitsData:
+          $ref: '#/components/schemas/EmbosserDetailsL8V8Response.SpendingLimitsData'
+        cardDelayDays:
+          type: integer
+          description: "Length: 2\n\nCode that indicates the number of days to warehouse\
+            \ the card mailer before releasing \nthe card for printing.\n\nVisionPLUS\
+            \ Service Data: AZXCIO-CARD-DELAY-DAYS"
+          format: int32
+        cardDelayStatus:
+          type: string
+          description: |-
+            Length: 1
+
+            Code that indicates the status of a warehoused card mailerThe values are:0 = No card is warehoused
+            1 = Card is warehoused according to logo settings for card action 1
+            (ACTION on ARML06 is 1, A, or L)
+            2 = Card is warehoused according to logo settings for card action 2
+            (ACTION on ARML06 is 2)
+            3 = Card is warehoused according to logo settings for card action 3
+            (ACTION on ARML06 is 3)
+            7 = Card is warehoused according to logo settings for card action 7
+            (ACTION on ARML06 is 7)
+            8 = Card is warehoused according to logo settings for card action 8
+            (ACTION on ARML06 is 8)
+            9 = Card is warehoused according to logo settings for card action 9
+            (ACTION on ARML06 is 9).
+
+            VisionPLUS Service Data: AZXCIO-CARD-DELAY-STATUS
+        mailerDate:
+          type: string
+          description: |-
+            Date the current magnetic-stripe card was mailed to the cardholder
+            VisionPLUS Service Data: AZXCIO-MAILER-DATE
+          format: date
+        pinOverrideActionEmbosserLevel:
+          type: string
+          description: |-
+            Length: 1
+
+            Code that indicates the PIN override action at the embosser level
+            The values are:
+            0 = Do not use, do not generate PIN, and do not send PIN mailer
+            1 = Generate new PIN and send PIN mailer
+            2 = Send PIN mailer with existing PIN.
+
+            VisionPLUS Service Data: AZXCIO-PIN-OVRD
+        cardHolderType:
+          type: integer
+          description: |-
+            Length: 1
+
+            Cardholder type.
+
+            VisionPLUS Service Data: AZXCIO-CARDHOLDER-TYPE
+          format: int32
+        pinDelayStatusMailer:
+          type: string
+          description: "Length: 1\n\nCode that indicates the status of a warehoused\
+            \ PIN mailer\nThe values are:\n0 = No PIN is warehoused\n1 = PIN is warehoused\
+            \ according to logo settings for the applicable card \naction\n5 = PIN\
+            \ is warehoused due to a manual PIN mailer request..\n\nVisionPLUS Service\
+            \ Data: AZXCIO-PIN-DELAY-STATUS"
+        cardActivatedDate:
+          type: string
+          description: |-
+            Date the card was activated by the cardholder.
+
+            VisionPLUS Service Data: AZXCIO-CARD-ACTIVATED-DATE
+          format: date
+        dateMostRecentlyIssueCard:
+          type: string
+          description: |-
+            Date on which the most recently issued card was produced.
+
+            VisionPLUS Service Data: AZXCIO-TIME-LST-PLASTIC-ISSUE
+          format: date
+        deliveryOptionReissuedCards:
+          type: integer
+          description: |-
+            Length: 3
+
+            Delivery option for reissued cards.
+
+            VisionPLUS Service Data: AZXCIO-REISSUE-DELIV-OPTION
+          format: int32
+        deliveryOptionIssuedCards:
+          type: integer
+          description: |-
+            Length: 3
+
+            Delivery option for issued cards.
+
+            VisionPLUS Service Data: AZXCIO-ISSUE-DELIV-OPTION
+          format: int32
+        cardDeliveryStatus:
+          type: string
+          description: |-
+            Length: 1
+
+            Delivery status of the current card.
+
+            VisionPLUS Service Data: AZXCIO-CURR-CRD-DELV-STAT
+        cardDeliveryDate:
+          type: string
+          description: |-
+            Delivery date of the current card.
+
+            VisionPLUS Service Data: AZXCIO-CURR-CRD-DELV-DATE
+          format: date
+        deliveryStatusPreviousCard:
+          type: string
+          description: |-
+            Length: 1
+
+            Delivery status of the previous card.
+
+            VisionPLUS Service Data: AZXCIO-PREV-CRD-DELV-STAT
+        deliveryDatePreviousCard:
+          type: string
+          description: |-
+            Delivery date of the previous card.
+
+            VisionPLUS Service Data: AZXCIO-PREV-CRD-DELV-DATE
+          format: date
+        deliveryStatusCurrentPinMailer:
+          type: string
+          description: |-
+            Length: 1
+
+            Delivery status of current PIN Mailer.
+
+            VisionPLUS Service Data: AZXCIO-CURR-PIN-DELV-STAT
+        deliveryDateCurrentPinMailer:
+          type: string
+          description: |-
+            Delivery date of current PIN Mailer.
+
+            VisionPLUS Service Data: AZXCIO-CURR-PIN-DELV-DATE
+          format: date
+        deliveryStatusPreviousPinMailer:
+          type: string
+          description: |-
+            Length: 1
+
+            Delivery status of previous PIN Mailer.
+
+            VisionPLUS Service Data: AZXCIO-PREV-PIN-DELV-STAT
+        deliveryDatePreviousPinMailer:
+          type: string
+          description: |-
+            Delivery date of previous PIN Mailer.
+
+            VisionPLUS Service Data: AZXCIO-PREV-PIN-DELV-DATE
+          format: date
+        dateNextPinChanged:
+          type: string
+          description: |-
+            Date of next PIN change.
+
+            VisionPLUS Service Data: AZXCIO-DTE-NXT-PIN-CHG
+          format: date
+        cardHolderAffiliation:
+          type: string
+          description: |-
+            Length: 5
+
+            Cardholder’s affiliation or affinity group.
+
+            VisionPLUS Service Data: AZXCIO-EMBLM-ID
+        cardVerifyByVisaStatus:
+          type: string
+          description: |-
+            Length: 1
+
+            Card Verify by Visa (VBV) enrollment status.
+
+            VisionPLUS Service Data: AZXCIO-VBV-STATUS
+        customUserData:
+          $ref: '#/components/schemas/EmbosserDetailsInquiryResponse.CustomUserData'
+        custEmbSeq:
+          type: string
+          description: |-
+            Length: 5
+
+            Custom Embosser Sequence Number.
+
+            VisionPLUS Service Data: AZXCIO-CUST-EMB-SEQ
+        travelInd:
+          type: string
+          description: |-
+            Length: 1
+
+            Travel Indicator. Code that indicates whether the overseas travel is allowed for the cardholder and if any
+            prior travel notification is required. This is a user-defined field.
+            The values are:
+            0 = Overseas travel is not allowed (Default)
+            1 = Overseas travel is always allowed
+            2 = Overseas travel is allowed only with prior travel notification.
+
+            VisionPLUS Service Data: AZXCIO-TRAVEL-IND
+        travelData:
+          type: array
+          description: Travel Data
+          items:
+            $ref: '#/components/schemas/EmbosserDetailsL8V8Response.TravelData'
+        vauLastRsnCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Visa Account Updater Last Reason Code.
+
+            VisionPLUS Service Data: AZXCIO-VAU-LAST-RSN-CODE
+        noCvmCounter:
+          type: string
+          description: |-
+            Length: 6
+
+            No Card Verification Method Counter.
+
+            VisionPLUS Service Data: AZXCIO-NO-CVM-COUNTER
+        noCvmAmt:
+          type: string
+          description: |-
+            Length: 13
+
+            No Card Verification Method Amount.
+
+            VisionPLUS Service Data: AZXCIO-NO-CVM-AMT
+        profileId:
+          type: string
+          description: |-
+            Length: 3
+
+            Profile ID.
+
+            VisionPLUS Service Data: AZXCIO-PROFILE-ID
+        ecommInd:
+          type: string
+          description: |-
+            Length: 1
+
+            E-Commerce Indicator.
+
+            VisionPLUS Service Data: AZXCIO-ECOMM-IND
+        contlsInd:
+          type: string
+          description: |-
+            Length: 1
+
+            Contactless Indicator.
+
+            VisionPLUS Service Data: AZXCIO-CONTLS-IND
+        authRstrTbl:
+          type: string
+          description: |-
+            Length: 3
+
+            Authorization Restart Table.
+
+            VisionPLUS Service Data: AZXCIO-
+        authCrLm:
+          type: string
+          description: |-
+            Length: 17
+
+            Credit limit for authorization.
+
+            VisionPLUS Service Data: AZXCIO-AUTH-CR-LM
+        ctdAuthAmt:
+          type: string
+          description: |-
+            Length: 17
+
+            Cycle to date authorization amount.
+
+            VisionPLUS Service Data: AZXCIO-CTD-AUTH-AMT
+        digiCardInd:
+          type: string
+          description: |-
+            Length: 1
+
+            Digital Card Indicator.
+
+            VisionPLUS Service Data: AZXCIO-DIG-CARD-IND
+        embCode1:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Code 1.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-CODE-1
+        embCode2:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Code 2.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-CODE-2
+        embCode3:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Code 3.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-CODE-3
+        embCode4:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Code 4.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-CODE-4
+        embCode5:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Code 5.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-CODE-5
+        embCode6:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Code 6.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-CODE-6
+        embCode7:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Code 7.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-CODE-7
+        embCode8:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Code 8.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-CODE-8
+        embDate1:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Date 1.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-DATE-1
+        embDate2:
+          type: string
+          description: |-
+            Length: 10
+
+            Embosser User Date 2.
+
+            VisionPLUS Service Data: AZXCIO-USER-EMB-DATE-2
+        dvcInd:
+          type: string
+          description: |-
+            Length: 1
+
+            Device indicator.
+
+            VisionPLUS Service Data: AZXCIO-DVC-IND
+        pinReset:
+          type: string
+          description: |-
+            Length: 1
+
+            Manual PIN reset allowed flag.
+
+            VisionPLUS Service Data: AZXCIO-LB-MAN-PIN-RESET
+        dateLastMaintained:
+          type: string
+          description: |-
+            Date Last Maintained. Date of last non-monetary update on the Embosser record.
+
+            VisionPLUS Service Data: AZXCIO-DATE-LAST-MAINT
+          format: date
+        newAcctCard:
+          type: string
+          description: |
+            Length: 1
+
+            New Account Card.
+        sdpFlag:
+          type: string
+          description: |
+            Length: 1
+
+            Same Day Processing Flag.
+        internationalSingleTransaction:
+          type: string
+          description: |-
+            Length: 17
+
+            International Single Transaction
+    CardPanInquiryL8V2Request:
+      required:
+      - cardNumber
+      - cardSequence
+      - functionType
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+            VisionPLUS Service Data: AZXTCI-ORG
+          format: int32
+          example: 807
+          enum:
+          - null
+        cardNumber:
+          maxLength: 32
+          minLength: 12
+          type: string
+          description: |-
+            Length: 19
+
+            Card number encrypted.
+            VisionPLUS Service Data: AZXTCI-CARD-PAN
+          example: 000540208ID5IXX3865
+          enum:
+          - "range[12,32]"
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Card Sequence
+            Card sequence number. Default is 1
+            VisionPLUS Service Data: AZXTCI-CARD-SEQ
+          format: int32
+          example: 1
+          enum:
+          - null
+        functionType:
+          pattern: "^(P|C){1}$"
+          type: string
+          description: |-
+            Length: 1
+
+            Function Type.
+            VisionPLUS Service Data: AZXTCI-FUNCTION-TYPE
+          example: C
+      description: 'Card or PAN Token Inquiry '
+    CardPanInquiryL8V2Response:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+            VisionPLUS Service Data: AZXTCO-ORG
+          format: int32
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+
+            Logo.
+            VisionPLUS Service Data: AZXTCO-LOGO
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 32
+
+            Card number encrypted.
+            VisionPLUS Service Data: AZXTCO-CARD-NBR
+          example: 936E507C7EF44EB5AC1D95FEB0AC0AAF
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+
+            Card Sequence.
+            VisionPLUS Service Data: AZXTCO-CARD-SEQ
+          format: int32
+        accountNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Account Number.
+            VisionPLUS Service Data: AZXTCO-ACCOUNT-NBR
+        panToken:
+          type: string
+          description: |-
+            Length: 19
+
+            PAN token. Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token)
+            VisionPLUS Service Data: AZXTCO-PAN-TOKEN
+x-config:
+  tryItOut: true
