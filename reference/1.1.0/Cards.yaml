@@ -14,27 +14,27 @@ paths:
   /cards/v2/embosser/details:
     post:
       tags:
-      - Embosser
-      summary: "Data from the Embosser record V2. VMX Service: M.CMS.EMBOSSER.INQ,\
-        \ L8VE"
-      description: "Provides the embosser data from the embosser record (AMED) as\
-        \ displayed online on the ARME screens. \nVMX Service: M.CMS.EMBOSSER.INQ,\
-        \ L8VE"
+        - Embosser
+      summary: 'Data from the Embosser record V2. VMX Service: M.CMS.EMBOSSER.INQ, L8VE'
+      description: |-
+        Provides the embosser data from the embosser record. 
+
+        VMX Service: M.CMS.EMBOSSER.INQ, L8VE
       operationId: Embosser Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -42,83 +42,115 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequestV2'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "422":
-          description: "Unprocessable Entity\n\nVPL5SCIZ1S - SERVICE INPUT TO FS SERVICE\
-            \ IS AN INCORRECT LENGTH \n\nVPL5SCIZ2S - USER HAS NOT SIGNED ON - PLEASE\
-            \ SIGNON \n\nVPL5SCIZ3S - FILE-TABLE USED BY THIS SERVICE IS MISSING \n\
-            \nVPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
-            \ 000-998 \n\nVPL5SCI03E - INPUT CARD NUMBER IS NOT NUMERIC \n\nVPL5SCI04E\
-            \ - CARD SEQUENCE NUMBER IS NOT NUMERIC \n\nVPL5SCI02E - INVALID FOREIGN\
-            \ USE INDICATOR - VALID VALUES ARE SPACE/0/1 \n\nVPL5SCI05S - REQUESTED\
-            \ CARD / ACCOUNT NUMBER IS NOT FOUND \n\nVPL5SAD07S - REQUESTED ORG NUMBER\
-            \ IS NOT FOUND   \n\nVPL5SCIZ5S - APPLICATION FILE IS NOT AVAILABLE \n\
-            \nVPL5SCI07S - ORG RECORD NOT FOUND     \n\nVPL5SCI08S - FOREIGN ORG RECORD\
-            \ NOT FOUND    \n\nVPL5SCI09S - EMBOSSER RECORD NOT FOUND       \n\nVPL5SCIA9S\
-            \ - EMBOSSER RECORD IS IN PURGED STATUS    \n\nVPL5SCI11S - ACCOUNT NUMBER\
-            \ NOT FOUND  \n\nVPL5SCI12S - BASE SEGMENT FILE READ ERROR  \n\nVPL5SCIA1S\
-            \ - ACCOUNT RECORD IS IN ADD PENDING STATUS   \n\nVPL5SCIA2S - ACCOUNT\
-            \ RECORD IS IN CLOSED STATUS        \n\nVPL5SCIA3S - ACCOUNT RECORD IS\
-            \ IN PENDING PURGE STATUS \n\nVPL5SCIZ5S - APPLICATION FILE IS NOT AVAILABLE\
-            \   \n\nVPL5SCI06S - LOGO RECORD NOT FOUND    \n\nVPL5SCIZ7S - AMCR FILE\
-            \ NOT OPEN     \n\nVPL5SCIZ8S - AMCR RECORD NOT FOUND  \n\n"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponseV2'
-        "404":
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
           description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
+          description: |+
+            Unprocessable Entity
+
+            VPL5SCIZ1S - SERVICE INPUT TO FS SERVICE IS AN INCORRECT LENGTH 
+
+            VPL5SCIZ2S - USER HAS NOT SIGNED ON - PLEASE SIGNON 
+
+            VPL5SCIZ3S - FILE-TABLE USED BY THIS SERVICE IS MISSING 
+
+            VPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998 
+
+            VPL5SCI03E - INPUT CARD NUMBER IS NOT NUMERIC 
+
+            VPL5SCI04E - CARD SEQUENCE NUMBER IS NOT NUMERIC 
+
+            VPL5SCI02E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE/0/1 
+
+            VPL5SCI05S - REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND 
+
+            VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND   
+
+            VPL5SCIZ5S - APPLICATION FILE IS NOT AVAILABLE 
+
+            VPL5SCI07S - ORG RECORD NOT FOUND     
+
+            VPL5SCI08S - FOREIGN ORG RECORD NOT FOUND    
+
+            VPL5SCI09S - EMBOSSER RECORD NOT FOUND       
+
+            VPL5SCIA9S - EMBOSSER RECORD IS IN PURGED STATUS    
+
+            VPL5SCI11S - ACCOUNT NUMBER NOT FOUND  
+
+            VPL5SCI12S - BASE SEGMENT FILE READ ERROR  
+
+            VPL5SCIA1S - ACCOUNT RECORD IS IN ADD PENDING STATUS   
+
+            VPL5SCIA2S - ACCOUNT RECORD IS IN CLOSED STATUS        
+
+            VPL5SCIA3S - ACCOUNT RECORD IS IN PENDING PURGE STATUS 
+
+            VPL5SCIZ5S - APPLICATION FILE IS NOT AVAILABLE   
+
+            VPL5SCI06S - LOGO RECORD NOT FOUND    
+
+            VPL5SCIZ7S - AMCR FILE NOT OPEN     
+
+            VPL5SCIZ8S - AMCR RECORD NOT FOUND  
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Inquiry V2
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/embosser/details:
     post:
       tags:
-      - Embosser
-      summary: "Data from the Embosser record. VMX Service: M.CMS.EMBOSSER.INQ, L8V6"
-      description: "Provides The Embosser Data From The Embosser Record (AMED) As\
-        \ Displayed Online On The ARME Screens. \nVMX Service: M.CMS.EMBOSSER.INQ,\
-        \ L8V6"
+        - Embosser
+      summary: 'Data from the Embosser record. VMX Service: M.CMS.EMBOSSER.INQ, L8V6'
+      description: |-
+        Provides the embosser data from the embosser record. 
+
+        VMX Service: M.CMS.EMBOSSER.INQ, L8V6
       operationId: embosserDetails
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -126,59 +158,60 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponse'
-        "404":
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
           description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/embosser/:
     post:
       tags:
-      - Embosser
-      summary: "Add Card Record. VMX Service: M.CMS.EMBOSSER.ADD, L8V8"
-      description: "Adds a Card or Plastic record to an Account. \nVMX Service: M.CMS.EMBOSSER.ADD,\
-        \ L8V8"
+        - Embosser
+      summary: 'Add Card Record. VMX Service: M.CMS.EMBOSSER.ADD, L8V8'
+      description: |-
+        Adds a Card or Plastic record to an Account. 
+        VMX Service: M.CMS.EMBOSSER.ADD, L8V8
       operationId: addEmbosserL8V8
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -186,11 +219,29 @@ paths:
               $ref: '#/components/schemas/AddEmbosserRequest'
         required: true
       responses:
-        "400":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddEmbosserResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "422":
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |
             VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
             VPL5SCL04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
@@ -221,30 +272,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddEmbosserResponse'
-        "404":
-          description: Not Found
       x-proxy-name: Embosser Add
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -252,36 +285,34 @@ components:
   schemas:
     EmbosserDetailsRequestV2:
       required:
-      - cardNumber
-      - cardSequence
-      - foreignUse
-      - organizationNumber
+        - cardNumber
+        - cardSequence
+        - foreignUse
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
           type: string
-          description: "Organization NumberVisionPLUS Service Data: AZXCII-ORG"
-          example: "807"
+          description: 'Organization NumberVisionPLUS Service Data: AZXCII-ORG'
+          example: '807'
           enum:
-          - "range[1,999]"
+            - range[1,999]
         cardNumber:
           maxLength: 19
           minLength: 12
           type: string
-          description: "Unique identifier or token associated with the card number\
-            \ or payment instrument (FirstVision PAN Token). VisionPLUS Service Data:\
-            \ AZXCII-CARD"
+          description: 'Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token). VisionPLUS Service Data: AZXCII-CARD'
           example: 000540208ID5IXX3865
           enum:
-          - "range[12,19]"
+            - range[12,19]
         cardSequence:
           type: string
-          description: "Card sequenceVisionPLUS Service Data: AZXCII-SEQ"
-          example: "001"
+          description: 'Card sequenceVisionPLUS Service Data: AZXCII-SEQ'
+          example: '001'
         foreignUse:
           type: string
-          description: "Foreign UseVisionPLUS Service Data: AZXCII-FOREIGN-USE"
-          example: "1"
+          description: 'Foreign UseVisionPLUS Service Data: AZXCII-FOREIGN-USE'
+          example: '1'
       description: Card Embosser Details Request
     DResponse:
       type: object
@@ -715,8 +746,10 @@ components:
             Number of the fraud account to which this Embosser record was transferredVisionPLUS Service Data: AZXCIO-FRAUD
         prepaidIndicator:
           type: integer
-          description: "Length: 1\n\nPrepaid indicatorVisionPLUS Service Data: AZXCIO-PREPAID-FLAG\
-            \  "
+          description: |-
+            Length: 1
+
+            Prepaid indicatorVisionPLUS Service Data: AZXCIO-PREPAID-FLAG  
           format: int32
         statusCode:
           type: string
@@ -1298,14 +1331,20 @@ components:
           $ref: '#/components/schemas/EmbosserDetailsInquiryResponse.CustomUserData'
         custEmbSeq:
           type: string
-          description: "Length: 9\n\nCustomer Embosser Sequence \nVisionPLUS Service\
-            \ Data: AZXCIO-CUST-EMB-SEQ"
+          description: |-
+            Length: 9
+
+            Customer Embosser Sequence 
+            VisionPLUS Service Data: AZXCIO-CUST-EMB-SEQ
         travelInd:
           type: string
-          description: "Length: 1\n\nCode that indicates whether overseas travel is\
-            \ allowed for the\ncardholder and if any prior travel notification is\
-            \ required. This\nis a user-defined field. \nVisionPLUS Service Data:\
-            \ AZXCIO-TRAVEL-IND"
+          description: |-
+            Length: 1
+
+            Code that indicates whether overseas travel is allowed for the
+            cardholder and if any prior travel notification is required. This
+            is a user-defined field. 
+            VisionPLUS Service Data: AZXCIO-TRAVEL-IND
         travelData:
           type: array
           items:
@@ -1685,45 +1724,65 @@ components:
           format: int32
         lifeToDate:
           type: integer
-          description: "Length: 4\n\nTotal number of retail transactions for this\
-            \ card life-to-dateVisionPLUS Service Data: USAGE RETAIL NBR LIFE-TO-DATE\t\
-            AZXCIO-RTL-LTD-AUTH-NBR-ACCUM"
+          description: "Length: 4\n\nTotal number of retail transactions for this card life-to-dateVisionPLUS Service Data: USAGE RETAIL NBR LIFE-TO-DATE\tAZXCIO-RTL-LTD-AUTH-NBR-ACCUM"
           format: int32
     SpendingLimitsData:
       type: object
       properties:
         totalDailyAmount:
           type: number
-          description: "Length: 17\n\nTotal monetary amount of the transactions for\
-            \ the spending category for this\ncard today\nOccurs 34 times \nVisionPLUS\
-            \ Service Data: AZXCIO-SLS-DAILY-AMT"
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this
+            card today
+            Occurs 34 times 
+            VisionPLUS Service Data: AZXCIO-SLS-DAILY-AMT
         totalDailyNumber:
           type: integer
-          description: "Length: 9\n\nTotal number of transactions for the spending\
-            \ category for this card today\nOccurs 34 times \nVisionPLUS Service Data:\
-            \ AZXCIO-SLS-DAILY-NBR"
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card today
+            Occurs 34 times 
+            VisionPLUS Service Data: AZXCIO-SLS-DAILY-NBR
           format: int32
         totalWeekToDateAmount:
           type: number
-          description: "Length: 17\n\nTotal monetary amount of the transactions for\
-            \ the spending category for this\ncard week-to-date (Sunday through Saturday)\n\
-            Occurs 34 times \nVisionPLUS Service Data: AZXCIO-SLS-WTD-AMT"
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this
+            card week-to-date (Sunday through Saturday)
+            Occurs 34 times 
+            VisionPLUS Service Data: AZXCIO-SLS-WTD-AMT
         totalWeekToDateNumber:
           type: integer
-          description: "Length: 9\n\nTotal number of transactions for the spending\
-            \ category for this card week-todate\n(Sunday through Saturday)\nOccurs\
-            \ 34 times \nVisionPLUS Service Data: AZXCIO-SLS-WTD-NBR"
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card week-todate
+            (Sunday through Saturday)
+            Occurs 34 times 
+            VisionPLUS Service Data: AZXCIO-SLS-WTD-NBR
           format: int32
         totalCycleToDateAmount:
           type: number
-          description: "Length: 17\n\nTotal monetary amount of the transactions for\
-            \ the spending category for this\ncard cycle-to-date\nOccurs 34 times\
-            \ \nVisionPLUS Service Data: AZXCIO-SLS-CTD-AMT"
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this
+            card cycle-to-date
+            Occurs 34 times 
+            VisionPLUS Service Data: AZXCIO-SLS-CTD-AMT
         totalCycleToDateNumber:
           type: integer
-          description: "Length: 9\n\nTotal number of transactions for the spending\
-            \ category for this card cycle-todate\nOccurs 34 times \nVisionPLUS Service\
-            \ Data: AZXCIO-SLS-CTD-NBR"
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card cycle-todate
+            Occurs 34 times 
+            VisionPLUS Service Data: AZXCIO-SLS-CTD-NBR
           format: int32
         totalYearToDateAmount:
           type: number
@@ -1743,14 +1802,21 @@ components:
           format: int32
         totalLifeToDateAmount:
           type: number
-          description: "Length: 9\n\nTotal number of transactions for the spending\
-            \ category for this card year-todate\nOccurs 34 times \nVisionPLUS Service\
-            \ Data: AZXCIO-SLS-LTD-AMT"
+          description: |-
+            Length: 9
+
+            Total number of transactions for the spending category for this card year-todate
+            Occurs 34 times 
+            VisionPLUS Service Data: AZXCIO-SLS-LTD-AMT
         totalLifeToDateNumber:
           type: integer
-          description: "Length: 17\n\nTotal monetary amount of the transactions for\
-            \ the spending category for this\ncard life-to-date\nOccurs 34 times \n\
-            VisionPLUS Service Data: AZXCIO-SLS-LTD-NBR"
+          description: |-
+            Length: 17
+
+            Total monetary amount of the transactions for the spending category for this
+            card life-to-date
+            Occurs 34 times 
+            VisionPLUS Service Data: AZXCIO-SLS-LTD-NBR
           format: int32
     TravelData:
       type: object
@@ -1965,10 +2031,10 @@ components:
       description: EmbosserDetailsResponseUserData
     EmbosserDetailsRequest:
       required:
-      - cardNumber
-      - cardSequence
-      - foreignUse
-      - organizationNumber
+        - cardNumber
+        - cardSequence
+        - foreignUse
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -1977,15 +2043,15 @@ components:
           format: int32
           example: 807
           enum:
-          - null
+            - null
         cardNumber:
           maxLength: 19
           minLength: 12
           type: string
           description: Card Number
-          example: "0004513070406598974"
+          example: '0004513070406598974'
           enum:
-          - "range[12,19]"
+            - range[12,19]
         cardSequence:
           type: integer
           description: Card sequence
@@ -1994,7 +2060,7 @@ components:
         foreignUse:
           type: string
           description: Card sequence
-          example: "1"
+          example: '1'
       description: Card Embosser Block Request
     EmbosserDetailsResponse:
       type: object
@@ -2576,11 +2642,11 @@ components:
           format: date
     AddEmbosserRequest:
       required:
-      - cardNumber
-      - enrollmentStatusVBV
-      - organizationNumber
-      - postToAccount
-      - vbvPassword
+        - cardNumber
+        - enrollmentStatusVBV
+        - organizationNumber
+        - postToAccount
+        - vbvPassword
       type: object
       properties:
         organizationNumber:
@@ -2592,14 +2658,14 @@ components:
           format: int32
           example: 807
           enum:
-          - null
+            - null
         postToAccount:
           type: string
           description: |-
             Length: 19
             Post-to account.
             VisionPLUS Service Data: AZXAPI-POST-TO-ACCT
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         cardNumber:
           maxLength: 19
           minLength: 0
@@ -2608,9 +2674,9 @@ components:
             Length: 19
             Card Number.
             VisionPLUS Service Data: AZXAPI-CARD-NBR
-          example: "0004513070406598974"
+          example: '0004513070406598974'
           enum:
-          - "range[1,19]"
+            - range[1,19]
         cardSequence:
           type: integer
           description: |-
@@ -2662,7 +2728,7 @@ components:
             Length: 10
             Plastic ID.
             VisionPLUS Service Data: AZXAPI-PLASTIC-ID
-          example: ""
+          example: ''
         name1TypeIndicator:
           type: integer
           description: |-
@@ -2731,9 +2797,9 @@ components:
             Length: 19
             Customer Number.
             VisionPLUS Service Data: AZXAPI-CUSTOMER-NBR
-          example: "4513074002573466583"
+          example: '4513074002573466583'
           enum:
-          - "range[-infinity,19"
+            - range[-infinity,19
         name1:
           type: string
           description: |-
@@ -2770,7 +2836,7 @@ components:
             Length: 1
             Cardholder Flag.
             VisionPLUS Service Data: AZXAPI-CARDHOLDER-FLAG
-          example: "0"
+          example: '0'
         addressLine1:
           type: string
           description: |-
@@ -2805,7 +2871,7 @@ components:
             Length: 10
             Postal Code.
             VisionPLUS Service Data: AZXAPI-PSTL-CD
-          example: "38585"
+          example: '38585'
         languageCode:
           type: string
           description: |-
@@ -2954,19 +3020,18 @@ components:
             Length: 20
             User-defined 1.
             VisionPLUS Service Data: AZXAPI-USER-1
-          example: "1"
+          example: '1'
         user2:
           type: string
-          description: "\tstring\nexample: 2\nLength: 20\nUser-defined 2.\nVisionPLUS\
-            \ Service Data: AZXAPI-USER-2"
-          example: "2"
+          description: "\tstring\nexample: 2\nLength: 20\nUser-defined 2.\nVisionPLUS Service Data: AZXAPI-USER-2"
+          example: '2'
         user3:
           type: string
           description: |-
             Length: 19
             User-defined 3.
             VisionPLUS Service Data: AZXAPI-USER-3
-          example: "3"
+          example: '3'
         user4:
           type: integer
           description: |-
@@ -2981,28 +3046,28 @@ components:
             Length: 1
             User-defined 5.
             VisionPLUS Service Data: AZXAPI-USER-5
-          example: "5"
+          example: '5'
         user6:
           type: string
           description: |-
             Length: 1
             User-defined 6.
             VisionPLUS Service Data: AZXAPI-USER-6
-          example: "6"
+          example: '6'
         user7:
           type: string
           description: |-
             Length: 1
             User-defined 7.
             VisionPLUS Service Data: AZXAPI-USER-7
-          example: "7"
+          example: '7'
         user8:
           type: string
           description: |-
             Length: 1
             User-defined 8.
             VisionPLUS Service Data: AZXAPI-USER-8
-          example: "8"
+          example: '8'
         userDate1:
           type: string
           description: |-
@@ -3142,7 +3207,7 @@ components:
             * N = New enrollment
             * U = Update enrollment
             VisionPLUS Service Data: AZXAPI-VBV-STATUS
-          example: "N"
+          example: 'N'
         vbvPassword:
           type: string
           description: |-

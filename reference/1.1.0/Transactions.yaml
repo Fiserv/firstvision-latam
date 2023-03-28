@@ -9,27 +9,26 @@ paths:
   /transactions/outstanding-authorizations/details:
     post:
       tags:
-      - Transactions
-      summary: "Outstanding Authorizations Inquiry. VMX Service: M.FAS.OUTSTANDING.AUTH.INQ,\
-        \ L8V2"
-      description: "Fetches data of both old and new transactions(including today's)\
-        \ which are settled to an account. \nVMX Service: M.FAS.OUTSTANDING.AUTH.INQ,\
-        \ L8V2"
+        - Transactions
+      summary: 'Outstanding Authorizations Inquiry. VMX Service: M.FAS.OUTSTANDING.AUTH.INQ, L8V2'
+      description: |-
+        Fetches data of both old and new transactions(including today's) which are settled to an account. 
+        VMX Service: M.FAS.OUTSTANDING.AUTH.INQ, L8V2
       operationId: outstandingAuthorization
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -37,34 +36,34 @@ paths:
               $ref: '#/components/schemas/OutstandingAuthorizationFasRequest'
         required: true
       responses:
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OutstandingAuthorizationFasResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Outstanding Authorizations Inquiry
       x-group-name: Transactions
 components:
@@ -106,7 +105,7 @@ components:
             Length: 19
             Account Number
             VisionPLUS Service Data: OZXOAI-ACCT
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         foreignUseIndicator:
           maximum: 1
           minimum: 0
@@ -121,7 +120,7 @@ components:
             * Zero, space, low values = Local account
             * 1 = Foreign account
             VisionPLUS Service Data: OZXOAI-FOREIGN-USE
-          example: "0"
+          example: '0'
         functionCode:
           type: string
           description: |-
@@ -141,8 +140,10 @@ components:
           example: A
         numberOfAuthorizationsRequested:
           type: integer
-          description: "Number of authorizations requested. The values are 1 through\
-            \ 100. \nThe initial value is 100\nVisionPLUS Service Data: OZXOAI-NBR-OF-RECS-REQ"
+          description: |-
+            Number of authorizations requested. The values are 1 through 100. 
+            The initial value is 100
+            VisionPLUS Service Data: OZXOAI-NBR-OF-RECS-REQ
           format: int32
           example: 100
         authorizationDateRange:
@@ -153,7 +154,7 @@ components:
             Length: 6
             Authorization number
             VisionPLUS Service Data: OZXOAI-AUTH-NBR
-          example: "123"
+          example: '123'
       description: Outstanding Authorizations Request
     OutstandingAuthorizationFasRequest.AuthorizationDateRange:
       type: object
