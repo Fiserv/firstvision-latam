@@ -6,28 +6,184 @@ info:
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 paths:
+  /customer/details-l8v4:
+    post:
+      tags:
+        - Customers
+      summary: 'Get Cards Details l8v4. VMX Service: M.CMS.CUSTCHANNEL.INQ, L8V4'
+      description: |-
+        Get Customer Cards Details. 
+
+        VMX Service: M.CMS.CUSTCHANNEL.INQ, L8V4
+      operationId: Cards Details Inquiry
+      parameters:
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerChannelVersion4Request'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerChannelVersion4Response'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
+          description: |-
+            VPL5SCE06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
+            VPL5SCE07E - ACCT/CARD BLOCKED OR CARD NOT ACTIVATED OR NO ACCT ON CUST NBR
+            VPL5SCE08E - INVALID FUCNTION CODE PASSED TO SERVICE
+            VPL5SCE09E - SERVICE FUNCTION CODE IS INVALID
+            VPL5SCE10S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+            VPL5SCE11S - REQUESTED ORGANIZATION NOT FOUND
+            VPL5SCE15S - ACCOUNT NUMBER NOT FOUND
+            VPL5SCE17S - ACCOUNT/CARD CROSS REFERENCE FILE UNAVAILABLE
+            VPL5SCE18S - GETMAIN FAILURE ON N/A SERVICE INPUT AREA
+            VPL5SCE19S - GETMAIN FAILURE ON N/A SERVICE OUTPUT AREA
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+      x-proxy-name: Cards Details Inquiry
+      x-group-name: Customers
+  /customer/demographicData:
+    post:
+      tags:
+        - Customers
+      summary: 'Inquire demographic data. VMX Service: M.CMS.DEMOGRAPHIC.INQ, R8V4'
+      description: |-
+        Requests demographic data from a Customer number. 
+        VMX Service: M.CMS.DEMOGRAPHIC.INQ, R8V4
+      operationId: Demographic Inquiry
+      parameters:
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DemographicInquiryRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemographicInquiryResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
+          description: |-
+            VPL5SND02S – ORGANIZATION NUMBER NOT FOUND
+            VPL5SND05S – ORG RECORD NOT FOUND
+            VPL5SND06S – DUAL ORG RECORD NOT FOUND
+            VPL5SND07S – ACCOUNT/CARD CAN NOT BE FOUND IN AMBS FILE
+            VPL5SND08S – LOGO RECORD NOT FOUND
+            VPL5SND09S – CUSTOMER CAN NOT BE FOUND
+            VPL5SND10S – ACCOUNT/CARD CAN NOT BE FOUND IN AMNA FILE
+            VPL5SND11E – INVALID ORG FORMAT-VALID VALUES ARE SPACES/001 TO 998
+            VPL5SND12E – ACCOUNT/CARD/CUSTOMER NUMBER SHOULD BE PROVIDED AND BE NUMERIC
+            VPL5SND13E – INVALID DUAL FLAG-VALID VALUES ARE SPACES/0/1
+            VPL5SND14E – NUMBER TYPE IS INVALID-VALID VALUES ARE SPACE/0/1
+            VPL5SNDZ4S – ORGANIZATION NOT DETERMINED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+      x-proxy-name: Demographic Inquiry
+      x-group-name: Customers
   /customer/:
     post:
       tags:
-      - Customers
-      summary: "Add new Customer. VMX Service: M.CMS.CUSTOMER.ADD, R8V4"
-      description: "Creates a Customer number and adds demographical information to\
-        \ the Customer record. \nVMX Service: M.CMS.CUSTOMER.ADD, R8V4"
-      operationId: New Customer Add
+        - Customers
+      summary: 'Add new Customer. VMX Service: M.CMS.CUSTOMER.ADD, R8V4'
+      description: |-
+        Creates a Customer number and adds demographical information to the Customer record. 
+        VMX Service: M.CMS.CUSTOMER.ADD, R8V4
+      operationId: Customer Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -35,29 +191,29 @@ paths:
               $ref: '#/components/schemas/AddCustomerRequest'
         required: true
       responses:
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddCustomerResponse'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "400":
+        '400':
           description: Bad Request
-        "422":
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |-
             VPL5SNA03S – N/A SERVICE INPUT AREA IS NOT OF CORRECT SIZE
             VPL5SNA04S – OWNER/CO-OWNER INDICATOR MUST BE 1 OR 2
@@ -120,16 +276,1078 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddCustomerResponse'
-      x-proxy-name: New Customer Add
+                $ref: '#/components/schemas/DResponse'
+      x-proxy-name: Customer Add
       x-group-name: Customers
 components:
   schemas:
+    CustomerChannelVersion4Request:
+      required:
+        - customerNumber
+        - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Organization Number.
+            VisionPLUS Service Data: AZXCEI-SVC-FUNC-CODE
+          format: int32
+          example: 807
+        customerNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+            Customer Number.
+            VisionPLUS Service Data: AZXCEI –CUST-NBR-X
+          example: '4513074002573466583'
+        functionCode:
+          type: string
+          description: |-
+            Length: 1
+            Function Code.
+            VisionPLUS Service Data: AZXCEI-SVC-FUNC-CODE
+        startItem:
+          $ref: '#/components/schemas/CustomerChannelVersion4Request.SItem'
+      description: Get Customer Cards Details Request l8v4
+    CustomerChannelVersion4Request.SItem:
+      type: object
+      properties:
+        startOrganization:
+          type: string
+          description: |-
+            Length: 1
+            Start Account.
+            VisionPLUS Service Data: ARXCEI-SVC-START-ACCT-NBR
+        startAccount:
+          type: string
+          description: |-
+            Length: 19
+            Start Organization.
+            VisionPLUS Service Data: ARXCEI-SVC-START-ACCT-ORG
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    CustomerChannelVersion4Response:
+      type: object
+      properties:
+        itemsReturned:
+          type: string
+          description: |-
+            Length: 2
+            Number of returned items.
+            VisionPLUS Service Data: ARXCEO-AT-NBR-OCCUR
+        more:
+          type: string
+          description: |-
+            Length: 1
+            Flag that indicates whether user requires more data.
+            VisionPLUS Service Data: AZXCEO-AT-MORE
+        customerNumber:
+          type: string
+          description: |-
+            Length: 19
+            Customer number.
+            VisionPLUS Service Data: AZXCEO-CUST-NBR
+        accountTable:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerChannelVersion4Response.AccountTable'
+    CustomerChannelVersion4Response.AccountTable:
+      type: object
+      properties:
+        sequence:
+          type: integer
+          description: Sequence.
+          format: int32
+        cardNumber:
+          type: string
+          description: |-
+            Length: 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            VisionPLUS Service Data: AZXCEO-CARD-NBR
+          example: 000540208ID5IXX3865
+        cardSequence:
+          type: integer
+          description: |-
+            Length: 4
+            Card sequence.
+            VisionPLUS Service Data: AZXCEO-CARD-SEQ
+          format: int32
+        cardBlockCode:
+          type: string
+          description: |-
+            Length: 1
+            Block code assigned to the Embosser record.
+            VisionPLUS Service Data: AZXCEO-CARD-BLOCK-CODE
+        cardExpireDate:
+          type: string
+          description: |-
+            Length: 10
+            Card expiration date on the Embosser record.
+            VisionPLUS Service Data: AZXCEO-CARD-DATE-EXPIRE
+          format: date
+        logo:
+          type: string
+          description: |-
+            Length: 3
+            Logo on the Embosser record.
+            VisionPLUS Service Data: AZXCEO-LOGO
+        productType:
+          type: string
+          description: |-
+            Length: 2
+            Product type.
+            VisionPLUS Service Data: AZXCEO-PRODUCT-TYPE
+        productDescription:
+          type: string
+          description: |-
+            Length: 20
+            Product description.
+            VisionPLUS Service Data: AZXCEO-PRODUCT-DESC
+        accountNumber:
+          type: string
+          description: |-
+            Length: 19
+            Account number on the Embosser record.
+            VisionPLUS Service Data: AZXCEO-ACCT-NBR
+        accountStatus:
+          type: string
+          description: |-
+            Length: 1
+            Status of the account.
+            VisionPLUS Service Data: AZXCEO-ACCT-STATUS
+        accountBlockCode1:
+          type: string
+          description: |-
+            Length: 1
+            Block code 1 assigned to the account.
+            VisionPLUS Service Data: AZXCEO-ACCT-BC1
+        accountBlockCode2:
+          type: string
+          description: |-
+            Length: 1
+            Block code 1 assigned to the account.
+            VisionPLUS Service Data: AZXCEO-ACCT-BC2
+        billingCycle:
+          type: integer
+          description: |-
+            Length: 2
+            Billing cycle of the account.
+            VisionPLUS Service Data: AZXCEO-ACCT-BILLING-CYCLE
+          format: int32
+        accountShortName:
+          type: string
+          description: |-
+            Length: 20
+            Short name of the customer on the account.VisionPLUS Service Data: AZXCEO-ACCT-SHORT-NAME
+        accountDateLastCycle:
+          type: string
+          description: |-
+            Length: 1O
+            Last cycle date of the account.
+            VisionPLUS Service Data: AZXCEO-ACCT-DATE-LAST-CYCLE
+          format: date
+        pesosMinimumPayment:
+          type: number
+          description: |-
+            Length: 15
+            Minimum payment amount in pesos. The minimum payment amount corresponds to the total due amount for the account minus pending payments posted (authorized payments during the day and memo credits) plus any check payments that are being held by the system.
+            VisionPLUS Service Data: AZXCEO-PESOS-MIN-PMT
+        dollarMinimumPayment:
+          type: number
+          description: |-
+            Length: 15
+            Minimum payment amount in U.S. dollars. The minimum payment amount corresponds to the total due amount for the account minus pending payments posted (authorized payments during the day and memo credits) plus any check payments that are being held by the system.
+            VisionPLUS Service Data: AZXCEO-DOLLARS-MIN-PMT
+        pesosTotalPayment:
+          type: number
+          description: |-
+            Length: 15
+            Total payment amount in pesos. The total payment billed (just after last cycle date) minus posted payments (since cycle date) minus pending payments (memo credits) plus any check payments that are being held by the system.
+            VisionPLUS Service Data: AZXCEO-PESOS-TOT-PMT
+        dollarTotalPayment:
+          type: number
+          description: |-
+            Length: 15
+            Total payment amount in U.S. dollars. The total payment billed (just after last cycle date) minus posted payments (since cycle date) minus pending payments (memo credits) plus any check payments that are being held by the system.
+            VisionPLUS Service Data: AZXCEO-DOLLARS-TOT-PMT
+        pesosCurrentBalance:
+          type: number
+          description: |-
+            Length: 15
+            Current balance amount in pesos. The current balance (includes all the posted transactions) minus pending payments (memo credit) plus any check payments that are being held by the system.
+            VisionPLUS Service Data: AZXCEO-PESOS-CURR-BAL
+        dollarCurrentBalance:
+          type: number
+          description: |-
+            Length: 15
+            Current balance amount in U.S. dollars. The current balance (includes all the posted transactions) minus pending payments (memo credit) plus any check payments that are being held by the system.
+            VisionPLUS Service Data: AZXCEO-DOLLARS-CURR-BAL
+        totalCreditLimit:
+          type: number
+          description: |-
+            Length: 15
+            Total approved credit limit amount in pesos. If extraCupo is available, it is included with the credit limit amount.
+            VisionPLUS Service Data: AZXCEO-TOT-CREDIT-LIMIT
+        pesosOpenToBuy:
+          type: number
+          description: |-
+            Length: 15
+            Open-to-buy amount in pesos.
+            VisionPLUS Service Data: AZXCEO-PESOS-OTB
+        pesosCashAvailable:
+          type: number
+          description: |-
+            Length: 15
+            Available cash in pesos (open-to-buy amount in pesos multiplied by the cash advance percentage).
+            VisionPLUS Service Data: AZXCEO-PESOS-CASH-AVAIL
+        paymentDueDate:
+          type: string
+          description: |-
+            Length: 10
+            Payment due date of the account.
+            VisionPLUS Service Data: AZXCEO-PMT-DUE-DTE
+          format: date
+        pesosMemoCredits:
+          type: number
+          description: |-
+            Length: 15
+            Memo credit for the local account in pesos.
+            VisionPLUS Service Data: AZXCEO-PESOS-MEMO-CREDITS
+        pesosMemoDebits:
+          type: number
+          description: |-
+            Length: 15
+            Memo debit for the local account in pesos.
+            VisionPLUS Service Data: AZXCEO-PESOS-MEMO-DEBITS
+        dollarMemoCredits:
+          type: number
+          description: |-
+            Length: 15
+            Memo credit for the foreign account in U.S. dollars.
+            VisionPLUS Service Data: AZXCEO-DOLLARS-MEMOCREDITS
+        dollarMemoDebits:
+          type: number
+          description: |-
+            Length: 15
+            Memo debit for the foreign account in U.S. dollars.
+            VisionPLUS Service Data: AZXCEO-DOLLARS-MEMO-DEBITS
+        sobreCupo:
+          type: number
+          description: |-
+            Length: 15
+            Balance above credit limit.
+            VisionPLUS Service Data: AZXCEO-SOBRE-CUPO
+        extraCupo:
+          type: number
+          description: |-
+            Length: 15
+            Temporary credit limit.
+            VisionPLUS Service Data: AZXCEO-EXTRA-CUPO
+        previousCreditLimit:
+          type: number
+          description: Previous credit limit.
+        beginDateTemporaryCreditLimit:
+          type: string
+          description: |-
+            Length: 10
+            Beginning date of the temporary credit limit.
+          format: date
+        expiryDateTemporaryCreditLimit:
+          type: string
+          description: |-
+            Length: 10
+            Expiration date of the temporary credit limit.
+            VisionPLUS Service Data: AZXCEO-DATE-TEMP-CRLIM-EXP
+          format: date
+        customerNumber:
+          type: string
+          description: |-
+            Length: 19
+            Customer number on the account.
+            VisionPLUS Service Data: AZXCEO-ACCT-CUST-NBR
+        relationshipNumber:
+          type: string
+          description: |-
+            Length: 19
+            Relationship number on the account.
+            VisionPLUS Service Data: AZXCEO-ACCT-REL-NBR
+        exchangeRate:
+          type: number
+          description: |-
+            Length: 15
+            Active exchange rate.
+            VisionPLUS Service Data: AZXCEO-EXCHNG-RATE
+    DemographicInquiryRequest:
+      required:
+        - customerAccountCardNumber
+        - numberType
+        - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Identification number of the organization associated with the multilingual functionality (001–999).
+            VisionPLUS Service Data: AZXNDI-ORG
+          format: int32
+          example: 807
+        customerAccountCardNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+            Customer Account Card Number
+            VisionPLUS Service Data: AZXNDI-CUST-ACCT-CARD-NBR
+          example: '0004513070406598974'
+        numberType:
+          type: string
+          description: |-
+            Length: 1
+            Type Of Number In The 'idNumber' Field. The values are :
+            * 1 = Customer number * If zero, space, or low values is specified, the primary customer record associated with the account will be updated with the information provided to the service.
+            * If an alternate customer record, a correspondence customer record, or a customer record associated with a card is needed, use the customer number.
+            VisionPLUS Service Data: AZXNDI-NBR-TYP
+          example: '0'
+        foreignUseIndicator:
+          type: string
+          description: |-
+            Length: 1
+            Foreign Use Indicator. The values are :
+            * Zero, space, or low values = Local account
+            * 1 = Foreign account
+            VisionPLUS Service Data: AZXNDI-FOREIGN-USE
+          example: '1'
+      description: Demographic Data Request
+    DemographicInquiryResponse:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+            Identification number of the organization associated with the multilingual functionality (001–999)
+            VisionPLUS Service Data: AZXNDO-ORG
+          format: int32
+          example: 807
+        customerNumber:
+          type: string
+          description: |-
+            Length: 19
+            Customer number
+            VisionPLUS Service Data: AZXNDO-CUST-NBR
+        addStatus:
+          type: integer
+          description: |-
+            Length: 2
+            Add status
+            VisionPLUS Service Data: AZXNDO-ADD-STATUS
+          format: int32
+        status:
+          type: integer
+          description: |-
+            Length: 1
+            Status Of The Account. The values are:
+            * 0 = Active (Default)
+            * 1 = Closed
+            * 2 = Purge pending
+            VisionPLUS Service Data: AZXNDO-STATUS
+          format: int32
+        source:
+          type: string
+          description: |-
+            Length: 1
+            Source
+            VisionPLUS Service Data: AZXNDO-SOURCE
+        dateLastMaintenance:
+          type: string
+          description: |-
+            Length: 7
+            Date of last maintenance on the account
+            VisionPLUS Service Data: AZXNDO-DATE-LAST-MAINT
+          format: date
+        dateLastAddressChange:
+          type: string
+          description: |-
+            Length: 1
+            Date of last address change
+            VisionPLUS Service Data: AZXNDO-DATE-LAST-ADDRCHANGE
+          format: date
+        vipStatus:
+          type: string
+          description: |-
+            Length: 1
+            VIP Status Indicator. The values are:
+            * 0 = Not VIP customer
+            * 1 = VIP customer
+            VisionPLUS Service Data: AZXNDO-VIP-STATUS
+          example: '1'
+        sicCode:
+          type: integer
+          description: |-
+            Length: 6
+            Standard Industrial Classification code used to identify the industry to which the commercial card customer is associated.
+            VisionPLUS Service Data: AZXNDO-SIC-CODE
+          format: int32
+          example: 123456
+        duplicateCurrency:
+          type: integer
+          description: |-
+            Length: 11
+            Duplicate currency
+            VisionPLUS Service Data: AZXNDO-DUPLICATE-CURRENCY
+          format: int32
+        makerCoMakerIndicator:
+          type: string
+          description: |-
+            Length: 1
+            Maker/comaker indicator
+            VisionPLUS Service Data: AZXNDO-NA-COMAKER-IND
+        nameAddrData:
+          type: array
+          items:
+            $ref: '#/components/schemas/DemographicInquiryResponse.OwnerOrCoOwnerData'
+    DemographicInquiryResponse.CarrierRoute:
+      type: object
+      properties:
+        carrierRoute1and2:
+          type: string
+          description: |-
+            Length: 2
+            Two-part field that identifies the carrier route used for mail sorting purposes.
+            Carrier route used to sort mail for postal delivery purposes.
+            VisionPLUS Service Data: ARXGCI-CR-1-2
+          example: C1
+        carrierRoute3and4:
+          type: integer
+          description: |-
+            Length: 2
+            Two-part field that identifies the carrier route used for mail sorting purposes.
+            Carrier route used to sort mail for postal delivery purposes.
+            VisionPLUS Service Data: ARXGCI-CR-3-4
+          format: int32
+    DemographicInquiryResponse.DriverLicense:
+      type: object
+      properties:
+        driverLicenseCountry:
+          type: string
+          description: |-
+            Length: 3
+            Driver’s License Country
+            VisionPLUS Service Data: AZXNDO-DL-CNTRY
+        driverLicenseState:
+          type: string
+          description: |-
+            Length: 3
+            Driver’s License state
+            VisionPLUS Service Data: AZXNDO-DL-STATE
+        driverLicenseNumber:
+          type: string
+          description: |-
+            Length: 20
+            Three-part field that identifies the driver license number of the owner, state or province of issue, and the country of issue.
+            VisionPLUS Service Data: AZXNDO-DL-NBR
+    DemographicInquiryResponse.NameAddressData:
+      type: object
+      properties:
+        nameLine1:
+          type: string
+          description: |-
+            Length: 40
+            Name Line 1
+            VisionPLUS Service Data: AZXNDO-NAME-LINE-1
+        nameLine2:
+          type: string
+          description: |-
+            Length: 40
+            Name Line 2
+            VisionPLUS Service Data: AZXNDO-NAME-LINE-2
+          example: OWN NAME L2 TEST9
+        nameLine3:
+          type: string
+          description: |-
+            Length: 40
+            Name Line 3
+            VisionPLUS Service Data: AZXNDO-NAME-LINE-3
+          example: OWN NAME L3
+        houseNumber:
+          type: string
+          description: |-
+            Length: 20
+            Internal Number of the Residence
+            VisionPLUS Service Data: AZXNDO-HOUSE-NUMBER
+          example: '12349'
+        houseName:
+          type: string
+          description: |-
+            Length: 40
+            House name
+            VisionPLUS Service Data: AZXNDO-HOUSE-NAME
+          example: Could be apartment's name
+        houseAddress1:
+          type: string
+          description: |-
+            Length: 40
+            House Address 1.
+          example: OWN ADDR L19
+        houseAddress2:
+          type: string
+          description: |-
+            Length: 40
+            House Address 2.
+          example: OWN ADDR L29
+        houseAddress3:
+          type: string
+          description: |-
+            Length: 40
+            house Address 3.
+          example: OWN ADDR L39
+        houseAddress4:
+          type: string
+          description: |-
+            Length: 40
+            House Address 4.
+          example: OWN ADDR L49
+        cityAndState:
+          type: string
+          description: |-
+            Length: 40
+            City and state
+            VisionPLUS Service Data: AZXNDO-CITY-STATE
+        memo1:
+          type: string
+          description: |-
+            Length: 60
+            Memo 1
+            VisionPLUS Service Data: AZXNDO-MEMO-1.
+          example: Memo 1
+        memo2:
+          type: string
+          description: |-
+            Length: 60
+            Memo 2
+            VisionPLUS Service Data: AZXNDO-MEMO-2.
+          example: Memo 2
+        contactIndicator:
+          type: integer
+          description: |-
+            Length: 2
+            Contact indicator
+            VisionPLUS Service Data: AZXNDO-CONTACT-IND
+          format: int32
+        genderCode:
+          type: integer
+          description: |-
+            Length: 1
+            Gender code. The values are:
+            * 0 = Unspecified (Default)
+            * 1 = Male
+            * 2 = Female
+            VisionPLUS Service Data: AZXNDO-GENDER-CODE
+          format: int32
+          example: 1
+    DemographicInquiryResponse.NameTypeIndicator:
+      type: object
+      properties:
+        nameTypeIndicator1:
+          type: string
+          description: |-
+            Length: 1
+            Name Type Indicator 1. indicates the type of name. The values are: 
+            * 0 = Personal name (Default)
+            * 1 = Business name
+            * 2 = Store name
+            * 3 = Generic name
+            VisionPLUS Service Data: AZXNDO-NAME-TYPE-IND-1
+          example: '0'
+        nameTypeIndicator2:
+          type: string
+          description: |-
+            Length: 1
+            Name Type Indicator 2. indicates the type of name. The values are: 
+            * 0 = Personal name (Default)
+            * 1 = Business name
+            * 2 = Store name
+            * 3 = Generic name
+            VisionPLUS Service Data: AZXNDO-NAME-TYPE-IND-2
+          example: '0'
+        nameTypeIndicator3:
+          type: string
+          description: |-
+            Length: 1
+            Name Type Indicator 3. indicates the type of name. The values are: 
+            * 0 = Personal name (Default)
+            * 1 = Business name
+            * 2 = Store name
+            * 3 = Generic name
+            VisionPLUS Service Data: AZXNDO-NAME-TYPE-IND-3
+          example: '0'
+    DemographicInquiryResponse.OwnerOrCoOwnerData:
+      type: object
+      properties:
+        sequence:
+          type: integer
+          description: Sequence.
+          format: int32
+        relativeName:
+          type: string
+          description: |-
+            Length: 40
+            Relative Name.
+            VisionPLUS Service Data: AZXNDO-RELATIVE-NAME
+          example: Relative Name
+        title:
+          type: string
+          description: |-
+            Length: 40
+            Title
+            VisionPLUS Service Data: AZXNDO-TITLE
+          example: Monsieur
+        identificationNumberFlag:
+          type: string
+          description: |-
+            Length: 1
+            Owner identification number flag. The values are:
+            * 0 - Social Security Number
+            * 1 - Tax ID
+            * 2 - Other ID
+          example: '1'
+        identificationNumber:
+          type: string
+          description: Identification number.
+          example: '25'
+        homePhoneNumber:
+          type: string
+          description: |-
+            Length: 20
+            Home phone.
+            VisionPLUS Service Data: AZXNDO-HOME-PHONE
+          example: 123-456-9990
+        employerName:
+          type: string
+          description: |-
+            Length: 40
+            Employer Name.
+            VisionPLUS Service Data: AZXNDO-EMPLOYER
+          example: Milton
+        employerAddress1:
+          type: string
+          description: |-
+            Length: 40
+            Two-part field that indicates the mailing address of the employer of the owner.
+            VisionPLUS Service Data: AZXNDO-EMPLOYER-ADDR-1
+          example: EMP ADDR L1
+        employerAddress2:
+          type: string
+          description: |-
+            Length: 40
+            Two-part field that indicates the mailing address of the employer of the  owner.
+            VisionPLUS Service Data: AZXNDO-EMPLOYER-ADDR-2
+          example: EMP ADDR L2
+        employerPhoneFlag:
+          type: string
+          description: |-
+            Length: 1
+            Employer Phone Flag Fax flag. The values are:
+            * 0 = Do not fax
+            * 1 = May be faxed
+            * 2 = Prefers to be faxed
+          example: '1'
+        employerPhoneNumber:
+          type: string
+          description: |-
+            Length: 20
+            Employer Phone Number.
+            VisionPLUS Service Data: AZXNDO-EMP-PHONE
+          example: 123-456-7890
+        employerExtensionPhoneNumber:
+          type: string
+          description: |-
+            Length: 6
+            Employer Extension Phone Number.
+            VisionPLUS Service Data: AZXNDO-EMP-PHONE-EXTN
+          example: '123456'
+        homeFaxPhoneNumber:
+          type: string
+          description: |-
+            Length: 20
+            Three-part field that indicates the fax number of the customer, whether you have the customer’s permission to contact the customer at this number, and the date on which the fax number was last modified.
+            VisionPLUS Service Data: AZXNDO-FAX-PHONE
+          example: 223-456-7890
+        mobilePhoneNumber:
+          type: string
+          description: |-
+            Length: 20
+            Mobile Phone Number.
+            VisionPLUS Service Data: AZXNDO-MOBILE-PHONE
+          example: 323-456-7890
+        countryCode:
+          type: string
+          description: |-
+            Length: 3
+            Code that identifies the country in which this organization is located.
+            VisionPLUS Service Data: AZXNDO-CNTRY-CD
+          example: USA
+        postalCode:
+          type: string
+          description: |-
+            Length: 10
+            Residence Postal Code.
+            VisionPLUS Service Data: AZXNDO-PSTL-CD
+          example: '12345679'
+        position:
+          type: string
+          description: |-
+            Length: 4
+            User-defined code to indicate the position or job title of the owner.
+            VisionPLUS Service Data: AZXNDO-POSITION
+          example: CEO
+        maritalStatus:
+          type: string
+          description: |-
+            Length: 1
+            Marital Status. The values are: 
+            * 0 = Not used (Default)
+            * 1 = Married and living at the same address
+            * 2 = Married and living at different addresses
+            * 3 = Not married and living at the same address
+            * 4 = Not married and living at different addresses
+            * D = Divorced
+            * M = Married
+            * S = Single
+            * U = Undefined
+            * W = Widower
+            VisionPLUS Service Data: AZXNDO-MARITAL-STATUS
+          example: '1'
+        ownOrRentResidenceFlag:
+          type: string
+          description: |-
+            Length: 1
+            Maker's own/rent residence flag. The values are:
+            * 0 = Unknown
+            * 1 = Owns or is buying residence
+            * 2 = Rents or leases residence
+            * 3 = Lives at someone else's residence
+            VisionPLUS Service Data: AZXNDO-OWN-RENT-RESID-FLAG
+          example: '2'
+        languageIndicator:
+          type: string
+          description: |-
+            Length: 3
+            Spoken Language Indicator.
+            VisionPLUS Service Data: AZXNDO-LANGUAGE-INDIC
+          example: ENG
+        carrierRoute:
+          $ref: '#/components/schemas/DemographicInquiryResponse.CarrierRoute'
+        mailingList:
+          type: string
+          description: |-
+            Length: 1
+            Code indicating whether the Owner wants to be on a Mailing List.
+            VisionPLUS Service Data: AZXNDO-MAILING-LIST
+          example: '1'
+        dateOfBirth:
+          type: string
+          description: |-
+            Length: 10
+            Date of birth of the customer.
+            VisionPLUS Service Data: AZXNDO-DOB
+          format: date
+        foreignIndicator:
+          type: string
+          description: |-
+            Length: 1
+            Foreign Indicator. The values are:
+            * Blank = Does not live in a foreign country (Default)
+            * Any character = Lives in a foreign country. Format the address to the IRS standard.
+            VisionPLUS Service Data: AZXNDO-1099C-FOREIGN-IND
+          example: A
+        driverLicense:
+          $ref: '#/components/schemas/DemographicInquiryResponse.DriverLicense'
+        w9Indicator:
+          type: integer
+          description: |-
+            Length: 1
+            1099C/W9 indicator
+            VisionPLUS Service Data: AZXNDO-1099C-W9-IND
+          format: int32
+        w9DateSent:
+          type: string
+          description: |-
+            Length: 7
+            1099C/W9 date sent.
+            VisionPLUS Service Data: AZXNDO-1099C-W9-DATE-SENT
+          format: date
+        w9DateFiled:
+          type: string
+          description: w9DateFiled.
+          format: date
+        numberOfDependents:
+          type: integer
+          description: |-
+            Length: 3
+            Number of Dependents.
+            VisionPLUS Service Data: AZXNDO-NBR-OF-DEPENDENTS
+          format: int32
+        statementMessageIndicator:
+          type: integer
+          description: |-
+            Length: 1
+            Statement Message Indicator.
+            VisionPLUS Service Data: AZXNDO-STMT-MSG-INDIC
+          format: int32
+        email:
+          type: string
+          description: |-
+            Length: 19
+            Email of customer.
+            VisionPLUS Service Data: AZXNDO-EMAIL
+          example: ABC.DEF@yahoo.com
+        user1:
+          type: string
+          description: |-
+            Length: 2
+            User 1
+            VisionPLUS Service Data: AZXNDO-USER-1.
+          example: U1
+        user2:
+          type: string
+          description: |-
+            Length: 2
+            User 2
+            VisionPLUS Service Data: AZXNDO-USER-2.
+          example: U2
+        user3:
+          type: string
+          description: |-
+            Length: 7
+            User 3
+            VisionPLUS Service Data: AZXNDO-USER-3.
+          example: U323323
+        user4:
+          type: string
+          description: |-
+            Length: 1
+            User 4
+            VisionPLUS Service Data: AZXNDO-USER-4.
+          example: U
+        user5:
+          type: string
+          description: |-
+            Length: 1
+            User 5
+            VisionPLUS Service Data: AZXNDO-USER-5.
+          example: U
+        user6:
+          type: string
+          description: |-
+            Length: 2
+            User 6
+            VisionPLUS Service Data: AZXNDO-USER-6.
+          example: U6
+        user7:
+          type: string
+          description: |-
+            Length: 2
+            User 7
+            VisionPLUS Service Data: AZXNDO-USER-7.
+          example: U7
+        user8:
+          type: string
+          description: |-
+            Length: 2
+            User 8
+            VisionPLUS Service Data: AZXNDO-USER-8.
+          example: U8
+        user9:
+          type: string
+          description: |-
+            Length: 2
+            User 9
+            VisionPLUS Service Data: AZXNDO-USER-9.
+          example: U9
+        user10:
+          type: string
+          description: |-
+            Length: 7
+            User 10
+            VisionPLUS Service Data: AZXNDO-USER-10.
+          format: date
+        user11:
+          type: string
+          description: |-
+            Length: 7
+            User 11
+            VisionPLUS Service Data: AZXNDO-USER-11.
+          format: date
+        user12:
+          type: string
+          description: |-
+            Length: 30
+            User 12
+            VisionPLUS Service Data: AZXNDO-USER-12.
+          example: U12
+        user13:
+          type: string
+          description: |-
+            Length: 30
+            User 13
+            VisionPLUS Service Data: AZXNDO-USER-13.
+          example: U13
+        user14:
+          type: string
+          description: |-
+            Length: 20
+            User 14
+            VisionPLUS Service Data: AZXNDO-USER-14.
+          example: U14
+        user15:
+          type: string
+          description: |-
+            Length: 20
+            User 15
+            VisionPLUS Service Data: AZXNDO-USER-15.
+          example: U15
+        demographic1:
+          type: string
+          description: |-
+            Length: 20
+            Demographic 1. User-defined demographic data or other information for an owner.
+            VisionPLUS Service Data: AZXNDO-USER-DEMO-1
+          example: USER DEMO 1
+        demographic2:
+          type: string
+          description: |-
+            Length: 20
+            Demographic 2. User-defined demographic data or other information for an owner.
+            VisionPLUS Service Data: AZXNDO-USER-DEMO-2
+          example: USER DEMO 2
+        demographic3:
+          type: string
+          description: |-
+            Length: 20
+            Demographic 3. User-defined demographic data or other information for an owner.
+            VisionPLUS Service Data: AZXNDO-USER-DEMO-4
+          example: USER DEMO 3
+        nameTypeIndicator:
+          $ref: '#/components/schemas/DemographicInquiryResponse.NameTypeIndicator'
+        nameAddressData:
+          $ref: '#/components/schemas/DemographicInquiryResponse.NameAddressData'
+        homePhoneFlag:
+          type: string
+          description: |-
+            Length: 1
+            Home Phone Indicator. The values are:
+            * 0 = Do not call
+            * 1 = May be called
+            * 2 = Prefers to be called
+            VisionPLUS Service Data: AZXNDO-HOME-PHONE-FLAG
+        faxPhoneFlag:
+          type: string
+          description: |-
+            Length: 1
+            Three-part field that indicates the facsimile (fax) number of the co-owner, whether you have the co-owner’s permission to use this number, and the date when the number was last modified..
+            The values are:
+            * 0=Do not fax
+            * 1=May be faxed
+            * 2=Prefers to be faxed
+            VisionPLUS Service Data: AZXNDO-FAX-PHONE-FLAG
+          example: '1'
+        mobilePhoneFlag:
+          type: string
+          description: |-
+            Length: 1
+            Mobile phone flag. The values are: 
+            * 0 = Do not call
+            * 1 = May be called
+            * 2 = Prefers to be called
+            VisionPLUS Service Data: AZXNDO-MOBILE-PHONE-FLAG
+          example: '1'
+        emailFlag:
+          type: string
+          description: |-
+            Length: 1
+            The values are: 
+             * 0 = Do not e-mail
+             * 1 = May be e-mailed
+             * 2 = Prefers to be e-mailed
+            VisionPLUS Service Data: AZXNDO-EMAIL-FLAG
+          example: '1'
+        smsFlag:
+          type: string
+          description: |-
+            Length: 1
+            SMS indicator.
+            VisionPLUS Service Data: AZXNDO-SMS-FLAG
+          example: '1'
+        lastName:
+          type: string
+          description: |-
+            Length: 40
+            Last name.
+            VisionPLUS Service Data: AZXNDO-LAST-NAME
+          example: Sivale
+        middleName:
+          type: string
+          description: |-
+            Length: 40
+            Middle name.
+            VisionPLUS Service Data: AZXNDO-MIDDLE-NAME
+          example: Pedro
+        firstName:
+          type: string
+          description: |-
+            Length: 40
+            First name.
+            VisionPLUS Service Data: AZXNDO-FIRST-NAME
+          example: Pavan
+        suffix:
+          type: string
+          description: |-
+            Length: 20
+            Length: 20
+            VisionPLUS Service Data: AZXNDO-SUFFIX
+          example: Sr
+        county:
+          type: string
+          description: |-
+            Length: 30
+            County portion of the mailing address of the owner.
+            VisionPLUS Service Data: AZXNDO-COUNTY
+          example: Orange
+        accountCardNumber:
+          type: string
+          description: |-
+            Length: 19
+            Account card number.
+            VisionPLUS Service Data: AZXNDO-ACCT-CARD-NBR.
+          example: '451234567000000000'
     AddCustomerRequest:
       type: object
       properties:
@@ -147,7 +1365,7 @@ components:
           $ref: '#/components/schemas/CoOwnerData'
     CoOwnerData:
       required:
-      - postalCode
+        - postalCode
       type: object
       properties:
         maritalStatus:
@@ -168,7 +1386,7 @@ components:
             U = Undefined
             W = Widower
             VisionPLUS Service Data: ARXNAI-C-MARITAL-STATUS
-          example: "1"
+          example: '1'
         nameLine1:
           maxLength: 40
           minLength: 0
@@ -215,7 +1433,10 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nName Line 3\nVisionPLUS Service Data: ARXNAI-C-NAME-LINE-1"
+          description: |-
+            Length 40 
+            Name Line 3
+            VisionPLUS Service Data: ARXNAI-C-NAME-LINE-1
           example: OWN NAME L3
         nameTypeIndicator3:
           type: integer
@@ -233,38 +1454,55 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \nInternal number of the residence\nVisionPLUS Service\
-            \ Data: ARXNA-C-HOUSE-NBR"
-          example: "12349"
+          description: |-
+            Length 20 
+            Internal number of the residence
+            VisionPLUS Service Data: ARXNA-C-HOUSE-NBR
+          example: '12349'
         houseName:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Name\nVisionPLUS Service Data: ARXNAI-C-HOUSE-NAME"
+          description: |-
+            Length 40 
+            House Name
+            VisionPLUS Service Data: ARXNAI-C-HOUSE-NAME
           example: LILY RESIDENCE
         houseAddress1:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Address 1\nVisionPLUS Service Data: ARXNAI-C-ADDR-1"
+          description: |-
+            Length 40 
+            House Address 1
+            VisionPLUS Service Data: ARXNAI-C-ADDR-1
           example: OWN ADDR L19
         houseAddress2:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Address 2\nVisionPLUS Service Data: ARXNAI-C-ADDR-2"
+          description: |-
+            Length 40 
+            House Address 2
+            VisionPLUS Service Data: ARXNAI-C-ADDR-2
           example: OWN ADDR L19
         houseAddress3:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Address 3\nVisionPLUS Service Data: ARXNAI-C-ADDR-3"
+          description: |-
+            Length 40 
+            House Address 3
+            VisionPLUS Service Data: ARXNAI-C-ADDR-3
           example: OWN ADDR L19
         houseAddress4:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Address 4\nVisionPLUS Service Data: ARXNAI-C-ADDR-4"
+          description: |-
+            Length 40 
+            House Address 4
+            VisionPLUS Service Data: ARXNAI-C-ADDR-4
           example: OWN ADDR L19
         city:
           maxLength: 30
@@ -288,9 +1526,11 @@ components:
           maxLength: 10
           minLength: 0
           type: string
-          description: "Length: 10 \nResidence Postal Code\nVisionPLUS Service Data:\
-            \ ARXNAI-C-PSTL-CD"
-          example: "12345679"
+          description: |-
+            Length: 10 
+            Residence Postal Code
+            VisionPLUS Service Data: ARXNAI-C-PSTL-CD
+          example: '12345679'
         countryCode:
           maxLength: 30
           minLength: 0
@@ -339,7 +1579,7 @@ components:
             Length: 1
             Code indicating whether the Owner wants to be on a Mailing List.
             VisionPLUS Service Data: ARXNAI-C-MAILING-LIST
-          example: "1"
+          example: '1'
         contactIndicator:
           maximum: 2
           minimum: 0
@@ -409,8 +1649,10 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \n Mobile Phone Number\nVisionPLUS Service Data:\
-            \ ARXNAI-C-MOBILE-PHONE"
+          description: |-
+            Length 20 
+             Mobile Phone Number
+            VisionPLUS Service Data: ARXNAI-C-MOBILE-PHONE
           example: 323-456-7890
         dateOfBirth:
           type: string
@@ -430,14 +1672,18 @@ components:
           maxLength: 3
           minLength: 0
           type: string
-          description: "Length 3 \n Driver's License State\nVisionPLUS Service Data:\
-            \ ARXNAI-C-DL-STATE"
+          description: |-
+            Length 3 
+             Driver's License State
+            VisionPLUS Service Data: ARXNAI-C-DL-STATE
         driverLicenseCountry:
           maxLength: 3
           minLength: 0
           type: string
-          description: "Length 3 \n Driver's License Country\nVisionPLUS Service Data:\
-            \ ARXNAI-C-DL-CNTRY"
+          description: |-
+            Length 3 
+             Driver's License Country
+            VisionPLUS Service Data: ARXNAI-C-DL-CNTRY
         identificationNumberFlag:
           type: integer
           description: |-
@@ -457,7 +1703,7 @@ components:
             Length: 25
             Identification number of the customer.If the field is 0 (Social Security number), the second part must be nine numeric characters only.
             isionPLUS Service Data: ARXNAI-C-SSAN
-          example: "123456789"
+          example: '123456789'
         dateOfFile:
           type: string
           description: |-
@@ -477,7 +1723,10 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nEmployer Name\nVisionPLUS Service Data: ARXNAI-C-EMPLOYER"
+          description: |-
+            Length 40 
+            Employer Name
+            VisionPLUS Service Data: ARXNAI-C-EMPLOYER
           example: Milton
         employerAddress1:
           maxLength: 40
@@ -501,16 +1750,20 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \nEmployer Phone Number\nVisionPLUS Service Data:\
-            \ ARXNAI-C-EMP-PHONE"
+          description: |-
+            Length 20 
+            Employer Phone Number
+            VisionPLUS Service Data: ARXNAI-C-EMP-PHONE
           example: 123-456-7890
         employerExtensionPhoneNumber:
           maxLength: 6
           minLength: 0
           type: string
-          description: "Length 6 \n Employee Phone Extension\nVisionPLUS Service Data:\
-            \ ARXNAI-C-EMP-PHONE-EXTN"
-          example: "123456"
+          description: |-
+            Length 6 
+             Employee Phone Extension
+            VisionPLUS Service Data: ARXNAI-C-EMP-PHONE-EXTN
+          example: '123456'
         employerPhoneFlag:
           type: integer
           description: |-
@@ -545,15 +1798,20 @@ components:
           maximum: 3
           minimum: 0
           type: integer
-          description: "Length 3 \nNumber of Dependents\nVisionPLUS Service Data:\
-            \ ARXNAI-C-NBR-OF-DEPENDENTS"
+          description: |-
+            Length 3 
+            Number of Dependents
+            VisionPLUS Service Data: ARXNAI-C-NBR-OF-DEPENDENTS
           format: int32
           example: 999
         email:
           maxLength: 60
           minLength: 0
           type: string
-          description: "Length 60 \nEmail of customer\nVisionPLUS Service Data: ARXNAI-C-EMAIL"
+          description: |-
+            Length 60 
+            Email of customer
+            VisionPLUS Service Data: ARXNAI-C-EMAIL
           example: ABC.DEF@yahoo.com
         memo1:
           maxLength: 60
@@ -661,7 +1919,7 @@ components:
             Length: 7
             User-defined codes used for customized information about the account.
             VisionPLUS Service Data: ARXNAI-C-USER-10
-          example: "2011031"
+          example: '2011031'
         user11:
           maxLength: 7
           minLength: 0
@@ -670,7 +1928,7 @@ components:
             Length: 7
             User-defined codes used for customized information about the account.
             VisionPLUS Service Data: ARXNAI-C-USER-11
-          example: "2011031"
+          example: '2011031'
         user12:
           maxLength: 30
           minLength: 0
@@ -793,19 +2051,28 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nLast Name\nVisionPLUS Service Data: ARXNAI-C-LAST-NAME"
+          description: |-
+            Length 40 
+            Last Name
+            VisionPLUS Service Data: ARXNAI-C-LAST-NAME
           example: Gonzalez
         middleName:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nMiddle Name\nVisionPLUS Service Data: ARXNAI-C-MIDDDLE-NAME"
+          description: |-
+            Length 40 
+            Middle Name
+            VisionPLUS Service Data: ARXNAI-C-MIDDDLE-NAME
           example: Pedro
         firstName:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nFirst Name\nVisionPLUS Service Data: ARXNAI-C-FIRST-NAME"
+          description: |-
+            Length 40 
+            First Name
+            VisionPLUS Service Data: ARXNAI-C-FIRST-NAME
           example: Juan
         suffix:
           maxLength: 20
@@ -837,9 +2104,9 @@ components:
       description: AddCustomerRequest.CustomerData
     CustomerKeyData:
       required:
-      - accountNumber
-      - customerNumber
-      - organizationNumber
+        - accountNumber
+        - customerNumber
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -859,7 +2126,7 @@ components:
             Customer number that identifies the Customer Name/Address record to which this account is assigned.
             A valid customer name and address must be on file for this account.
             VisionPLUS Service Data: ARXNAI-CUST-NBR
-          example: "4513074002573466111"
+          example: '4513074002573466111'
         accountNumber:
           maxLength: 19
           minLength: 19
@@ -867,7 +2134,7 @@ components:
           description: |-
             Identification of the account number associated with the customer number (demographic data) that you want to modify or view.
             VisionPLUS Service Data: ARXNAI-BS-ACCT
-          example: "9999995020000600000"
+          example: '9999995020000600000'
         coOwnerIndicator:
           type: integer
           description: |-
@@ -890,7 +2157,7 @@ components:
             * 0 = Dual currency is not active(Default)
             * 1 = Dual billing is active.
             VisionPLUS Service Data: ARXNAI-DUAL-FLAG
-          example: "0"
+          example: '0'
     CustomerMiscellaneousData:
       type: object
       properties:
@@ -939,10 +2206,10 @@ components:
             * 8 = Closed
             * 9 = To be purged after reload.
             VisionPLUS Service Data: ARXNAI-STATUS.
-          example: "9"
+          example: '9'
     OwnerData:
       required:
-      - postalCode
+        - postalCode
       type: object
       properties:
         maritalStatus:
@@ -963,12 +2230,15 @@ components:
             * U = Undefined
             * W = Widower
             VisionPLUS Service Data: ARXNAI-MARITAL-STATUS
-          example: "1"
+          example: '1'
         nameLine1:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \n Name Line 1\nVisionPLUS Service Data: ARXNAI-NAME-LINE-1"
+          description: |-
+            Length 40 
+             Name Line 1
+            VisionPLUS Service Data: ARXNAI-NAME-LINE-1
         nameTypeIndicator1:
           type: integer
           description: |-
@@ -985,7 +2255,10 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \n Name Line 2\nVisionPLUS Service Data: ARXNAI-NAME-LINE-2"
+          description: |-
+            Length 40 
+             Name Line 2
+            VisionPLUS Service Data: ARXNAI-NAME-LINE-2
           example: OWN NAME L2 TEST9
         nameTypeIndicator2:
           type: integer
@@ -1003,7 +2276,10 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \n Name Line 3\nVisionPLUS Service Data: ARXNAI-NAME-LINE-3"
+          description: |-
+            Length 40 
+             Name Line 3
+            VisionPLUS Service Data: ARXNAI-NAME-LINE-3
           example: OWN NAME L3
         nameTypeIndicator3:
           type: integer
@@ -1021,38 +2297,54 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \nInternal Number of the Residence\nVisionPLUS Service\
-            \ Data: ARXNAI-HOUSE-NBR"
-          example: "12349"
+          description: |-
+            Length 20 
+            Internal Number of the Residence
+            VisionPLUS Service Data: ARXNAI-HOUSE-NBR
+          example: '12349'
         houseName:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse NameVisionPLUS Service Data: ARXNAI-HOUSE-NAME"
+          description: |-
+            Length 40 
+            House NameVisionPLUS Service Data: ARXNAI-HOUSE-NAME
           example: Could be apartment's name
         houseAddress1:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Address 1\nVisionPLUS Service Data: ARXNAI-ADDR-1"
+          description: |-
+            Length 40 
+            House Address 1
+            VisionPLUS Service Data: ARXNAI-ADDR-1
           example: OWN ADDR L19
         houseAddress2:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Address 2\nVisionPLUS Service Data: ARXNAI-ADDR-2"
+          description: |-
+            Length 40 
+            House Address 2
+            VisionPLUS Service Data: ARXNAI-ADDR-2
           example: OWN ADDR L29
         houseAddress3:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Address 3\nVisionPLUS Service Data: ARXNAI-ADDR-3"
+          description: |-
+            Length 40 
+            House Address 3
+            VisionPLUS Service Data: ARXNAI-ADDR-3
           example: OWN ADDR L39
         houseAddress4:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nHouse Address 4\nVisionPLUS Service Data: ARXNAI-ADDR-4"
+          description: |-
+            Length 40 
+            House Address 4
+            VisionPLUS Service Data: ARXNAI-ADDR-4
           example: OWN ADDR L49
         city:
           maxLength: 30
@@ -1076,9 +2368,11 @@ components:
           maxLength: 10
           minLength: 0
           type: string
-          description: "Length 10 \nResidence Postal Code\nVisionPLUS Service Data:\
-            \ ARXNAI-PSTL-CD"
-          example: "12345679"
+          description: |-
+            Length 10 
+            Residence Postal Code
+            VisionPLUS Service Data: ARXNAI-PSTL-CD
+          example: '12345679'
         countryCode:
           maxLength: 3
           minLength: 0
@@ -1118,16 +2412,20 @@ components:
           maxLength: 3
           minLength: 0
           type: string
-          description: "Length 3 \nSpoken Language Indicator\nVisionPLUS Service Data:\
-            \ ARXNAI-LANGUAGE-IND"
+          description: |-
+            Length 3 
+            Spoken Language Indicator
+            VisionPLUS Service Data: ARXNAI-LANGUAGE-IND
           example: ENG
         mailingList:
           maxLength: 1
           minLength: 0
           type: string
-          description: "Length 1 \nCode Indicating Whether The Owner Wants To Be On\
-            \ A Mailing List\nVisionPLUS Service Data: ARXNAI-MAILING-LIST"
-          example: "1"
+          description: |-
+            Length 1 
+            Code Indicating Whether The Owner Wants To Be On A Mailing List
+            VisionPLUS Service Data: ARXNAI-MAILING-LIST
+          example: '1'
         contactIndicator:
           maximum: 2
           minimum: 0
@@ -1182,21 +2480,28 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \nHome Phone Number\nVisionPLUS Service Data: ARXNAI-HOME-PHONE"
+          description: |-
+            Length 20 
+            Home Phone Number
+            VisionPLUS Service Data: ARXNAI-HOME-PHONE
           example: 123-456-9990
         homeFaxPhoneNumber:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \nHome FAX Phone Number\nVisionPLUS Service Data:\
-            \ ARXNAI-FAX-PHONE"
+          description: |-
+            Length 20 
+            Home FAX Phone Number
+            VisionPLUS Service Data: ARXNAI-FAX-PHONE
           example: 223-456-7890
         mobilePhoneNumber:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \n Mobile Phone Number\nVisionPLUS Service Data:\
-            \ ARXNAI-MOBILE-PHONE"
+          description: |-
+            Length 20 
+             Mobile Phone Number
+            VisionPLUS Service Data: ARXNAI-MOBILE-PHONE
           example: 323-456-7890
         dateOfBirth:
           type: string
@@ -1211,7 +2516,7 @@ components:
           description: |-
             Length: 20
             Driver's License Number
-          example: "123421"
+          example: '123421'
         driverLicenseState:
           maxLength: 3
           minLength: 0
@@ -1230,18 +2535,24 @@ components:
             VisionPLUS Service Data: ARXNAI-DL-CNTRY
         identificationNumberFlag:
           type: integer
-          description: "Length 1 \n Owner identification number flag. The values are:\n\
-            * 0 = Social Security number\n* 1 = Tax ID\n* 2 = Other ID\nVisionPLUS\
-            \ Service Data: ARXNAI-M-SSAN-FLAG"
+          description: |-
+            Length 1 
+             Owner identification number flag. The values are:
+            * 0 = Social Security number
+            * 1 = Tax ID
+            * 2 = Other ID
+            VisionPLUS Service Data: ARXNAI-M-SSAN-FLAG
           format: int32
           example: 2
         identificationNumber:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 25 \nIdentification Number\nVisionPLUS Service Data:\
-            \ ARXNAI-SSAN"
-          example: "123456789"
+          description: |-
+            Length 25 
+            Identification Number
+            VisionPLUS Service Data: ARXNAI-SSAN
+          example: '123456789'
         dateOfFile:
           type: string
           description: |-
@@ -1252,8 +2563,10 @@ components:
           maximum: 1
           minimum: 0
           type: integer
-          description: "Length 1 \nStatement Message Indicator\nVisionPLUS Service\
-            \ Data: ARXNAI-STMT-MSG-INDIC"
+          description: |-
+            Length 1 
+            Statement Message Indicator
+            VisionPLUS Service Data: ARXNAI-STMT-MSG-INDIC
           format: int32
           example: 1
         employerName:
@@ -1287,8 +2600,10 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \n Employer Phone Number\nVisionPLUS Service Data:\
-            \ ARXNAI-EMP-PHONE"
+          description: |-
+            Length 20 
+             Employer Phone Number
+            VisionPLUS Service Data: ARXNAI-EMP-PHONE
           example: 123-456-7890
         employerExtensionPhoneNumber:
           maxLength: 6
@@ -1298,7 +2613,7 @@ components:
             Length: 6
             Employee Phone Extension
             VisionPLUS Service Data: ARXNAI-EMP-PHONE-EXTN
-          example: "123456"
+          example: '123456'
         employerPhoneFlag:
           type: integer
           description: |-
@@ -1323,14 +2638,19 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nRelative Name\nVisionPLUS Service Data: ARXNAI-RELATIVE-NAME"
+          description: |-
+            Length 40 
+            Relative Name
+            VisionPLUS Service Data: ARXNAI-RELATIVE-NAME
           example: Relative Name
         numberOfDependents:
           maximum: 3
           minimum: 0
           type: integer
-          description: "Length 3 \n Number of Dependents\nVisionPLUS Service Data:\
-            \ ARXNAI-NBR-OF-DEPENDENTS"
+          description: |-
+            Length 3 
+             Number of Dependents
+            VisionPLUS Service Data: ARXNAI-NBR-OF-DEPENDENTS
           format: int32
           example: 999
         email:
@@ -1346,13 +2666,19 @@ components:
           maxLength: 60
           minLength: 0
           type: string
-          description: "Length 60 \n Memo 1\nVisionPLUS Service Data: ARXNAI-MEMO-1"
+          description: |-
+            Length 60 
+             Memo 1
+            VisionPLUS Service Data: ARXNAI-MEMO-1
           example: Memo 1
         memo2:
           maxLength: 60
           minLength: 0
           type: string
-          description: "Length 60 \nMemo 2\nVisionPLUS Service Data: ARXNAI-MEMO-2"
+          description: |-
+            Length 60 
+            Memo 2
+            VisionPLUS Service Data: ARXNAI-MEMO-2
           example: Memo 2
         user1:
           maxLength: 2
@@ -1443,7 +2769,7 @@ components:
             Length: 7
             User-defined codes used for customized information about the account.
             VisionPLUS Service Data: ARXNAI-USER-10
-          example: "2011031"
+          example: '2011031'
         user11:
           maxLength: 7
           minLength: 0
@@ -1452,7 +2778,7 @@ components:
             Length: 7
             User-defined codes used for customized information about the account.
             VisionPLUS Service Data: ARXNAI-USER-11
-          example: "2011032"
+          example: '2011032'
         user12:
           maxLength: 30
           minLength: 0
@@ -1576,25 +2902,37 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \n Last Name\nVisionPLUS Service Data: ARXNAI-LAST-NAME"
+          description: |-
+            Length 40 
+             Last Name
+            VisionPLUS Service Data: ARXNAI-LAST-NAME
           example: Gonzalez
         middleName:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \n Middle Name\nVisionPLUS Service Data: ARXNAI-MIDDDLE-NAME"
+          description: |-
+            Length 40 
+             Middle Name
+            VisionPLUS Service Data: ARXNAI-MIDDDLE-NAME
           example: Pedro
         firstName:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Length 40 \nFirst Name\nVisionPLUS Service Data: ARXNAI-FIRST-NAME"
+          description: |-
+            Length 40 
+            First Name
+            VisionPLUS Service Data: ARXNAI-FIRST-NAME
           example: Juan
         suffix:
           maxLength: 20
           minLength: 0
           type: string
-          description: "Length 20 \nSuffix\nVisionPLUS Service Data: ARXNAI-SUFFIX"
+          description: |-
+            Length 20 
+            Suffix
+            VisionPLUS Service Data: ARXNAI-SUFFIX
           example: Sr
         county:
           maxLength: 30
@@ -1646,19 +2984,27 @@ components:
           format: date
         reservedDate2:
           type: string
-          description: "Reserved For Future \nVisionPLUS Service Data: ARXNAI-RESV-DATE-2"
+          description: |-
+            Reserved For Future 
+            VisionPLUS Service Data: ARXNAI-RESV-DATE-2
           format: date
         reservedDate3:
           type: string
-          description: "Reserved For Future \nVisionPLUS Service Data: ARXNAI-RESV-DATE-3"
+          description: |-
+            Reserved For Future 
+            VisionPLUS Service Data: ARXNAI-RESV-DATE-3
           format: date
         reservedDate4:
           type: string
-          description: "Reserved For Future \nVisionPLUS Service Data: ARXNAI-RESV-DATE-4"
+          description: |-
+            Reserved For Future 
+            VisionPLUS Service Data: ARXNAI-RESV-DATE-4
           format: date
         reservedDate5:
           type: string
-          description: "Reserved For Future \nVisionPLUS Service Data: ARXNAI-RESV-DATE-5"
+          description: |-
+            Reserved For Future 
+            VisionPLUS Service Data: ARXNAI-RESV-DATE-5
           format: date
         reservedAmt1:
           type: number
@@ -1690,24 +3036,6 @@ components:
             Length: 17
             Reserved For Future Use
             VisionPLUS Service Data: ARXNAI-RESV-AMT-5
-    DResponse:
-      type: object
-      properties:
-        hasError:
-          type: boolean
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        data:
-          type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
     AddCustomerResponse:
       type: object
       properties:

@@ -9,30 +9,29 @@ paths:
   /account/qualification:
     put:
       tags:
-      - Account
-      summary: "Update Account qualification. (VMX Service: M.CMS.ACCT.CLOSE.CHGOFF,\
-        \ R8V2)"
-      description: "Updates the value of the Account qualification field. Emulates\
-        \ the functionality used to update the account status, from active to closed,\
-        \ in the same manner as the STATUS field on online screen ARMB01. In addition,\
-        \ this service provides the ability to initiate charge-off in the same manner\
-        \ as setting the C/O STAT field to a value of 3 (manual) on the Account Base\
-        \ Segment screen (ARMB01). \nVMX Service: M.CMS.ACCT.CLOSE.CHGOFF, R8V2"
+        - Account
+      summary: 'Update Account qualification. VMX Service: M.CMS.ACCT.CLOSE.CHGOFF, R8V2'
+      description: |-
+        Emulates the functionality used to update the
+        account status from active to closed. In addition, this service provides the ability to
+        initiate charge-off in. 
+
+        VMX Service: M.CMS.ACCT.CLOSE.CHGOFF, R8V2
       operationId: Account Qualification Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -40,21 +39,29 @@ paths:
               $ref: '#/components/schemas/UpdateQualificationRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateQualificationResponse'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
           description: Forbidden
-        "404":
+        '404':
           description: Not Found
-        "405":
+        '405':
           description: Method Not Allowed
-        "422":
+        '422':
           description: |
             VPL5SAAI6E - GQ FIELD MUST BE SPACE OR A-Z
             VPL5SCC01S - ACCOUNT OR CARD NUMBER IS REQUIRED
@@ -82,15 +89,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateQualificationResponse'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
@@ -102,25 +101,26 @@ paths:
   /account/block-code:
     put:
       tags:
-      - Account
-      summary: "Block & Unblock Account. VMX Service: M.CMS.ACCT.BLKCD.UPD, R8V1"
-      description: "Adds, changes or removes a block code on an Account. \nVMX Service:\
-        \ M.CMS.ACCT.BLKCD.UPD, R8V1"
+        - Account
+      summary: 'Block & Unblock Account. VMX Service: M.CMS.ACCT.BLKCD.UPD, R8V1'
+      description: |-
+        Adds, changes or removes a block code on an Account. 
+        VMX Service: M.CMS.ACCT.BLKCD.UPD, R8V1
       operationId: Account Block Code Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -128,23 +128,29 @@ paths:
               $ref: '#/components/schemas/AccountForBlockCodeUpdateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountForBlockCodeUpdateResponse'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "401":
+        '400':
+          description: Bad Request
+        '401':
           description: Unauthorized
-        "422":
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |-
             VPL5SAB05S - CANNOT SET A BLOCK CODE ON A BILLING ACCOUNT
             VPL5SAB06S - ACCOUNT NUMBER OR CARD NUMBER MUST BE PROVIDED
@@ -164,13 +170,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountForBlockCodeUpdateResponse'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
@@ -182,32 +182,32 @@ paths:
   /account/balance:
     put:
       tags:
-      - Account
-      summary: "Cash-in & Cash-out. VMX Service: M.ASM.MONETARY.ACT, L8V2"
-      description: "Credits (cash in) or Debits (cash out) transactions from available\
-        \ funds or credit open to buy in an Account. \nVMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V2"
+        - Account
+      summary: 'Cash-in & Cash-out. VMX Service: M.ASM.MONETARY.ACT, L8V2'
+      description: |-
+        Credits (cash in) or Debits (cash out) transactions from available funds or credit open to buy in an Account. 
+        VMX Service: M.ASM.MONETARY.ACT, L8V2
       operationId: Cash-in & Cash-out Request
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      - name: clientReceivedStartTimestamp
-        in: header
-        required: false
-        schema:
-          type: integer
-          format: int64
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
+        - name: clientReceivedStartTimestamp
+          in: header
+          required: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -215,29 +215,29 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ModifyAccountBalanceResponse'
-        "500":
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
           description: Backend Error
           content:
             application/json:
@@ -249,26 +249,26 @@ paths:
   /account/v2/instantCard:
     post:
       tags:
-      - Account
-      summary: "Instant account and digital or physical card addition. VMX Service:\
-        \ M.CMS.INSTANT.CARD.ADD, L8V7"
-      description: "Add an account and digital or physical card. \nVMX Service: M.CMS.INSTANT.CARD.ADD,\
-        \ L8V7"
+        - Account
+      summary: 'Instant account and digital or physical card addition. VMX Service: M.CMS.INSTANT.CARD.ADD, L8V7'
+      description: |-
+        Add an account and digital or physical card. 
+        VMX Service: M.CMS.INSTANT.CARD.ADD, L8V7
       operationId: Instant Card Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -276,21 +276,29 @@ paths:
               $ref: '#/components/schemas/InstantCardAddL8V7Request'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstantCardAddL8V7Response'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
           description: Forbidden
-        "404":
+        '404':
           description: Not Found
-        "405":
+        '405':
           description: Method Not Allowed
-        "422":
+        '422':
           description: |-
             Unprocessable Entity
 
@@ -320,15 +328,7 @@ paths:
             VPL5SIC30S - ADMIN BRANCH SHOULD BE NUMERIC AND GREATER THAN 0
           content:
             application/json: {}
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InstantCardAddL8V7Response'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
@@ -340,26 +340,27 @@ paths:
   /account/instant-card:
     post:
       tags:
-      - Account
-      summary: "Instant Account & Card creation. VMX Service: M.CMS.INSTANT.CARD.ADD,\
-        \ L8V3"
-      description: "Creates an Account and Card records for instant use for eCommerce\
-        \ transactions. \n\nVMX Service: M.CMS.INSTANT.CARD.ADD, L8V3"
+        - Account
+      summary: 'Instant Account & Card creation. VMX Service: M.CMS.INSTANT.CARD.ADD, L8V3'
+      description: |-
+        Creates an Account and Card records for instant use for eCommerce transactions. 
+
+        VMX Service: M.CMS.INSTANT.CARD.ADD, L8V3
       operationId: Instant Card Add_1
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -367,7 +368,29 @@ paths:
               $ref: '#/components/schemas/InstantCardAddRequest'
         required: true
       responses:
-        "422":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstantCardAddResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |-
             VPL5SIC24S - MBS SWITCH IS OFF
             VPL5SIC25S - ORG LEVEL FLAG FOR VIRTUAL CARD HAS NOT BEEN SET
@@ -379,29 +402,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InstantCardAddResponse'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
@@ -413,28 +414,26 @@ paths:
   /account/details-L8VG:
     post:
       tags:
-      - Account
-      summary: "(VMX Service: M.CMS.ACCOUNT.INQ, L8VG)"
-      description: "Find account details provides information on the account’s status.\
-        \ If the account has been transferred, the current account number must be\
-        \ provided. This service does not automatically switch to the new account.\
-        \ This service can be called with an account number or a card number. \nVMX\
-        \ Service: M.CMS.ACCOUNT.INQ, L8VG"
+        - Account
+      summary: '(VMX Service: M.CMS.ACCOUNT.INQ, L8VG)'
+      description: |-
+        Find account details provides information on the account’s status. If the account has been transferred, the current account number must be provided. This service does not automatically switch to the new account. This service can be called with an account number or a card number. 
+        VMX Service: M.CMS.ACCOUNT.INQ, L8VG
       operationId: Account Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -442,7 +441,29 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
-        "422":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountForDetailsL8vgResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |
             VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
             VPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
@@ -462,29 +483,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountForDetailsL8vgResponse'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
@@ -496,27 +495,26 @@ paths:
   /account/:
     post:
       tags:
-      - Account
-      summary: "Add account. VMX Service: M.CMS.ACCOUNT.ADD, R8V8"
-      description: "Adds a single Account to an existing Customer record for Single\
-        \ Currency Accounts. For Dual Currency Accounts, two records with the same\
-        \ Account number will be created in the local and foreign currency Organizations.\
-        \ \nVMX Service: M.CMS.ACCOUNT.ADD, R8V8"
+        - Account
+      summary: 'Add account. VMX Service: M.CMS.ACCOUNT.ADD, R8V8'
+      description: |-
+        Adds a single Account to an existing Customer record for Single Currency Accounts. For Dual Currency Accounts, two records with the same Account number will be created in the local and foreign currency Organizations. 
+        VMX Service: M.CMS.ACCOUNT.ADD, R8V8
       operationId: Account Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -524,23 +522,29 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountAddDetailsResponse'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "401":
+        '400':
+          description: Bad Request
+        '401':
           description: Unauthorized
-        "422":
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
             VPL5SAA03S - ORG NUMBER REQUIRED WHEN ACCOUNT NUMBER NOT PROVIDED
@@ -956,13 +960,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountAddDetailsResponse'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
@@ -975,12 +973,12 @@ components:
   schemas:
     UpdateQualificationRequest:
       required:
-      - accountNumber
-      - changeOffRSN1
-      - changeOffRSN2
-      - function
-      - globalQualificationParameter
-      - organizationNumber
+        - accountNumber
+        - changeOffRSN1
+        - changeOffRSN2
+        - function
+        - globalQualificationParameter
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -1003,7 +1001,7 @@ components:
             Account Number.
 
             VisionPLUS Service Data: ARXCCI-ACCT-NBR
-          example: "4513074002952958903"
+          example: '4513074002952958903'
         foreignUse:
           type: string
           description: |-
@@ -1014,9 +1012,9 @@ components:
             The default is to the local account
 
             VisionPLUS Service Data: ARXCCI-FOREIGN-USE
-          example: "0"
+          example: '0'
           enum:
-          - "0,1"
+            - 0,1
         function:
           type: string
           description: |-
@@ -1035,7 +1033,7 @@ components:
             3 = Update global qualification
 
             VisionPLUS Service Data: ARXCCI-FUNCTION
-          example: "3"
+          example: '3'
         changeOffRSN1:
           type: string
           description: |-
@@ -1089,11 +1087,11 @@ components:
           type: string
     AccountForBlockCodeUpdateRequest:
       required:
-      - accountNumber
-      - blockCodeIndicator
-      - foreignUse
-      - functionCode
-      - organizationNumber
+        - accountNumber
+        - blockCodeIndicator
+        - foreignUse
+        - functionCode
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -1116,7 +1114,7 @@ components:
             Account number.
 
             VisionPLUS Service Data: ARXABI-ACCOUNT
-          example: "5303716028446103276"
+          example: '5303716028446103276'
         functionCode:
           maxLength: 1
           minLength: 1
@@ -1135,16 +1133,26 @@ components:
             VisionPLUS Service Data: ARXABI-FUNC-CODE
           example: B
           enum:
-          - "U,B"
+            - U,B
         blockCode:
           type: string
-          description: "Length: 1\n\nBlock code to be assigned to the account.\n\n\
-            The values are:\n\nA-Z = block code\n\nspace = unblock account\n\nVisionPLUS\
-            \ Service Data: ARXABI-BLOCK-CDThe values are:\n* A-Z = block code \n\
-            * space = unblock account\n"
+          description: |
+            Length: 1
+
+            Block code to be assigned to the account.
+
+            The values are:
+
+            A-Z = block code
+
+            space = unblock account
+
+            VisionPLUS Service Data: ARXABI-BLOCK-CDThe values are:
+            * A-Z = block code 
+            * space = unblock account
           example: Z
           enum:
-          - "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
+            - A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
         blockCodeIndicator:
           type: integer
           description: |-
@@ -1164,7 +1172,7 @@ components:
           format: int32
           example: 1
           enum:
-          - null
+            - null
         foreignUse:
           maxLength: 1
           minLength: 1
@@ -1175,9 +1183,9 @@ components:
             The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization. The default is to the local account.
 
             VisionPLUS Service Data: ARXABI-FOREIGN-USE
-          example: "0"
+          example: '0'
           enum:
-          - "0,1"
+            - 0,1
       description: Account Update User Request
     AccountForBlockCodeUpdateResponse:
       type: object
@@ -1267,9 +1275,9 @@ components:
             VisionPLUS Service Data: ARXABO-BLOCK-CD-2-FOREIGN
     ModifyAccountBalanceRequest:
       required:
-      - accountNumber
-      - asmOrganizationNumber
-      - representativeId
+        - accountNumber
+        - asmOrganizationNumber
+        - representativeId
       type: object
       properties:
         asmOrganizationNumber:
@@ -1301,24 +1309,24 @@ components:
             Number of Customer's account or card.
 
             VisionPLUS Service Data: AZXMAI-ACCT-NBR
-          example: "4198194069732810121"
+          example: '4198194069732810121'
         transactionData:
           $ref: '#/components/schemas/ModifyAccountBalanceRequest.TxData'
       description: Modify Account Balance Request
     ModifyAccountBalanceRequest.TxData:
       required:
-      - actionCode
-      - cardNumber
-      - cardSequence
-      - description
-      - effectiveDate
-      - otbUpdateIndicator
-      - planNumber
-      - planSequence
-      - referenceNumber
-      - resolutionReferenceNumber
-      - storeNumber
-      - transactionAmount
+        - actionCode
+        - cardNumber
+        - cardSequence
+        - description
+        - effectiveDate
+        - otbUpdateIndicator
+        - planNumber
+        - planSequence
+        - referenceNumber
+        - resolutionReferenceNumber
+        - storeNumber
+        - transactionAmount
       type: object
       properties:
         cardNumber:
@@ -1401,7 +1409,7 @@ components:
             identifier used to identify the transaction for reconciliation purpose.
 
             VisionPLUS Service Data: AZXMAI-AUTH-CODE
-          example: "123456"
+          example: '123456'
         referenceNumber:
           type: string
           description: |-
@@ -1409,7 +1417,7 @@ components:
             Reference Number.
 
             VisionPLUS Service Data: AZXMAI-REF-NUM
-          example: "123456789012"
+          example: '123456789012'
         resolutionReferenceNumber:
           type: string
           description: |-
@@ -1417,7 +1425,7 @@ components:
             Resolution Reference Number For Payments Received For Open Billing Accounts.
 
             VisionPLUS Service Data: AZXMAI-R-REF-NBR
-          example: "123456789012"
+          example: '123456789012'
         otbUpdateIndicator:
           type: integer
           description: |-
@@ -1889,7 +1897,7 @@ components:
           format: int32
     InstantCArdAddL8V7Request.AccountData:
       required:
-      - billingCycle
+        - billingCycle
       type: object
       properties:
         accountNumber:
@@ -1900,7 +1908,7 @@ components:
             Length: 19
             Account Number.
             VisionPLUS Service Data: AZXICI-BS-ACCT
-          example: "840"
+          example: '840'
         billingAccountIndicator:
           type: integer
           description: |-
@@ -1917,7 +1925,7 @@ components:
             Length: 1
             Relationship Primary Account Flag.
             VisionPLUS Service Data: AZXICI-REL-PRIM-ACCT-FLAG
-          example: "1"
+          example: '1'
         relationshipNumber:
           maxLength: 19
           minLength: 0
@@ -1926,7 +1934,7 @@ components:
             Length: 19
             relationship Number.
             VisionPLUS Service Data: AZXICI-REL-NBR
-          example: "124242"
+          example: '124242'
         shortName:
           maxLength: 20
           minLength: 0
@@ -2010,7 +2018,7 @@ components:
             Alternate customer number.
             VisionPLUS Service Data: AZXICI-ALT-CUST-NBR
           enum:
-          - "range[0,19]"
+            - range[0,19]
         dateOpened:
           type: string
           description: |-
@@ -2026,7 +2034,7 @@ components:
           format: int32
           example: 31
           enum:
-          - null
+            - null
         customerSelectedDueDay:
           maxLength: 2
           minLength: 0
@@ -2035,7 +2043,7 @@ components:
             Length: 2
             Customer selected due day.
             VisionPLUS Service Data: AZXICI-CUST-SEL-DUE-DAY
-          example: ""
+          example: ''
         statementFlag:
           maxLength: 1
           minLength: 0
@@ -2052,7 +2060,7 @@ components:
             Length: 2
             Statement frequency.
             VisionPLUS Service Data: AZXICI-STATEMENT-FREQ
-          example: "1"
+          example: '1'
         blockCode1:
           maxLength: 1
           minLength: 0
@@ -2079,7 +2087,7 @@ components:
             Length: 3
             PCT ID.
             VisionPLUS Service Data: AZXICI-PCT-CTL-ID
-          example: "123"
+          example: '123'
         processingControlTableStartDate:
           type: string
           description: |-
@@ -2151,7 +2159,7 @@ components:
             Length: 19
             DDA account number.
             VisionPLUS Service Data: AZXICI-DDA-ACCT-NBR
-          example: "121535325"
+          example: '121535325'
         savingsRoutingNumber:
           type: integer
           description: |-
@@ -2178,27 +2186,34 @@ components:
             VisionPLUS Service Data: AZXICI-USR-ACCT-NBR
         cardTechnology:
           type: integer
-          description: "Length: 1 \n\nCard technology \n\nFlag that identifies the\
-            \ current card technology used for this account.\n\nThe values are:\n\
-            * 0 = Magnetic-stripe card(s) are on issue\n* 1 = Smart card(s) are on\
-            \ issue\n* 2 = Magnetic-stripe contactless card(s) are on issue\n* 3 =\
-            \ Smart contactless card(s) are on issue \n\nThe following edits apply\
-            \ to this field:\n* This field can be 1, 2 or 3 only when the **DEFAULT\
-            \ CARD TECHNOLOGY** field on ARML38 is greater than 0 \nIn the add mode\
-            \ (ARAB), this field must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38)\
-            \ is 1. \n* In the maintenance mode (ARMB), this field is only open to\
-            \ input if no Embosser records are on file for the account. \n* When the\
-            \ account card numbering schema **(CRD# SCM** on ARMB01) is 2, this field\
-            \ must be 0 or 2. \n* When adding an account, CMS uses the card technology\
-            \ from the account's logo as the default value. You can override this\
-            \ default if necessary. \n\nVisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY"
+          description: |-
+            Length: 1 
+
+            Card technology 
+
+            Flag that identifies the current card technology used for this account.
+
+            The values are:
+            * 0 = Magnetic-stripe card(s) are on issue
+            * 1 = Smart card(s) are on issue
+            * 2 = Magnetic-stripe contactless card(s) are on issue
+            * 3 = Smart contactless card(s) are on issue 
+
+            The following edits apply to this field:
+            * This field can be 1, 2 or 3 only when the **DEFAULT CARD TECHNOLOGY** field on ARML38 is greater than 0 
+            In the add mode (ARAB), this field must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38) is 1. 
+            * In the maintenance mode (ARMB), this field is only open to input if no Embosser records are on file for the account. 
+            * When the account card numbering schema **(CRD# SCM** on ARMB01) is 2, this field must be 0 or 2. 
+            * When adding an account, CMS uses the card technology from the account's logo as the default value. You can override this default if necessary. 
+
+            VisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY
           format: int32
           example: 0
           enum:
-          - 0
-          - 1
-          - 2
-          - 3
+            - 0
+            - 1
+            - 2
+            - 3
         authorizationLimitOverrides:
           type: number
           description: |-
@@ -2227,7 +2242,7 @@ components:
             Length: 3
             State Of Residence Id.
             VisionPLUS Service Data: AZXICI-STATE-OF-RESID
-          example: "001"
+          example: '001'
         stateOfIssuanceId:
           maxLength: 3
           minLength: 0
@@ -2236,7 +2251,7 @@ components:
             Length: 3
             State Of Issuance Id.
             VisionPLUS Service Data: AZXICI-STATE-OF-ISSUE
-          example: "001"
+          example: '001'
         owningBranchNumber:
           type: integer
           description: |-
@@ -2752,7 +2767,7 @@ components:
             Length: 1
             Global qualification parameter. The values are A–Z.
             VisionPLUS Service Data: AZXICI-GLOBAL-QUAL
-          example: ""
+          example: ''
         cardholderAffiliationGroup:
           type: integer
           description: |-
@@ -2763,7 +2778,7 @@ components:
           example: 0
     InstantCArdAddL8V7Request.EmbosserData:
       required:
-      - digitalCardFlag
+        - digitalCardFlag
       type: object
       properties:
         plasticId:
@@ -2774,7 +2789,7 @@ components:
             Length: 10
             Plastic ID.
             VisionPLUS Service Data: AZXICI-PLASTIC-ID
-          example: ""
+          example: ''
         name1TypeIndicator:
           type: integer
           description: |-
@@ -2822,7 +2837,7 @@ components:
             Length: 19
             Customer Number.
             VisionPLUS Service Data: AZXICI-CUST-NBR
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         name1:
           maxLength: 40
           minLength: 0
@@ -2852,7 +2867,7 @@ components:
         cardholderFlag:
           type: string
           description: Cardholder Flag
-          example: "0"
+          example: '0'
         addressLine1:
           maxLength: 40
           minLength: 0
@@ -2897,7 +2912,7 @@ components:
             Length: 10
             Postal Code.
             VisionPLUS Service Data: AZXICI-PSTL-CD
-          example: "38585"
+          example: '38585'
         languageCode:
           maxLength: 3
           minLength: 0
@@ -3002,7 +3017,7 @@ components:
             Length: 20
             User-defined 1.
             VisionPLUS Service Data: AZXICI-USER-1
-          example: "1"
+          example: '1'
         user2:
           maxLength: 20
           minLength: 0
@@ -3011,7 +3026,7 @@ components:
             Length: 20
             User-defined 2.
             VisionPLUS Service Data: AZXICI-USER-2
-          example: "2"
+          example: '2'
         user3:
           maxLength: 19
           minLength: 0
@@ -3020,7 +3035,7 @@ components:
             Length: 19
             User-defined 3.
             VisionPLUS Service Data: AZXICI-USER-3
-          example: "3"
+          example: '3'
         user4:
           type: integer
           description: |-
@@ -3037,7 +3052,7 @@ components:
             Length: 1
             User-defined 5.
             VisionPLUS Service Data: AZXICI-USER-5
-          example: "5"
+          example: '5'
         user6:
           maxLength: 1
           minLength: 0
@@ -3046,7 +3061,7 @@ components:
             Length: 1
             User-defined 6.
             VisionPLUS Service Data: AZXICI-USER-6
-          example: "6"
+          example: '6'
         user7:
           maxLength: 1
           minLength: 0
@@ -3055,7 +3070,7 @@ components:
             Length: 1
             User-defined 7.
             VisionPLUS Service Data: AZXICI-USER-7
-          example: "7"
+          example: '7'
         user8:
           maxLength: 1
           minLength: 0
@@ -3064,7 +3079,7 @@ components:
             Length: 1
             User-defined 8.
             VisionPLUS Service Data: AZXICI-USER-8
-          example: "8"
+          example: '8'
         userDate1:
           type: string
           description: User-defined Date 1
@@ -3124,7 +3139,7 @@ components:
             Length: 3
             Authorization Criteria Table Number.
             VisionPLUS Service Data: AZXICI-AUTH-CRITERIA-TBL
-          example: "0"
+          example: '0'
         programId:
           type: integer
           description: |-
@@ -3175,14 +3190,14 @@ components:
           format: int32
           example: 1
           enum:
-          - null
+            - null
     InstantCardAddL8V7Request:
       required:
-      - accountCreateFlag
-      - customerNumber
-      - firstPurchaseFlag
-      - logo
-      - organizationNumber
+        - accountCreateFlag
+        - customerNumber
+        - firstPurchaseFlag
+        - logo
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -3209,7 +3224,7 @@ components:
             Length: 19
             Customer Number.
             VisionPLUS Service Data: AZXICI-CUSTOMER-NBR
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         firstPurchaseFlag:
           maxLength: 1
           minLength: 1
@@ -3218,9 +3233,9 @@ components:
             Length: 1
             First Purchase Flag.
             VisionPLUS Service Data: AZXICI-FIRST-PURCH-SW
-          example: "Y"
+          example: 'Y'
           enum:
-          - "Y,N"
+            - Y,N
         accountCreateFlag:
           maxLength: 1
           minLength: 1
@@ -3229,9 +3244,9 @@ components:
             Length: 1
             Account Create Flag.
             VisionPLUS Service Data: AZXICI-ACCT-CREATE
-          example: "Y"
+          example: 'Y'
           enum:
-          - "Y,N"
+            - Y,N
         sameDayProcessingType:
           type: integer
           description: |-
@@ -3310,11 +3325,11 @@ components:
           format: date
     InstantCardAddRequest:
       required:
-      - accountCreateFlag
-      - customerNumber
-      - embosserName
-      - logo
-      - organizationNumber
+        - accountCreateFlag
+        - customerNumber
+        - embosserName
+        - logo
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -3347,7 +3362,7 @@ components:
             Customer Number.
 
             VisionPLUS Service Data: AZXICI-CUST-NBR
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         embosserName:
           maxLength: 2147483647
           minLength: 1
@@ -3369,17 +3384,17 @@ components:
             This field indicates whether new account needs to be created or not. If new account needs to created then value needs to populated in Account data. If only card needs to be created then existing account number should be passed.
 
             VisionPLUS Service Data: AZXICI-ACCT-CREATE
-          example: "Y"
+          example: 'Y'
           enum:
-          - "Y,N"
+            - Y,N
         accountData:
           $ref: '#/components/schemas/InstantCardAddRequest.AccountData'
       description: InstantCardAdd add Request
     InstantCardAddRequest.AccountData:
       required:
-      - billingCycle
-      - digitalCardFlag
-      - owningBranchNumber
+        - billingCycle
+        - digitalCardFlag
+        - owningBranchNumber
       type: object
       properties:
         creditLimit:
@@ -3411,7 +3426,7 @@ components:
             Should be passed if accountCreateFlag is 'N'.
 
             VisionPLUS Service Data: AZXICI-BS-ACCT
-          example: "123456666666"
+          example: '123456666666'
         billingAccountIndicator:
           type: integer
           description: |-
@@ -3445,7 +3460,7 @@ components:
             Relationship Number.
 
             VisionPLUS Service Data: AZXICI-REL-NBR
-          example: "4567890123000000000"
+          example: '4567890123000000000'
         relationshipBillingLevel:
           type: integer
           description: |-
@@ -3512,7 +3527,7 @@ components:
 
             Statement flag.
             VisionPLUS Service Data: AZXICI-STATEMENT-FLAG
-          example: "1"
+          example: '1'
         cashPlanNumber:
           type: integer
           description: |-
@@ -3567,7 +3582,7 @@ components:
             Length: 3
             PCT ID.
             VisionPLUS Service Data: AZXICI-PCT-CTL-ID
-          example: "123"
+          example: '123'
         processingControlTableStartDate:
           type: string
           description: |-
@@ -3622,7 +3637,7 @@ components:
 
             dda Account Number
             VisionPLUS Service Data: AZXICI-DDA-ACCT-NBR
-          example: "34234234324"
+          example: '34234234324'
         savAccountNumber:
           type: string
           description: |-
@@ -3630,30 +3645,37 @@ components:
 
             sav Account Number
             VisionPLUS Service Data: AZXICI-SAV-ACCT-NBR
-          example: "84342430"
+          example: '84342430'
         cardTechnology:
           type: integer
-          description: "Length: 1 \n\nCard technology \n\nFlag that identifies the\
-            \ current card technology used for this account.\n\nThe values are:\n\
-            * 0 = Magnetic-stripe card(s) are on issue\n* 1 = Smart card(s) are on\
-            \ issue\n* 2 = Magnetic-stripe contactless card(s) are on issue\n* 3 =\
-            \ Smart contactless card(s) are on issue \n\nThe following edits apply\
-            \ to this field:\n* This field can be 1, 2 or 3 only when the **DEFAULT\
-            \ CARD TECHNOLOGY** field on ARML38 is greater than 0 \nIn the add mode\
-            \ (ARAB), this field must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38)\
-            \ is 1. \n* In the maintenance mode (ARMB), this field is only open to\
-            \ input if no Embosser records are on file for the account. \n* When the\
-            \ account card numbering schema **(CRD# SCM** on ARMB01) is 2, this field\
-            \ must be 0 or 2. \n* When adding an account, CMS uses the card technology\
-            \ from the account's logo as the default value. You can override this\
-            \ default if necessary. \n\nVisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY"
+          description: |-
+            Length: 1 
+
+            Card technology 
+
+            Flag that identifies the current card technology used for this account.
+
+            The values are:
+            * 0 = Magnetic-stripe card(s) are on issue
+            * 1 = Smart card(s) are on issue
+            * 2 = Magnetic-stripe contactless card(s) are on issue
+            * 3 = Smart contactless card(s) are on issue 
+
+            The following edits apply to this field:
+            * This field can be 1, 2 or 3 only when the **DEFAULT CARD TECHNOLOGY** field on ARML38 is greater than 0 
+            In the add mode (ARAB), this field must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38) is 1. 
+            * In the maintenance mode (ARMB), this field is only open to input if no Embosser records are on file for the account. 
+            * When the account card numbering schema **(CRD# SCM** on ARMB01) is 2, this field must be 0 or 2. 
+            * When adding an account, CMS uses the card technology from the account's logo as the default value. You can override this default if necessary. 
+
+            VisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY
           format: int32
           example: 0
           enum:
-          - 0
-          - 1
-          - 2
-          - 3
+            - 0
+            - 1
+            - 2
+            - 3
         temporaryCreditLimit:
           type: number
           description: |-
@@ -3731,7 +3753,7 @@ components:
           format: int32
           example: 1
           enum:
-          - null
+            - null
     InstantCardAddResponse:
       type: object
       properties:
@@ -3762,7 +3784,7 @@ components:
             Customer number.
 
             VisionPLUS Service Data: AZXICO-CUST-NBR
-          example: "4513074002573466600"
+          example: '4513074002573466600'
         accountNumber:
           type: string
           description: |-
@@ -3771,7 +3793,7 @@ components:
             Account number.
 
             VisionPLUS Service Data: AZXICO-VACCT-NBR
-          example: "4513074002573466600"
+          example: '4513074002573466600'
         cardNumberOfInstantCard:
           type: string
           description: |-
@@ -3780,7 +3802,7 @@ components:
             Card number of instant card.
 
             VisionPLUS Service Data: AZXICO-VCARD-NBR
-          example: "4513074002573466600"
+          example: '4513074002573466600'
         cardSequenceNumber:
           type: integer
           description: |-
@@ -3809,8 +3831,8 @@ components:
           format: date
     AccountForDetailsL8vgRequest:
       required:
-      - accountNumber
-      - organizationNumber
+        - accountNumber
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -3831,7 +3853,7 @@ components:
 
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token)
             VisionPLUS Service Data: AZXAII-ACCT
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         foreignUse:
           type: string
           description: |-
@@ -3839,7 +3861,7 @@ components:
 
             The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization. The default is to the local account.
             VisionPLUS Service Data: AZXAII-FOREIGN-USE
-          example: "0"
+          example: '0'
       description: Account Detail L8VG Request
     AccountForDetailsL8vgResponse:
       type: object
@@ -3884,12 +3906,20 @@ components:
             VisionPLUS Service Data: AZXAIO-GLOBAL-QUALIFICATION
         checkingAccountRouting:
           type: string
-          description: "Length: 10\n\nChecking account routing number. \n\nVisionPLUS\
-            \ Service Data: AZXAIO-CHK-ACCT-ROUT"
+          description: |-
+            Length: 10
+
+            Checking account routing number. 
+
+            VisionPLUS Service Data: AZXAIO-CHK-ACCT-ROUT
         checkingAccount:
           type: string
-          description: "Length: 19\n\nChecking account number. \n\nVisionPLUS Service\
-            \ Data: AZXAIO-CHK-ACCT"
+          description: |-
+            Length: 19
+
+            Checking account number. 
+
+            VisionPLUS Service Data: AZXAIO-CHK-ACCT
         savingsAccountRouting:
           type: string
           description: |-
@@ -6348,21 +6378,21 @@ components:
       description: Account add Request
     AccountAddDetailsRequest.AccountAddData:
       required:
-      - billingCurrency
-      - billingCycle
-      - billingLevel
-      - creditLimit
-      - customerNumber
-      - customerSelectedDueDay
-      - dualBillingFlag
-      - issuanceId
-      - logo
-      - organization
-      - owningBranch
-      - qualification
-      - relationshipNumber
-      - residenceId
-      - shortName
+        - billingCurrency
+        - billingCycle
+        - billingLevel
+        - creditLimit
+        - customerNumber
+        - customerSelectedDueDay
+        - dualBillingFlag
+        - issuanceId
+        - logo
+        - organization
+        - owningBranch
+        - qualification
+        - relationshipNumber
+        - residenceId
+        - shortName
       type: object
       properties:
         organization:
@@ -6393,7 +6423,7 @@ components:
             Relationship Number.
 
             VisionPLUS Service Data: ARXAAI-REL-NBR
-          example: "4567890123122222000"
+          example: '4567890123122222000'
         customerNumber:
           maxLength: 19
           minLength: 19
@@ -6404,7 +6434,7 @@ components:
             Customer Name/Address record for the person to which the account is assigned.
 
             VisionPLUS Service Data: ARXAAI-CUST-NBR
-          example: "4759218604441630000"
+          example: '4759218604441630000'
         accountNumber:
           maxLength: 19
           minLength: 0
@@ -6414,7 +6444,7 @@ components:
 
             Account number.
             VisionPLUS Service Data: ARXAAI-ACCOUNT-NBR
-          example: "4004894352313040331"
+          example: '4004894352313040331'
         alternateCustomerNumber:
           maxLength: 19
           minLength: 0
@@ -6422,7 +6452,7 @@ components:
           description: |-
             Alternate customer number
             VisionPLUS Service Data: ARXAAI-ALT-CUST-NBR
-          example: "4004894352313040331"
+          example: '4004894352313040331'
         shortName:
           type: string
           description: |-
@@ -6625,7 +6655,7 @@ components:
             Account number.
 
             VisionPLUS Service Data: ARXAAI-USR-ACCT-NBR
-          example: "4567000000000000000"
+          example: '4567000000000000000'
         userData:
           $ref: '#/components/schemas/AccountAddDetailsRequestAccountAddData.UserData'
         miscUserData:
@@ -6645,9 +6675,9 @@ components:
           example: A
     AccountAddDetailsRequest.AccountAddData.ProcessingControlTable:
       required:
-      - level
-      - levelExpireDate
-      - levelStartDate
+        - level
+        - levelExpireDate
+        - levelStartDate
       type: object
       properties:
         tableId:
@@ -6680,7 +6710,7 @@ components:
             VisionPLUS Service Data: ARXAAI-PCT-LEVEL
           example: O
           enum:
-          - " ' ' , S , O , L"
+            - ' '' '' , S , O , L'
         startDate:
           type: string
           description: |-

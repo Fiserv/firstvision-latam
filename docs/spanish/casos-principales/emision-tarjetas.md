@@ -58,10 +58,10 @@ Después de las solicitudes del cliente, la cuenta y el embozador, se aplican la
 - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
 - [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md)
 - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
+- [Firma HMAC](?path=docs/spanish/casos-principales/hmac.md)
 - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
 - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
 - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
-- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
 - [Integración con el Sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
 - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 

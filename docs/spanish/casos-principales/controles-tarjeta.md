@@ -121,10 +121,10 @@ La descripción de cada campo de la API se encuentra dentro de las especificacio
 - [Auditoría y Monitoreo](?path=docs/spanish/casos-principales/auditoria.md)
 - [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md)
 - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Firma HMAC](?path=docs/spanish/casos-principales/hmac.md)
 - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
 - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
 - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
-- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
 - [Integración con el Sistema Falcon](?path=docs/spanish/casos-principales/integracion-falcon.md)
 - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
