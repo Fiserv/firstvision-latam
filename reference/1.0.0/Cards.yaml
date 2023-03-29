@@ -6,36 +6,35 @@ info:
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 tags:
-  - name: Embosser
-    description: Embosser
-  - name: PIN
-    description: PIN
-  - name: Card
-    description: Card
+- name: Embosser
+  description: Embosser
+- name: PIN
+  description: PIN
+- name: Card
+  description: Card
 paths:
   /cards/travel:
     put:
       tags:
-        - Card
-      summary: 'Update Travel Indicator Data. VMX Service: M.CMS.TRAVELIND.UPD, L8V1'
-      description: |-
-        Updates cardholder travel Indicator data (travel notice). 
-        VMX Service: M.CMS.TRAVELIND.UPD, L8V1
+      - Card
+      summary: "Update Travel Indicator Data. VMX Service: M.CMS.TRAVELIND.UPD, L8V1"
+      description: "Updates cardholder travel Indicator data (travel notice). \nVMX\
+        \ Service: M.CMS.TRAVELIND.UPD, L8V1"
       operationId: Travel Indicator Update
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -43,29 +42,13 @@ paths:
               $ref: '#/components/schemas/TravelUpdateRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TravelUpdateResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
+        "404":
           description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "422":
           description: |-
             VPL5STV02E - ORG NOT FOUND
             VPL5STV04S - CARD NUMBER NOT FOUND
@@ -88,38 +71,54 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TravelUpdateResponse'
       x-proxy-name: Travel Indicator Update
       x-group-name: Card
       x-child-product-name: Cards
   /cards/pin/:
     put:
       tags:
-        - PIN
-      summary: 'Update the PIN of a Card. VMX Service: M.CMS.PIN.REASSIGNMENT, R8V1'
-      description: |-
-        Updates the PIN offset field for PIN change requests, initiated from the card host system or from external channels. 
-        VMX Service: M.CMS.PIN.REASSIGNMENT, R8V1
+      - PIN
+      summary: "Update the PIN of a Card. VMX Service: M.CMS.PIN.REASSIGNMENT, R8V1"
+      description: "Updates the PIN offset field for PIN change requests, initiated\
+        \ from the card host system or from external channels. \nVMX Service: M.CMS.PIN.REASSIGNMENT,\
+        \ R8V1"
       operationId: PIN Reassign
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -127,29 +126,13 @@ paths:
               $ref: '#/components/schemas/PinReassignmentRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PinReassignmentResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
+        "404":
           description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "422":
           description: |
             VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
             VPL5SPA04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
@@ -179,38 +162,54 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PinReassignmentResponse'
       x-proxy-name: PIN Reassign
       x-group-name: PIN
       x-child-product-name: Cards
   /cards/embosser/cardAction:
     put:
       tags:
-        - Embosser
-      summary: 'Card Action Update. VMX Service: M.CMS.EMB.CARDACTION.UPD, R8V4'
-      description: |-
-        Enables a user to update the card action field on the embosser record with all possible user available actions. 
-        VMX Service: M.CMS.EMB.CARDACTION.UPD, R8V4
+      - Embosser
+      summary: "Card Action Update. VMX Service: M.CMS.EMB.CARDACTION.UPD, R8V4"
+      description: "Enables a user to update the card action field on the embosser\
+        \ record with all possible user available actions. \nVMX Service: M.CMS.EMB.CARDACTION.UPD,\
+        \ R8V4"
       operationId: cardActionUpdate
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -218,29 +217,19 @@ paths:
               $ref: '#/components/schemas/EmbosserCardActionRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbosserCardActionResponse'
-        '300':
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "422":
           description: |-
             VPL5SCP29S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
             VPL5SPR01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -285,38 +274,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbosserCardActionResponse'
       x-proxy-name: Card Action Update
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/embosser/block:
     put:
       tags:
-        - Embosser
-      summary: 'Block or unblock Card. VMX Service: M.CMS.EMB.BLKCD.UPD, R8V1'
-      description: |-
-        Provides the ability to apply or remove a block code on a Card associated to an Account. 
-        VMX Service: M.CMS.EMB.BLKCD.UPD, R8V1
+      - Embosser
+      summary: "Block or unblock Card. VMX Service: M.CMS.EMB.BLKCD.UPD, R8V1"
+      description: "Provides the ability to apply or remove a block code on a Card\
+        \ associated to an Account. \nVMX Service: M.CMS.EMB.BLKCD.UPD, R8V1"
       operationId: Embosser Block Code Update
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -324,29 +322,13 @@ paths:
               $ref: '#/components/schemas/CardDetailsForEmbosserBlockRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
+        "404":
           description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "422":
           description: |
             VPL5SCB01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
             VPL5SCB01S - CARD NUMBER REQUIRED
@@ -370,43 +352,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
       x-proxy-name: Embosser Block Code Update
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/credit-limit:
     put:
       tags:
-        - Card
-      summary: 'Update Credit Limit. VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1'
-      description: |-
-        Updates the credit limit amount of an Account. 
-        VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1
+      - Card
+      summary: "Update Credit Limit. VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1"
+      description: "Updates the credit limit amount of an Account. \nVMX Service:\
+        \ M.CMS.CREDITLIMIT.UPD, R8V1"
       operationId: Credit Limit Update
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
-        - name: signonName
-          in: header
-          required: false
-          schema:
-            type: string
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      - name: signonName
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -414,29 +411,13 @@ paths:
               $ref: '#/components/schemas/CreditLimitUpdateRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreditLimitUpdateResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
+        "404":
           description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "422":
           description: |
             VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
             VPL5SCL04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
@@ -467,38 +448,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditLimitUpdateResponse'
       x-proxy-name: Credit Limit Update
       x-group-name: Card
       x-child-product-name: Cards
   /cards/activation:
     put:
       tags:
-        - Card
-      summary: 'Activate Card. VMX Service: M.CMS.CARDACTIVATION.UPD, R8V3'
-      description: |-
-        Updates Card activation service. 
-        VMX Service: M.CMS.CARDACTIVATION.UPD, R8V3
+      - Card
+      summary: "Activate Card. VMX Service: M.CMS.CARDACTIVATION.UPD, R8V3"
+      description: "Updates Card activation service. \nVMX Service: M.CMS.CARDACTIVATION.UPD,\
+        \ R8V3"
       operationId: Card Activation
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -506,60 +502,59 @@ paths:
               $ref: '#/components/schemas/CardActivationRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardActivationResponse'
-        '300':
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '500':
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardActivationResponse'
       x-proxy-name: Card Activation
       x-group-name: Card
       x-child-product-name: Cards
   /cards/pin/security-codes:
     post:
       tags:
-        - PIN
-      summary: 'Provides security values. VMX Service: M.CMS.SEC.VALUES.INQ, R8V1'
-      description: |-
-        Provides security values CVV, CVV2, iCVV and PIN block for a card number. 
-        VMX Service: M.CMS.SEC.VALUES.INQ, R8V1
+      - PIN
+      summary: "Provides security values. VMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+      description: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
+        \ number. \nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
       operationId: Security Values Inquiry
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -567,61 +562,59 @@ paths:
               $ref: '#/components/schemas/SecurityCodeDetailsRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SecurityCodeDetailsResponse'
-        '300':
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '500':
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityCodeDetailsResponse'
       x-proxy-name: Security Values Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
   /cards/embosser/details-L8VB:
     post:
       tags:
-        - Embosser
-      summary: 'Data from the Embosser record. VMX Service: M.CMS.EMBOSSER.INQ, L8VB'
-      description: |-
-        Provides the embosser data from the embosser record. 
-
-        VMX Service: M.CMS.EMBOSSER.INQ, L8VB
+      - Embosser
+      summary: "Data from the Embosser record. VMX Service: M.CMS.EMBOSSER.INQ, L8VB"
+      description: "Provides the embosser data from the embosser record. \n\nVMX Service:\
+        \ M.CMS.EMBOSSER.INQ, L8VB"
       operationId: embosserL8vbDetails
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -629,29 +622,13 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsL8VBRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbosserDetailsL8VBResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
+        "404":
           description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "422":
           description: |
             VPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
             VPL5SCI02E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE/0/1
@@ -667,38 +644,54 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-      x-proxy-name: Data from the Embosser record
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbosserDetailsL8VBResponse'
+      x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/embosser/card-pan-l8v2:
     post:
       tags:
-        - Embosser
-      summary: 'Card or PAN Token Inquiry. VMX Service: M.CMS.CARD.PAN.INQ, L8V2.This API can be used only by PCI Compliant financial institutions and issuers.'
-      description: |-
-        Inquiry Card number or PAN Token. 
-        VMX Service: M.CMS.CARD.PAN.INQ, L8V2
+      - Embosser
+      summary: "Card or PAN Token Inquiry. VMX Service: M.CMS.CARD.PAN.INQ, L8V2.This\
+        \ API can be used only by PCI Compliant financial institutions and issuers."
+      description: "Inquiry Card number or PAN Token. \nVMX Service: M.CMS.CARD.PAN.INQ,\
+        \ L8V2"
       operationId: Card Or PAN Token Inquiry
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -706,29 +699,13 @@ paths:
               $ref: '#/components/schemas/CardPanInquiryL8V2Request'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardPanInquiryL8V2Response'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
+        "404":
           description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "403":
+          description: Forbidden
+        "401":
+          description: Unauthorized
+        "422":
           description: |
             VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND
             VPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
@@ -747,12 +724,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardPanInquiryL8V2Response'
       x-proxy-name: Card Or PAN Token Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -760,7 +753,7 @@ components:
   schemas:
     TravelUpdateRequest:
       required:
-        - cardNumber
+      - cardNumber
       type: object
       properties:
         organizationNumber:
@@ -808,7 +801,7 @@ components:
             1 = Foreign account
 
             VisionPLUS Service Data: AZXTII-FOREIGN-USE
-          example: '1'
+          example: "1"
         travelIndicator:
           type: integer
           description: |-
@@ -901,11 +894,11 @@ components:
           example: 000540208ID5IXX3865
     PinReassignmentRequest:
       required:
-        - cardNumber
-        - channel
-        - keyAssociationNumber
-        - newPinBlock
-        - organizationNumber
+      - cardNumber
+      - channel
+      - keyAssociationNumber
+      - newPinBlock
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -962,7 +955,7 @@ components:
             VisionPLUS Service Data: ARXPAI-CHANNEL
           example: W
           enum:
-            - A,B,C,F,I,W
+          - "A,B,C,F,I,W"
         keyAssociationNumber:
           type: string
           description: |-
@@ -1011,11 +1004,11 @@ components:
           example: 0
     EmbosserCardActionRequest:
       required:
-        - cardAction
-        - cardNumber
-        - cardSequence
-        - organizationNumber
-        - randomPin
+      - cardAction
+      - cardNumber
+      - cardSequence
+      - organizationNumber
+      - randomPin
       type: object
       properties:
         organizationNumber:
@@ -1027,7 +1020,7 @@ components:
           format: int32
           example: 807
           enum:
-            - null
+          - null
         cardNumber:
           maxLength: 19
           minLength: 12
@@ -1065,7 +1058,7 @@ components:
           format: int32
           example: 6
           enum:
-            - null
+          - null
         numberCardsRequested:
           type: integer
           description: |-
@@ -1100,7 +1093,7 @@ components:
             Length: 1
             Processing Type.
             VisionPLUS Service Data: ARXPRI-SDP-PROCESS-TYPE
-          example: '0'
+          example: "0"
         cardActionReason:
           maxLength: 1
           minLength: 0
@@ -1109,7 +1102,7 @@ components:
             Length: 1
             Reason code associated with the card issue action codes.
             VisionPLUS Service Data: ARXPRI-CARD-ACTION-REASON
-          example: 'N'
+          example: "N"
       description: Embosser Card Action Update Request
     EmbosserCardActionResponse:
       type: object
@@ -1190,34 +1183,31 @@ components:
           format: int32
     CardDetailsForEmbosserBlockRequest:
       required:
-        - blockCode
-        - cardNumber
-        - cardSequence
-        - functionCode
-        - organizationNumber
+      - blockCode
+      - cardNumber
+      - cardSequence
+      - functionCode
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            Length: 3
-            Organization Number. 
-            VisionPLUS Service Data: ARXCBI-ORG
+          description: "Length: 3\nOrganization Number. \nVisionPLUS Service Data:\
+            \ ARXCBI-ORG"
           format: int32
           example: 807
           enum:
-            - null
+          - null
         cardNumber:
           maxLength: 19
           minLength: 12
           type: string
-          description: |-
-            Length: 19
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token). 
-            VisionPLUS Service Data: ARXCBI-CARD-NBR
+          description: "Length: 19\nUnique identifier or token associated with the\
+            \ card number or payment instrument (FirstVision PAN Token). \nVisionPLUS\
+            \ Service Data: ARXCBI-CARD-NBR"
           example: 000540208ID5IXX3865
           enum:
-            - range[12,19]
+          - "range[12,19]"
         cardSequence:
           type: integer
           description: |-
@@ -1245,7 +1235,7 @@ components:
             VisionPLUS Service Data: ARXCBI-FUNCTION
           example: U
           enum:
-            - B,U
+          - "B,U"
         blockCode:
           type: string
           description: |-
@@ -1420,10 +1410,10 @@ components:
             VisionPLUS Service Data: ARXCBO-P-FLAG-5
     CreditLimitUpdateRequest:
       required:
-        - accountNumber
-        - creditLimit
-        - foreignUseIndicator
-        - organizationNumber
+      - accountNumber
+      - creditLimit
+      - foreignUseIndicator
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -1446,7 +1436,7 @@ components:
             Account Number.
 
             VisionPLUS Service Data: ARXCLI-ACCT-NBR
-          example: '4513074002573466583'
+          example: "4513074002573466583"
         foreignUseIndicator:
           type: string
           description: |-
@@ -1458,7 +1448,7 @@ components:
             organization. The default is to the local account.
 
             VisionPLUS Service Data: ARXCLI-FOREIGN-USE
-          example: '1'
+          example: "1"
         creditLimit:
           type: number
           description: |-
@@ -1547,20 +1537,12 @@ components:
             VisionPLUS Service Data: ARXCLO-CRLIM
         availableCredit:
           type: number
-          description: |-
-            Length: 17 
-
-            Available credit. 
-
-            VisionPLUS Service Data: AARXCLO-AVAIL-CREDIT
+          description: "Length: 17 \n\nAvailable credit. \n\nVisionPLUS Service Data:\
+            \ AARXCLO-AVAIL-CREDIT"
         foreignCreditLimit:
           type: number
-          description: |-
-            Length: 17
-
-            Foreign Credit Limit. 
-
-            VisionPLUS Service Data: ARXCLO-CRLIM-FGN
+          description: "Length: 17\n\nForeign Credit Limit. \n\nVisionPLUS Service\
+            \ Data: ARXCLO-CRLIM-FGN"
     CreditLimitUpdateResponse.CurrencyData:
       type: object
       properties:
@@ -1584,8 +1566,8 @@ components:
           format: int32
     CardActivationRequest:
       required:
-        - cardNumber
-        - serviceType
+      - cardNumber
+      - serviceType
       type: object
       properties:
         organizationNumber:
@@ -1712,10 +1694,10 @@ components:
           format: int32
     SecurityCodeDetailsRequest:
       required:
-        - cardNumber
-        - channel
-        - keyAssociation
-        - organizationNumber
+      - cardNumber
+      - channel
+      - keyAssociation
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -1752,12 +1734,9 @@ components:
           maxLength: 3
           minLength: 1
           type: string
-          description: |-
-            Length: 3
-
-            Key Association. "I" + "the key association defined for the customer during the implementation to the field keyAssociation." 
-
-            VisionPLUS Service Data: ARXSVI-KEY-ASSOC
+          description: "Length: 3\n\nKey Association. \"I\" + \"the key association\
+            \ defined for the customer during the implementation to the field keyAssociation.\"\
+            \ \n\nVisionPLUS Service Data: ARXSVI-KEY-ASSOC"
           example: IYY
       description: Security Code Details Request
     SecurityCodeDetailsResponse:
@@ -1835,10 +1814,10 @@ components:
           example: 840B12345A690FBCAC
     EmbosserDetailsL8VBRequest:
       required:
-        - cardNumber
-        - cardSequence
-        - foreignUse
-        - organizationNumber
+      - cardNumber
+      - cardSequence
+      - foreignUse
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -1850,7 +1829,7 @@ components:
           format: int32
           example: 807
           enum:
-            - null
+          - null
         cardNumber:
           maxLength: 19
           minLength: 12
@@ -1859,9 +1838,9 @@ components:
             Length: 19
             Card Number.
             VisionPLUS Service Data: AZXCII-CARD
-          example: '0004513070406598974'
+          example: "0004513070406598974"
           enum:
-            - range[12,19]
+          - "range[12,19]"
         cardSequence:
           type: integer
           description: |-
@@ -1876,7 +1855,7 @@ components:
             Length: 1
             Foreign Use.
             VisionPLUS Service Data: AZXCII-FOREIGN-USE
-          example: '1'
+          example: "1"
       description: Card Embosser Block Request
     EmbosserDetailsInquiryResponse.CardInformationData.AssignedSpendLimits:
       type: object
@@ -2113,58 +2092,34 @@ components:
       properties:
         retailAmount:
           type: string
-          description: |-
-            Length: 17
-
-            Maximum amount in monetary units and subunits of retail authorizations allowed for 
-            this Embosser record for the frequency defined in the FREQ field.
-
-            VisionPLUS Service Data: AZXCIO-AUTH-RTL-AMT
+          description: "Length: 17\n\nMaximum amount in monetary units and subunits\
+            \ of retail authorizations allowed for \nthis Embosser record for the\
+            \ frequency defined in the FREQ field.\n\nVisionPLUS Service Data: AZXCIO-AUTH-RTL-AMT"
         retailNumber:
           type: number
-          description: |-
-            Length: 9
-
-            Maximum number of retail authorizations allowed for this Embosser record for the 
-            frequency defined in the FREQ field.
-
-            VisionPLUS Service Data: AZXCIO-AUTH-RTL-NBR
+          description: "Length: 9\n\nMaximum number of retail authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-AUTH-RTL-NBR"
         automatedTellerMachineCashAutomatedTellerMachine:
           type: string
-          description: |-
-            Length: 17
-
-            Maximum amount of ATM cash authorizations allowed for this Embosser record for the 
-            frequency defined in the FREQ field.
-
-            VisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-AMT
+          description: "Length: 17\n\nMaximum amount of ATM cash authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-AMT"
         automatedTellerMachineCashNumber:
           type: number
-          description: |-
-            Length: 9
-
-            Maximum number of ATM cash authorizations allowed for this Embosser record for the 
-            frequency defined in the FREQ field.
-
-            VisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-NBR
+          description: "Length: 9\n\nMaximum number of ATM cash authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-NBR"
         overTheCounterAmount:
           type: string
-          description: |-
-            Length: 17
-
-            Maximum amount in monetary units and subunits of OTC cash authorizations allowed 
-            for this Embosser record for the frequency defined in the FREQ field.
-
-            VisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-AMT
+          description: "Length: 17\n\nMaximum amount in monetary units and subunits\
+            \ of OTC cash authorizations allowed \nfor this Embosser record for the\
+            \ frequency defined in the FREQ field.\n\nVisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-AMT"
         overTheCounterCashNumber:
           type: number
-          description: |-
-            Length: 9
-
-            Maximum number of OTC authorizations allowed for this Embosser record for the 
-            frequency defined in the FREQ field.
-
-            VisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-NBR
+          description: "Length: 9\n\nMaximum number of OTC authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-NBR"
         automatedTellerMachineCashSingleTransaction:
           type: string
           description: |-
@@ -2185,14 +2140,10 @@ components:
             VisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-SNGL-TXN
         retailSingleTransaction:
           type: string
-          description: |-
-            Length: 17
-
-            Maximum authorization amount in monetary units and subunits of a single retail 
-            transaction allowed for this Embosser record for the frequency defined in the FREQ
-            field.
-
-            VisionPLUS Service Data: AZXCIO-AUTH-RTL-SNGL-TXN
+          description: "Length: 17\n\nMaximum authorization amount in monetary units\
+            \ and subunits of a single retail \ntransaction allowed for this Embosser\
+            \ record for the frequency defined in the FREQ\nfield.\n\nVisionPLUS Service\
+            \ Data: AZXCIO-AUTH-RTL-SNGL-TXN"
         globalSpendingLimitNumber:
           type: string
           description: |-
@@ -2270,32 +2221,21 @@ components:
       properties:
         purchaseNumber:
           type: number
-          description: |-
-            Length: 9
-
-            Maximum number of internet authorizations allowed for this Embosser record for the 
-            frequency defined in the FREQ field.
-
-            VisionPLUS Service Data: AZXCIO-INET-PUR-NBR
+          description: "Length: 9\n\nMaximum number of internet authorizations allowed\
+            \ for this Embosser record for the \nfrequency defined in the FREQ field.\n\
+            \nVisionPLUS Service Data: AZXCIO-INET-PUR-NBR"
         purchaseAmount:
           type: string
-          description: |-
-            Length: 17
-
-            Maximum amount in monetary units and subunits of internet cash authorizations 
-            allowed for this Embosser record for the frequency defined in the FREQ field.
-
-            VisionPLUS Service Data: AZXCIO-INET-PUR-AMT
+          description: "Length: 17\n\nMaximum amount in monetary units and subunits\
+            \ of internet cash authorizations \nallowed for this Embosser record for\
+            \ the frequency defined in the FREQ field.\n\nVisionPLUS Service Data:\
+            \ AZXCIO-INET-PUR-AMT"
         purchaseSingleTransactionLimit:
           type: string
-          description: |-
-            Length: 13
-
-            Maximum authorization amount in monetary units and subunits of a single internet 
-            transaction allowed for this Embosser record for the frequency defined in the FREQ
-            field.
-
-            VisionPLUS Service Data: AZXCIO-INET-PUR-SNGL-TXN
+          description: "Length: 13\n\nMaximum authorization amount in monetary units\
+            \ and subunits of a single internet \ntransaction allowed for this Embosser\
+            \ record for the frequency defined in the FREQ\nfield.\n\nVisionPLUS Service\
+            \ Data: AZXCIO-INET-PUR-SNGL-TXN"
     EmbosserDetailsL8V8Response.InternetPurchaseNumberData:
       type: object
       properties:
@@ -3109,13 +3049,9 @@ components:
             VisionPLUS Service Data: AZXCIO-DATE-EXPIRE
         customerNumber:
           type: string
-          description: |-
-            Length: 19
-
-            Customer number that identifies the Customer Name/Address record that lists the 
-            mailing address of the cardholder.
-
-            VisionPLUS Service Data: AZXCIO-CUSTOMER-NBR
+          description: "Length: 19\n\nCustomer number that identifies the Customer\
+            \ Name/Address record that lists the \nmailing address of the cardholder.\n\
+            \nVisionPLUS Service Data: AZXCIO-CUSTOMER-NBR"
         currentPinOffset:
           type: integer
           description: |-
@@ -3136,14 +3072,10 @@ components:
           format: int32
         pinDelayDays:
           type: integer
-          description: |-
-            Length: 2
-
-            Number of processing days between the date when CMS receives notification that a 
-            magnetic-stripe card was produced and the date when CMS generates the associated 
-            PIN mailer for the card.
-
-            VisionPLUS Service Data: AZXCIO-PIN-DELAY-DAYS
+          description: "Length: 2\n\nNumber of processing days between the date when\
+            \ CMS receives notification that a \nmagnetic-stripe card was produced\
+            \ and the date when CMS generates the associated \nPIN mailer for the\
+            \ card.\n\nVisionPLUS Service Data: AZXCIO-PIN-DELAY-DAYS"
           format: int32
         typeOfPointOfSale:
           type: integer
@@ -3341,23 +3273,15 @@ components:
           $ref: '#/components/schemas/EmbosserDetailsL8V8Response.UserData'
         numberCurrentlyDisplayedEmbosserRecord:
           type: string
-          description: |-
-            Length: 19
-
-            Card number of the currently displayed embosser record, or account number that 
-            provides a cross-reference between this embosser record and the associated account 
-            records after an account transfer.
-
-            VisionPLUS Service Data: AZXCIO-TRAN-DATA-CRD-NBR
+          description: "Length: 19\n\nCard number of the currently displayed embosser\
+            \ record, or account number that \nprovides a cross-reference between\
+            \ this embosser record and the associated account \nrecords after an account\
+            \ transfer.\n\nVisionPLUS Service Data: AZXCIO-TRAN-DATA-CRD-NBR"
         adminNumberBranch:
           type: integer
-          description: |-
-            Length: 9
-
-            Branch number that identifies the card mailing location for all reissued cards when the 
-            branch delivery option is used.
-
-            VisionPLUS Service Data: AZXCIO-ADMIN-BRANCH
+          description: "Length: 9\n\nBranch number that identifies the card mailing\
+            \ location for all reissued cards when the \nbranch delivery option is\
+            \ used.\n\nVisionPLUS Service Data: AZXCIO-ADMIN-BRANCH"
           format: int32
         nextExpirationDateOfTheCard:
           type: string
@@ -3368,13 +3292,9 @@ components:
           format: date
         branchIdentifierCardMailingLocation:
           type: integer
-          description: |-
-            Length: 9
-
-            Branch number that identifies the card mailing location for the issue of all new cards 
-            when the branch delivery option is used.
-
-            VisionPLUS Service Data: AZXCIO-FIRST-ISS-BRANCH
+          description: "Length: 9\n\nBranch number that identifies the card mailing\
+            \ location for the issue of all new cards \nwhen the branch delivery option\
+            \ is used.\n\nVisionPLUS Service Data: AZXCIO-FIRST-ISS-BRANCH"
           format: int32
         cardInformationData:
           $ref: '#/components/schemas/EmbosserDetailsL8V8Response.CardInformationData'
@@ -3400,13 +3320,9 @@ components:
           $ref: '#/components/schemas/EmbosserDetailsL8V8Response.SpendingLimitsData'
         cardDelayDays:
           type: integer
-          description: |-
-            Length: 2
-
-            Code that indicates the number of days to warehouse the card mailer before releasing 
-            the card for printing.
-
-            VisionPLUS Service Data: AZXCIO-CARD-DELAY-DAYS
+          description: "Length: 2\n\nCode that indicates the number of days to warehouse\
+            \ the card mailer before releasing \nthe card for printing.\n\nVisionPLUS\
+            \ Service Data: AZXCIO-CARD-DELAY-DAYS"
           format: int32
         cardDelayStatus:
           type: string
@@ -3457,17 +3373,11 @@ components:
           format: int32
         pinDelayStatusMailer:
           type: string
-          description: |-
-            Length: 1
-
-            Code that indicates the status of a warehoused PIN mailer
-            The values are:
-            0 = No PIN is warehoused
-            1 = PIN is warehoused according to logo settings for the applicable card 
-            action
-            5 = PIN is warehoused due to a manual PIN mailer request..
-
-            VisionPLUS Service Data: AZXCIO-PIN-DELAY-STATUS
+          description: "Length: 1\n\nCode that indicates the status of a warehoused\
+            \ PIN mailer\nThe values are:\n0 = No PIN is warehoused\n1 = PIN is warehoused\
+            \ according to logo settings for the applicable card \naction\n5 = PIN\
+            \ is warehoused due to a manual PIN mailer request..\n\nVisionPLUS Service\
+            \ Data: AZXCIO-PIN-DELAY-STATUS"
         cardActivatedDate:
           type: string
           description: |-
@@ -3814,10 +3724,10 @@ components:
             International Single Transaction
     CardPanInquiryL8V2Request:
       required:
-        - cardNumber
-        - cardSequence
-        - functionType
-        - organizationNumber
+      - cardNumber
+      - cardSequence
+      - functionType
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -3830,7 +3740,7 @@ components:
           format: int32
           example: 807
           enum:
-            - null
+          - null
         cardNumber:
           maxLength: 32
           minLength: 12
@@ -3842,7 +3752,7 @@ components:
             VisionPLUS Service Data: AZXTCI-CARD-PAN
           example: 000540208ID5IXX3865
           enum:
-            - range[12,32]
+          - "range[12,32]"
         cardSequence:
           type: integer
           description: |-
@@ -3854,9 +3764,9 @@ components:
           format: int32
           example: 1
           enum:
-            - null
+          - null
         functionType:
-          pattern: ^(P|C){1}$
+          pattern: "^(P|C){1}$"
           type: string
           description: |-
             Length: 1
