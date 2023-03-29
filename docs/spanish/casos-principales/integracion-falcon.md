@@ -19,10 +19,10 @@ Falcon les asigna una puntuación de cero a 999 a cada una de las transacciones 
 - [Cargar Fondos](?path=docs/spanish/casos-principales/cargas.md)
 - [Controles de Tarjetas](?path=docs/spanish/casos-principales/controles-tarjeta.md)
 - [Emisión de Tarjetas Digitales](?path=docs/spanish/casos-principales/emision-tarjetas.md)
+- [Firma HMAC](?path=docs/spanish/casos-principales/hmac.md)
 - [Gestión de Clientes](?path=docs/spanish/casos-principales/gestion-clientes.md)
 - [Gestión de Cuentas](?path=docs/spanish/casos-principales/gestion-cuentas.md)
 - [Gestión de Tarjetas](?path=docs/spanish/casos-principales/gestion-tarjetas.md)
-- [HMAC Signature](?path=docs/spanish/casos-principales/hmac.md)
 - [Relación Cliente-Cuenta-Tarjeta](?path=docs/spanish/casos-principales/relacion.md)
 
 ---

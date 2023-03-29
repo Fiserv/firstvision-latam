@@ -5,7 +5,7 @@ tags: [Getting Started, Postman, Tutorial]
 
 # Postman Test Tutorial
 
-This section aims to demonstrate the initial settings that must be applied to Postman's Collection, before making requests to available Fiservs APIs.
+This section aims to demostrate the initial settings that must be applied to Postman's Collection, before making requests to available Fiservs APIs.
 
 If you have not used the Postman tool as an HTTP client to test requests, access the tool's official link for more information: [Postman Official](https://www.postman.com/)
 

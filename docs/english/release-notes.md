@@ -9,6 +9,7 @@ tags: [Release Notes, January, February, March]
 ### What's New?
 
 - Spanish documentation!
+- Portuguese documentation!
 - API Glossary
 
 ### Enhancements

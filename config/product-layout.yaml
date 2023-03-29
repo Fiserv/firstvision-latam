@@ -28,73 +28,95 @@
 # the delivery of this work
 ################################################################################
 header:
-  productName: FirstVision - LATAM
+#  productName: FirstVision - LATAM
+#  whoIsItFor: LATAM
+#  image: 
+#    link: "/assets/images/Fiserv_Logo.jpg"
+#    altText: FirstVision - LATAM™
   productionDescription: Fiserv provides a single, consolidated processing platform for all your payment cards, loans, prepaid, and commercial card products. FirstVision™ is our outsourced processing solution that meets your challenges head-on and transforms your technology capability. Built on core VisionPLUS® software, FirstVision™ provides an end-to-end solution. FirstVision™ Restful APIs enable you to achieve platform modernization and competitive edge delivering the following benefits to your business.
-  getStarted: docs/2-getting-started.md
-  whoIsItFor: LATAM
-  image: 
-    link: "/assets/images/Fiserv_Logo.jpg"
-    altText: FirstVision - LATAM™
+getStarted: docs/english/getting-started.md
+guides:
+  - title: Postman Test Tutorial
+    description: Demostrate the initial settings that must be applied to Postman's Collection.
+    link: docs/english/getting-started/postman.md
 benefits:
   - title: Time to Market
     description: Service-based architecture with API enabled and a fully integrated suite of solutions ensures quicker application development and integration.
+    icon: assets/images/time.jpg
   - title: Transform Business
     description: Platform architecture built around technology simplification and leveraging open APIs, reducing the cost of change and meeting the innovation.
+    icon: assets/images/transform1.png
   - title: Speed to Market
     description: FirstVision™ oriented architecture with open APIs enables service consumption rather than change management.
+    icon: assets/images/transform.png
 featuredFeatures:
-  - title: Credit Issuance
-    description:  FirstVision solution allows financial Institution to issue and manage the Credit Card products to their end customers. 
-    tags: ["LATAM", "FirstVision", "Credit"]
-    bullets: ["Activate Card", "Block Card", "Lost Stolen Card Transfer", "CVV2 Validation" ]  
+  - title: Accounts
+    description: Account basic functions such as add, inquiry and edit account. Also includes account level processing options for a card account.
+    featured: true
     relatedDocs:
-      - relatedDoc: 
-        title: Account Management
-        description: Allows management of an accounts that holds financial information of Credit available/used.
-        link: ./docs/api-reference/1-account.md
-      - relatedDoc: 
-        title: Cards Management
-        description: Allows management of payment instrument that is used to perform financial transaction such as physical Card, Virtual Card, Wallet Token. 
-        link: ./docs/api-reference/2-cards.md
-      - relatedDoc: 
-        title: Customer Management
-        description: Allows management of a cardholder's demographic information like Name, Address, phone numbers, etc.  
-        link: ./docs/api-reference/3-customer.md
-      - relatedDoc: 
-        title: Loyalty Management
-        description: Allows management of loyalty programs like points adjusment.
-        link: ./docs/api-reference/4-loyalty.md
-      - relatedDoc: 
-        title: Notifications Management
-        description: Allows management of events for enrollment and cancellation.
-        link: ./docs/api-reference/5-notifications.md
-      - relatedDoc: 
-        title: Transactions Management
-        description: Allows management of transactions such as details, exchange rate, etc.
-        link: ./docs/api-reference/6-transactions.md
+    - link: docs/english/api-reference/1-account.md
+      title: Accounts
     relatedAPIs:
-      - relatedAPI: 
-        title: Cash-in & Cash-out Request
-        description: Credits (cash in) or Debits (cash out) transactions from available funds or credit open to buy in an Account
-        type: "put"
-        path: "/account/balance"
-      - relatedAPI:
-        title: Card Activation
-        description: Activate Card.
-        type: "put"
-        path: "/cards/activation"
-      - relatedAPI: 
-        title: Customer Update
-        description: Customer Update
-        type: "put"
-        path: "/customer/"
-      - relatedAPI: 
-        title: Exchange Rate Update
-        description: Inquire or Update Exchange Rate
-        type: "put"
-        path: "/transactions/exchange-rate"
-      - relatedAPI: 
-        title: Points Account Add
-        description: Adds an LMS Points Account Record.
-        type: "post"
-        path: "/loyalty/pointsAccount"
+    - title: Accound Add
+      type: "post"
+      path: "/account/add-L8V3"
+  - title: Cards
+    description: Cards functions to add, inquiry and edit card records. A card record contains information about the card (or “plastic”) that is issued to the cardholder. Also includes cross reference between customer, account and card.
+    featured: true
+    relatedDocs:
+    - link: docs/english/api-reference/2-cards.md
+      title: Cards
+    relatedAPIs:
+    - title: Card Activation
+      type: "put"
+      path: "/cards/activation"
+  - title: Customer
+    description: Customer Name Address functions. Multiple accounts can be associated with a single Customer Name/Address record. Cross-reference between records customer to account to cards and relationships are also available.
+    featured: true
+    relatedDocs:
+    - link: docs/english/api-reference/3-customer.md
+      title: Customer
+    relatedAPIs:
+    - title: Account Number Inquiry
+      type: "post"
+      path: "/customer/accountNumber"
+  - title: Transactions
+    groupName: Credit Issuance
+    description: Transactions functions to add, adjust or inquiry functions actions. Display transactional details.
+    featured: true
+    relatedDocs:
+    - link: docs/english/api-reference/6-transactions.md
+      title: Transactions
+    relatedAPIs:
+    - title: Account Enrollment Inquiry
+      type: "get"
+      path: "/transactions/enroll-history/{accountNumber}"
+  - title: Loyalty
+    groupName: Credit Issuance
+    description: Loyalty program functions to reward customers for their repeated patronage. Loyalty programs are also known as a rewards program or points program.
+    featured: false
+    relatedDocs:
+    - link: docs/english/api-reference/4-loyalty.md
+      title: Loyalty
+    relatedAPIs:
+    - title: Cross Reference Inquiry
+      type: "post"
+      path: "/loyalty/crossReference"
+  - title: Notifications
+    groupName: Credit Issuance
+    description: Enrollment and cancellation features with the flexibility to trigger Email’s basis for specific events such as authorizations, address change, card blocking, card activation, card replacement or reissue, payment due date and credit limit change.
+    featured: false
+    relatedDocs:
+    - link: docs/english/api-reference/5-notifications.md
+      title: Notifications
+    relatedAPIs:
+    - title: Notification
+      type: "post"
+      path: "/v2/pushNotification"
+  - title: Tokenization
+    groupName: Credit Issuance
+    featured: false
+    relatedAPIs:
+    - title: Available Cards Inquiry
+      type: "post"
+      path: "/vtis/v1/getAvailableCards"

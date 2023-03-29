@@ -9,32 +9,34 @@ paths:
   /account/transfer:
     put:
       tags:
-      - Account
-      summary: "Account to Account Transfer. VMX Service: M.ASM.MONETARY.ACT, L8V2"
-      description: "Transfers funds between two accounts (ie. P2P), where at least\
-        \ one of them, or both, (sender or recipient) is on the VisionPLUS platform.\
-        \ \nVMX Service: M.ASM.MONETARY.ACT, L8V2"
+        - Account
+      summary: 'Account to Account Transfer. VMX Service: M.ASM.MONETARY.ACT, L8V2'
+      description: |-
+        Provides the ability to externally add or reverse financial input to a card
+        product. 
+
+        VMX Service: M.ASM.MONETARY.ACT, L8V2
       operationId: Account to Account Transfer
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      - name: clientReceivedStartTimestamp
-        in: header
-        required: false
-        schema:
-          type: integer
-          format: int64
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
+        - name: clientReceivedStartTimestamp
+          in: header
+          required: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -42,58 +44,60 @@ paths:
               $ref: '#/components/schemas/TransferFundsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferFundsResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account to Account Transfer
       x-group-name: Account
       x-child-product-name: Accounts
   /account/details:
     put:
       tags:
-      - Account
-      summary: "Account Update. VMX Service: M.CMS.ACCTMNT.UPD, L8V1"
-      description: "Update account details. \nVMX Service: M.CMS.ACCTMNT.UPD, L8V1"
+        - Account
+      summary: 'Account Update. VMX Service: M.CMS.ACCTMNT.UPD, L8V1'
+      description: |-
+        Update account details. 
+        VMX Service: M.CMS.ACCTMNT.UPD, L8V1
       operationId: details
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -101,101 +105,136 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "422":
-          description: "Unprocessable Entity\n\nVPL5SBB14S - ORGANIZATION NUMBER MUST\
-            \ BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SBB01E - STATE OF RESIDENCE\
-            \ CONTAINS INVALID CHARACTERS \n\nVPL5SBB02E - STATE OF ISSUANCE CONTAINS\
-            \ INVALID CHARACTERS \n\nVPL5SBB03E - PRICING CONTROL ID CONTAINS INVALID\
-            \ CHARACTERS \n\nVPL5SBB04E - PRICING CONTROL START DATE IS NOT NUMERIC\
-            \ \n\nVPL5SBB05E - PRICING CONTROL EXPIRE DATE IS NOT NUMERIC \n\nVPL5SBB06E\
-            \ - PRICING LEVEL OVERRIDE MUST EQUAL SPACE, L, O OR S \n\nVPL5SBB07E\
-            \ - PRICING LEVEL START DATE IS NOT NUMERIC \n\nVPL5SBB08E - PRICING LEVEL\
-            \ EXPIRE DATE IS NOT NUMERIC \n\nVPL5SBB12E - CASH LIMIT FIELD MUST EQUAL\
-            \ N, T OR Y \n\nVPL5SBB13E - CUSTOMER STATEMENT FIELD MUST = 0 OR 1 \n\
-            \nVPL5SBB14E - CUSTOMER LTR FIELD FLAG VALUE MUST = 0 OR 1 \n\nVPL5SBB15E\
-            \ - SUPPRESS LETTER FIELD MUST EQUAL 0 OR 1 \n\nVPL5SBB16E - CYCLE VALUE\
-            \ INVALID - MUST BE BETWEEN ZEROS AND 31 \n\nVPL5SBBQ1E - STATE OF RESIDENCE\
-            \ IS INVALID ON USURY TABLE \n\nVPL5SBBR2E - START DATE FOR THE PRICING\
-            \ CTRL NOT A VALID DATE \n\nVPL5SBBR3E - START DATE FOR THE PRICING CTRL\
-            \ MUST BE = OR > NEXT PROCESSING DT \n\nVPL5SBB1RE - EXPIRE DATE INVALID\
-            \ WHEN PCT CNTRL START DATE NOT PROVIDE \n\nVPL5SBBR4E - EXPIRE DATE FOR\
-            \ THE PRICING CTRL NOT A VALID DATE \n\nVPL5SBBR5E - EXPIRE DATE FOR THE\
-            \ PRICING CTRL MUST BE = OR > PCT START \n\nVPL5SBB1SE - PCT LEVEL START\
-            \ DATE INVALID WHEN PCT LEVEL NOT PROVIDED \n\nVPL5SBBR6E - PCT LEVEL\
-            \ START DATE FOR THE PCT LEVEL NOT A VALID DATE \n\nVPL5SBBR7E - PCT LEVEL\
-            \ START DATE FOR PCT LEVEL MUST BE = OR > NEXT PROCESS DT \n\nVPL5SBBR8E\
-            \ - PCT LEVEL EXPIRE DATE FOR THE PCT LEVEL NOT A VALID DATE \n\nVPL5SBB2HE\
-            \ - WAIVE CASH AVAIL MUST BE Y FOR PREPAID ACCOUNT TYPE \n\nVPL5SBBO7E\
-            \ - VALID VALUES FOR PREPAID ACCOUNTS ARE SPACE, I, O, U, OR \n\nVPL5SBBO8E\
-            \ - VALID VALUES ARE SPACE, 0-9, C, H, I, R, S, O, U OR Z \n\nVPL5SBB1PE\
-            \ - CYCLE FIELD MUST BE GREATER THAN ZEROS \n\nPL5SBB53E - INVALID REISSUE\
-            \ TECHNOLOGY. VALID VALUES - 0, 1, 2, 3 \n\nVPL5SAA74E - SKIP PAYMENT\
-            \ FLAG MUST = A, M, N, V, X OR Z \n\nVPL5SAAN4E - PRIM ACCT BILLING LEVEL\
-            \ CANNOT BE 1 WHEN REL BILLING LVL = 0 OR 2 \n\nVPL5SBB51E - INVALID PLAN\
-            \ PMT OVERRIDE FLAG.VALID VALUES - F, X, P, M, SPACES \n\nVPL5SBB70E -\
-            \ INVALID PREPMT ALLOWED. VALID VALUES - 0, 1, 2 \n\nVPL5SBB73E - INVALID\
-            \ PREPMT ZERO. VALID VALUES - 0, 1, 2, 3 \n\nVPL5SBBO9E - VALID VALUES\
-            \ ARE P, C, I, F, D, OR Q "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAccountDetailsResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
+          description: |-
+            Unprocessable Entity
+
+            VPL5SBB14S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998 
+
+            VPL5SBB01E - STATE OF RESIDENCE CONTAINS INVALID CHARACTERS 
+
+            VPL5SBB02E - STATE OF ISSUANCE CONTAINS INVALID CHARACTERS 
+
+            VPL5SBB03E - PRICING CONTROL ID CONTAINS INVALID CHARACTERS 
+
+            VPL5SBB04E - PRICING CONTROL START DATE IS NOT NUMERIC 
+
+            VPL5SBB05E - PRICING CONTROL EXPIRE DATE IS NOT NUMERIC 
+
+            VPL5SBB06E - PRICING LEVEL OVERRIDE MUST EQUAL SPACE, L, O OR S 
+
+            VPL5SBB07E - PRICING LEVEL START DATE IS NOT NUMERIC 
+
+            VPL5SBB08E - PRICING LEVEL EXPIRE DATE IS NOT NUMERIC 
+
+            VPL5SBB12E - CASH LIMIT FIELD MUST EQUAL N, T OR Y 
+
+            VPL5SBB13E - CUSTOMER STATEMENT FIELD MUST = 0 OR 1 
+
+            VPL5SBB14E - CUSTOMER LTR FIELD FLAG VALUE MUST = 0 OR 1 
+
+            VPL5SBB15E - SUPPRESS LETTER FIELD MUST EQUAL 0 OR 1 
+
+            VPL5SBB16E - CYCLE VALUE INVALID - MUST BE BETWEEN ZEROS AND 31 
+
+            VPL5SBBQ1E - STATE OF RESIDENCE IS INVALID ON USURY TABLE 
+
+            VPL5SBBR2E - START DATE FOR THE PRICING CTRL NOT A VALID DATE 
+
+            VPL5SBBR3E - START DATE FOR THE PRICING CTRL MUST BE = OR > NEXT PROCESSING DT 
+
+            VPL5SBB1RE - EXPIRE DATE INVALID WHEN PCT CNTRL START DATE NOT PROVIDE 
+
+            VPL5SBBR4E - EXPIRE DATE FOR THE PRICING CTRL NOT A VALID DATE 
+
+            VPL5SBBR5E - EXPIRE DATE FOR THE PRICING CTRL MUST BE = OR > PCT START 
+
+            VPL5SBB1SE - PCT LEVEL START DATE INVALID WHEN PCT LEVEL NOT PROVIDED 
+
+            VPL5SBBR6E - PCT LEVEL START DATE FOR THE PCT LEVEL NOT A VALID DATE 
+
+            VPL5SBBR7E - PCT LEVEL START DATE FOR PCT LEVEL MUST BE = OR > NEXT PROCESS DT 
+
+            VPL5SBBR8E - PCT LEVEL EXPIRE DATE FOR THE PCT LEVEL NOT A VALID DATE 
+
+            VPL5SBB2HE - WAIVE CASH AVAIL MUST BE Y FOR PREPAID ACCOUNT TYPE 
+
+            VPL5SBBO7E - VALID VALUES FOR PREPAID ACCOUNTS ARE SPACE, I, O, U, OR 
+
+            VPL5SBBO8E - VALID VALUES ARE SPACE, 0-9, C, H, I, R, S, O, U OR Z 
+
+            VPL5SBB1PE - CYCLE FIELD MUST BE GREATER THAN ZEROS 
+
+            PL5SBB53E - INVALID REISSUE TECHNOLOGY. VALID VALUES - 0, 1, 2, 3 
+
+            VPL5SAA74E - SKIP PAYMENT FLAG MUST = A, M, N, V, X OR Z 
+
+            VPL5SAAN4E - PRIM ACCT BILLING LEVEL CANNOT BE 1 WHEN REL BILLING LVL = 0 OR 2 
+
+            VPL5SBB51E - INVALID PLAN PMT OVERRIDE FLAG.VALID VALUES - F, X, P, M, SPACES 
+
+            VPL5SBB70E - INVALID PREPMT ALLOWED. VALID VALUES - 0, 1, 2 
+
+            VPL5SBB73E - INVALID PREPMT ZERO. VALID VALUES - 0, 1, 2, 3 
+
+            VPL5SBBO9E - VALID VALUES ARE P, C, I, F, D, OR Q 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Update
       x-group-name: Account
       x-child-product-name: Accounts
     post:
       tags:
-      - Account
-      summary: "Find Account details (Account status). (VMX Service: M.CMS.ACCOUNT.INQ,\
-        \ L8V5)"
-      description: "Provides information on the status of the Account, such as, creating\
-        \ dates, block codes, credit limit and others. If the Account has been transferred,\
-        \ the current Account number must be provided. This API does not automatically\
-        \ switch to the new Account. This API can be called with an Account number\
-        \ or a card number. \nVMX Service: M.CMS.ACCOUNT.INQ, L8V5"
+        - Account
+      summary: 'Find Account details (Account status). (VMX Service: M.CMS.ACCOUNT.INQ, L8V5)'
+      description: |-
+        Provides information on the status of the Account, such as, creating dates, block codes, credit limit and others. If the Account has been transferred, the current Account number must be provided. This API does not automatically switch to the new Account. This API can be called with an Account number or a card number. 
+        VMX Service: M.CMS.ACCOUNT.INQ, L8V5
       operationId: Account Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -203,21 +242,29 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsRequest'
         required: true
       responses:
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountForDetailsResponse'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
+        '400':
+          description: Bad Request
+        '401':
           description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "422":
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |-
             VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
             VPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
@@ -236,45 +283,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountForDetailsResponse'
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
   /account/customer:
     put:
       tags:
-      - Account
-      summary: "Update Customer Number. (VMX Service: M.CMS.ACCTCUSTNBR.UPD, L8V1)"
-      description: "Updates the Customer number on the Account. \nVMX Service: M.CMS.ACCTCUSTNBR.UPD,\
-        \ L8V1"
+        - Account
+      summary: 'Update Customer Number. (VMX Service: M.CMS.ACCTCUSTNBR.UPD, L8V1)'
+      description: |-
+        Updates the Customer number on the Account. 
+        VMX Service: M.CMS.ACCTCUSTNBR.UPD, L8V1
       operationId: Customer Address Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -282,13 +322,29 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequest'
         required: true
       responses:
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerNumberResponse'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "422":
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |-
             VPL5SCU06S - ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999
             VPL5SCU07S - ACCOUNT OR CARD NUMBER REQUIRED
@@ -333,60 +389,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerNumberResponse'
       x-proxy-name: Customer Address Update
       x-group-name: Account
       x-child-product-name: Accounts
   /account/balance:
     put:
       tags:
-      - Account
-      summary: "Cash-in & Cash-out. VMX Service: M.ASM.MONETARY.ACT, L8V2"
-      description: "Credits (cash in) or Debits (cash out) transactions from available\
-        \ funds or credit open to buy in an Account. \nVMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V2"
+        - Account
+      summary: 'Cash-in & Cash-out. VMX Service: M.ASM.MONETARY.ACT, L8V2'
+      description: |-
+        Credits (cash in) or Debits (cash out) transactions from available funds or credit open to buy in an Account. 
+        VMX Service: M.ASM.MONETARY.ACT, L8V2
       operationId: Cash-in & Cash-out Request
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      - name: clientReceivedStartTimestamp
-        in: header
-        required: false
-        schema:
-          type: integer
-          format: int64
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
+        - name: clientReceivedStartTimestamp
+          in: header
+          required: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -394,60 +434,60 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ModifyAccountBalanceResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Cash-in & Cash-out Request
       x-group-name: Account
       x-child-product-name: Accounts
   /account/QR-transfer:
     put:
       tags:
-      - Account
-      summary: "Transfer Funds Between Two Different Accounts. VMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V3"
-      description: "Transfer Funds Between Two Different Accounts. \nVMX Service:\
-        \ M.ASM.MONETARY.ACT, L8V3"
+        - Account
+      summary: 'Transfer Funds Between Two Different Accounts. VMX Service: M.ASM.MONETARY.ACT, L8V3'
+      description: |-
+        Transfer Funds Between Two Different Accounts. 
+        VMX Service: M.ASM.MONETARY.ACT, L8V3
       operationId: Funds Transfer
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -455,66 +495,66 @@ paths:
               $ref: '#/components/schemas/QRTransferFundsRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/QRTransferFundsResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Funds Transfer
       x-group-name: Account
       x-child-product-name: Accounts
   /account/QR-balance:
     put:
       tags:
-      - Account
-      summary: "Cash-out by QR. VMX Service: M.ASM.MONETARY.ACT, L8V3"
-      description: "Performs cash-outs (debits) from an Account using a Quick Response\
-        \ (QR) Code within a predetermined period of time. \nVMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V3"
+        - Account
+      summary: 'Cash-out by QR. VMX Service: M.ASM.MONETARY.ACT, L8V3'
+      description: |-
+        Performs cash-outs (debits) from an Account using a Quick Response (QR) Code within a predetermined period of time. 
+        VMX Service: M.ASM.MONETARY.ACT, L8V3
       operationId: Cash-out by QR Request
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      - name: clientReceivedStartTimestamp
-        in: header
-        required: false
-        schema:
-          type: integer
-          format: int64
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
+        - name: clientReceivedStartTimestamp
+          in: header
+          required: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -522,67 +562,67 @@ paths:
               $ref: '#/components/schemas/QRModifyAccountBalanceRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/QRModifyAccountBalanceResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Cash-out by QR Request
       x-group-name: Account
       x-child-product-name: Accounts
   /account/FL-transferP2P:
     put:
       tags:
-      - Account
-      summary: "Account to Account Funds Transfer. VMX Service: M.ASM.MONETARYPTP.ACT,\
-        \ L8V2"
-      description: "Integrate Account to Account (P2P) Funds Transfer transaction\
-        \ information to be used in Fraud Prevention Rules.  \n\nVMX Service: M.ASM.MONETARYPTP.ACT,\
-        \ L8V2"
+        - Account
+      summary: 'Account to Account Funds Transfer. VMX Service: M.ASM.MONETARYPTP.ACT, L8V2'
+      description: |-
+        Integrate Account to Account (P2P) Funds Transfer transaction information to be used in Fraud Prevention Rules.  
+
+        VMX Service: M.ASM.MONETARYPTP.ACT, L8V2
       operationId: Account to Account Funds Transfer
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      - name: clientReceivedStartTimestamp
-        in: header
-        required: false
-        schema:
-          type: integer
-          format: int64
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
+        - name: clientReceivedStartTimestamp
+          in: header
+          required: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -590,64 +630,60 @@ paths:
               $ref: '#/components/schemas/FlTransferP2PRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FlTransferP2PResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account to Account Funds Transfer
       x-group-name: Account
       x-child-product-name: Accounts
   /account/card-L8V2:
     post:
       tags:
-      - Account
-      summary: "Account to card details_1. (VMX Service: M.CMS.ACCT.TO.CARD.INQ, L8V2)"
-      description: "Provides the card number uses the account number or the account\
-        \ and organization number to find it. If only the account number is provided\
-        \ in the service input in a dual currency processing environment, this service\
-        \ provides the card numbers for the local account. If the organization number\
-        \ is provided in the service input, this service provides the card numbers\
-        \ associated with that organization whether it is a local or a foreign organization.\
-        \ \nVMX Service: M.CMS.ACCT.TO.CARD.INQ, L8V2"
+        - Account
+      summary: 'Account to card details_1. (VMX Service: M.CMS.ACCT.TO.CARD.INQ, L8V2)'
+      description: |-
+        Provides the card number uses the account number or the account and organization number to find it. If only the account number is provided in the service input in a dual currency processing environment, this service provides the card numbers for the local account. If the organization number is provided in the service input, this service provides the card numbers associated with that organization whether it is a local or a foreign organization. 
+        VMX Service: M.CMS.ACCT.TO.CARD.INQ, L8V2
       operationId: Account To Card Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -655,60 +691,60 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V2Request'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsL8V2Response'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account To Card Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
   /account/account-boarding-driver:
     post:
       tags:
-      - Account
-      summary: "Creates a card, account and customer in a single request. (VMX Service:\
-        \ M.CMS.CUST.ACCT.CRD.DRV, L8V1)"
-      description: "Creates a card, account and customer in a single request. \nVMX\
-        \ Service: M.CMS.CUST.ACCT.CRD.DRV, L8V1"
+        - Account
+      summary: 'Creates a card, account and customer in a single request. (VMX Service: M.CMS.CUST.ACCT.CRD.DRV, L8V1)'
+      description: |-
+        Creates a card, account and customer in a single request. 
+        VMX Service: M.CMS.CUST.ACCT.CRD.DRV, L8V1
       operationId: Account Boarding Driver Request
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -716,21 +752,29 @@ paths:
               $ref: '#/components/schemas/AccountBoardingDriverRequest'
         required: true
       responses:
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBoardingDriverResponse'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
+        '400':
+          description: Bad Request
+        '401':
           description: Unauthorized
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "422":
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |-
             VPL5SZ103E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
             VPL5SZ104E - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -785,47 +829,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountBoardingDriverResponse'
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
   /account/:
     post:
       tags:
-      - Account
-      summary: "Add account. VMX Service: M.CMS.ACCOUNT.ADD, R8V8"
-      description: "Adds a single Account to an existing Customer record for Single\
-        \ Currency Accounts. For Dual Currency Accounts, two records with the same\
-        \ Account number will be created in the local and foreign currency Organizations.\
-        \ \nVMX Service: M.CMS.ACCOUNT.ADD, R8V8"
+        - Account
+      summary: 'Add account. VMX Service: M.CMS.ACCOUNT.ADD, R8V8'
+      description: |-
+        Adds a single Account to an existing Customer record for Single Currency Accounts. For Dual Currency Accounts, two records with the same Account number will be created in the local and foreign currency Organizations. 
+        VMX Service: M.CMS.ACCOUNT.ADD, R8V8
       operationId: Account Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -833,15 +868,29 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        "300":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountAddDetailsResponse'
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
+        '400':
+          description: Bad Request
+        '401':
           description: Unauthorized
-        "422":
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
             VPL5SAA03S - ORG NUMBER REQUIRED WHEN ACCOUNT NUMBER NOT PROVIDED
@@ -1257,26 +1306,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountAddDetailsResponse'
       x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1284,14 +1319,14 @@ components:
   schemas:
     TransferFundsRequest:
       required:
-      - effectiveDate
-      - organizationNumber
-      - planNumber
-      - planSequence
-      - representativeId
-      - storeNumber
-      - transactionAmount
-      - transactionId
+        - effectiveDate
+        - organizationNumber
+        - planNumber
+        - planSequence
+        - representativeId
+        - storeNumber
+        - transactionAmount
+        - transactionId
       type: object
       properties:
         organizationNumber:
@@ -1341,14 +1376,14 @@ components:
             identifier used to identify the transaction for reconciliation purpose.
 
             VisionPLUS Service Data: AZXMAI-AUTH-CODE
-          example: "123456"
+          example: '123456'
         transactionId:
           type: string
           description: |-
             Transaction ID.
 
             VisionPLUS Service Data: AZXMAI-SI-REF-NUM
-          example: "123456"
+          example: '123456'
         planNumber:
           type: integer
           description: |-
@@ -1380,9 +1415,9 @@ components:
       description: Transfer Funds Request
     TransferFundsRequest.From:
       required:
-      - accountNumber
-      - actionCode
-      - description
+        - accountNumber
+        - actionCode
+        - description
       type: object
       properties:
         accountNumber:
@@ -1395,7 +1430,7 @@ components:
             Number of Customer's account or Card.
 
             VisionPLUS Service Data: AZXMAI-ACCT-NBR
-          example: "4198194069732810121"
+          example: '4198194069732810121'
         actionCode:
           type: string
           description: |-
@@ -1404,7 +1439,7 @@ components:
             VisionPLUS Service Data: AZXMAI-ACTION-CODE
           example: FREV
           enum:
-          - FREV
+            - FREV
         description:
           type: string
           description: |-
@@ -1416,9 +1451,9 @@ components:
           example: DESC FROM
     TransferFundsRequest.To:
       required:
-      - accountNumber
-      - actionCode
-      - description
+        - accountNumber
+        - actionCode
+        - description
       type: object
       properties:
         accountNumber:
@@ -1431,7 +1466,7 @@ components:
             Number of Customer's account or Card.
 
             VisionPLUS Service Data: AZXMAI-ACCT-NBR
-          example: "4198194069732810121"
+          example: '4198194069732810121'
         actionCode:
           type: string
           description: |-
@@ -1440,7 +1475,7 @@ components:
             VisionPLUS Service Data: AZXMAI-ACTION-CODE
           example: FUND
           enum:
-          - FUND
+            - FUND
         description:
           type: string
           description: |-
@@ -1504,90 +1539,84 @@ components:
             VisionPLUS Service Data: AZXMAO-OPEN-TO-BUY
     UpdateAccountDetailsRequest:
       required:
-      - accountNumber
-      - organization
-      - pctEndDate
-      - pctLevelStartDate
-      - pctLvl
-      - pctStartDate
+        - accountNumber
+        - organization
+        - pctEndDate
+        - pctLevelStartDate
+        - pctLvl
+        - pctStartDate
       type: object
       properties:
         organization:
           type: string
-          description: 'Identification number of the organization associated with
-            this User (Sign on name). '
+          description: 'Identification number of the organization associated with this User (Sign on name). '
         accountNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: "Identification number of the Account Base Segment record to\
-            \ \nwhich CMS posts transactions that are received for this \nEmbosser\
-            \ record. The Embosser record is identified by the card \nnumber and record\
-            \ number."
-          example: "0004557320000115411"
+          description: |-
+            Identification number of the Account Base Segment record to 
+            which CMS posts transactions that are received for this 
+            Embosser record. The Embosser record is identified by the card 
+            number and record number.
+          example: '0004557320000115411'
         stateOfResidence:
           maxLength: 3
           minLength: 0
           type: string
-          description: "Account holder resides. For accounts processed by a revolving/retail\
-            \ \nLogo record (TYPE OF ACCOUNT on ARML01 is R), CMS uses the \nresidence\
-            \ ID to determine which Processing Control Table identifies \nthe control\
-            \ records that define processing parameters for the account.\nCMS defaults\
-            \ this value from the RES ID field on ARML13."
+          description: |-
+            Account holder resides. For accounts processed by a revolving/retail 
+            Logo record (TYPE OF ACCOUNT on ARML01 is R), CMS uses the 
+            residence ID to determine which Processing Control Table identifies 
+            the control records that define processing parameters for the account.
+            CMS defaults this value from the RES ID field on ARML13.
         stateOfIssue:
           maxLength: 3
           minLength: 0
           type: string
-          description: "Code that identifies the state, province, or country in which\
-            \ the account was issued. This field displays only if the account is processed\
-            \ by a bankcard Logo record (TYPE OF ACCOUNT on ARML01 is X). If \nyou\
-            \ leave this field blank, the default is the code established at the product\
-            \ level (BANKCARD on ARML13).  \nFor accounts processed by a retail Logo\
-            \ record (TYPE OF ACCOUNT on ARML01 is R), CMS uses the residence ID to\
-            \ \ndetermine which Processing Control Table identifies the control records\
-            \ that define processing parameters for the account. "
+          description: |-
+            Code that identifies the state, province, or country in which the account was issued. This field displays only if the account is processed by a bankcard Logo record (TYPE OF ACCOUNT on ARML01 is X). If 
+            you leave this field blank, the default is the code established at the product level (BANKCARD on ARML13).  
+            For accounts processed by a retail Logo record (TYPE OF ACCOUNT on ARML01 is R), CMS uses the residence ID to 
+            determine which Processing Control Table identifies the control records that define processing parameters for the account. 
         processingControlTable:
           maxLength: 3
           minLength: 0
           type: string
-          description: "Code that indicates whether a processing control level override\
-            \ \nis in effect, and if so, the level for the PCT ID in the PCT OVERRIDE\
-            \ field. This field enables you to override the processing \ncontrol level\
-            \ assigned to the account at the product level (PROC CONTROL LEVEL on\
-            \ ARML14).  The processing control level override \nis in effect during\
-            \ the period specified by the START DATE and EXPIRATION DATE. This override\
-            \ is used only in conjunction with the \nspecial pricing controls defined\
-            \ in the PCT OVERRIDE field."
+          description: |-
+            Code that indicates whether a processing control level override 
+            is in effect, and if so, the level for the PCT ID in the PCT OVERRIDE field. This field enables you to override the processing 
+            control level assigned to the account at the product level (PROC CONTROL LEVEL on ARML14).  The processing control level override 
+            is in effect during the period specified by the START DATE and EXPIRATION DATE. This override is used only in conjunction with the 
+            special pricing controls defined in the PCT OVERRIDE field.
         pctStartDate:
           type: string
-          description: "Date on which the processing control level override starts\
-            \ for \nthe account. The PCT LVL OVERRIDE field identifies the override\
-            \ \nlevel in effect."
+          description: |-
+            Date on which the processing control level override starts for 
+            the account. The PCT LVL OVERRIDE field identifies the override 
+            level in effect.
           format: date
         pctEndDate:
           type: string
-          description: "Date on which the processing control level override expires\
-            \ for the account. The PCT LVL OVERRIDE field \nidentifies the override\
-            \ level in effect. If the override does not expire, enter zeros in this\
-            \ field. If you enter a date, \nit must be greater than the START DATE."
+          description: |-
+            Date on which the processing control level override expires for the account. The PCT LVL OVERRIDE field 
+            identifies the override level in effect. If the override does not expire, enter zeros in this field. If you enter a date, 
+            it must be greater than the START DATE.
           format: date
         pctLvl:
           maxLength: 1
           minLength: 0
           type: string
-          description: The PCT LVL OVERRIDE field identifies the override level in
-            effect.
+          description: The PCT LVL OVERRIDE field identifies the override level in effect.
         pctLevelStartDate:
           type: string
-          description: "Date on which the processing control level (at the given Level,\
-            \ Org or Logo override)  starts for the account."
+          description: Date on which the processing control level (at the given Level, Org or Logo override)  starts for the account.
           format: date
         pctLevelExpireDate:
           type: string
-          description: "Date on which the processing control level  (at the given\
-            \ Level, Org or Logo override) expires for the account. \nIf the override\
-            \ does not expire, enter zeros in this field. If you enter a date, it\
-            \ must be greater than the START DATE."
+          description: |-
+            Date on which the processing control level  (at the given Level, Org or Logo override) expires for the account. 
+            If the override does not expire, enter zeros in this field. If you enter a date, it must be greater than the START DATE.
           format: date
         waiveAvailFlag:
           maxLength: 1
@@ -1595,36 +1624,32 @@ components:
           type: string
           description: Code that determines the cash credit limit for the account.
           enum:
-          - "N, T, Y"
+            - N, T, Y
         statementFlag:
           maxLength: 1
           minLength: 0
           type: string
-          description: Code that indicates how CMS generates a statement for this
-            account
+          description: Code that indicates how CMS generates a statement for this account
           enum:
-          - "C,H,I,O,R,S,range[1,9]"
+            - C,H,I,O,R,S,range[1,9]
         customerStatement:
           type: integer
-          description: Determines whether CMS sends statements to the owner only or
-            both the owner and co-owner.
+          description: Determines whether CMS sends statements to the owner only or both the owner and co-owner.
           format: int32
           enum:
-          - null
+            - null
         customerLetter:
           type: integer
-          description: Determines whether CMS sends letters to the owner only or both
-            the owner and co-owner.
+          description: Determines whether CMS sends letters to the owner only or both the owner and co-owner.
           format: int32
           enum:
-          - null
+            - null
         duppressLetters:
           type: integer
-          description: Code that indicates whether to suppress all letters for the
-            account
+          description: Code that indicates whether to suppress all letters for the account
           format: int32
           enum:
-          - null
+            - null
         billingCycle:
           type: integer
           description: Day of the month that the account cycles.
@@ -1638,196 +1663,173 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: Code that indicates whether skip payments are in effect for
-            this account.
+          description: Code that indicates whether skip payments are in effect for this account.
           enum:
-          - "A,M,N,V,X,Z"
+            - A,M,N,V,X,Z
         billingLevel:
           type: integer
-          description: "Indicates the level at which billing occurs for the subordinate\
-            \ accounts within the relationship and a code that \nindicates whether\
-            \ you can modify the billing level at the subordinate account level or\
-            \ only at the relationship level"
+          description: |-
+            Indicates the level at which billing occurs for the subordinate accounts within the relationship and a code that 
+            indicates whether you can modify the billing level at the subordinate account level or only at the relationship level
           format: int32
           enum:
-          - null
+            - null
         paymentCalculationOverride:
           maxLength: 1
           minLength: 0
           type: string
-          description: "Flag that indicates whether CMS overrides the controlling\
-            \ \nCredit Plan Master record and assesses a fixed payment or a \npercentage\
-            \ of credit limit payment for this account."
+          description: |-
+            Flag that indicates whether CMS overrides the controlling 
+            Credit Plan Master record and assesses a fixed payment or a 
+            percentage of credit limit payment for this account.
           enum:
-          - "F,P,X"
+            - F,P,X
         amount:
           maxLength: 17
           minLength: 0
           type: string
-          description: "Fixed payment amount or percentage of the credit limit that\
-            \ \nCMS uses to calculate the payment amount if the CONTROLLING \nPLAN\
-            \ OVERRIDE is F, X or P. Enter a fixed payment amount in \nmonetary units\
-            \ and subunits. Enter a percentage using the \nformat defined by the PERCENTAGE\
-            \ NOD.\nExamples:\nIf working with U.S. dollars, enter $25.00 as: 00000002500\
-            \ \nIf working with PERCENTAGE NOD 7, enter 10.5% as: 00001050000 \nIf\
-            \ working with PERCENTAGE NOD 5, enter 12.375% as: 00000012375"
+          description: |-
+            Fixed payment amount or percentage of the credit limit that 
+            CMS uses to calculate the payment amount if the CONTROLLING 
+            PLAN OVERRIDE is F, X or P. Enter a fixed payment amount in 
+            monetary units and subunits. Enter a percentage using the 
+            format defined by the PERCENTAGE NOD.
+            Examples:
+            If working with U.S. dollars, enter $25.00 as: 00000002500 
+            If working with PERCENTAGE NOD 7, enter 10.5% as: 00001050000 
+            If working with PERCENTAGE NOD 5, enter 12.375% as: 00000012375
         reissueTechnology:
           type: integer
-          description: Flag that defines the card technology to be used when reissuing
-            all cards for this particular account.
+          description: Flag that defines the card technology to be used when reissuing all cards for this particular account.
           format: int32
           enum:
-          - null
+            - null
         prePaymentsOption:
           type: integer
-          description: Code that indicates whether prepayments are allowed for the
-            account.
+          description: Code that indicates whether prepayments are allowed for the account.
           format: int32
           enum:
-          - null
+            - null
         prePaymentTimeLimit:
           type: integer
-          description: "Number of consecutive months in which the entire computed\
-            \ \npayment due can be satisfied by a prepaid amount. The default \nvalue\
-            \ for this field is set in the Logo record (PRE-PAY MONTHS \non ARML14).\
-            \ You can change this value at the account level. \nThis field does not\
-            \ display for debit card accounts."
+          description: |-
+            Number of consecutive months in which the entire computed 
+            payment due can be satisfied by a prepaid amount. The default 
+            value for this field is set in the Logo record (PRE-PAY MONTHS 
+            on ARML14). You can change this value at the account level. 
+            This field does not display for debit card accounts.
           format: int32
           enum:
-          - null
+            - null
         resetPrePaymentOption:
           type: integer
-          description: "Code that determines if the prepaid amount is reset to zero\
-            \ for \nthe account. The default value for this field is set in the Logo\
-            \ \nrecord (PREPMT ZERO on ARML14). You can change this value \nat the\
-            \ account level."
+          description: |-
+            Code that determines if the prepaid amount is reset to zero for 
+            the account. The default value for this field is set in the Logo 
+            record (PREPMT ZERO on ARML14). You can change this value 
+            at the account level.
           format: int32
           enum:
-          - null
+            - null
         signIndicator1:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance1:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 1.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 1.
         signIndicator2:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance2:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 2.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 2.
         signIndicator3:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance3:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 3.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 3.
         signIndicator4:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance4:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 4.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 4.
         signIndicator5:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance5:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 5.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 5.
         signIndicator6:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance6:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 6.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 6.
         signIndicator7:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance7:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 7.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 7.
         signIndicator8:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance8:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 8.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 8.
         signIndicator9:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance9:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 9.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 9.
         signIndicator10:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance10:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 10.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 10.
         signIndicator11:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance11:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 11.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 11.
         signIndicator12:
           maxLength: 1
           minLength: 0
           type: string
-          description: Sign indicator (+ or –) that indicates whether the pending
-            variance is added to or subtracted from the rate.
+          description: Sign indicator (+ or –) that indicates whether the pending variance is added to or subtracted from the rate.
         rateVariance12:
           type: integer
-          description: The pending rate variance associated with each rate table occurrence.
-            This is occurrence 12.
+          description: The pending rate variance associated with each rate table occurrence. This is occurrence 12.
         rateVarianceEndDate:
           type: string
-          description: Last date on which the current variances are effective for
-            credit plans
+          description: Last date on which the current variances are effective for credit plans
           format: date
         employeeCode:
           maxLength: 2
@@ -1838,8 +1840,7 @@ components:
           maxLength: 30
           minLength: 0
           type: string
-          description: 'Name of the officer at the financial institution responsible
-            for the account. '
+          description: 'Name of the officer at the financial institution responsible for the account. '
         statementReprintDate:
           type: string
           description: 'Date in which Duplicated Statement was generated. '
@@ -1848,38 +1849,41 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: "Code that determines the type of statement to be generated\
-            \ for a \ncustomer."
+          description: |-
+            Code that determines the type of statement to be generated for a 
+            customer.
           enum:
-          - "N,Y"
+            - N,Y
       description: Account details request
     UpdateAccountDetailsResponse:
       type: object
       properties:
         serviceReturnCode:
           type: string
-          description: "Identifies if the service succeeded or failed. \nValues for\
-            \ service return code: \n* F = Service failed \n* P = Service passed"
+          description: |-
+            Identifies if the service succeeded or failed. 
+            Values for service return code: 
+            * F = Service failed 
+            * P = Service passed
         numberOfReturnCodes:
           type: integer
-          description: The number of individual error codes provided in the response.
-            Maximum of 20.
+          description: The number of individual error codes provided in the response. Maximum of 20.
           format: int32
         organization:
           type: string
-          description: "The data displays is dependant on the type.  Values can represent\
-            \  Card Number, Pan Token number or Encrypted Card Number. "
+          description: 'The data displays is dependant on the type.  Values can represent  Card Number, Pan Token number or Encrypted Card Number. '
         accountNumber:
           type: string
-          description: "Identification number of the Account Base Segment record to\
-            \ \nwhich CMS posts transactions that are received for this \nEmbosser\
-            \ record. The Embosser record is identified by the card \nnumber and record\
-            \ number."
+          description: |-
+            Identification number of the Account Base Segment record to 
+            which CMS posts transactions that are received for this 
+            Embosser record. The Embosser record is identified by the card 
+            number and record number.
     UpdateCustomerNumberRequest:
       required:
-      - accountNumber
-      - customerNumber
-      - customerTypeIndicator
+        - accountNumber
+        - customerNumber
+        - customerTypeIndicator
       type: object
       properties:
         organizationNumber:
@@ -1900,7 +1904,7 @@ components:
             Account number or card number.
 
             VisionPLUS Service Data: ARXCUI-ACCT-NBR
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         customerNumber:
           type: string
           description: |-
@@ -1909,7 +1913,7 @@ components:
             Customer number.
 
             VisionPLUS Service Data: ARXCUI-CUST-NBR
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         foreignUseIndicator:
           type: integer
           description: |-
@@ -1952,8 +1956,8 @@ components:
       description: Update Customer Number Request
     UpdateCustomerNumberRequest.AlternateCustomer:
       required:
-      - expirationDate
-      - status
+        - expirationDate
+        - status
       type: object
       properties:
         status:
@@ -2002,7 +2006,7 @@ components:
             Account Number.
 
             VisionPLUS Service Data: ARXCUO-ACCOUNT-NBR
-          example: "4513074002500000000"
+          example: '4513074002500000000'
         customerOrganizationNumber:
           type: integer
           description: |-
@@ -2031,7 +2035,7 @@ components:
             Customer Number.
 
             VisionPLUS Service Data: ARXCUO-CUST-NBR
-          example: "4513074002500000000"
+          example: '4513074002500000000'
         foreignUseIndicator:
           type: string
           description: |-
@@ -2042,7 +2046,7 @@ components:
             The default is to the local account.
 
             VisionPLUS Service Data: ARXCUO-FOREIGN-USE
-          example: "0"
+          example: '0'
         customerTypeIndicator:
           type: string
           description: |-
@@ -2051,13 +2055,13 @@ components:
             Customer type indicator.
 
             VisionPLUS Service Data: ARXCUO-CUST-TYPE-IND
-          example: "1"
+          example: '1'
         alternateCustomer:
           $ref: '#/components/schemas/UpdateCustomerNumberResponse.AlternateCustomer'
     UpdateCustomerNumberResponse.AlternateCustomer:
       required:
-      - expirationDate
-      - status
+        - expirationDate
+        - status
       type: object
       properties:
         status:
@@ -2083,9 +2087,9 @@ components:
           format: date
     ModifyAccountBalanceRequest:
       required:
-      - accountNumber
-      - asmOrganizationNumber
-      - representativeId
+        - accountNumber
+        - asmOrganizationNumber
+        - representativeId
       type: object
       properties:
         asmOrganizationNumber:
@@ -2117,24 +2121,24 @@ components:
             Number of Customer's account or card.
 
             VisionPLUS Service Data: AZXMAI-ACCT-NBR
-          example: "4198194069732810121"
+          example: '4198194069732810121'
         transactionData:
           $ref: '#/components/schemas/ModifyAccountBalanceRequest.TxData'
       description: Modify Account Balance Request
     ModifyAccountBalanceRequest.TxData:
       required:
-      - actionCode
-      - cardNumber
-      - cardSequence
-      - description
-      - effectiveDate
-      - otbUpdateIndicator
-      - planNumber
-      - planSequence
-      - referenceNumber
-      - resolutionReferenceNumber
-      - storeNumber
-      - transactionAmount
+        - actionCode
+        - cardNumber
+        - cardSequence
+        - description
+        - effectiveDate
+        - otbUpdateIndicator
+        - planNumber
+        - planSequence
+        - referenceNumber
+        - resolutionReferenceNumber
+        - storeNumber
+        - transactionAmount
       type: object
       properties:
         cardNumber:
@@ -2217,7 +2221,7 @@ components:
             identifier used to identify the transaction for reconciliation purpose.
 
             VisionPLUS Service Data: AZXMAI-AUTH-CODE
-          example: "123456"
+          example: '123456'
         referenceNumber:
           type: string
           description: |-
@@ -2225,7 +2229,7 @@ components:
             Reference Number.
 
             VisionPLUS Service Data: AZXMAI-REF-NUM
-          example: "123456789012"
+          example: '123456789012'
         resolutionReferenceNumber:
           type: string
           description: |-
@@ -2233,7 +2237,7 @@ components:
             Resolution Reference Number For Payments Received For Open Billing Accounts.
 
             VisionPLUS Service Data: AZXMAI-R-REF-NBR
-          example: "123456789012"
+          example: '123456789012'
         otbUpdateIndicator:
           type: integer
           description: |-
@@ -2705,17 +2709,17 @@ components:
           format: int32
     QRTransferFundsRequest:
       required:
-      - effectiveDate
-      - memoPostedIndicator
-      - n1n2ByPass
-      - organizationNumber
-      - planNumber
-      - planSequence
-      - representativeId
-      - storeNumber
-      - suppressMonetaryTransaction
-      - transactionAmount
-      - transactionId
+        - effectiveDate
+        - memoPostedIndicator
+        - n1n2ByPass
+        - organizationNumber
+        - planNumber
+        - planSequence
+        - representativeId
+        - storeNumber
+        - suppressMonetaryTransaction
+        - transactionAmount
+        - transactionId
       type: object
       properties:
         organizationNumber:
@@ -2733,8 +2737,7 @@ components:
           $ref: '#/components/schemas/QRTransferFundsRequest.To'
         effectiveDate:
           type: string
-          description: Date that specifies when the transaction takes effect in the
-            account
+          description: Date that specifies when the transaction takes effect in the account
           format: date
         transactionAmount:
           type: number
@@ -2744,13 +2747,12 @@ components:
           maxLength: 6
           minLength: 0
           type: string
-          description: identifier used to identify the transaction for reconciliation
-            purpose
-          example: "123456"
+          description: identifier used to identify the transaction for reconciliation purpose
+          example: '123456'
         transactionId:
           type: string
           description: Transaction ID
-          example: "123456"
+          example: '123456'
         planNumber:
           type: integer
           description: Plan Number
@@ -2772,27 +2774,26 @@ components:
           example: PPLD
         memoPostedIndicator:
           type: string
-          description: Memo of the transaction to be posted to the account or not
-            add if memo of previous transactions to be reversed
+          description: Memo of the transaction to be posted to the account or not add if memo of previous transactions to be reversed
           enum:
-          - "N,R"
+            - N,R
         suppressMonetaryTransaction:
           type: string
           description: Suppress Monetary Transaction
-          example: "N"
+          example: 'N'
           enum:
-          - "N,Y"
+            - N,Y
         n1n2ByPass:
           type: string
           description: N1/N2 By Pass
           enum:
-          - "N,Y"
+            - N,Y
       description: Transfer Funds Request
     QRTransferFundsRequest.From:
       required:
-      - accountNumber
-      - actionCode
-      - description
+        - accountNumber
+        - actionCode
+        - description
       type: object
       properties:
         accountNumber:
@@ -2800,22 +2801,22 @@ components:
           minLength: 19
           type: string
           description: Number of Customer’s account or Card
-          example: "4198194069732810121"
+          example: '4198194069732810121'
         actionCode:
           type: string
           description: Code that identifies the action to be taken
           example: FREV
           enum:
-          - FREV
+            - FREV
         description:
           type: string
           description: Description of the transaction
           example: DESC FROM
     QRTransferFundsRequest.To:
       required:
-      - accountNumber
-      - actionCode
-      - description
+        - accountNumber
+        - actionCode
+        - description
       type: object
       properties:
         accountNumber:
@@ -2823,13 +2824,13 @@ components:
           minLength: 19
           type: string
           description: Number of Customer’s account or Card
-          example: "4198194069732810121"
+          example: '4198194069732810121'
         actionCode:
           type: string
           description: Code that identifies the action to be taken
           example: FUND
           enum:
-          - FUND
+            - FUND
         description:
           type: string
           description: Description of the transaction
@@ -2854,9 +2855,9 @@ components:
           type: number
     QRModifyAccountBalanceRequest:
       required:
-      - accountNumber
-      - asmOrganizationNumber
-      - representativeId
+        - accountNumber
+        - asmOrganizationNumber
+        - representativeId
       type: object
       properties:
         asmOrganizationNumber:
@@ -2889,27 +2890,27 @@ components:
             Number of Customer's account or card.
 
             VisionPLUS Service Data: AZXMAI-ACCT-NBR
-          example: "4198194069732810000"
+          example: '4198194069732810000'
         transactionData:
           $ref: '#/components/schemas/QRModifyAccountBalanceRequest.TxData'
       description: QR Modify Account Balance Request
     QRModifyAccountBalanceRequest.TxData:
       required:
-      - actionCode
-      - cardNumber
-      - cardSequence
-      - description
-      - effectiveDate
-      - memoPostedIndicator
-      - n1n2ByPass
-      - otbUpdateIndicator
-      - planNumber
-      - planSequence
-      - referenceNumber
-      - resolutionReferenceNumber
-      - storeNumber
-      - suppressMonetaryTransaction
-      - transactionAmount
+        - actionCode
+        - cardNumber
+        - cardSequence
+        - description
+        - effectiveDate
+        - memoPostedIndicator
+        - n1n2ByPass
+        - otbUpdateIndicator
+        - planNumber
+        - planSequence
+        - referenceNumber
+        - resolutionReferenceNumber
+        - storeNumber
+        - suppressMonetaryTransaction
+        - transactionAmount
       type: object
       properties:
         cardNumber:
@@ -2989,21 +2990,21 @@ components:
             Identifier used to identify the transaction for reconciliation purpose.
 
             VisionPLUS Service Data: AZXMAI-AUTH-CODE
-          example: "123456"
+          example: '123456'
         referenceNumber:
           type: string
           description: |-
             Reference Number.
 
             VisionPLUS Service Data: AZXMAI-REF-NUM
-          example: "12345678901234"
+          example: '12345678901234'
         resolutionReferenceNumber:
           type: string
           description: |-
             Resolution Reference Number For Payments Received For Open Billing Accounts.
 
             VisionPLUS Service Data: AZXMAI-R-REF-NBR
-          example: "123456789012"
+          example: '123456789012'
         otbUpdateIndicator:
           type: integer
           description: |-
@@ -3035,9 +3036,9 @@ components:
             Memo of the transaction to be posted to the account or not add if memo of previous transactions to be reversed.
 
             VisionPLUS Service Data: AZXMAI-MEMO-POST-IND
-          example: "N"
+          example: 'N'
           enum:
-          - "N,R"
+            - N,R
         suppressMonetaryTransaction:
           type: string
           description: |-
@@ -3045,9 +3046,9 @@ components:
             Suppress Monetary Transaction.
 
             VisionPLUS Service Data: AZXMAI-MON-SUPP
-          example: "N"
+          example: 'N'
           enum:
-          - "N,Y"
+            - N,Y
         n1n2ByPass:
           type: string
           description: |-
@@ -3055,9 +3056,9 @@ components:
             N1/N2 By Pass.
 
             VisionPLUS Service Data: AZXMAI-N1N2-BYPASS
-          example: "N"
+          example: 'N'
           enum:
-          - "N,Y"
+            - N,Y
       description: |-
         Length: 3
         QRModifyAccountBalanceRequestTxData
@@ -3453,10 +3454,10 @@ components:
           format: int32
     FlTransferP2PRequest:
       required:
-      - asmRepId
-      - effectiveDate
-      - organizationNumber
-      - transactionAmount
+        - asmRepId
+        - effectiveDate
+        - organizationNumber
+        - transactionAmount
       type: object
       properties:
         organizationNumber:
@@ -3504,13 +3505,13 @@ components:
           minLength: 0
           type: string
           description: latitude
-          example: "-109.699951"
+          example: '-109.699951'
         longitude:
           maxLength: 10
           minLength: 0
           type: string
           description: longitude
-          example: "23.062283"
+          example: '23.062283'
         device:
           maxLength: 32
           minLength: 0
@@ -3520,30 +3521,30 @@ components:
       description: FL Transfer P2P Request
     FlTransferP2PRequest.TransferP2PInformation:
       required:
-      - accountNumber
-      - accountOrganizationNumber
-      - actionCode
-      - planNumber
-      - referenceNumber
-      - storeNumber
+        - accountNumber
+        - accountOrganizationNumber
+        - actionCode
+        - planNumber
+        - referenceNumber
+        - storeNumber
       type: object
       properties:
         accountOrganizationNumber:
           type: string
           description: Account Organization Number
-          example: "950"
+          example: '950'
         accountNumber:
           maxLength: 19
           minLength: 0
           type: string
           description: Account Number
-          example: "9500500046581560081"
+          example: '9500500046581560081'
         actionCode:
           maxLength: 4
           minLength: 0
           type: string
           description: Action Code
-          example: "8001"
+          example: '8001'
         transactionDescription:
           type: string
           description: Transaction Description
@@ -3605,8 +3606,7 @@ components:
           maxLength: 19
           minLength: 12
           type: string
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
+          description: Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
@@ -3639,7 +3639,7 @@ components:
         referenceNumber:
           type: string
           description: Reference Number
-          example: "12"
+          example: '12'
     FlTransferP2PResponse:
       type: object
       properties:
@@ -3676,8 +3676,7 @@ components:
           format: date
         cardNumber:
           type: string
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
+          description: Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
@@ -3726,7 +3725,7 @@ components:
           type: string
     AccountForDetailsRequest:
       required:
-      - accountNumber
+        - accountNumber
       type: object
       properties:
         organizationNumber:
@@ -3749,7 +3748,7 @@ components:
             Account number or card number.
 
             VisionPLUS Service Data: AZXAII-ACCT
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         foreignUse:
           type: string
           description: |-
@@ -3760,7 +3759,7 @@ components:
             The default is to the local account.
 
             VisionPLUS Service Data: AZXAII-FOREIGN-USE
-          example: "0"
+          example: '0'
       description: Account Detail Request
     AccountForDetailsResponse:
       type: object
@@ -5784,39 +5783,7 @@ components:
             Installment payment cash plan number.
 
             VisionPLUS Service Data: AZXAIO-INST-PMT-CASH-PLAN
-        numberOfNonSufficientFunds:
-          type: number
-        dateLastCardAccountExpires:
-          type: string
-          format: date
-        userDate12:
-          type: string
-          format: date
-        userDate14:
-          type: string
-          format: date
-        userDate5:
-          type: string
-          format: date
-        userDate7:
-          type: string
-          format: date
-        userDate9:
-          type: string
-          format: date
-        userDate4:
-          type: string
-          format: date
         userDate11:
-          type: string
-          format: date
-        userDate10:
-          type: string
-          format: date
-        userDate13:
-          type: string
-          format: date
-        userDate3:
           type: string
           format: date
         userDate6:
@@ -5825,12 +5792,44 @@ components:
         userDate8:
           type: string
           format: date
-        userDate1:
+        userDate12:
+          type: string
+          format: date
+        userDate3:
+          type: string
+          format: date
+        userDate5:
+          type: string
+          format: date
+        userDate14:
+          type: string
+          format: date
+        userDate13:
+          type: string
+          format: date
+        userDate4:
+          type: string
+          format: date
+        userDate10:
           type: string
           format: date
         userDate2:
           type: string
           format: date
+        userDate1:
+          type: string
+          format: date
+        userDate9:
+          type: string
+          format: date
+        userDate7:
+          type: string
+          format: date
+        dateLastCardAccountExpires:
+          type: string
+          format: date
+        numberOfNonSufficientFunds:
+          type: number
     AccountForDetailsResponse.AccountData.DelinquencyData:
       type: object
       properties:
@@ -6273,8 +6272,8 @@ components:
             VisionPLUS Service Data: AZXAIO-XFR-ACCT
     AccountForCardDetailsL8V2Request:
       required:
-      - accountNumber
-      - organizationNumber
+        - accountNumber
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -6290,7 +6289,7 @@ components:
         accountNumber:
           maxLength: 19
           minLength: 19
-          pattern: "^[0-9]{19}$"
+          pattern: ^[0-9]{19}$
           type: string
           description: |-
             Length: 19
@@ -6298,7 +6297,7 @@ components:
             Account number.
 
             VisionPLUS Service Data: ARXAEI-ACCT-NBR
-          example: "5303716028446103276"
+          example: '5303716028446103276'
         functionCode:
           maxLength: 1
           minLength: 0
@@ -6309,7 +6308,7 @@ components:
             Function code for navigating results.
 
             VisionPLUS Service Data: ARXAEI-SVC-FUNC-CODE
-          example: "N"
+          example: 'N'
         startItem:
           $ref: '#/components/schemas/AccountForCardDetailsL8V2Request.SItem'
       description: Account Card Detail Request Version 2
@@ -6647,8 +6646,7 @@ components:
             VisionPLUS Service Data: AZXAEO-USER-5
         user6:
           type: string
-          description: "\tstring\nLength: 1\n\nUser user6 number.\n\nVisionPLUS Service\
-            \ Data: AZXAEO-USER-6"
+          description: "\tstring\nLength: 1\n\nUser user6 number.\n\nVisionPLUS Service Data: AZXAEO-USER-6"
         user7:
           type: string
           description: |-
@@ -6676,8 +6674,8 @@ components:
           format: int32
     AccountBoardingDriverRequest:
       required:
-      - logo
-      - organizationNumber
+        - logo
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -6699,28 +6697,30 @@ components:
       description: Account boarding driver Service
     AccountBoardingDriverRequest.BaseAccountData:
       required:
-      - accountCreate
-      - baseBillingCycle
-      - baseCreditLimit
-      - baseOwningBranchNumber
-      - baseSavingsAccountNumber
-      - baseSavingsRoutingNumber
-      - baseShortName
+        - accountCreate
+        - baseBillingCycle
+        - baseCreditLimit
+        - baseOwningBranchNumber
+        - baseSavingsAccountNumber
+        - baseSavingsRoutingNumber
+        - baseShortName
       type: object
       properties:
         accountCreate:
           pattern: ^(Y|N)$
           type: string
           description: Account Create
-          example: "Y"
+          example: 'Y'
         baseAccount:
           maxLength: 19
           minLength: 0
           type: string
-          description: "Base Account \nIf ACCT CREATE is provided as N then BS ACCT\
-            \ should be provided\nIf ORG and LOGO not provided then account number\
-            \ should be provided\nAnd Value should not be present already\n"
-          example: "7651509703555771234"
+          description: |
+            Base Account 
+            If ACCT CREATE is provided as N then BS ACCT should be provided
+            If ORG and LOGO not provided then account number should be provided
+            And Value should not be present already
+          example: '7651509703555771234'
         baseRelationshipNumber:
           maxLength: 19
           minLength: 0
@@ -6771,18 +6771,17 @@ components:
         baseAlternateCustomerNumberFlag:
           pattern: ^(A|B|C| )$
           type: string
-          description: "Alternate Customer Number Flag \nThe values are:Space = No\
-            \ action; disregard alternate customer.\nA = Alternate customer active:\
-            \ send statements to alternate address until expiration date.\nB = Alternate\
-            \ customer active: send statements to both addresses until expiration\
-            \ date.\nC = Relationship customer active: send statement to alternate\
-            \ address.\n"
+          description: |
+            Alternate Customer Number Flag 
+            The values are:Space = No action; disregard alternate customer.
+            A = Alternate customer active: send statements to alternate address until expiration date.
+            B = Alternate customer active: send statements to both addresses until expiration date.
+            C = Relationship customer active: send statement to alternate address.
         baseAlternateCustomerNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: "Alternate Customer Number1. When expiry date is greater than\
-            \ zero, thi field cannot be zero"
+          description: Alternate Customer Number1. When expiry date is greater than zero, thi field cannot be zero
         baseDateAlternateCustomerStart:
           type: string
           description: |
@@ -6816,7 +6815,7 @@ components:
           description: |-
             Ach Account Number
             For prepaid accounts, spaces or nulls are the only valid values. When nulls(nothing) are provided, this field will be initialized to spaces.
-          example: "0"
+          example: '0'
         basePaymentAchFlag:
           type: integer
           description: |-
@@ -6911,17 +6910,16 @@ components:
           format: date
         baseDdaRoutingNumber:
           type: integer
-          description: "DDA routing number1. Field must be numeric.\n2. If the checking\
-            \ account number field is populated, the checking routing number is required.\
-            \ \n"
+          description: |
+            DDA routing number1. Field must be numeric.
+            2. If the checking account number field is populated, the checking routing number is required. 
           format: int32
           example: 0
         baseDdaAccountNumber:
           maxLength: 17
           minLength: 0
           type: string
-          description: "DDA account number1. If the checking routing number is populated,\
-            \ the checking account number is required."
+          description: DDA account number1. If the checking routing number is populated, the checking account number is required.
         baseSavingsRoutingNumber:
           type: integer
           description: |
@@ -6936,29 +6934,31 @@ components:
           description: |-
             Savings account number
             1. If the savings routing number field is populated, the savings account number is required.
-          example: "12345678901234500"
+          example: '12345678901234500'
       description: Base Account Data
     AccountBoardingDriverRequest.BaseCustomerData:
       required:
-      - customerCreate
-      - naComakerIndicator
+        - customerCreate
+        - naComakerIndicator
       type: object
       properties:
         customerCreate:
           pattern: ^(Y|N)$
           type: string
           description: Customer creation required or not
-          example: "N"
+          example: 'N'
         customerNumber:
           maxLength: 19
           minLength: 0
           type: string
           description: Customer NumberRequired when CUSTOMER CREATE field is N
-          example: "0976500000000000021"
+          example: '0976500000000000021'
         naComakerIndicator:
           type: integer
-          description: "Co-owner Indicator \nnot equal to 1 or 2\nRequired when 'customerCreate'\
-            \ field is Y"
+          description: |-
+            Co-owner Indicator 
+            not equal to 1 or 2
+            Required when 'customerCreate' field is Y
           format: int32
           example: 1
         makerData:
@@ -6971,8 +6971,9 @@ components:
       properties:
         comakerMaritalStatus:
           type: integer
-          description: "Comaker’s marital status \nMarital status is not Valid or\
-            \ values not in range of 0 through 4"
+          description: |-
+            Comaker’s marital status 
+            Marital status is not Valid or values not in range of 0 through 4
           format: int32
           example: 0
         comakerNameLine1:
@@ -7057,9 +7058,14 @@ components:
           description: Comaker’s country code
         comakerOwnRentResidenceFlag:
           type: integer
-          description: "Comaker’s own/rent residence flag \nComaker’s own/rent residence\
-            \ flag\nThe values are:\n0 = Unknown\n1 = Owns or is buying residence\n\
-            2 = Rents or leases residence\n3 = Lives at someone else’s residence\n"
+          description: |
+            Comaker’s own/rent residence flag 
+            Comaker’s own/rent residence flag
+            The values are:
+            0 = Unknown
+            1 = Owns or is buying residence
+            2 = Rents or leases residence
+            3 = Lives at someone else’s residence
           format: int32
           example: 0
         comakerGenderCode:
@@ -7072,7 +7078,7 @@ components:
           minLength: 0
           type: string
           description: Comaker’s home phone
-          example: "0"
+          example: '0'
         comakerMobilePhone:
           maxLength: 20
           minLength: 0
@@ -7097,7 +7103,7 @@ components:
           minLength: 0
           type: string
           description: Comaker’s identification number
-          example: "0"
+          example: '0'
         comakerEmail:
           maxLength: 60
           minLength: 0
@@ -7106,10 +7112,10 @@ components:
       description: Comaker Data
     AccountBoardingDriverRequest.BaseCustomerData.MakerData:
       required:
-      - makerEmail
-      - makerMobilePhone
-      - makerNameLine1
-      - makerNameTypeInd3
+        - makerEmail
+        - makerMobilePhone
+        - makerNameLine1
+        - makerNameTypeInd3
       type: object
       properties:
         makerMaritalStatus:
@@ -7122,7 +7128,7 @@ components:
           minLength: 0
           type: string
           description: Maker’s name line 1
-          example: "0"
+          example: '0'
         makerNameTypeInd1:
           type: integer
           description: Maker’s name type 1
@@ -7132,7 +7138,7 @@ components:
           minLength: 0
           type: string
           description: Maker’s name line 2
-          example: "0"
+          example: '0'
         makerNameTypeInd2:
           type: integer
           description: Maker’s name type 2
@@ -7142,7 +7148,7 @@ components:
           minLength: 0
           type: string
           description: Maker’s name line 3
-          example: "0"
+          example: '0'
         makerNameTypeInd3:
           type: integer
           description: Maker’s name type 3
@@ -7199,8 +7205,7 @@ components:
           description: Maker’s country code
         makerOwnRentResidenceFlag:
           type: integer
-          description: "Maker’s own/rent residence flag \"value is not equal to 0\
-            \ ,1 , 2 or 3 or Invalid Value\""
+          description: Maker’s own/rent residence flag "value is not equal to 0 ,1 , 2 or 3 or Invalid Value"
           format: int32
           example: 0
         makerGenderCode:
@@ -7224,9 +7229,13 @@ components:
           format: date
         makerSsanFlag:
           type: integer
-          description: "Maker’s identification number flag \nMaker’s identification\
-            \ number flag\nThe values are:\n0 = Social Security number\n1 = Tax ID\n\
-            2 = Other ID\n"
+          description: |
+            Maker’s identification number flag 
+            Maker’s identification number flag
+            The values are:
+            0 = Social Security number
+            1 = Tax ID
+            2 = Other ID
           format: int32
           example: 0
         makerSsan:
@@ -7234,7 +7243,7 @@ components:
           minLength: 0
           type: string
           description: Maker’s identification number
-          example: ""
+          example: ''
         makerEmail:
           maxLength: 60
           minLength: 0
@@ -7257,24 +7266,25 @@ components:
       description: Ed Embosser Data
     AccountBoardingDriverRequest.EdEmbosserData.EdTable:
       required:
-      - edAdministrationBranch
-      - edCardCreate
-      - edDigitalCardIndicator
-      - edEmbosserName
+        - edAdministrationBranch
+        - edCardCreate
+        - edDigitalCardIndicator
+        - edEmbosserName
       type: object
       properties:
         edCardCreate:
           pattern: ^(Y|N)$
           type: string
           description: Card Create
-          example: "Y"
+          example: 'Y'
         edDigitalCardIndicator:
           pattern: ^(1|0)$
           type: string
-          description: "Digital Card Indicator\n Digital card indicator, if no values\
-            \ are entered, service will consider it as 0 by default. 0 - Plastic \n\
-            1 – Digital \n"
-          example: "0"
+          description: |
+            Digital Card Indicator
+             Digital card indicator, if no values are entered, service will consider it as 0 by default. 0 - Plastic 
+            1 – Digital 
+          example: '0'
         edCardTechnology:
           type: integer
           description: |
@@ -7372,10 +7382,7 @@ components:
           example: 0
         edAuthorizationAtmOtcRetailFrequency:
           type: integer
-          description: "Authorization ATM OTC Retail Frequency\n\tMaximum authorization\
-            \ frequency\nThe values are:\n0 = Not used\n1 = Daily\n2 = Cycle-to-date\n\
-            3 = Year-to-date.\tMAXIMUM FREQ FIELD IS INVALID\nMAXIMUM FREQ INPUT NOT\
-            \ ALLOWED WHEN NO AUTH LIMIT OVRRD\tMaximum authorization frequency\n"
+          description: "Authorization ATM OTC Retail Frequency\n\tMaximum authorization frequency\nThe values are:\n0 = Not used\n1 = Daily\n2 = Cycle-to-date\n3 = Year-to-date.\tMAXIMUM FREQ FIELD IS INVALID\nMAXIMUM FREQ INPUT NOT ALLOWED WHEN NO AUTH LIMIT OVRRD\tMaximum authorization frequency\n"
           format: int32
           example: 0
         edAuthorizationAtmCashAmount:
@@ -7467,8 +7474,7 @@ components:
           format: int32
         cardNumber:
           type: string
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
+          description: Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
@@ -7516,21 +7522,21 @@ components:
       description: Account add Request
     AccountAddDetailsRequest.AccountAddData:
       required:
-      - billingCurrency
-      - billingCycle
-      - billingLevel
-      - creditLimit
-      - customerNumber
-      - customerSelectedDueDay
-      - dualBillingFlag
-      - issuanceId
-      - logo
-      - organization
-      - owningBranch
-      - qualification
-      - relationshipNumber
-      - residenceId
-      - shortName
+        - billingCurrency
+        - billingCycle
+        - billingLevel
+        - creditLimit
+        - customerNumber
+        - customerSelectedDueDay
+        - dualBillingFlag
+        - issuanceId
+        - logo
+        - organization
+        - owningBranch
+        - qualification
+        - relationshipNumber
+        - residenceId
+        - shortName
       type: object
       properties:
         organization:
@@ -7561,7 +7567,7 @@ components:
             Relationship Number.
 
             VisionPLUS Service Data: ARXAAI-REL-NBR
-          example: "4567890123122222000"
+          example: '4567890123122222000'
         customerNumber:
           maxLength: 19
           minLength: 19
@@ -7572,7 +7578,7 @@ components:
             Customer Name/Address record for the person to which the account is assigned.
 
             VisionPLUS Service Data: ARXAAI-CUST-NBR
-          example: "4759218604441630000"
+          example: '4759218604441630000'
         accountNumber:
           maxLength: 19
           minLength: 0
@@ -7582,7 +7588,7 @@ components:
 
             Account number.
             VisionPLUS Service Data: ARXAAI-ACCOUNT-NBR
-          example: "4004894352313040331"
+          example: '4004894352313040331'
         alternateCustomerNumber:
           maxLength: 19
           minLength: 0
@@ -7590,7 +7596,7 @@ components:
           description: |-
             Alternate customer number
             VisionPLUS Service Data: ARXAAI-ALT-CUST-NBR
-          example: "4004894352313040331"
+          example: '4004894352313040331'
         shortName:
           type: string
           description: |-
@@ -7793,7 +7799,7 @@ components:
             Account number.
 
             VisionPLUS Service Data: ARXAAI-USR-ACCT-NBR
-          example: "4567000000000000000"
+          example: '4567000000000000000'
         userData:
           $ref: '#/components/schemas/AccountAddDetailsRequestAccountAddData.UserData'
         miscUserData:
@@ -7813,9 +7819,9 @@ components:
           example: A
     AccountAddDetailsRequest.AccountAddData.ProcessingControlTable:
       required:
-      - level
-      - levelExpireDate
-      - levelStartDate
+        - level
+        - levelExpireDate
+        - levelStartDate
       type: object
       properties:
         tableId:
@@ -7848,7 +7854,7 @@ components:
             VisionPLUS Service Data: ARXAAI-PCT-LEVEL
           example: O
           enum:
-          - " ' ' , S , O , L"
+            - ' '' '' , S , O , L'
         startDate:
           type: string
           description: |-

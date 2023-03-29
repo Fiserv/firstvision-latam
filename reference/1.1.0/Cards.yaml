@@ -6,119 +6,33 @@ info:
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 tags:
-- name: Embosser
-  description: Embosser
-- name: Card
-  description: Card
+  - name: Embosser
+    description: Embosser
 paths:
-  /cards/v2/embosser/details:
-    post:
-      tags:
-      - Embosser
-      summary: "Data from the Embosser record V2. VMX Service: M.CMS.EMBOSSER.INQ,\
-        \ L8VE"
-      description: "Provides the embosser data from the embosser record (AMED) as\
-        \ displayed online on the ARME screens. \nVMX Service: M.CMS.EMBOSSER.INQ,\
-        \ L8VE"
-      operationId: Embosser Inquiry
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EmbosserDetailsRequestV2'
-        required: true
-      responses:
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "422":
-          description: "Unprocessable Entity\n\nVPL5SCIZ1S - SERVICE INPUT TO FS SERVICE\
-            \ IS AN INCORRECT LENGTH \n\nVPL5SCIZ2S - USER HAS NOT SIGNED ON - PLEASE\
-            \ SIGNON \n\nVPL5SCIZ3S - FILE-TABLE USED BY THIS SERVICE IS MISSING \n\
-            \nVPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
-            \ 000-998 \n\nVPL5SCI03E - INPUT CARD NUMBER IS NOT NUMERIC \n\nVPL5SCI04E\
-            \ - CARD SEQUENCE NUMBER IS NOT NUMERIC \n\nVPL5SCI02E - INVALID FOREIGN\
-            \ USE INDICATOR - VALID VALUES ARE SPACE/0/1 \n\nVPL5SCI05S - REQUESTED\
-            \ CARD / ACCOUNT NUMBER IS NOT FOUND \n\nVPL5SAD07S - REQUESTED ORG NUMBER\
-            \ IS NOT FOUND   \n\nVPL5SCIZ5S - APPLICATION FILE IS NOT AVAILABLE \n\
-            \nVPL5SCI07S - ORG RECORD NOT FOUND     \n\nVPL5SCI08S - FOREIGN ORG RECORD\
-            \ NOT FOUND    \n\nVPL5SCI09S - EMBOSSER RECORD NOT FOUND       \n\nVPL5SCIA9S\
-            \ - EMBOSSER RECORD IS IN PURGED STATUS    \n\nVPL5SCI11S - ACCOUNT NUMBER\
-            \ NOT FOUND  \n\nVPL5SCI12S - BASE SEGMENT FILE READ ERROR  \n\nVPL5SCIA1S\
-            \ - ACCOUNT RECORD IS IN ADD PENDING STATUS   \n\nVPL5SCIA2S - ACCOUNT\
-            \ RECORD IS IN CLOSED STATUS        \n\nVPL5SCIA3S - ACCOUNT RECORD IS\
-            \ IN PENDING PURGE STATUS \n\nVPL5SCIZ5S - APPLICATION FILE IS NOT AVAILABLE\
-            \   \n\nVPL5SCI06S - LOGO RECORD NOT FOUND    \n\nVPL5SCIZ7S - AMCR FILE\
-            \ NOT OPEN     \n\nVPL5SCIZ8S - AMCR RECORD NOT FOUND  \n\n"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmbosserDetailsResponseV2'
-        "404":
-          description: Not Found
-      x-proxy-name: Embosser Inquiry V2
-      x-group-name: Embosser
-      x-child-product-name: Cards
   /cards/embosser/details:
     post:
       tags:
-      - Embosser
-      summary: "Data from the Embosser record. VMX Service: M.CMS.EMBOSSER.INQ, L8V6"
-      description: "Provides The Embosser Data From The Embosser Record (AMED) As\
-        \ Displayed Online On The ARME Screens. \nVMX Service: M.CMS.EMBOSSER.INQ,\
-        \ L8V6"
+        - Embosser
+      summary: 'Data from the Embosser record. VMX Service: M.CMS.EMBOSSER.INQ, L8V6'
+      description: |-
+        Provides the embosser data from the embosser record. 
+
+        VMX Service: M.CMS.EMBOSSER.INQ, L8V6
       operationId: embosserDetails
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -126,59 +40,60 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponse'
-        "404":
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
           description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/embosser/:
     post:
       tags:
-      - Embosser
-      summary: "Add Card Record. VMX Service: M.CMS.EMBOSSER.ADD, L8V8"
-      description: "Adds a Card or Plastic record to an Account. \nVMX Service: M.CMS.EMBOSSER.ADD,\
-        \ L8V8"
+        - Embosser
+      summary: 'Add Card Record. VMX Service: M.CMS.EMBOSSER.ADD, L8V8'
+      description: |-
+        Adds a Card or Plastic record to an Account. 
+        VMX Service: M.CMS.EMBOSSER.ADD, L8V8
       operationId: addEmbosserL8V8
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
+        - name: apikey
+          in: header
+          description: API Key
+          required: true
+          schema:
+            type: string
+        - name: X-ClientID
+          in: header
+          description: Client ID
+          required: true
+          schema:
+            type: string
+          example: "00970"
       requestBody:
         content:
           application/json:
@@ -186,11 +101,29 @@ paths:
               $ref: '#/components/schemas/AddEmbosserRequest'
         required: true
       responses:
-        "400":
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddEmbosserResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
           description: Bad Request
-        "401":
+        '401':
           description: Unauthorized
-        "422":
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '422':
           description: |
             VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
             VPL5SCL04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
@@ -221,68 +154,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
+        '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddEmbosserResponse'
-        "404":
-          description: Not Found
       x-proxy-name: Embosser Add
       x-group-name: Embosser
       x-child-product-name: Cards
 components:
   schemas:
-    EmbosserDetailsRequestV2:
+    EmbosserDetailsRequest:
       required:
-      - cardNumber
-      - cardSequence
-      - foreignUse
-      - organizationNumber
+        - cardNumber
+        - cardSequence
+        - foreignUse
+        - organizationNumber
       type: object
       properties:
         organizationNumber:
-          type: string
-          description: "Organization NumberVisionPLUS Service Data: AZXCII-ORG"
-          example: "807"
+          type: integer
+          description: Organization Number
+          format: int32
+          example: 807
           enum:
-          - "range[1,999]"
+            - null
         cardNumber:
           maxLength: 19
           minLength: 12
           type: string
-          description: "Unique identifier or token associated with the card number\
-            \ or payment instrument (FirstVision PAN Token). VisionPLUS Service Data:\
-            \ AZXCII-CARD"
-          example: 000540208ID5IXX3865
+          description: Card Number
+          example: '0004513070406598974'
           enum:
-          - "range[12,19]"
+            - range[12,19]
         cardSequence:
-          type: string
-          description: "Card sequenceVisionPLUS Service Data: AZXCII-SEQ"
-          example: "001"
+          type: integer
+          description: Card sequence
+          format: int32
+          example: 1
         foreignUse:
           type: string
-          description: "Foreign UseVisionPLUS Service Data: AZXCII-FOREIGN-USE"
-          example: "1"
-      description: Card Embosser Details Request
+          description: Card sequence
+          example: '1'
+      description: Card Embosser Block Request
     DResponse:
       type: object
       properties:
@@ -301,1701 +216,6 @@ components:
           type: string
         description:
           type: string
-    AuthorizationData:
-      type: object
-      properties:
-        retailAmount:
-          type: string
-          description: |-
-            Length: 17
-
-            Maximum amount in monetary units and subunits of retail authorizations
-            allowed for this Embosser record for the frequency defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-RTL-AMT
-        retailNumber:
-          type: number
-          description: |-
-            Length: 9
-
-            Maximum number of retail authorizations allowed for this Embosser record for
-            the frequency defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-RTL-NBR
-        automatedTellerMachineCashAutomatedTellerMachine:
-          type: string
-          description: |-
-            Length: 17
-
-            Maximum amount of ATM cash authorizations allowed for this Embosser
-            record for the frequency defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-AMT
-        automatedTellerMachineCashNumber:
-          type: number
-          description: |-
-            Length: 9
-
-            Maximum number of ATM cash authorizations allowed for this Embosser
-            record for the frequency defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-NBR
-        overTheCounterAmount:
-          type: string
-          description: |-
-            Length: 17
-
-            Maximum amount in monetary units and subunits of OTC cash authorizations
-            allowed for this Embosser record for the frequency defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-AMT
-        overTheCounterCashNumber:
-          type: number
-          description: |-
-            Length: 9
-
-            Maximum number of OTC authorizations allowed for this Embosser record for
-            the frequency defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-NBR
-        automatedTellerMachineCashSingleTransaction:
-          type: string
-          description: |-
-            Length: 17
-
-            Maximum authorization amount in monetary units and subunits of a single
-            ATM transaction allowed for this Embosser record for the frequency defined inin the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-ATM-CASH-SNGL-TXN
-        overTheCounterCashSingleTransaction:
-          type: string
-          description: |-
-            Length: 17
-
-            Maximum authorization amount in monetary units and subunits of a single
-            OTC cash transaction allowed for this Embosser record for the frequency
-            defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-OTC-CASH-SNGL-TXN
-        retailSingleTransaction:
-          type: string
-          description: |-
-            Length: 17
-
-            Maximum authorization amount in monetary units and subunits of a single
-            retail transaction allowed for this Embosser record for the frequency defined in
-            the FREQ field
-            VisionPLUS Service Data: AZXCIO-AUTH-RTL-SNGL-TXN
-        globalSpendingLimitNumber:
-          type: string
-          description: |-
-            Length: 9
-
-            Global spending limit number
-            VisionPLUS Service Data: AUTH_GLBSPL_NBR
-        globalSpendingLimitAmount:
-          type: string
-          description: |-
-            Length: 17
-
-            Global spending limit amount
-            VisionPLUS Service Data: AZXCIO-AUTH-GLBSPL-AMT
-        globalSpendingLimitForSingleTransaction:
-          type: string
-          description: |-
-            Length: 13
-
-            Global spending limit for a single transaction
-            VisionPLUS Service Data: AUTH_GLBSPL_SNGL_TXN
-    CardInformationData:
-      type: object
-      properties:
-        codeIdentificationNumberSpendingLimits:
-          type: string
-          description: |-
-            Length: 2
-
-            Code that identifies each of the commercial card spending categories
-            Occurs 34 times
-            VisionPLUS Service Data: AZXCIO-CRD-SP
-        assignedSpendLimits:
-          $ref: '#/components/schemas/EmbosserDetailsInquiryResponse.CardInformationData.AssignedSpendLimits'
-    CurrencyData:
-      type: object
-      properties:
-        numberOfDecimal:
-          type: integer
-          description: |-
-            Length: 3
-
-            Currency NodVisionPLUS Service Data: AZXCIO-CURRENCY-NOD
-          format: int32
-        code:
-          type: integer
-          format: int32
-    EmbosserDetailsInquiryResponse.CardInformationData.AssignedSpendLimits:
-      type: object
-      properties:
-        spendingLimit:
-          type: integer
-          description: |-
-            Spending Limit.
-            VisionPLUS Service Data: AZXCIO-MAX
-          format: int64
-        transactionAllowed:
-          type: integer
-          description: |-
-            Transaction Allowed.
-            VisionPLUS Service Data: AZXCIO-NBR
-          format: int32
-        frequencyCommercialCard:
-          type: integer
-          description: |-
-            Frequency Commercial Card.
-            VisionPLUS Service Data: AZXCIO-FREQ
-          format: int32
-    EmbosserDetailsInquiryResponse.CustomUserData:
-      type: object
-      properties:
-        falconMarking:
-          type: string
-          description: |-
-            Falcon Marking.
-            VisionPLUS Service Data: AZXCIO-FLC-MARK
-        falconMarkingStartDate:
-          type: string
-          description: |-
-            Falcon Marking Start Date.
-            VisionPLUS Service Data: AZXCIO-FLC-MARK-ST-DATE
-          format: date
-        falconMarkingEndDate:
-          type: string
-          description: |-
-            Falcon Marking End Date.
-            VisionPLUS Service Data: AZXCIO-FLC-MARK-END-DATE
-          format: date
-        spendLimitsStatus:
-          type: string
-          description: |-
-            Spend Limits Status.
-            VisionPLUS Service Data: AZXCIO-SPEND-LIMITS-STATUS
-        retailPercentDaily:
-          type: integer
-          description: |-
-            Retail Percent Daily.
-            VisionPLUS Service Data: AZXCIO-RETAIL-PERCENT-DAILY
-          format: int32
-        retailPercentMonthToDate:
-          type: integer
-          description: |-
-            Retail Percent Month To Date.
-            VisionPLUS Service Data: AZXCIO-RETAIL-PERCENT-MTD
-          format: int32
-        retailPercentYearToDate:
-          type: integer
-          description: |-
-            Retail Percent Year To Date.
-            VisionPLUS Service Data: AZXCIO-RETAIL-PERCENT-YTD
-          format: int32
-        retailAmountDaily:
-          type: number
-          description: |-
-            Retail Amount Daily.
-            VisionPLUS Service Data: AZXCIO-RETAIL-AMOUNT-DAILY
-        retailAmountMonthToDate:
-          type: number
-          description: |-
-            Retail Amount Month To Date.
-            VisionPLUS Service Data: AZXCIO-RETAIL-AMOUNT-MTD
-        retailAmountYearToDate:
-          type: number
-          description: |-
-            Retail Amount Year To Date.
-            VisionPLUS Service Data: AZXCIO-RETAIL-AMOUNT-YTD
-        cashPercentDaily:
-          type: integer
-          description: |-
-            Cash Percent Daily.
-            VisionPLUS Service Data: AZXCIO-CASH-PERCENT-DAILY
-          format: int32
-        cashPercentMonthToDay:
-          type: integer
-          description: |-
-            Cash Percent Month To Day.
-            VisionPLUS Service Data: AZXCIO-CASH-PERCENT-MTD
-          format: int32
-        cashPercentYearToDay:
-          type: integer
-          description: |-
-            Cash Percent Year To Day.
-            VisionPLUS Service Data: AZXCIO-CASH-PERCENT-YTD
-          format: int32
-        cashAmountDaily:
-          type: number
-          description: |-
-            Cash Amount Daily.
-            VisionPLUS Service Data: AZXCIO-CASH-AMOUNT-DAILY
-        cashAmountMonthToDate:
-          type: number
-          description: |-
-            Cash Amount Month To Date.
-            VisionPLUS Service Data: AZXCIO-CASH-AMOUNT-MTD
-        cashAmountYearToDate:
-          type: number
-          description: |-
-            Cash Amount Year To Date.
-            VisionPLUS Service Data: AZXCIO-CASH-AMOUNT-YTD.
-        cashPostedTodayNumber:
-          type: number
-          description: |-
-            Cash Posted Today Number.
-            VisionPLUS Service Data: AZXCIO-CASH-POSTED-TODAYNBR
-        cashPostedMonthToDateNumber:
-          type: number
-          description: |-
-            Cash Posted Month To Date Number.
-            VisionPLUS Service Data: AZXCIO-CASH-POSTED-MTD-NBR
-        cashPostedYearToDateNumber:
-          type: number
-          description: |-
-            Cash Posted Year To Date Number.
-            VisionPLUS Service Data: AZXCIO-CASH-POSTED-YTD-NBR
-        cashPostedTodayAmount:
-          type: number
-          description: |-
-            Cash Posted Today Amount.
-            VisionPLUS Service Data: AZXCIO-CASH-POSTED-TODAYAMT
-        cashPostedMonthToDateAmount:
-          type: number
-          description: |-
-            Cash Posted Month To Date Amount.
-            VisionPLUS Service Data: AZXCIO-CASH-POSTED-MTD-AMT
-        cashPostedYearToDateAmount:
-          type: number
-          description: |-
-            Cash Posted Year To Date Amount.
-            VisionPLUS Service Data: AZXCIO-CASH-POSTED-YTD-AMT
-        cashDeclineTodayNumber:
-          type: number
-          description: |-
-            Cash Decline Today Number.
-            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-TODAYNBR
-        cashDeclineMonthToDayNumber:
-          type: number
-          description: |-
-            Cash Decline Month To Day Number.
-            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-MTD-NBR
-        cashDeclineYearToDayNumber:
-          type: number
-          description: |-
-            Cash Decline Year To Day Number.
-            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-YTD-NBR
-        cashDeclineTodayAmount:
-          type: number
-          description: |-
-            Cash Decline Today Amount.
-            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-TODAYAMT
-        cashDeclineMonthToDayAmount:
-          type: number
-          description: Cash Decline Month To Day Amount.
-        cashDeclineYearToDayAmount:
-          type: number
-          description: |-
-            Cash Decline Year To Day Amount.
-            VisionPLUS Service Data: AZXCIO-CASH-DECLINE-YTD-AMT
-        retailPostedTodayNumber:
-          type: number
-          description: |-
-            Retail Posted Today Number.
-            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-TODAYNBR
-        retailPostedMonthToDayNumber:
-          type: number
-          description: |-
-            Retail Posted Month To Day Number.
-            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-MTDNBR
-        retailPostedYearToDayNumber:
-          type: number
-          description: |-
-            Retail Posted Year To Day Number.
-            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-YTDNBR
-        retailPostedTodayAmount:
-          type: number
-          description: |-
-            Retail Posted Today Amount.
-            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-TODAYAMT
-        retailPostedMonthToDayAmount:
-          type: number
-          description: |-
-            Retail Posted Month To Day Amount.
-            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-MTDAMT
-        retailPostedYearToDayAmount:
-          type: number
-          description: |-
-            Retail Posted Year To Day Amount.
-            VisionPLUS Service Data: AZXCIO-RETAIL-POSTED-YTDAMT
-        retailDeclineTodayNumber:
-          type: number
-          description: |-
-            Retail Decline Today Number.
-            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-TODAYNBR
-        retailDeclineMonthToDayNumber:
-          type: number
-          description: |-
-            Retail Decline Month To Day Number.
-            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-MTDNBR
-        retailDeclineYearToDayNumber:
-          type: number
-          description: |-
-            Retail Decline Year To Day Number.
-            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-YTDNBR
-        retailDeclineToday:
-          type: number
-          description: |-
-            Retail Decline Today.
-            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-TODAYAMT
-        retailDeclineMountToDayAmount:
-          type: number
-          description: |-
-            Retail Decline Month To Day Amount.
-            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-MTDAMT
-        retailDeclineYearToDayAmount:
-          type: number
-          description: |-
-            Retail Decline Year To Day Amount.
-            VisionPLUS Service Data: AZXCIO-RETAIL-DECLINE-YTDAMT
-    EmbosserDetailsResponseV2:
-      type: object
-      properties:
-        currencyData:
-          $ref: '#/components/schemas/CurrencyData'
-        organizationNumber:
-          type: string
-          description: |-
-            Length: 3
-
-            OrganizationVisionPLUS Service Data: AZXCIO-ORG
-        logo:
-          type: integer
-          description: |-
-            Length: 3
-
-            LogoVisionPLUS Service Data: AZXCIO-LOGO
-          format: int32
-        foreignUse:
-          type: integer
-          description: |-
-            Length: 1
-
-            Foreign Use IndicatorVisionPLUS Service Data: AZXCIO-DUAL-IND
-          format: int32
-        cardNumber:
-          type: string
-          description: |-
-            Length: 19
-
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token). VisionPLUS Service Data: AZXCIO-CARD
-          example: 000540208ID5IXX3865
-        cardSequence:
-          type: integer
-          description: |-
-            Length: 4
-
-            Card SequenceVisionPLUS Service Data: AZXCIO-SEQ
-          format: int32
-        cardTechnology:
-          type: integer
-          description: |-
-            Length: 1
-
-            Card TechnologyVisionPLUS Service Data: AZXCIO-CARD-TECHNOLOGY
-          format: int32
-        postToAccount:
-          type: string
-          description: |-
-            Length: 19
-
-            Post To AccountVisionPLUS Service Data: AZXCIO-POST-TO-ACCT
-        fraud:
-          type: string
-          description: |-
-            Length: 19
-
-            Number of the fraud account to which this Embosser record was transferredVisionPLUS Service Data: AZXCIO-FRAUD
-        prepaidIndicator:
-          type: integer
-          description: "Length: 1\n\nPrepaid indicatorVisionPLUS Service Data: AZXCIO-PREPAID-FLAG\
-            \  "
-          format: int32
-        statusCode:
-          type: string
-          description: |-
-            Length: 3
-
-            Embosser record status VisionPLUS Service Data: AZXCIO-STATUS-CODE
-        dateStatus:
-          type: string
-          description: |-
-            Length: 7
-
-            Date on which the status was last changedVisionPLUS Service Data: AZXCIO-DATE-STATUS
-          format: date
-        statusSecureId:
-          type: string
-          description: |-
-            Length: 3
-
-            Operator ID of the person who changed the statusVisionPLUS Service Data: AZXCIO-STATUS-SECUR-ID
-        fraudEffectiveDate:
-          type: string
-          description: |-
-            Length: 7
-
-            Date that a fraud card transfer for this embosser became effectiveVisionPLUS Service Data: AZXCIO-FRAUD-EFFE-DATE
-          format: date
-        embosserRecordReplacement:
-          type: string
-          description: |-
-            Length: 19
-
-            Number of the Embosser record replacement associated with a fraud cardVisionPLUS Service Data: AZXCIO-EMB-REPL
-        numberCardsOutstanding:
-          type: integer
-          description: |-
-            Length: 3
-
-            Number of outstanding cardsVisionPLUS Service Data: AZXCIO-NBR-CARDS-OUTST
-          format: int32
-        numberCardsReturned:
-          type: integer
-          description: |-
-            Length: 3
-
-            Number of returned cardsVisionPLUS Service Data: AZXCIO-NBR-CARDS-RTN
-          format: int32
-        currentChipSequence:
-          type: integer
-          description: |-
-            Length: 2
-
-            Chip sequence number of the most recently issued cardVisionPLUS Service Data: AZXCIO-CURR-CHIP-SEQ
-          format: int32
-        cardIssueAction:
-          type: integer
-          description: |-
-            Length: 1
-
-            Card issue action codeVisionPLUS Service Data: AZXCIO-CARD-ACTION
-          format: int32
-        numberCardsRequested:
-          type: integer
-          description: |-
-            Length: 2
-
-            Number of cards requestedVisionPLUS Service Data: AZXCIO-NBR-RQTD
-          format: int32
-        chipSequenceNumber:
-          type: integer
-          description: |-
-            Length: 2
-
-            Chip sequence number of the card issued prior to the most recently issued cardVisionPLUS Service Data: AZXCIO-PREV-CHIP-SEQ
-          format: int32
-        typeOfCard:
-          type: integer
-          description: |-
-            Length: 2
-
-            Type of plastic stock to use to produce the requested cardVisionPLUS Service Data: AZXCIO-TYPE-OF-CARD
-          format: int32
-        requestedCardType:
-          type: integer
-          description: |-
-            Length: 2
-
-            Type of card requestedVisionPLUS Service Data: AZXCIO-RQTD-CARD-TYPE
-          format: int32
-        typeCardMailer:
-          type: string
-          description: |-
-            Length: 2
-
-            Type of mailer to useVisionPLUS Service Data: AZXCIO-TYPE-CARD-MAILER
-        plasticId:
-          type: string
-          description: |-
-            Length: 10
-
-            User-defined code that identifies the plastic stock used to create a card for thisVisionPLUS Service Data: AZXCIO-PLASTIC-ID
-        secureActivation:
-          type: integer
-          description: |-
-            Length: 1
-
-            Secure code activation indicatorVisionPLUS Service Data: AZXCIO-SC-ACTIVE
-          format: int32
-        embosserNameType1:
-          type: integer
-          description: |-
-            Length: 1
-
-            Type of name for EMBOSSED NAME 1VisionPLUS Service Data: AZXCIO-EMB-NAME-1-TYPE
-          format: int32
-        embosserNameType2:
-          type: integer
-          description: |-
-            Length: 1
-
-            Type of name for EMBOSSED NAME 2VisionPLUS Service Data: AZXCIO-EMB-NAME-2-TYPE
-          format: int32
-        embosserName1:
-          type: string
-          description: |-
-            Length: 26
-
-            Name to be embossed on the first embossing line of the cardVisionPLUS Service Data: AZXCIO-EMBOSSED-NAME-1
-        embosserName2:
-          type: string
-          description: |-
-            Length: 26
-
-            Name to be embossed on the second embossing line of the cardVisionPLUS Service Data: AZXCIO-EMBOSSED-NAME-2
-        cardHolderName1:
-          type: string
-          description: |-
-            Length: 40
-
-            EMBR_NAME_1VisionPLUS Service Data: AZXCIO-EMBR-NAME-1
-        cardHolderName2:
-          type: string
-          description: |-
-            Length: 40
-
-            EMBR_NAME_1VisionPLUS Service Data: AZXCIO-EMBR-NAME-2
-        addressLine1:
-          type: string
-          description: |-
-            Length: 40
-
-            Address line 1 used for mailing the card and PIN mailersVisionPLUS Service Data: AZXCIO-ADDR-LINE-1
-        addressLine2:
-          type: string
-          description: |-
-            Length: 40
-
-            Address line 2 used for mailing the card and PIN mailersVisionPLUS Service Data: AZXCIO-ADDR-LINE-2
-        stateProvince:
-          type: string
-          description: |-
-            Length: 3
-
-            State or province portion of the mailing address for card and PIN mailersVisionPLUS Service Data: AZXCIO-ST-PR
-        cityPortion:
-          type: string
-          description: |-
-            Length: 30
-
-            City portion of the mailing address for card and PIN mailersVisionPLUS Service Data: AZXCIO-CITY
-        postalCodePortion:
-          type: string
-          description: |-
-            Length: 10
-
-            Postal code portion of the mailing address for card and PIN mailersVisionPLUS Service Data: AZXCIO-PSTL-CD
-        plusIndicator:
-          type: integer
-          description: |-
-            Length: 1
-
-            Flag that indicates whether the PLUS symbol is displayed on the cardVisionPLUS Service Data: AZXCIO-PLUS
-          format: int32
-        dateExpire:
-          type: string
-          description: |-
-            Length: 7
-
-            Date on which the card expiresVisionPLUS Service Data: AZXCIO-DATE-EXPIRE
-          format: date
-        customerNumber:
-          type: string
-          description: |-
-            Length: 19
-
-            Customer number that identifies the Customer Name/Address record that listsVisionPLUS Service Data: AZXCIO-CUSTOMER-NBR
-        currentPinOffset:
-          type: integer
-          description: |-
-            Length: 7
-
-            Current PIN offsetVisionPLUS Service Data: AZXCIO-PIN-OFFSET
-          format: int32
-        previousPinOffset:
-          type: integer
-          description: |-
-            Length: 7
-
-            Previous PIN offsetVisionPLUS Service Data: AZXCIO-PREV-PIN-OFFSET
-          format: int32
-        pinDelayDays:
-          type: integer
-          description: |-
-            Length: 2
-
-            Number of processing days between the date when CMS receives notificationVisionPLUS Service Data: AZXCIO-PIN-DELAY-DAYS
-          format: int32
-        typeOfPointOfSale:
-          type: integer
-          description: |-
-            Length: 3
-
-            Type of point-of-sale service in effect for a cardVisionPLUS Service Data: AZXCIO-POS-SERVICE-CODE
-          format: int32
-        cardHolderFlag:
-          type: string
-          description: |-
-            Length: 1
-
-            Code that indicates whether the card is issued as a primary or secondary cardVisionPLUS Service Data: AZXCIO-CARDHOLDER-FLAG
-        dateWarningBulletin:
-          type: string
-          description: |-
-            Length: 7
-
-            Date on which the account last appeared on a warning bulletinVisionPLUS Service Data: AZXCIO-DTE-WARNING-BULLETIN
-          format: date
-        regionCode:
-          type: string
-          description: |-
-            Length: 9
-
-            Region code for distribution of the Recovery Card List or the Card RecoveryVisionPLUS Service Data: AZXCIO-REGION-CODE
-        languageCode:
-          type: string
-          description: |-
-            Length: 3
-
-            User-defined code to indicate the language spoken by the cardholderVisionPLUS Service Data: AZXCIO-LANG-CODE
-        visaMiniCardVersion:
-          type: integer
-          description: |-
-            Length: 1
-
-            Visa Mini card versionVisionPLUS Service Data: AZXCIO-MINI
-          format: int32
-        pinSuppression:
-          type: integer
-          description: |-
-            Length: 3
-
-            Flag that indicates whether the PIN number and PIN mailer are producedVisionPLUS Service Data: AZXCIO-PIN-SUPPRESSION
-          format: int32
-        blockCode:
-          type: string
-          description: |-
-            Length: 1
-
-            Organization Number. This field returns the organization number as String. It's used for Single digit organizations like 001.VisionPLUS Service Data: AZXCIO-BLK-CODE
-        dateBlock:
-          type: string
-          description: |-
-            Length: 1
-
-            Block code assigned to the Embosser recordVisionPLUS Service Data: AZXCIO-DATE-BLOCK
-          format: date
-        blockSecureId:
-          type: string
-          description: |-
-            Length: 3
-
-            Operator ID of the person who entered the block codeVisionPLUS Service Data: AZXCIO-BLOCK-SECUR-ID
-        warningCode1:
-          type: string
-          description: |-
-            Length: 1
-
-            Warning code 1VisionPLUS Service Data: AZXCIO-WARNING-CODE-1
-        warningCode7:
-          type: string
-          description: |-
-            Length: 1
-
-            Warning code 7VisionPLUS Service Data: AZXCIO-WARNING-CODE-7
-        numberOfIssueAttemptsRemaining:
-          type: integer
-          description: |-
-            Length: 3
-
-            Number of issue or reissue attempts remaining for the cardVisionPLUS Service Data: AZXCIO-REISSUE-ATTMPTS
-          format: int32
-        currentDateExpirationDate:
-          type: string
-          description: |-
-            Length: 7
-
-            Current card expiration dateVisionPLUS Service Data: AZXCIO-CURR-CRD-EXP-DATE
-          format: date
-        currentCardActivation:
-          type: string
-          description: |-
-            Length: 1
-
-            Current card activation flagVisionPLUS Service Data: AZXCIO-CURR-CRD-ACT
-        dateEmbossedMagneticStripeCard:
-          type: string
-          description: |-
-            Length: 7
-
-            Date embossed on a magnetic-stripe card that indicates when the card becomesVisionPLUS Service Data: AZXCIO-CURR-CRD-FROM
-          format: date
-        dateCurrentMagneticCardMailed:
-          type: string
-          description: |-
-            Length: 7
-
-            Date the current magnetic-stripe card was mailed to the cardholderVisionPLUS Service Data: AZXCIO-CURR-CRD-MAIL
-          format: date
-        lastExpirationDate:
-          type: string
-          description: |-
-            Length: 7
-
-            Previous card expiration dateVisionPLUS Service Data: AZXCIO-DATE-LAST-EXPR
-          format: date
-        lastCardActivation:
-          type: string
-          description: |-
-            Length: 1
-
-            Previous card activation flagVisionPLUS Service Data: AZXCIO-LAST-CARD-ACTION
-        dateFirstCardVerify:
-          type: string
-          description: |-
-            Length: 7
-
-            Date on which the first card was verifiedVisionPLUS Service Data: AZXCIO-DATE-FIRST-CARD-VERIFY
-          format: date
-        dateLastPlasticIssue:
-          type: string
-          description: |-
-            Length: 7
-
-            Date on which the most recently issued card was producedVisionPLUS Service Data: AZXCIO-DATE-LST-PLASTIC-ISSUE
-          format: date
-        frequencyMaximumAuthorizationParameters:
-          type: integer
-          description: |-
-            Length: 1
-
-            Frequency defined for the maximum authorization parametersVisionPLUS Service Data: AZXCIO-AUTH-ATM-OTC-RTL-FREQ
-          format: int32
-        authorizationData:
-          $ref: '#/components/schemas/AuthorizationData'
-        internetPurchaseData:
-          $ref: '#/components/schemas/InternetPurchaseData'
-        identificationNumberAuthorization:
-          type: string
-          description: |-
-            Length: 3
-
-            Identification number of the Authorization Criteria table assigned to the
-            Embosser record
-            VisionPLUS Service Data: AZXCIO-AUTH-CRIT-TBL-NBR
-        identificationNumberSpendingLimitsTable:
-          type: string
-          description: |-
-            Length: 3
-
-            Identification number of the HCS Spending Limits table assigned to the
-            Account
-            VisionPLUS Service Data: AZXCIO-AUTH-SPD-LIM-TBL
-        userData:
-          $ref: '#/components/schemas/UserData'
-        numberCurrentlyDisplayedEmbosserRecord:
-          type: string
-          description: |-
-            Length: 19
-
-            Card number of the currently displayed embosser record, or account numberVisionPLUS Service Data: AZXCIO-TRAN-DATA-CRD-NBR
-        adminNumberBranch:
-          type: integer
-          description: |-
-            Length: 19
-
-            Branch number that identifies the card mailing location for all reissued cards
-            when the branch delivery option is used
-            VisionPLUS Service Data: AZXCIO-ADMIN-BRANCH
-          format: int32
-        nextExpirationDateOfTheCard:
-          type: string
-          description: |-
-            Length: 7
-
-            Next expiration date of the cardVisionPLUS Service Data: AZXCIO-DATE-NEXT-EXPR
-          format: date
-        branchIdentifierCardMailingLocation:
-          type: integer
-          description: |-
-            Length: 9
-
-            Branch number that identifies the card mailing location for the issue of all new
-            cards when the branch delivery option is used
-            VisionPLUS Service Data: AZXCIO-FIRST-ISS-BRANCH
-          format: int32
-        cardInformationData:
-          $ref: '#/components/schemas/CardInformationData'
-        useAutomatedTellerMachineCashNumberData:
-          $ref: '#/components/schemas/UseAutomatedTellerMachineCashNumberData'
-        useAutomatedTellerMachineCashAmountData:
-          $ref: '#/components/schemas/UseAutomatedTellerMachineCashAmountData'
-        useOverTheCounterCashNumberData:
-          $ref: '#/components/schemas/UseOverTheCounterCashNumberData'
-        useOverTheCounterCashAmountData:
-          $ref: '#/components/schemas/UseOverTheCounterCashAmountData'
-        retailNumberData:
-          $ref: '#/components/schemas/RetailNumberData'
-        retailAmountData:
-          $ref: '#/components/schemas/RetailAmountData'
-        internetPurchaseNumberData:
-          $ref: '#/components/schemas/InternetPurchaseNumberData'
-        internetPurchaseAmountData:
-          $ref: '#/components/schemas/InternetPurchaseAmountData'
-        prepaidLimits:
-          $ref: '#/components/schemas/PrepaidLimits'
-        spendingLimitsData:
-          $ref: '#/components/schemas/SpendingLimitsData'
-        cardDelayDays:
-          type: integer
-          description: |-
-            Length: 2
-
-            Code that indicates the number of days to warehouse the card mailer before
-            releasing the card for printing
-            VisionPLUS Service Data: AZXCIO-CARD-DELAY-DAYS
-          format: int32
-        cardDelayStatus:
-          type: string
-          description: |-
-            Length: 1
-
-            Code that indicates the status of a warehoused card mailerVisionPLUS Service Data: AZXCIO-CURR-CRD-DELV-STAT
-        mailerDate:
-          type: string
-          description: |-
-            Length: 7
-
-            Date the current magnetic-stripe card was mailed to the cardholderVisionPLUS Service Data: AZXCIO-MAILER-DATE
-          format: date
-        pinOverrideActionEmbosserLevel:
-          type: string
-          description: |-
-            Length: 1
-
-            Code that indicates the PIN override action at the embosser levelVisionPLUS Service Data: AZXCIO-PIN-OVRD
-        cardHolderType:
-          type: integer
-          description: |-
-            Length: 1
-
-            Cardholder typeVisionPLUS Service Data: AZXCIO-CARDHOLDER-TYPE
-          format: int32
-        pinDelayStatusMailer:
-          type: string
-          description: |-
-            Length: 1
-
-            Code that indicates the status of a warehoused PIN mailerVisionPLUS Service Data: AZXCIO-PIN-DELAY-STATUS
-        cardActivatedDate:
-          type: string
-          description: |-
-            Length: 7
-
-            Date the card was activated by the cardholderVisionPLUS Service Data: AZXCIO-CARD-ACTIVATED-DATE
-          format: date
-        dateMostRecentlyIssueCard:
-          type: string
-          description: |-
-            Length: 7
-
-            Date on which the most recently issued card was producedVisionPLUS Service Data: AZXCIO-TIME-LST-PLASTIC-ISSUE
-          format: date
-        deliveryOptionReissuedCards:
-          type: integer
-          description: |-
-            Length: 3
-
-            Delivery option for reissued cardsVisionPLUS Service Data: AZXCIO-REISSUE-DELIV-OPTION
-          format: int32
-        deliveryOptionIssuedCards:
-          type: integer
-          description: |-
-            Length: 3
-
-            Delivery option for issued cardsVisionPLUS Service Data: AZXCIO-ISSUE-DELIV-OPTION
-          format: int32
-        cardDeliveryStatus:
-          type: string
-          description: |-
-            Length: 1
-
-            Delivery status of the current cardVisionPLUS Service Data: AZXCIO-CURR-CRD-DELV-STAT
-        cardDeliveryDate:
-          type: string
-          description: |-
-            Length: 7
-
-            Delivery date of the current cardVisionPLUS Service Data: AZXCIO-CURR-CRD-DELV-DATE
-          format: date
-        deliveryStatusPreviousCard:
-          type: string
-          description: |-
-            Length: 1
-
-            Delivery status of the previous cardVisionPLUS Service Data: AZXCIO-PREV-CRD-DELV-STAT
-        deliveryDatePreviousCard:
-          type: string
-          description: |-
-            Length: 7
-
-            Delivery date of the previous cardVisionPLUS Service Data: AZXCIO-PREV-CRD-DELV-DATE
-          format: date
-        deliveryStatusCurrentPinMailer:
-          type: string
-          description: |-
-            Length: 1
-
-            Delivery status of current PIN MailerVisionPLUS Service Data: AZXCIO-CURR-PIN-DELV-STAT
-        deliveryDateCurrentPinMailer:
-          type: string
-          description: |-
-            Length: 7
-
-            Delivery date of current PIN MailerVisionPLUS Service Data: AZXCIO-CURR-PIN-DELV-DATE
-          format: date
-        deliveryStatusPreviousPinMailer:
-          type: string
-          description: |-
-            Length: 1
-
-            Delivery status of previous PIN MailerVisionPLUS Service Data: AZXCIO-PREV-PIN-DELV-STAT
-        deliveryDatePreviousPinMailer:
-          type: string
-          description: |-
-            Length: 7
-
-            Delivery date of previous PIN MailerVisionPLUS Service Data: AZXCIO-PREV-PIN-DELV-DATE
-          format: date
-        dateNextPinChanged:
-          type: string
-          description: |-
-            Length: 7
-
-            Date of next PIN changeVisionPLUS Service Data: AZXCIO-DTE-NXT-PIN-CHG
-          format: date
-        cardHolderAffiliation:
-          type: string
-          description: |-
-            Length: 5
-
-            Cardholder’s affiliation or affinity groupVisionPLUS Service Data: AZXCIO-EMBLM-ID
-        cardVerifyByVisaStatus:
-          type: string
-          description: |-
-            Length: 1
-
-            Card Verify by Visa (VBV) enrollment statusVisionPLUS Service Data: AZXCIO-VBV-STAT
-        customUserData:
-          $ref: '#/components/schemas/EmbosserDetailsInquiryResponse.CustomUserData'
-        custEmbSeq:
-          type: string
-          description: "Length: 9\n\nCustomer Embosser Sequence \nVisionPLUS Service\
-            \ Data: AZXCIO-CUST-EMB-SEQ"
-        travelInd:
-          type: string
-          description: "Length: 1\n\nCode that indicates whether overseas travel is\
-            \ allowed for the\ncardholder and if any prior travel notification is\
-            \ required. This\nis a user-defined field. \nVisionPLUS Service Data:\
-            \ AZXCIO-TRAVEL-IND"
-        travelData:
-          type: array
-          items:
-            $ref: '#/components/schemas/TravelData'
-        vauLastRsnCode:
-          type: string
-          description: |-
-            Length: 1
-
-            Last Reason Code VisionPLUS Service Data: AZXCIO-VAU-LAST-RSN-CODE
-        noCvmCounter:
-          type: string
-          description: |-
-            Length: 6
-
-            No CVM CounterVisionPLUS Service Data: AZXCIO-NO-CVM-COUNTER
-        noCvmAmt:
-          type: string
-          description: |-
-            Length: 13
-
-            No CVM AmountVisionPLUS Service Data: AZXCIO-NO-CVM-AMT
-        profileId:
-          type: string
-          description: |-
-            Length: 3
-
-            Profile IDVisionPLUS Service Data: AZXCIO-PROFILE-ID
-        ecommInd:
-          type: string
-          description: |-
-            Length: 1
-
-            Ecommerce IndicatorVisionPLUS Service Data: AZXCIO-ECOMM-IND
-        contlsInd:
-          type: string
-          description: |-
-            Length: 1
-
-            Contactless IndicatorVisionPLUS Service Data: AZXCIO-CONTLS-IND
-        authRstrTbl:
-          type: string
-          description: |-
-            Length: 3
-
-            Authorization restriction tableVisionPLUS Service Data: AZXCIO-AUTH-RSTR-TBL
-        authCrLm:
-          type: string
-          description: |-
-            Length: 17
-
-            Authorization credit limitVisionPLUS Service Data: AZXCIO-AUTH-CR-LM
-        ctdAuthAmt:
-          type: string
-          description: |-
-            Length: 17
-
-            CTD Authorization amountVisionPLUS Service Data: AZXCIO-CTD-AUTH-AMT
-        digiCardInd:
-          type: string
-          description: |-
-            Length: 1
-
-            Digital Card IndicatorVisionPLUS Service Data: AMED-DIG-CARD-IND
-        embCode1:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-CODE-1
-        embCode2:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-CODE-2
-        embCode3:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-CODE-3
-        embCode4:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-CODE-4
-        embCode5:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-CODE-5
-        embCode6:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-CODE-6
-        embCode7:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-CODE-7
-        embCode8:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-CODE-8
-        embDate1:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-DATE-1
-        embDate2:
-          type: string
-          description: |-
-            Length: 10
-
-            Titles for user-defined code fields that display on the Account Embossing screen (ARME03)
-            VisionPLUS Service Data: AMCR-LD-USER-EMB-DATE-2
-        dvcInd:
-          type: string
-          description: |-
-            Length: 1
-
-            Device indicatorVisionPLUS Service Data: AMED-DVC-IND
-        pinReset:
-          type: string
-          description: |-
-            Length: 1
-
-            Flag that indicates whether the PIN try counter field on the Embosser record (PIN COUNT RESET on ARME02) is allowed to be manually reset for accounts in this logo.
-            VisionPLUS Service Data: AMCR-LB-MAN-PIN-RESET
-        dateLastMaintained:
-          type: string
-          description: |-
-            Length: 7
-
-            Date of last maintenance of this record
-            VisionPLUS Service Data: AMED-DATE-LAST-MAINT
-          format: date
-        newAcctCard:
-          type: string
-          description: |-
-            Length: 1
-
-            Code that indicates whether CMS generates a tape for embossing plastics for new accounts
-            VisionPLUS Service Data: AMCR-LB-PCF-NEW-ACCT-CARD
-        sdpFlag:
-          type: string
-          description: |-
-            Length: 1
-
-            Code that indicates whether same-day embossing is allowed for the accounts within the logo
-            VisionPLUS Service Data: AMCR-LB-SDP-FLAG
-        internationalSingleTransaction:
-          type: string
-          description: |-
-            Length: 17
-
-            Maximum authorization amount in monetary units and subunits for a single international purchase transactionVisionPLUS Service Data: AMED-SL-AUTH-INT-SNGL-TXN
-        pinTryLimit:
-          type: integer
-          description: |-
-            Length: 2
-
-            Number of invalid PIN tries on the card after the successful PIN txn
-            VisionPLUS Service Data: AMED-NBR-INV-PIN-TRIES
-          format: int32
-        transferNextAllowDate:
-          type: string
-          description: |-
-            Length: 7
-
-            Field that indicates when the next transfer is allowed
-            VisionPLUS Service Data: AMED-NEXT-XFR-ALLOWED
-          format: date
-        transferReplacementIndicator:
-          type: integer
-          description: |-
-            Length: 1
-
-            Transfer Replacement Indicator
-            VisionPLUS Service Data: AMED-XFR-REPLACEMENT-IND
-          format: int32
-        foreignCreditLimit:
-          type: number
-          description: |-
-            Length: 13
-
-            AMED Foreign Credit limitVisionPLUS Service Data: AZXCIO-CR-LIM-FGN
-        plasticIndicator:
-          type: string
-          description: |-
-            Length: 1
-
-            Misc Plastic IndicatorVisionPLUS Service Data: AZXCIO- MISC-PLASTIC-IND
-      description: EmbosserDetailsResponseV2
-    InternetPurchaseAmountData:
-      type: object
-      properties:
-        today:
-          type: number
-          description: |-
-            Length: 17
-
-            Total amount of internet transactions for this card todayVisionPLUS Service Data: AZXCIO-INET-PUR-AMT-TODAY
-        cycleToDate:
-          type: number
-          description: |-
-            Length: 17
-
-            Total amount of internet transactions for this card cycle-to-dateVisionPLUS Service Data: AZXCIO-INET-PUR-AMT-CTD
-        yearToDate:
-          type: number
-          description: |-
-            Length: 17
-
-            Total amount of internet transactions for this card year-to-dateVisionPLUS Service Data: AZXCIO-INET-PUR-AMT-YTD
-        lifeToDate:
-          type: number
-          description: |-
-            Length: 17
-
-            Total amount of internet transactions for this card life-to-dateVisionPLUS Service Data: AZXCIO-INET-PUR-AMT-LTD
-    InternetPurchaseData:
-      type: object
-      properties:
-        purchaseNumber:
-          type: number
-          description: |-
-            Length: 9
-
-            Maximum number of internet authorizations allowed for this Embosser record
-            for the frequency defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-INET-PUR-NBR
-        purchaseAmount:
-          type: string
-          description: |-
-            Length: 17
-
-            Maximum amount in monetary units and subunits of internet cash
-            authorizations allowed for this Embosser record for the frequency defined in
-            the FREQ field
-
-            VisionPLUS Service Data: AZXCIO-INET-PUR-AMT
-        purchaseSingleTransactionLimit:
-          type: string
-          description: |-
-            Length: 13
-
-            Maximum authorization amount in monetary units and subunits of a single
-            internet transaction allowed for this Embosser record for the frequency defined in the FREQ field
-            VisionPLUS Service Data: AZXCIO-INET-PUR-SNGL-TXN
-    InternetPurchaseNumberData:
-      type: object
-      properties:
-        today:
-          type: integer
-          description: |-
-            Length: 9
-
-            Total number of internet transactions for this card year-to-dateVisionPLUS Service Data: AZXCIO-INET-PUR-NBR-TODAY
-          format: int32
-        cycleToDate:
-          type: integer
-          description: |-
-            Length: 9
-
-            Total number of internet transactions for this card cycle-to-dateVisionPLUS Service Data: AZXCIO-INET-PUR-NBR-CTD
-          format: int32
-        yearToDate:
-          type: integer
-          description: |-
-            Length: 9
-
-            Total number of internet transactions for this card life-to-dateVisionPLUS Service Data: AZXCIO-INET-PUR-NBR-YTD
-          format: int32
-        lifeToDate:
-          type: integer
-          description: |-
-            Length: 9
-
-            Total amount of internet transactions for this card todayVisionPLUS Service Data: AZXCIO-INET-PUR-NBR-LTD
-          format: int32
-    PrepaidLimits:
-      type: object
-      properties:
-        spendAmount:
-          type: number
-          description: |-
-            Length: 17
-
-            Amount of the spending limit prepayment transaction that resulted in a
-            temporary increase in the spending limit for the cardholder
-            VisionPLUS Service Data: AZXCIO-PREPAY-SPND-AMT
-        spendAvailable:
-          type: integer
-          description: |-
-            Length: 17
-
-            Current amount of the temporary increase in the spending limit for thisVisionPLUS Service Data: AZXCIO-AUTH-CRIT-TBL-NBR
-          format: int32
-        spendExpirationDate:
-          type: string
-          description: |-
-            Length: 7
-
-            Date on which the temporary increase in the spending limit expires for this
-            Cardholder
-            VisionPLUS Service Data: AZXCIO-PREPAY-SPND-EXP-DTE
-          format: date
-    RetailAmountData:
-      type: object
-      properties:
-        today:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of retail transactions for this card todayVisionPLUS Service Data: AZXCIO-RTL-DLY-AUTH-AMT-ACCUM
-        cycleToDate:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of retail transactions for this card cycle-to-dateVisionPLUS Service Data: AZXCIO-RTL-CTD-AUTH-AMT-ACCUM
-        yearToDate:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of retail transactions for this card year-to-dateVisionPLUS Service Data: AZXCIO-RTL-YTD-AUTH-AMT-ACCUM
-        lifeToDate:
-          type: number
-          description: |-
-            Length: 3
-
-            Total amount of retail transactions for this card life-to-dateVisionPLUS Service Data: AZXCIO-RTL-LTD-AUTH-AMT-ACCUM
-    RetailNumberData:
-      type: object
-      properties:
-        today:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of retail transactions for this card todayVisionPLUS Service Data: AZXCIO-RTL-DLY-AUTH-NBR-ACCUM
-          format: int32
-        cycleToDate:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of retail transactions for this card cycle-to-dateVisionPLUS Service Data: AZXCIO-RTL-CTD-AUTH-NBR-ACCUM
-          format: int32
-        yearToDate:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of retail transactions for this card year-to-dateVisionPLUS Service Data: AZXCIO-RTL-YTD-AUTH-NBR-ACCUM
-          format: int32
-        lifeToDate:
-          type: integer
-          description: "Length: 4\n\nTotal number of retail transactions for this\
-            \ card life-to-dateVisionPLUS Service Data: USAGE RETAIL NBR LIFE-TO-DATE\t\
-            AZXCIO-RTL-LTD-AUTH-NBR-ACCUM"
-          format: int32
-    SpendingLimitsData:
-      type: object
-      properties:
-        totalDailyAmount:
-          type: number
-          description: "Length: 17\n\nTotal monetary amount of the transactions for\
-            \ the spending category for this\ncard today\nOccurs 34 times \nVisionPLUS\
-            \ Service Data: AZXCIO-SLS-DAILY-AMT"
-        totalDailyNumber:
-          type: integer
-          description: "Length: 9\n\nTotal number of transactions for the spending\
-            \ category for this card today\nOccurs 34 times \nVisionPLUS Service Data:\
-            \ AZXCIO-SLS-DAILY-NBR"
-          format: int32
-        totalWeekToDateAmount:
-          type: number
-          description: "Length: 17\n\nTotal monetary amount of the transactions for\
-            \ the spending category for this\ncard week-to-date (Sunday through Saturday)\n\
-            Occurs 34 times \nVisionPLUS Service Data: AZXCIO-SLS-WTD-AMT"
-        totalWeekToDateNumber:
-          type: integer
-          description: "Length: 9\n\nTotal number of transactions for the spending\
-            \ category for this card week-todate\n(Sunday through Saturday)\nOccurs\
-            \ 34 times \nVisionPLUS Service Data: AZXCIO-SLS-WTD-NBR"
-          format: int32
-        totalCycleToDateAmount:
-          type: number
-          description: "Length: 17\n\nTotal monetary amount of the transactions for\
-            \ the spending category for this\ncard cycle-to-date\nOccurs 34 times\
-            \ \nVisionPLUS Service Data: AZXCIO-SLS-CTD-AMT"
-        totalCycleToDateNumber:
-          type: integer
-          description: "Length: 9\n\nTotal number of transactions for the spending\
-            \ category for this card cycle-todate\nOccurs 34 times \nVisionPLUS Service\
-            \ Data: AZXCIO-SLS-CTD-NBR"
-          format: int32
-        totalYearToDateAmount:
-          type: number
-          description: |-
-            Length: 3
-
-            Organization Number. This field returns the organization number as String. It's used for Single digit organizations like 001.VisionPLUS Service Data: AZXCIO-SLS-YTD-AMT
-        totalYearToDateNumber:
-          type: integer
-          description: |-
-            Length: 17
-
-            Total monetary amount of the transactions for the spending category for this
-            card year-to-date
-            Occurs 34 times
-            VisionPLUS Service Data: AZXCIO-SLS-YTD-NBR
-          format: int32
-        totalLifeToDateAmount:
-          type: number
-          description: "Length: 9\n\nTotal number of transactions for the spending\
-            \ category for this card year-todate\nOccurs 34 times \nVisionPLUS Service\
-            \ Data: AZXCIO-SLS-LTD-AMT"
-        totalLifeToDateNumber:
-          type: integer
-          description: "Length: 17\n\nTotal monetary amount of the transactions for\
-            \ the spending category for this\ncard life-to-date\nOccurs 34 times \n\
-            VisionPLUS Service Data: AZXCIO-SLS-LTD-NBR"
-          format: int32
-    TravelData:
-      type: object
-      properties:
-        travelCountry:
-          type: string
-          description: |-
-            Length: 3
-
-            Country code of the foreign country associated with each trip.VisionPLUS Service Data: AZXCIO-TRAVEL-COUNTRY
-        travelStartDt:
-          type: string
-          description: |-
-            Length: 7
-
-            Start date of the first five trips. You can enter the dates of these
-            trips and cannot enter past trips’ details. The format is
-            YYYY-MM-DD.
-            VisionPLUS Service Data: AZXCIO-TRAVEL-STRT-DT
-        travelEndDt:
-          type: string
-          description: |-
-            Length: 7
-
-            End dates of the corresponding trips for which start dates were
-            entered. You cannot enter details of the past trips or the end
-            dates cannot be earlier than the start date mentioned in the
-            START DATE field. The format is YYYY-MM-DD.
-            VisionPLUS Service Data: AZXCIO-TRAVEL-END-DT
-    UseAutomatedTellerMachineCashAmountData:
-      type: object
-      properties:
-        today:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of ATM cash transactions for this card todayVisionPLUS Service Data: AZXCIO-ATM-DLY-AUTH-AMT-ACCUM
-        cycleToDate:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of ATM cash transactions for this card cycle-to-dateVisionPLUS Service Data: AZXCIO-ATM-CTD-AUTH-AMT-ACCUM
-        yearToDate:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of ATM cash transactions for this card year-to-dateVisionPLUS Service Data: AZXCIO-ATM-YTD-AUTH-AMT-ACCUM
-        lifeToDate:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of ATM cash transactions for this card life-to-dateVisionPLUS Service Data: AZXCIO-ATM-LTD-AUTH-AMT-ACCUM
-    UseAutomatedTellerMachineCashNumberData:
-      type: object
-      properties:
-        today:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of ATM cash transactions for this card todayVisionPLUS Service Data: AZXCIO-ATM-DLY-AUTH-NBR-ACCUM
-          format: int32
-        cycleToDate:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of ATM cash transactions for this card cycle-to-dateVisionPLUS Service Data: AZXCIO-ATM-CTD-AUTH-NBR-ACCUM
-          format: int32
-        yearToDate:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of ATM cash transactions for this card year-to-dateVisionPLUS Service Data: AZXCIO-ATM-YTD-AUTH-NBR-ACCUM
-          format: int32
-        lifeToDate:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of ATM cash transactions for this card life-to-dateVisionPLUS Service Data: AZXCIO-ATM-LTD-AUTH-NBR-ACCUM
-          format: int32
-    UseOverTheCounterCashAmountData:
-      type: object
-      properties:
-        today:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of OTC cash transactions for this card todayVisionPLUS Service Data: AZXCIO-OTC-DLY-AUTH-AMT-ACCUM
-        cycleToDate:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of OTC cash transactions for this card cycle-to-dateVisionPLUS Service Data: AZXCIO-OTC-CTD-AUTH-AMT-ACCUM
-        yearToDate:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of OTC cash transactions for this card year-to-dateVisionPLUS Service Data: AZXCIO-OTC-YTD-AUTH-AMT-ACCUM
-        lifeToDate:
-          type: number
-          description: |-
-            Length: 11
-
-            Total amount of OTC cash transactions for this card life-to-dateVisionPLUS Service Data: AZXCIO-OTC-LTD-AUTH-AMT-ACCUM
-    UseOverTheCounterCashNumberData:
-      type: object
-      properties:
-        today:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of OTC cash transactions for this card todayVisionPLUS Service Data: AZXCIO-OTC-DLY-AUTH-NBR-ACCUM
-          format: int32
-        cycleToDate:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of OTC cash transactions for this card cycle-to-dateVisionPLUS Service Data: AZXCIO-OTC-CTD-AUTH-NBR-ACCUM
-          format: int32
-        yearToDate:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of OTC cash transactions for this card year-to-dateVisionPLUS Service Data: AZXCIO-OTC-YTD-AUTH-NBR-ACCUM
-          format: int32
-        lifeToDate:
-          type: integer
-          description: |-
-            Length: 4
-
-            Total number of OTC cash transactions for this card life-to-dateVisionPLUS Service Data: AZXCIO-OTC-LTD-AUTH-NBR-ACCUM
-          format: int32
-    UserData:
-      type: object
-      properties:
-        user1:
-          type: string
-          description: |-
-            Length: 20
-
-            User-defined code 1 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-1
-        user2:
-          type: string
-          description: |-
-            Length: 20
-
-            User-defined code 2 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-2
-        user3:
-          type: string
-          description: |-
-            Length: 19
-
-            User-defined code 3 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-3
-        user4:
-          type: integer
-          description: |-
-            Length: 4
-
-            User-defined code 4 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-4
-          format: int32
-        user5:
-          type: string
-          description: |-
-            Length: 1
-
-            User-defined code 5 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-5
-        user6:
-          type: string
-          description: |-
-            Length: 1
-
-            User-defined code 6 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-6
-        user7:
-          type: string
-          description: |-
-            Length: 1
-
-            User-defined code 7 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-7
-        user8:
-          type: string
-          description: |-
-            Length: 1
-
-            User-defined code 8 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-8
-        userData1:
-          type: string
-          description: |-
-            Length: 7
-
-            User-defined date 1 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-DATE-1
-          format: date
-        userData2:
-          type: string
-          description: |-
-            Length: 7
-
-            User-defined date 2 for the Embosser recordVisionPLUS Service Data: AZXCIO-USER-DATE-2
-          format: date
-      description: EmbosserDetailsResponseUserData
-    EmbosserDetailsRequest:
-      required:
-      - cardNumber
-      - cardSequence
-      - foreignUse
-      - organizationNumber
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: Organization Number
-          format: int32
-          example: 807
-          enum:
-          - null
-        cardNumber:
-          maxLength: 19
-          minLength: 12
-          type: string
-          description: Card Number
-          example: "0004513070406598974"
-          enum:
-          - "range[12,19]"
-        cardSequence:
-          type: integer
-          description: Card sequence
-          format: int32
-          example: 1
-        foreignUse:
-          type: string
-          description: Card sequence
-          example: "1"
-      description: Card Embosser Block Request
     EmbosserDetailsResponse:
       type: object
       properties:
@@ -2576,11 +796,11 @@ components:
           format: date
     AddEmbosserRequest:
       required:
-      - cardNumber
-      - enrollmentStatusVBV
-      - organizationNumber
-      - postToAccount
-      - vbvPassword
+        - cardNumber
+        - enrollmentStatusVBV
+        - organizationNumber
+        - postToAccount
+        - vbvPassword
       type: object
       properties:
         organizationNumber:
@@ -2592,14 +812,14 @@ components:
           format: int32
           example: 807
           enum:
-          - null
+            - null
         postToAccount:
           type: string
           description: |-
             Length: 19
             Post-to account.
             VisionPLUS Service Data: AZXAPI-POST-TO-ACCT
-          example: "4513074002573466583"
+          example: '4513074002573466583'
         cardNumber:
           maxLength: 19
           minLength: 0
@@ -2608,9 +828,9 @@ components:
             Length: 19
             Card Number.
             VisionPLUS Service Data: AZXAPI-CARD-NBR
-          example: "0004513070406598974"
+          example: '0004513070406598974'
           enum:
-          - "range[1,19]"
+            - range[1,19]
         cardSequence:
           type: integer
           description: |-
@@ -2662,7 +882,7 @@ components:
             Length: 10
             Plastic ID.
             VisionPLUS Service Data: AZXAPI-PLASTIC-ID
-          example: ""
+          example: ''
         name1TypeIndicator:
           type: integer
           description: |-
@@ -2731,9 +951,9 @@ components:
             Length: 19
             Customer Number.
             VisionPLUS Service Data: AZXAPI-CUSTOMER-NBR
-          example: "4513074002573466583"
+          example: '4513074002573466583'
           enum:
-          - "range[-infinity,19"
+            - range[-infinity,19
         name1:
           type: string
           description: |-
@@ -2770,7 +990,7 @@ components:
             Length: 1
             Cardholder Flag.
             VisionPLUS Service Data: AZXAPI-CARDHOLDER-FLAG
-          example: "0"
+          example: '0'
         addressLine1:
           type: string
           description: |-
@@ -2805,7 +1025,7 @@ components:
             Length: 10
             Postal Code.
             VisionPLUS Service Data: AZXAPI-PSTL-CD
-          example: "38585"
+          example: '38585'
         languageCode:
           type: string
           description: |-
@@ -2954,19 +1174,18 @@ components:
             Length: 20
             User-defined 1.
             VisionPLUS Service Data: AZXAPI-USER-1
-          example: "1"
+          example: '1'
         user2:
           type: string
-          description: "\tstring\nexample: 2\nLength: 20\nUser-defined 2.\nVisionPLUS\
-            \ Service Data: AZXAPI-USER-2"
-          example: "2"
+          description: "\tstring\nexample: 2\nLength: 20\nUser-defined 2.\nVisionPLUS Service Data: AZXAPI-USER-2"
+          example: '2'
         user3:
           type: string
           description: |-
             Length: 19
             User-defined 3.
             VisionPLUS Service Data: AZXAPI-USER-3
-          example: "3"
+          example: '3'
         user4:
           type: integer
           description: |-
@@ -2981,28 +1200,28 @@ components:
             Length: 1
             User-defined 5.
             VisionPLUS Service Data: AZXAPI-USER-5
-          example: "5"
+          example: '5'
         user6:
           type: string
           description: |-
             Length: 1
             User-defined 6.
             VisionPLUS Service Data: AZXAPI-USER-6
-          example: "6"
+          example: '6'
         user7:
           type: string
           description: |-
             Length: 1
             User-defined 7.
             VisionPLUS Service Data: AZXAPI-USER-7
-          example: "7"
+          example: '7'
         user8:
           type: string
           description: |-
             Length: 1
             User-defined 8.
             VisionPLUS Service Data: AZXAPI-USER-8
-          example: "8"
+          example: '8'
         userDate1:
           type: string
           description: |-
@@ -3142,7 +1361,7 @@ components:
             * N = New enrollment
             * U = Update enrollment
             VisionPLUS Service Data: AZXAPI-VBV-STATUS
-          example: "N"
+          example: 'N'
         vbvPassword:
           type: string
           description: |-
