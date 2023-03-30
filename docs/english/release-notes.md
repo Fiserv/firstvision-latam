@@ -34,6 +34,11 @@ tags: [Release Notes, January, February, March]
 
 ### Fixed
 
+Endpoints moved to version 1.2.0:
+
+- /customer/v3/cards/details
+- /cards/v2/embosser/details
+
 Endpoints moved to version 1.1.0:
 
 - /account/balance
@@ -41,12 +46,14 @@ Endpoints moved to version 1.1.0:
 - /account/QR-balance
 - /account/QR-transfer
 - /account/FL-transferP2P
+- /cards/embosser/details-L8VB
 
 ### Deprecated
 
 - /account/QRFL-balance
 - /cards/instant-card-L8V7
 - /transactions/organization-update
+- /customer/v4/cards/details
 
 ---
 
