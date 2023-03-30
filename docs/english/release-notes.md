@@ -31,6 +31,7 @@ tags: [Release Notes, January, February, March]
   - /account/walletStatus version L8V1
   - /cards/details version L8V1
   - /account/transferP2P version L8V2
+  - /cards/pin/invalid-attempts version L8V1
 
 ### Fixed
 
