@@ -35,11 +35,12 @@ Essas informações são enviadas na mensagem de resposta da API após sua ativa
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
 ## Obter Detalhes do Cartão
+
 Esta API permite ao cliente conhecer todos os números de cartão criados sob este número de cliente para produtos de cartão de crédito, cartão de débito, cartão pré-pago ou carteira digital.
 
 Essas informações são enviadas na mensagem de resposta da API após sua ativação. O número do cliente será o principal valor usado para pesquisar números de conta.
 
-**POST** `/customer/v4/cards/details`
+**POST** `/customer/v3/cards/details`
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
