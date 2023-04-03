@@ -31,8 +31,14 @@ tags: [Release Notes, Janeiro, Fevereiro, Março ]
   - /account/walletStatus versão L8V1
   - /cards/details versão L8V1
   - /account/transferP2P versão L8V2
+  - /cards/pin/invalid-attempts version L8V1
+
 
 ### Problemas solucionados
+
+Endpoints movidos para a versão 1.2.0:
+- /customer/v3/cards/details
+- /cards/v2/embosser/details
 
 Endpoints movidos para a versão 1.1.0:
 - /account/balance
@@ -40,12 +46,14 @@ Endpoints movidos para a versão 1.1.0:
 - /account/QR-balance
 - /account/QR-transfer
 - /account/FL-transferP2P
+- /cards/embosser/details-L8VB
 
 ### Descontinuado
 
 - /account/QRFL-balance
 - /cards/instant-card-L8V7
 - /transactions/organization-update
+- /customer/v4/cards/details
 
 ---
 
