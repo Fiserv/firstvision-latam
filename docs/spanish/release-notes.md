@@ -36,18 +36,17 @@ tags: [Release Notes, Enero, Febrero, Marzo]
 ### Problemas solucionados
 
 Endpoints se movieron a la versión 1.2.0:
-
-/customer/v3/cards/details
-/cards/v2/embosser/details
+  - /customer/v3/cards/details
+  - /cards/v2/embosser/details
 
 Endpoints se movieron a la versión 1.1.0:
 
-/account/balance
-/account/transfer
-/account/QR-balance
-/account/QR-transfer
-/account/FL-transferP2P
-/cards/embosser/details-L8VB
+  - /account/balance
+  - /account/transfer
+  - /account/QR-balance
+  - /account/QR-transfer
+  - /account/FL-transferP2P
+  - /cards/embosser/details-L8VB
 
 ### Deprecado
 
