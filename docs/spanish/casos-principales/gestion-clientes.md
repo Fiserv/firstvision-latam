@@ -40,7 +40,7 @@ Esta API le permite al cliente conocer todos los números de tarjeta creados baj
 
 Esta información se envía en el mensaje de respuesta de la API una vez que se haya activado. El Número de Cliente será el principal valor utilizado para la búsqueda de los números de cuenta.
 
-**POST** `/customer/v4/cards/details`
+**POST** `/customer/v3/cards/details`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
