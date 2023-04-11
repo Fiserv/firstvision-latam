@@ -6,8 +6,6 @@ tags: [Começando, VMX, Lista de Serviços]
 
 |                               Nome do terminal                               |             Serviço            | Versão |                                                API endpoint                                               | Method |
 |:----------------------------------------------------------------------------:|:------------------------------:|:------:|:---------------------------------------------------------------------------------------------------------:|--------|
-| Endpoint Name                                                                | Service                        | Version | API endpoint                                                                                              | Method |
-|------------------------------------------------------------------------------|--------------------------------|---------|-----------------------------------------------------------------------------------------------------------|--------|
 | Cash-in & Cash-out Request                                                   | M.ASM.MONETARY.ACT             | L8V2    | /account/balance                                                                                          | PUT    |
 | Restructure and Refinance Inquiry                                            | M.CMS.REFINANCERESTRUCTURE.INQ | R8V1    | /account/{accountNumber}/balance                                                                          | GET    |
 | Direct Debit-Credit Inquiry                                                  | M.CMS.DIRECTDBCR.INQ           | R8V4    | /account/{accountNumber}/credit-debit                                                                     | GET    |
