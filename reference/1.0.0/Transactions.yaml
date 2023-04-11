@@ -9,26 +9,27 @@ paths:
   /transactions/outstanding-authorizations-L8V3/details:
     post:
       tags:
-        - Transactions
-      summary: 'Outstanding Authorizations Inquiry. VMX Service: M.FAS.OUTSTANDING.AUTH.INQ, L8V3'
-      description: |-
-        Fetches data of both old and new transactions(including today's) which are settled to an account. 
-        VMX Service: M.FAS.OUTSTANDING.AUTH.INQ, L8V3
+      - Transactions
+      summary: "Outstanding Authorizations Inquiry. VMX Service: M.FAS.OUTSTANDING.AUTH.INQ,\
+        \ L8V3"
+      description: "Fetches data of both old and new transactions(including today's)\
+        \ which are settled to an account. \nVMX Service: M.FAS.OUTSTANDING.AUTH.INQ,\
+        \ L8V3"
       operationId: outstandingAuthorizationL8V3
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -36,82 +37,78 @@ paths:
               $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Request'
         required: true
       responses:
-        '200':
-          description: Success
+        "422":
+          description: "VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
+            \ BETWEEN 000 AND 998\nVPL5SOA07E - ACCOUNT NUMBER IS INVALID\nVPL5SOA08E\
+            \ - START TOKEN EFFECTIVE DATE REQUIRED WHEN FUNCTION IS NEXT/PREV\nVPL5SOA09E\
+            \ - START TOKEN EFFECTIVE DATE IS INVALID\nVPL5SOA10E - START TOKEN TIME\
+            \ REQUIRED WHEN FUNCTION IS NEXT/PREV\nVPL5SOA11E - START TOKEN TIME IS\
+            \ INVALID\nVPL5SOA12E - FOREIGN USE FLAG IS INVALID\nVPL5SOA13E - SERVICE\
+            \ FUNCTION CODE IS INVALID\nVPL5SOA14E - ACTION FILTER CODE IS INVALID\n\
+            VPL5SOA15S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED\nVPL5SOA16S\
+            \ - REQUESTED ORGANIZATION NOT FOUND\nVPL5SOA19S - ORGANIZATION NOT FOUND\
+            \ ON FILE\nVPL5SOA20I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG\
+            \ ACCOUNT DATA\nVPL5SOA20I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL\
+            \ ORG ACCOUNT DATA\nVPL5SOA21S - FOREIGN ORGANIZATION NOT FOUND ON FILE\
+            \ \nVPL5SOA22S - ACCOUNT NUMBER NOT FOUND\nVPL5SOA24S - LOGO NOT FOUND\
+            \ ON FILE\n"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response'
-        '300':
+                $ref: '#/components/schemas/DResponse'
+        "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
+        "400":
           description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
+        "405":
           description: Method Not Allowed
-        '422':
-          description: |
-            VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
-            VPL5SOA07E - ACCOUNT NUMBER IS INVALID
-            VPL5SOA08E - START TOKEN EFFECTIVE DATE REQUIRED WHEN FUNCTION IS NEXT/PREV
-            VPL5SOA09E - START TOKEN EFFECTIVE DATE IS INVALID
-            VPL5SOA10E - START TOKEN TIME REQUIRED WHEN FUNCTION IS NEXT/PREV
-            VPL5SOA11E - START TOKEN TIME IS INVALID
-            VPL5SOA12E - FOREIGN USE FLAG IS INVALID
-            VPL5SOA13E - SERVICE FUNCTION CODE IS INVALID
-            VPL5SOA14E - ACTION FILTER CODE IS INVALID
-            VPL5SOA15S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-            VPL5SOA16S - REQUESTED ORGANIZATION NOT FOUND
-            VPL5SOA19S - ORGANIZATION NOT FOUND ON FILE
-            VPL5SOA20I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
-            VPL5SOA20I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
-            VPL5SOA21S - FOREIGN ORGANIZATION NOT FOUND ON FILE 
-            VPL5SOA22S - ACCOUNT NUMBER NOT FOUND
-            VPL5SOA24S - LOGO NOT FOUND ON FILE
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response'
       x-proxy-name: Outstanding Authorizations Inquiry
       x-group-name: Transactions
   /transactions/details:
     post:
       tags:
-        - Transactions
-      summary: 'Transaction details. VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, R8V6'
-      description: |-
-        Provides transaction detail information for the current billing cycle or statement transactions within a date range. 
-        VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, R8V6
+      - Transactions
+      summary: "Transaction details. VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, R8V6"
+      description: "Provides transaction detail information for the current billing\
+        \ cycle or statement transactions within a date range. \nVMX Service: M.CMS.TRANSACTIONDETAIL.INQ,\
+        \ R8V6"
       operationId: Transactions Details Inquiry
       parameters:
-        - name: apikey
-          in: header
-          description: API Key
-          required: true
-          schema:
-            type: string
-        - name: X-ClientID
-          in: header
-          description: Client ID
-          required: true
-          schema:
-            type: string
-          example: "00970"
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       requestBody:
         content:
           application/json:
@@ -119,29 +116,7 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsRequest'
         required: true
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransactionsDetailsResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "422":
           description: |
             VPL5STD01I - NO TRANSACTIONS FOUND FOR REQUEST
             VPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
@@ -182,19 +157,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsDetailsResponse'
       x-proxy-name: Transactions Details Inquiry
       x-group-name: Transactions
 components:
   schemas:
     OutstandingAuthorizationFasL8V3Request:
       required:
-        - organizationNumber
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -235,7 +232,7 @@ components:
             Account Number.
 
             VisionPLUS Service Data: OZXOAI-ACCT
-          example: '4513074002573466583'
+          example: "4513074002573466583"
         foreignUseIndicator:
           maximum: 1
           minimum: 0
@@ -250,7 +247,7 @@ components:
             1 = Foreign account.
 
             VisionPLUS Service Data: OZXOAI-FOREIGN-USE
-          example: '0'
+          example: "0"
         functionCode:
           type: string
           description: |-
@@ -273,9 +270,8 @@ components:
           example: A
         numberOfAuthorizationsRequested:
           type: integer
-          description: |-
-            Number of authorizations requested. The values are 1 through 100. 
-            The initial value is 100
+          description: "Number of authorizations requested. The values are 1 through\
+            \ 100. \nThe initial value is 100"
           format: int32
           example: 100
         authorizationNumber:
@@ -286,7 +282,7 @@ components:
             Authorization number.
 
             VisionPLUS Service Data: OZXOAI-AUTH-NBR
-          example: '123'
+          example: "123"
         logRecordTypeOfTheTransaction:
           type: integer
           description: |-
@@ -448,12 +444,8 @@ components:
           $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response.PrevToken'
         more:
           type: string
-          description: |-
-            Length: 1
-
-            More data indicator.
-
-            VisionPLUS Service Data: OZXOAO-MORE-DATA-FLAG 
+          description: "Length: 1\n\nMore data indicator.\n\nVisionPLUS Service Data:\
+            \ OZXOAO-MORE-DATA-FLAG "
         numberOfAuthorizationsReturned:
           type: integer
           description: |-
@@ -499,13 +491,9 @@ components:
             VisionPLUS Service Data: OZXOAO-REQUEST-TYPE
         action:
           type: string
-          description: |-
-            Length: 1
-
-            Action taken by the operator if an override action was possible or 
-            the action as chosen by the system.
-
-            VisionPLUS Service Data: OZXOAO-ACTION
+          description: "Length: 1\n\nAction taken by the operator if an override action\
+            \ was possible or \nthe action as chosen by the system.\n\nVisionPLUS\
+            \ Service Data: OZXOAO-ACTION"
         actionReason:
           type: integer
           description: |-
@@ -575,13 +563,9 @@ components:
           format: int32
         merchantCategoryCode:
           type: integer
-          description: |-
-            Length: 5
-
-            Merchant standard industry code (aka ‘SIC code’). Indicates the type of merchant 
-            that is acquiring the transaction.
-
-            VisionPLUS Service Data: OZXOAO-MERCH-CAT-CD
+          description: "Length: 5\n\nMerchant standard industry code (aka ‘SIC code’\
+            ). Indicates the type of merchant \nthat is acquiring the transaction.\n\
+            \nVisionPLUS Service Data: OZXOAO-MERCH-CAT-CD"
           format: int32
         merchantCategoryCodeDescription:
           type: string
@@ -790,12 +774,8 @@ components:
           format: double
         transactionCurrencyCode:
           type: integer
-          description: |-
-            Length: 3
-
-            Transaction currency code.
-
-            VisionPLUS Service Data: OZXOAO-B049-CURR-CODE 
+          description: "Length: 3\n\nTransaction currency code.\n\nVisionPLUS Service\
+            \ Data: OZXOAO-B049-CURR-CODE "
           format: int32
         settlementCurrencyCode:
           type: integer
@@ -841,20 +821,11 @@ components:
             VisionPLUS Service Data: OZXOAO-WALLET-FEE-AMT
         embosserName:
           type: string
-          description: |-
-            Length: 26
-
-            Embosser name.
-
-            VisionPLUS Service Data: OZXOAO-EMBOSSED-NAME 
+          description: "Length: 26\n\nEmbosser name.\n\nVisionPLUS Service Data: OZXOAO-EMBOSSED-NAME "
         cashBackAmount:
           type: string
-          description: |-
-            Length: 9
-
-            Cash back amount.
-
-            VisionPLUS Service Data: OZXOAO-CASH-BACK-AMT 
+          description: "Length: 9\n\nCash back amount.\n\nVisionPLUS Service Data:\
+            \ OZXOAO-CASH-BACK-AMT "
         exchangeRate:
           type: number
           description: |
@@ -877,12 +848,8 @@ components:
           format: int32
         cardAcceptorName:
           type: string
-          description: |-
-            Length: 41
-
-            Card acceptor name.
-
-            VisionPLUS Service Data: OZXOAO-CRD-ACCPT-NAME 
+          description: "Length: 41\n\nCard acceptor name.\n\nVisionPLUS Service Data:\
+            \ OZXOAO-CRD-ACCPT-NAME "
         merchantPhone:
           type: string
           description: |-
@@ -893,12 +860,8 @@ components:
             VisionPLUS Service Data: OZXOAO-MERCHANT-PHONE
         countryCode:
           type: integer
-          description: |-
-            Length: 3
-
-            Merchant country code.
-
-            VisionPLUS Service Data: OZXOAO-MERCHANT-COUNTRY-CODE 
+          description: "Length: 3\n\nMerchant country code.\n\nVisionPLUS Service\
+            \ Data: OZXOAO-MERCHANT-COUNTRY-CODE "
           format: int32
         multiWalletPrepaid:
           $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response.MultiWalletPrepaid'
@@ -1124,8 +1087,8 @@ components:
             VisionPLUS Service Data: OZXOAO-CARD-NBR-PREV
     TransactionsDetailsRequest:
       required:
-        - accountNumber
-        - organizationNumber
+      - accountNumber
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -1148,7 +1111,7 @@ components:
             Length: 19
             Account Number or Card Number On Either The Embosser Record Or The Account Base Segment Record.
             VisionPLUS Service Data: ARXTDI-ACCT
-          example: '4513074002573466583'
+          example: "4513074002573466583"
         functionCode:
           maximum: 1
           minimum: 0
@@ -1189,7 +1152,7 @@ components:
             * Zero, space, low values = Local account
             * 1 = Foreign account
             VisionPLUS Service Data: ARXTDI-FOREIGN-USE
-          example: '0'
+          example: "0"
         startItem:
           $ref: '#/components/schemas/TransactionsDetailsRequest.SItem'
         transactionNumberMonths:
@@ -1198,10 +1161,8 @@ components:
           maxLength: 2
           minLength: 2
           type: string
-          description: |-
-            Length: 2 
-            Transaction Number Month
-            VisionPLUS Service Data: ARXTDI-TXN-NBR-MONTHS
+          description: "Length: 2 \nTransaction Number Month\nVisionPLUS Service Data:\
+            \ ARXTDI-TXN-NBR-MONTHS"
         transactionAmountRange:
           $ref: '#/components/schemas/TransactionsDetailsRequest.TransactionAmountRange'
         keyword:
@@ -1274,7 +1235,7 @@ components:
       type: object
       properties:
         from:
-          maximum: 100000000000000000
+          maximum: 99999999999999999
           minimum: 0
           type: number
           description: |-
@@ -1282,7 +1243,7 @@ components:
             Transaction amount range. This field indicates the “from” amount.VisionPLUS Service Data: ARXTDI-TXN-AMT-FROM
           example: 0
         to:
-          maximum: 100000000000000000
+          maximum: 99999999999999999
           minimum: 0
           type: number
           description: |-
@@ -1376,7 +1337,7 @@ components:
             * Y = More records on file
             VisionPLUS Service Data: ARXTDO-MORE-IND
           enum:
-            - N,Y
+          - "N,Y"
         startItem:
           $ref: '#/components/schemas/TransactionsDetailsResponse.SItem'
     TransactionsDetailsResponse.SItem:

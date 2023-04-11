@@ -44,16 +44,28 @@ paths:
               $ref: '#/components/schemas/UpdateEmbosserRequestV3'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: "Unprocessable Entity\n\nVPL5SEUZ2S - SERVICE INPUT TO CARD\
             \ UPDATE SERVICE IS AN INCORRECT LENGTH \n\nVPL5SEU01E - ORGANIZATION\
@@ -90,24 +102,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateEmbosserResponseV3'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -140,16 +140,24 @@ paths:
               $ref: '#/components/schemas/TravelUpdateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5STV02E - ORG NOT FOUND
@@ -173,10 +181,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -185,12 +191,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TravelUpdateResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Travel Indicator Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -223,6 +223,12 @@ paths:
               $ref: '#/components/schemas/TransferUpdateRequest'
         required: true
       responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
         "422":
@@ -271,18 +277,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
         "200":
@@ -291,12 +297,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferUpdateResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Transfer Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -304,10 +304,10 @@ paths:
     put:
       tags:
       - Card
-      summary: "Temporary Credit Limit Update. VMX Service: M.CMS.TEMP.CREDITLIMIT.UPD,\
-        \ R8V2"
-      description: "Updates the temporary credit limit for an account. \nVMX Service:\
-        \ M.CMS.TEMP.CREDITLIMIT.UPD, R8V2"
+      summary: "Updates the temporary credit limit for an account. \n\nVMX Service:\
+        \ M.CMS.TEMP.CREDITLIMIT.UPD, R8V1"
+      description: "Updates the temporary credit limit for an account. \n\nVMX Service:\
+        \ M.CMS.TEMP.CREDITLIMIT.UPD, R8V1"
       operationId: Temporary Credit Limit Update
       parameters:
       - name: apikey
@@ -323,11 +323,6 @@ paths:
         schema:
           type: string
         example: "00970"
-      - name: signonName
-        in: header
-        required: false
-        schema:
-          type: string
       requestBody:
         content:
           application/json:
@@ -335,34 +330,18 @@ paths:
               $ref: '#/components/schemas/TemporaryCreditLimitUpdRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TemporaryCreditLimitUpdResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SAAM4E - CREDIT LIMIT CAN NOT EXCEED RELATIONSHIP CREDIT LIMIT
@@ -399,6 +378,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryCreditLimitUpdResponse'
       x-proxy-name: Temporary Credit Limit Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -431,16 +426,28 @@ paths:
               $ref: '#/components/schemas/CardStatusRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: |
             VPL5SCSZ6S - REQUESTED ORGANIZATION NOT FOUND
@@ -466,24 +473,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardStatusResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Status Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -517,20 +512,26 @@ paths:
               $ref: '#/components/schemas/SpendLimitsL8V3Request'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -539,12 +540,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpendLimitsL8V3Response'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Spending Limits Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -552,8 +547,9 @@ paths:
     put:
       tags:
       - PIN
-      summary: "PIN Block/Unblock Function. VMX Service: M.CMS.PIN.BLOCK.UPD, R8V1"
-      description: "Blocks and unblocks the PIN on a card. \nVMX Service: M.CMS.PIN.BLOCK.UPD,\
+      summary: "Blocks and unblocks the PIN on a card. \n\nVMX Service: M.CMS.PIN.BLOCK.UPD,\
+        \ R8V1"
+      description: "Blocks and unblocks the PIN on a card. \n\nVMX Service: M.CMS.PIN.BLOCK.UPD,\
         \ R8V1"
       operationId: PIN Block/Unblock
       parameters:
@@ -577,39 +573,57 @@ paths:
               $ref: '#/components/schemas/PinBlockUpdateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "422":
-          description: |-
-            VPL5SRP03E - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
-            VPL5SRP04E - CARD NBR MUST BE NUMERIC AND GREATER THAN ZERO
-            VPL5SRP05E - CARD SEQUENCE NUMBER NOT NUMERIC OR MUST BE BETWEEN 0001 AND 9998
-            VPL5SRP06S - ORGANIZATION NOT FOUND ON FILE
-            VPL5SRP07S - CARD NUMBER DOES NOT EXIST
-            VPL5SRP08S - CARD LOGO NOT FOUND ON FILE
-            VPL5SRP11S - INVALID SERVICE FUNCTION TYPE
-            VPL5SRP12S - INVALID CHANNEL ID, PIN UNBLOCK NOT ALLOWED
-            VPL5SRP13S - INVALID CARD STATUS, PIN UNBLOCK NOT ALLOWED
-            VPL5SRP14S - CARD BLOCKED, PIN UNBLOCK NOT ALLOWED
-            VPL5SRP15S - CARD IS NOT ACTIVATED, PIN UNBLOCK NOT ALLOWED
-            VPL5SRP16S - CARD IS EXPIRED, PIN UNBLOCK NOT ALLOWED
-            VPL5SRP18S - MANUAL PIN RESET NOT ALLOWED
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "422":
+          description: |-
+            VPL5SRP03E - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
+            VPL5SRP04E - CARD NBR MUST BE NUMERIC AND GREATER THAN ZERO
+
+            VPL5SRP05E - CARD SEQUENCE NUMBER NOT NUMERIC OR MUST BE BETWEEN 0001 AND 9998
+
+            VPL5SRP06S - ORGANIZATION NOT FOUND ON FILE
+
+            VPL5SRP07S - CARD NUMBER DOES NOT EXIST
+
+            VPL5SRP08S - CARD LOGO NOT FOUND ON FILE
+
+            VPL5SRP11S - INVALID SERVICE FUNCTION TYPE
+
+            VPL5SRP12S - INVALID CHANNEL ID, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP13S - INVALID CARD STATUS, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP14S - CARD BLOCKED, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP15S - CARD IS NOT ACTIVATED, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP16S - CARD IS EXPIRED, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP18S - MANUAL PIN RESET NOT ALLOWED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
         "200":
@@ -618,12 +632,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinBlockUpdateResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: PIN Block/Unblock
       x-group-name: PIN
       x-child-product-name: Cards
@@ -631,9 +639,10 @@ paths:
     put:
       tags:
       - PIN
-      summary: "Change the PIN of a Card. VMX Service: M.CMS.PIN.CHANGE, R8V2"
+      summary: "Manages actions on PIN for both magnetic stripe and chip-based prepaid\
+        \ cards. \n\nVMX Service: M.CMS.PIN.CHANGE, R8V2"
       description: "Manages actions on PIN for both magnetic stripe and chip-based\
-        \ prepaid cards. \nVMX Service: M.CMS.PIN.CHANGE, R8V2"
+        \ prepaid cards. \n\nVMX Service: M.CMS.PIN.CHANGE, R8V2"
       operationId: PIN Change
       parameters:
       - name: apikey
@@ -656,56 +665,26 @@ paths:
               $ref: '#/components/schemas/PinChangeRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "422":
-          description: |-
-            VPL5SCP06S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 998
-            VPL5SCP07S - LOGO IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 99
-            VPL5SCP08S - ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
-            VPL5SCP09S - INVALID CURRENT PIN BLOCK VALUE
-            VPL5SCP10S - INVALID REQUESTED PIN BLOCK VALUE
-            VPL5SCP11S - INVALID PIN OFFSET VALUE
-            VPL5SCP12S - CHANNEL MUST BE 'I' OR 'W'
-            VPL5SCP13S - CHANNEL MUST BE GREATER THAN SPACES AND EQUAL TO 'I' OR 'W'
-            VPL5SCP14S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
-            VPL5SCP20S - ORGANIZATION RECORD NOT FOUND
-            VPL5SCP21S - INVALID ACCOUNT STATUS, PIN CHANGE NOT ALLOWED
-            VPL5SCP22S - INVALID ACCOUNT TYPE, PIN CHANGE NOT ALLOWED
-            VPL5SCP23S - ACCOUNT BLOCKED, PIN CHANGE NOT ALLOWED
-            VPL5SCP24S - ACCOUNT DOES NOT HAVE ACTIVE CARDS
-            VPL5SCP25S - INVALID CARD STATUS, PIN CHANGE NOT ALLOWED
-            VPL5SCP26S - CARD BLOCKED, PIN CHANGE NOT ALLOWED
-            VPL5SCP27S - PIN CHANGE NOT ALLOWED FOR SMART CARDS THROUGH WEB OR IVR
-            VPL5SCP28S - CARD IS NOT ACTIVATED, PIN CHANGE NOT ALLOWED
-            VPL5SCP29S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
-            VPL5SCP30S - CARD IS EXPIRED, PIN CHANGE NOT ALLOWED
-            VPL5SCP31S - INVALID PIN KEY INDEX ON THE EMBOSSER
-            VPL5SCP32S - INVALID PIN OFFSET VALUE ON THE EMBOSSER
-            VPL5SCP33S - INPUT LOGO DOES NOT MATCH CARD LOGO ON FILE
-            VPL5SCP34S - LOGO RECORD NOT FOUND ON FILE
-            VPL5SCP35S - INVALID PRODUCT TYPE, PIN CHANGE NOT ALLOWED
-            VPL5SCP41S - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
-            VPL5SCP42S - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
-            VPL5SCP43S - REQUEST CARD NBR IS PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
-            VPL5SCPZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-            VPL5SCPZ5S - REQUESTED ORGANIZATION NOT FOUND
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -714,8 +693,67 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinChangeResponse'
-        "300":
-          description: Redirection
+        "422":
+          description: |-
+            VPL5SCP06S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 998
+
+            VPL5SCP07S - LOGO IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
+            VPL5SCP08S - ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
+
+            VPL5SCP09S - INVALID CURRENT PIN BLOCK VALUE
+
+            VPL5SCP10S - INVALID REQUESTED PIN BLOCK VALUE
+
+            VPL5SCP11S - INVALID PIN OFFSET VALUE
+
+            VPL5SCP12S - CHANNEL MUST BE 'I' OR 'W'
+
+            VPL5SCP13S - CHANNEL MUST BE GREATER THAN SPACES AND EQUAL TO 'I' OR 'W'
+
+            VPL5SCP14S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
+
+            VPL5SCP20S - ORGANIZATION RECORD NOT FOUND
+
+            VPL5SCP21S - INVALID ACCOUNT STATUS, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP22S - INVALID ACCOUNT TYPE, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP23S - ACCOUNT BLOCKED, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP24S - ACCOUNT DOES NOT HAVE ACTIVE CARDS
+
+            VPL5SCP25S - INVALID CARD STATUS, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP26S - CARD BLOCKED, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP27S - PIN CHANGE NOT ALLOWED FOR SMART CARDS THROUGH WEB OR IVR
+
+            VPL5SCP28S - CARD IS NOT ACTIVATED, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP29S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP30S - CARD IS EXPIRED, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP31S - INVALID PIN KEY INDEX ON THE EMBOSSER
+
+            VPL5SCP32S - INVALID PIN OFFSET VALUE ON THE EMBOSSER
+
+            VPL5SCP33S - INPUT LOGO DOES NOT MATCH CARD LOGO ON FILE
+
+            VPL5SCP34S - LOGO RECORD NOT FOUND ON FILE
+
+            VPL5SCP35S - INVALID PRODUCT TYPE, PIN CHANGE NOT ALLOWED
+
+            VPL5SCP41S - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+
+            VPL5SCP42S - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+
+            VPL5SCP43S - REQUEST CARD NBR IS PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+
+            VPL5SCPZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
+            VPL5SCPZ5S - REQUESTED ORGANIZATION NOT FOUND
           content:
             application/json:
               schema:
@@ -727,9 +765,12 @@ paths:
     put:
       tags:
       - PIN
-      summary: "Update the PIN of a Card. VMX Service: M.CMS.PIN.REASSIGNMENT, R8V1"
+      summary: |-
+        Updates the PIN offset field for PIN change requests, initiated from the card host system or from external channels.
+
+        VMX Service: M.CMS.PIN.REASSIGNMENT, R8V1
       description: "Updates the PIN offset field for PIN change requests, initiated\
-        \ from the card host system or from external channels. \nVMX Service: M.CMS.PIN.REASSIGNMENT,\
+        \ from the card host system or from external channels. \n\nVMX Service: M.CMS.PIN.REASSIGNMENT,\
         \ R8V1"
       operationId: PIN Reassign
       parameters:
@@ -753,50 +794,79 @@ paths:
               $ref: '#/components/schemas/PinReassignmentRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
         "422":
-          description: |
+          description: |-
             VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
             VPL5SPA04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
+
             VPL5SPA05S - INVALID NEW PIN BLOCK VALUE
+
             VPL5SPA06S - CHANNEL MUST BE GREATER THAN SPACES
+
             VPL5SPA07S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
+
             VPL5SPA09S - INVALID ACCOUNT STATUS, PIN CHANGED NOT ALLOWED
+
             VPL5SPA10S - INVALID ACCOUNT TYPE, PIN CHANGED NOT ALLOWED
+
             VPL5SPA11S - ACCOUNT BLOCKED, PIN CHANGED NOT ALLOWED
+
             VPL5SPA12S - ACCOUNT DOES NOT HAVE ACTIVE CARDS, PIN CHANGED NOT ALLOWED
+
             VPL5SPA13S - INVALID CARD STATUS, PIN CHANGED NOT ALLOWED
+
             VPL5SPA14S - CARD BLOCKED, PIN CHANGED NOT ALLOWED
+
             VPL5SPA15S - CARD IS NOT ACTIVATED, PIN CHANGED NOT ALLOWED
+
             VPL5SPA16S - CARD IS EXPIRED, PIN CHANGED NOT ALLOWED
+
             VPL5SPA17S - INVALID PIN KEY INDEX ON THE EMBOSSER
+
             VPL5SPA18S - INVALID PIN OFFSET VALUE ON THE EMBOSSER
+
             VPL5SPA19S - LOGO RECORD NOT FOUND ON FILE
+
             VPL5SPA20S - INVALID PRODUCT TYPE
+
             VPL5SPA25S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
             VPL5SPA26S - REQUESTED ORGANIZATION NOT FOUND
+
             VPL5SPA27S - REQUESTED PIN NOT ALLOWED, KEY IN A DIFFERENT PIN
+
             VPL5SPA28S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
+
             VPL5SPA31S = INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+
             VPL5SPA32S = CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+
             VPL5SPA33S = REQUEST CARD NBR IS PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -805,12 +875,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinReassignmentResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: PIN Reassign
       x-group-name: PIN
       x-child-product-name: Cards
@@ -844,20 +908,26 @@ paths:
               $ref: '#/components/schemas/GlobalCardActivationRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -866,12 +936,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GlobalCardActivationResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Global Card Activation Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -906,20 +970,26 @@ paths:
               $ref: '#/components/schemas/EmbosserCardActionL8V2Request'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -928,12 +998,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserCardActionL8V2Response'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Action Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -966,20 +1030,14 @@ paths:
               $ref: '#/components/schemas/CardDetailsForEmbosserBlockRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "422":
           description: |
             VPL5SCB01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -1004,6 +1062,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -1012,12 +1082,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Block Code Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1050,8 +1114,6 @@ paths:
               $ref: '#/components/schemas/CreditLimitUpdateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
@@ -1089,12 +1151,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -1103,12 +1173,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreditLimitUpdateResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Credit Limit Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -1141,20 +1205,26 @@ paths:
               $ref: '#/components/schemas/CardActivationRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -1163,12 +1233,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardActivationResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Activation
       x-group-name: Card
       x-child-product-name: Cards
@@ -1202,14 +1266,16 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequestV2'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
         "422":
           description: "Unprocessable Entity\n\nVPL5SCIZ1S - SERVICE INPUT TO FS SERVICE\
             \ IS AN INCORRECT LENGTH \n\nVPL5SCIZ2S - USER HAS NOT SIGNED ON - PLEASE\
@@ -1233,12 +1299,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -1247,12 +1317,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponseV2'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1285,16 +1349,28 @@ paths:
               $ref: '#/components/schemas/StatementInquiryRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: "Unprocessable Entity\n\nVPL5S0005E - ACCOUNT NUMBER IS NOT\
             \ NUMERIC OR EQUAL SPACES \n\nVPL5S0006S - REQUESTED ORG NUMBER IS NOT\
@@ -1316,24 +1392,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementInquiryResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Statement Inquiry
       x-group-name: Statement
       x-child-product-name: Cards
@@ -1367,20 +1431,28 @@ paths:
               $ref: '#/components/schemas/StatementDateInquiryRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: "Unprocessable Entity\n\nVPL5SSI02S - SERVICE INPUT TO STMT\
             \ DATES SERVICE IS AN INCORRECT LENGTH \n\nVPL5SSI06E - ORGANIZATION NUMBER\
@@ -1397,20 +1469,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementDateInquiryResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Statement Details By Date Inquiry
       x-group-name: Statement
       x-child-product-name: Cards
@@ -1443,22 +1507,24 @@ paths:
               $ref: '#/components/schemas/PinValidateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |
             VPL5SVP03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -1491,18 +1557,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinValidateResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: PIN Validate
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1510,9 +1574,10 @@ paths:
     post:
       tags:
       - PIN
-      summary: "Provides security values. VMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+      summary: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
+        \ number. \n\nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
       description: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
-        \ number. \nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+        \ number. \n\nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
       operationId: Security Values Inquiry
       parameters:
       - name: apikey
@@ -1535,20 +1600,43 @@ paths:
               $ref: '#/components/schemas/SecurityCodeDetailsRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "422":
+          description: |-
+            VPL5SPA01S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+
+            VPL5SPA02S - ORGANIZATION NOT ON FILE
+
+            VPL5SPA03S - ACCOUNT NUMBER OR CARD NUMBER MUST BE PROVIDED
+
+            VPL5SPA04S - NEW PIN BLOCK SHOULD BE PROVIDED
+
+            VPL5SPA05S - CHANNEL SHOULD BE PROVIDED
+
+            VPL5SPA06S - KEY ASSOCIATION SHOULD BE PROVIDED
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -1557,12 +1645,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SecurityCodeDetailsResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Security Values Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1598,22 +1680,14 @@ paths:
               $ref: '#/components/schemas/InvalidPinAttemptsInquiryRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
         "422":
           description: |
             VPZ5SPT03S - ORG IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -1635,18 +1709,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InvalidPintAttemptsInquiryResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidPintAttemptsInquiryResponse'
       x-proxy-name: Invalid Attempts Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1654,9 +1736,9 @@ paths:
     post:
       tags:
       - PIN
-      summary: "Inquire Dynamic CVV2/CVC2/4CSC. VMX Service: M.CMS.GENERATE.DCVV2,\
+      summary: "Fetches dynamic CVV2/CVC2/4CSC. \n\nVMX Service: M.CMS.GENERATE.DCVV2,\
         \ R8V1"
-      description: "Fetches dynamic CVV2/CVC2/4CSC. \nVMX Service: M.CMS.GENERATE.DCVV2,\
+      description: "Fetches dynamic CVV2/CVC2/4CSC. \n\nVMX Service: M.CMS.GENERATE.DCVV2,\
         \ R8V1"
       operationId: Dynamic Values Inquiry
       parameters:
@@ -1680,65 +1762,26 @@ paths:
               $ref: '#/components/schemas/DynamicValuesRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "422":
-          description: |-
-            VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
-            VPL5SPA04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
-            VPL5SPA06S - CHANNEL MUST BE GREATER THAN SPACES
-            VPL5SPA07S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
-            VPL5SPA09S - INVALID ACCOUNT STATUS, GENERATE DCVV2 NOT ALLOWED
-            VPL5SPA10S - INVALID ACCOUNT TYPE, GENERATE DCVV2 NOT ALLOWED
-            VPL5SPA11S - ACCOUNT BLOCKED, GENERATE DCVV2 NOT ALLOWED
-            VPL5SPA12S - ACCOUNT DOES NOT HAVE ACTIVE CARDS, GENERATE DCVV2 NOT ALLOWED
-            VPL5SPA13S - INVALID CARD STATUS, GENERATE DCVV2 NOT ALLOWED
-            VPL5SPA14S - CARD BLOCKED, GENERATE DCVV2 NOT ALLOWED
-            VPL5SPA15S - CARD IS NOT ACTIVATED, GENERATE DCVV2 NOT ALLOWED
-            VPL5SPA16S - CARD IS EXPIRED, GENERATE DCVV2 NOT ALLOWED
-            VPL5SPA19S - LOGO RECORD NOT FOUND ON FILE
-            VPL5SPA20S - INVALID PRODUCT TYPE
-            VPL5SPA25S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-            VPL5SPA26S - REQUESTED ORGANIZATION NOT FOUND
-            VPL5SGD02S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
-            VPL5SGD03S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
-            VPL5SGD04S - INVALID VALUE IN DISABLE DCVV2 FLAG
-            VPL5SGD05S - CHANNEL MUST BE GREATER THAN SPACES
-            VPL5SGD06S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
-            VPL5SGD07S - INVALID ACCOUNT STATUS FOR THIS REQUEST
-            VPL5SGD08S - INVALID ACCOUNT TYPE FOR THIS REQUEST
-            VPL5SGD09S - ACCOUNT IS BLOCKED
-            VPL5SGD10S - INVALID CARD STATUS FOR THIS REQUEST
-            VPL5SGD11S - CARD BLOCKED
-            VPL5SGD12S - CARD HAS NOT BEEN ACTIVATED
-            VPL5SGD13S - CARD IS EXPIRED
-            VPL5SGD14S - CARD PRODUCT NOT FOUND
-            VPL5SGD15S - INVALID CARD PRODUCT TYPE
-            VPL5SGD18S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-            VPL5SGD19S - REQUESTED ORGANIZATION NOT FOUND
-            VPL5SGD20S - PRODUCT DOES NOT SUPPORT DCVV2
-            VPL5SGD24S - ENC-FAILURE INVALID ORG
-            VPL5SGD25S - ENC-FAILURE INV LENGTH
-            VPL5SGD26S - ENC-TEXT MUST BE NUMERIC
-            VPL5SEA04E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
-            VPL5SEA05E - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
-            VPL5SEA16S - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -1747,8 +1790,61 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DynamicValuesResponse'
-        "300":
-          description: Redirection
+        "422":
+          description: |-
+            VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
+            VPL5SPA04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
+
+            VPL5SPA06S - CHANNEL MUST BE GREATER THAN SPACES
+
+            VPL5SPA07S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
+
+            VPL5SPA09S - INVALID ACCOUNT STATUS, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA10S - INVALID ACCOUNT TYPE, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA11S - ACCOUNT BLOCKED, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA12S - ACCOUNT DOES NOT HAVE ACTIVE CARDS, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA13S - INVALID CARD STATUS, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA14S - CARD BLOCKED, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA15S - CARD IS NOT ACTIVATED, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA16S - CARD IS EXPIRED, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA19S - LOGO RECORD NOT FOUND ON FILE
+
+            VPL5SPA20S - INVALID PRODUCT TYPE
+
+            VPL5SPA25S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
+            VPL5SPA26S - REQUESTED ORGANIZATION NOT FOUND
+
+            VPL5SGD04S - INVALID VALUE IN DISABLE DCVV2 FLAG
+
+            VPL5SGD12S - CARD HAS NOT BEEN ACTIVATED
+
+            VPL5SGD14S - CARD PRODUCT NOT FOUND
+
+            VPL5SGD15S - INVALID CARD PRODUCT TYPE
+
+            VPL5SGD20S - PRODUCT DOES NOT SUPPORT DCVV2
+
+            VPL5SGD24S - ENC-FAILURE INVALID ORG
+
+            VPL5SGD25S - ENC-FAILURE INV LENGTH
+
+            VPL5SGD26S - ENC-TEXT MUST BE NUMERIC
+
+            VPL5SEA04E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+
+            VPL5SEA05E - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+
+            VPL5SEA16S - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
           content:
             application/json:
               schema:
@@ -1807,20 +1903,26 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -1829,12 +1931,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V3'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Mass Card Reissue Inquiry
       x-group-name: Card
       x-child-product-name: Cards
@@ -1868,20 +1964,26 @@ paths:
               $ref: '#/components/schemas/MassCardIssueAddRequestL8V3'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -1890,12 +1992,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardIssueAddResponseL8V3'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Mass Card Issue Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -1929,6 +2025,12 @@ paths:
               $ref: '#/components/schemas/SameDayEmbossingAddRequest'
         required: true
       responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
         "422":
@@ -1952,18 +2054,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
         "200":
@@ -1972,12 +2074,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SameDayEmbossingAddResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Same Day Plastic Add/Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2010,20 +2106,26 @@ paths:
               $ref: '#/components/schemas/AddEmbosserL8VFRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -2032,13 +2134,90 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddEmbosserL8VFResponse'
+      x-proxy-name: Embosser Add
+      x-group-name: Embosser
+      x-child-product-name: Cards
+  /cards/embosser/encrypted-card-pan:
+    post:
+      tags:
+      - Embosser
+      summary: "Encrypted Card PAN. VMX Service: M.CMS.ENCR.CARD.PAN.INQ, L8V1"
+      description: "The endpoint provides encrypted Card PAN. \nVMX Service: M.CMS.ENCR.CARD.PAN.INQ,\
+        \ L8V1"
+      operationId: encryptedCardPan
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EncryptedCardPanRequest'
+        required: true
+      responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "422":
+          description: |-
+            VPL5SXPZ4S – REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND
+            VPL5SXPZ5S – ORG RECORD NOT FOUND
+            VPL5SXPZ8S – ORG RECORD NOT FOUND
+            VPL5SXPZ9S – REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+            VPL5SXPZ10S- EMBOSSER RECORD NOT FOUND
+            VPL5SXPZ11S– ACCOUNT NUMBER NOT FOUND
+            VPL5SXPZ12S- ENC-FAILURE INVALID ORG
+            VPL5SXPZ13S– BLOCK CODE FOUND ON ACCOUNT OR CARD
+            VPL5SXPZ14S– ENC-FAILURE INV LENGTH
+            VPL5SXP01E – ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-999
+            VPL5SXP02E – INPUT CARD NUMBER IS NOT NUMERIC
+            VPL5SXP03E – CARD SEQUENCE NUMBER IS NOT NUMERIC
+            VPL5SXP04E – INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+            VPL5SXP05E – FUNCTION TYPE MUST BE 'A' WHEN ACCOUNT NUMBER IS PROVIDED
+            VPL5SXP06E – INVALID FUNCTION TYPE
+            VPL5SXP07E – INVALID INPUT ENCRYPTED NUMBER
+            VPL5SXP08E – INVALID INPUT PAN TOKEN NUMBER
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-      x-proxy-name: Embosser Add
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EncryptedCardPanResponse'
+      x-proxy-name: Encrypted Card PAN
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/embosser/card-pan-l8v2:
@@ -2071,20 +2250,26 @@ paths:
               $ref: '#/components/schemas/CardPanInquiryL8V2Request'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "422":
           description: |
             VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND
@@ -2112,12 +2297,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardPanInquiryL8V2Response'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Or PAN Token Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2156,16 +2335,12 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V3Request'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SAEZ8S - REQUESTED ORG NOT FOUND
@@ -2184,10 +2359,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
         "200":
@@ -2196,12 +2381,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsL8V3Response'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account To Card Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2234,20 +2413,26 @@ paths:
               $ref: '#/components/schemas/CardDetailsRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             VPL5SEI03E - ORGANIZATION IS NOT NUMERIC OR VALUE MUST BE BETWEEN 000 AND 999
@@ -2277,12 +2462,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardsDetailsResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card and Account Details Inquiry
       x-group-name: Card
       x-child-product-name: Cards
@@ -2342,8 +2521,24 @@ paths:
           type: string
         example: "00970"
       responses:
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5S0002S - CMS FILE TABLE RECORD NOT FOUND
@@ -2360,18 +2555,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
         "200":
@@ -2380,12 +2565,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NavigationalServiceResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Navigational Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -3862,28 +4041,28 @@ components:
         organizationNumber:
           type: integer
           description: |-
-            Length: 3
+            * Min Length: 1
+            * Max Length: 3
 
             Organization Number.
 
             VisionPLUS Service Data: ARXRPI-ORG
           format: int32
-          example: 807
+          example: 999
         cardNumber:
           maxLength: 19
           minLength: 12
           type: string
           description: |-
-            Length: 19
-
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ARXRPI-CARD-NBR
-          example: 000540208ID5IXX3865
+          example: 000123456ID5IXX1234
         cardSequenceNumber:
           type: integer
           description: |-
-            Length: 4
+            * Min Length: 1
+            * Max Length: 4
 
             Card Sequence Number.
 
@@ -3895,41 +4074,28 @@ components:
           minLength: 1
           type: string
           description: |-
-            Length: 1
-
             Service function code.
 
-            The values are:
-
-            B = Block PIN
-
-            U = Unblock PIN
+            Values:
+            * B = Block PIN;
+            * U = Unblock PIN.
 
             VisionPLUS Service Data: ARXRPI-SVC-FUNC
           example: U
-          enum:
-          - "B,U"
         channel:
           maxLength: 1
           minLength: 1
           type: string
           description: |-
-            Length: 1
-
             Code that indicates the source for reporting purposes.
 
-            The values are:
-
-            A = ATM
-
-            I = Interactive Voice Response
-
-            W = WEB
+            Values:
+            * I = IVR;
+            * A = ATM;
+            * W = Web.
 
             VisionPLUS Service Data: ARXRPI-CHANNEL
           example: W
-          enum:
-          - "A,I,W"
       description: PIN Block Update Request
     PinBlockUpdateResponse:
       type: object
@@ -3937,27 +4103,27 @@ components:
         cardNumber:
           type: string
           description: |-
-            Length: 19
+            Max Length: 19
 
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ARXRPO-CARD-NBR
-          example: 000540208ID5IXX3865
+          example: 000123456ID5IXX1234
         cardSequenceNumber:
           type: integer
           description: |-
-            Length: 4
+            Max Length: 4
 
             Card Sequence Number.
 
             VisionPLUS Service Data: ARXRPO-CARD-SEQ-NBR
           format: int32
+          example: 1
     PinChangeRequest:
       required:
       - cardNumber
       - channel
       - currPinBlock
-      - keyAssociationNumber
       - organizationNumber
       - reqdPinBlock
       type: object
@@ -3965,80 +4131,76 @@ components:
         organizationNumber:
           type: integer
           description: |-
-            Length: 3
+            * Max Length: 1
+            * Max Length: 3
 
             Organization.
 
             VisionPLUS Service Data: ARXCPI-ORG
           format: int32
-          example: 807
+          example: 999
         cardNumber:
           maxLength: 19
           minLength: 12
           type: string
           description: |-
-            Length: 19
-
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ARXPAI-CARD-NBR
-          example: 000540208ID5IXX3865
+          example: 000123456ID5IXX1234
         currPinBlock:
           type: string
           description: |-
-            Length: 16
+            * Max Length: 16
 
             Original PIN encrypted under a zone PIN key.
 
             VisionPLUS Service Data: ARXCPI-CURR-PIN-BLOCK
-          example: 12345E979B9FFF
+          example: 12345E979B9AAA
         reqdPinBlock:
           type: string
           description: |-
-            Length: 16
+            * Max Length: 16
 
             Requested PIN encrypted under a zone PIN key.
 
             VisionPLUS Service Data: ARXCPI-REQD-PIN-BLOCK
-          example: 702E2D0E979B9FFF
+          example: 702E2D0E979B9AAA
         pinOffset:
           type: integer
           description: |-
-            Length: 4
+            * Min Length: 1
+            * Max Length: 4
 
             PIN offset.
 
             VisionPLUS Service Data: ARXCPI-PIN-OFFSET
           format: int32
-          example: 1234
+          example: 1264
         channel:
           type: string
           description: |-
-            Length: 1
+            * Min Length: 1
+            * Max Length: 1
 
             Code that indicates the source for reporting purposes.
 
-            The values are:
-
-            A = ATM
-
-            I = Interactive Voice Response
-
-            W = WEB
+            Values:
+            * A = ATM;
+            * I = Interactive Voice Response;
+            * W = WEB.
 
             VisionPLUS Service Data: ARXPAI-CHANNEL
           example: W
-          enum:
-          - "A,I,W"
         keyAssociationNumber:
           type: string
           description: |-
-            Length: 3
+            * Max Length: 3
 
-            Association number that provides the information necessary for KMS to locate the working key shared between the issuer and the calling program.
+            Key Association. "I" + "the key association defined for the customer during the implementation to the field keyAssociation."
 
             VisionPLUS Service Data: ARXPAI-KEY-ASSOC
-          example: AV
+          example: IYY
       description: PIN Change
     PinChangeResponse:
       type: object
@@ -4046,16 +4208,16 @@ components:
         cardNumber:
           type: string
           description: |-
-            Length: 19
+            Max Length: 19
 
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ARXCPO-CARD-NBR
-          example: 000540208ID5IXX3865
+          example: 000123456ID5IXX1234
         feeAmount:
           type: integer
           description: |-
-            Length: 9
+            Max Length: 9
 
             Calculated fee amount.
 
@@ -4064,7 +4226,7 @@ components:
         feeWaiveReason:
           type: integer
           description: |-
-            Length: 1
+            Max Length: 1
 
             Fee waive reason.
 
@@ -4073,7 +4235,7 @@ components:
         feeRespCode:
           type: integer
           description: |-
-            Length: 2
+            Max Length: 2
 
             Fee response code.
 
@@ -4091,67 +4253,56 @@ components:
         organizationNumber:
           type: integer
           description: |-
-            Length: 3
+            * Min Length: 1
+            * Max Length: 3
 
             Organization Number.
 
             VisionPLUS Service Data: ARXPAI-ORG
           format: int32
-          example: 807
+          example: 999
         cardNumber:
           maxLength: 19
           minLength: 12
           type: string
           description: |-
-            Length: 19
-
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ARXPAI-CARD-NBR
-          example: 000540208ID5IXX3865
+          example: 000123456ID5IXX1234
         newPinBlock:
           type: string
           description: |-
-            Length: 16
+            * Max Length: 16
 
             New PIN encrypted under a zone PIN key.
 
             VisionPLUS Service Data: ARXPAI-NEW-PIN-BLOCK
-          example: 702E2D0E979B9FFF
+          example: 702E2D0E979B9AAA
         channel:
           type: string
           description: |-
-            Length: 1
+            * Min Length: 1
+            * Max Length: 1
 
             Code that indicates the source for reporting purposes.
 
-            The values are:
-
-            A = ATM
-
-            B = Issuing Bank
-
-            C = Call Center
-
-            F = Fraud
-
-            I = Interactive Voice Response [IVR]
-
-            W = Web
+            Values:
+            * A = ATM;
+            * B = Issuing Bank;
+            * C = Call Center;
+            * F = Fraud;
+            * I = Interactive Voice Response [IVR];
+            * W = Web.
 
             VisionPLUS Service Data: ARXPAI-CHANNEL
           example: W
-          enum:
-          - "A,B,C,F,I,W"
         keyAssociationNumber:
           type: string
-          description: |-
-            Length: 3
-
-            Association number that provides the information necessary for KMS to locate the working key shared between the issuer and the calling program.
-
-            VisionPLUS Service Data: ARXPAI-KEY-ASSOC
-          example: AV
+          description: "* Max Length: 3\n\nKey Association. \"I\" + \"the key association\
+            \ defined for the customer during the implementation to the field keyAssociation.\"\
+            \ \n\nVisionPLUS Service Data: ARXPAI-KEY-ASSOC"
+          example: IVL
       description: PIN Reassignment Request
     PinReassignmentResponse:
       type: object
@@ -4159,12 +4310,12 @@ components:
         cardNumber:
           type: string
           description: |-
-            Length: 19
+            Max Length: 19
 
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ARXPAO-CARD-NBR
-          example: 000540208ID5IXX3865
+          example: 000123456ID5IXX1234
     GlobalCardActivationRequest:
       required:
       - financialInstitutionId
@@ -7289,11 +7440,11 @@ components:
             Length: 2
             Statement number months
             VisionPLUS Service Data: ARXSDO-STATEMENT-NBRMONTHS
-        cashCreditLimit:
-          type: number
         debitAmount:
           type: number
         cashAvailable:
+          type: number
+        cashCreditLimit:
           type: number
     StatementInquiryResponse.CurrencyData:
       type: object
@@ -7638,39 +7789,44 @@ components:
         organizationNumber:
           type: integer
           description: |-
-            Length: 3
+            * Min Length: 1
+            * Max Length: 3
+
             Organization Number.
+
             VisionPLUS Service Data: ARXSVI-ORG
           format: int32
-          example: 807
+          example: 999
         cardNumber:
           maxLength: 19
           minLength: 19
           type: string
           description: |-
-            Length: 19
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
             VisionPLUS Service Data: ARXSVI-CARD-NBR
-          example: 000540208ID5IXX3865
+          example: 090157278ID5IXX8613
         channel:
           maxLength: 1
           minLength: 1
           type: string
           description: |-
-            Length: 1
-            Insurance status code. The values are:
-            * Space = Not used
-            * I = IVR
-            * A = ATM
-            * W = Web
+            Insurance status code.
+
+            Values:
+            * Space = Not used;
+            * I = IVR;
+            * A = ATM;
+            * W = Web.
+
             VisionPLUS Service Data: ARXSVI-CHANNEL
-          example: I
+          example: W
         keyAssociation:
           maxLength: 3
           minLength: 1
           type: string
-          description: "Length: 3\n\nKey Association. \"I\" + \"the key association\
-            \ defined for the customer during the implementation to the field keyAssociation.\"\
+          description: "Key Association. \"I\" + \"the key association defined for\
+            \ the customer during the implementation to the field keyAssociation.\"\
             \ \n\nVisionPLUS Service Data: ARXSVI-KEY-ASSOC"
           example: IYY
       description: Security Code Details Request
@@ -7680,73 +7836,48 @@ components:
         cardNumber:
           type: string
           description: |-
-            Length: 19
+            Max Length: 19
+
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
             VisionPLUS Service Data: ARXSVO-ACCT-NBR
-          example: 000540208ID5IXX3865
+          example: 090157278ID5IXX8613
         ud1ec:
           type: string
           description: |-
-            Length: 16
+            Max Length: 16
+
             Encrypted CVV OR CVC OR 3CSC value.
+
             VisionPLUS Service Data: ARXSVO-UD1-ENCRYPT
           example: 840B12345A690FBCA
         ud2ec:
           type: string
           description: |-
-            Length: 16
+            Max Length: 16
+
             Encrypted CVV2 OR CVC2 OR 4CSC value.
+
             VisionPLUS Service Data: ARXSVO-UD2-ENCRYPT
           example: 840B12345A690FBCA
         ud3ec:
           type: string
-          description: |
-            Length: 16
+          description: |-
+            Max Length: 16
+
             Encrypted iCVV OR iCVC OR iCSC value.
+
             VisionPLUS Service Data: ARXSVO-UD3-ENCRYPT
           example: 840B12345A690FBCA
         pinEncrypt:
           type: string
           description: |-
-            Length: 9
+            Max Length: 16
+
             Encrypted pin block.
+
             VisionPLUS Service Data: ARXSVO-PIN-ENCRYPT
-          example: 840B12345
-        encrypt3csc:
-          type: string
-          description: |-
-            Length: 9
-            Encrypted Security values for AMEX.
-            VisionPLUS Service Data: ARXSVO-3CSC-ENCRYPT
-          example: 840B12345
-        encrypt4csc:
-          type: string
-          description: |-
-            Length: 9
-            Encrypted Security values for AMEX.
-            VisionPLUS Service Data: ARXSVO-4CSC-ENCRYPT
-          example: 840B12345
-        encrypt5csc:
-          type: string
-          description: |-
-            Length: 17
-            Encrypted Security values for AMEX.
-            VisionPLUS Service Data: ARXSVO-5CSC-ENCRYPT
-          example: 840B12345A690FBCAC
-        encrypt5cscCntls:
-          type: string
-          description: |-
-            Length: 17
-            Encrypted Security values for AMEX.
-            VisionPLUS Service Data: ARXSVO-5CSC-CNTLS-ENCRYPT
-          example: 840B12345A690FBCAC
-        icsc:
-          type: string
-          description: |-
-            Length: 17
-            Encrypted Security values for AMEX.
-            VisionPLUS Service Data: ARXSVO-ICSC-ENCRYPT
-          example: 840B12345A690FBCAC
+          example: 840B12345A690FBCA
     InvalidPinAttemptsInquiryRequest:
       required:
       - cardNumber
@@ -7883,11 +8014,14 @@ components:
         organizationNumber:
           type: integer
           description: |-
-            Length: 3
+            * Min Length: 1
+            * Max Length: 3
+
             Organization Number.
+
             VisionPLUS Service Data: ARXGDI-ORG
           format: int32
-          example: 807
+          example: 999
           enum:
           - null
         cardNumber:
@@ -7895,66 +8029,92 @@ components:
           minLength: 19
           type: string
           description: |-
-            Length: 19
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
             VisionPLUS Service Data: ARXGDI-CARD-NBR
-          example: 000540208ID5IXX3865
+          example: 000123456ID5IXX1234
           enum:
           - "range[19,19]"
         channel:
           pattern: "^(I|A|W|\\s){1}$"
           type: string
           description: |-
-            Length: 1
-            Insurance status code. The values are:
-            * Space = Not used
-            * I = IVR
-            * A = ATM
-            * W = Web
+            * Min Length: 1
+            * Max Length: 1
+
+            Insurance status code.
+
+            Values:
+            * Space = Not used;
+            * I = IVR;
+            * A = ATM;
+            * W = Web.
+
             VisionPLUS Service Data: ARXGDI-CHANNEL
-          example: I
-          enum:
-          - "[I,A,W, ]"
+          example: W
         keyAssociation:
           maxLength: 3
           minLength: 1
           type: string
           description: |-
-            Length: 3
-            Key Association used to identify the working key.
+            Key Association. "I" + "the key association defined for the customer during the implementation to the field keyAssociation."
+
             VisionPLUS Service Data: ARXGDI-KEY-ASSOC
-          example: MB
+          example: IYY
         disableDCVV2:
           maxLength: 1
           minLength: 1
           pattern: "^(Y|N){1}$"
           type: string
           description: |-
-            Length: 1
-            Disable dCVV2 – Reset dCVV2 Method flag. The values are:
-            * Y = Disable dCVV2
-            * N - Do not disable dCVV2
+            Disable dCVV2 – Reset dCVV2 Method flag.
+
+            Values:
+            * Y = Disable dCVV2;
+            * N - Do not disable dCVV2.
+
             VisionPLUS Service Data: ARXGDI-DISABLE-DCVV2
-          example: "N"
-          enum:
-          - "[Y,N]"
+          example: "Y"
       description: Get Dynamic Values
     DynamicValuesResponse:
       type: object
       properties:
         cardNumber:
           type: string
-          description: "Unique identifier or token associated with the card number\
-            \ or payment instrument (FirstVision PAN Token). VisionPLUS Service Data:\
-            \ ARXGDO-CARD-NBR"
-          example: 000540208ID5IXX3865
+          description: |-
+            Max Length: 19
+
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+            VisionPLUS Service Data: ARXGDO-CARD-NBR
+          example: 000123456ID5IXX1234
         dcvv2:
           type: string
-          description: "dCVV2. VisionPLUS Service Data: ARXGDO-DCVV2"
-        dcvv2ExpiryMinutes:
-          type: string
+          description: |-
+            Max Length: 16
+
+            Dynamic CCV2.
+
+            VisionPLUS Service Data: ARXGDO-DCVV2
+          example: 73063B98B08E8AAA
         dcvv2GenerationTime:
           type: string
+          description: |-
+            Max Length: 7
+
+            Dynamic CCV2 counter (time of dynamic CVV2 generation in hhmmss).
+
+            VisionPLUS Service Data: ARXGDO-DCVV2-COUNTER
+          example: "125208"
+        dcvv2ExpiryMinutes:
+          type: string
+          description: |-
+            Max Length: 3
+
+            Dynamic CCV2 expiry (dynamic CVV2 expiry time in minutes).
+
+            VisionPLUS Service Data: ARXGDO-DCVV2-EXPIRY
+          example: "7"
     MassCardIssueAddRequestL8V3:
       required:
       - bankOrigin
@@ -9055,6 +9215,114 @@ components:
         currentChipSequenceNumber:
           type: integer
           format: int32
+    EncryptedCardPanRequest:
+      required:
+      - Card Function
+      - Card Number
+      - Organization
+      type: object
+      properties:
+        Organization:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: 'Identification number of the organization associated with
+            this User (Sign on name). '
+          example: "807"
+        Card Number:
+          maxLength: 32
+          minLength: 0
+          type: string
+          description: "The data displays is dependant on the type. Values can represent\
+            \ Card Number, Pan Token number or Encrypted Card Number. "
+          example: 000540208SYVT3Z2941
+        Card Sequence:
+          type: integer
+          description: "Identification number assigned to an Embosser record to distinguish\
+            \ between multiple cards issued with the same card number. Valid Values\
+            \ -0001-9998. Default is 1 \n"
+          format: int32
+          example: 1
+        Card Function:
+          pattern: ^(P|C|E)$
+          type: string
+          description: "Type of CARD PAN being used in this service. If input contains\
+            \ a 3DES encrypted card and not a PAN token. This should be decrypted\
+            \ to obtain clear card in service to read the card file. Card number in\
+            \ output should be sent after encryption. Valid Values: \nC - Card number\n\
+            P - Pan Token number\nE - Encrypted PAN number\n"
+          example: C
+      description: Encrypted Card Pan
+    EncryptedCardPanResponse:
+      type: object
+      properties:
+        Organization:
+          type: string
+          description: 'Identification number of the organization associated with
+            this User (Sign on name). '
+        'Encrypted Card Number ':
+          type: string
+          description: 'Encrypted Card Number '
+        'PAN token ':
+          type: string
+          description: "The data displays is dependant on the type. Values can represent\
+            \ Card Number, Pan Token number or Encrypted Card Number. "
+        'Card Sequence ':
+          type: integer
+          description: Identification number assigned to an Embosser record to distinguish
+            between multiple cards issued with the same card number.  Valid Values
+            -0001-9998
+          format: int32
+        'Card Expiration Date ':
+          type: integer
+          description: Date on which the card expires.
+          format: int32
+        Name on Card 1:
+          type: string
+          description: Name to be embossed on the first embossing line of the card.Enter
+            the name exactly as it is to appear on the card.
+        'Name on Card 2 ':
+          type: string
+          description: "Additional name to be embossed on the second embossing line\
+            \ of the card. Enter the name exactly as it is to appear on the card.\
+            \  For example, this field may contain the name of a business if the card\
+            \ is issued for a business account."
+        DDA Routing number:
+          type: integer
+          description: |
+            Dual-use field that accepts a nine-digit routing/transit number (ACH format) or a ten-digit bank ID (non-ACH format) to identify thefinancial institution to receive direct debit transactions for the account.
+            The format is:
+            ACH format = 0 + nine-digit routing/transit number
+            Non-ACH format = ten-digit bank ID
+          format: int32
+        DDA account number:
+          type: string
+          description: Demand deposit account (DDA) number associated with direct
+            debit processing.
+        Savings Routing Number:
+          type: integer
+          description: |
+            Dual-use field that accepts a nine-digit routing/transit number (ACH format) or a ten-digit bank ID (non-ACH format) to identify the financial institution to receive direct debit transactions for the account.
+            The format is:
+            ACH format = 0 + nine-digit routing/transit number
+            Non-ACH format = ten-digit bank ID
+          format: int32
+        Savings account number:
+          type: string
+          description: Savings account number associated with direct debit processing.
+        CMS Account number:
+          type: string
+          description: Identification number of the Account Base Segment record to
+            which CMS posts transactions that are received for this Embosser record.
+            The Embosser record is identified by the card number and record number.
+        CMS Customer number:
+          type: string
+          description: "Customer number that identifies the Customer Name/Address\
+            \ record which lists the mailing address of the cardholder. The customer\
+            \ number entered must identify an existing Customer Name/Address record\
+            \ previously added into CMS. If this field is blank, the name and mailing\
+            \ address in the Embosser record is used (NAME 1–2, ADDRESS LINE 1–2,\
+            \ CITY, ST/ PR, and POSTAL CODE on ARME02)."
     CardPanInquiryL8V2Request:
       required:
       - cardNumber
