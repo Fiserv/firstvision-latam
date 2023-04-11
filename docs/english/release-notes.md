@@ -1,8 +1,35 @@
 ---
-tags: [Release Notes, January, February, March]
+tags: [Release Notes, January, February, March, April]
 ---
 
 # Release Notes
+
+## April 2023
+
+### What's New?
+
+- N/A
+
+### Enhancements
+
+API's description improvement:
+- /cards/pin/security-codes
+- /cards/pin/
+- /cards/pin/status
+- /cards/pin/dynamic-values
+- /cards/pin/pin-change
+
+### Fixed
+
+Endpoints moved to version 1.2.0:
+- /account/balance
+- /cards/embosser/encrypted-card-pan
+
+### Deprecated
+
+- /account/status-update-L8V1
+
+---
 
 ## March 2023
 
