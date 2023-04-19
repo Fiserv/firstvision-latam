@@ -25,7 +25,7 @@ Endpoints movidos para a versão 1.2.0:
 - /account/balance
 - /cards/embosser/encrypted-card-pan
 
-### Descontinuado
+### Obsoleto
 
 - /account/status-update-L8V1
 
@@ -60,7 +60,6 @@ Endpoints movidos para a versão 1.2.0:
   - /account/transferP2P versão L8V2
   - /cards/pin/invalid-attempts version L8V1
 
-
 ### Problemas solucionados
 
 Endpoints movidos para a versão 1.2.0:
@@ -75,7 +74,7 @@ Endpoints movidos para a versão 1.1.0:
 - /account/FL-transferP2P
 - /cards/embosser/details-L8VB
 
-### Descontinuado
+### Obsoleto
 
 - /account/QRFL-balance
 - /cards/instant-card-L8V7
@@ -105,7 +104,7 @@ N/A
 
 - N/A
 
-### Descontinuado
+### Obsoleto
 
 - /account/card version R8V3
 
@@ -125,7 +124,7 @@ Códigos de erro, manipulação de erros e notificações.
 
 - N/A
 
-### Descontinuado
+### Obsoleto
 
 Antigo portal.
 
