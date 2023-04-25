@@ -18,14 +18,18 @@ API's description improvement:
 - /cards/pin/status
 - /cards/pin/dynamic-values
 - /cards/pin/pin-change
+- /cards/pin/validation
+- /account/add-L8V3
+- /cards/v3/embosser
 
 ### Fixed
 
 Endpoints moved to version 1.2.0:
 - /account/balance
 - /cards/embosser/encrypted-card-pan
+- /account/v2/accounts
 
-### Deprecated
+### Obsolete
 
 - /account/status-update-L8V1
 
@@ -76,7 +80,7 @@ Endpoints moved to version 1.1.0:
 - /account/FL-transferP2P
 - /cards/embosser/details-L8VB
 
-### Deprecated
+### Obsolete
 
 - /account/QRFL-balance
 - /cards/instant-card-L8V7
@@ -108,7 +112,7 @@ N/A
 
 - N/A
 
-### Deprecated
+### Obsolete
 
 - /account/card version R8V3
 
@@ -128,7 +132,7 @@ N/A
 
 - N/A
 
-### Deprecated
+### Obsolete
 
 - Old portal.
 
