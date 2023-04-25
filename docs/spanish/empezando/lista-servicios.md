@@ -4,9 +4,8 @@ tags: [Empezando, VMX, Lista de Servicios]
 
 # Lista de Servicios
 
-|                              Nombre de Endpoint                              |            Servicio            | Version |                                                API endpoint                                               | Method |
-|:----------------------------------------------------------------------------:|:------------------------------:|:-------:|:---------------------------------------------------------------------------------------------------------:|--------|
-| Cash-in & Cash-out Request                                                   | M.ASM.MONETARY.ACT             | L8V2    | /account/balance                                                                                          | PUT    |
+| Nombre de Endpoint                                                           | Servicio                       | Version | API endpoint                                                                                              | Método |
+|------------------------------------------------------------------------------|--------------------------------|---------|-----------------------------------------------------------------------------------------------------------|:------:|
 | Restructure and Refinance Inquiry                                            | M.CMS.REFINANCERESTRUCTURE.INQ | R8V1    | /account/{accountNumber}/balance                                                                          | GET    |
 | Direct Debit-Credit Inquiry                                                  | M.CMS.DIRECTDBCR.INQ           | R8V4    | /account/{accountNumber}/credit-debit                                                                     | GET    |
 | IBS Debit File Inquiry                                                       | M.CMS.IBS.DEBIT.INQ            | R8V1    | /account/{accountNumber}/ibs-debit                                                                        | GET    |
@@ -19,6 +18,7 @@ tags: [Empezando, VMX, Lista de Servicios]
 | Account Add                                                                  | M.CMS.ACCOUNT.ADD              | L8V3    | /account/add-L8V3                                                                                         | POST   |
 | Associated Parties Update                                                    | M.CMS.ASSOC.PARTIES.UPD        | R8V1    | /account/associatedParties                                                                                | PUT    |
 | Account Authorization Criteria Update                                        | M.CMS.ACCTEMB.AUTHCRIT.UPD     | R8V1    | /account/auth-criteria                                                                                    | PUT    |
+| Cash-in & Cash-out Request                                                   | M.ASM.MONETARY.ACT             | L8V2    | /account/balance                                                                                          | PUT    |
 | Account Balance Inquiry                                                      | M.CMS.BALANCE.INQ              | R8V1    | /account/balance/details                                                                                  | POST   |
 | Bank Account Update                                                          | M.CMS.BANK.ACCOUNT.UPD         | L8V2    | /account/bankAccount                                                                                      | PUT    |
 | Pending Bank, Branch And Store Update                                        | M.CMS.PEND.BANK.UPD            | R8V1    | /account/bank-branch-store                                                                                | PUT    |
@@ -160,6 +160,7 @@ tags: [Empezando, VMX, Lista de Servicios]
 | Device Token Binding Request                                                 | M.FAS.DEVICE.TOKEN.BINDING     | L8V1    | /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/deviceBinding                       | POST   |
 | Token Life Cycle                                                             |                                |         | /vtis/v1/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/lifecycle                           | POST   |
 | Token Notification Create                                                    | M.FAS.TOKEN.NOTIFICATION.UPD   | L8V1    | /vtis/v2/tokenRequestors/{tokenRequestorID}/tokens/{tokenReferenceID}/tokenChanged                        | POST   |
+| Account Information Inquiry                                                  | M.CMS.ACCOUNT.INQ              | L8VI    | /account/v2/accounts                                                                                      | GET    |
 
 ---
 
