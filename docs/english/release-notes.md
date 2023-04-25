@@ -18,12 +18,16 @@ API's description improvement:
 - /cards/pin/status
 - /cards/pin/dynamic-values
 - /cards/pin/pin-change
+- /cards/pin/validation
+- /account/add-L8V3
+- /cards/v3/embosser
 
 ### Fixed
 
 Endpoints moved to version 1.2.0:
 - /account/balance
 - /cards/embosser/encrypted-card-pan
+- /account/v2/accounts
 
 ### Obsolete
 
