@@ -18,12 +18,16 @@ Descripción de API's mejorada:
 - /cards/pin/status
 - /cards/pin/dynamic-values
 - /cards/pin/pin-change
+- /cards/pin/validation
+- /account/add-L8V3
+- /cards/v3/embosser
 
 ### Problemas solucionados
 
 Endpoints se movieron a la versión 1.2.0:
 - /account/balance
 - /cards/embosser/encrypted-card-pan
+- /account/v2/accounts
 
 ### Obsoleto
 
