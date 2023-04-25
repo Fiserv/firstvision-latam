@@ -10,14 +10,11 @@ paths:
     put:
       tags:
       - Account
-      summary: "Update Account qualification. (VMX Service: M.CMS.ACCT.CLOSE.CHGOFF,\
-        \ R8V2)"
-      description: "Updates the value of the Account qualification field. Emulates\
-        \ the functionality used to update the account status, from active to closed,\
-        \ in the same manner as the STATUS field on online screen ARMB01. In addition,\
-        \ this service provides the ability to initiate charge-off in the same manner\
-        \ as setting the C/O STAT field to a value of 3 (manual) on the Account Base\
-        \ Segment screen (ARMB01). \nVMX Service: M.CMS.ACCT.CLOSE.CHGOFF, R8V2"
+      summary: "Update Account qualification. VMX Service: M.CMS.ACCT.CLOSE.CHGOFF,\
+        \ R8V2"
+      description: "Emulates the functionality used to update the account status from\
+        \ active to closed. In addition, this service provides the ability to initiate\
+        \ charge-off in. \n\nVMX Service: M.CMS.ACCT.CLOSE.CHGOFF, R8V2"
       operationId: Account Qualification Update
       parameters:
       - name: apikey
@@ -40,26 +37,12 @@ paths:
               $ref: '#/components/schemas/UpdateQualificationRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: |
             VPL5SAAI6E - GQ FIELD MUST BE SPACE OR A-Z
@@ -90,6 +73,20 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -128,24 +125,6 @@ paths:
               $ref: '#/components/schemas/AccountForBlockCodeUpdateRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: |-
             VPL5SAB05S - CANNOT SET A BLOCK CODE ON A BILLING ACCOUNT
@@ -166,10 +145,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -217,28 +214,28 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "400":
+          description: Bad Request
         "405":
           description: Method Not Allowed
-        "401":
-          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -278,26 +275,18 @@ paths:
               $ref: '#/components/schemas/InstantCardAddL8V7Request'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             Unprocessable Entity
@@ -328,8 +317,16 @@ paths:
             VPL5SIC30S - ADMIN BRANCH SHOULD BE NUMERIC AND GREATER THAN 0
           content:
             application/json: {}
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -369,20 +366,6 @@ paths:
               $ref: '#/components/schemas/InstantCardAddRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "422":
           description: |-
             VPL5SIC24S - MBS SWITCH IS OFF
@@ -395,14 +378,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "400":
+          description: Bad Request
         "405":
           description: Method Not Allowed
-        "401":
-          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -444,14 +441,24 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -476,16 +483,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
@@ -526,28 +523,28 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "400":
+          description: Bad Request
         "405":
           description: Method Not Allowed
-        "401":
-          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998

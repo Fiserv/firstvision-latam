@@ -12,8 +12,8 @@ paths:
       - Customers
       summary: "Add new Customer. VMX Service: M.CMS.CUSTOMER.ADD, R8V4"
       description: "Creates a Customer number and adds demographical information to\
-        \ the Customer record. \nVMX Service: M.CMS.CUSTOMER.ADD, R8V4"
-      operationId: New Customer Add
+        \ the Customer record. \n\nVMX Service: M.CMS.CUSTOMER.ADD, R8V4"
+      operationId: Customer Add
       parameters:
       - name: apikey
         in: header
@@ -35,24 +35,8 @@ paths:
               $ref: '#/components/schemas/AddCustomerRequest'
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SNA03S – N/A SERVICE INPUT AREA IS NOT OF CORRECT SIZE
@@ -116,17 +100,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "403":
           description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddCustomerResponse'
-        "404":
-          description: Not Found
-      x-proxy-name: New Customer Add
+      x-proxy-name: Customer Add
       x-group-name: Customers
 components:
   schemas:
