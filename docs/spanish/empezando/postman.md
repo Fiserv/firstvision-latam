@@ -8,6 +8,8 @@ Esta sección tiene como objetivo demostrar la configuración inicial que se deb
 
 Si no ha utilizado la herramienta Postman como cliente HTTP para probar solicitudes, acceda al enlace oficial de la herramienta para obtener más información: 
  [Postman Official](https://www.postman.com/)
+ 
+La colección Postman se compartirá temporalmente con cada cliente de acuerdo con sus necesidades.
 
 ## Importar Colección
 
