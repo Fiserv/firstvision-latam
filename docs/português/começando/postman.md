@@ -9,6 +9,8 @@ Esta seção tem como objetivo demonstrar a configuração inicial que deve ser 
 Caso você não tenha utilizado a ferramenta Postman como cliente HTTP para testar requisições, acesse o link oficial da ferramenta para maiores informações: 
  [Postman Official](https://www.postman.com/)
 
+A Coleção do Carteiro será compartilhada temporariamente com cada cliente de acordo com suas necessidades.
+
 ## Importar coleção
 
 ### 1. Abra o Postman e clique no botão importar para abrir a coleção fornecida
