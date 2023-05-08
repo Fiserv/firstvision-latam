@@ -1,0 +1,2731 @@
+openapi: 3.0.1
+info:
+  title: LATAM Issuing APIs
+  description: APIs to VMX Server
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licences/LICENSE-2.0
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /account/details:
+    post:
+      tags:
+      - Account
+      summary: "Find Account details (Account status). (VMX Service: M.CMS.ACCOUNT.INQ,\
+        \ L8V5)"
+      description: "Provides information on the status of the Account, such as, creating\
+        \ dates, block codes, credit limit and others. If the Account has been transferred,\
+        \ the current Account number must be provided. This API does not automatically\
+        \ switch to the new Account. This API can be called with an Account number\
+        \ or a card number. \nVMX Service: M.CMS.ACCOUNT.INQ, L8V5"
+      operationId: Find Account details (Account status)
+      parameters:
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountForDetailsRequest'
+            examples:
+              Request 1:
+                description: Request 1
+                value:
+                  accountNumber: "9500500043408133770"
+                  organizationNumber: 951
+              Request 2:
+                description: Request 2
+                value:
+                  accountNumber: "9500500043408133770"
+                  organizationNumber: 950
+                  foreignUse: "1"
+              Request 3:
+                description: Request 3
+                value:
+                  accountNumber: "9500500043408133770"
+                  organizationNumber: 950
+                  foreignUse: "0"
+      responses:
+        "422":
+          description: |-
+            VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
+            VPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
+            VPL5SAI05E - INVALID FOREIGN USE IND SPECIFIED - VALID VALUES ARE SPACE 0 OR 1
+            VPL5SAI07S – ORGANIZATION NOT FOUND ON FILE
+            VPL5SAI08S – FOREIGN ORGANIZATION NOT FOUND ON FILE
+            VPL5SAI09S - ACCOUNT NUMBER NOT FOUND
+            VPL5SAI10S - ACCOUNT NUMBER NOT FOUND ON FILE
+            VPL5SAI11S - LOGO NOT FOUND ON FILE
+            VPL5SAI12S - CUSTOMER NOT FOUND ON FILE
+            VPL5SAI13I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
+            VPL5SAI13S - ACCOUNT SECONDARY BASE SEGMENT RECORD NOT FOUND
+            VPL5SAIZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+            VPL5SAIZ5S - REQUESTED ORGANIZATION NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountForDetailsResponse'
+              examples:
+                Response 1:
+                  description: Response 1
+                  value:
+                    hasError: false
+                    errors: []
+                    data:
+                      currencyData:
+                        currCode: 484
+                        currencyNumberOfDecimals: 2
+                      organizationNumber: 950
+                      accountOrCardNumber: "9500500043408133770"
+                      logo: 50
+                      foreignUse: Local Account
+                      currentBalance: -3082377.43
+                      availableCreditLimit: 3082377.43
+                      cashBalance: 0.0
+                      cashCreditLimit: 0.0
+                      loanBalance: 0.0
+                      loanCreditLimit: 0.0
+                      lastPaymentAmount: 0.0
+                      datePaymentDue: 2023-05-05
+                      paymentTotalAmountDue: 0.0
+                      reservedData:
+                        reservedAmount1: 0.0
+                        reservedAmount2: 0.0
+                        reservedAmount3: 0.0
+                        reservedAmount4: 0.0
+                Response 2:
+                  description: Response 2
+                  value:
+                    hasError: false
+                    errors: []
+                    data:
+                      currencyData:
+                        currCode: 484
+                        currencyNumberOfDecimals: 2
+                      organizationNumber: 950
+                      accountOrCardNumber: "9500500043408133770"
+                      logo: 50
+                      foreignUse: Local Account
+                      currentBalance: -3082377.43
+                      availableCreditLimit: 3082377.43
+                      cashBalance: 0.0
+                      cashCreditLimit: 0.0
+                      loanBalance: 0.0
+                      loanCreditLimit: 0.0
+                      lastPaymentAmount: 0.0
+                      datePaymentDue: 2023-05-05
+                      paymentTotalAmountDue: 0.0
+      x-proxy-name: Find Account details
+      x-group-name: Account
+      x-child-product-name: Accounts
+components:
+  schemas:
+    AccountForDetailsRequest:
+      required:
+      - accountNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization Number.
+
+            VisionPLUS Service Data: AZXAII-ORG
+          format: int32
+          example: 807
+        accountNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: |-
+            Length: 19
+
+            Account number or card number.
+
+            VisionPLUS Service Data: AZXAII-ACCT
+          example: "4513074002573466583"
+        foreignUse:
+          type: string
+          description: |-
+            Length: 1
+
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
+
+            The default is to the local account.
+
+            VisionPLUS Service Data: AZXAII-FOREIGN-USE
+          example: "0"
+      description: Account Detail Request
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    AccountForDetailsResponse:
+      type: object
+      properties:
+        currencyNumberOfDecimal:
+          type: integer
+          description: Currency number of decimal.
+          format: int32
+        currencyCode:
+          type: integer
+          description: |-
+            Length: 1
+
+            Currency code.
+
+            VisionPLUS Service Data: AZXAIO-CURRENCY-CODE
+          format: int32
+        foreignUse:
+          type: integer
+          description: |-
+            Length: 1
+
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
+
+            The default is to the local account.
+
+            VisionPLUS Service Data: AZXAIO-FOREIGN-USE
+          format: int32
+        accountData:
+          $ref: '#/components/schemas/AccountForDetailsResponse.AccountData'
+        customerData:
+          $ref: '#/components/schemas/AccountForDetailsResponse.CustomerData'
+        qualification:
+          type: string
+          description: |-
+            Length: 1
+
+            Global qualification.
+    AccountForDetailsResponse.AccountData:
+      type: object
+      properties:
+        organization:
+          type: integer
+          description: |-
+            Length: 3
+
+            Organization.
+
+            VisionPLUS Service Data: AZXAIO-ORG
+          format: int32
+          example: 890
+        accountNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Account.
+
+            VisionPLUS Service Data: AZXAIO-ACCT
+        logo:
+          type: integer
+          description: |-
+            Length: 3
+
+            Logo.
+
+            VisionPLUS Service Data: AZXAIO-LOGO
+          format: int32
+        addStatus:
+          type: integer
+          description: |-
+            Length: 2
+
+            Add status.
+
+            VisionPLUS Service Data: AZXAIO-ADD-STATUS
+          format: int32
+        shortName:
+          type: string
+          description: |-
+            Length: 20
+
+            Short name.
+
+            VisionPLUS Service Data: AZXAIO-SHORT-NAME
+        customerNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Customer number.
+
+            VisionPLUS Service Data: AZXAIO-CUST-NBR
+        alternateCustomerNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Alternate customer number.
+
+            VisionPLUS Service Data: AZXAIO-ALT-CUST-NBR
+        userAccountNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            User account number.
+
+            VisionPLUS Service Data: AZXAIO-USER-ACCT-NBR
+        residenceId:
+          type: string
+          description: |-
+            Length: 3
+
+            Residence ID.
+
+            VisionPLUS Service Data: AZXAIO-STATE-OF-RESID
+        issuanceId:
+          type: string
+          description: |-
+            Length: 3
+
+            Issuance ID.
+
+            VisionPLUS Service Data: AZXAIO-STATE-OF-ISSUE
+        accountKey:
+          $ref: '#/components/schemas/AccountKey'
+        accountType:
+          type: string
+          description: |-
+            Length: 1
+
+            Account type.
+
+            VisionPLUS Service Data: AZXAIO-ACCT-TYPE
+        internalStatus:
+          type: string
+          description: |-
+            Length: 1
+
+            Internal status.
+
+            VisionPLUS Service Data: AZXAIO-INT-STATUS
+        chargeOffStatus:
+          type: string
+          description: |-
+            Length: 1
+
+            Charge-off status.
+
+            VisionPLUS Service Data: AZXAIO-CHGOFF-STATUS
+        overLimitFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Overlimit flag.
+
+            VisionPLUS Service Data: AZXAIO-OVERLIMIT-FLAG
+        overLimitFeeIndicator:
+          type: string
+          description: |-
+            Length: 1
+
+            Waive overlimit fee indicator. The values are:
+
+            0 = Do not waive the overlimit fee
+
+            1 = Waive the overlimit fee
+
+            VisionPLUS Service Data: AZXAIO-CYCLE-OVRLIM-FEE-IND
+        numberOfCyclesOverLimit:
+          type: integer
+          description: |-
+            Length: 3
+
+            Number of cycles overlimit.
+
+            VisionPLUS Service Data: AZXAIO-OVRLIM-NBR-CYCLES
+          format: int32
+        conditionOfAccount:
+          type: integer
+          description: |-
+            Length: 1
+
+            Condition of account.
+
+            VisionPLUS Service Data: AZXAIO-COND-OF-ACCT
+          format: int32
+        blockCode1:
+          type: string
+          description: |-
+            Length: 1
+
+            Block code 1.
+
+            VisionPLUS Service Data: AZXAIO-BLOCK-CODE-1
+        blockCode1Priority:
+          type: string
+          description: |-
+            Length: 2
+
+            Priority level used to control assignment of block code 1.
+
+            VisionPLUS Service Data: AZXAIO-BLOCK-CODE-1-PRIORITY
+        blockCode2:
+          type: string
+          description: |-
+            Length: 1
+
+            Block code 2.
+
+            VisionPLUS Service Data: AZXAIO-BLOCK-CODE-2
+        blockCode2Priority:
+          type: string
+          description: |-
+            Length: 2
+
+            Priority level used to control assignment of block code 2.
+
+            VisionPLUS Service Data: AZXAIO-BLOCK-CODE-2-PRIORITY
+        issueFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Issue flag.
+
+            VisionPLUS Service Data: AZXAIO-ISSUE-FLAG
+        cardUsageFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Card usage flag.
+
+            VisionPLUS Service Data: AZXAIO-CARD-USAGE-FLAG
+        percentageLevel:
+          type: string
+          description: Percentage level.
+        percentageLevelStartDate:
+          type: string
+          description: Percentage level start date.
+          format: date
+        percentageLevelExpirationDate:
+          type: string
+          description: Percentage level expiration date.
+          format: date
+        percentageId:
+          type: string
+          description: Percentage id.
+        percentageStartDate:
+          type: string
+          description: Percentage start date.
+          format: date
+        percentageExpirationDate:
+          type: string
+          description: Percentage expiration date.
+          format: date
+        accountControlTableOverride:
+          type: integer
+          description: |-
+            Length: 3
+
+            Account control table override.
+
+            VisionPLUS Service Data: AZXAIO-CTL-TBL-OVRRD
+          format: int32
+        billingCycle:
+          type: string
+          description: |-
+            Length: 2
+
+            Billing cycle.
+
+            VisionPLUS Service Data: AZXAIO-BILLING-CYCLE
+        currentBalance:
+          type: number
+          description: |-
+            Length: 17
+
+            Current balance.
+
+            VisionPLUS Service Data: AZXAIO-CURR-BAL
+        statementFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Statement flag.
+
+            VisionPLUS Service Data: AZXAIO-STATEMENT-FLAG
+        statementFrequency:
+          type: integer
+          description: |-
+            Length: 2
+
+            Statement frequency.
+
+            VisionPLUS Service Data: AZXAIO-STMT-FREQ
+          format: int32
+        returnMailCounter:
+          type: integer
+          description: |-
+            Length: 2
+
+            Return mail counter.
+          format: int32
+        returnMailDate:
+          type: string
+          description: |-
+            Length: 7
+
+            Return mail date.
+
+            VisionPLUS Service Data: AZXAIO-RTN-MAIL-DATE
+          format: date
+        storeOrganization:
+          type: integer
+          description: |-
+            Length: 3
+
+            Store organization.
+
+            VisionPLUS Service Data: AZXAIO-SI-ORG
+          format: int32
+        storeNumber:
+          type: number
+          description: |-
+            Length: 9
+
+            Store number.
+
+            VisionPLUS Service Data: AZXAIO-SI-NBR
+        currentCollector:
+          type: string
+          description: |-
+            Length: 3
+
+            Current collector.
+
+            VisionPLUS Service Data: AZXAIO-CURR-COL
+        permanentCollector:
+          type: string
+          description: |-
+            Length: 3
+
+            Permanent collector.
+
+            VisionPLUS Service Data: AZXAIO-PERM-COLL
+        collectionReason:
+          type: integer
+          description: Collection reason.
+          format: int32
+        collateralCode:
+          type: string
+          description: |-
+            Length: 2
+
+            Collateral code.
+
+            VisionPLUS Service Data: AZXAIO-COLAT-CODE
+        adverseActionData1:
+          type: string
+          description: |-
+            Length: 2
+
+            Adverse action data 1.
+
+            VisionPLUS Service Data: AZXAIO-ADVERSE-ACTN-1
+        adverseActionData2:
+          type: string
+          description: |-
+            Length: 2
+
+            Adverse action data 2.
+
+            VisionPLUS Service Data: AZXAIO-ADVERSE-ACTN-2
+        adverseActionData3:
+          type: string
+          description: |-
+            Length: 2
+
+            Adverse action data 3.
+
+            VisionPLUS Service Data: AZXAIO-ADVERSE-ACTN-3
+        ownerFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Owner flag.
+
+            VisionPLUS Service Data: AZXAIO-OWNER-FLAG
+        employeeCode:
+          type: string
+          description: |-
+            Length: 2
+
+            Employee code.
+
+            VisionPLUS Service Data: AZXAIO-EMPLOYEE-CODE
+        promotionCode:
+          type: string
+          description: |-
+            Length: 20
+
+            Promotion code.
+
+            VisionPLUS Service Data: AZXAIO-PROMO-DATA
+        waiveLateCharges:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive late charges.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-LATE-CHG
+          format: int32
+        waiveLateNotices:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive late notices.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-LATE-NOTC
+          format: int32
+        waiveInterestCharges:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive interest charges.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-INTR-CHG
+          format: int32
+        waiveServiceFees:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive service fees.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-FEE-CHG
+          format: int32
+        waiveLetterCharges:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive letter charges.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-LTR-CHG
+          format: int32
+        waiveOverLimitFees:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive overlimit fees.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-OVLM
+          format: int32
+        waiveOverLimitNotice:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive overlimit notice.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-OVLM-NOTC
+          format: int32
+        waiveFeesIndicator:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive NSF fees indicator.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-NSF-FEE-IND
+          format: int32
+        waiveCashAdvanceFee:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive cash advance fee.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-CASH-ADV-FEE
+          format: int32
+        waiveUserFee1:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive user fee 1.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-USER-FEE-1
+          format: int32
+        waiveUserFee2:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive user fee 2.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-USER-FEE-2
+          format: int32
+        waiveUserFee3:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive user fee 3.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-USER-FEE-3
+          format: int32
+        waiveUserFee4:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive user fee 4.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-USER-FEE-4
+          format: int32
+        waiveUserFee5:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive user fee 5.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-USER-FEE-5
+          format: int32
+        waiveUserFee6:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive user fee 6.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-USER-FEE-6
+          format: int32
+        waiveCardFeeIndicator:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive card fee indicator.
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-CARD-FEE-IND
+          format: int32
+        waiveDormancyFees:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive dormancy fees (prepaid accounts only).
+          format: int32
+        waiveRefundFees:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive refund fees (prepaid accounts only).
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-REFUND-FEE
+          format: int32
+        waiveStatementFees:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive statement fees (prepaid accounts only).
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-STMT-FEE
+          format: int32
+        cycleSpendFeeFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Cycle spend fee flag.
+
+            The values are:
+
+            0 = Charge cycle spend fee
+
+            1 = Waive cycle spend fee
+
+            VisionPLUS Service Data: AZXAIO-CYCLE-SPEND-FEE-FLAG
+        waiveMoratoriumPlanInterest:
+          type: integer
+          description: |-
+            Length: 1
+
+            Waive moratorium plan interest.
+
+            VisionPLUS Service Data: ARXAIO-WAIVE-MORA-INT
+          format: int32
+        duplicateStatementAddressFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Duplicate statement address flag.
+
+            VisionPLUS Service Data: AZXAIO-DUP-STMT-ADDR-FLAG
+        directDebitPaymentReversalCounter:
+          type: string
+          description: |-
+            Length: 1
+
+            Direct debit payment reversal counter.
+
+            VisionPLUS Service Data: AZXAIO-DD-PMT-REV-CTR
+        creditBureauCreditScore:
+          type: number
+          description: |-
+            Length: 5
+
+            Credit bureau credit score.
+
+            VisionPLUS Service Data: AZXAIO-CB-CR-SCORE
+        applicationCreditScore:
+          type: number
+          description: |-
+            Length: 5
+
+            Application credit score.
+
+            VisionPLUS Service Data: AZXAIO-APPL-CR-SCORE
+        miscellaneousCreditScore:
+          type: number
+          description: |-
+            Length: 5
+
+            Miscellaneous credit score.
+
+            VisionPLUS Service Data: AZXAIO-MISC-CR-SCORE
+        lastCreditClass:
+          type: string
+          description: |-
+            Length: 2
+
+            Last credit class.
+
+            VisionPLUS Service Data: AZXAIO-LAST-CR-CLASS
+        creditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Credit limit.
+
+            VisionPLUS Service Data: AZXAIO-CRLIM
+        lastCreditLimitAssignedToTheAccount:
+          type: number
+          description: |-
+            Length: 17
+
+            Last credit limit assigned to the account.
+
+            VisionPLUS Service Data: AZXAIO-LAST-CRLIM
+        income:
+          type: number
+          description: |-
+            Length: 17
+
+            Income.
+
+            VisionPLUS Service Data: AZXAIO-INCOME
+        numberOfUnblockedCards:
+          type: number
+          description: |-
+            Length: 5
+
+            Number of unblocked cards.
+
+            VisionPLUS Service Data: AZXAIO-NBR-UNBLKED-CARDS
+        cycleToDatePayment:
+          type: number
+          description: |-
+            Length: 17
+
+            Cycle-to-date payment.
+
+            VisionPLUS Service Data: AZXAIO-PMT-CTD
+        paymentSkipFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Payment skip flag.
+
+            VisionPLUS Service Data: AZXAIO-PMT-SKIP-FLAG
+        paymentRecency:
+          type: integer
+          description: |-
+            Length: 1
+
+            Payment recency.
+
+            VisionPLUS Service Data: AZXAIO-PMT-RECENCY
+          format: int32
+        paymentCycleDue:
+          type: integer
+          description: |-
+            Length: 1
+
+            Payment cycle due.
+
+            VisionPLUS Service Data: AZXAIO-PMT-CYCLE-DUE
+          format: int32
+        paymentAmountPrepaid:
+          type: number
+          description: |-
+            Length: 17
+
+            Payment amount prepaid.
+
+            VisionPLUS Service Data: AZXAIO-PMT-AMT-PREPAID
+        totalAmountDue:
+          type: number
+          description: |-
+            Length: 17
+
+            Total amount due.
+
+            VisionPLUS Service Data: AZXAIO-PMT-TOT-AMT-DUE
+        delinquencyData:
+          $ref: '#/components/schemas/AccountForDetailsResponse.AccountData.DelinquencyData'
+        amountOfLastPayment:
+          type: number
+          description: |-
+            Length: 17
+
+            Amount of last payment.
+
+            VisionPLUS Service Data: AZXAIO-PMT-LAST-AMT
+        projectedAchAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Projected ACH amount.
+
+            VisionPLUS Service Data: AZXAIO-PROJ-ACH-PMT
+        amountOfLastDebit:
+          type: number
+          description: |-
+            Length: 17
+
+            Amount of last debit.
+
+            VisionPLUS Service Data: AZXAIO-AMT-LAST-DB
+        availableCredit:
+          type: number
+          description: |-
+            Length: 17
+
+            Available credit.
+
+            VisionPLUS Service Data: AZXAIO-AVAIL-CREDIT
+        amountOfLastPurchase:
+          type: number
+          description: |-
+            Length: 17
+
+            Amount of last purchase.
+
+            VisionPLUS Service Data: AZXAIO-AMT-LAST-PURCH
+        lastYearToDateInterest:
+          type: number
+          description: |-
+            Length: 17
+
+            Last YTD interest.
+
+            VisionPLUS Service Data: AZXAIO-LAST-YTD-IN
+        currentYearToDateInterestPaid:
+          type: number
+          description: |-
+            Length: 17
+
+            Current YTD interest paid.
+
+            VisionPLUS Service Data: AZXAIO-CURR-YTD-INT-PAID
+        disputedItemsAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Disputed items amount.
+
+            VisionPLUS Service Data: AZXAIO-AMT-DISPU-ITEMS
+        chargeOffReason:
+          type: string
+          description: |-
+            Length: 2
+
+            Charge-off reason.
+
+            VisionPLUS Service Data: AZXAIO-CHGOFF-REASON
+        interestEnrollmentState:
+          type: string
+          description: |-
+            Length: 3
+
+            Interest enrollment state.
+
+            VisionPLUS Service Data: AZXAIO-INTR-STATE
+        codeIdentifiesOfficerResponsibleForAccount:
+          type: string
+          description: |-
+            Length: 3
+
+            Code that identifies the officer responsible for the account.
+
+            VisionPLUS Service Data: AZXAIO-OFFICER-CODE
+        memoDebitAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Memo debit amount.
+
+            VisionPLUS Service Data: AZXAIO-AMT-MEMO-DB
+        memoCreditAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Memo credit amount.
+
+            VisionPLUS Service Data: AZXAIO-AMT-MEMO-CR
+        warningCode:
+          $ref: '#/components/schemas/AccountForDetailsResponse.AccountData.WarningCode'
+        cashAvailableCreditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Cash available credit limit.
+
+            VisionPLUS Service Data: AZXAIO-CASH-AVAIL-CREDIT
+        cashCreditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Cash available credit limit.
+
+            VisionPLUS Service Data: AZXAIO-CASH-AVAIL-CREDIT
+        numberOfTimesInCollections:
+          type: number
+          description: |-
+            Length: 3
+
+            Number of times in collections.
+
+            VisionPLUS Service Data: AZXAIO-CTA-TIMES-IN-COLL
+        pendingPercentage:
+          type: string
+          description: Pending percentage.
+        cashPlanNumber:
+          type: number
+          description: |-
+            Length: 5
+
+            Cash plan number.
+
+            VisionPLUS Service Data: AZXAIO-CASH-PLAN-NBR
+        retailPlanNumber:
+          type: number
+          description: |-
+            Length: 5
+
+            Retail plan number.
+
+            VisionPLUS Service Data: AZXAIO-RETAIL-PLAN-NBR
+        localUseIndicator:
+          type: integer
+          description: |-
+            Length: 1
+
+            Local use indicator.
+
+            VisionPLUS Service Data: AZXAIO-LOCAL-USE-IND
+          format: int32
+        secured:
+          type: integer
+          description: |-
+            Length: 1
+
+            Secured.
+
+            VisionPLUS Service Data: AZXAIO-SECUR
+          format: int32
+        collateral:
+          type: integer
+          description: |-
+            Length: 2
+
+            Collateral.
+
+            VisionPLUS Service Data: AZXAIO-CLLTRL
+          format: int32
+        relationshipNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Relationship number.
+
+            VisionPLUS Service Data: AZXAIO-REL-NBR
+        relationshipCardScheme:
+          type: integer
+          description: |-
+            Length: 1
+
+            Relationship card scheme.
+
+            VisionPLUS Service Data: AZXAIO-REL-CARD-SCHEME
+          format: int32
+        relationshipPrimaryAccountFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Relationship primary account flag.
+
+            VisionPLUS Service Data: AZXAIO-REL-PRIM-ACCT-FLAG
+        creditBureauSpecialComment:
+          type: string
+          description: |-
+            Length: 2
+
+            Credit bureau special comment.
+
+            VisionPLUS Service Data: AZXAIO-CB-SPEC-COMMENT
+        temporaryCreditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Temporary credit limit.
+
+            VisionPLUS Service Data: AZXAIO-TEMP-CRLIM
+        expirationDateOfTemporaryCreditLimit:
+          type: string
+          description: |-
+            Length: 7
+
+            Expiration date of temporary credit limit.
+
+            VisionPLUS Service Data: AZXAIO-DATE-TEMP-CRLIM-EXP
+          format: date
+        customerOrganization:
+          type: integer
+          description: |-
+            Length: 3
+
+            Customer organization.
+
+            VisionPLUS Service Data: AZXAIO-CUSTOMER-ORG
+          format: int32
+        loanAvailableLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Loan available limit.
+
+            VisionPLUS Service Data: AZXAIO-LOAN-AVAIL
+        billingCurrency:
+          type: number
+          description: |-
+            Length: 3
+
+            Billing currency.
+
+            VisionPLUS Service Data: AZXAIO-BILLING-CURR
+        numberOfReturnedPayments:
+          type: number
+          description: |-
+            Length: 3
+
+            Number of returned payments.
+
+            VisionPLUS Service Data: AZXAIO-NBR-RTN-PMTS
+        loanBalance:
+          type: number
+          description: |-
+            Length: 17
+
+            Loan balance.
+
+            VisionPLUS Service Data: AZXAIO-LOAN-BALANCE
+        loanCreditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Loan credit limit.
+
+            VisionPLUS Service Data: AZXAIO-LOAN-CRLIM
+        lastCashAdvanceAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Last cash advance amount.
+
+            VisionPLUS Service Data: AZXAIO-LAST-CASH-ADVAMOUNT
+        prepaidType:
+          type: integer
+          description: |-
+            Length: 1
+
+            Prepaid type.
+          format: int32
+        dateOfApplication:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of application.
+
+            VisionPLUS Service Data: AZXAIO-DATE-APPLI
+          format: date
+        dateOpened:
+          type: string
+          description: |-
+            Length: 8
+
+            Date opened.
+
+            VisionPLUS Service Data: AZXAIO-DATE-OPENED
+          format: date
+        dateLastCreditBureauReport:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of the last credit bureau report.
+
+            VisionPLUS Service Data: AZXAIO-DATE-BUREAU
+          format: date
+        blockCode1Date:
+          type: string
+          description: |-
+            Length: 8
+
+            Block code 1 date.
+
+            VisionPLUS Service Data: AZXAIO-DATE-BLOCK-CODE-1
+          format: date
+        blockCode2Date:
+          type: string
+          description: |-
+            Length: 8
+
+            Block code 2 date.
+
+            VisionPLUS Service Data: AZXAIO-DATE-BLOCK-CODE-2
+          format: date
+        dateLastStatusChange:
+          type: string
+          description: |-
+            Length: 8
+
+            Date last status change.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-STAT-CHG
+          format: date
+        dateAccountClosed:
+          type: string
+          description: |-
+            Length: 8
+
+            Date account closed.
+
+            VisionPLUS Service Data: AZXAIO-DATE-CLOSED
+          format: date
+        chargeOffDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Charge-off date.
+
+            VisionPLUS Service Data: AZXAIO-DATE-CGOF
+          format: date
+        cardFeeDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Card fee date.
+
+            VisionPLUS Service Data: AZXAIO-DATE-CARD-FEE
+          format: date
+        dateOfLastPurchase:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last purchase.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-PURCH
+          format: date
+        dateOfLastReturn:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last return.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-RETURN
+          format: date
+        dateOfLastDelinquency:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last delinquency.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-DELQ
+          format: date
+        dateOfLastAction:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last action.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-ACT
+          format: date
+        dateOfLastPaymentReversal:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last payment reversal.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-REV-PMT
+          format: date
+        dateCreditLimitWasAssignedToTheAccount:
+          type: string
+          description: |-
+            Length: 8
+
+            Date credit limit was assigned to the account.
+
+            VisionPLUS Service Data: AZXAIO-DATE-CRLIM
+          format: date
+        expirationDateOfAchPayment:
+          type: string
+          description: |-
+            Length: 8
+
+            Expiration date of ACH payment.
+
+            VisionPLUS Service Data: AZXAIO-DATE-ACH-PMT-EXPR
+          format: date
+        dateOfLastStatement:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last statement.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-STMT
+          format: date
+        dateOfNextStatement:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of next statement.
+
+            VisionPLUS Service Data: AZXAIO-DATE-NEXT-STMT
+          format: date
+        dateOfLastPaymentDue:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last payment due.
+
+            VisionPLUS Service Data: AZXAIO-DATE-PMT-DUE
+          format: date
+        dateOfLastPayment:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last payment.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-PMT
+          format: date
+        dateOfLastCreditBalance:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last credit balance.
+
+            VisionPLUS Service Data: AZXAIO-DATE-CR-BAL
+          format: date
+        dateOfLastReturnedCheck:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last returned check.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-RTN-CHECK
+          format: date
+        dateOfLastDebit:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last debit.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-DB
+          format: date
+        dateOfLastCredit:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last credit.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-CR
+          format: date
+        dateOfLastCreditLimitChange:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of last credit limit change.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-CRLIM
+          format: date
+        dateOfTheLastRateChange:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of the last rate change.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LAST-RATE-CHG
+          format: date
+        dateAccountWentIntoCollections:
+          type: string
+          description: |-
+            Length: 8
+
+            Date account went into collections.
+
+            VisionPLUS Service Data: AZXAIO-DATE-INTO-COL
+          format: date
+        accountMakerDateOfBirth:
+          type: string
+          description: |-
+            Length: 8
+
+            Account maker’s date of birth.
+
+            VisionPLUS Service Data: AZXAIO-MAKER-DOB
+          format: date
+        accountComakerDateOfBirth:
+          type: string
+          description: |-
+            Length: 8
+
+            Account comaker’s date of birth.
+
+            VisionPLUS Service Data: AZXAIO-COMAKER-DOB
+          format: date
+        effectiveDateOfAccountTransfer:
+          type: string
+          description: |-
+            Length: 8
+
+            Effective date of account transfer.
+          format: date
+        dateTheAccountWasReaged:
+          type: string
+          description: |-
+            Length: 8
+
+            dateLastCardAccountExpires.
+
+            VisionPLUS Service Data: ARXAIO-DATE-LAST-REAGE
+          format: date
+        lateFeeDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Late fee date.
+
+            VisionPLUS Service Data: AZXAIO-DATE-LATE-FEE
+          format: date
+        dateNextCreditBureauReport:
+          type: string
+          description: |-
+            Length: 8
+
+            Date next credit bureau report.
+          format: date
+        dateAchEffective:
+          type: string
+          description: |-
+            Length: 8
+
+            Date ACH effective.
+
+            VisionPLUS Service Data: AZXAIO-DATE-ACH-EFF
+          format: date
+        dateNotificationReceived:
+          type: string
+          description: |-
+            Length: 8
+
+            Date notification received.
+
+            VisionPLUS Service Data: AZXAIO-DATE-NOTIFIC-RECVD
+          format: date
+        dateOfCardExpiration:
+          type: string
+          description: |-
+            Length: 8
+
+            Date of card expiration.
+
+            VisionPLUS Service Data: AZXAIO-DATE-CARD-EXPR
+          format: date
+        directCreditAchExpirationDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Direct credit ACH expiration date.
+
+            VisionPLUS Service Data: AZXAIO-DC-ACH-EXPIRE-DATE
+          format: date
+        directCreditAchStartDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Direct credit ACH start date.
+
+            VisionPLUS Service Data: AZXAIO-DC-ACH-START-DATE
+          format: date
+        warningCode1Date:
+          type: string
+          description: |-
+            Length: 8
+
+            FAS warning code 1 date.
+
+            VisionPLUS Service Data: AZXAIO-FAS-WARN-CODE-1-DATE
+          format: date
+        pendingPctEffectiveDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Pending PCT effective date.
+
+            VisionPLUS Service Data: AZXAIO-PEND-PCT-EFF-DATE
+          format: date
+        pendingPctEndDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Pending PCT end date.
+
+            VisionPLUS Service Data: AZXAIO-PEND-PCT-END-DATE
+          format: date
+        lastCashAdvanceDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Last cash advance date.
+
+            VisionPLUS Service Data: AZXAIO-LAST-CASH-ADV-DATE
+          format: date
+        DateLastCardAccountExpires:
+          type: string
+          description: Date last card account expires.
+          format: date
+        lastDateToAuthorize:
+          type: string
+          description: |-
+            Length: 8
+
+            Last date to authorize.
+
+            VisionPLUS Service Data: AZXAIO-LAST-DATE-TO-AUTH
+          format: date
+        graceDayExpirationDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Grace day expiration date.
+
+            VisionPLUS Service Data: AZXAIO-GRACE-DAY-EXPIR-DATE
+          format: date
+        greatestCardExpirationDate:
+          type: string
+          description: |-
+            Length: 8
+
+            Greatest card expiration date.
+
+            VisionPLUS Service Data: AZXAIO-GRTST-CARD-EXP-DATE
+          format: date
+        expirationDateCurePeriodForAccount:
+          type: string
+          description: |-
+            Length: 7
+
+            Expiration date of the cure period for this account.
+
+            VisionPLUS Service Data: AZXAIO-OL-CURE-DATE
+          format: date
+        maximumAmountOfAuthorizationsByAccountInHighRiskCountries:
+          type: number
+          description: |-
+            Length: 17
+
+            Maximum amount of authorizations in monetary units and subunits allowed for the cumulative year-to-date spending by an account in high-risk countries.
+
+            VisionPLUS Service Data: AZXAIO-YTD-HIGH-RISK-AMT
+        maximumAmountOfAuthorizationsByAccountOtherThanHighRiskCountries:
+          type: number
+          description: |-
+            Maximum amount of authorizations in monetary units and subunits allowed for the cumulative year-to-date spending by an account in countries other than the high-risk countries.
+
+            VisionPLUS Service Data: AZXAIO-YTD-OTHER-RISK-AMT
+        UserDate1:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 1
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-1
+          format: date
+        UserDate2:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 2
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-2
+          format: date
+        UserDate3:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 3
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-3
+          format: date
+        UserDate4:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 4
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-4
+          format: date
+        UserDate5:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 5
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-5
+          format: date
+        UserDate6:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 6
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-6
+          format: date
+        UserDate7:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 7
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-7
+          format: date
+        UserDate8:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 8
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-8
+          format: date
+        UserDate9:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 9
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-9
+          format: date
+        UserDate10:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 10.
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-10
+          format: date
+        UserDate11:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 11.
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-11
+          format: date
+        UserDate12:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 12.
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-12
+          format: date
+        UserDate13:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 13.
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-13
+          format: date
+        UserDate14:
+          type: string
+          description: |-
+            Length: 8
+
+            User date 14.
+
+            VisionPLUS Service Data: AZXAIO-USER-DATE-14
+          format: date
+        userCode1:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 1.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-1
+        userCode2:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 2.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-2
+        userCode3:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 3.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-3
+        userCode4:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 4.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-4
+        userCode5:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 5.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-5
+        userCode6:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 6.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-6
+        userCode7:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 7.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-7
+        userCode8:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 8.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-8
+        userCode9:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 9.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-9
+        userCode10:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 10.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-10
+        userCode11:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 11.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-11
+        userCode12:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 12.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-12
+        userCode13:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 13.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-13
+        userCode14:
+          type: string
+          description: |-
+            Length: 2
+
+            User code 14.
+
+            VisionPLUS Service Data: AZXAIO-USER-CODE-14
+        userAmounts1:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 1.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-1
+        userAmounts2:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 2.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-2
+        userAmounts3:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 3.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-3
+        userAmounts4:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 4.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-4
+        userAmounts5:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 5.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-5
+        userAmounts6:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 6.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-6
+        userAmounts7:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 7.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-7
+        userAmounts8:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 8.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-8
+        userAmounts9:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 9.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-9
+        userAmounts10:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 10.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-10
+        userAmounts11:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 11.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-11
+        userAmounts12:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 12.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-12
+        userAmounts13:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 13.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-13
+        userAmounts14:
+          type: number
+          description: |-
+            Length: 17
+
+            User amounts 14.
+
+            VisionPLUS Service Data: AZXAIO-USER-AMT-14
+        numberOfPlans:
+          type: number
+          description: |-
+            Length: 5
+
+            Number of plans.
+
+            VisionPLUS Service Data: AZXAIO-NBR-PLANS
+        activationCallQualificationIndicator:
+          type: number
+          description: |-
+            Length: 1
+
+            Activation call qualification indicator.
+
+            VisionPLUS Service Data: AZXAIO-ACTVN-CALL-QUAL-IND
+        alternateCustomerMinimumPaymentAmount:
+          type: number
+          description: |-
+            Length: 17
+
+            Alternate customer minimum payment amount.
+
+            VisionPLUS Service Data: AZXAIO-ALT-MIN-PMT-AMT
+        correspondenceAlternateCustomerNumber:
+          type: string
+          description: |-
+            Length: 19
+
+            Correspondence alternate customer number.
+
+            VisionPLUS Service Data: AZXAIO-CORRES-CUST-NBR
+        startDateOfTheCorrespondenceAlternateCustomer:
+          type: string
+          description: |-
+            Length: 8
+
+            Start date of the correspondence alternate customer.
+
+            VisionPLUS Service Data: AZXAIO-DATE-ALT-CUST-STRT
+          format: date
+        expiryDateOfTheCorrespondenceAlternateCustomer:
+          type: string
+          description: |-
+            Length: 8
+
+            Expiry date of the correspondence alternate customer.
+
+            VisionPLUS Service Data: AZXAIO-DATE-ALT-CUST-EXP
+          format: date
+        preAgreementControlTableNumber:
+          type: integer
+          description: Pre agreement control table number.
+          format: int32
+        preAgreementLevel:
+          type: string
+          description: Pre agreement level.
+        internationalRetailCreditAvailable:
+          type: number
+          description: |-
+            Length: 17
+
+            International retail credit available.
+
+            VisionPLUS Service Data: ARXAIO-IRET-AVAIL-CREDIT
+        internationalRetailCreditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            internationalRetailCreditAvailable.
+
+            VisionPLUS Service Data: ARXAIO-IRET-CRLIM
+        internationalCashCreditAvailable:
+          type: number
+          description: |-
+            Length: 17
+
+            International cash credit available.
+
+            VisionPLUS Service Data: ARXAIO-ICASH-AVAIL-CREDIT
+        internationalCashCreditLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            International cash credit limit.
+
+            VisionPLUS Service Data: ARXAIO-ICASH-CRLIM
+        foreignBalance:
+          type: number
+          description: |-
+            Length: 13
+
+            Foreign balance subject to overlimit fee.
+
+            VisionPLUS Service Data: AZXAIO-FGN-AUTH-BSTOL
+        internationalCashPlanNumber:
+          type: number
+          description: |-
+            Length: 5
+
+            International cash plan number.
+
+            VisionPLUS Service Data: ARXAIO-INTL-CASH-PLAN
+        internationalRetailPlanNumber:
+          type: number
+          description: |-
+            Length: 5
+
+            International retail plan number.
+
+            VisionPLUS Service Data: ARXAIO-INTL-RETAIL-PLAN
+        internationalInstallmentPlan:
+          type: number
+          description: |-
+            Length: 5
+
+            International installment plan.
+
+            VisionPLUS Service Data: ARXAIO-INTL-INST-PLAN
+        installmentBillingIssuerCashPlanNumber:
+          type: number
+          description: |-
+            Length: 5
+
+            Installment billing issuer cash plan number.
+
+            VisionPLUS Service Data: ARXAIO-IB-ISS-CASH-PLAN
+        installmentBillingIssuerRetailPlanNumber:
+          type: number
+          description: |-
+            Length: 5
+
+            Installment billing issuer retail plan number.
+
+            VisionPLUS Service Data: ARXAIO-IB-ISS-RETAIL-PLAN
+        installmentBillingAcquirerRetailPlanNumber:
+          type: number
+          description: Installment billing acquirer retail plan number.
+        installmentBillingCashLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Installment billing acquirer retail plan number.
+
+            VisionPLUS Service Data: ARXAIO-IB-CASH-AVAIL
+        installmentBillingCashAvailable:
+          type: number
+          description: |-
+            Length: 17
+
+            Installment billing cash available.
+
+            VisionPLUS Service Data: ARXAIO-IB-CASH-AVAIL
+        installmentBillingRetailLimit:
+          type: number
+          description: |-
+            Length: 17
+
+            Installment billing retail limit.
+
+            VisionPLUS Service Data: ARXAIO-IB-RETAIL-LIMIT
+        installmentBillingRetailCreditAvailable:
+          type: number
+          description: |-
+            Length: 17
+
+            Installment billing retail credit available.
+
+            VisionPLUS Service Data: ARXAIO-IB-RETAIL-AVAIL
+        installmentBillingRetailCreditLimitFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Installment billing retail credit limit flag. The values are:
+
+            0 = Not allowed
+
+            1 = Total credit limit is available for installment billing retail programs
+
+            2 = Fixed amount or a percentage of the credit limit as defined in the ARMY Account Control Table (Default)
+
+            3 = Account level override is allowed
+
+            VisionPLUS Service Data: AZXAIO-IB-RET-CRLMT-FLAG
+        installmentBillingCashCreditLimitFlag:
+          type: integer
+          description: |-
+            Length: 1
+
+            Installment billing cash credit limit flag. The values are:
+
+            0 = Not allowed
+
+            1 = Total credit limit is available for installment billing cash programs
+
+            2 = Fixed amount or a percentage of the credit limit as defined in the ARMY Account Control Table (Default)
+
+            3 = Account level override is allowed
+
+            VisionPLUS Service Data: AZXAIO-IB-CASH-CRLMT-FLAG
+          format: int32
+        installmentPaymentRetailPlanNumber:
+          type: number
+          description: |-
+            Length: 5
+
+            Installment payment retail plan number.
+
+            VisionPLUS Service Data: AZXAIO-INST-PMT-RETL-PLAN
+        installmentPaymentCashPlanNumber:
+          type: number
+          description: |-
+            Length: 5
+
+            Installment payment cash plan number.
+
+            VisionPLUS Service Data: AZXAIO-INST-PMT-CASH-PLAN
+        userDate5:
+          type: string
+          format: date
+        userDate4:
+          type: string
+          format: date
+        userDate10:
+          type: string
+          format: date
+        userDate13:
+          type: string
+          format: date
+        userDate7:
+          type: string
+          format: date
+        userDate11:
+          type: string
+          format: date
+        userDate14:
+          type: string
+          format: date
+        userDate12:
+          type: string
+          format: date
+        userDate8:
+          type: string
+          format: date
+        userDate3:
+          type: string
+          format: date
+        userDate6:
+          type: string
+          format: date
+        userDate9:
+          type: string
+          format: date
+        numberOfNonSufficientFunds:
+          type: number
+        dateLastCardAccountExpires:
+          type: string
+          format: date
+        userDate2:
+          type: string
+          format: date
+        userDate1:
+          type: string
+          format: date
+    AccountForDetailsResponse.AccountData.DelinquencyData:
+      type: object
+      properties:
+        currentPaymentDue:
+          type: number
+          description: |-
+            Length: 17
+
+            Current payment due.
+
+            VisionPLUS Service Data: ARXAIO-PMT-CURR-DUE
+        pastPaymentCounter:
+          type: number
+          description: Past payment counter.
+        paymentPastDue:
+          type: number
+          description: Payment past due.
+        daysDelinquentCounter30:
+          type: number
+          description: |-
+            Length: 3
+
+            30 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-30DAYS-CTR
+        daysDelinquentAmount30:
+          type: number
+          description: |-
+            Length: 17
+
+            30 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-30DAYS
+        daysDelinquentCounter60:
+          type: number
+          description: |-
+            Length: 3
+
+            60 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-60DAYS-CTR
+        daysDelinquentAmount60:
+          type: number
+          description: |-
+            Length: 17
+
+            60 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-60DAYS
+        daysDelinquentCounter90:
+          type: number
+          description: |-
+            Length: 3
+
+            90 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-90DAYS-CTR
+        daysDelinquentAmount90:
+          type: number
+          description: |-
+            Length: 17
+
+            90 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-90DAYS
+        daysDelinquentCounter120:
+          type: number
+          description: |-
+            Length: 3
+
+            120 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-120-DAYS-CTR
+        daysDelinquentAmount120:
+          type: number
+          description: |-
+            Length: 17
+
+            120 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-120DAYS
+        daysDelinquentCounter150:
+          type: number
+          description: |-
+            Length: 3
+
+            150 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-150-DAYS-CTR
+        daysDelinquentAmount150:
+          type: number
+          description: |-
+            Length: 17
+
+            150 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-150DAYS
+        daysDelinquentCounter180:
+          type: number
+          description: |-
+            Length: 3
+
+            180 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-180-DAYS-CTR
+        daysDelinquentAmount180:
+          type: number
+          description: |-
+            Length: 17
+
+            180 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-180DAYS
+        daysDelinquentCounter210:
+          type: number
+          description: |-
+            Length: 3
+
+            210 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-210-DAYS-CTR
+        daysDelinquentAmount210:
+          type: number
+          description: |-
+            Length: 17
+
+            210 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-210DAYS.
+    AccountForDetailsResponse.AccountData.WarningCode:
+      type: object
+      properties:
+        sequence:
+          type: integer
+          description: Sequence.
+          format: int32
+        warningCode:
+          type: string
+          description: |-
+            Length: 1
+
+            Warning code.
+
+            VisionPLUS Service Data: AZXAIO-WARNING-CODE
+    AccountForDetailsResponse.CustomerData:
+      type: object
+      properties:
+        numberOfOccurrencesFields:
+          type: integer
+          description: Number of occurrences fields.
+          format: int32
+        numberOccurrenceForAddressList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountForDetailsResponse.CustomerData.NumberOccurrenceForAddress'
+        fixedData:
+          $ref: '#/components/schemas/AccountForDetailsResponse.CustomerData.FixedData'
+    AccountForDetailsResponse.CustomerData.FixedData:
+      type: object
+      properties:
+        nameLine1:
+          type: string
+          description: |-
+            Length: 40
+
+            Name/address name line 1.
+
+            VisionPLUS Service Data: AZXAIO-NA-NAME-LINE-1
+        nameLine2:
+          type: string
+          description: |-
+            Length: 40
+
+            Name/address name line 2.
+
+            VisionPLUS Service Data: AZXAIO-NA-NAME-LINE-2
+        nameLine3:
+          type: string
+          description: |-
+            Length: 40
+
+            Name/address name line 3.
+
+            VisionPLUS Service Data: AZXAIO-NA-NAME-LINE-3
+        houseNumber:
+          type: string
+          description: |-
+            Length: 20
+
+            House number.
+
+            VisionPLUS Service Data: AZXAIO-NA-HOUSE-NUMBER
+        houseName:
+          type: string
+          description: |-
+            Length: 40
+
+            House name.
+
+            VisionPLUS Service Data: AZXAIO-NA-HOUSE-NAME
+        address1:
+          type: string
+          description: |-
+            Length: 40
+
+            Name/address 1.
+
+            VisionPLUS Service Data: AZXAIO-NA-ADDR-1
+        address2:
+          type: string
+          description: |-
+            Length: 40
+
+            Name/address 2.
+
+            VisionPLUS Service Data: AZXAIO-NA-ADDR-2
+        address3:
+          type: string
+          description: |-
+            Length: 40
+
+            Name/address 3.
+
+            VisionPLUS Service Data: AZXAIO-NA-ADDR-3
+        address4:
+          type: string
+          description: |-
+            Length: 40
+
+            Name/address 4.
+
+            VisionPLUS Service Data: AZXAIO-NA-ADDR-4
+        cityAndState:
+          type: string
+          description: |-
+            Length: 40
+
+            Name/address city and state.
+
+            VisionPLUS Service Data: AZXAIO-NA-CITY-STATE
+        cityStateResidence:
+          type: string
+          description: City state residence.
+        city:
+          type: string
+          description: City.
+        state:
+          type: string
+          description: State.
+    AccountForDetailsResponse.CustomerData.NumberOccurrenceForAddress:
+      type: object
+      properties:
+        sequence:
+          type: integer
+          format: int32
+        homePhone:
+          type: string
+          description: |-
+            Length: 20
+
+            Name/address home phone.
+
+            VisionPLUS Service Data: AZXAIO-NA-HOME-PHONE
+        employerPhone:
+          type: string
+          description: |-
+            Length: 20
+
+            Name/address employer phone.
+
+            VisionPLUS Service Data: AZXAIO-NA-EMP-PHONE
+        employeePhoneExtension:
+          type: string
+          description: |-
+            Length: 6
+
+            Employee phone extension.
+
+            VisionPLUS Service Data: AZXAIO-NA-EMP-PHONE-EXTN
+        addressFax:
+          type: string
+          description: |-
+            Length: 20
+
+            Name/address fax.
+
+            VisionPLUS Service Data: AZXAIO-NA-FAX-PHONE
+        mobilePhone:
+          type: string
+          description: |-
+            Length: 20
+
+            Name/address mobile phone.
+
+            VisionPLUS Service Data: AZXAIO-NA-MOBILE-PHONE
+        phoneFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Name/address phone flag.
+
+            The values are:
+
+            0 = Do not contact
+
+            1 = May be contacted
+
+            VisionPLUS Service Data: AZXAIO-NA-PHONE-FLAG
+        faxFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Fax flag.
+
+            The values are:
+
+            0 = Do not contact
+
+            1 = May be contacted
+
+            VisionPLUS Service Data: AZXAIO-NA-FAX-PHONE-FLAG
+        homePhoneFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Home phone flag.
+
+            The values are:
+
+            0 = Do not contact
+
+            1 = May be contacted
+
+            VisionPLUS Service Data: AZXAIO-NA-HOME-PHONE-FLAG
+        mobilePhoneFlag:
+          type: string
+          description: |-
+            Length: 20
+
+            Mobile phone flag.
+
+            The values are:
+
+            0 = Do not contact
+
+            1 = May be contacted
+
+            VisionPLUS Service Data: AZXAIO-NA-MOBILE-PHONE-FLAG
+        emailFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            E-mail flag.
+
+            The values are:
+
+            0 = Do not contact
+
+            1 = May be contacted
+
+            VisionPLUS Service Data: AZXAIO-NA-EMAIL-FLAG
+        shortMessageServiceFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Short message service (SMS) flag.
+
+            The values are:
+
+            0 = Do not contact
+
+            1 = May be contacted
+
+            VisionPLUS Service Data: AZXAIO-NA-SMS-FLAG
+        countryCode:
+          type: string
+          description: |-
+            Length: 3
+
+            Name/address country code.
+
+            VisionPLUS Service Data: AZXAIO-NA-CNTRY-CD
+        postalCode:
+          type: string
+          description: |-
+            Length: 10
+
+            Name/address postal code.
+
+            VisionPLUS Service Data: AZXAIO-NA-PSTL-CD
+        employer:
+          type: string
+          description: |-
+            Length: 40
+
+            Employer.
+
+            VisionPLUS Service Data: AZXAIO-EMPLOYER
+        taxId:
+          type: string
+          description: |-
+            Length: 25
+
+            Tax ID.
+
+            VisionPLUS Service Data: AZXAIO-TAXID
+    AccountKey:
+      type: object
+      properties:
+        transferOrganization:
+          type: integer
+          description: |-
+            Length: 3
+
+            Transfer organization (part of the transfer key).
+
+            VisionPLUS Service Data: AZXAIO-XFR-ORG
+          format: int32
+        transferLogo:
+          type: integer
+          description: |-
+            Length: 3
+
+            Transfer logo (part of the transfer key).
+
+            VisionPLUS Service Data: AZXAIO-XFR-LOGO
+          format: int32
+        transferAccount:
+          type: string
+          description: |-
+            Length: 19
+
+            Transfer account (part of the transfer key).
+
+            VisionPLUS Service Data: AZXAIO-XFR-ACCT
