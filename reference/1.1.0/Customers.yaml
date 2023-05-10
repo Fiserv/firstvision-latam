@@ -35,16 +35,26 @@ paths:
               $ref: '#/components/schemas/CustomerChannelVersion4Request'
         required: true
       responses:
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SCE06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -61,24 +71,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerChannelVersion4Response'
+        "401":
+          description: Unauthorized
       x-proxy-name: Cards Details Inquiry
       x-group-name: Customers
   /customer/demographicData:
@@ -110,10 +110,14 @@ paths:
               $ref: '#/components/schemas/DemographicInquiryRequest'
         required: true
       responses:
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -144,18 +148,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DemographicInquiryResponse'
+        "401":
+          description: Unauthorized
       x-proxy-name: Demographic Inquiry
       x-group-name: Customers
   /customer/:
@@ -187,16 +187,26 @@ paths:
               $ref: '#/components/schemas/AddCustomerRequest'
         required: true
       responses:
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
         "405":
           description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SNA03S – N/A SERVICE INPUT AREA IS NOT OF CORRECT SIZE
@@ -260,24 +270,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddCustomerResponse'
+        "401":
+          description: Unauthorized
       x-proxy-name: Customer Add
       x-group-name: Customers
 components:
@@ -679,7 +679,16 @@ components:
           type: string
           description: |-
             Length: 1
-            Source
+
+            Source.
+
+            Values:
+            * C =  CONVERSION;
+            * O =  ON-LINE;
+            * U = USER-INPUT;
+            * S = API SERVICE;
+            * T = TRANSFER.
+
             VisionPLUS Service Data: AZXNDO-SOURCE
         dateLastMaintenance:
           type: string

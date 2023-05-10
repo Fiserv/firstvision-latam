@@ -9,6 +9,8 @@ This section aims to demostrate the initial settings that must be applied to Pos
 
 If you have not used the Postman tool as an HTTP client to test requests, access the tool's official link for more information: [Postman Official](https://www.postman.com/)
 
+Postman Collection will be share temporarily with each customer in accordance with their needs.
+
 ## Import Collection
 
 ### 1. Open Postman and click the import button to open the provided collection
