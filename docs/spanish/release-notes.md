@@ -21,6 +21,8 @@ Descripción de API's mejorada:
 - /cards/pin/validation
 - /account/add-L8V3
 - /cards/v3/embosser
+- /cards/activation
+- /customer/l8v2
 
 ### Problemas solucionados
 
@@ -29,9 +31,14 @@ Endpoints se movieron a la versión 1.2.0:
 - /cards/embosser/encrypted-card-pan
 - /account/v2/accounts
 
+Endpoints se movieron a la versión 1.1.0:
+
+- /account/details-L8VG
+
 ### Obsoleto
 
 - /account/status-update-L8V1
+- /account/details
 
 ---
 

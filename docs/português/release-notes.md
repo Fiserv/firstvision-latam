@@ -21,6 +21,8 @@ tags: [Release Notes, Janeiro, Fevereiro, Março, Abril]
   - /cards/pin/validation
   - /account/add-L8V3
   - /cards/v3/embosser
+  - /cards/activation
+  - /customer/l8v2
 
 ### Problemas solucionados
 
@@ -29,9 +31,13 @@ Endpoints movidos para a versão 1.2.0:
 - /cards/embosser/encrypted-card-pan
 - /account/v2/accounts
 
+Endpoints moved to version 1.1.0:
+- /account/details-L8VG
+
 ### Obsoleto
 
 - /account/status-update-L8V1
+- /account/details
 
 ---
 

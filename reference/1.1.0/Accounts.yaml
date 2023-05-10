@@ -28,12 +28,6 @@ paths:
         schema:
           type: string
         example: "00970"
-      - name: clientReceivedStartTimestamp
-        in: header
-        required: false
-        schema:
-          type: integer
-          format: int64
       requestBody:
         content:
           application/json:
@@ -41,28 +35,28 @@ paths:
               $ref: '#/components/schemas/TransferFundsRequest'
         required: true
       responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -100,24 +94,12 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -161,6 +143,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -168,88 +162,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/UpdateAccountDetailsResponse'
       x-proxy-name: Account Update
-      x-group-name: Account
-      x-child-product-name: Accounts
-    post:
-      tags:
-      - Account
-      summary: "Find Account details (Account status). (VMX Service: M.CMS.ACCOUNT.INQ,\
-        \ L8V5)"
-      description: "Provides information on the status of the Account, such as, creating\
-        \ dates, block codes, credit limit and others. If the Account has been transferred,\
-        \ the current Account number must be provided. This API does not automatically\
-        \ switch to the new Account. This API can be called with an Account number\
-        \ or a card number. \nVMX Service: M.CMS.ACCOUNT.INQ, L8V5"
-      operationId: Account Inquiry
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountForDetailsRequest'
-        required: true
-      responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "422":
-          description: |-
-            VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
-            VPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
-            VPL5SAI05E - INVALID FOREIGN USE IND SPECIFIED - VALID VALUES ARE SPACE 0 OR 1
-            VPL5SAI07S – ORGANIZATION NOT FOUND ON FILE
-            VPL5SAI08S – FOREIGN ORGANIZATION NOT FOUND ON FILE
-            VPL5SAI09S - ACCOUNT NUMBER NOT FOUND
-            VPL5SAI10S - ACCOUNT NUMBER NOT FOUND ON FILE
-            VPL5SAI11S - LOGO NOT FOUND ON FILE
-            VPL5SAI12S - CUSTOMER NOT FOUND ON FILE
-            VPL5SAI13I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
-            VPL5SAI13S - ACCOUNT SECONDARY BASE SEGMENT RECORD NOT FOUND
-            VPL5SAIZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-            VPL5SAIZ5S - REQUESTED ORGANIZATION NOT FOUND
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountForDetailsResponse'
-      x-proxy-name: Account Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
   /account/customer:
@@ -281,6 +193,24 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequest'
         required: true
       responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             VPL5SCU06S - ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999
@@ -326,28 +256,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -387,28 +299,28 @@ paths:
               $ref: '#/components/schemas/QRTransferFundsRequest'
         required: true
       responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -441,12 +353,6 @@ paths:
         schema:
           type: string
         example: "00970"
-      - name: clientReceivedStartTimestamp
-        in: header
-        required: false
-        schema:
-          type: integer
-          format: int64
       requestBody:
         content:
           application/json:
@@ -454,28 +360,28 @@ paths:
               $ref: '#/components/schemas/QRModifyAccountBalanceRequest'
         required: true
       responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -509,12 +415,6 @@ paths:
         schema:
           type: string
         example: "00970"
-      - name: clientReceivedStartTimestamp
-        in: header
-        required: false
-        schema:
-          type: integer
-          format: int64
       requestBody:
         content:
           application/json:
@@ -522,28 +422,28 @@ paths:
               $ref: '#/components/schemas/FlTransferP2PRequest'
         required: true
       responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -551,6 +451,93 @@ paths:
               schema:
                 $ref: '#/components/schemas/FlTransferP2PResponse'
       x-proxy-name: Account to Account Funds Transfer
+      x-group-name: Account
+      x-child-product-name: Accounts
+  /account/details-L8VG:
+    post:
+      tags:
+      - Account
+      summary: "Find account details provides information on the account’s status.\
+        \ If the account has been transferred, the current account number must be\
+        \ provided. This service does not automatically switch to the new account.\
+        \ This service can be called with an account number or a card number. \n\n\
+        VMX Service: M.CMS.ACCOUNT.INQ, L8VG"
+      description: "Find account details provides information on the account’s status.\
+        \ If the account has been transferred, the current account number must be\
+        \ provided. This service does not automatically switch to the new account.\
+        \ This service can be called with an account number or a card number. \n\n\
+        VMX Service: M.CMS.ACCOUNT.INQ, L8VG"
+      operationId: Account Inquiry
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
+        required: true
+      responses:
+        "403":
+          description: Forbidden
+        "422":
+          description: |
+            VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
+            VPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
+            VPL5SAI05E - INVALID FOREIGN USE IND SPECIFIED - VALID VALUES ARE SPACE 0 OR 1
+            VPL5SAI07S – ORGANIZATION NOT FOUND ON FILE
+            VPL5SAI08S – FOREIGN ORGANIZATION NOT FOUND ON FILE
+            VPL5SAI09S - ACCOUNT NUMBER NOT FOUND
+            VPL5SAI10S - ACCOUNT NUMBER NOT FOUND ON FILE
+            VPL5SAI11S - LOGO NOT FOUND ON FILE
+            VPL5SAI12S - CUSTOMER NOT FOUND ON FILE
+            VPL5SAI13I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
+            VPL5SAI13S - ACCOUNT SECONDARY BASE SEGMENT RECORD NOT FOUND
+            VPL5SAI14E - INVALID INPUT UPD DUE FLAG - VALID VALUES ARE 0, 1
+            VPL5SAIZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+            VPL5SAIZ5S - REQUESTED ORGANIZATION NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountForDetailsL8vgResponse'
+      x-proxy-name: Account Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
   /account/card-L8V2:
@@ -587,28 +574,28 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V2Request'
         required: true
       responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -648,6 +635,10 @@ paths:
               $ref: '#/components/schemas/AccountBoardingDriverRequest'
         required: true
       responses:
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           description: Backend Error
           content:
@@ -709,22 +700,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "405":
-          description: Method Not Allowed
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -765,18 +752,6 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
         "422":
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -1193,16 +1168,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
         "404":
           description: Not Found
-        "405":
-          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -3034,9 +3021,10 @@ components:
           type: string
         authorizationNumber:
           type: string
-    AccountForDetailsRequest:
+    AccountForDetailsL8vgRequest:
       required:
       - accountNumber
+      - organizationNumber
       type: object
       properties:
         organizationNumber:
@@ -3045,7 +3033,6 @@ components:
             Length: 3
 
             Organization Number.
-
             VisionPLUS Service Data: AZXAII-ORG
           format: int32
           example: 807
@@ -3056,8 +3043,7 @@ components:
           description: |-
             Length: 19
 
-            Account number or card number.
-
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token)
             VisionPLUS Service Data: AZXAII-ACCT
           example: "4513074002573466583"
         foreignUse:
@@ -3065,24 +3051,24 @@ components:
           description: |-
             Length: 1
 
-            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
-
-            The default is to the local account.
-
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization. The default is to the local account.
             VisionPLUS Service Data: AZXAII-FOREIGN-USE
           example: "0"
-      description: Account Detail Request
-    AccountForDetailsResponse:
+      description: Account Detail L8VG Request
+    AccountForDetailsL8vgResponse:
       type: object
       properties:
         currencyNumberOfDecimal:
           type: integer
-          description: Currency number of decimal.
+          description: |-
+            Length: 1
+            Currency number of decimal.
+            VisionPLUS Service Data: AZXAIO-CURRENCY-NOD
           format: int32
         currencyCode:
           type: integer
           description: |-
-            Length: 1
+            Length: 3
 
             Currency code.
 
@@ -3100,16 +3086,94 @@ components:
             VisionPLUS Service Data: AZXAIO-FOREIGN-USE
           format: int32
         accountData:
-          $ref: '#/components/schemas/AccountForDetailsResponse.AccountData'
+          $ref: '#/components/schemas/AccountForDetailsL8vgResponse.AccountData'
         customerData:
-          $ref: '#/components/schemas/AccountForDetailsResponse.CustomerData'
+          $ref: '#/components/schemas/AccountForDetailsL8vgResponse.CustomerData'
         qualification:
           type: string
           description: |-
             Length: 1
 
             Global qualification.
-    AccountForDetailsResponse.AccountData:
+            VisionPLUS Service Data: AZXAIO-GLOBAL-QUALIFICATION
+        checkingAccountRouting:
+          type: string
+          description: "Length: 10\n\nChecking account routing number. \n\nVisionPLUS\
+            \ Service Data: AZXAIO-CHK-ACCT-ROUT"
+        checkingAccount:
+          type: string
+          description: "Length: 19\n\nChecking account number. \n\nVisionPLUS Service\
+            \ Data: AZXAIO-CHK-ACCT"
+        savingsAccountRouting:
+          type: string
+          description: |-
+            Length: 10
+
+            Saving account routing number.
+
+            VisionPLUS Service Data: AZXAIO-SAVE-ACCT-ROUT
+        savingsAccount:
+          type: string
+          description: |-
+            Length: 19
+
+            Saving account number.
+
+            VisionPLUS Service Data: AZXAIO-SAVE-ACCT
+        vipIndicator:
+          type: string
+          description: VIP indicator
+        logoDescription:
+          type: string
+          description: |-
+            Length: 30
+
+            Logo description.
+
+            VisionPLUS Service Data: AZXAIO-LOGO-DESC
+        lastMaintenanceDate:
+          type: string
+          description: Last Maintenance Date
+        disputeItemsNumber:
+          type: integer
+          description: Dispute items number
+          format: int32
+        yearlyAmountReturns:
+          type: number
+          description: Yearly amount returns
+        amountReturns:
+          type: number
+          description: Amount returns
+        dateLastCycle:
+          type: string
+          description: Last Cycle Date
+          format: date
+        authorizationLimitOverrideFlag:
+          type: integer
+          description: Authorization limit override flag
+          format: int32
+        beginningBalance:
+          type: string
+          description: Beginning Balance
+        cycleToDateNumberofDebits:
+          type: string
+          description: Cycle to date number of debits.
+        cycleToDateDebitAmount:
+          type: string
+          description: Cycle to date debit amount.
+        replaceDebitAscredit:
+          type: string
+          description: Replace debit as credit.
+        replaceAmountAscredit:
+          type: string
+          description: Replace amount as credit.
+        alternateCustomerNumberFlag:
+          type: string
+          description: |-
+            Length: 1
+
+            Alternate Customer Number Flag. This field returns the alternate customer number Flag as String.
+    AccountForDetailsL8vgResponse.AccountData:
       type: object
       properties:
         organization:
@@ -3197,7 +3261,7 @@ components:
 
             VisionPLUS Service Data: AZXAIO-STATE-OF-ISSUE
         accountKey:
-          $ref: '#/components/schemas/AccountKey'
+          $ref: '#/components/schemas/AccountForDetailsL8vgResponse.AccountData.AccountKey'
         accountType:
           type: string
           description: |-
@@ -3310,25 +3374,41 @@ components:
             VisionPLUS Service Data: AZXAIO-CARD-USAGE-FLAG
         percentageLevel:
           type: string
-          description: Percentage level.
+          description: |-
+            Length: 1
+
+            Percentage level.
+             +VisionPLUS Service Data: AZXAIO-PCT-LEVEL
         percentageLevelStartDate:
           type: string
-          description: Percentage level start date.
+          description: |-
+            Percentage level start date.
+            VisionPLUS Service Data: AZXAIO-PCT-LEVEL-START-DATE
           format: date
         percentageLevelExpirationDate:
           type: string
-          description: Percentage level expiration date.
+          description: |-
+            Percentage level expiration date.
+             +VisionPLUS Service Data: AZXAIO-PCT-LEVEL-EXPIR-DATE
           format: date
         percentageId:
           type: string
-          description: Percentage id.
+          description: |-
+            Length: 3
+
+            Percentage id.
+             +VisionPLUS Service Data: AZXAIO-PCT-CTL-ID
         percentageStartDate:
           type: string
-          description: Percentage start date.
+          description: |-
+            Percentage start date.
+             +VisionPLUS Service Data: AZXAIO-PCT-START-DATE
           format: date
         percentageExpirationDate:
           type: string
-          description: Percentage expiration date.
+          description: |-
+            Percentage expiration date.
+             +VisionPLUS Service Data: AZXAIO-PCT-EXPIR-DATE
           format: date
         accountControlTableOverride:
           type: integer
@@ -3378,12 +3458,11 @@ components:
             Length: 2
 
             Return mail counter.
+            VisionPLUS Service Data: AZXAIO-RTN-MAIL-CTR
           format: int32
         returnMailDate:
           type: string
           description: |-
-            Length: 7
-
             Return mail date.
 
             VisionPLUS Service Data: AZXAIO-RTN-MAIL-DATE
@@ -3423,7 +3502,11 @@ components:
             VisionPLUS Service Data: AZXAIO-PERM-COLL
         collectionReason:
           type: integer
-          description: Collection reason.
+          description: |-
+            Length: 2
+
+            Collection reason.
+            VisionPLUS Service Data: AZXAIO-OLC-REASON
           format: int32
         collateralCode:
           type: string
@@ -3631,6 +3714,8 @@ components:
             Length: 1
 
             Waive dormancy fees (prepaid accounts only).
+
+            VisionPLUS Service Data: AZXAIO-WAIVE-DORM-FEE
           format: int32
         waiveRefundFees:
           type: integer
@@ -3745,6 +3830,14 @@ components:
             Income.
 
             VisionPLUS Service Data: AZXAIO-INCOME
+        numberOfNonSufficientFunds:
+          type: number
+          description: |-
+            Length: 3
+
+            Number of NSFs.
+
+            VisionPLUS Service Data: AZXAIO-NBR-NSF
         numberOfUnblockedCards:
           type: number
           description: |-
@@ -3804,7 +3897,11 @@ components:
 
             VisionPLUS Service Data: AZXAIO-PMT-TOT-AMT-DUE
         delinquencyData:
-          $ref: '#/components/schemas/AccountForDetailsResponse.AccountData.DelinquencyData'
+          $ref: '#/components/schemas/AccountFotDetailsL8vgResponse.AccountData.DelinquencyData'
+        warningCodeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountForDetailsL8vgResponse.AccountData.WarningCodeList'
         amountOfLastPayment:
           type: number
           description: |-
@@ -3909,8 +4006,6 @@ components:
             Memo credit amount.
 
             VisionPLUS Service Data: AZXAIO-AMT-MEMO-CR
-        warningCode:
-          $ref: '#/components/schemas/AccountForDetailsResponse.AccountData.WarningCode'
         cashAvailableCreditLimit:
           type: number
           description: |-
@@ -3924,9 +4019,9 @@ components:
           description: |-
             Length: 17
 
-            Cash available credit limit.
+            Cash credit limit.
 
-            VisionPLUS Service Data: AZXAIO-CASH-AVAIL-CREDIT
+            VisionPLUS Service Data: AZXAIO-CASH-CRLIM
         numberOfTimesInCollections:
           type: number
           description: |-
@@ -3937,7 +4032,12 @@ components:
             VisionPLUS Service Data: AZXAIO-CTA-TIMES-IN-COLL
         pendingPercentage:
           type: string
-          description: Pending percentage.
+          description: |-
+            Length: 3
+
+            Pending percentage.
+
+            VisionPLUS Service Data: AZXAIO-PEND-PCT
         cashPlanNumber:
           type: number
           description: |-
@@ -4025,8 +4125,6 @@ components:
         expirationDateOfTemporaryCreditLimit:
           type: string
           description: |-
-            Length: 7
-
             Expiration date of temporary credit limit.
 
             VisionPLUS Service Data: AZXAIO-DATE-TEMP-CRLIM-EXP
@@ -4094,12 +4192,12 @@ components:
             Length: 1
 
             Prepaid type.
+
+            VisionPLUS Service Data: AZXAIO-PREPAID-TYPE
           format: int32
         dateOfApplication:
           type: string
           description: |-
-            Length: 8
-
             Date of application.
 
             VisionPLUS Service Data: AZXAIO-DATE-APPLI
@@ -4107,8 +4205,6 @@ components:
         dateOpened:
           type: string
           description: |-
-            Length: 8
-
             Date opened.
 
             VisionPLUS Service Data: AZXAIO-DATE-OPENED
@@ -4116,8 +4212,6 @@ components:
         dateLastCreditBureauReport:
           type: string
           description: |-
-            Length: 8
-
             Date of the last credit bureau report.
 
             VisionPLUS Service Data: AZXAIO-DATE-BUREAU
@@ -4125,8 +4219,6 @@ components:
         blockCode1Date:
           type: string
           description: |-
-            Length: 8
-
             Block code 1 date.
 
             VisionPLUS Service Data: AZXAIO-DATE-BLOCK-CODE-1
@@ -4134,8 +4226,6 @@ components:
         blockCode2Date:
           type: string
           description: |-
-            Length: 8
-
             Block code 2 date.
 
             VisionPLUS Service Data: AZXAIO-DATE-BLOCK-CODE-2
@@ -4143,8 +4233,6 @@ components:
         dateLastStatusChange:
           type: string
           description: |-
-            Length: 8
-
             Date last status change.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-STAT-CHG
@@ -4152,8 +4240,6 @@ components:
         dateAccountClosed:
           type: string
           description: |-
-            Length: 8
-
             Date account closed.
 
             VisionPLUS Service Data: AZXAIO-DATE-CLOSED
@@ -4161,8 +4247,6 @@ components:
         chargeOffDate:
           type: string
           description: |-
-            Length: 8
-
             Charge-off date.
 
             VisionPLUS Service Data: AZXAIO-DATE-CGOF
@@ -4170,8 +4254,6 @@ components:
         cardFeeDate:
           type: string
           description: |-
-            Length: 8
-
             Card fee date.
 
             VisionPLUS Service Data: AZXAIO-DATE-CARD-FEE
@@ -4179,8 +4261,6 @@ components:
         dateOfLastPurchase:
           type: string
           description: |-
-            Length: 8
-
             Date of last purchase.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-PURCH
@@ -4188,8 +4268,6 @@ components:
         dateOfLastReturn:
           type: string
           description: |-
-            Length: 8
-
             Date of last return.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-RETURN
@@ -4197,8 +4275,6 @@ components:
         dateOfLastDelinquency:
           type: string
           description: |-
-            Length: 8
-
             Date of last delinquency.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-DELQ
@@ -4206,8 +4282,6 @@ components:
         dateOfLastAction:
           type: string
           description: |-
-            Length: 8
-
             Date of last action.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-ACT
@@ -4215,8 +4289,6 @@ components:
         dateOfLastPaymentReversal:
           type: string
           description: |-
-            Length: 8
-
             Date of last payment reversal.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-REV-PMT
@@ -4224,8 +4296,6 @@ components:
         dateCreditLimitWasAssignedToTheAccount:
           type: string
           description: |-
-            Length: 8
-
             Date credit limit was assigned to the account.
 
             VisionPLUS Service Data: AZXAIO-DATE-CRLIM
@@ -4233,8 +4303,6 @@ components:
         expirationDateOfAchPayment:
           type: string
           description: |-
-            Length: 8
-
             Expiration date of ACH payment.
 
             VisionPLUS Service Data: AZXAIO-DATE-ACH-PMT-EXPR
@@ -4242,8 +4310,6 @@ components:
         dateOfLastStatement:
           type: string
           description: |-
-            Length: 8
-
             Date of last statement.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-STMT
@@ -4251,8 +4317,6 @@ components:
         dateOfNextStatement:
           type: string
           description: |-
-            Length: 8
-
             Date of next statement.
 
             VisionPLUS Service Data: AZXAIO-DATE-NEXT-STMT
@@ -4260,8 +4324,6 @@ components:
         dateOfLastPaymentDue:
           type: string
           description: |-
-            Length: 8
-
             Date of last payment due.
 
             VisionPLUS Service Data: AZXAIO-DATE-PMT-DUE
@@ -4269,8 +4331,6 @@ components:
         dateOfLastPayment:
           type: string
           description: |-
-            Length: 8
-
             Date of last payment.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-PMT
@@ -4278,8 +4338,6 @@ components:
         dateOfLastCreditBalance:
           type: string
           description: |-
-            Length: 8
-
             Date of last credit balance.
 
             VisionPLUS Service Data: AZXAIO-DATE-CR-BAL
@@ -4287,8 +4345,6 @@ components:
         dateOfLastReturnedCheck:
           type: string
           description: |-
-            Length: 8
-
             Date of last returned check.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-RTN-CHECK
@@ -4296,8 +4352,6 @@ components:
         dateOfLastDebit:
           type: string
           description: |-
-            Length: 8
-
             Date of last debit.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-DB
@@ -4305,8 +4359,6 @@ components:
         dateOfLastCredit:
           type: string
           description: |-
-            Length: 8
-
             Date of last credit.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-CR
@@ -4314,8 +4366,6 @@ components:
         dateOfLastCreditLimitChange:
           type: string
           description: |-
-            Length: 8
-
             Date of last credit limit change.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-CRLIM
@@ -4323,8 +4373,6 @@ components:
         dateOfTheLastRateChange:
           type: string
           description: |-
-            Length: 8
-
             Date of the last rate change.
 
             VisionPLUS Service Data: AZXAIO-DATE-LAST-RATE-CHG
@@ -4332,8 +4380,6 @@ components:
         dateAccountWentIntoCollections:
           type: string
           description: |-
-            Length: 8
-
             Date account went into collections.
 
             VisionPLUS Service Data: AZXAIO-DATE-INTO-COL
@@ -4341,8 +4387,6 @@ components:
         accountMakerDateOfBirth:
           type: string
           description: |-
-            Length: 8
-
             Account maker’s date of birth.
 
             VisionPLUS Service Data: AZXAIO-MAKER-DOB
@@ -4350,8 +4394,6 @@ components:
         accountComakerDateOfBirth:
           type: string
           description: |-
-            Length: 8
-
             Account comaker’s date of birth.
 
             VisionPLUS Service Data: AZXAIO-COMAKER-DOB
@@ -4359,24 +4401,20 @@ components:
         effectiveDateOfAccountTransfer:
           type: string
           description: |-
-            Length: 8
-
             Effective date of account transfer.
+
+            VisionPLUS Service Data: AZXAIO-DATE-XFR-EFF
           format: date
         dateTheAccountWasReaged:
           type: string
           description: |-
-            Length: 8
-
-            dateLastCardAccountExpires.
+            Date the account was reaged
 
             VisionPLUS Service Data: ARXAIO-DATE-LAST-REAGE
           format: date
         lateFeeDate:
           type: string
           description: |-
-            Length: 8
-
             Late fee date.
 
             VisionPLUS Service Data: AZXAIO-DATE-LATE-FEE
@@ -4384,15 +4422,13 @@ components:
         dateNextCreditBureauReport:
           type: string
           description: |-
-            Length: 8
-
             Date next credit bureau report.
+
+            VisionPLUS Service Data: AZXAIO-DATE-NEXT-CB
           format: date
         dateAchEffective:
           type: string
           description: |-
-            Length: 8
-
             Date ACH effective.
 
             VisionPLUS Service Data: AZXAIO-DATE-ACH-EFF
@@ -4400,8 +4436,6 @@ components:
         dateNotificationReceived:
           type: string
           description: |-
-            Length: 8
-
             Date notification received.
 
             VisionPLUS Service Data: AZXAIO-DATE-NOTIFIC-RECVD
@@ -4409,8 +4443,6 @@ components:
         dateOfCardExpiration:
           type: string
           description: |-
-            Length: 8
-
             Date of card expiration.
 
             VisionPLUS Service Data: AZXAIO-DATE-CARD-EXPR
@@ -4418,8 +4450,6 @@ components:
         directCreditAchExpirationDate:
           type: string
           description: |-
-            Length: 8
-
             Direct credit ACH expiration date.
 
             VisionPLUS Service Data: AZXAIO-DC-ACH-EXPIRE-DATE
@@ -4427,8 +4457,6 @@ components:
         directCreditAchStartDate:
           type: string
           description: |-
-            Length: 8
-
             Direct credit ACH start date.
 
             VisionPLUS Service Data: AZXAIO-DC-ACH-START-DATE
@@ -4436,8 +4464,6 @@ components:
         warningCode1Date:
           type: string
           description: |-
-            Length: 8
-
             FAS warning code 1 date.
 
             VisionPLUS Service Data: AZXAIO-FAS-WARN-CODE-1-DATE
@@ -4445,8 +4471,6 @@ components:
         pendingPctEffectiveDate:
           type: string
           description: |-
-            Length: 8
-
             Pending PCT effective date.
 
             VisionPLUS Service Data: AZXAIO-PEND-PCT-EFF-DATE
@@ -4454,8 +4478,6 @@ components:
         pendingPctEndDate:
           type: string
           description: |-
-            Length: 8
-
             Pending PCT end date.
 
             VisionPLUS Service Data: AZXAIO-PEND-PCT-END-DATE
@@ -4463,21 +4485,19 @@ components:
         lastCashAdvanceDate:
           type: string
           description: |-
-            Length: 8
-
             Last cash advance date.
 
             VisionPLUS Service Data: AZXAIO-LAST-CASH-ADV-DATE
           format: date
-        DateLastCardAccountExpires:
+        dateLastCardAccountExpires:
           type: string
-          description: Date last card account expires.
+          description: |-
+            Date last card account expires.
+            VisionPLUS Service Data: AZXAIO-LEAST-CARD-EXP-DATE
           format: date
         lastDateToAuthorize:
           type: string
           description: |-
-            Length: 8
-
             Last date to authorize.
 
             VisionPLUS Service Data: AZXAIO-LAST-DATE-TO-AUTH
@@ -4485,8 +4505,6 @@ components:
         graceDayExpirationDate:
           type: string
           description: |-
-            Length: 8
-
             Grace day expiration date.
 
             VisionPLUS Service Data: AZXAIO-GRACE-DAY-EXPIR-DATE
@@ -4494,8 +4512,6 @@ components:
         greatestCardExpirationDate:
           type: string
           description: |-
-            Length: 8
-
             Greatest card expiration date.
 
             VisionPLUS Service Data: AZXAIO-GRTST-CARD-EXP-DATE
@@ -4503,8 +4519,6 @@ components:
         expirationDateCurePeriodForAccount:
           type: string
           description: |-
-            Length: 7
-
             Expiration date of the cure period for this account.
 
             VisionPLUS Service Data: AZXAIO-OL-CURE-DATE
@@ -4520,131 +4534,104 @@ components:
         maximumAmountOfAuthorizationsByAccountOtherThanHighRiskCountries:
           type: number
           description: |-
+            Length: 17
             Maximum amount of authorizations in monetary units and subunits allowed for the cumulative year-to-date spending by an account in countries other than the high-risk countries.
 
             VisionPLUS Service Data: AZXAIO-YTD-OTHER-RISK-AMT
-        UserDate1:
+        userDate1:
           type: string
           description: |-
-            Length: 8
-
             User date 1
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-1
           format: date
-        UserDate2:
+        userDate2:
           type: string
           description: |-
-            Length: 8
-
             User date 2
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-2
           format: date
-        UserDate3:
+        userDate3:
           type: string
           description: |-
-            Length: 8
-
             User date 3
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-3
           format: date
-        UserDate4:
+        userDate4:
           type: string
           description: |-
-            Length: 8
-
             User date 4
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-4
           format: date
-        UserDate5:
+        userDate5:
           type: string
           description: |-
-            Length: 8
-
             User date 5
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-5
           format: date
-        UserDate6:
+        userDate6:
           type: string
           description: |-
-            Length: 8
-
             User date 6
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-6
           format: date
-        UserDate7:
+        userDate7:
           type: string
           description: |-
-            Length: 8
-
             User date 7
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-7
           format: date
-        UserDate8:
+        userDate8:
           type: string
           description: |-
-            Length: 8
-
             User date 8
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-8
           format: date
-        UserDate9:
+        userDate9:
           type: string
           description: |-
-            Length: 8
-
             User date 9
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-9
           format: date
-        UserDate10:
+        userDate10:
           type: string
           description: |-
-            Length: 8
-
             User date 10.
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-10
           format: date
-        UserDate11:
+        userDate11:
           type: string
           description: |-
-            Length: 8
-
             User date 11.
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-11
           format: date
-        UserDate12:
+        userDate12:
           type: string
           description: |-
-            Length: 8
-
             User date 12.
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-12
           format: date
-        UserDate13:
+        userDate13:
           type: string
           description: |-
-            Length: 8
-
             User date 13.
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-13
           format: date
-        UserDate14:
+        userDate14:
           type: string
           description: |-
-            Length: 8
-
             User date 14.
 
             VisionPLUS Service Data: AZXAIO-USER-DATE-14
@@ -4908,8 +4895,6 @@ components:
         startDateOfTheCorrespondenceAlternateCustomer:
           type: string
           description: |-
-            Length: 8
-
             Start date of the correspondence alternate customer.
 
             VisionPLUS Service Data: AZXAIO-DATE-ALT-CUST-STRT
@@ -4917,19 +4902,27 @@ components:
         expiryDateOfTheCorrespondenceAlternateCustomer:
           type: string
           description: |-
-            Length: 8
-
             Expiry date of the correspondence alternate customer.
 
             VisionPLUS Service Data: AZXAIO-DATE-ALT-CUST-EXP
           format: date
         preAgreementControlTableNumber:
           type: integer
-          description: Pre agreement control table number.
+          description: |-
+            Length: 3
+
+            Pre agreement control table number.
+
+            VisionPLUS Service Data: ARXAIO-PRE-AGRMNT-CTL-TBL-NBR
           format: int32
         preAgreementLevel:
           type: string
-          description: Pre agreement level.
+          description: |-
+            Length: 1
+
+            Pre agreement level.
+
+            VisionPLUS Service Data: ARXAIO-PRE-AGRMNT-LEVEL
         internationalRetailCreditAvailable:
           type: number
           description: |-
@@ -4943,7 +4936,7 @@ components:
           description: |-
             Length: 17
 
-            internationalRetailCreditAvailable.
+            International retail credit limit.
 
             VisionPLUS Service Data: ARXAIO-IRET-CRLIM
         internationalCashCreditAvailable:
@@ -5012,15 +5005,20 @@ components:
             VisionPLUS Service Data: ARXAIO-IB-ISS-RETAIL-PLAN
         installmentBillingAcquirerRetailPlanNumber:
           type: number
-          description: Installment billing acquirer retail plan number.
+          description: |-
+            Length: 5
+
+            Installment billing acquirer retail plan number.
+
+            VisionPLUS Service Data: ARXAIO-IB-ACQ-RETAIL-PLAN
         installmentBillingCashLimit:
           type: number
           description: |-
             Length: 17
 
-            Installment billing acquirer retail plan number.
+            Installment billing cash limit.
 
-            VisionPLUS Service Data: ARXAIO-IB-CASH-AVAIL
+            VisionPLUS Service Data: ARXAIO-IB-CASH-LIMIT
         installmentBillingCashAvailable:
           type: number
           description: |-
@@ -5094,189 +5092,41 @@ components:
             Installment payment cash plan number.
 
             VisionPLUS Service Data: AZXAIO-INST-PMT-CASH-PLAN
-        userDate8:
-          type: string
-          format: date
-        userDate4:
-          type: string
-          format: date
-        userDate3:
-          type: string
-          format: date
-        userDate13:
-          type: string
-          format: date
-        userDate12:
-          type: string
-          format: date
-        userDate11:
-          type: string
-          format: date
-        userDate5:
-          type: string
-          format: date
-        userDate10:
-          type: string
-          format: date
-        userDate9:
-          type: string
-          format: date
-        userDate14:
-          type: string
-          format: date
-        userDate6:
-          type: string
-          format: date
-        userDate7:
-          type: string
-          format: date
-        userDate1:
-          type: string
-          format: date
-        userDate2:
-          type: string
-          format: date
-        numberOfNonSufficientFunds:
-          type: number
-        dateLastCardAccountExpires:
-          type: string
-          format: date
-    AccountForDetailsResponse.AccountData.DelinquencyData:
+    AccountForDetailsL8vgResponse.AccountData.AccountKey:
       type: object
       properties:
-        currentPaymentDue:
-          type: number
-          description: |-
-            Length: 17
-
-            Current payment due.
-
-            VisionPLUS Service Data: ARXAIO-PMT-CURR-DUE
-        pastPaymentCounter:
-          type: number
-          description: Past payment counter.
-        paymentPastDue:
-          type: number
-          description: Payment past due.
-        daysDelinquentCounter30:
-          type: number
+        transferOrganization:
+          type: integer
           description: |-
             Length: 3
 
-            30 days delinquent counter.
+            Transfer organization (part of the transfer key).
 
-            VisionPLUS Service Data: AZXAIO-PMT-30DAYS-CTR
-        daysDelinquentAmount30:
-          type: number
-          description: |-
-            Length: 17
-
-            30 days delinquent amount.
-
-            VisionPLUS Service Data: AZXAIO-PMT-30DAYS
-        daysDelinquentCounter60:
-          type: number
+            VisionPLUS Service Data: AZXAIO-XFR-ORG
+          format: int32
+        transferLogo:
+          type: integer
           description: |-
             Length: 3
 
-            60 days delinquent counter.
+            Transfer logo (part of the transfer key).
 
-            VisionPLUS Service Data: AZXAIO-PMT-60DAYS-CTR
-        daysDelinquentAmount60:
-          type: number
+            VisionPLUS Service Data: AZXAIO-XFR-LOGO
+          format: int32
+        transferAccount:
+          type: string
           description: |-
-            Length: 17
+            Length: 19
 
-            60 days delinquent amount.
+            Transfer account (part of the transfer key).
 
-            VisionPLUS Service Data: AZXAIO-PMT-60DAYS
-        daysDelinquentCounter90:
-          type: number
-          description: |-
-            Length: 3
-
-            90 days delinquent counter.
-
-            VisionPLUS Service Data: AZXAIO-PMT-90DAYS-CTR
-        daysDelinquentAmount90:
-          type: number
-          description: |-
-            Length: 17
-
-            90 days delinquent amount.
-
-            VisionPLUS Service Data: AZXAIO-PMT-90DAYS
-        daysDelinquentCounter120:
-          type: number
-          description: |-
-            Length: 3
-
-            120 days delinquent counter.
-
-            VisionPLUS Service Data: AZXAIO-PMT-120-DAYS-CTR
-        daysDelinquentAmount120:
-          type: number
-          description: |-
-            Length: 17
-
-            120 days delinquent amount.
-
-            VisionPLUS Service Data: AZXAIO-PMT-120DAYS
-        daysDelinquentCounter150:
-          type: number
-          description: |-
-            Length: 3
-
-            150 days delinquent counter.
-
-            VisionPLUS Service Data: AZXAIO-PMT-150-DAYS-CTR
-        daysDelinquentAmount150:
-          type: number
-          description: |-
-            Length: 17
-
-            150 days delinquent amount.
-
-            VisionPLUS Service Data: AZXAIO-PMT-150DAYS
-        daysDelinquentCounter180:
-          type: number
-          description: |-
-            Length: 3
-
-            180 days delinquent counter.
-
-            VisionPLUS Service Data: AZXAIO-PMT-180-DAYS-CTR
-        daysDelinquentAmount180:
-          type: number
-          description: |-
-            Length: 17
-
-            180 days delinquent amount.
-
-            VisionPLUS Service Data: AZXAIO-PMT-180DAYS
-        daysDelinquentCounter210:
-          type: number
-          description: |-
-            Length: 3
-
-            210 days delinquent counter.
-
-            VisionPLUS Service Data: AZXAIO-PMT-210-DAYS-CTR
-        daysDelinquentAmount210:
-          type: number
-          description: |-
-            Length: 17
-
-            210 days delinquent amount.
-
-            VisionPLUS Service Data: AZXAIO-PMT-210DAYS.
-    AccountForDetailsResponse.AccountData.WarningCode:
+            VisionPLUS Service Data: AZXAIO-XFR-ACCT
+    AccountForDetailsL8vgResponse.AccountData.WarningCodeList:
       type: object
       properties:
         sequence:
-          type: integer
+          type: string
           description: Sequence.
-          format: int32
         warningCode:
           type: string
           description: |-
@@ -5285,20 +5135,23 @@ components:
             Warning code.
 
             VisionPLUS Service Data: AZXAIO-WARNING-CODE
-    AccountForDetailsResponse.CustomerData:
+    AccountForDetailsL8vgResponse.CustomerData:
       type: object
       properties:
         numberOfOccurrencesFields:
           type: integer
-          description: Number of occurrences fields.
+          description: |-
+            Length: 2
+
+            Number of occurrences for name/address fields
+
+            VisionPLUS Service Data: AZXAIO-NA-NBR-OCCUR
           format: int32
         numberOccurrenceForAddressList:
           type: array
           items:
-            $ref: '#/components/schemas/AccountForDetailsResponse.CustomerData.NumberOccurrenceForAddress'
-        fixedData:
-          $ref: '#/components/schemas/AccountForDetailsResponse.CustomerData.FixedData'
-    AccountForDetailsResponse.CustomerData.FixedData:
+            $ref: '#/components/schemas/AccountForDetailsL8vgResponse.CustomerData.NumberOccurrenceForAddress'
+    AccountForDetailsL8vgResponse.CustomerData.FixedData:
       type: object
       properties:
         nameLine1:
@@ -5386,11 +5239,16 @@ components:
           description: City state residence.
         city:
           type: string
-          description: City.
+          description: |-
+            Length: 7
+
+            City.
+
+            VisionPLUS Service Data: AZXAIO-CITY-CODE
         state:
           type: string
           description: State.
-    AccountForDetailsResponse.CustomerData.NumberOccurrenceForAddress:
+    AccountForDetailsL8vgResponse.CustomerData.NumberOccurrenceForAddress:
       type: object
       properties:
         sequence:
@@ -5528,6 +5386,9 @@ components:
             Name/address country code.
 
             VisionPLUS Service Data: AZXAIO-NA-CNTRY-CD
+        country:
+          type: string
+          description: Country
         postalCode:
           type: string
           description: |-
@@ -5552,35 +5413,147 @@ components:
             Tax ID.
 
             VisionPLUS Service Data: AZXAIO-TAXID
-    AccountKey:
+        fixedData:
+          $ref: '#/components/schemas/AccountForDetailsL8vgResponse.CustomerData.FixedData'
+    AccountFotDetailsL8vgResponse.AccountData.DelinquencyData:
       type: object
       properties:
-        transferOrganization:
-          type: integer
+        currentPaymentDue:
+          type: number
+          description: |-
+            Length: 17
+
+            Current payment due.
+
+            VisionPLUS Service Data: ARXAIO-PMT-CURR-DUE
+        pastPaymentCounter:
+          type: number
           description: |-
             Length: 3
 
-            Transfer organization (part of the transfer key).
+            Past payment counter.
 
-            VisionPLUS Service Data: AZXAIO-XFR-ORG
-          format: int32
-        transferLogo:
-          type: integer
+            VisionPLUS Service Data: ARXAIO-PMT-PAST-CTR
+        paymentPastDue:
+          type: number
+          description: |-
+            Length: 17
+
+            Payment past due.
+
+            VisionPLUS Service Data: ARXAIO-PMT-PAST-DUE
+        daysDelinquentCounter30:
+          type: number
           description: |-
             Length: 3
 
-            Transfer logo (part of the transfer key).
+            30 days delinquent counter.
 
-            VisionPLUS Service Data: AZXAIO-XFR-LOGO
-          format: int32
-        transferAccount:
-          type: string
+            VisionPLUS Service Data: AZXAIO-PMT-30DAYS-CTR
+        daysDelinquentAmount30:
+          type: number
           description: |-
-            Length: 19
+            Length: 17
 
-            Transfer account (part of the transfer key).
+            30 days delinquent amount.
 
-            VisionPLUS Service Data: AZXAIO-XFR-ACCT
+            VisionPLUS Service Data: AZXAIO-PMT-30DAYS
+        daysDelinquentCounter60:
+          type: number
+          description: |-
+            Length: 3
+
+            60 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-60DAYS-CTR
+        daysDelinquentAmount60:
+          type: number
+          description: |-
+            Length: 17
+
+            60 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-60DAYS
+        daysDelinquentCounter90:
+          type: number
+          description: |-
+            Length: 3
+
+            90 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-90DAYS-CTR
+        daysDelinquentAmount90:
+          type: number
+          description: |-
+            Length: 17
+
+            90 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-90DAYS
+        daysDelinquentCounter120:
+          type: number
+          description: |-
+            Length: 3
+
+            120 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-120-DAYS-CTR
+        daysDelinquentAmount120:
+          type: number
+          description: |-
+            Length: 17
+
+            120 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-120DAYS
+        daysDelinquentCounter150:
+          type: number
+          description: |-
+            Length: 3
+
+            150 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-150-DAYS-CTR
+        daysDelinquentAmount150:
+          type: number
+          description: |-
+            Length: 17
+
+            150 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-150DAYS
+        daysDelinquentCounter180:
+          type: number
+          description: |-
+            Length: 3
+
+            180 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-180-DAYS-CTR
+        daysDelinquentAmount180:
+          type: number
+          description: |-
+            Length: 17
+
+            180 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-180DAYS
+        daysDelinquentCounter210:
+          type: number
+          description: |-
+            Length: 3
+
+            210 days delinquent counter.
+
+            VisionPLUS Service Data: AZXAIO-PMT-210-DAYS-CTR
+        daysDelinquentAmount210:
+          type: number
+          description: |-
+            Length: 17
+
+            210 days delinquent amount.
+
+            VisionPLUS Service Data: AZXAIO-PMT-210DAYS.
     AccountForCardDetailsL8V2Request:
       required:
       - accountNumber
