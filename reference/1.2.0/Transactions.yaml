@@ -18,16 +18,6 @@ paths:
         \nVMX Service: M.CMS.INSTAL.TRXN.DETAIL.UPD, L8V1"
       operationId: Installment Detail Simulation - Individual Installment-based Anticipation
       parameters:
-      - name: installmentTransaction-Id
-        in: path
-        description: "Length: 3\n\nRecord number that is sequentially assigned to\
-          \ each installment associated with the account.\n * Must be numeric and\
-          \ less than 999. \nVisionPLUS Service Data: AZXZ4I-REC-NBR"
-        required: true
-        schema:
-          type: integer
-          format: int32
-        example: 1
       - name: apikey
         in: header
         description: API Key
@@ -41,6 +31,16 @@ paths:
         schema:
           type: string
         example: "00970"
+      - name: installmentTransaction-Id
+        in: path
+        description: "Length: 3\n\nRecord number that is sequentially assigned to\
+          \ each installment associated with the account.\n * Must be numeric and\
+          \ less than 999. \nVisionPLUS Service Data: AZXZ4I-REC-NBR"
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 1
       requestBody:
         content:
           application/json:
@@ -48,28 +48,28 @@ paths:
               $ref: '#/components/schemas/IndividualInstallmentAnticipationRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -89,6 +89,19 @@ paths:
         \ \n\nVMX Service: M.CMS.INSTAL.TRXN.DETAIL.UPD, L8V1"
       operationId: Installment Detail Simulation - Anticipation Total Number of Installments
       parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: "00970"
       - name: installmentTransaction-Id
         in: path
         description: "Length: 3\n\nRecord number that is sequentially assigned to\
@@ -108,19 +121,6 @@ paths:
           type: integer
           format: int32
         example: 1
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
       requestBody:
         content:
           application/json:
@@ -128,28 +128,28 @@ paths:
               $ref: '#/components/schemas/InstallmentBasedAnticipationRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -201,28 +201,28 @@ paths:
               $ref: '#/components/schemas/AmountAnticipationNoPaymentRequiredRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -281,28 +281,28 @@ paths:
               $ref: '#/components/schemas/InstallmentTermsUpdateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -353,28 +353,28 @@ paths:
               $ref: '#/components/schemas/AmountBasedAnticipationRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -413,6 +413,8 @@ paths:
               $ref: '#/components/schemas/QuoteProjectionUpdateRequest'
         required: true
       responses:
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             VPL5SVV01S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -442,28 +444,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -503,28 +503,28 @@ paths:
               $ref: '#/components/schemas/PromoRateUpdateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -577,28 +577,18 @@ paths:
               $ref: '#/components/schemas/TransactionConversionRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "422":
           description: "Unprocessable Entity\n\nVPL5STIZ5S - INVALID ORG         \
             \                                                  VPL5STIZ7S - INVALID\
@@ -657,6 +647,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -694,28 +694,28 @@ paths:
               $ref: '#/components/schemas/ExchangeRateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -794,28 +794,28 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -852,28 +852,28 @@ paths:
               $ref: '#/components/schemas/CurrencyRateTableUpdateRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -910,28 +910,28 @@ paths:
               $ref: '#/components/schemas/CurrencyRateDefinitionRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -970,6 +970,18 @@ paths:
               $ref: '#/components/schemas/CurrencyRateTableRequest'
         required: true
       responses:
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SMR05E - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -982,28 +994,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1042,6 +1042,18 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsL8V7Request'
         required: true
       responses:
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5STDZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
@@ -1094,28 +1106,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1155,6 +1155,10 @@ paths:
               $ref: '#/components/schemas/PlanSettlementQuoteUpdateRequest'
         required: true
       responses:
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "422":
@@ -1209,26 +1213,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1268,6 +1268,10 @@ paths:
               $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Request'
         required: true
       responses:
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: "VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\nVPL5SOA07E - ACCOUNT NUMBER IS INVALID\nVPL5SOA08E\
@@ -1289,26 +1293,22 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1346,28 +1346,28 @@ paths:
               $ref: '#/components/schemas/NotesHistoryInquiryRequestR8V3'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1405,28 +1405,10 @@ paths:
               $ref: '#/components/schemas/NonMonetaryActionCodeRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: |-
             VPL8SNA06S - ORGANIZATION MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -1464,6 +1446,24 @@ paths:
             VPL8SNA43E - MANUAL REFERRAL REP ID WAS NOT SUPPLIED
             VPL8SNA44S - MANUAL REFERRAL ORG/REP NOT FOUND
             VPL8SNA45S - MANUAL REFERRAL ORG/REP NOT ELIGIBLE FOR THIS REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -1518,28 +1518,28 @@ paths:
               $ref: '#/components/schemas/EarlyReleaseDiscountRequest'
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1607,6 +1607,8 @@ paths:
           type: string
         example: "00970"
       responses:
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             VPL5SIQ06S - ORG IS INVALID
@@ -1619,28 +1621,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1707,6 +1707,8 @@ paths:
           type: string
         example: "00970"
       responses:
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             VPL5SVQ06S - ORG IS INVALID
@@ -1719,28 +1721,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1827,28 +1827,28 @@ paths:
           default: 1
         example: 1
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1953,28 +1953,12 @@ paths:
           type: string
         example: "Y"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -1983,6 +1967,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/InstallmentTermsInquiryL8V2Response'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Installment Transaction Terms Simulation
       x-group-name: Transactions
   /transactions/v1/installmentTransactions/{installmentTransaction-Id}:
@@ -2055,28 +2055,28 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2150,28 +2150,28 @@ paths:
           format: int32
         example: 51
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2221,28 +2221,28 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2306,28 +2306,18 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SQF06S - ORG IS INVALID
@@ -2336,6 +2326,16 @@ paths:
             VPL5SQF09S - REQUESTED ORG NUMBER IS NOT FOUND
             VPL5SQF12S - ORG RECORD NOT FOUND/ADD PENDING
             VPL5SQF13S - PCT TABLE NOT FOUND/ADD PENDING
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2401,28 +2401,12 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "422":
           description: |
             VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -2441,6 +2425,22 @@ paths:
             VPL5SOA21S - FOREIGN ORGANIZATION NOT FOUND ON FILE
             VPL5SOA22S - ACCOUNT NUMBER NOT FOUND
             VPL5SOA24S - LOGO NOT FOUND ON FILE
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2485,28 +2485,28 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2571,28 +2571,28 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2649,28 +2649,28 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2735,6 +2735,10 @@ paths:
           type: string
         example: "00970"
       responses:
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "422":
@@ -2749,26 +2753,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2817,6 +2817,10 @@ paths:
           type: string
         example: "00970"
       responses:
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "422":
@@ -2829,26 +2833,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -2907,28 +2907,28 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -3044,28 +3044,28 @@ paths:
           type: string
         example: "00970"
       responses:
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -3156,6 +3156,10 @@ paths:
           format: int32
         example: 1
       responses:
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
@@ -3166,26 +3170,22 @@ paths:
                   $ref: '#/components/schemas/InstallmentTermsInquiryResponse'
         "400":
           description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Installment Billing Transaction Detail
       x-group-name: Transactions
 components:
@@ -11781,16 +11781,46 @@ components:
           type: string
         tokenServiceMessage:
           type: string
+        holidayDate4:
+          type: string
+          format: date
+        holidayDate3:
+          type: string
+          format: date
         holidayDate12:
           type: string
           format: date
-        holidayDate16:
+        holidayDate13:
           type: string
           format: date
-        holidayDate18:
+        holidayDate10:
           type: string
           format: date
-        holidayDate2:
+        holidayDate11:
+          type: string
+          format: date
+        holidayDate24:
+          type: string
+          format: date
+        holidayDate23:
+          type: string
+          format: date
+        holidayDate17:
+          type: string
+          format: date
+        holidayDate20:
+          type: string
+          format: date
+        holidayDate14:
+          type: string
+          format: date
+        holidayDate9:
+          type: string
+          format: date
+        holidayDate6:
+          type: string
+          format: date
+        holidayDate7:
           type: string
           format: date
         holidayDate19:
@@ -11799,61 +11829,31 @@ components:
         holidayDate8:
           type: string
           format: date
-        holidayDate20:
-          type: string
-          format: date
-        holidayDate22:
-          type: string
-          format: date
-        holidayDate6:
-          type: string
-          format: date
-        holidayDate11:
-          type: string
-          format: date
-        holidayDate23:
-          type: string
-          format: date
-        holidayDate3:
-          type: string
-          format: date
-        holidayDate5:
+        holidayDate16:
           type: string
           format: date
         holidayDate21:
           type: string
           format: date
-        holidayDate10:
-          type: string
-          format: date
-        holidayDate17:
-          type: string
-          format: date
-        holidayDate24:
+        holidayDate22:
           type: string
           format: date
         holidayDate25:
           type: string
           format: date
-        holidayDate4:
+        holidayDate5:
+          type: string
+          format: date
+        holidayDate18:
           type: string
           format: date
         holidayDate15:
           type: string
           format: date
-        holidayDate7:
-          type: string
-          format: date
-        holidayDate13:
-          type: string
-          format: date
         holidayDate1:
           type: string
           format: date
-        holidayDate9:
-          type: string
-          format: date
-        holidayDate14:
+        holidayDate2:
           type: string
           format: date
     OfferInquiryResponse:
@@ -14850,5 +14850,3 @@ components:
           description: "Length: 13 \n\nInstallment Fee Amount.\n\nVisionPLUS Service\
             \ Data: AZXZ5I-INST-FEE-AMT "
           example: 0
-x-config:
-  tryItOut: true
