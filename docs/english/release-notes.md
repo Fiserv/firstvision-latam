@@ -1,8 +1,33 @@
 ---
-tags: [Release Notes, January, February, March, April]
+tags: [Release Notes, January, February, March, April, May]
 ---
 
 # Release Notes
+
+## May 2023
+
+### What's New?
+
+- /account/v2/balance
+
+### Enhancements
+
+API's description improvement:
+- /customer/demographicData-l8v2
+- /account/prepaid
+- /cards/embosser/block
+- /account/block-code
+- /account/qualification
+
+### Fixed
+
+- N/A
+
+### Obsolete
+
+- N/A
+
+---
 
 ## April 2023
 
