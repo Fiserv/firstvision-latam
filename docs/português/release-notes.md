@@ -12,7 +12,7 @@ tags: [Release Notes, Janeiro, Fevereiro, Março, Abril]
 
 ### Melhorias
 
-Descripción de API's mejorada:
+- Melhoria de descrição das APIs:
 - /customer/demographicData-l8v2
 - /account/prepaid
 - /cards/embosser/block
