@@ -25,7 +25,7 @@ API's description improvement:
 
 ### Obsolete
 
-- N/A
+- /cards/global-card-activation
 
 ---
 
