@@ -25,7 +25,7 @@ tags: [Release Notes, Janeiro, Fevereiro, Março, Abril]
 
 ### Obsoleto
 
-- N/A
+- /cards/global-card-activation
 
 ---
 
