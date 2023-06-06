@@ -18,6 +18,16 @@ paths:
         \nVMX Service: M.CMS.INSTAL.TRXN.DETAIL.UPD, L8V1"
       operationId: Installment Detail Simulation - Individual Installment-based Anticipation
       parameters:
+      - name: installmentTransaction-Id
+        in: path
+        description: "Length: 3\n\nRecord number that is sequentially assigned to\
+          \ each installment associated with the account.\n * Must be numeric and\
+          \ less than 999. \nVisionPLUS Service Data: AZXZ4I-REC-NBR"
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 1
       - name: apikey
         in: header
         description: API Key
@@ -31,16 +41,6 @@ paths:
         schema:
           type: string
         example: "00970"
-      - name: installmentTransaction-Id
-        in: path
-        description: "Length: 3\n\nRecord number that is sequentially assigned to\
-          \ each installment associated with the account.\n * Must be numeric and\
-          \ less than 999. \nVisionPLUS Service Data: AZXZ4I-REC-NBR"
-        required: true
-        schema:
-          type: integer
-          format: int32
-        example: 1
       requestBody:
         content:
           application/json:
@@ -52,10 +52,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -64,12 +68,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -89,19 +89,6 @@ paths:
         \ \n\nVMX Service: M.CMS.INSTAL.TRXN.DETAIL.UPD, L8V1"
       operationId: Installment Detail Simulation - Anticipation Total Number of Installments
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: "00970"
       - name: installmentTransaction-Id
         in: path
         description: "Length: 3\n\nRecord number that is sequentially assigned to\
@@ -121,6 +108,27 @@ paths:
           type: integer
           format: int32
         example: 1
+      - name: X-ClientID
+        in: header
+        description: Sign-on name.
+        required: true
+        schema:
+          type: string
+        example: 00000WEBUSER
+      - name: security-context
+        in: header
+        description: User’s sign-on in security system.
+        required: false
+        schema:
+          type: string
+        example: 00000APIUSER950
+      - name: username
+        in: header
+        description: Username for the application.
+        required: false
+        schema:
+          type: string
+        example: 00000APIUSER950
       requestBody:
         content:
           application/json:
@@ -132,10 +140,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -144,12 +156,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -205,10 +213,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -217,12 +229,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -285,10 +293,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -297,12 +309,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -357,10 +365,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -369,12 +381,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -393,19 +401,21 @@ paths:
         \ L8V1"
       operationId: Quote Projections Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -415,6 +425,32 @@ paths:
       responses:
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteProjectionUpdateResponse'
         "422":
           description: |-
             VPL5SVV01S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -444,32 +480,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/QuoteProjectionUpdateResponse'
       x-proxy-name: Quote Projections Update
       x-group-name: Transactions
   /transactions/promo-rate:
@@ -483,19 +493,21 @@ paths:
         \ R8V1"
       operationId: Promotional Rate Expiration Disclosure Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -507,30 +519,12 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PromoRateUpdateResponse'
         "422":
           description: |-
             VPL5SDS01E – ORG NOT FOUND IN AMCR
@@ -547,6 +541,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromoRateUpdateResponse'
       x-proxy-name: Promotional Rate Expiration Disclosure Update
       x-group-name: Transactions
   /transactions/installmentConversion:
@@ -557,19 +569,11 @@ paths:
       description: "Transaction conversion. \nVMX Service: M.CMS.INST.TRAN.CONV, R8V1"
       operationId: transactionConversion
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
       requestBody:
         content:
           application/json:
@@ -581,68 +585,60 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "422":
-          description: "Unprocessable Entity\n\nVPL5STIZ5S - INVALID ORG         \
-            \                                                  VPL5STIZ7S - INVALID\
-            \ LOGO                                                          \nVPL5STI01S\
-            \ - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998 \
-            \     \nVPL5STI02S - ORGANIZATION NOT FOUND ON FILE                  \
-            \                      \nVPL5STI03S - ACCT / CARD NOT FOUND ON FILE  \
-            \                                       \nVPL5STI04S - TRANSACTION PLAN\
-            \ NOT FOUND                                            \nVPL5STI05S -\
-            \ PLAN NOT FOUND ON FILE                                             \
-            \   \nVPL5STI06S - PLAN ENTERED IS NOT INSTALLMENT PLAN TYPE         \
-            \                    \nVPL5STI07S - REQUESTED ACCT / CARD NUMBER IS NOT\
-            \ NUMERIC OR EQUAL TO SPACES        \nVPL5STI08S - PRINCIPAL MUST BE NUMERIC,\
-            \ GREATER THAN ZEROS                         \nVPL5STI09S - FUNC CODE\
-            \ MUST BE E OR R                                              \nVPL5STI10S\
-            \ - INSTALLMENT PROCESSING NOT SUPPORTED FOR THIS ORG                \
-            \     \nVPL5STI11S - INSTALLMENT CONVERSION NOT SUPPORTED FOR THIS LOGO\
-            \                    \nVPL5STI12S - TRANSACTION PLAN SET FOR INSTALLMENT\
-            \ CONVERSION                       \nVPL5STI13S - TRANSACTION PREVIOUSLY\
-            \ CONVERTED TO INSTALLMENT                       \nVPL5STI14S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, ACCOUNT DELINQUENT         \nVPL5STI15S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, INVALID ACCOUNT STATUS     \nVPL5STI16S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED; INVALID ACCOUNT BLOCKED    \nVPL5STI17S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, INVALID CREDIT PLAN        \nVPL5STI18S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, ONLY CASH TXN SUPPORTED    \nVPL5STI19S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, ONLY RETAIL TXN SUPPORTED  \nVPL5STI20S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, MINIMUM TRANSACTION AMOUNT \nVPL5STI21S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, MAXIMUM TRANSACTION AMOUNT \nVPL5STI22S - TRANSACTION\
-            \ MUST BE C OR L OR S                                \nVPL5STI23S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, MINIMUM INSTALLMENT TERM   \nVPL5STI24S - INSTALLMENT\
-            \ CONVERSION NOT ALLOWED, MAXIMUM INSTALLMENT TERM   \nVPL5STI25S - TRANSACTION\
-            \ NOT ELIGIBLE FOR INST CONV, PASSED PAYMENT DUE DATE\nVPL5STI26S - ONLY\
-            \ SALES TRANSACTION ELIGIBLE FOR INSTALLMENT CONVERSION     \nVPL5STI27S\
-            \ - TRANSACTION SEQ NO MUST BE NUMERIC AND > 0 FOR TXN TYPE C      \n\
-            VPL5STI28S - TRANSACTION NOT ELIGIBLE FOR INSTALLMENT, CARD EXPIRED  \
-            \       \nVPL5STI29S - TRANSACTION STMT REC NUMBER MUST BE  > 0 FOR TYPE\
-            \ L OR S       \nVPL5STI30S - INSTALLMENT CONVERSION REVERSAL NOT SUPPORTED\
-            \ FOR THIS LOGO    \nVPL5STI31S - INSTALLMENT TRANSACTION CONV IS NOT\
-            \ INITIATED                  \nVPL5STI32S - INSTALLMENT TXN CONV INITIATED\
-            \ BUT RECORD NOT FOUND IN AMXT    \nVPL5STI33S - LOGO RECORD NOT FOUND\
-            \ IN FILE                                  \nVPL5STI34S - TRANSACTION\
-            \ HEADER RECORD NOT FOUND IN FILE                          \nVPL5STI35S\
-            \ - CREDIT TRANSACTION DETAIL RECORD NOT FOUND IN FILE               \
-            \    \nVPL5STI36S - DEBIT TRANSACTION DETAIL RECORD NOT FOUND IN FILE\
-            \                    \nVPL5STI37S - TRANSACTION NOT FOUND ON FILE    \
-            \                                    \nVPL5STI38S - PROCESSING MODE NOT\
-            \ EQUAL TO LOW VALUES/SPACES OR P OR V             \nVPL5STI39S - PLAN\
-            \ ENTERED MUST BE NUMERIC, GREATER THAN ZEROES                    \nVPL5STI40S\
-            \ - INSTALLMENT TERM MUST BE NUMERIC, GREATER THAN ZEROES            \
-            \    \nVPL5STI41S - VALID TRANSACTION STATEMENT DATE IS REQUIRED WHEN\
-            \ TYPE IS L OR S     \nVPL5STI42S - INPUT AMOUNT SHOULD BE SAME AS TRANSACTION\
-            \ AMOUNT                    \nVPL5STI43S - TRANSACTION TYPE ‘S’ OR ‘L’\
-            \ NOT ALLOWED WHEN EXT INST IND IS ACTIVE\nVPL5STI44S - MEXICO INSTALMENT\
-            \ IS NOT ALLWED FOR THIS LOGO\n"
+          description: "VPL5STIZ5S-INVALID ORG \n\nVPL5STIZ7S-INVALID LOGO \n\nVPL5STI01S-ORGANIZATION\
+            \ NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5STI02S-ORGANIZATION\
+            \ NOT FOUND ON FILE \n\nVPL5STI03S-ACCT / CARD NOT FOUND ON FILE \n\n\
+            VPL5STI04S-TRANSACTION PLAN NOT FOUND \n\nVPL5STI05S-PLAN NOT FOUND ON\
+            \ FILE \n\nVPL5STI06S-PLAN ENTERED IS NOT INSTALLMENT PLAN TYPE \n\nVPL5STI07S-REQUESTED\
+            \ ACCT / CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES \n\nVPL5STI08S-PRINCIPAL\
+            \ MUST BE NUMERIC, GREATER THAN ZEROS \n\nVPL5STI09S-FUNC CODE MUST BE\
+            \ E OR R \n\nVPL5STI10S-INSTALLMENT PROCESSING NOT SUPPORTED FOR THIS\
+            \ ORG \n\nVPL5STI11S-INSTALLMENT CONVERSION NOT SUPPORTED FOR THIS LOGO\
+            \ \n\nVPL5STI12S-TRANSACTION PLAN SET FOR INSTALLMENT CONVERSION \n\n\
+            VPL5STI13S-TRANSACTION PREVIOUSLY CONVERTED TO INSTALLMENT \n\nVPL5STI14S-INSTALLMENT\
+            \ CONVERSION NOT ALLOWED, ACCOUNT DELINQUENT \n\nVPL5STI15S-INSTALLMENT\
+            \ CONVERSION NOT ALLOWED, INVALID ACCOUNT STATUS \n\nVPL5STI16S-INSTALLMENT\
+            \ CONVERSION NOT ALLOWED; INVALID ACCOUNT BLOCKED \n\nVPL5STI17S-INSTALLMENT\
+            \ CONVERSION NOT ALLOWED, INVALID CREDIT PLAN \n\nVPL5STI18S-INSTALLMENT\
+            \ CONVERSION NOT ALLOWED, ONLY CASH TXN SUPPORTED \n\nVPL5STI19S-INSTALLMENT\
+            \ CONVERSION NOT ALLOWED, ONLY RETAIL TXN SUPPORTED \n\nVPL5STI20S-INSTALLMENT\
+            \ CONVERSION NOT ALLOWED, MINIMUM TRANSACTION AMOUNT \n\nVPL5STI21S-INSTALLMENT\
+            \ CONVERSION NOT ALLOWED, MAXIMUM TRANSACTION AMOUNT \n\nVPL5STI22S-TRANSACTION\
+            \ MUST BE C OR L OR S \n\nVPL5STI23S-INSTALLMENT CONVERSION NOT ALLOWED,\
+            \ MINIMUM INSTALLMENT TERM \n\nVPL5STI24S-INSTALLMENT CONVERSION NOT ALLOWED,\
+            \ MAXIMUM INSTALLMENT TERM \n\nVPL5STI25S-TRANSACTION NOT ELIGIBLE FOR\
+            \ INST CONV, PASSED PAYMENT DUE DATE \n\nVPL5STI26S-ONLY SALES TRANSACTION\
+            \ ELIGIBLE FOR INSTALLMENT CONVERSION \n\nVPL5STI27S-TRANSACTION SEQ NO\
+            \ MUST BE NUMERIC AND > 0 FOR TXN TYPE C \n\nVPL5STI28S-TRANSACTION NOT\
+            \ ELIGIBLE FOR INSTALLMENT, CARD EXPIRED \n\nVPL5STI29S-TRANSACTION STMT\
+            \ REC NUMBER MUST BE > 0 FOR TYPE L OR S \n\nVPL5STI30S-INSTALLMENT CONVERSION\
+            \ REVERSAL NOT SUPPORTED FOR THIS LOGO \n\nVPL5STI31S-INSTALLMENT TRANSACTION\
+            \ CONV IS NOT INITIATED \n\nVPL5STI32S-INSTALLMENT TXN CONV INITIATED\
+            \ BUT RECORD NOT FOUND IN AMXT \n\nVPL5STI33S-LOGO RECORD NOT FOUND IN\
+            \ FILE \n\nVPL5STI34S-TRANSACTION HEADER RECORD NOT FOUND IN FILE \n\n\
+            VPL5STI35S-CREDIT TRANSACTION DETAIL RECORD NOT FOUND IN FILE \n\nVPL5STI36S-DEBIT\
+            \ TRANSACTION DETAIL RECORD NOT FOUND IN FILE \n\nVPL5STI37S-TRANSACTION\
+            \ NOT FOUND ON FILE \n\nVPL5STI38S-PROCESSING MODE NOT EQUAL TO LOW VALUES/SPACES\
+            \ OR P OR V \n\nVPL5STI39S-PLAN ENTERED MUST BE NUMERIC, GREATER THAN\
+            \ ZEROES \n\nVPL5STI40S-INSTALLMENT TERM MUST BE NUMERIC, GREATER THAN\
+            \ ZEROES \n\nVPL5STI41S-VALID TRANSACTION STATEMENT DATE IS REQUIRED WHEN\
+            \ TYPE IS L OR S \n\nVPL5STI42S-INPUT AMOUNT SHOULD BE SAME AS TRANSACTION\
+            \ AMOUNT \n\nVPL5STI43S-TRANSACTION TYPE ‘S’ OR ‘L’ NOT ALLOWED WHEN EXT\
+            \ INST IND IS ACTIVE \n\nVPL5STI44S-MEXICO INSTALMENT IS NOT ALLWED FOR\
+            \ THIS LOGO "
           content:
             application/json:
               schema:
@@ -651,12 +647,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -674,19 +666,21 @@ paths:
         \ L8V1"
       operationId: Exchange Rate Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -698,10 +692,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -710,12 +708,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -780,28 +774,34 @@ paths:
           minimum: 1
           type: string
         example: 10
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -810,12 +810,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -832,19 +828,21 @@ paths:
         \ L8V1"
       operationId: currencyRateTableUpdate
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -856,10 +854,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -868,12 +870,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -890,19 +888,21 @@ paths:
         \ L8V1"
       operationId: currencyRateDefinitionAdd
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -914,10 +914,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -926,12 +930,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -950,19 +950,21 @@ paths:
         \ R8V1"
       operationId: Currency Rate Table Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -974,14 +976,20 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
         "422":
           description: |-
             VPL5SMR05E - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -994,16 +1002,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -1022,19 +1024,21 @@ paths:
         \ L8V7"
       operationId: detailsList
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1046,14 +1050,24 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5STDZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
@@ -1106,16 +1120,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1135,19 +1139,21 @@ paths:
         \ R8V1"
       operationId: Loan Payoff Quote Generate
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1159,8 +1165,22 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "422":
           description: |-
             VPL5SPQ08S - CREDIT PLAN RECORD IS NOT FOUND OR ADD PENDING
@@ -1213,22 +1233,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -1248,19 +1254,21 @@ paths:
         \ L8V3"
       operationId: outstandingAuthorizationL8V3
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1272,6 +1280,20 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
         "422":
           description: "VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\nVPL5SOA07E - ACCOUNT NUMBER IS INVALID\nVPL5SOA08E\
@@ -1291,24 +1313,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -1326,19 +1334,21 @@ paths:
         \ R8V3"
       operationId: notesInquiryResponseR8V3
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1350,10 +1360,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -1362,12 +1376,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -1385,19 +1395,21 @@ paths:
         VMX Service: M.ASM.NONMON.ACT, R8V5"
       operationId: Memo Information Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1409,6 +1421,30 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NonMonetaryActionCodeResponse'
         "422":
           description: |-
             VPL8SNA06S - ORGANIZATION MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -1450,30 +1486,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NonMonetaryActionCodeResponse'
       x-proxy-name: Memo Information Add
       x-group-name: Transactions
   /transactions/v1/installmentTransactions/{installmentTransaction-Id}/simulation:
@@ -1522,10 +1534,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -1534,12 +1550,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -1593,22 +1605,50 @@ paths:
           minLength: 0
           type: string
         example: A1
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsuranceTableInquiryResponse'
         "422":
           description: |-
             VPL5SIQ06S - ORG IS INVALID
@@ -1621,32 +1661,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InsuranceTableInquiryResponse'
       x-proxy-name: Insurance Table Inquiry
       x-group-name: Transactions
   /transactions/{feeTableNumber}/fee-table-information:
@@ -1693,22 +1707,42 @@ paths:
         schema:
           type: string
         example: 20
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "422":
           description: |-
             VPL5SVQ06S - ORG IS INVALID
@@ -1721,26 +1755,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "200":
           description: Success
           content:
@@ -1759,19 +1775,13 @@ paths:
         \ \n\nVMX Service: M.CMS.INSTAL.TRXN.DATA.INQ, L8V2"
       operationId: Installment Transaction Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
+        description: Sign-on name.
         required: true
         schema:
           type: string
-        example: "00970"
+        example: 00000WEBUSER
       - name: organizationNumber
         in: header
         description: "Length: 3\n\nOrganization number that identifies the organization\
@@ -1831,10 +1841,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -1843,12 +1857,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -1886,19 +1896,27 @@ paths:
           type: integer
           format: int32
         example: 1
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
+        description: Sign-on name.
         required: true
         schema:
           type: string
-        example: "00970"
+        example: "00902"
+      - name: security-context
+        in: header
+        description: User’s sign-on in security system.
+        required: true
+        schema:
+          type: string
+        example: 00000WEBUSER
+      - name: sign-on-name
+        in: header
+        description: Sign-on name.
+        required: false
+        schema:
+          type: string
+        example: 00000WEBUSER
       - name: organizationNumber
         in: header
         description: "Organization number: \n* Must be numeric and less than 999.\
@@ -1957,18 +1975,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
-        "200":
-          description: Success
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/InstallmentTermsInquiryL8V2Response'
-        "500":
-          description: Backend Error
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -1977,12 +1991,16 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
+        "200":
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
+                type: array
+                items:
+                  $ref: '#/components/schemas/InstallmentTermsInquiryL8V2Response'
+        "400":
+          description: Bad Request
       x-proxy-name: Installment Transaction Terms Simulation
       x-group-name: Transactions
   /transactions/v1/installmentTransactions/{installmentTransaction-Id}:
@@ -2059,10 +2077,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2071,12 +2093,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -2154,10 +2172,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2166,12 +2188,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -2207,28 +2225,34 @@ paths:
           minimum: 0
           type: string
         example: 400
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2237,12 +2261,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -2292,32 +2312,24 @@ paths:
         schema:
           type: string
         example: 1
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "422":
           description: |-
             VPL5SQF06S - ORG IS INVALID
@@ -2330,16 +2342,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -2387,26 +2409,50 @@ paths:
           minimum: 0
           type: string
         example: 0
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "400":
           description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutstandingAuthorizationCmsResponse'
         "422":
           description: |
             VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -2429,28 +2475,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OutstandingAuthorizationCmsResponse'
       x-proxy-name: Posted Authorizations Inquiry
       x-group-name: Transactions
   /transactions/organization:
@@ -2471,48 +2495,32 @@ paths:
           minimum: 1
           type: string
         example: 807
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrganizationInquiryResponse'
         "422":
           description: |-
             VPL5SQO06S - ORG IS INVALID
@@ -2522,6 +2530,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationInquiryResponse'
       x-proxy-name: Organization Inquiry
       x-group-name: Transactions
   /transactions/offer:
@@ -2557,28 +2583,34 @@ paths:
         schema:
           type: string
         example: "01"
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2587,12 +2619,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -2635,28 +2663,34 @@ paths:
         schema:
           type: string
         example: "01"
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2665,12 +2699,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -2721,24 +2751,42 @@ paths:
         schema:
           type: string
         example: 1
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "400":
           description: Bad Request
         "422":
@@ -2749,22 +2797,6 @@ paths:
             VPL5SXQ09S - REQUESTED ORG NUMBER IS NOT FOUND
             VPL5SXQ12S - ORG RECORD NOT FOUND/ADD PENDING
             VPL5SXQ13S - MCCT TABLE NOT FOUND/ADD PENDING
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
           content:
             application/json:
               schema:
@@ -2781,7 +2813,7 @@ paths:
     get:
       tags:
       - Transactions
-      summary: "Logo. VMX Service: M.CMS.LOGO.INQ, R8V1"
+      summary: "Logo Inquiry. \nVMX Service: M.CMS.LOGO.INQ, R8V1"
       description: "Logo Inquiry. \nVMX Service: M.CMS.LOGO.INQ, R8V1"
       operationId: logoInquiry
       parameters:
@@ -2803,38 +2835,46 @@ paths:
           minimum: 0
           type: string
         example: 400
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
-        "422":
-          description: |-
-            VPL5SQL10S - ORG IS INVALID
-            VPL5SQL11S - REQUESTED ORG NUMBER IS NOT FOUND
-            VPL5SQL14S - ORG RECORD NOT FOUND/ADD PENDING
-            VPL5SQL15S - LOGO RECORD NOT FOUND/ADD PENDING
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
+        "422":
+          description: "VPL5SQL05S - SERVICE COULD NOT OBTAIN STORAGE AREA \n\nVPL5SQL06S\
+            \ - SERVICE INPUT LENGTH IS INCORRECT \n\nVPL5SQL09S - APPLICATION IN\
+            \ NO-PROCESSING STATUS, RE-TRY IN A FEW MINTES \n\nVPL5SQL10S - ORG IS\
+            \ INVALID \n\nVPL5SQL11S - REQUESTED ORG NUMBER IS NOT FOUND \n\nVPL5SQL13S\
+            \ - APPLICATION IN NO-PROCESSING STATUS, RE-TRY IN A FEW MINTES \n\nVPL5SQL14S\
+            \ - ORG RECORD NOT FOUND/ADD PENDING \n\nVPL5SQL15S - LOGO RECORD NOT\
+            \ FOUND/ADD PENDING "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2843,12 +2883,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -2893,28 +2929,34 @@ paths:
           minimum: 1
           type: string
         example: 1
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2923,12 +2965,8 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -2941,7 +2979,8 @@ paths:
     get:
       tags:
       - Transactions
-      summary: "Account Enrollment Inquiry. VMX Service: M.OMS.ENRHISTORY.INQ, R8V1"
+      summary: "Account Enrollment Inquiry service. \nVMX Service: M.OMS.ENRHISTORY.INQ,\
+        \ R8V1"
       description: "Account Enrollment Inquiry service. \nVMX Service: M.OMS.ENRHISTORY.INQ,\
         \ R8V1"
       operationId: enrollHistory
@@ -3030,28 +3069,34 @@ paths:
           type: integer
           format: int32
         example: 1
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: "00970"
+      - name: security-context
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: username
+        in: header
+        required: false
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -3060,8 +3105,26 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
+        "400":
+          description: Bad Request
+        "422":
+          description: "VPLBSHI01S-USER HAS NOT SIGNED ON - PLEASE SIGNON \n\nVPLBSHI02S-APPLICATION\
+            \ IN NO-PROCESSING STATUS RE-TRY IN A FEW MINUTES \n\nVPLBSHI03E-ORG NUMBER\
+            \ MUST BE NUMERIC AND VALID VALUES ARE 001- 998 \n\nVPLBSHI04E-SVC FUNC\
+            \ CODE MUST BE 'P' 'N' OR SPACE \n\nVPLBSHI05E-START ACCOUNT NUMBER MUST\
+            \ BE GREATER THAN ZERO \n\nVPLBSHI06E-START OFFER ID MUST BE GREATER THAN\
+            \ ZERO \n\nVPLBSHI07E-START DATE MUST BE NUMERIC \n\nVPLBSHI08E-START\
+            \ TIME MUST BE NUMERIC \n\nVPLBSHI09E-ACCOUNT NUMBER MUST BE GREATER THAN\
+            \ SPACES \n\nVPLBSHI10E-OFFER ID MUST BE GREATER THAN SPACES \n\nVPLBSHI11S-APPLICATION\
+            \ IN NO-PROCESSING STATUS RE-TRY IN A FEW MINUTES \n\nVPLBSHI12S-ORG NUMBER\
+            \ NOT FOUND \n\nVPLBSHI13S-ORG NUMBER NOT FOUND \n\nVPLBSHI14S-REQUESTED\
+            \ HISTORY RECORD IS NOT FOUND \n\nVPLBSHI15S-REQUESTED OFFER DESCRIPTION\
+            \ RECORD IS NOT FOUND \n\nVPLBSHI16E-THERE IS NO HISTORY FOR OFFER \n\n\
+            VPLBSHI17E-ACCOUNT NUMBER ENTERED IS INVALID \n\nVPLBSHIZ1S-SERVICE COULD\
+            \ NOT OBTAIN STORAGE AREA \n\nVPLBSHIZ2S-SERVICE INPUT HAS AN INCORRECT\
+            \ LENGTH \n\nVPLBSHIZ3S-FILE-TABLE USED BY THIS SERVICE IS MISSING \n\n\
+            VPLBSHIZ5S-ORG NUMBER IS NOT FOUND \n\nVPLBSHIZ6S-FILE-TABLE USED BY THIS\
+            \ SERVICE IS NOT FOUND "
           content:
             application/json:
               schema:
@@ -3160,18 +3223,14 @@ paths:
           description: Method Not Allowed
         "401":
           description: Unauthorized
-        "200":
-          description: Success
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/InstallmentTermsInquiryResponse'
-        "400":
-          description: Bad Request
-        "500":
-          description: Backend Error
+                $ref: '#/components/schemas/DResponse'
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
@@ -3180,12 +3239,16 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "300":
-          description: Redirection
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
+                type: array
+                items:
+                  $ref: '#/components/schemas/InstallmentTermsInquiryResponse'
       x-proxy-name: Installment Billing Transaction Detail
       x-group-name: Transactions
 components:
@@ -4357,93 +4420,88 @@ components:
       type: object
       properties:
         functionCode:
-          maximum: 999
-          minimum: 1
           pattern: ^(E|R)$
           type: string
-          description: |
-            Length: 1* E -  Convert transaction
-            * R – Reverse transaction conversion
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nValues: \n* E - Convert\
+            \ transaction; \n* R – Reverse transaction conversion. \n\n"
           example: E
         organizationNumber:
           type: string
-          description: |-
-            Length: 3Organization number must be numeric and valid values are 001-998
-            Organization not found on file
-            VisionPLUS Service Data: ATPT-ORG
-          example: "807"
+          description: "Max Length = 3 \nOrganization number must be numeric and valid\
+            \ values are 001-998\n\nOrganization not found on file\n\nVisionPLUS Service\
+            \ Data: ATPT-ORG"
+          example: "998"
         accountNumber:
           maximum: 19
           maxLength: 19
           minLength: 0
           type: string
-          description: "Length: 19Requested acct number is not numeric or equal to\
-            \ spaces acct not found on fileVisionPLUS Service Data: ATPT-ACCT-NBR"
-          example: "5123456789000000000"
+          description: "Requested acct number is not numeric or equal to spaces acct\
+            \ not found on file \n\nVisionPLUS Service Data: ATPT-ACCT-NBR"
+          example: "012345678912345678"
         principalAmount:
           maximum: 99999999999999999
           type: integer
-          description: |-
-            Length: 17Must be numeric and between the maximum and minimum installment amounts defined in the Installment un-billed plan master.
-            VisionPLUS Service Data: ATPT-MT-AMOUNT
+          description: "* Min Length = 1\n* Max Length = 17\n\nMust be numeric and\
+            \ between the maximum and minimum installment amounts defined in the \n\
+            \nInstallment un-billed plan master.\n\nVisionPLUS Service Data: ATPT-MT-AMOUNT"
           example: 100
         installmentPlanNumber:
           maximum: 99999
           minimum: 1
           type: integer
-          description: "Length: 5Must be present in AMCP file\nAMCP-PLAN-TYPE should\
-            \ be “E” (Installment Retail) or “F” (Installment cash\nVisionPLUS Service\
-            \ Data: AMBS-IB-ISS-CASH-PLAN or AMBS-IB-ISS-RETAIL-PLAN "
+          description: "* Min Length = 5 \n* Max Length = 5 \n\nMust be present in\
+            \ AMCP file\n\nAMCP-PLAN-TYPE should be “E” (Installment Retail) or “\
+            F” (Installment cash\n\nVisionPLUS Service Data: AMBS-IB-ISS-CASH-PLAN\
+            \ or AMBS-IB-ISS-RETAIL-PLAN "
           format: int32
           example: 807
         installmentTerm:
           maximum: 99
           minimum: 1
           type: integer
-          description: "Length: 2Must be numeric and between the maximum and minimum\
-            \ installment terms defined in the Installment un-billed plan master."
+          description: "* Min Length = 2 \n* Max Length = 2 \n\nMust be numeric and\
+            \ between the maximum and minimum installment terms defined in \n\nthe\
+            \ Installment un-billed plan master."
           format: int32
         installmentProcessMode:
-          maximum: 1
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1* P = Pre-edit
-            * V = Validation
-            Must P or V or Spaces
+          description: "* Max Length = 1 \n\nValues: \n* P = Pre-edit; \n* V = Validation.\
+            \ \n\nMust P or V or Spaces"
         transactionType:
-          maximum: 1
           pattern: ^(C|L|S)$
           type: string
-          description: |-
-            Length: 1Must be “C” or “L” or “S”.* C = Current statement
-            * L = Large statement
-            * S = Small statement
-            For Mexico Installments, only “C” is valid
+          description: "* Max Length = 1 \n\nValues: \n* C = Current statement; \n\
+            * L = Large statement; \n* S = Small statement. \n\nFor Mexico Installments,\
+            \ only “C” is valid"
           example: L
         transactionSequenceNumber:
           maximum: 99999
           type: integer
-          description: "Length: 5Must be present in AMOS, AMSS or AMSL file with ORG,\
-            \ ACCT, Statement record number and statement date Key combination based\
-            \ on transaction type"
+          description: "* Max Length = 5 \n\nMust be present in AMOS, AMSS or AMSL\
+            \ file with ORG, ACCT, Statement record number \n\nand statement date\
+            \ Key combination based on transaction type"
           format: int32
         statementDate:
           type: string
-          description: |-
-            Length: 7Must be numeric and present in AMSL or AMSS file based on transaction type with ORG, ACCT, statement record number and SEQ NBR Key combination.
-            Note: If transaction type is “L” or “S”, then this field will be provided with valid value. Otherwise this field will be low values.
-            VisionPLUS Service Data: AMSL-STMT-ID-CODE
+          description: "Must be numeric and present in AMSL or AMSS file based on\
+            \ transaction type with ORG, ACCT, \n\nstatement record number and SEQ\
+            \ NBR Key combination. \n\nNote: If transaction type is “L” or “S”, then\
+            \ this field will be provided with valid value. \n\nOtherwise this field\
+            \ will be low values. \n\nVisionPLUS Service Data: AMSL-STMT-ID-CODE"
           format: date
         statementRecordNumber:
           maximum: 9999
           minimum: 1
           type: integer
-          description: |-
-            Length: 4Must be numeric and present in AMSL or AMSS file based on transaction type with ORG, ACCT, statement date and SEQ NBR Key combination.
-            Note: If transaction type is “L” or “S”, then this field will be provided with valid value. Otherwise this field will be low values.
-            VisionPLUS Service Data: AMSL-REC-NBR
+          description: "* Min Length = 1 \n* Max Length = 4 \n\nMust be numeric and\
+            \ present in AMSL or AMSS file based on transaction type with ORG, ACCT,\
+            \ \n\nstatement date and SEQ NBR Key combination. \n\nNote: If transaction\
+            \ type is “L” or “S”, then this field will be provided with valid value.\
+            \ \n\nOtherwise this field will be low values. \n\nVisionPLUS Service\
+            \ Data: AMSL-REC-NBR"
           format: int32
           example: 1
       description: Transaction conversion
@@ -11781,67 +11839,55 @@ components:
           type: string
         tokenServiceMessage:
           type: string
-        holidayDate4:
-          type: string
-          format: date
-        holidayDate3:
-          type: string
-          format: date
-        holidayDate12:
-          type: string
-          format: date
-        holidayDate13:
-          type: string
-          format: date
-        holidayDate10:
-          type: string
-          format: date
-        holidayDate11:
-          type: string
-          format: date
-        holidayDate24:
-          type: string
-          format: date
-        holidayDate23:
-          type: string
-          format: date
-        holidayDate17:
+        holidayDate14:
           type: string
           format: date
         holidayDate20:
           type: string
           format: date
-        holidayDate14:
+        holidayDate10:
           type: string
           format: date
-        holidayDate9:
+        holidayDate12:
           type: string
           format: date
-        holidayDate6:
-          type: string
-          format: date
-        holidayDate7:
+        holidayDate23:
           type: string
           format: date
         holidayDate19:
           type: string
           format: date
-        holidayDate8:
+        holidayDate9:
+          type: string
+          format: date
+        holidayDate2:
+          type: string
+          format: date
+        holidayDate7:
+          type: string
+          format: date
+        holidayDate11:
           type: string
           format: date
         holidayDate16:
           type: string
           format: date
-        holidayDate21:
-          type: string
-          format: date
-        holidayDate22:
-          type: string
-          format: date
-        holidayDate25:
+        holidayDate6:
           type: string
           format: date
         holidayDate5:
+          type: string
+          format: date
+        holidayDate4:
+          type: string
+          format: date
+        holidayDate1:
+          type: string
+          format: date
+        holidayDate17:
+          type: string
+          format: date
+        holidayDate8:
           type: string
           format: date
         holidayDate18:
@@ -11850,10 +11896,22 @@ components:
         holidayDate15:
           type: string
           format: date
-        holidayDate1:
+        holidayDate3:
           type: string
           format: date
-        holidayDate2:
+        holidayDate22:
+          type: string
+          format: date
+        holidayDate21:
+          type: string
+          format: date
+        holidayDate24:
+          type: string
+          format: date
+        holidayDate25:
+          type: string
+          format: date
+        holidayDate13:
           type: string
           format: date
     OfferInquiryResponse:
@@ -12782,743 +12840,1532 @@ components:
       properties:
         serviceReturn:
           type: string
+          description: "The service will return a Pass or Fail indicator and any associated\
+            \ Error Codes in the Output Message. A maximum of 20 error codes and descriptions\
+            \ will be provided when applicable. \n"
+          example: P
         businessUnit:
           type: integer
+          description: "Max Length = 3 \n\nBusiness unit \n\nVisionPLUS Service Data:\
+            \ ARXQLO-ORG"
           format: int32
+          example: 999
         product:
           type: integer
+          description: "Max Length = 3 \n\nProduct \n\nVisionPLUS Service Data: ARXQLO-LOGO"
           format: int32
+          example: 501
         recordNumber:
           type: integer
+          description: "Max Length = 2 \n\nRecord number \n\nVisionPLUS Service Data:\
+            \ ARXQLO-REC-NBR"
           format: int32
+          example: 2
         addStatus:
           type: integer
+          description: "Max Length = 2 \n\nAdd status \n\nVisionPLUS Service Data:\
+            \ ARXQLO-ADD-STATUS"
           format: int32
+          example: 99
         typeOfAccountProcessed:
           type: string
+          description: "Max Length = 1 \n\nType of accounts processed \n\nVisionPLUS\
+            \ Service Data: ARXQLO-CARD-TYPE"
+          example: X
         productDescription:
           type: string
+          description: "Max Length = 30 \n\nProduct description \n\nVisionPLUS Service\
+            \ Data: ARXQLO-DESCRIPTION"
+          example: PRODUCT DESCRIPTION
         approvedCardUse:
           type: integer
+          description: "Max Length = 1 \n\nApproved card use \n\nVisionPLUS Service\
+            \ Data: ARXQLO-LOCAL-USE-IND"
           format: int32
+          example: 0
         quarterlyAffiliateCardProduct:
           type: string
+          description: "Max Length = 3 \n\nQuarterly affiliate card product \n\nVisionPLUS\
+            \ Service Data: ARXQLO-QTRLY-AFF-FL"
+          example: Z0
         dualCurrencyNumberIndicator:
           type: integer
+          description: "Max Length = 1 \n\nDual currency indicator \n\nVisionPLUS\
+            \ Service Data: ARXQLO-DUAL-CURRENCY"
           format: int32
+          example: 0
         visaBinOrMcMemberId:
           type: string
+          description: "Max Length = 19 \n\nVisa BIN / MC Member ID\n\nVisionPLUS\
+            \ Service Data: ARXQLO-BIN-NBR"
+          example: "0000000000123456789"
         loyaltyManagementActive:
           type: string
+          description: "Max Length = 1 \n\nLoyalty management active \n\nVisionPLUS\
+            \ Service Data: ARXQLO-LMS-ACTIVE-FLAG"
+          example: "1"
         authProcessingFrontEndActive:
           type: integer
+          description: "Max Length = 1 \n\nAuth processing front end active \n\nVisionPLUS\
+            \ Service Data: ARXQLO-COMMON-IND"
           format: int32
+          example: 1
         multiWalletIdentifier:
           type: integer
+          description: "Max Length = 1 \n\nMulti wallet identifier \n\nVisionPLUS\
+            \ Service Data: ARXQLO-MULTI-WLT-FLAG"
           format: int32
+          example: 0
         lastMaintenanceDate:
           type: string
+          description: "Last maintenance date \n\nVisionPLUS Service Data: ARXQLO-DATE-LAST-MAINT"
           format: date
         dualCurrencyFeature:
           type: integer
+          description: "Max Length = 3 \n\nDual currency feature \n\nVisionPLUS Service\
+            \ Data: ARXQLO-DUAL-CURRENCY-CDE"
           format: int32
+          example: 0
         currencyCode:
           type: integer
+          description: "Max Length = 3 \n\nCurrency code \n\nVisionPLUS Service Data:\
+            \ ARXQLO-CURR-NBR"
           format: int32
+          example: 170
         masterCardProductCode:
           type: string
+          description: "Max Length = 3 \n\nMastercard product code \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PRODUCT-CODE"
+          example: XYZ
         loanCreditPlanPurgeDays:
           type: integer
+          description: "Max Length = 3 \n\nLoan credit plan purge days \n\nVisionPLUS\
+            \ Service Data: ARXQL0-LOAN-PLAN-PURGEDAYS"
           format: int32
+          example: 90
         batchEarlySettlementQuote:
           type: integer
+          description: "Max Length = 1 \n\nBatch early settlement quote \n\nVisionPLUS\
+            \ Service Data: ARXQL0-BATCH-STTLMT-QUOTE"
           format: int32
+          example: 0
         loadFeatureActive:
           type: integer
+          description: "Max Length = 1 \n\nLoan feature active \n\nVisionPLUS Service\
+            \ Data: ARXQL0-INSTALL-LOAN-FLAG"
           format: int32
+          example: 1
         closedEndLoadForceCycleActive:
           type: integer
+          description: "Max Length = 1 \n\nClosed end loan force cycle active \n\n\
+            VisionPLUS Service Data: ARXQL0-FORCE-CYCLE"
           format: int32
+          example: 0
         settlementQuoteRatio:
           type: integer
+          description: "Max Length = 3 \n\nSettlement quote ratio \n\nVisionPLUS Service\
+            \ Data: ARXQL0-QUOTE-RATIO"
           format: int32
+          example: 0
         accountLevelQuoteProcessingActive:
           type: integer
+          description: "Max Length = 1 \n\nAccount level quote processing active \n\
+            \nVisionPLUS Service Data: ARXQL0-ACCT-LVL-QUOTE"
           format: int32
+          example: 0
         customerSelectedQuoteDate:
           type: string
+          description: "Customer-selected quote date \n\nVisionPLUS Service Data:\
+            \ ARXQL0-CUST-SELECT-QUOTE"
           format: date
         extensionDays:
           type: integer
+          description: "Max Length = 2 \n\nExtension days \n\nVisionPLUS Service Data:\
+            \ ARXQL0-ACCT-EXTENTION-DAYS"
           format: int32
+          example: 0
         accountQuoteVarianceCalcMethod:
           type: integer
+          description: "Max Length = 1 \n\nAccount quote variance calculation method\
+            \ \n\nVisionPLUS Service Data: ARXQL0-ACCT-QUOTE-VAR-IND"
           format: int32
+          example: 0
         accountQuoteVarianceAmount:
           type: number
+          description: "Max Length = 17 \n\nAccount quote variance amount or pct \n\
+            \nVisionPLUS Service Data: ARXQL0-ACCT-QUOTE-VAR-AMT"
+          example: 0
         accountQuoteMaximumVariance:
           type: number
+          description: "Max Length = 17 \n\nAccount quote maximum variance \n\nVisionPLUS\
+            \ Service Data: ARXQL0-ACCT-QUOTE-VAR-MAX"
+          example: 0
         accountLevelQuoteLetterId:
           type: string
+          description: "Max Length = 3 \n\nAccount level quote letter id \n\nVisionPLUS\
+            \ Service Data: ARXQL0-QUOTE-REQUEST-LTR"
+          example: "0"
         accountLevelSettlementLetterId:
           type: string
+          description: "Max Length = 3 \n\nAccount level settlement letter id \n\n\
+            VisionPLUS Service Data: ARXQL0-SETTLEMENT-LTR"
+          example: "0"
         newCardActivation:
           type: string
+          description: "Max Length = 1 \n\nNew card activation \n\nVisionPLUS Service\
+            \ Data: ARXQLO-ACTIVATE-CRD-NEW"
+          example: "Y"
         additionalCardActivation:
           type: string
+          description: "Max Length = 1 \n\nAdditional card activation \n\nVisionPLUS\
+            \ Service Data: ARXQLO-ACTIVATE-CRD-ADDITNL"
+          example: "Y"
         reissueCardActivation:
           type: string
+          description: "Max Length = 1 \n\nReissue card activation \n\nVisionPLUS\
+            \ Service Data: ARXQLO-ACTIVATE-CRD-REISSUE"
+          example: "Y"
         replacementCardActivation:
           type: string
+          description: "Max Length = 1 \n\nReplacement card activation \n\nVisionPLUS\
+            \ Service Data: ARXQLO-ACTIVATE-CRDREPLMNT"
+          example: "Y"
         activationCriteriaTable:
           type: integer
+          description: "Max Length = 5 \n\nActivation criteria table \n\nVisionPLUS\
+            \ Service Data: ARXQLO-ACTIVATE-CRITERIANBR"
           format: int32
+          example: 0
         phoneNumber:
           type: string
+          description: "Max Length = 20 \n\nPhone number \n\nVisionPLUS Service Data:\
+            \ ARXQLO-ACTIVATE-PHONE-NBR"
+          example: "0"
         pinGenerationDelayDays:
           type: integer
+          description: "Max Length = 2 \n\nPIN generation delay days \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PIN-DELAY-DAYS-MAG"
           format: int32
+          example: 0
         cardActionTableActive:
           type: integer
+          description: "Max Length = 1 \n\nCard action table active \n\nVisionPLUS\
+            \ Service Data: ARXQLO-TBL-ACTIVE"
           format: int32
+          example: 0
         cardAction1:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-1"
           format: int32
+          example: 0
         pinGeneration1:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-1"
           format: int32
+          example: 0
         pinMailerDelayDays1:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-1"
           format: int32
+          example: 0
         cardMailerDelayDays1:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-1"
           format: int32
+          example: 0
         cardAction2:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-2"
           format: int32
+          example: 0
         pinGeneration2:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-2"
           format: int32
+          example: 0
         pinMailerDelayDays2:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-2"
           format: int32
+          example: 0
         cardMailerDelayDays2:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-2"
           format: int32
+          example: 0
         cardAction3:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-3"
           format: int32
+          example: 0
         pinGeneration3:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-3"
           format: int32
+          example: 0
         pinMailerDelayDays3:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-3"
           format: int32
+          example: 0
         cardMailerDelayDays3:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-3"
           format: int32
+          example: 0
         cardAction4:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-4"
           format: int32
+          example: 0
         pinGeneration4:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-4"
           format: int32
+          example: 0
         pinMailerDelayDays4:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-4"
           format: int32
+          example: 0
         cardMailerDelayDays4:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-4"
           format: int32
+          example: 0
         cardAction5:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-5"
           format: int32
+          example: 0
         pinGeneration5:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-5"
           format: int32
+          example: 0
         pinMailerDelayDays5:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-5"
           format: int32
+          example: 0
         cardMailerDelayDays5:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-5"
           format: int32
+          example: 0
         cardAction6:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-6"
           format: int32
+          example: 0
         pinGeneration6:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-6"
           format: int32
+          example: 0
         pinMailerDelayDays6:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-6"
           format: int32
+          example: 0
         cardMailerDelayDays6:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-6"
           format: int32
+          example: 0
         cardAction7:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-7"
           format: int32
+          example: 0
         pinGeneration7:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-7"
           format: int32
+          example: 0
         pinMailerDelayDays7:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-7"
           format: int32
+          example: 0
         cardMailerDelayDays7:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-7"
           format: int32
+          example: 0
         cardAction8:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-8"
           format: int32
+          example: 0
         pinGeneration8:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-8"
           format: int32
+          example: 0
         pinMailerDelayDays8:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-8"
           format: int32
+          example: 0
         cardMailerDelayDays8:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-8"
           format: int32
+          example: 0
         cardAction9:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-9"
           format: int32
+          example: 0
         pinGeneration9:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-9"
           format: int32
+          example: 0
         pinMailerDelayDays9:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-9"
           format: int32
+          example: 0
         cardMailerDelayDays9:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-9"
           format: int32
+          example: 0
         cardAction10:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-10"
           format: int32
+          example: 0
         pinGeneration10:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-10"
           format: int32
+          example: 0
         pinMailerDelayDays10:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-10"
           format: int32
+          example: 0
         cardMailerDelayDays10:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-10"
           format: int32
+          example: 0
         cardAction11:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-11"
           format: int32
+          example: 0
         pinGeneration11:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-11"
           format: int32
+          example: 0
         pinMailerDelayDays11:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-11"
           format: int32
+          example: 0
         cardMailerDelayDays11:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-11"
           format: int32
+          example: 0
         cardAction12:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-12"
           format: int32
+          example: 0
         pinGeneration12:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-12"
           format: int32
+          example: 0
         pinMailerDelayDays12:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-12"
           format: int32
+          example: 0
         cardMailerDelayDays12:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-12"
           format: int32
+          example: 0
         cardAction13:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-13"
           format: int32
+          example: 0
         pinGeneration13:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-13"
           format: int32
+          example: 0
         pinMailerDelayDays13:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-13"
           format: int32
+          example: 0
         cardMailerDelayDays13:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-13"
           format: int32
+          example: 0
         cardAction14:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-14"
           format: int32
+          example: 0
         pinGeneration14:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-14"
           format: int32
+          example: 0
         pinMailerDelayDays14:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-14"
           format: int32
+          example: 0
         cardMailerDelayDays14:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-14"
           format: int32
+          example: 0
         cardAction15:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-15"
           format: int32
+          example: 0
         pinGeneration15:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-15"
           format: int32
+          example: 0
         pinMailerDelayDays15:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-15"
           format: int32
+          example: 0
         cardMailerDelayDays15:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-15"
           format: int32
+          example: 0
         cardAction16:
           type: integer
+          description: "Max Length = 1 \n\nCard action \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-ACTION-16"
           format: int32
+          example: 0
         pinGeneration16:
           type: integer
+          description: "Max Length = 1 \n\nPIN generation \n\nVisionPLUS Service Data:\
+            \ ARXQLO-P-GEN-16"
           format: int32
+          example: 0
         pinMailerDelayDays16:
           type: integer
+          description: "Max Length = 2 \n\nPIN mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-PIN-DELAY-DAYS-16"
           format: int32
+          example: 0
         cardMailerDelayDays16:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-P-CARD-DELAY-DAYS-16"
           format: int32
+          example: 0
         cardBureauFeedbackActive:
           type: integer
+          description: "Max Length = 1 \n\nCard bureau feedback active \n\nVisionPLUS\
+            \ Service Data: ARXQLO-BUREAU-FEED"
           format: int32
+          example: 1
         cardMailerReleaseDelayDays:
           type: integer
+          description: "Max Length = 2 \n\nCard mailer release delay days \n\nVisionPLUS\
+            \ Service Data: ARXQLO-CARD-DELAY-DAYSMAG"
           format: int32
+          example: 0
         callDays:
           type: integer
+          description: "Max Length = 2 \n\nCall days \n\nVisionPLUS Service Data:\
+            \ ARXQLO-CALL-DAYS"
           format: int32
+          example: 0
         cardBlockCode:
           type: string
+          description: "Max Length = 1 \n\nCall Block Code\n\nVisionPLUS Service Data:\
+            \ ARXQLO-CALL-BLK-CD"
+          example: "0"
         sdpProcessingCycle1Used:
           type: integer
+          description: "Max Length = 1 \n\nSDP Processing Cycle 1 Used\n\nVisionPLUS\
+            \ Service Data: ARXQLO-SDP-CYCLE-1"
           format: int32
+          example: 1
         sdpProcessingCycle2Used:
           type: integer
+          description: "Max Length = 1 \n\nSDP Processing Cycle 2 Used\n\nVisionPLUS\
+            \ Service Data: ARXQLO-SDP-CYCLE-2"
           format: int32
+          example: 1
         sdpProcessingCycle3Used:
           type: integer
+          description: "Max Length = 1 \n\nSDP Processing Cycle 3 Used\n\nVisionPLUS\
+            \ Service Data: ARXQLO-SDP-CYCLE-3"
           format: int32
+          example: 1
         sdpProcessingCycle4Used:
           type: integer
+          description: "Max Length = 1 \n\nSDP Processing Cycle 4 Used\n\nVisionPLUS\
+            \ Service Data: ARXQLO-SDP-CYCLE-4"
           format: int32
+          example: 1
         sdpProcessingCycle5Used:
           type: integer
+          description: "Max Length = 1 \n\nSDP Processing Cycle 5 Used\n\nVisionPLUS\
+            \ Service Data: ARXQLO-SDP-CYCLE-5"
           format: int32
+          example: 1
         sdpProcessingCycle6Used:
           type: integer
+          description: "Max Length = 1 \n\nSDP Processing Cycle 6 Used\nVisionPLUS\
+            \ Service Data: ARXQLO-SDP-CYCLE-6"
           format: int32
+          example: 1
         sameDayEmbossingAllowed:
           type: integer
+          description: "Max Length = 1 \n\nSame day embossing allowed \n\nVisionPLUS\
+            \ Service Data: ARXQLO-SDP-FLAG"
           format: int32
+          example: 0
         processingDayDefault:
           type: integer
+          description: "Max Length = 1 \n\nProcessing day default \n\nVisionPLUS Service\
+            \ Data: ARXQLO-SDP-DEFAULT"
           format: int32
+          example: 0
         sdpRequestsWarehoused:
           type: integer
+          description: "Max Length = 1 \n\nSDP requests warehoused \n\nVisionPLUS\
+            \ Service Data: ARXQLO-SDP-PIN-WHSE-FLAG"
           format: int32
+          example: 0
         suppressReissueOfCardsPending:
           type: integer
+          description: "Max Length = 1 \n\nSuppress reissue of cards pending \n\n\
+            VisionPLUS Service Data: ARXQLO-REISS-PEND-ACTCARDS"
           format: int32
+          example: 0
         newCardPlastics:
           type: string
+          description: "Max Length = 1 \n\nNew card plastics \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-NEW-ACCT-CARD"
+          example: "Y"
         monthsAddedToCurrentExpiryDate:
           type: integer
+          description: "Max Length = 3 \n\nVisionPLUS Service Data: ARXQLO-PCF-CARD-TERM"
           format: int32
+          example: 60
         daysToActivateCard:
           type: integer
+          description: "Max Length = 3 \n\nDays to activate card \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-1ST-DELAY-DAYS"
           format: int32
+          example: 0
         financeCharge1:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-1"
           format: int32
+          example: 3
         financeCharge2:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-2"
           format: int32
+          example: 5
         financeCharge3:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-3"
           format: int32
+          example: 15
         financeCharge4:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-4"
           format: int32
+          example: 16
         financeCharge5:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-5"
           format: int32
+          example: 7
         financeCharge6:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-6"
           format: int32
+          example: 2
         financeCharge7:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-7"
           format: int32
+          example: 1
         financeCharge8:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-8"
           format: int32
+          example: 8
         financeCharge9:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-9"
           format: int32
+          example: 4
         financeCharge10:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-10"
           format: int32
+          example: 18
         financeCharge11:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-11"
           format: int32
+          example: 6
         financeCharge12:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-12"
           format: int32
+          example: 17
         financeCharge13:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-13"
           format: int32
+          example: 9
         financeCharge14:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-14"
           format: int32
+          example: 10
         financeCharge15:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-15"
           format: int32
+          example: 11
         financeCharge16:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-16"
           format: int32
+          example: 12
         financeCharge17:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-17"
           format: int32
+          example: 13
         financeCharge18:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-18"
           format: int32
+          example: 14
         financeCharge19:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQ-19"
           format: int32
+          example: 0
         financeChargePl1:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-1"
           format: int32
+          example: 0
         financeChargePl2:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-2"
           format: int32
+          example: 0
         financeChargePl3:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-3"
           format: int32
+          example: 0
         financeChargePl4:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-4"
           format: int32
+          example: 0
         financeChargePl5:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-5"
           format: int32
+          example: 0
         financeChargePl6:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-6"
           format: int32
+          example: 0
         financeChargePl7:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-7"
           format: int32
+          example: 0
         financeChargePl8:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-8"
           format: int32
+          example: 0
         financeChargePl9:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-9"
           format: int32
+          example: 0
         financeChargePl10:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-10"
           format: int32
+          example: 0
         financeChargePl11:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-11"
           format: int32
+          example: 0
         financeChargePl12:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-12"
           format: int32
+          example: 0
         financeChargePl13:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-13"
           format: int32
+          example: 0
         financeChargePl14:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-14"
           format: int32
+          example: 0
         financeChargePl15:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-15"
           format: int32
+          example: 0
         financeChargePl16:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-16"
           format: int32
+          example: 0
         financeChargePl17:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-17"
           format: int32
+          example: 0
         financeChargePl18:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-18"
           format: int32
+          example: 0
         financeChargePl19:
           type: integer
+          description: "Max Length = 2 \n\nFinance charge \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-PMT-APPL-SEQNC-PL-19"
           format: int32
+          example: 0
         continueDirectDebitPaymentRequest:
           type: integer
+          description: "Max Length = 1 \n\nContinues direct debit payment request\
+            \ \n\nVisionPLUS Service Data: ARXQLO-DD-CONT-REQ-PMT"
           format: int32
+          example: 0
         delinquencyAgeing:
           type: string
+          description: "Max Length = 1 \n\nDelinquency ageing \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-DELQ-AGING-FLAG"
+          example: D
         sendFirstUsageLetter:
           type: string
+          description: "Max Length = 1 \n\nSend first usage letter \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-1ST-USAGE-FLAG"
+          example: "N"
         issuanceOfPastDueLetters:
           type: string
+          description: "Max Length = 1 \n\nIssuance of past due letters \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-1ST-NOTC-FLAG"
+          example: "N"
         notificationDaysOfLetter1:
           type: integer
+          description: "Max Length = 2 \n\nNotification Days Of Letter 1\n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-1ST-NOTC-DAYS"
           format: int32
+          example: 99
         notificationDaysOfLetter2:
           type: integer
+          description: "Max Length = 2 \n\nNotification Days Of Letter 2\n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-2ND-NOTC-DAYS"
           format: int32
+          example: 99
         firstUsageLetterIndicator:
           type: string
+          description: "Max Length = 3 \n\n1st usage letter indicator \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-1ST-USAGE-LTRNBR"
+          example: "0"
         pastDueLetter1:
           type: string
+          description: "Max Length = 3 \n\nPast Due Letter 1\n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-1ST-NOTC-LTR-NBR"
+          example: "0"
         pastDueLetter2:
           type: string
+          description: "Max Length = 3 \n\nPast Due Letter 2\n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-2ND-NOTC-LTRNBR"
+          example: "0"
         notificationOverlimitLetter:
           type: string
+          description: "Max Length = 3 \n\nNotification overlimit letter \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-OVL-NOTC-LTRNBR"
+          example: "0"
         monthsForAutoClose:
           type: integer
+          description: "Max Length = 2 \n\nMonths for auto close \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-CLOSE-MONTHS"
           format: int32
+          example: 99
         postDatedDebits:
           type: string
+          description: "Max Length = 1 \n\nPost dated debits \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-PD-DB-SW"
+          example: R
         postDatedDbTransMaxDays:
           type: integer
+          description: "Max Length = 3 \n\nPost Dated DB Trans Max Days\n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-PD-DB-DAYS"
           format: int32
+          example: 0
         postDatedCredits:
           type: string
+          description: "Max Length = 1 \n\nPost dated credits \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-PD-CR-SW"
+          example: R
         postDatedCrTransMaxDays:
           type: integer
+          description: "Max Length = 3 \n\nPost Dated CR Trans Max Days\n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-PD-CR-DAYS"
           format: int32
+          example: 0
         backDatedDebitAction:
           type: string
+          description: "Max Length = 1 \n\nBack dated debit action \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-BD-DB-SW"
+          example: D
         backDatedDBTransMaxDays:
           type: integer
+          description: "Max Length = 3 \n\nBack Dated DB Trans Max Days\n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-BD-DB-DAYS"
           format: int32
+          example: 360
         backDatedCreditAction:
           type: string
+          description: "Max Length = 1 \n\nBack dated credit action \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-BD-CR-SW"
+          example: D
         backDatedCRTransMaxDays:
           type: integer
+          description: "Max Length = 3 \n\nVisionPLUS Service Data: ARXQLO-PCF-BD-CR-DAYS"
           format: int32
+          example: 360
         statementDebits:
           type: string
+          description: "Max Length = 1 \n\nStatement debits \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-STMT-DB-SW"
+          example: P
         statementCredits:
           type: string
+          description: "Max Length = 1 \n\nStatement credits \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-STMT-CR-SW"
+          example: P
         directDebitOrCreditActive:
           type: string
+          description: "Max Length = 1 \n\nDirect Debit/Credit Active\nVisionPLUS\
+            \ Service Data: ARXQLO-BILLING-ACH-FLAG"
+          example: "Y"
         requestDayIndicator:
           type: string
+          description: "Max Length = 1 \n\nRequest day indicator \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PMT-ACH-DATE"
+          example: P
         applicationMethodForPL:
           type: string
+          description: "Max Length = 1 \n\nApplication method for P/L \n\nVisionPLUS\
+            \ Service Data: ARXQLO-APPL-METHOD-PL"
+          example: "0"
         transferAuthorizationDays:
           type: integer
+          description: "Max Length = 2 \n\nTransfer authorisation days \n\nVisionPLUS\
+            \ Service Data: ARXQLO-XFR-AUTH-DAYS"
           format: int32
+          example: 99
         transferTransaction:
           type: string
+          description: "Max Length = 1 \n\nTransfer transaction \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-XFR-TXN-SW"
+          example: "N"
         directCreditCycleDue:
           type: integer
+          description: "Max Length = 1 \n\nDirect credit cycle due \n\nVisionPLUS\
+            \ Service Data: ARXQLO-DC-ACH-CYCLE-DUE"
           format: int32
+          example: 0
         directDebitCycleDue:
           type: integer
+          description: "Max Length = 1 \n\nDirect debit cycle due \n\nVisionPLUS Service\
+            \ Data: ARXQLO-DD-ACH-CYCLE-DUE"
           format: int32
+          example: 0
         directDebitInterimPayments:
           type: integer
+          description: "Max Length = 1 \n\nDirect debit interim payments \n\nVisionPLUS\
+            \ Service Data: ARXQLO-DD-INTERIM-PMTS"
           format: int32
+          example: 1
         directDebitPaymentReversalLimit:
           type: integer
+          description: "Max Length = 1 \n\nDirect debit payment reversal limit \n\n\
+            VisionPLUS Service Data: ARXQLO-DD-PMT-REV-LIMIT"
           format: int32
+          example: 0
         applicationMethodForAr:
           type: string
+          description: "Max Length = 1 \n\nApplication method for A/R \n\nVisionPLUS\
+            \ Service Data: ARXQLO-APPL-METHOD"
+          example: M
         applyOverpaymentToPrincipal:
           type: string
+          description: "Max Length = 1 \n\nApply overpayment to principal \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-PRIN-PYMTPRORATE"
+          example: "N"
         principalAccessCashChequePriority:
           type: integer
+          description: "Max Length = 2 \n\nPrincipal access cash cheque priority \n\
+            \nVisionPLUS Service Data: ARXQLO-PRIN-PLAN-TYPE-A"
           format: int32
+          example: 0
         principalRetailBalanceTransferPriority:
           type: integer
+          description: "Max Length = 2 \n\nPrincipal retail balance transfer priority\
+            \ \n\nVisionPLUS Service Data: ARXQLO-PRIN-PLAN-TYPE-B"
           format: int32
+          example: 0
         principalCashPriority:
           type: integer
+          description: "Max Length = 2 \n\nPrincipal cash priority \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PRIN-PLAN-TYPE-C"
           format: int32
+          example: 0
         principalAccessRetailChequePriority:
           type: integer
+          description: "Max Length = 2 \n\nPrincipal access retail cheque priority\
+            \ \n\nVisionPLUS Service Data: ARXQLO-PRIN-PLAN-TYPE-K"
           format: int32
+          example: 0
         principalRetailPriority:
           type: integer
+          description: "Max Length = 2 \n\nPrincipal retail priority \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PRIN-PLAN-TYPE-R"
           format: int32
+          example: 0
         principalCashBalanceTransferPriority:
           type: integer
+          description: "Max Length = 2 \n\nPrincipal cash balance transfer priority\
+            \ \n\nVisionPLUS Service Data: ARXQLO-PRIN-PLAN-TYPE-T"
           format: int32
+          example: 0
         principalLoanPriority:
           type: integer
+          description: "Max Length = 2 \n\nPrincipal loan priority \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PRIN-PLAN-TYPE-L"
           format: int32
+          example: 0
         currentAccessCashChequePriority:
           type: integer
+          description: "Max Length = 2 \n\nCurrent access cash cheque priority \n\n\
+            VisionPLUS Service Data: ARXQLO-CURR-TXN-PLAN-TYPEA"
           format: int32
+          example: 0
         currentRetailBalanceTransferPriority:
           type: integer
+          description: "Max Length = 2 \n\nCurrent retail balance transfer priority\
+            \ \n\nVisionPLUS Service Data: ARXQLO-CURR-TXN-PLAN-TYPEB"
           format: int32
+          example: 0
         currentCashPriority:
           type: integer
+          description: "Max Length = 2 \n\nCurrent cash priority \n\nVisionPLUS Service\
+            \ Data: ARXQLO-CURR-TXN-PLAN-TYPEC"
           format: int32
+          example: 0
         currentAccessRetailChequePriority:
           type: integer
+          description: "Max Length = 2 \n\nCurrent access retail cheque priority \n\
+            \nVisionPLUS Service Data: ARXQLO-CURR-TXN-PLAN-TYPEK"
           format: int32
+          example: 0
         currentRetailPriority:
           type: integer
+          description: "Max Length = 2 \n\nCurrent retail priority \n\nVisionPLUS\
+            \ Service Data: ARXQLO-CURR-TXN-PLAN-TYPER"
           format: int32
+          example: 0
         currentCashBalanceTransferPriority:
           type: integer
+          description: "Max Length = 2 \n\nCurrent cash balance transfer priority\
+            \ \n\nVisionPLUS Service Data: ARXQLO-CURR-TXN-PLAN-TYPET"
           format: int32
+          example: 0
         currentLoanPriority:
           type: integer
+          description: "Max Length = 2 \n\nCurrent loan priority \n\nVisionPLUS Service\
+            \ Data: ARXQLO-CURR-TXN-PLAN-TYPEL"
           format: int32
+          example: 0
         directDebitDailyOption:
           type: string
+          description: "Max Length = 1 \n\nDirect debit daily option \n\nVisionPLUS\
+            \ Service Data: ARXQLO-DD-DAILY-OPTION"
+          example: "0"
         directDebitProcessingDay:
           type: string
+          description: "Max Length = 1 \n\nDirect debit processing day \n\nVisionPLUS\
+            \ Service Data: ARXQLO-DD-NONPROC-DAY"
+          example: "1"
         splitCycleServiceCharge:
           type: integer
+          description: "Max Length = 1 \n\nSplit cycle service charge \n\nVisionPLUS\
+            \ Service Data: ARXQLO-SPLIT-SVC"
           format: int32
+          example: 2
         fraudTransfer:
           type: integer
+          description: "Max Length = 3 \n\nFraud transfer \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-FRAUD-XFR-DAYS"
           format: int32
+          example: 0
         manuallyResetPinTryCounter:
           type: integer
+          description: "Max Length = 1 \n\nManually reset pin try counter \n\nVisionPLUS\
+            \ Service Data: ARXQLO-MAN-PIN-RESET"
           format: int32
+          example: 0
         overlimitPaymentCalculation:
           type: integer
+          description: "Max Length = 1 \n\nOverlimit payment calculation for nominated\
+            \ payment \n\nVisionPLUS Service Data: ARXQLO-ACH-OVLM-FLAG"
           format: int32
+          example: 0
         generateDirectDebitPaymentRequest:
           type: integer
+          description: "Max Length = 1 \n\nGenerate direct debit payment request \n\
+            \nVisionPLUS Service Data: ARXQLO-DD-SUPR-PMT-TXN"
           format: int32
+          example: 1
         orderForSplittingPayment:
           type: string
+          description: "Max Length = 1 \n\nOrder for splitting payment local/foreign\
+            \ accounts \n\nVisionPLUS Service Data: ARXQLO-XP-PMT-ORDER"
+          example: "0"
         monthsForAutoPurge:
           type: integer
+          description: "Max Length = 2 \n\nMonths for auto purge \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-PURGE-MONTHS"
           format: int32
+          example: 0
         produceStatementsAllAccounts:
           type: string
+          description: "Max Length = 1 \n\nProduce statements on all accounts \n\n\
+            VisionPLUS Service Data: ARXQLO-PCF-TOTAL-STMT-FLAG"
+          example: "N"
         statementExpiryIndicator:
           type: integer
+          description: "Max Length = 8 \n\nStatement expiry indicator \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-TOTAL-STMTEXPIRE"
           format: int32
+          example: 2099364
         maximumCreditLimit:
           type: number
+          description: "Max Length = 17 \n\nMaximum credit limit \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-CR-CEILING"
+          example: 10000000
         overlimitPercentReport:
           type: number
+          description: "Max Length = 3 \n\nOverlimit % Report\n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-OVLM-RPT-PERCENT"
+          example: 100
         overlimitPercentLetter:
           type: number
+          description: "Max Length = 3 \n\nOverlimit % Letter\n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-OVLM-LTR-PERCENT"
+          example: 0
         overlimitPercentAuthorisation:
           type: number
+          description: "Max Length = 3 \n\nOverlimit % Authorisation\n\nVisionPLUS\
+            \ Service Data: ARXQLO-PCF-OVLM-AUTH-PERCENT"
+          example: 100
         delinquencyAgeingForMemFee:
           type: integer
+          description: "Max Length = 1 \n\nDelinquency ageing for mem fee \n\nVisionPLUS\
+            \ Service Data: ARXQLO-MEMB-C-CYCLE-DUE"
           format: int32
+          example: 0
         planStructure:
           type: string
+          description: "Max Length = 1 \n\nPlan structure \n\nVisionPLUS Service Data:\
+            \ ARXQLO-PCF-CP-STRUCTURE"
+          example: P
         addressChangeEffect:
           type: string
+          description: "Max Length = 1 \n\nAddress change effect \n\nVisionPLUS Service\
+            \ Data: ARXQLO-PCF-ADDR-EFF-SW"
+          example: I
         monthsForAutoChargeOff:
           type: integer
+          description: "Max Length = 2 \n\nMonths for auto charge-off \n\nVisionPLUS\
+            \ Service Data: ARXQLO-ACO-MONTHS"
           format: int32
+          example: 0
         creditBureauReportCalcVariable:
           type: integer
+          description: "Max Length = 2 \n\nCredit bureau report calculation variable\
+            \ \n\nVisionPLUS Service Data: ARXQLO-CB-REV-MTHS"
           format: int32
+          example: 0
         correspondenceMgmtBusinessUnit:
           type: integer
+          description: "Max Length = 3 \n\nCorrespondence management business unit\
+            \ \n\nVisionPLUS Service Data: ARXQLO-PCF-LTR-ORG"
           format: int32
+          example: 999
         inactiveMonths:
           type: integer
+          description: "Max Length = 2 \n\nInactive months \n\nVisionPLUS Service\
+            \ Data: ARXQLO-INACTIVE-MONTHS"
           format: int32
+          example: 99
         planPurgeDays:
           type: integer
+          description: "Max Length = 3 \n\nPlan purge days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-ZERO-BAL-PLAN-DAYS"
           format: int32
+          example: 60
         stateOfIssueId:
           type: string
+          description: "Max Length = 3 \n\nState of issue id \n\nVisionPLUS Service\
+            \ Data: ARXQLO-STATE-OF-ISSUE"
+          example: C01
         useIncrementalAuthDuration:
           type: string
+          description: "Max Length = 1 \n\nUse incremental authorization duration\
+            \ \n\nVisionPLUS Service Data: ARXQLO-AUTH-DURATION-SW"
+          example: "Y"
         exceptProcessingBusinessUnit:
           type: integer
+          description: "Max Length = 3 \n\nExcept processing business unit \n\nVisionPLUS\
+            \ Service Data: ARXQLO-ITS-ORG"
           format: int32
+          example: 999
         monthsToRetainRecords:
           type: integer
+          description: "Max Length = 3 \n\nMonths to retain records \n\nVisionPLUS\
+            \ Service Data: ARXQLO-CLLTRL-RETAINMONTHS"
           format: int32
+          example: 0
         permanentStateIssueId:
           type: string
+          description: "Max Length = 3 \n\nPermanent state of issue ID \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PERM-STATE-OF-ISSUE"
+          example: "0"
         cashPaymentLetterId:
           type: string
+          description: "Max Length = 3 \n\nCash payment letter ID \n\nVisionPLUS Service\
+            \ Data: ARXQLO-LTR-PSEUDO-CASH"
+          example: "0"
         nonCashPaymentLetterId:
           type: string
+          description: "Max Length = 3 \n\nNon-cash payment letter ID \n\nVisionPLUS\
+            \ Service Data: ARXQLO-LTR-PSEUDO-NC"
+          example: "0"
         statementCode1:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 1\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-1"
           format: int32
+          example: 0
         statementCode2:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 2\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-2"
           format: int32
+          example: 0
         statementCode3:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 3\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-3"
           format: int32
+          example: 0
         statementCode4:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 4\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-4"
           format: int32
+          example: 0
         statementCode5:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 5\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-5"
           format: int32
+          example: 0
         statementCode6:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 6\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-6"
           format: int32
+          example: 0
         statementCode7:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 7\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-7"
           format: int32
+          example: 0
         statementCode8:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 8\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-8"
           format: int32
+          example: 0
         statementCode9:
           type: integer
+          description: "Max Length = 1 \n\nStatement Code 9\n\nVisionPLUS Service\
+            \ Data: ARXQLO-ASSC-MAIL-STMT-CD-9"
           format: int32
+          example: 0
         letterCode1:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 1\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-1"
           format: int32
+          example: 0
         letterCode2:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 2\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-2"
           format: int32
+          example: 0
         letterCode3:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 3\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-3"
           format: int32
+          example: 0
         letterCode4:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 4\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-4"
           format: int32
+          example: 0
         letterCode5:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 5\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-5"
           format: int32
+          example: 0
         letterCode6:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 6\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-6"
           format: int32
+          example: 0
         letterCode7:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 7\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-7"
           format: int32
+          example: 0
         letterCode8:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 8\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-8"
           format: int32
+          example: 0
         letterCode9:
           type: integer
+          description: "Max Length = 1 \n\nLetter Code 9\n\nVisionPLUS Service Data:\
+            \ ARXQLO-ASSC-MAIL-LTR-CD-9"
           format: int32
+          example: 0
         directDebitChangeLetterId:
           type: string
+          description: "Max Length = 3 \n\nDirect debit change letter ID \n\nVisionPLUS\
+            \ Service Data: ARXQLO-DD-CHG-LETTER-CD"
+          example: "0"
         overlimitDelayDays:
           type: integer
+          description: "Max Length = 2 \n\nOverlimit delay days \n\nVisionPLUS Service\
+            \ Data: ARXQLO-OVLM-DELAY-DAYS"
           format: int32
+          example: 0
         statementFrequency:
           type: integer
+          description: "Max Length = 2 \n\nStatement frequency \n\nVisionPLUS Service\
+            \ Data: ARXQLO-ACCT-STMT-FREQ"
           format: int32
+          example: 1
         sweepOptionAllowed:
           type: integer
+          description: "Max Length = 1 \n\nSweep option allowed \n\nVisionPLUS Service\
+            \ Data: ARXQLO-SWEEP-OPTION"
           format: int32
+          example: 0
         produceAnnualStatements:
           type: string
+          description: "Max Length = 1 \n\nProduce annual statements \n\nVisionPLUS\
+            \ Service Data: ARXQLO-ANNUAL-STMT-OPTION"
+          example: "0"
         pinMailerNameOrAddress:
           type: integer
+          description: "Max Length = 1 \n\nPIN mailer name/address \n\nVisionPLUS\
+            \ Service Data: ARXQLO-PIN-MAIL-IND"
           format: int32
+          example: 0
         cardMailerNameOrAddress:
           type: integer
+          description: "Max Length = 1 \n\nCard mailer name/address \n\nVisionPLUS\
+            \ Service Data: ARXQLO-CARD-MAIL-IND"
           format: int32
+          example: 0
         splitTenderProcessAllowed:
           type: integer
+          description: "Max Length = 1 \n\nSplit tender process allowed \n\nVisionPLUS\
+            \ Service Data: ARXQLO-SPLIT-TENDERALLOWED"
           format: int32
+          example: 0
         stateResidenceId:
           type: string
+          description: "Max Length = 3 \n\nState of residence ID \n\nVisionPLUS Service\
+            \ Data: ARXQLO-STATE-OF-RESID"
+          example: FL
         emblem:
           type: integer
+          description: "Max Length = 5 \n\nEmblem \n\nVisionPLUS Service Data: ARXQLO-AFFL-EMBLM"
           format: int32
+          example: 1
         multiCardMailer:
           type: integer
+          description: "Max Length = 1 \n\nMulti card mailer \n\nVisionPLUS Service\
+            \ Data: ARXQLO-MULT-CARD-MAILER"
           format: int32
+          example: 0
         overlimitProcessingOptInIndicator:
           type: integer
+          description: "Max Length = 1 \n\nOverlimit processing opt-in indicator \n\
+            \nVisionPLUS Service Data: ARXQLO-OVLM-OPT-IN-FLAG"
           format: int32
+          example: 0
         autoReAgeLetterCode:
           type: string
+          description: "Max Length = 3 \n\nAuto reage letter code \n\nVisionPLUS Service\
+            \ Data: ARXQLO-AUTO-REAGE-LTR"
+          example: "0"
         ibanRequired:
           type: integer
           format: int32
@@ -14642,18 +15489,35 @@ components:
       properties:
         organizationNumber:
           type: integer
+          description: "Max Length = 3 \n\nOMS organization. \n\nVisionPlus Service\
+            \ Data: OSXHIO-ORG"
           format: int32
+          example: 999
         accountNumber:
           type: string
+          description: "Max Length = 19 \n\nAccount number. \n\nVisionPlus Service\
+            \ Data: OSXHIO-ACCT-NBR"
+          example: "7600010732545213551"
         offerId:
           type: string
+          description: "Max Length = 10 \n\nBeginning offer. \n\nVisionPlus Service\
+            \ Data: OSXHIO-OFFER-ID"
+          example: "0"
         description:
           type: string
+          description: "Max Length = 40 \n\nDescription of offer \n\nVisionPlus Service\
+            \ Data: OSXHIO-DESCRIPTION"
+          example: DESCRIPTION TO OFFER HERE
         moreDataFlag:
           type: string
+          description: "Max Length = 1 \n\nMore. \n\nVisionPlus Service Data: OSXHIO-MORE"
+          example: "0"
         numbersOfReturnedItems:
           type: integer
+          description: "Max Length = 2 \n\nNumber of records. \n\nVisionPlus Service\
+            \ Data: OSXHIO-NBR-OF-REC"
           format: int32
+          example: 1
         enrollHistoryData:
           type: array
           items:
@@ -14666,38 +15530,63 @@ components:
           format: int32
         date:
           type: string
+          description: "Maintenance date for Offer Enrollment record \n\nVisionPlus\
+            \ Service Data: OSXHIO-DATE"
           format: date
         time:
           type: string
+          description: "Max Length = 6 \n\nMaintenance time of Offer Enrollment record\
+            \ \n\nVisionPlus Service Data: OSXHIO-TIME"
         representativeId:
           type: string
+          description: "Max Length = 20 \n\nRepresentative ID \n\nVisionPlus Service\
+            \ Data: OSXHIO-REP-ID"
         action:
           type: string
+          description: "Max Length = 15 \n\nAction performed, which includes offer\
+            \ status, enrollment action, propensity, start date, expiration date,\
+            \ sort code, and sort ID \n\nVisionPlus Service Data: OSXHIO-ACTION"
         from:
           type: integer
+          description: "Max Length = 40 \n\nFrom \n\nVisionPlus Service Data: OSXHIO-FROM"
           format: int32
         to:
           type: integer
+          description: "Max Length = 40 \n\nTo \n\nVisionPlus Service Data: OSXHIO-TO"
           format: int32
         breaker:
           type: integer
+          description: "Max Length = 4 \n\nBreaker \n\nVisionPlus Service Data: OSXHIO-BREAKER"
           format: int32
         description:
           type: string
+          description: "Max Length = 7 \n\nService forward date \n\nVisionPlus Service\
+            \ Data: OSXHIO-SVC-FWD-DATE"
         forwardDate:
           type: string
+          description: "Service forward time \n\nVisionPlus Service Data: OSXHIO-SVC-FWD-TIME"
           format: date
         forwardBreaker:
           type: integer
+          description: "Max Length = 4 \n\nService forward breaker \n\nVisionPlus\
+            \ Service Data: OSXHIO-SVC-FWD-BREAKER"
           format: int32
+          example: 0
         backDate:
           type: string
+          description: "Service back date \n\nVisionPlus Service Data: OSXHIO-SVC-BACK-DATE"
           format: date
         backTime:
           type: integer
+          description: "Max Length = 6 \n\nService back time \n\nVisionPlus Service\
+            \ Data: OSXHIO-SVC-BACK-TIME"
           format: int32
+          example: 0
         backBreaker:
           type: string
+          description: "Max Length = 4 \n\nService back breaker \n\nVisionPlus Service\
+            \ Data: OSXHIO-SVC-BACKBREAKER"
+          example: "0"
     CurrencyRateInquiryResponse:
       type: object
       properties:
