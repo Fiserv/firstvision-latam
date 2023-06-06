@@ -19,6 +19,7 @@ Descripción de API's mejorada:
 - /account/block-code
 - /account/qualification
 - /account/v2/instantCard
+- /cards/embosser/card-details-L8V3
 - /transactions/logo
 - /cards/v2/embosser/details
 - /customer/relationship
