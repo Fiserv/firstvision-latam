@@ -18,6 +18,19 @@ API's description improvement:
 - /cards/embosser/block
 - /account/block-code
 - /account/qualification
+- /account/v2/instantCard
+- /cards/embosser/card-details-L8V3
+- /transactions/logo
+- /cards/v2/embosser/details
+- /customer/relationship
+- /cards/statement-detail
+- /account/balance/details
+- /transactions/installmentConversion
+- /transactions/enroll-history/{accountNumber}
+- /customer/accountNumber
+- /account/user
+- /account/productTransfer
+- /account/relationship/billing-cycle
 
 ### Fixed
 
@@ -25,7 +38,7 @@ API's description improvement:
 
 ### Obsolete
 
-- N/A
+- /cards/global-card-activation
 
 ---
 

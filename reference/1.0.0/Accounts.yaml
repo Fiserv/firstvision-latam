@@ -10,8 +10,9 @@ paths:
     put:
       tags:
       - Account
-      summary: "Update Account qualification. VMX Service: M.CMS.ACCT.CLOSE.CHGOFF,\
-        \ R8V2"
+      summary: "Emulates the functionality used to update the account status from\
+        \ active to closed. In addition, this service provides the ability to initiate\
+        \ charge-off in. \n\nVMX Service: M.CMS.ACCT.CLOSE.CHGOFF, R8V2"
       description: "Emulates the functionality used to update the account status from\
         \ active to closed. In addition, this service provides the ability to initiate\
         \ charge-off in. \n\nVMX Service: M.CMS.ACCT.CLOSE.CHGOFF, R8V2"
@@ -37,52 +38,70 @@ paths:
               $ref: '#/components/schemas/UpdateQualificationRequest'
         required: true
       responses:
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "422":
-          description: |
+          description: |+
             VPL5SAAI6E - GQ FIELD MUST BE SPACE OR A-Z
+
             VPL5SCC01S - ACCOUNT OR CARD NUMBER IS REQUIRED
+
             VPL5SCC02S - ORGANIZATION NOT DETERMINED
+
             VPL5SCC03S - REQUESTED ORG NUMBER IS NOT FOUND
+
             VPL5SCC04S - ORGANIZATION NUMBER NOT FOUND ON FILE
+
             VPL5SCC05S - FOREIGN ORG RECORD NOT FOUND ON FILE
+
             VPL5SCC06S - LOGO NUMBER NOT FOUND ON FILE
-            VPL5SCC10S - INVALID INTERNAL STATUS 8
+
             VPL5SCC11S - STATUS CANNOT CHANGE TO CLOSED WHEN INSURANCE IS ACTIVE
+
             VPL5SCC12S - CANNOT MANUAL CHGOFF AN ACCT WITH A ZERO OR CREDIT BALANCE
+
             VPL5SCC13S - CANNOT RESET CHARGEOFF ON ACCOUNT WHEN DAYS IS > 0
+
             VPL5SCC14S - CANNOT MANUAL CHARGE OFF THIS ACCT
+
             VPL5SCC15S - CANNOT CHARGEOFF (WITH RSN) AN ACCT WITH 0 BAL OR CREDIT BAL
+
             VPL5SCC16S - VALID ENTRIES FOR RSN CODE POSITION 1 ARE C, B, F, OR T
+
             VPL5SCC17S - ENTERED AUTO C/O RSN CODE - PLS CHG TO MANUAL RSN
+
             VPL5SCC18S - RSN CODE MUST BE DEFINED ON ARML24
+
             VPL5SCC19S - CANNOT CHARGEOFF (WITH RSN), ACCT C/O STAT MUST = 0
+
             VPL5SCC21E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+
             VPL5SCC22E - FOREIGN USE MUST = SPACES, 0(LOCAL) OR 1(FOREIGN)
+
             VPL5SCC23E - REASON CODE IS REQUIRED FOR FUNC 2 - CHGOFF WITH RSN
+
             VPL5SCC24E - VALID FUNC INDICATOR IS 0-ACCT CLS 1-MANUAL CHGOFF 2-CHGOFF RSN ON
-            VPL5SCCZAS - ACCOUNT NOT FOUND
+
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -100,7 +119,8 @@ paths:
     put:
       tags:
       - Account
-      summary: "Block & Unblock Account. VMX Service: M.CMS.ACCT.BLKCD.UPD, R8V1"
+      summary: "Adds, changes or removes a block code on an Account. \nVMX Service:\
+        \ M.CMS.ACCT.BLKCD.UPD, R8V1"
       description: "Adds, changes or removes a block code on an Account. \nVMX Service:\
         \ M.CMS.ACCT.BLKCD.UPD, R8V1"
       operationId: Account Block Code Update
@@ -125,8 +145,18 @@ paths:
               $ref: '#/components/schemas/AccountForBlockCodeUpdateRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "403":
           description: Forbidden
         "404":
@@ -137,32 +167,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
         "422":
-          description: |-
-            VPL5SAB05S - CANNOT SET A BLOCK CODE ON A BILLING ACCOUNT
-            VPL5SAB06S - ACCOUNT NUMBER OR CARD NUMBER MUST BE PROVIDED
-            VPL5SAB07S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-            VPL5SAB08S - ORGANIZATION NOT DETERMINED
-            VPL5SAB10S - ORGANIZATION NUMBER NOT FOUND
-            VPL5SAB11S - LOGO NUMBER NOT FOUND
-            VPL5SAB12S - CARD NUMBER NOT FOUND
-            VPL5SAB13S - BLOCK CODE CANNOT BE REPLACED WITH ONE OF A LOWER PRIORITY
-            VPL5SAB21E - INVALID FOREIGN USE IND SPECIFIED - VALID VALUES ARE 0-2
-            VPL5SAB22E - INVALID FUNCTION CODE - VALID VALUES ARE B OR U
-            VPL5SAB23E - INVALID BLOCK CODE
-            VPL5SAB24E - BLOCK CODE MUST EQUAL SPACE TO UNBLOCK ACCOUNT
-            VPL5SAB25E - MUST SPECIFY ACCOUNT BLOCK CODE 1 OR 2 TO UNBLOCK ACCOUNT
-            VPL5SAB26E - BLOCK CODE INDICATOR MUST BE NUMERIC AND EQUAL 0 1 OR 2
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
+          description: "VPL5SAB02S-SERVICE INPUT TO AB SERVICE IS AN INCORRECT LENGTH\
+            \ \n\nVPL5SAB04S-FILE-TABLE USED BY THIS SERVICE IS MISSING \n\nVPL5SAB05S-CANNOT\
+            \ SET A BLOCK CODE ON A BILLING ACCOUNT \n\nVPL5SAB06S-ACCOUNT NUMBER\
+            \ OR CARD NUMBER MUST BE PROVIDED \n\nVPL5SAB07S-ORGANIZATION NUMBER MUST\
+            \ BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SAB08S-ORGANIZATION\
+            \ NOT DETERMINED \n\nVPL5SAB10S-ORGANIZATION NUMBER NOT FOUND \n\nVPL5SAB11S-LOGO\
+            \ NUMBER NOT FOUND \n\nVPL5SAB12S-CARD NUMBER NOT FOUND \n\nVPL5SAB13S-BLOCK\
+            \ CODE CANNOT BE REPLACED WITH ONE OF A LOWER PRIORITY \n\nVPL5SAB21E-INVALID\
+            \ FOREIGN USE IND SPECIFIED - VALID VALUES ARE 0-2 \n\nVPL5SAB22E-INVALID\
+            \ FUNCTION CODE - VALID VALUES ARE B OR U \n\nVPL5SAB23E-INVALID BLOCK\
+            \ CODE \n\nVPL5SAB24E-BLOCK CODE MUST EQUAL SPACE TO UNBLOCK ACCOUNT \n\
+            \nVPL5SAB25E-MUST SPECIFY ACCOUNT BLOCK CODE 1 OR 2 TO UNBLOCK ACCOUNT\
+            \ \n\nVPL5SAB26E-BLOCK CODE INDICATOR MUST BE NUMERIC AND EQUAL 0 1 OR\
+            \ 2 "
           content:
             application/json:
               schema:
@@ -208,24 +227,24 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -269,54 +288,50 @@ paths:
               $ref: '#/components/schemas/InstantCardAddL8V7Request'
         required: true
       responses:
+        "422":
+          description: "VPL5SICAFE - REVERSAL IS NOT ALLOWED FOR PRIMARY CARD WHEN\
+            \ ISSUE TYPE IS 'R' \n\nVPL5SICZ2S - SERVICE INPUT TO PLAN VIEWER SERVICE\
+            \ IS AN INCORRECT LENGTH \n\nVPL5SIC03S - ORGANIZATION IS NOT NUMERIC\
+            \ OR MUST BE VALUE BETWEEN 000 AND 998 \n\nVPL5SIC04S - LOGO NUMBER MUST\
+            \ BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SIC05S - CUSTOMER NUMBER\
+            \ IS INVALID \n\nVPL5SIC07S - ACCOUNT CREATE VALID VALUES ARE 'Y' OR 'N'\
+            \ \n\nVPL5SIC08S - SDP PROCESS TYPE VALID VALUE ARE 0 OR 1 \n\nVPL5SIC09S\
+            \ - ORGANIZATION NOT DETERMINED \n\nVPL5SIC10S - ORGANIZATION NOT DETERMINED\
+            \ \n\nVPL5SIC11S - ORGANIZATION NOT FOUND ON FILE \n\nVPL5SIC13S - CUSTOMER\
+            \ RECORD NOT FOUND OR ADD PENDING \n\nVPL5SIC14S - LOGO NOT FOUND ON FILE\
+            \ \n\nVPL5SIC17S - ACCOUNT NUMBER NOT FOUND \n\nVPL5SIC20S - CARD ACTION\
+            \ VALID VALUES ARE 0 OR 1 \n\nVPL5SIC21S - EMBOSSER NAME CANNOT BE SPACES\
+            \ \n\nVPL5SIC22S - ACCOUNT NUMBER SHOULD BE SPACES WHEN ACCT CREATE IS\
+            \ 'Y' \n\nVPL5SIC23S - EXPIRY DAYS PARAMETER INVALID FOR THIS LOGO \n\n\
+            VPL5SIC24S - MBS SWITCH IS OFF \n\nVPL5SIC25S - ORG LEVEL FLAG FOR VIRTUAL\
+            \ CARD HAS NOT BEEN SET \n\nVPL5SIC26S - LOGO LEVEL FLAG FOR VIRTUAL CARD\
+            \ HAS NOT BEEN SET \n\nVPL5SIC28E - VIRTUAL CARD/VOUCHER FUNCTIONALITY\
+            \ NOT ACTIVE \n\nVPL5SIC28S - STORE LEVEL INST CREDIT FLAG FOR VIRTUAL\
+            \ CARD HAS NOT BEEN SET \n\nVPL5SIC29S - BC REASON CODES VALID VALUES\
+            \ ARE SPACE,A TO Z EXCLUDING H/T \n\nVPL5SIC30S - ADMIN BRANCH SHOULD\
+            \ BE NUMERIC AND GREATER THAN 0 "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "422":
-          description: |-
-            Unprocessable Entity
-
-            VPL5SICAFE - REVERSAL IS NOT ALLOWED FOR PRIMARY CARD WHEN ISSUE TYPE IS 'R'
-            VPL5SICZ2S - SERVICE INPUT TO PLAN VIEWER SERVICE IS AN INCORRECT LENGTH
-            VPL5SIC03S - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
-            VPL5SIC04S - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-            VPL5SIC05S - CUSTOMER NUMBER IS INVALID
-            VPL5SIC07S - ACCOUNT CREATE VALID VALUES ARE 'Y' OR 'N'
-            VPL5SIC08S - SDP PROCESS TYPE VALID VALUE ARE 0 OR 1
-            VPL5SIC09S - ORGANIZATION NOT DETERMINED
-            VPL5SIC10S - ORGANIZATION NOT DETERMINED
-            VPL5SIC11S - ORGANIZATION NOT FOUND ON FILE
-            VPL5SIC13S - CUSTOMER RECORD NOT FOUND OR ADD PENDING
-            VPL5SIC14S - LOGO NOT FOUND ON FILE
-            VPL5SIC17S - ACCOUNT NUMBER NOT FOUND
-            VPL5SIC20S - CARD ACTION VALID VALUES ARE 0 OR 1
-            VPL5SIC21S - EMBOSSER NAME CANNOT BE SPACES
-            VPL5SIC22S - ACCOUNT NUMBER SHOULD BE SPACES WHEN ACCT CREATE IS 'Y'
-            VPL5SIC23S - EXPIRY DAYS PARAMETER INVALID FOR THIS LOGO
-            VPL5SIC24S - MBS SWITCH IS OFF
-            VPL5SIC25S - ORG LEVEL FLAG FOR VIRTUAL CARD HAS NOT BEEN SET
-            VPL5SIC26S - LOGO LEVEL FLAG FOR VIRTUAL CARD HAS NOT BEEN SET
-            VPL5SIC28E - VIRTUAL CARD/VOUCHER FUNCTIONALITY NOT ACTIVE
-            VPL5SIC28S - STORE LEVEL INST CREDIT FLAG FOR VIRTUAL CARD HAS NOT BEEN SET
-            VPL5SIC29S - BC REASON CODES VALID VALUES ARE SPACE,A TO Z EXCLUDING H/T
-            VPL5SIC30S - ADMIN BRANCH SHOULD BE NUMERIC AND GREATER THAN 0
-          content:
-            application/json: {}
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -334,11 +349,11 @@ paths:
     post:
       tags:
       - Account
-      summary: "Instant Account & Card creation. (VMX Service: M.CMS.INSTANT.CARD.ADD,\
+      summary: "Instant Account & Card Creation. (VMX Service: M.CMS.INSTANT.CARD.ADD,\
         \ L8V3)"
       description: "Creates an Account and Card records for instant use for eCommerce\
         \ transactions. \nVMX Service: M.CMS.INSTANT.CARD.ADD, L8V3"
-      operationId: Instant Account & Card creation
+      operationId: Instant Account & Card Creation
       parameters:
       - name: apikey
         in: header
@@ -360,10 +375,34 @@ paths:
               $ref: '#/components/schemas/InstantCardAddRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
         "403":
           description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstantCardAddResponse'
         "422":
           description: |-
             VPL5SIC24S - MBS SWITCH IS OFF
@@ -376,31 +415,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InstantCardAddResponse'
-      x-proxy-name: Instant Account & Card creation
+      x-proxy-name: Instant Account & Card Creation
       x-group-name: Account
       x-child-product-name: Accounts
   /account/details-L8VG:
@@ -435,10 +450,8 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
+        "400":
+          description: Bad Request
         "422":
           description: |
             VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
@@ -459,20 +472,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "500":
-          description: Backend Error
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -517,6 +532,22 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "422":
           description: |-
             VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -933,24 +964,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
           content:
             application/json:
               schema:
@@ -978,83 +993,46 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            Length: 3
-
-            Organization Number.
-
-            VisionPLUS Service Data: ARXCCI-ORG
+          description: "* Min Length = 1 \n* Max Length = 3 \n\nOrganization Number.\
+            \ \n\nVisionPLUS Service Data: ARXCCI-ORG"
           format: int32
           example: 807
         accountNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: |-
-            Length: 19
-
-            Account Number.
-
-            VisionPLUS Service Data: ARXCCI-ACCT-NBR
-          example: "4513074002952958903"
+          description: "Account Number. \n\nVisionPLUS Service Data: ARXCCI-ACCT-NBR"
+          example: "1234567890123456789"
         foreignUse:
           type: string
-          description: |-
-            Length: 1
-
-            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
-
-            The default is to the local account
-
-            VisionPLUS Service Data: ARXCCI-FOREIGN-USE
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nThe FOREIGN USE indicator\
+            \ is provided in the input message so the requesting source can specify\
+            \ whether the request applies to the local or foreign account when the\
+            \ account is in a dual currency processing organization. \n\nThe default\
+            \ is to the local account\n\nValues: \n* 0 \n* 1 \n\n VisionPLUS Service\
+            \ Data: ARXCCI-FOREIGN-USE"
           example: "0"
-          enum:
-          - "0,1"
         function:
           type: string
-          description: |-
-            Length: 1
-
-            Function indicator.
-
-            The values are:
-
-            0 = Account close
-
-            1 = Manual charge-off
-
-            2 = Charge-off with reason code
-
-            3 = Update global qualification
-
-            VisionPLUS Service Data: ARXCCI-FUNCTION
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nFunction indicator.\
+            \ \n\nValues: \n* 0 = Account close; \n * 1 = Manual charge-off; \n *\
+            \ 2 = Charge-off with reason code; \n * 3 = Update global qualification.\
+            \ \n\n VisionPLUS Service Data: ARXCCI-FUNCTION"
           example: "3"
         changeOffRSN1:
           type: string
-          description: |-
-            Length: 1
-
-            Change off - RSN1.
-
-            VisionPLUS Service Data: ARXCCI-CHGOFF-RSN1
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nChange off - RSN1.\
+            \ \n\nVisionPLUS Service Data: ARXCCI-CHGOFF-RSN1"
           example: C
         changeOffRSN2:
           type: string
-          description: |-
-            Length: 1
-
-            Change off - RSN2.
-
-            VisionPLUS Service Data: ARXCCI-CHGOFF-RSN2
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nChange off - RSN2.\
+            \ \n\nVisionPLUS Service Data: ARXCCI-CHGOFF-RSN2"
           example: B
         globalQualificationParameter:
           type: string
-          description: |-
-            Length: 1
-
-            Global qualification assigned to the account.
-
-            VisionPLUS Service Data: ARXCCI-GLOBAL-QUAL
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nGlobal qualification\
+            \ assigned to the account. \n\nVisionPLUS Service Data: ARXCCI-GLOBAL-QUAL"
           example: A
       description: Update qualification Request
     DResponse:
@@ -1091,173 +1069,113 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            Length: 3
-
-            Organization Number.
-
-            VisionPLUS Service Data: ARXABI1-ORG
+          description: "* Min Length = 1 \n* Max Length = 3 \n\nOrganization Number.\
+            \ \n\nVisionPLUS Service Data: ARXABI1-ORG"
           format: int32
-          example: 807
+          example: 999
         accountNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: |-
-            Length: 19
-
-            Account number.
-
-            VisionPLUS Service Data: ARXABI-ACCOUNT
-          example: "5303716028446103276"
+          description: "Account number. \n\nVisionPLUS Service Data: ARXABI-ACCOUNT"
+          example: "1234567891234567891"
         functionCode:
           maxLength: 1
-          minLength: 1
+          minLength: 0
           type: string
-          description: |-
-            Length: 1
-
-            Function Code.
-
-            The values are:
-
-            B = block account
-
-            U = unblock account
-
-            VisionPLUS Service Data: ARXABI-FUNC-CODE
+          description: "Function Code. \n\nValues: \n* B = block account \n * U =\
+            \ unblock account \n\n VisionPLUS Service Data: ARXABI-FUNC-CODE"
           example: B
           enum:
           - "U,B"
         blockCode:
           type: string
-          description: "Length: 1\n\nBlock code to be assigned to the account.\n\n\
-            The values are:\n\nA-Z = block code\n\nspace = unblock account\n\nVisionPLUS\
-            \ Service Data: ARXABI-BLOCK-CDThe values are:\n* A-Z = block code \n\
-            * space = unblock account\n"
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nBlock code to be assigned\
+            \ to the account. \n\nValues: \n* A-Z = block code \n * space = unblock\
+            \ account\n\nVisionPLUS Service Data: ARXABI-BLOCK-CD"
           example: Z
-          enum:
-          - "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
         blockCodeIndicator:
           type: integer
-          description: |-
-            Length: 1
-
-            Block code indicator.
-
-            The values are:
-
-            0 = Tests both block code 1 and 2 to determine and use the one that fits best relative to priority settings (not allowed for unblock)
-
-            1 = Block code 1
-
-            2 = Block code 2
-
-            VisionPLUS Service Data: ARXABI-BLK-CD-IND
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nBlock code indicator.\
+            \ \n\nValues: \n* 0 = Tests both block code 1 and 2 to determine and use\
+            \ the one that fits best relative to priority settings (not allowed for\
+            \ unblock)\n* 1 = Block code 1\n* 2 = Block code 2\n\nVisionPLUS Service\
+            \ Data: ARXABI-BLK-CD-IND"
           format: int32
           example: 1
-          enum:
-          - null
         foreignUse:
           maxLength: 1
-          minLength: 1
+          minLength: 0
           type: string
-          description: |-
-            Length: 1
-
-            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization. The default is to the local account.
-
-            VisionPLUS Service Data: ARXABI-FOREIGN-USE
+          description: "The FOREIGN USE indicator is provided in the input message\
+            \ so the requesting source can specify whether the request applies to\
+            \ the local or foreign account when the account is in a dual currency\
+            \ processing organization. \n\nValues: \n* 0 \n * 1 \n\n VisionPLUS Service\
+            \ Data: ARXABI-FOREIGN-USE"
           example: "0"
-          enum:
-          - "0,1"
       description: Account Update User Request
     AccountForBlockCodeUpdateResponse:
       type: object
       properties:
         localOrganization:
           type: integer
-          description: |-
-            Length: 3
-
-            Local organization.
-
-            VisionPLUS Service Data: ARXABO-ORG
+          description: "Max Length = 3 \n\nLocal organization. \n\nVisionPLUS Service\
+            \ Data: ARXABO-ORG"
           format: int32
+          example: 999
         foreignOrg:
           type: integer
-          description: |-
-            Length: 3
-
-            Organization associated with the foreign account.
-
-            VisionPLUS Service Data: ARXABO-FOREIGN-ORG
+          description: "Max Length = 3 \n\nOrganization associated with the foreign\
+            \ account. \n\nVisionPLUS Service Data: ARXABO-FOREIGN-ORG"
           format: int32
+          example: 999
         accountNumber:
           type: string
-          description: |-
-            Length: 19
-
-            Account number associated with the block code update.
-
-            VisionPLUS Service Data: ARXABO-ACCOUNT
+          description: "Max Length = 19 \n\nAccount number associated with the block\
+            \ code update. \n\nVisionPLUS Service Data: ARXABO-ACCOUNT"
+          example: "1234567891234567891"
         cardNumber:
           type: string
-          description: |-
-            Length: 19
-
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-
-            VisionPLUS Service Data: ARXABO-CARD-NBR
-          example: 000540208ID5IXX3865
+          description: "Max Length = 19 \n\nUnique identifier or token associated\
+            \ with the card number or payment instrument. \n\nVisionPLUS Service Data:\
+            \ ARXABO-CARD-NBR"
+          example: 000123456ID5IXX1234
         foreignUse:
           type: string
-          description: |-
-            Length: 1
-
-            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization. The default is to the local account.
-
-            VisionPLUS Service Data: ARXABO-FOREIGN-USE
+          description: "Max Length = 1 \n\nThe FOREIGN USE indicator is provided in\
+            \ the input message so the requesting source can specify whether the request\
+            \ applies to the local or foreign account when the account is in a dual\
+            \ currency processing organization. \n\nVisionPLUS Service Data: ARXABO-FOREIGN-USE"
+          example: "0"
         functionCode:
           type: string
-          description: |-
-            Length: 1
-
-            Function code.
-
-            VisionPLUS Service Data: ARXABO-FUNC-CODE
+          description: "Max Length = 1 \n\nFunction code. \n\nVisionPLUS Service Data:\
+            \ ARXABO-FUNC-CODE"
+          example: B
         blockCode1Local:
           type: string
-          description: |-
-            Length: 1
-
-            Block code 1 stored on the local Account Base Segment record after the service update is applied.
-
-            VisionPLUS Service Data: ARXABO-BLOCK-CD-1-LOCAL
+          description: "Max Length = 1 \n\nBlock code 1 stored on the local Account\
+            \ Base Segment record after the service update is applied. \n\nVisionPLUS\
+            \ Service Data: ARXABO-BLOCK-CD-1-LOCAL"
+          example: Z
         blockCode2Local:
           type: string
-          description: |-
-            Length: 1
-
-            Block code 2 stored on the local Account Base Segment record after the service update is applied.
-
-            VisionPLUS Service Data: ARXABO-BLOCK-CD-2-LOCAL
+          description: "Max Length = 1 \n\nBlock code 2 stored on the local Account\
+            \ Base Segment record after the service update is applied. \n\nVisionPLUS\
+            \ Service Data: ARXABO-BLOCK-CD-2-LOCAL"
+          example: Z
         blockCode1Foreign:
           type: string
-          description: |-
-            Length: 1
-
-            Block code 1 stored on the foreign Account Base Segment record after the service update is applied.
-
-            VisionPLUS Service Data: ARXABO-BLOCK-CD-1-FOREIGN
+          description: "Max Length = 1 \n\nBlock code 1 stored on the foreign Account\
+            \ Base Segment record after the service update is applied. \n\nVisionPLUS\
+            \ Service Data: ARXABO-BLOCK-CD-1-FOREIGN"
+          example: Z
         blockCode2Foreign:
           type: string
-          description: |-
-            Length: 1
-
-            Block code 2 stored on the foreign Account Base Segment record after the service update is applied.
-
-            VisionPLUS Service Data: ARXABO-BLOCK-CD-2-FOREIGN
+          description: "Max Length = 1 \n\nBlock code 2 stored on the foreign Account\
+            \ Base Segment record after the service update is applied. \n\nVisionPLUS\
+            \ Service Data: ARXABO-BLOCK-CD-2-FOREIGN"
+          example: Z
     ModifyAccountBalanceRequest:
       required:
       - accountNumber
@@ -1899,37 +1817,27 @@ components:
           maxLength: 19
           minLength: 0
           type: string
-          description: |-
-            Length: 19
-            Account Number.
-            VisionPLUS Service Data: AZXICI-BS-ACCT
-          example: "840"
+          description: "Account Number. \n\nVisionPLUS Service Data: AZXICI-BS-ACCT "
+          example: "1234567891234567890"
         billingAccountIndicator:
           type: integer
-          description: |-
-            Length: 1
-            Billing Account Indicator.
-            VisionPLUS Service Data: AZXICI-BILLING-ACCT-IND
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nBilling Account Indicator.\
+            \ \n\nVisionPLUS Service Data: AZXICI-BILLING-ACCT-IND "
           format: int32
           example: 1
         relationshipPrimaryAccountFlag:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            Relationship Primary Account Flag.
-            VisionPLUS Service Data: AZXICI-REL-PRIM-ACCT-FLAG
+          description: "Relationship Primary Account Flag. \n\nVisionPLUS Service\
+            \ Data: AZXICI-REL-PRIM-ACCT-FLAG "
           example: "1"
         relationshipNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: |-
-            Length: 19
-            relationship Number.
-            VisionPLUS Service Data: AZXICI-REL-NBR
-          example: "124242"
+          description: "relationship Number. \n\nVisionPLUS Service Data: AZXICI-REL-NBR "
+          example: "1234567891234567890"
         shortName:
           maxLength: 20
           minLength: 0
@@ -1941,119 +1849,89 @@ components:
           example: Test account
         creditLimit:
           type: number
-          description: |-
-            Length: 17
-            Credit limit.
-            VisionPLUS Service Data: AZXICI-CREDIT-LIMIT
+          description: "Max Length = 17 \n\nCredit limit. \n\nVisionPLUS Service Data:\
+            \ AZXICI-CREDIT-LIMIT "
           example: 3000000
         billingCurrency:
           type: integer
-          description: |-
-            Length: 3
-            Billing Currency.
-            VisionPLUS Service Data: AZXICI-BILLING-CURR
+          description: "Max Length = 3 \n\nBilling Currency. \n\nVisionPLUS Service\
+            \ Data: AZXICI-BILLING-CURR "
           format: int32
-          example: 840
+          example: 998
         relationshipBillingLevel:
           type: integer
-          description: |-
-            Length: 1
-            Relationship Billing Level.
-            VisionPLUS Service Data: AZXICI-REL-BILL-LVL
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nRelationship Billing\
+            \ Level. \n\nVisionPLUS Service Data: AZXICI-REL-BILL-LVL"
           format: int32
           example: 1
         dualBillingFlag:
           type: integer
-          description: |-
-            Length: 1
-            Dual Billing Flag.
-            VisionPLUS Service Data: AZXICI-DUAL-BILLING-FL
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nDual Billing Flag.\
+            \ \n\nVisionPLUS Service Data: AZXICI-DUAL-BILLING-FL "
           format: int32
           example: 1
         relationshipCardScheme:
           type: integer
-          description: |-
-            Length: 1
-            Relationship Card Scheme.
-            VisionPLUS Service Data: AZXICI-REL-CARD-SCHEME
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nRelationship Card\
+            \ Scheme. \n\nVisionPLUS Service Data: REL_CARD_SCHEME"
           format: int32
           example: 3
         alternateCustomerNumberFlag:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            Alternate customer
-            The values are:
-            * Space = No action; disregard alternate customer
-            * A = Alternate customer active; send statements to alternate address until expiration date
-            * B = Alternate customer active; send statements to both addresses until expiration date
-            * C = Relationship customer active; send statement to alternate address
-            VisionPLUS Service Data: AZXICI-ALT-CUST-NBR-FLAG
+          description: "Alternate customer. \n\nValues: \n* Space = No action; disregard\
+            \ alternate customer; \n * A = Alternate customer active; send statements\
+            \ to alternate address until expiration date; \n * B = Alternate customer\
+            \ active; send statements to both addresses until expiration date; \n\
+            \ * C = Relationship customer active; send statement to alternate address.\
+            \ \n\nVisionPLUS Service Data: AZXICI-ALT-CUST-NBR-FLAG "
           example: C
         alternateCustomerStartDate:
           type: string
-          description: |-
-            Effective date of the alternate customer address.
-            VisionPLUS Service Data: AZXICI-DATE-ALT-CUST-STRT
+          description: "Effective date of the alternate customer address. \n\nVisionPLUS\
+            \ Service Data: AZXICI-DATE-ALT-CUST-STRT "
           format: date
         alternateCustomerExpireDate:
           type: string
-          description: |-
-            Expiration date of the alternate customer address
-            VisionPLUS Service Data: AZXICI-DATE-ALT-CUST-EXPR
+          description: "Expiration date of the alternate customer address. \n\nVisionPLUS\
+            \ Service Data: AZXICI-DATE-ALT-CUST-EXPR "
           format: date
         alternateCustomerNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: |-
-            Length: 19
-            Alternate customer number.
-            VisionPLUS Service Data: AZXICI-ALT-CUST-NBR
-          enum:
-          - "range[0,19]"
+          description: "Alternate customer number. \n\nVisionPLUS Service Data: AZXICI-ALT-CUST-NBR "
+          example: "1234567891234567890"
         dateOpened:
           type: string
-          description: |-
-            Date opened.
-            VisionPLUS Service Data: AZXICI-DATE-OPENED
+          description: "Date opened. \n\nVisionPLUS Service Data: AZXICI-DATE-OPENED "
           format: date
         billingCycle:
           type: integer
-          description: |-
-            Length: 2
-            Billing cycle.
-            VisionPLUS Service Data: AZXICI-BILLING-CYCLE
+          description: "* Min Length = 1 \n* Max Length = 2 \n\nBilling cycle. \n\n\
+            VisionPLUS Service Data: AZXICI-BILLING-CYCLE "
           format: int32
           example: 31
-          enum:
-          - null
         customerSelectedDueDay:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            Customer selected due day.
-            VisionPLUS Service Data: AZXICI-CUST-SEL-DUE-DAY
-          example: ""
+          description: "Customer selected due day. \n\nVisionPLUS Service Data: AZXICI-CUST-SEL-DUE-DAY "
+          example: "10"
         statementFlag:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            Statement flag.
-            VisionPLUS Service Data: AZXICI-STATEMENT-FLAG
+          description: "Statement flag. \n\nVisionPLUS Service Data: AZXICI-STATEMENT-FLAG "
+          example: "1"
         statementFrequency:
           maxLength: 2
           minLength: 0
           type: string
           description: |-
-            Length: 2
             Statement frequency.
+
             VisionPLUS Service Data: AZXICI-STATEMENT-FREQ
           example: "1"
         blockCode1:
@@ -2061,8 +1939,8 @@ components:
           minLength: 0
           type: string
           description: |-
-            Length: 1
             Block code 1.
+
             VisionPLUS Service Data: AZXICI-BLOCK-CODE-1
           example: A
         blockCode2:
@@ -2070,8 +1948,8 @@ components:
           minLength: 0
           type: string
           description: |-
-            Length: 1
             Block code .
+
             VisionPLUS Service Data: AZXICI-BLOCK-CODE-2
           example: A
         processingControlTableControlId:
@@ -2079,71 +1957,57 @@ components:
           minLength: 0
           type: string
           description: |-
-            Length: 3
             PCT ID.
+
             VisionPLUS Service Data: AZXICI-PCT-CTL-ID
           example: "123"
         processingControlTableStartDate:
           type: string
-          description: |-
-            Processing Control Table Start Date.
-            VisionPLUS Service Data: AZXICI-PCT-START-DATE
+          description: "Processing Control Table Start Date. \n\nVisionPLUS Service\
+            \ Data: AZXICI-PCT-START-DATE "
           format: date
         processingControlTableExpireDate:
           type: string
-          description: |-
-            Processing Control Table Expire Date.
-            VisionPLUS Service Data: AZXICI-PCT-EXPIR-DATE
+          description: "Processing Control Table Expire Date. \n\nVisionPLUS Service\
+            \ Data: AZXICI-PCT-EXPIR-DATE "
           format: date
         processingControlTableLevel:
           type: string
-          description: |-
-            Length: 1
-            Processing Control Table Level.
-            VisionPLUS Service Data: AZXICI-PCT-LEVEL
+          description: "Max Length = 1 \n\nProcessing Control Table Level. \n\nVisionPLUS\
+            \ Service Data: AZXICI-PCT-LEVEL "
           example: O
         processingControlTableLevelStartDate:
           type: string
-          description: |-
-            Processing Control Table Level Start Date.
-            VisionPLUS Service Data: AZXICI-PCT-LEVEL-START-DATE
+          description: "Processing Control Table Level Start Date. \n\nVisionPLUS\
+            \ Service Data: AZXICI-PCT-LEVEL-START-DATE "
           format: date
         processingControlTableLevelExpireDate:
           type: string
-          description: |-
-            Processing Control Table Level Expire Date.
-            VisionPLUS Service Data: AZXICI-PCT-LEVEL-EXPIR-DATE
+          description: "Processing Control Table Level Expire Date. \n\nVisionPLUS\
+            \ Service Data: AZXICI-PCT-LEVEL-EXPIR-DATE "
           format: date
         cashPlanNumber:
           type: integer
-          description: |-
-            Length: 5
-            Cash Plan Number.
-            VisionPLUS Service Data: AZXICI-CASH-PLAN-NBR
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nCash Plan Number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-CASH-PLAN-NBR "
           format: int32
           example: 12345
         retailPlanNumber:
           type: integer
-          description: |-
-            Length: 5
-            Retail Plan Number.
-            VisionPLUS Service Data: AZXICI-RETAIL-PLAN-NBR
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nRetail Plan Number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-RETAIL-PLAN-NBR "
           format: int32
           example: 12345
         promoPlanNumber:
           type: integer
-          description: |-
-            Length: 5
-            Promo Plan Number.
-            VisionPLUS Service Data: AZXICI-PROMO-PLAN-NBR
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nPromo Plan Number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-PBT-PROMO-PLAN-NBR "
           format: int32
           example: 12345
         ddaRoutingNumber:
           type: integer
-          description: |-
-            Length: 9
-            DDA routing number.
-            VisionPLUS Service Data: AZXICI-DDA-RTNG-NBR
+          description: "* Min Length = 9 \n* Max Length = 9 \n\nDDA routing number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-DDA-RTNG-NBR "
           format: int32
           example: 0
         ddaAccountNumber:
@@ -2151,41 +2015,34 @@ components:
           minLength: 0
           type: string
           description: |-
-            Length: 19
             DDA account number.
             VisionPLUS Service Data: AZXICI-DDA-ACCT-NBR
           example: "121535325"
         savingsRoutingNumber:
           type: integer
-          description: |-
-            Length: 9
-            Savings routing number.
-            VisionPLUS Service Data: AZXICI-SAV-RTNG-NBR
+          description: "* Min Length = 1 \n* Max Length = 9 \n\nSavings routing number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-SAV-RTNG-NBR "
           format: int32
-          example: 0
+          example: 123456789
         savingsAccountNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: |-
-            Length: 19
-            Savings account number.
-            VisionPLUS Service Data: AZXICI-SAV-ACCT-NBR
+          description: "Savings account number. \n\nVisionPLUS Service Data: AZXICI-SAV-ACCT-NBR "
+          example: "1234567891234567890"
         userAccountNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: |-
-            Length: 19
-            User Account Number.
-            VisionPLUS Service Data: AZXICI-USR-ACCT-NBR
+          description: "User Account Number. \n\nVisionPLUS Service Data: AZXICI-USR-ACCT-NBR "
+          example: "1234567891234567890"
         cardTechnology:
           type: integer
-          description: "Length: 1 \n\nCard technology \n\nFlag that identifies the\
-            \ current card technology used for this account.\n\nThe values are:\n\
-            * 0 = Magnetic-stripe card(s) are on issue\n* 1 = Smart card(s) are on\
-            \ issue\n* 2 = Magnetic-stripe contactless card(s) are on issue\n* 3 =\
-            \ Smart contactless card(s) are on issue \n\nThe following edits apply\
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nCard technology \n\
+            \nFlag that identifies the current card technology used for this account.\n\
+            \nValues: \n* 0 = Magnetic-stripe card(s) are on issue\n* 1 = Smart card(s)\
+            \ are on issue\n* 2 = Magnetic-stripe contactless card(s) are on issue\n\
+            * 3 = Smart contactless card(s) are on issue \n\nThe following edits apply\
             \ to this field:\n* This field can be 1, 2 or 3 only when the **DEFAULT\
             \ CARD TECHNOLOGY** field on ARML38 is greater than 0 \nIn the add mode\
             \ (ARAB), this field must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38)\
@@ -2197,571 +2054,410 @@ components:
             \ default if necessary. \n\nVisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY"
           format: int32
           example: 0
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
         authorizationLimitOverrides:
           type: number
-          description: |-
-            Length: 1
-            Authorization Limit Overrides.
-            VisionPLUS Service Data: AZXICI-AUTH-LIMIT-OVRRD-FLAG
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nValues: \n* 0 = Override\
+            \ not allowed\n* 1 = Override allowed\nAuthorization Limit Overrides.\
+            \ \n\nVisionPLUS Service Data: AZXICI-AUTH-LIMIT-OVRRD-FLAG "
           example: 0
         temporaryCreditLimit:
           type: number
-          description: |-
-            Length: 17
-            Temporary credit limit.
-            VisionPLUS Service Data: AZXICI-TEMP-CRLIM
+          description: "* Min Length = 1 \n* Max Length = 17 \n\nTemporary credit\
+            \ limit. \n\nVisionPLUS Service Data: AZXICI-TEMP-CRLIM "
           example: 0
         dateTemporaryCreditLimit:
           type: string
-          description: |-
-            Date Temporary Credit Limit.
-            VisionPLUS Service Data: AZXICI-DATE-TEMP-CRLIM-EXP
+          description: "Date Temporary Credit Limit. \n\nVisionPLUS Service Data:\
+            \ AZXICI-DATE-TEMP-CRLIM-EXP "
           format: date
         stateOfResidenceId:
           maxLength: 3
           minLength: 0
           type: string
-          description: |-
-            Length: 3
-            State Of Residence Id.
-            VisionPLUS Service Data: AZXICI-STATE-OF-RESID
+          description: "State Of Residence Id. \n\nVisionPLUS Service Data: AZXICI-STATE-OF-RESID "
           example: "001"
         stateOfIssuanceId:
           maxLength: 3
           minLength: 0
           type: string
-          description: |-
-            Length: 3
-            State Of Issuance Id.
-            VisionPLUS Service Data: AZXICI-STATE-OF-ISSUE
+          description: "State Of Issuance Id. \n\nVisionPLUS Service Data: AZXICI-STATE-OF-ISSUE "
           example: "001"
         owningBranchNumber:
           type: integer
-          description: |-
-            Length: 9
-            Owning branch number.
-            VisionPLUS Service Data: AZXICI-OWNING-BRANCH-NBR
+          description: "* Min Length = 1 \n* Max Length = 9 \n\nOwning branch number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-OWNING-BRANCH-NBR "
           format: int32
           example: 1
         userCode1:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 1.
-            VisionPLUS Service Data: AZXICI-USER-CODE-1
+          description: "User Code 1. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-1 "
+          example: A0
         userCode2:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 2.
-            VisionPLUS Service Data: AZXICI-USER-CODE-2
+          description: "User Code 2. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-2 "
+          example: A0
         userCode3:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 3.
-            VisionPLUS Service Data: AZXICI-USER-CODE-3
+          description: "User Code 3. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-3 "
+          example: A0
         userCode4:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 4.
-            VisionPLUS Service Data: AZXICI-USER-CODE-4
+          description: "User Code 4. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-4 "
+          example: A0
         userCode5:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 5.
-            VisionPLUS Service Data: AZXICI-USER-CODE-5
+          description: "User Code 5. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-5 "
+          example: A0
         userCode6:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 6.
-            VisionPLUS Service Data: AZXICI-USER-CODE-6
+          description: "User Code 6. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-6 "
+          example: A0
         userCode7:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 7.
-            VisionPLUS Service Data: AZXICI-USER-CODE-7
+          description: "User Code 7. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-7 "
+          example: A0
         userCode8:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 8.
-            VisionPLUS Service Data: AZXICI-USER-CODE-8
+          description: "User Code 8. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-8 "
+          example: A0
         userCode9:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 9.
-            VisionPLUS Service Data: AZXICI-USER-CODE-9
+          description: "User Code 9. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-9 "
+          example: A0
         userCode10:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 10.
-            VisionPLUS Service Data: AZXICI-USER-CODE-10
+          description: "User Code 10. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-10 "
+          example: A0
         userCode11:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 11.
-            VisionPLUS Service Data: AZXICI-USER-CODE-11
+          description: "User Code 11. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-11 "
+          example: A0
         userCode12:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 12.
-            VisionPLUS Service Data: AZXICI-USER-CODE-12
+          description: "User Code 12. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-12 "
+          example: A0
         userCode13:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 13.
-            VisionPLUS Service Data: AZXICI-USER-CODE-13
+          description: "User Code 13. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-13 "
+          example: A0
         userCode14:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            User Code 14.
-            VisionPLUS Service Data: AZXICI-USER-CODE-14
+          description: "User Code 14. \n\nVisionPLUS Service Data: AZXICI-USER-CODE-14 "
+          example: A0
         userDate1:
           type: string
-          description: |-
-            User date 1.
-            VisionPLUS Service Data: AZXICI-USER-DATE-1
+          description: "User date 1. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-1 "
           format: date
         userDate2:
           type: string
-          description: |-
-            User date 2.
-            VisionPLUS Service Data: AZXICI-USER-DATE-2
+          description: "User date 2. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-2 "
           format: date
         userDate3:
           type: string
-          description: |-
-            User date 3.
-            VisionPLUS Service Data: AZXICI-USER-DATE-3
+          description: "User date 3. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-3 "
           format: date
         userDate4:
           type: string
-          description: |-
-            User date 4.
-            VisionPLUS Service Data: AZXICI-USER-DATE-4
+          description: "User date 4. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-4 "
           format: date
         userDate5:
           type: string
-          description: |-
-            User date 5.
-            VisionPLUS Service Data: AZXICI-USER-DATE-5
+          description: "User date 5. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-5 "
           format: date
         userDate6:
           type: string
-          description: |-
-            User date 6.
-            VisionPLUS Service Data: AZXICI-USER-DATE-6
+          description: "User date 6. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-6 "
           format: date
         userDate7:
           type: string
-          description: |-
-            User date 7.
-            VisionPLUS Service Data: AZXICI-USER-DATE-7
+          description: "User date 7. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-7 "
           format: date
         userDate8:
           type: string
-          description: |-
-            Length: 8.
-            VisionPLUS Service Data: AZXICI-USER-DATE-8
-            User date 8
+          description: "VisionPLUS Service Data. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-8 "
           format: date
         userDate9:
           type: string
-          description: |-
-            User date 9.
-            VisionPLUS Service Data: AZXICI-USER-DATE-9
+          description: "User date 9. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-9 "
           format: date
         userDate10:
           type: string
-          description: |-
-            User date 10.
-            VisionPLUS Service Data: AZXICI-USER-DATE-10
+          description: "User date 10. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-10 "
           format: date
         userDate11:
           type: string
-          description: |-
-            User date 11.
-            VisionPLUS Service Data: AZXICI-USER-DATE-11
+          description: "User date 11. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-11 "
           format: date
         userDate12:
           type: string
-          description: |-
-            User date 12.
-            VisionPLUS Service Data: AZXICI-USER-DATE-12
+          description: "User date 12. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-12 "
           format: date
         userDate13:
           type: string
-          description: |-
-            User date 13.
-            VisionPLUS Service Data: AZXICI-USER-DATE-13
+          description: "User date 13. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-13 "
           format: date
         userDate14:
           type: string
-          description: |-
-            User date 14.
-            VisionPLUS Service Data: AZXICI-USER-DATE-14
+          description: "User date 14. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-14 "
           format: date
         userAmount1:
           type: number
-          description: |-
-            Lenght: 17 User Amount 1.
-            VisionPLUS Service Data: AZXICI-USER-AMT-1
+          description: "Max Length = 17 \n\nUser Amount 1. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-1 "
           example: 0
         userAmount2:
           type: number
-          description: |-
-            Lenght: 17 User Amount 2.
-            VisionPLUS Service Data: AZXICI-USER-AMT-2
+          description: "Max Length = 17 \n\nUser Amount 2. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-2 "
           example: 0
         userAmount3:
           type: number
-          description: |-
-            Lenght: 17 User Amount 3.
-            VisionPLUS Service Data: AZXICI-USER-AMT-3
+          description: "Max Length = 17 \n\nUser Amount 3. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-3 "
           example: 0
         userAmount4:
           type: number
-          description: |-
-            Lenght: 17 User Amount 4.
-            VisionPLUS Service Data: AZXICI-USER-AMT-4
+          description: "Max Length = 17 \n\nUser Amount 4. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-4 "
           example: 0
         userAmount5:
           type: number
-          description: |-
-            Lenght: 17 User Amount 5.
-            VisionPLUS Service Data: AZXICI-USER-AMT-5
+          description: "Max Length = 17 \n\nUser Amount 5. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-5 "
           example: 0
         userAmount6:
           type: number
-          description: |-
-            Lenght: 17 User Amount 6.
-            VisionPLUS Service Data: AZXICI-USER-AMT-6
+          description: "Max Length = 17 \n\nUser Amount 6. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-6 "
           example: 0
         userAmount7:
           type: number
-          description: |-
-            Lenght: 17 User Amount 7.
-            VisionPLUS Service Data: AZXICI-USER-AMT-7
+          description: "Max Length = 17 \n\nUser Amount 7. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-7 "
           example: 0
         userAmount8:
           type: number
-          description: |-
-            Lenght: 17 User Amount 8.
-            VisionPLUS Service Data: AZXICI-USER-AMT-8
+          description: "Max Length = 17 \n\nUser Amount 8. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-8 "
           example: 0
         userAmount9:
           type: number
-          description: |-
-            Lenght: 17 User Amount 9.
-            VisionPLUS Service Data: AZXICI-USER-AMT-9
+          description: "Max Length = 17 \n\nUser Amount 9. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-9 "
           example: 0
         userAmount10:
           type: number
-          description: |-
-            Lenght: 17 User Amount 10.
-            VisionPLUS Service Data: AZXICI-USER-AMT-10
+          description: "Max Length = 17 \n\nUser Amount 10. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-10 "
           example: 0
         userAmount11:
           type: number
-          description: |-
-            Lenght: 17 User Amount 11.
-            VisionPLUS Service Data: AZXICI-USER-AMT-11
+          description: "Max Length = 17 \n\nUser Amount 11. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-11 "
           example: 0
         userAmount12:
           type: number
-          description: |-
-            Lenght: 17 User Amount 12.
-            VisionPLUS Service Data: AZXICI-USER-AMT-11
+          description: "Max Length = 17 \n\nUser Amount 12. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-12 "
           example: 0
         userAmount13:
           type: number
-          description: |-
-            Lenght: 17 User Amount 13.
-            VisionPLUS Service Data: AZXICI-USER-AMT-13
+          description: "Max Length = 17 \n\nUser Amount 13. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-13 "
           example: 0
         userAmount14:
           type: number
-          description: |-
-            Lenght: 17 User Amount 14.
-            VisionPLUS Service Data: AZXICI-USER-AMT-14
+          description: "Max Length = 17 \n\nUser Amount 14. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-AMT-14 "
           example: 0
         miscellaneousUser1:
           maxLength: 30
           minLength: 0
           type: string
-          description: |-
-            Length: 30
-            Miscellaneous user 1.
-            VisionPLUS Service Data: AZXICI-MISC-USER-1
+          description: "Miscellaneous user 1. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-1 "
         miscellaneousUser2:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            Miscellaneous user 2.
-            VisionPLUS Service Data: AZXICI-MISC-USER-2
+          description: "Miscellaneous user 2. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-2 "
         miscellaneousUser3:
           maxLength: 11
           minLength: 0
           type: string
-          description: |-
-            Length: 11
-            Miscellaneous user 3.
-            VisionPLUS Service Data: AZXICI-MISC-USER-3
+          description: "Miscellaneous user 3. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-3 "
         miscellaneousUser4:
           maxLength: 11
           minLength: 0
           type: string
-          description: |-
-            Length: 11
-            Miscellaneous user 4.
-            VisionPLUS Service Data: AZXICI-MISC-USER-4
+          description: "Miscellaneous user 4. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-4 "
         miscellaneousUser5:
           maxLength: 11
           minLength: 0
           type: string
-          description: |-
-            Length: 11
-            Miscellaneous user 5.
-            VisionPLUS Service Data: AZXICI-MISC-USER-5
+          description: "Miscellaneous user 5. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-5 "
         miscellaneousUser6:
           maxLength: 11
           minLength: 0
           type: string
-          description: |-
-            Length: 11
-            Miscellaneous user 6.
-            VisionPLUS Service Data: AZXICI-MISC-USER-6
+          description: "Miscellaneous user 6. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-6 "
         miscellaneousUser7:
           maxLength: 11
           minLength: 0
           type: string
-          description: |-
-            Length: 11
-            Miscellaneous user 7.
-            VisionPLUS Service Data: AZXICI-MISC-USER-7
+          description: "Miscellaneous user 7. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-7 "
         miscellaneousUser8:
           maxLength: 11
           minLength: 0
           type: string
-          description: |-
-            Length: 11
-            Miscellaneous user 8.
-            VisionPLUS Service Data: AZXICI-MISC-USER-8
+          description: "Miscellaneous user 8. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-8 "
         miscellaneousUser9:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            Miscellaneous user 9.
-            VisionPLUS Service Data: AZXICI-MISC-USER-9
+          description: "Miscellaneous user 9. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-9 "
         miscellaneousUser10:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            Miscellaneous user 10.
-            VisionPLUS Service Data: AZXICI-MISC-USER-10
+          description: "Miscellaneous user 10. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-10 "
         miscellaneousUser11:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            Miscellaneous user 11.
-            VisionPLUS Service Data: AZXICI-MISC-USER-11
+          description: "Miscellaneous user 11. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-11 "
         miscellaneousUser12:
           maxLength: 2
           minLength: 0
           type: string
-          description: |-
-            Length: 2
-            Miscellaneous user 12.
-            VisionPLUS Service Data: AZXICI-MISC-USER-12
+          description: "Miscellaneous user 12. \n\nVisionPLUS Service Data: AZXICI-MISC-USER-12 "
         prepaidPlanNumber:
           type: integer
-          description: |-
-            Length: 5
-            Prepaid Plan Number.
-            VisionPLUS Service Data: AZXICI-PREPAID-PLAN-NBR
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nPrepaid Plan Number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-PREPAID-PLAN-NBR "
           format: int32
-          example: 0
+          example: 12345
         prepaidLoadFrequency:
           type: integer
-          description: |-
-            Length: 1
-            Prepaid load frequency
-            The values are:
-            * 0 = Load frequency not used
-            * 1 = Load frequency daily
-            * 2 = Load frequency CTD
-            * 3 = Load frequency YTD
-            VisionPLUS Service Data: AZXICI-PREPAID-LOAD-FREQ.
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nPrepaid load frequency.\
+            \ \n\nValues: \n* 0 = Load frequency not used; \n * 1 = Load frequency\
+            \ daily; \n * 2 = Load frequency CTD; \n * 3 = Load frequency YTD. \n\n\
+            VisionPLUS Service Data: AZXICI-PREPAID-LOAD-FREQ "
           format: int32
           example: 0
         prepaidLoadNumber:
           type: integer
-          description: |-
-            Length: 2
-            Prepaid load number
-            VisionPLUS Service Data: AZXICI-PREPAID-LOAD-NBR
+          description: "* Min Length = 1 \n* Max Length = 2 \n\nPrepaid load number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-PREPAID-LOAD-NBR "
           format: int32
           example: 0
         prepaidLoadAmount:
           type: number
-          description: |-
-            Length: 17
-            Prepaid load amount.
-            VisionPLUS Service Data: AZXICI-PREPAID-LOAD-AMT
+          description: "* Max Length = 17 \n\nPrepaid load amount. \n\nVisionPLUS\
+            \ Service Data: AZXICI-PREPAID-LOAD-AMT"
           example: 0
         minimumSingleLoadAmount:
           type: number
-          description: |-
-            Length: 17
-            Minimum Single Amount.
-            VisionPLUS Service Data: AZXICI-MIN-SNGL-LOAD-AMT
+          description: "* Max Length = 17 \n\nMinimum Single Amount. \n\nVisionPLUS\
+            \ Service Data: AZXICI-MIN-SNGL-LOAD-AMT"
           example: 0
         maximumSingleLoadAmount:
           type: number
-          description: |-
-            Length: 17
-            Maximum Single Amount.
-            VisionPLUS Service Data: AZXICI-MAX-SNGL-LOAD-AMT
+          description: "* Max Length = 17 \n\nMaximum Single Amount. \n\nVisionPLUS\
+            \ Service Data: AZXICI-MAX-SNGL-LOAD-AMT "
           example: 0
         internationalCashPlan:
           type: integer
-          description: |-
-            Length: 5
-            International cash plan.
-            VisionPLUS Service Data: AZXICI-INTL-CASH-PLAN
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nInternational cash\
+            \ plan. \n\nVisionPLUS Service Data: AZXICI-INTL-CASH-PLAN "
           format: int32
           example: 0
         internationalRetailPlan:
           type: integer
-          description: |-
-            Length: 5
-            International retail plan.
-            VisionPLUS Service Data: AZXICI-INTL-RETAIL-PLAN
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nInternational retail\
+            \ plan. \n\nVisionPLUS Service Data: AZXICI-INTL-RETAIL-PLAN "
           format: int32
           example: 0
         internationalInstallmentPlan:
           type: integer
-          description: |-
-            Length: 5
-            International installment plan.
-            VisionPLUS Service Data: AZXICI-INTL-INST-PLAN
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nInternational installment\
+            \ plan. \n\nVisionPLUS Service Data: AZXICI-INTL-INST-PLAN "
           format: int32
           example: 0
         cashPlanInstallmentBilling:
           type: integer
-          description: |-
-            Length: 5
-            Cash plan for installment billing.
-            VisionPLUS Service Data: AZXICI-IB-ISS-CASH-PLAN
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nCash plan for installment\
+            \ billing. \n\nVisionPLUS Service Data: AZXICI-IB-ISS-CASH-PLAN "
           format: int32
           example: 0
         retailPlanInstallmentBilling:
           type: integer
-          description: |-
-            Length: 5
-            Retail plan for installment billing.
-            VisionPLUS Service Data: AZXICI-IB-ISS-RETAIL-PLAN
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nRetail plan for installment\
+            \ billing. \n\nVisionPLUS Service Data: AZXICI-IB-ISS-RETAIL-PLAN "
           format: int32
           example: 0
         acquirerRetailPlan:
           type: integer
-          description: |-
-            Length: 5
-            Acquirer retail plan for installment billing.
-            VisionPLUS Service Data: AZXICI-DATE-ALT-CUST-EXPR
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nAcquirer retail plan\
+            \ for installment billing. \n\nVisionPLUS Service Data: AZXICI-IB-ACQ-RETAIL-PLAN "
           format: int32
           example: 0
         authorizationControlTable:
           type: integer
-          description: |-
-            Length: 4
-            Authorization control table for international banking.
-            VisionPLUS Service Data: AZXICI-IB-AUTH-CTRL-TBL
+          description: "* Min Length = 1 \n* Max Length = 4 \n\nAuthorization control\
+            \ table for international banking. \n\nVisionPLUS Service Data: AZXICI-IB-AUTH-CTRL-TBL "
           format: int32
           example: 0
         retailPlanInstallmentPayments:
           type: integer
-          description: |-
-            Length: 5
-            Retail plan for installment payment plans.
-            VisionPLUS Service Data: AZXICI-IR-PMT-RETL-PLAN
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nRetail plan for installment\
+            \ payment plans. \n\nVisionPLUS Service Data: AZXICI-IR-PMT-RETL-PLAN "
           format: int32
           example: 0
         cashPlanInstallmentPayment:
           type: integer
-          description: |-
-            Length: 5
-            Cash plan for installment payment plans.
-            VisionPLUS Service Data: AZXICI-IR-PMT-CASH-PLAN
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nCash plan for installment\
+            \ payment plans. \n\nVisionPLUS Service Data: AZXICI-IR-PMT-CASH-PLAN "
           format: int32
           example: 0
         qualification:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            Global qualification parameter. The values are A–Z.
-            VisionPLUS Service Data: AZXICI-GLOBAL-QUAL
-          example: ""
+          description: "Global qualification parameter. \n\nValues: \nVisionPLUS Service\
+            \ Data: AZXICI-GLOBAL-QUAL "
+          example: Z
         cardholderAffiliationGroup:
           type: integer
-          description: |-
-            Length: 5
-            Cardholder’s affiliation or affinity group.
-            VisionPLUS Service Data: AZXICI-EMBLM-ID
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nCardholder’s affiliation\
+            \ or affinity group. \n\nVisionPLUS Service Data: AZXICI-AFFL-EMBLM "
           format: int32
           example: 0
     InstantCArdAddL8V7Request.EmbosserData:
@@ -2773,222 +2469,158 @@ components:
           maxLength: 10
           minLength: 0
           type: string
-          description: |-
-            Length: 10
-            Plastic ID.
-            VisionPLUS Service Data: AZXICI-PLASTIC-ID
-          example: ""
+          description: "Plastic ID. \n\nVisionPLUS Service Data: AZXICI-PLASTIC-ID "
+          example: "12345"
         name1TypeIndicator:
           type: integer
-          description: |-
-            Length: 1
-            Name 1 Type Indicator.
-            VisionPLUS Service Data: AZXICI-NAME1-TYPE-IND
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nName 1 Type Indicator.\
+            \ \n\nVisionPLUS Service Data: AZXICI-NAME1-TYPE-IND "
           format: int32
           example: 0
         name2TypeIndicator:
           type: integer
-          description: |-
-            Length: 1
-            Name 2 Type Indicator.
-            VisionPLUS Service Data: AZXICI-NAME2-TYPE-IND
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nName 2 Type Indicator.\
+            \ \n\nVisionPLUS Service Data: AZXICI-NAME2-TYPE-IND "
           format: int32
+          example: 0
         embossedName1:
           maxLength: 26
           minLength: 0
           type: string
-          description: |-
-            Length: 26
-            Embossed Name .
-            VisionPLUS Service Data: AZXICI-EMBOSSED-NAME-1
-          example: HELLO
+          description: "Embossed Name. \n\nVisionPLUS Service Data: AZXICI-EMBOSSED-NAME-1 "
+          example: User Name
         embossedName2:
           maxLength: 26
           minLength: 0
           type: string
-          description: |-
-            Length: 26
-            Embossed Name 2.
-            VisionPLUS Service Data: AZXICI-EMBOSSED-NAME-2
-          example: KIT-KAT WALLER
+          description: "Embossed Name 2. \n\nVisionPLUS Service Data: AZXICI-EMBOSSED-NAME-2 "
+          example: Developer Studio
         expirationDate:
           type: string
-          description: |-
-            Card expiry date.
-            VisionPLUS Service Data: AZXICI-DATE-EXPIRE
+          description: "Card expiry date. \n\nVisionPLUS Service Data: AZXICI-DATE-EXPIRE "
           format: date
+          example: 2023-05-24
         customerNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: |-
-            Length: 19
-            Customer Number.
-            VisionPLUS Service Data: AZXICI-CUST-NBR
-          example: "4513074002573466583"
+          description: "Customer Number. \n\nVisionPLUS Service Data: AZXICI-CUSTOMER-NBR "
+          example: "0123456789123456789"
         name1:
           maxLength: 40
           minLength: 0
           type: string
-          description: |-
-            Length: 40
-            Name 1.
-            VisionPLUS Service Data: AZXICI-EMBR-NAME-1
-          example: RUN DMC
+          description: "Name 1. \n\nVisionPLUS Service Data: AZXICI-EMBR-NAME-1 "
+          example: User Name
         name2:
           maxLength: 40
           minLength: 0
           type: string
-          description: |-
-            Length: 40
-            Name 2.
-            VisionPLUS Service Data: AZXICI-EMBR-NAME-2
-          example: RICK ROSS
+          description: "Name 2. \n\nVisionPLUS Service Data: AZXICI-EMBR-NAME-2 "
+          example: Developer Studio
         posServiceCode:
           type: integer
-          description: |-
-            Length: 3
-            PO service code.
-            VisionPLUS Service Data: AZXICI-POS-SERVICE-CODE
+          description: "* Min Length = 1 \n* Max Length = 3 \n\nPO service code. \n\
+            \nVisionPLUS Service Data: AZXICI-POS-SERVICE-CODE "
           format: int32
-          example: 201
+          example: 999
         cardholderFlag:
           type: string
-          description: Cardholder Flag
+          description: "Max Length = 1 \n\nCardholder Flag. \n\nVisionPLUS Service\
+            \ Data: "
           example: "0"
         addressLine1:
           maxLength: 40
           minLength: 0
           type: string
-          description: |-
-            Length: 40
-            Address Line 1.
-            VisionPLUS Service Data: AZXICI-ADDR-LINE-1
-          example: PORT OF MIAMI
+          description: "Address Line 1. \n\nVisionPLUS Service Data: AZXICI-ADDR-LINE-1 "
+          example: Brookfield
         addressLine2:
           maxLength: 40
           minLength: 0
           type: string
-          description: |-
-            Length: 40
-            Address Line 2.
-            VisionPLUS Service Data: AZXICI-ADDR-LINE-2
-          example: 117 E PARKWAY AVE
+          description: "Address Line 2. \n\nVisionPLUS Service Data: AZXICI-ADDR-LINE-2 "
+          example: 255 Fiserv Dr
         city:
           maxLength: 30
           minLength: 0
           type: string
-          description: |-
-            Length: 30
-            City.
-            VisionPLUS Service Data: AZXICI-CITY
-          example: MIAMI
+          description: "City. \n\nVisionPLUS Service Data: AZXICI-CITY "
+          example: Wisconsin
         stateOrProvince:
           maxLength: 3
           minLength: 0
           type: string
-          description: |-
-            Length: 3
-            State/Province.
-            VisionPLUS Service Data: AZXICI-ST-PR
-          example: FL
+          description: "State/Province. \n\nVisionPLUS Service Data: AZXICI-ST-PR "
+          example: WI
         postalCode:
           maxLength: 10
           minLength: 0
           type: string
-          description: |-
-            Length: 10
-            Postal Code.
-            VisionPLUS Service Data: AZXICI-PSTL-CD
-          example: "38585"
+          description: "Postal Code. \n\nVisionPLUS Service Data: AZXICI-PSTL-CD "
+          example: "53045"
         languageCode:
           maxLength: 3
           minLength: 0
           type: string
-          description: |-
-            Length: 3
-            Language Code.
-            VisionPLUS Service Data: AZXICI-LANG-CODE
+          description: "Language Code. \n\nVisionPLUS Service Data: AZXICI-LANG-CODE "
           example: ENG
         atmCashNumber:
           type: integer
-          description: |-
-            Length: 9
-            ATM(Automated Teller Machine) Cash Amount.
-            VisionPLUS Service Data: AZXICI-AUTH-ATM-CASH-NBR
+          description: "* Min Length = 1 \n* Max Length = 9 \n\nATM. \n\nVisionPLUS\
+            \ Service Data: AZXICI-AUTH-ATM-CASH-NBR "
           format: int32
           example: 0
         atmCashAmount:
           type: number
-          description: |-
-            Length: 17
-            ATM(Automated Teller Machine) Cash Number.
-            VisionPLUS Service Data: AZXICI-AUTH-ATM-CASH-AMT
+          description: "Max Length = 17 \n\nATM(Automated Teller Machine) Cash Number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-AUTH-ATM-CASH-AMT "
           example: 0
         atmCashSingleTransactionLimit:
           type: number
-          description: |-
-            Length: 17
-            ATM(Automated Teller Machine) Cash Transaction limit.
-            VisionPLUS Service Data: AZXICI-AUTH-ATM-CASH-SNG-TXN
+          description: "Max Length = 17 \n\nATM. \n\nVisionPLUS Service Data: AZXICI-AUTH-OTC-CASH-SNG-TXN "
           example: 0
         overTheCounterCashNumber:
           type: integer
-          description: |-
-            Length: 9
-            Over The Counter Cash Number.
-            VisionPLUS Service Data: AZXICI-AUTH-OTC-CASH-NBR
+          description: "* Min Length = 1 \n* Max Length = 9 \n\nOver The Counter Cash\
+            \ Number. \n\nVisionPLUS Service Data: AZXICI-AUTH-OTC-CASH-NBR "
           format: int32
           example: 0
         overTheCounterCashAmount:
           type: number
-          description: |-
-            Length: 17
-            Over The Counter Cash Number.
-            VisionPLUS Service Data: AZXICI-AUTH-OTC-CASH-AMT
+          description: "Max Length = 17 \n\nOver The Counter Cash Number. \n\nVisionPLUS\
+            \ Service Data: AZXICI-AUTH-OTC-CASH-AMT "
           example: 0
         overTheCounterCashSingleTransactionLimit:
           type: number
-          description: |-
-            Length: 17
-            Over The Counter Transaction .
-            VisionPLUS Service Data: AZXICI-AUTH-OTC-CASH-SNG-TXN
+          description: "Max Length = 17 \n\nOver The Counter Transaction. \n\nVisionPLUS\
+            \ Service Data: AZXICI-AUTH-ATM-CASH-SNG-TXN "
           example: 0
         retailPurchaseNumber:
           type: integer
-          description: |-
-            Length: 9
-            Retail Amount.
-            VisionPLUS Service Data: AZXICI-AUTH-RTL-NBR
+          description: "* Min Length = 1 \n* Max Length = 9 \n\nRetail Amount. \n\n\
+            VisionPLUS Service Data: AZXICI-AUTH-RTL-NBR "
           format: int32
           example: 0
         retailPurchaseAmt:
           type: number
-          description: |-
-            Length: 17
-            Retail Number.
-            VisionPLUS Service Data: AZXICI-AUTH-RTL-AMT
+          description: "Max Length = 17 \n\nRetail Number. \n\nVisionPLUS Service\
+            \ Data: AZXICI-AUTH-RTL-AMT "
           example: 0
         retailPurchaseSingleTransactionLimit:
           type: number
-          description: |-
-            Length: 17
-            Retail Transaction Limit.
-            VisionPLUS Service Data: AZXICI-AUTH-RTL-SNGL-TXN
+          description: "Max Length = 17 \n\nRetail Transaction Limit. \n\nVisionPLUS\
+            \ Service Data: AZXICI-AUTH-INTRNT-SNGL-TXN "
           example: 0
         internetPurchaseAmount:
           type: number
-          description: |-
-            Length: 17
-            Internet Purchase Amount.
-            VisionPLUS Service Data: AZXICI-AUTH-INTRNT-AMT
+          description: "Max Length = 17 \n\nInternet Purchase Amount. \n\nVisionPLUS\
+            \ Service Data: AZXICI-AUTH-INTRNT-AMT "
           example: 0
         internetPurchaseNumber:
           type: number
-          description: |-
-            Length: 9
-            Internet Purchase Number.
-            VisionPLUS Service Data: AZXICI-AUTH-INTRNT-NBR
+          description: "* Min Length = 1 \n* Max Length = 9 \n\nInternet Purchase\
+            \ Number. \n\nVisionPLUS Service Data: AZXICI-AUTH-INTRNT-NBR "
           example: 0
         internetPurchaseSingleTransactionLimit:
           type: number
@@ -3001,226 +2633,168 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: |-
-            Length: 20
-            User-defined 1.
-            VisionPLUS Service Data: AZXICI-USER-1
+          description: "User-defined 1. \n\nVisionPLUS Service Data: AZXICI-USER-1 "
           example: "1"
         user2:
           maxLength: 20
           minLength: 0
           type: string
-          description: |-
-            Length: 20
-            User-defined 2.
-            VisionPLUS Service Data: AZXICI-USER-2
+          description: "User-defined 2. \n\nVisionPLUS Service Data: AZXICI-USER-2 "
           example: "2"
         user3:
           maxLength: 19
           minLength: 0
           type: string
-          description: |-
-            Length: 19
-            User-defined 3.
-            VisionPLUS Service Data: AZXICI-USER-3
+          description: "User-defined 3. \n\nVisionPLUS Service Data: AZXICI-USER-3 "
           example: "3"
         user4:
           type: integer
-          description: |-
-            Length: 4
-            User-defined 4.
-            VisionPLUS Service Data: AZXICI-USER-4
+          description: "* Max Length = 4 \n\nUser-defined 4. \n\nVisionPLUS Service\
+            \ Data: AZXICI-USER-4 "
           format: int32
           example: 4
         user5:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            User-defined 5.
-            VisionPLUS Service Data: AZXICI-USER-5
+          description: "User-defined 5. \n\nVisionPLUS Service Data: AZXICI-USER-5 "
           example: "5"
         user6:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            User-defined 6.
-            VisionPLUS Service Data: AZXICI-USER-6
+          description: "User-defined 6. \n\nVisionPLUS Service Data: AZXICI-USER-6 "
           example: "6"
         user7:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            User-defined 7.
-            VisionPLUS Service Data: AZXICI-USER-7
+          description: "User-defined 7. \n\nVisionPLUS Service Data: AZXICI-USER-7 "
           example: "7"
         user8:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            User-defined 8.
-            VisionPLUS Service Data: AZXICI-USER-8
+          description: "User-defined 8. \n\nVisionPLUS Service Data: AZXICI-USER-8 "
           example: "8"
         userDate1:
           type: string
-          description: User-defined Date 1
+          description: "User-defined Date 1. \n\nVisionPLUS Service Data: AZXICI-USER-DATE-1 "
           format: date
         userDate2:
           type: string
           description: |-
             User-defined Date 2.
+
             VisionPLUS Service Data: AZXICI-USER-DATE-2
           format: date
         branchNumber:
           type: integer
-          description: |-
-            Length: 9
-            Branch .
-            VisionPLUS Service Data: AZXICI-ADMIN-BRANCH
+          description: "* Min Length = 1 \n* Max Length = 9 \n\nBranch. \n\nVisionPLUS\
+            \ Service Data: AZXICI-ADMIN-BRANCH "
           format: int32
+          example: 123
         firstIssueBranch:
           type: integer
-          description: |-
-            Length: 9
-            First Issue Branch.
-            VisionPLUS Service Data: AZXICI-FIRST-ISS-BRANCH
+          description: "* Min Length = 1 \n* Max Length = 9 \n\nFirst Issue Branch.\
+            \ \n\nVisionPLUS Service Data: AZXICI-FIRST-ISS-BRANCH "
           format: int32
           example: 0
         deliveryOption:
           type: integer
-          description: |-
-            Length: 1
-            Delivery option. The values are:
-            * 0 = Regular mail
-            * 1 = First class mail
-            * 2 = Registered mail
-            * 3 = Internal delivery mail
-            * 4 = User-defined
-            VisionPLUS Service Data: AZXICI-USER-DATE-1
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nDelivery option. \n\
+            \nValues: \n* 0 = Regular mail; \n * 1 = First class mail; \n * 2 = Registered\
+            \ mail; \n * 3 = Internal delivery mail; \n * 4 = User-defined. \n\nVisionPLUS\
+            \ Service Data: AZXICI-USER-DATE-1 "
           format: int32
           example: 1
         reissueDeliveryOption:
           type: integer
-          description: |-
-            Length: 1
-            Reissue delivery option. The values are:
-            * 0 = Regular mail
-            * 1 = First class mail
-            * 2 = Registered mail
-            * 3 = Internal delivery mail
-            * 4 = User-defined
-            VisionPLUS Service Data: AZXICI-ISSUE-DELIV-OPTION.
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nReissue delivery option.\
+            \ \n\nValues: \n* 0 = Regular mail; \n * 1 = First class mail; \n * 2\
+            \ = Registered mail; \n * 3 = Internal delivery mail; \n * 4 = User-defined.\
+            \ \n\nVisionPLUS Service Data: AZXICI-ISSUE-DELIV-OPTION "
           format: int32
           example: 0
         authorizationCriteriaTableNumber:
           maxLength: 3
           minLength: 0
           type: string
-          description: |-
-            Length: 3
-            Authorization Criteria Table Number.
-            VisionPLUS Service Data: AZXICI-AUTH-CRITERIA-TBL
+          description: "Authorization Criteria Table Number. \n\nVisionPLUS Service\
+            \ Data: AZXICI-AUTH-CRITERIA-TBL "
           example: "0"
         programId:
           type: integer
-          description: |-
-            Length: 5
-            Program ID.
-            VisionPLUS Service Data: AZXICI-PROGRAM-ID
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nProgram ID. \n\nVisionPLUS\
+            \ Service Data: AZXICI-PROGRAM-ID "
           format: int32
           example: 0
         cardholderAffiliationGroupId:
           type: integer
-          description: |-
-            Length: 5
-            Identification Of The Cardholder’S Affiliation Or Affinity Group.
-            VisionPLUS Service Data: AZXICI-AFFL-EMBLM
+          description: "* Min Length = 1 \n* Max Length = 5 \n\nIdentification Of\
+            \ The Cardholder’S Affiliation Or Affinity Group. \n\nVisionPLUS Service\
+            \ Data: AZXICI-EMBLM-ID "
           format: int32
-          example: 12348
+          example: 12345
         cardActionReasonCode:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Length: 1
-            Card Action Reason Code.
-            VisionPLUS Service Data: AZXICI-CARD-ACTION-REASON
+          description: "Card Action Reason Code. \n\nVisionPLUS Service Data: AZXICI-CARD-ACTION-REASON "
+          example: "1"
         icTotalNumberTransactions:
           type: integer
-          description: |-
-            Length: 6
-            Global spending limit number.
-            VisionPLUS Service Data: AZXICI-IC-TOT-NUM-TXNS
+          description: "Max Length = 6 \n\nGlobal spending limit number. \n\nVisionPLUS\
+            \ Service Data: AZXICI-IC-TOT-NUM-TXNS "
           format: int32
-          example: 0
+          example: 123456
         icAmountLimitSingleTransaction:
           type: number
-          description: |-
-            Length: 13
-             Global spending limit for a single transaction.
-            VisionPLUS Service Data: AZXICI-IC-AMT-LMT-SNGL-TXN
+          description: "Max Length = 13 \n\n Global spending limit for a single transaction.\
+            \ \n\nVisionPLUS Service Data: AZXICI-IC-AMT-LMT-SNGL-TXN "
           example: 0
         digitalCardFlag:
           type: integer
-          description: |-
-            Length: 1
-            Code that indicates whether to add a new digital card. The values are:
-            * 0 = Do not add new digital card
-            * 1 = Add new digital card
-            VisionPLUS Service Data: AZXICI-DIGITAL-CARD-IND.
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nCode that indicates\
+            \ whether to add a new digital card. \n\nValues: \n* 0 = Do not add new\
+            \ digital card;\n* 1 = Add new digital card \n\nVisionPLUS Service Data:\
+            \ AZXICI-DIG-CARD-IND "
           format: int32
           example: 1
-          enum:
-          - null
     InstantCardAddL8V7Request:
       required:
       - accountCreateFlag
+      - cardActionFlag
       - customerNumber
       - firstPurchaseFlag
       - logo
       - organizationNumber
+      - sameDayProcessingType
       type: object
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            Length: 3
-            Organization Number.
-            VisionPLUS Service Data: AZXICI-ORG
+          description: "* Min Length = 1 \n* Max Length = 3 \n\nOrganization Number.\
+            \ \n\nVisionPLUS Service Data: AZXICI-ORG "
           format: int32
-          example: 807
+          example: 998
         logo:
           type: integer
-          description: |-
-            Length: 3
-            Logo number.
-            VisionPLUS Service Data: AZXICI-LOGO
+          description: "* Min Length = 1 \n* Max Length = 3 \n\nLogo number. \n\n\
+            VisionPLUS Service Data: AZXICI-LOGO "
           format: int32
-          example: 400
+          example: 998
         customerNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: |-
-            Length: 19
-            Customer Number.
-            VisionPLUS Service Data: AZXICI-CUSTOMER-NBR
-          example: "4513074002573466583"
+          description: "Customer Number. \n\nVisionPLUS Service Data: AZXICI-FIRST-PURCH-SW "
+          example: "1234567891234567891"
         firstPurchaseFlag:
           maxLength: 1
           minLength: 1
           type: string
-          description: |-
-            Length: 1
-            First Purchase Flag.
-            VisionPLUS Service Data: AZXICI-FIRST-PURCH-SW
+          description: "First Purchase Flag. \n\nVisionPLUS Service Data: AZXICI-FIRST-PURCH-SW"
           example: "Y"
           enum:
           - "Y,N"
@@ -3229,28 +2803,28 @@ components:
           minLength: 1
           type: string
           description: |-
-            Length: 1
             Account Create Flag.
+
             VisionPLUS Service Data: AZXICI-ACCT-CREATE
           example: "Y"
           enum:
           - "Y,N"
         sameDayProcessingType:
           type: integer
-          description: |-
-            Length: 1
-            same Day Processing Type.
-            VisionPLUS Service Data: AZXICI-SDP-PROCESS-TYPE
+          description: "* Min Length = 1 \n* Max Length = 1 \n\nSame Day Processing\
+            \ Type.\nVisionPLUS Service Data: AZXICI-SDP-PROCESS-TYPE"
           format: int32
           example: 1
+          enum:
+          - null
         cardActionFlag:
           type: integer
-          description: |-
-            Length: 1
-            Card action flag.
-            VisionPLUS Service Data: AZXICI-CARD-ACTION
+          description: "* Min Length = 1 \n* Max Length = 3 \n\nCard action flag.\n\
+            VisionPLUS Service Data: AZXICI-CARD-ACTION"
           format: int32
           example: 1
+          enum:
+          - null
         accountData:
           $ref: '#/components/schemas/InstantCArdAddL8V7Request.AccountData'
         embosserData:
@@ -3261,55 +2835,45 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            Length: 3
-            Organization.
-            VisionPLUS Service Data: AZXICO-ORG
+          description: "Max Length = 3 \n\nOrganization. \n\nVisionPLUS Service Data:\
+            \ AZXICO-ORG "
           format: int32
+          example: 998
         logo:
           type: integer
-          description: |-
-            Length: 3
-            Logo.
-            VisionPLUS Service Data: AZXICO-LOGO
+          description: "Max Length = 3 \n\nLogo. \n\nVisionPLUS Service Data: AZXICO-LOGO"
           format: int32
+          example: 998
         customerNumber:
           type: string
-          description: |-
-            Length: 19
-            Customer number.
-            VisionPLUS Service Data: AZXICO-CUST-NBR
+          description: "Max Length = 19 \n\nCustomer number. \n\nVisionPLUS Service\
+            \ Data: AZXICO-CUST-NBR "
+          example: "0123456789123456789"
         accountNumber:
           type: string
-          description: |-
-            Length: 19
-            Account number.
-            VisionPLUS Service Data: AZXICO-VACCT-NBR
+          description: "Max Length = 19 \n\nAccount number. \n\nVisionPLUS Service\
+            \ Data: AZXICO-ACCT-NBR "
+          example: "0123456789123456789"
         cardNumber:
           type: string
-          description: |-
-            Length: 19
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-            VisionPLUS Service Data: AZXICO-VCARD-NBR
-          example: 000540208ID5IXX3865
+          description: "Max Length = 19 \n\nUnique identifier or token associated\
+            \ with the card number or payment instrument (FirstVision PAN Token).\
+            \ \n\nVisionPLUS Service Data: AZXICO-CARD-NBR "
+          example: 000123456ID5IXX1234
         cardSequenceNumber:
           type: integer
-          description: |-
-            Length: 4
-            Card sequence number.
-            VisionPLUS Service Data: AZXICO-VCARD-SEQ-NBR
+          description: "Max Length = 4 \n\nCard sequence number. \n\nVisionPLUS Service\
+            \ Data: AZXICO-CARD-SEQ-NBR "
           format: int32
+          example: 1
         creditLimit:
           type: number
-          description: |-
-            Length: 17
-            Credit limit.
-            VisionPLUS Service Data: AZXICO-VCRLIM
+          description: "Max Length = 17 \n\nCredit limit. \n\nVisionPLUS Service Data:\
+            \ AZXICO-CRLIM "
+          example: 50000
         cardExpiryDate:
           type: string
-          description: |-
-            Expiry date.
-            VisionPLUS Service Data: AZXICO-VCARD-DATE-EXPIRE
+          description: "Expiry date. \n\nVisionPLUS Service Data: AZXICO-CARD-DATE-EXPIRE "
           format: date
     InstantCardAddRequest:
       required:
