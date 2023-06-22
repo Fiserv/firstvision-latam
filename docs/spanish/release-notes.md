@@ -1,5 +1,43 @@
 ---
-tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo]
+tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio]
+---
+
+# Release Notes
+
+## Junio 2023
+
+### ¿Qué hay de nuevo?
+
+- N/A
+
+### Mejoras
+
+Descripción de API's mejorada:
+- /cards/details
+- /account/relationship/account
+- /cards/statement-detail/date
+- /cards/embosser/encrypted-card-pan
+- /cards/transfer
+- /transactions/summary-details
+- /account/v2/customer
+- /account/{accountNumber}/ibs-debit
+- /account/enrollment POST
+- /account/enrollment PUT
+- /account/service-charge-table
+- /account/{accountNumber}/relationship
+- /account/{accountNumber}/product
+- /account/{tableInquiry}/account-control-table-inquiry
+- /account/account-demographic
+- /cards/embosser/l8vf
+
+### Problemas solucionados
+
+- N/A
+
+### Obsoleto
+
+- N/A
+
 ---
 
 # Release Notes
