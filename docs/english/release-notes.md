@@ -5,7 +5,7 @@ tags: [Release Notes, January, February, March, April, May, June, July]
 
 ---
 
-## June 06 2023
+## July 06 2023
 
 ### What's New?
 
