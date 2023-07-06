@@ -1,6 +1,57 @@
 ---
-tags: [Release Notes, Janeiro, Fevereiro, Março, Abril, Junho]
+tags: [Release Notes, Janeiro, Fevereiro, Março, Abril, Junho, Julho]
 ---
+
+
+---
+
+# Release Notes
+
+## Junho 06 2023
+
+### O que há de novo?
+
+- N/A
+
+### Melhorias
+
+Melhoria de descrição das APIs:
+- /cards/details
+- /account/relationship/account
+- /cards/statement-detail/date
+- /cards/embosser/encrypted-card-pan
+- /cards/transfer
+- /transactions/summary-details
+- /account/v2/customer
+- /account/{accountNumber}/ibs-debit
+- /account/enrollment POST
+- /account/enrollment PUT
+- /account/service-charge-table
+- /account/{accountNumber}/relationship
+- /account/{accountNumber}/product
+- /account/{tableInquiry}/account-control-table-inquiry
+- /account/account-demographic
+- /cards/embosser/l8vf
+- /cards/status-L8V1  
+- /customer/{customerNumber}/relationship 
+- /account/enroll/{accountNumber} 
+- /account/wallet-priority-order
+- /account/{accountNumber}/overview
+- /customer/{accountNumber}/current-prior-address
+- /transactions/outstanding-authorizations-L8V3/details
+- /transactions/mcct-table
+
+### Problemas solucionados
+
+Endpoints movidos para a versão 1.1.0:
+- /account/balance
+- /account/FL-balance
+
+### Obsoleto
+- /cards/embosser/encrypted-card-pan
+
+---
+
 
 # Release Notes
 
