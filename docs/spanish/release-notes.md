@@ -7,7 +7,7 @@ tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio]
 
 # Release Notes
 
-## Junio 06 2023
+## Julio 06 2023
 
 ### ¿Qué hay de nuevo?
 
