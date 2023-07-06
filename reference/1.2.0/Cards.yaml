@@ -188,6 +188,11 @@ components:
             \ Data: AZXAPI-ADDR-LINE-2"
           example: '0'
           type: string
+        assignedSpendingLimits:
+          description: Assigned spending limits
+          items:
+            $ref: '#/components/schemas/AddEmbosserL8VFRequest.AssignedSpendingLimits'
+          type: array
         atmCashAmount:
           description: "* Max Length: 9 \n\nATM(Automated Teller Machine) Cash Number.\n\
             \nVisionPLUS Service Data: AZXAPI-AUTH-ATM-CASH-NBR"
@@ -650,6 +655,26 @@ components:
       - cardNumber
       - organizationNumber
       - postToAccount
+      type: object
+    AddEmbosserL8VFRequest.AssignedSpendingLimits:
+      description: Assigned spending limits
+      properties:
+        maximumSpendingLimit:
+          description: "* Max Length: 17 \n\nMaximum Spending Limit \n\nVisionPLUS\
+            \ Service Data: AZXAPI-SPND-LIMIT"
+          example: 0
+          type: number
+        spendingFrequency:
+          description: "* Max Length: 1 \n\nSpending Frequency \n\nVisionPLUS Service\
+            \ Data: AZXAPI-SPND-FREQ"
+          example: 0
+          format: int32
+          type: integer
+        spendingTransaction:
+          description: "* Max Length: 9 \n\nSpending Transaction \n\nVisionPLUS Service\
+            \ Data: AZXAPI-SPND-TRANS"
+          example: 0
+          type: number
       type: object
     AddEmbosserL8VFRequest.CustomUserFields:
       description: Custom user fields
@@ -1292,27 +1317,66 @@ components:
     CardStatusRequest:
       properties:
         cardNumber:
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
+          description: 'Account / Unique identifier or token associated with the card
+            number or payment instrument FirstVision PAN Token.
+
+
+            VisionPLUS Service Data: AZXCSI1-CARD-NBR'
           example: 000540208ID5IXX3865
           maxLength: 19
           minLength: 12
           type: string
         cardSequence:
-          description: Card Sequence
+          description: '* Max Length: 4
+
+
+            Card Sequence.
+
+
+            VisionPLUS Service Data: AZXCSI1-SEQ-NBR'
+          example: 1234
           format: int32
           type: integer
         cardStatus:
-          description: Card Status
+          description: '* Min Length: 1
+
+            * Max Length: 1
+
+
+            Card Status.
+
+
+            VisionPLUS Service Data: AZXCSI1-CARD-STATUS'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          example: 2
           format: int32
           type: integer
         organizationNumber:
-          description: Organization Number
-          example: 807
+          description: '* Min Length: 1
+
+            * Max Length: 3
+
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: AZXCSI1-ACCT-ORG'
+          example: 999
           format: int32
           type: integer
         representativeId:
-          description: Representative Id
+          description: '* Max Length: 3
+
+
+            Representative Id.
+
+
+            VisionPLUS Service Data: AZXCSI1-REP-ID'
+          example: '0'
           type: string
       required:
       - cardNumber
@@ -4407,142 +4471,6 @@ components:
 
             VisionPLUS Service Data: AZXCIO-WARNING-CODE-7'
           example: '0'
-          type: string
-      type: object
-    EncryptedCardPanRequest:
-      description: Encrypted Card PAN
-      properties:
-        cardFunction:
-          description: "* Max Length = 1 \n\nType of CARD PAN being used in this service.\
-            \ If input contains a 3DES encrypted card and not a PAN token. \nThis\
-            \ should be decrypted to obtain clear card in service to read the card\
-            \ file. \nCard number in output should be sent after encryption. \n\n\
-            Values: \n* C - Card number\n* P - Pan Token number\n* E - Encrypted PAN\
-            \ number \n\nVisionPLUS Service Data: AZXXPI-FUNCTION-TYPE"
-          example: P
-          pattern: ^(P|C|E)$
-          type: string
-        cardNumber:
-          description: "The data displays is dependant on the type. \nValues can represent\
-            \ Card Number, Pan Token number or Encrypted Card Number. \n\nVisionPLUS\
-            \ Service Data: AZXXPI-CARD-PAN"
-          example: 000123456ABCD12345
-          maxLength: 32
-          minLength: 0
-          type: string
-        cardSequence:
-          description: "* Min Length = 1 \n* Max Length = 4 \n\nIdentification number\
-            \ assigned to an Embosser record to \ndistinguish between multiple cards\
-            \ issued with the same card number. \n\nVisionPLUS Service Data: AZXXPI-CARD-SEQ"
-          example: 1
-          format: int32
-          type: integer
-        organization:
-          description: "* Identification number of the organization associated with\
-            \ this User (Sign on name). \n\nVisionPLUS Service Data: AZXXPI-ORG"
-          example: '998'
-          maxLength: 3
-          minLength: 0
-          type: string
-      required:
-      - cardFunction
-      - cardNumber
-      - organization
-      type: object
-    EncryptedCardPanResponse:
-      properties:
-        CMS Account number:
-          description: "Max Length: 19 \n\nIdentification number of the Account Base\
-            \ Segment \nrecord to which CMS posts transactions that are received for\
-            \ this Embosser record. \nThe Embosser record is identified by the card\
-            \ number and record number. \n\nVisionPLUS Service Data: AZXXPO-IBS-DDA-ACCT-NBR"
-          example: 0123456789123456789
-          type: string
-        CMS Customer number:
-          description: "Max Length: 19 \n\nCustomer number that identifies the Customer\
-            \ \nName/Address record which lists the mailing address of the cardholder.\
-            \ \nThe customer number entered must identify an existing Customer Name/Address\
-            \ record previously \nadded into CMS. If this field is blank, the name\
-            \ and mailing address in the Embosser \nrecord is used (NAME 1\u20132,\
-            \ ADDRESS LINE 1\u20132, CITY, ST/ PR, and POSTAL CODE on ARME02). \n\n\
-            VisionPLUS Service Data: AZXXPO-CUST-NBR"
-          example: 0123456789123456789
-          type: string
-        Card Expiry Date:
-          description: "Max Length: 4 \n\nDate on which the card expires. \n\nVisionPLUS\
-            \ Service Data: AZXXPO-EXPIRY-DATE"
-          example: 1025
-          format: int32
-          type: integer
-        Card Sequence:
-          description: "Max Length: 4 \n\nIdentification number assigned to an Embosser\
-            \ record \nto distinguish between multiple cards issued with the same\
-            \ card number. \n\nVisionPLUS Service Data: AZXXPO-SEQ"
-          enum:
-          - null
-          example: 1
-          format: int32
-          type: integer
-        DDA Routing number:
-          description: "Max Length: 9 \n\nDual-use field that accepts a nine-digit\
-            \ \nrouting/transit number (ACH format) or a ten-digit bank ID (non-ACH\
-            \ format) to identify the \nfinancial institution to receive direct debit\
-            \ transactions for the account. \n\nThe format is: \n* ACH format = 0\
-            \ + nine-digit routing/transit number \n* Non-ACH format = ten-digit bank\
-            \ ID \n\nVisionPLUS Service Data: AZXXPO-IBS-DDA-RTNG-NBR"
-          example: 0
-          format: int32
-          type: integer
-        DDA account number:
-          description: "Max Length: 19 \n\nDemand deposit account (DDA) number associated\
-            \ with direct debit processing. \n\nVisionPLUS Service Data: AZXXPO-IBS-DDA-ACCT-NBR"
-          example: 0123456789123456789
-          type: string
-        Encrypted Card Number:
-          description: "Max Length: 32 \n\nEncrypted Card Number. \n\nVisionPLUS Service\
-            \ Data: AZXXPO-ENCRYPT-PAN"
-          example: A1B2C3D4E5F6G7H8I9J0A1B2C3D4E5F6G7H8I9
-          type: string
-        Name on Card 1:
-          description: "Max Length: 26 \n\nName to be embossed on the first embossing\
-            \ line of the card. \nEnter the name exactly as it is to appear on the\
-            \ card. \n\nVisionPLUS Service Data: AZXXPO-EMBOSSED-NAME1"
-          example: User Name
-          type: string
-        Name on Card 2:
-          description: "Max Length: 26 \n\nAdditional name to be embossed on the second\
-            \ embossing \nline of the card. Enter the name exactly as it is to appear\
-            \ on the card.  For example, this field may \ncontain the name of a business\
-            \ if the card is issued for a business account. \n\nVisionPLUS Service\
-            \ Data: AZXXPO-EMBOSSED-NAME2"
-          example: Developer Studio
-          type: string
-        Organization:
-          description: "Max Length: 3 \n\nIdentification number of the organization\
-            \ associated with \nthis User (Sign on name). \n\nVisionPLUS Service Data:\
-            \ AZXXPO-ORG"
-          example: '998'
-          type: string
-        PAN token:
-          description: "Max Length: 19 \n\nPAN token Values can represent Card Number,\
-            \ Pan Token number or Encrypted Card Number. \n\nVisionPLUS Service Data:\
-            \ AZXXPO-PAN-TOKEN"
-          example: 000123456ABCDFG1234
-          type: string
-        Savings Routing Number:
-          description: "Max Length: 9 \n\nDual-use field that accepts a nine-digit\
-            \ \nrouting/transit number (ACH format) or a ten-digit bank ID (non-ACH\
-            \ format) to identify the \nfinancial institution to receive direct debit\
-            \ transactions for the account.\n\nThe format is:\nACH format = 0 + nine-digit\
-            \ routing/transit number\nNon-ACH format = ten-digit bank ID\n\nVisionPLUS\
-            \ Service Data: AZXXPO-IBS-DDA-ACCT-NBR"
-          example: 123456789
-          format: int32
-          type: integer
-        Savings account number:
-          description: "Max Length: 19 \n\nSavings account number associated with\
-            \ direct debit processing. \n\nVisionPLUS Service Data: AZXXPO-IBS-SAV-ACCT-NBR"
-          example: 0123456789123456789
           type: string
       type: object
     Error:
@@ -9704,85 +9632,6 @@ paths:
       x-child-product-name: Cards
       x-group-name: Embosser
       x-proxy-name: Card Action Update
-  /cards/embosser/encrypted-card-pan:
-    post:
-      description: "The endpoint provides encrypted Card PAN. \n\nVMX Service: M.CMS.ENCR.CARD.PAN.INQ,\
-        \ L8V1"
-      operationId: encryptedCardPan
-      parameters:
-      - description: API Key
-        in: header
-        name: apikey
-        required: true
-        schema:
-          type: string
-      - description: Client ID
-        example: 00970
-        in: header
-        name: X-ClientID
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EncryptedCardPanRequest'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EncryptedCardPanResponse'
-          description: Success
-        '300':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: Redirection
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: "VPL5SXPZ1S-SERVICE INPUT TO FS SERVICE IS AN INCORRECT LENGTH\
-            \ \n\nVPL5SXPZ4S-REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND \n\nVPL5SXPZ5S-ORG\
-            \ RECORD NOT FOUND \n\nVPL5SXPZ8S-ORG RECORD NOT FOUND \n\nVPL5SXPZ9S-REQUEST\
-            \ FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE \n\nVPL5SXPZ10-EMBOSSER\
-            \ RECORD NOT FOUND \n\nVPL5SXPZ11-ACCOUNT NUMBER NOT FOUND \n\nVPL5SXPZ12-ENC-FAILURE\
-            \ INVALID ORG \n\nVPL5SXPZ13-BLOCK CODE FOUND ON ACCOUNT OR CARD \n\n\
-            VPL5SXPZ14-ENC-FAILURE INV LENGTH \n\nVPL5SXP01E-ORG NUMBER MUST BE NUMERIC\
-            \ AND VALID VALUES ARE 000-999 \n\nVPL5SXP02E-INPUT CARD NUMBER IS NOT\
-            \ NUMERIC \n\nVPL5SXP03E-CARD SEQUENCE NUMBER IS NOT NUMERIC \n\nVPL5SXP04E-INPUT\
-            \ PAN NUMBER SHOULD NOT BE SPACES OR ZEROS \n\nVPL5SXP05E-FUNCTION TYPE\
-            \ MUST BE 'A' WHEN ACCOUNT NUMBER IS PROVIDED \n\nVPL5SXP06E-INVALID FUNCTION\
-            \ TYPE \n\nVPL5SXP07E-INVALID INPUT ENCRYPTED NUMBER \n\nVPL5SXP08E-INVALID\
-            \ INPUT PAN TOKEN NUMBER "
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: Backend Error
-      summary: "The endpoint provides encrypted Card PAN. \n\nVMX Service: M.CMS.ENCR.CARD.PAN.INQ,\
-        \ L8V1"
-      tags:
-      - Embosser
-      x-child-product-name: Cards
-      x-group-name: Embosser
-      x-proxy-name: Encrypted Card PAN
   /cards/embosser/l8vf:
     post:
       description: "Adds a Card or Plastic record to an Account. \n\nVMX Service:\
@@ -11283,8 +11132,9 @@ paths:
       x-proxy-name: Statement Details By Date Inquiry
   /cards/status-L8V1:
     put:
-      description: "Card Status Update Service. \nVMX Service: M.CMS.CARD.STATUS.UPD,\
-        \ L8V1"
+      description: 'Card Status Update Service.
+
+        VMX Service: M.CMS.CARD.STATUS.UPD, L8V1'
       operationId: Card Status Update
       parameters:
       - description: API Key
@@ -11334,53 +11184,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-          description: 'VPL5SCSZ6S - REQUESTED ORGANIZATION NOT FOUND
-
-            VPL5SCS00S - SECURITY CONTEXT IS INVALID AND REQUIRED
-
-            VPL5SCS01S - SECURITY SIGON NAME IS INVALID AND REQUIRED
-
-            VPL5SCS02S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
-            000-998
-
-            VPL5SCS03S - CARD NUMBER IS NOT NUMERIC OR EQUALS ZEROES
-
-            VPL5SCS04S - CARD SEQUENCE NUMBER MUST BE NUMERIC, VALID VALUES ARE 0001-9998
-
-            VPL5SCS05S - REPRESENTATIVE NOT FOUND OR NOT ACTIVE
-
-            VPL5SCS06S - ORG NOT FOUND
-
-            VPL5SCS09S - ORGANIZATION NUMBER IS NOT FOUND
-
-            VPL5SCS0BS - CARD NUMBER NOT FOUND
-
-            VPL5SCS0DS - ACCOUNT NUMBER NOT FOUND
-
-            VPL5SCS0ES - LOGO NOT FOUND
-
-            VPL5SCS0FE - CARD IS FRAUD,TRANSFERRED OR PURGED AND STATUS NOT UPDATABLE
-
-            VPL5SCS0GE - ACCOUNT IS CLOSED
-
-            VPL5SCS0HE - CARD STATUS UPDATE NOT ALLOWED ON THIS ACCT SCHEME
-
-            VPL5SCS0IE - INVALID CARD STATUS PROVIDED
-
-            VPL5SCS0JE - CURRENT CARD STATUS IS SAME AS NEW STATUS
-
-            VPL5SCS0KE - CURRENT CARD STATUS-3 CANNOT BE UPDATED
-
-            VPL5SCS0LE - CARD EXPIRED,CANNOT UPDATE STATUS
-
-            '
+          description: "VPL5SCSZ2S - SERVICE INPUT TO ACCOUNT INQ SERVICE IS AN INCORRECT\
+            \ LENGTH \n\nVPL5SCSZ6S - REQUESTED ORGANIZATION NOT FOUND \n\nVPL5SCS02S\
+            \ - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998 \n\
+            \nVPL5SCS03S - CARD NUMBER IS NOT NUMERIC OR EQUALS ZEROES \n\nVPL5SCS04S\
+            \ - CARD SEQUENCE NUMBER MUST BE NUMERIC, VALID VALUES ARE 0001-9998 \n\
+            \nVPL5SCS05S - REPRESENTATIVE NOT FOUND OR NOT ACTIVE \n\nVPL5SCS06S -\
+            \ ORG NOT FOUND \n\nVPL5SCS09S - ORGANIZATION NUMBER IS NOT FOUND \n\n\
+            VPL5SCS0BS - CARD NUMBER NOT FOUND \n\nVPL5SCS0DS - ACCOUNT NUMBER NOT\
+            \ FOUND \n\nVPL5SCS0ES - LOGO NOT FOUND \n\nVPL5SCS0FE - CARD IS FRAUD,TRANSFERRED\
+            \ OR PURGED AND STATUS NOT UPDATABLE \n\nVPL5SCS0GE - ACCOUNT IS CLOSED\
+            \ \n\nVPL5SCS0HE - CARD STATUS UPDATE NOT ALLOWED ON THIS ACCT SCHEME\
+            \ \n\nVPL5SCS0IE - INVALID CARD STATUS PROVIDED \n\nVPL5SCS0JE - CURRENT\
+            \ CARD STATUS IS SAME AS NEW STATUS \n\nVPL5SCS0KE - CURRENT CARD STATUS-3\
+            \ CANNOT BE UPDATED \n\nVPL5SCS0LE - CARD EXPIRED,CANNOT UPDATE STATUS\
+            \ \n\n"
         '500':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
           description: Backend Error
-      summary: 'Card Status Update. VMX Service: M.CMS.CARD.STATUS.UPD, L8V1'
+      summary: 'Card Status Update Service.
+
+        VMX Service: M.CMS.CARD.STATUS.UPD, L8V1'
       tags:
       - Card
       x-child-product-name: Cards
@@ -12007,13 +11834,13 @@ paths:
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 tags:
-- description: Embosser
-  name: Embosser
-- description: Statement
-  name: Statement
-- description: PIN
-  name: PIN
-- description: Card
-  name: Card
+- name: Embosser
+  description: Embosser
+- name: Statement
+  description: Statement
+- name: PIN
+  description: PIN
+- name: Card
+  description: Card
 x-config:
   tryItOut: 'true'
