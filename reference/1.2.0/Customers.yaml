@@ -2539,89 +2539,110 @@ components:
       description: Number generation
       properties:
         accountNumbersRequested:
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Account number quantity requested.
+
 
             VisionPLUS Service Data: ARXNGI-ACCT-NBR-IND'
           example: 2
           format: int32
           type: integer
         billAccountNumbersRequested:
-          description: 'Length: 1
+          description: '* Max Length: 2
+
 
             Billing account number quantity requested.
+
 
             VisionPLUS Service Data: ARXNGI-BILL-ACCT-NBR-IND'
           example: 0
           format: int32
           type: integer
         controlAccountNumbersRequested:
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Control/diversion account number quantity requested.
+
 
             VisionPLUS Service Data: ARXNGI-CNTL-ACCT-NBR-IND'
           example: 0
           format: int32
           type: integer
         customerNumbersRequested:
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Customer number indicator.
+
 
             VisionPLUS Service Data: ARXNGI-CUST-NBR-IND'
           example: 2
           format: int32
           type: integer
         dualIndicator:
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Dual currency indicator.
 
-            The values are:
 
-            * 0 = Local organization
+            Values:
 
-            * 1 = Local and foreign organization
+            * 0 = Local organization;
+
+            * 1 = Local and foreign organization.
+
 
             VisionPLUS Service Data: ARXNGI-DUAL-IND'
           example: '0'
           type: string
         embosserNumbersRequested:
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Embosser number quantity requested.
+
 
             VisionPLUS Service Data: ARXNGI-CARD-NBR-IND'
           example: 0
           format: int32
           type: integer
         logo:
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Logo.
+
 
             VisionPLUS Service Data: ARXNGI-LOGO'
           example: 601
           format: int32
           type: integer
         organizationNumber:
-          description: 'Length: 3
+          description: '* Min Length: 1
 
-            Organization.
+            * Max Length: 3
+
+
+            Organization number.
+
 
             VisionPLUS Service Data: ARXNGI-ORG'
           example: 807
           format: int32
           type: integer
         relationshipNumbersRequested:
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Relationship number quantity requested.
 
+
             VisionPLUS Service Data: ARXNGI-REL-NBR-IND'
-          example: 0
+          example: 7
           format: int32
           type: integer
       required:
@@ -2640,44 +2661,61 @@ components:
             $ref: '#/components/schemas/CmsNumberGenerationResponse.CustomerData'
           type: array
         dualIndicator:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Dual indicator.
 
+
             VisionPLUS Service Data: ARXNGO-DUAL-IND'
+          example: 1
           format: int32
           type: integer
         foreignOrganizationNumber:
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Organization associated with the foreign account.
 
+
             VisionPLUS Service Data: ARXNGO-FOREIGN-ORG'
+          example: 999
           format: int32
           type: integer
         logo:
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Logo.
 
+
             VisionPLUS Service Data: ARXNGO-LOGO'
+          example: 501
           format: int32
           type: integer
         organizationNumber:
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Organization.
 
+
             VisionPLUS Service Data: ARXNGO-ORG'
+          example: 999
           format: int32
           type: integer
       type: object
     CmsNumberGenerationResponse.AccountData:
       properties:
         accountNumber:
-          description: 'Length: 19
+          description: 'Max Length: 19
 
-            Account number.'
+
+            Account number.
+
+
+            VisionPLUS Service Data: ARXNGO-ACCT-NBR'
+          example: '7600010732545213551'
           type: string
         sequence:
           description: Sequence.
@@ -2687,11 +2725,14 @@ components:
     CmsNumberGenerationResponse.CustomerData:
       properties:
         customerNumber:
-          description: 'Length: 19
+          description: 'Max Length: 19
+
 
             Customer number.
 
+
             VisionPLUS Service Data: ARXNGO-CUST-NBR'
+          example: '4513074002573466583'
           type: string
         sequence:
           description: Sequence.
@@ -9036,14 +9077,43 @@ paths:
           description: Not Found
         '405':
           description: Method Not Allowed
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+          description: "VPL5SNG01S - SERVICE INPUT TO N/G SERVICE IS AN INCORRECT\
+            \ LENGTH \n\nVPL5SNG04S - ONLY NUMERIC ACCOUNT NUMBERS ALLOWED FOR AUTO\
+            \ GENERATION \n\nVPL5SNG05S - ORG NUMBER MUST BE NUMERIC BETWEEN 001-998\
+            \ \n\nVPL5SNG06S - LOGO MUST BE NUMERIC BETWEEN 001-998 FOR NBR REQUESTED\
+            \ \n\nVPL5SNG07S - AUTO GENERATION NOT ALLOWED IN THIS ORG \n\nVPL5SNG08S\
+            \ - MAX ATTEMPTS REACHED FOR CUST/REL NUMBER AUTO GEN \n\nVPL5SNG09S -\
+            \ NO NUMBERS AVAILABLE IN THIS ORG \n\nVPL5SNG10S - AUTO GENERATION NOT\
+            \ ALLOWED IN THIS LOGO \n\nVPL5SNG11S - NO NUMBERS AVAILABLE IN THIS LOGO\
+            \ \n\nVPL5SNG12S - LOGO DOES NOT ALLOW BILLING NBR GENERATE \n\nVPL5SNG14S\
+            \ - BILLING/CNTL NBR REQUESTED BUT NOT ACTIVE ON SYSTEM REC \n\nVPL5SNG15S\
+            \ - ORG DOES NOT USE DUAL CURRENCY \n\nVPL5SNG16S - SERVICE COULD NOT\
+            \ OBTAIN STORAGE AREA \n\nVPL5SNG17S - ORGANIZATION NUMBER NOT FOUND \n\
+            \nVPL5SNG18S - INVALID CHECK-DIGIT - POSSIBLE SEED TABLE ERROR \n\nVPL5SNG21E\
+            \ - CUSTOMER NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG22E\
+            \ - RELATIONSHIP NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG23E\
+            \ - ACCOUNT NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG24E -\
+            \ BILLING ACCOUNT NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG25E\
+            \ - CNTL/DIV ACCT NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG26E\
+            \ - CARD NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG27E - NO\
+            \ FOREIGN ORG EXISTS FOR LOCAL ORG \n\nVPL5SNG28E - INVALID CHECK DIGIT\
+            \ \n\nVPL5SNG29E - DUAL INDICATOR MUST BE 0 OR 1 \n\nVPL5SNG30S - MAX\
+            \ ATTEMPTS REACHED FOR ACCT/CARD NUMBER AUTO GEN \n\nVPL5SNG31S - MAX\
+            \ ATTEMPTS REACHED FOR BILL/CNTL NUMBER AUTO GEN \n\nVPL5SNG32S - LOGO\
+            \ NUMBER NOT FOUND"
         '500':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
           description: Backend Error
-      summary: 'Generate customer and account number. VMX Service: M.CMS.NBRGENERATION.ACT,
-        L8V1'
+      summary: "This service generates customer, relationship, account, and embosser\
+        \ numbers. \nVMX Service: M.CMS.NBRGENERATION.ACT, L8V1"
       tags:
       - Customers
       x-group-name: Customers

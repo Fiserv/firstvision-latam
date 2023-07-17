@@ -10836,9 +10836,8 @@ components:
     NonMonetaryActionCodeRequest:
       properties:
         accountNumber:
-          description: 'Length: 19
+          description: 'Account number
 
-            Account number
 
             VisionPLUS Service Data: ASXNAI-ACCT-NBR'
           example: '1234567890123456789'
@@ -10846,31 +10845,47 @@ components:
           minLength: 19
           type: string
         actionCode:
-          description: 'Length: 4
+          description: 'Action code placed on the account.
 
-            Action code placed on the account'
+
+            VisionPLUS Service Data: ASXNAI-ACTION-CODE'
           example: '1234'
           maxLength: 4
           minLength: 4
           type: string
         actionCodePriority:
-          description: "Length: 1\nNotes history priority. If not specified, the priority\
-            \ defined on \nthe action record is substituted for this value on the\
-            \ history file. Possible values are:\n* 0 or low-values = Unspecified\
-            \ priority\n* 1 = Low priority \n* 2 = Medium priority \n* 3 = High priority.\n\
-            VisionPLUS Service Data: ASXNAI-ACTION-CODE-PRI"
+          description: 'Notes history priority. If not specified, the priority defined
+            on the action record is substituted for this value on the history file.
+
+
+            Values:
+
+            Low-values = Unspecified priority;
+
+            * 0 = Unspecified priority;
+
+            * 1 = Low priority;
+
+            * 2 = Medium priority;
+
+            * 3 = High priority.
+
+
+            VisionPLUS Service Data: ASXNAI-ACTION-CODE-PRI'
           example: '0'
           maxLength: 1
           minLength: 0
           type: string
         actionType:
-          description: 'Length: 1
+          description: 'Action type.
 
-            Action type. Its possible values are:
 
-            * N = Nonmonetary
+            Values:
 
-            * I = Informational
+            * N = Nonmonetary;
+
+            * I = Informational.
+
 
             VisionPLUS Service Data: ASXNAI-ACTION-TYPE'
           example: N
@@ -10878,10 +10893,9 @@ components:
           minLength: 0
           type: string
         cardNumber:
-          description: 'Lenght: 19
+          description: 'Unique identifier or token associated with the card number
+            or payment instrument (FirstVision PAN Token).
 
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ASXNAI-CARD-NBR'
           example: 000540208ID5IXX3865
@@ -10889,9 +10903,8 @@ components:
           minLength: 0
           type: string
         cardSequenceNumber:
-          description: 'Lenght: 4
+          description: 'Card sequence number associated with the card number
 
-            Card sequence number associated with the card number
 
             VisionPLUS Service Data: ASXNAI-CARD-SEQ'
           example: '1234'
@@ -10899,24 +10912,29 @@ components:
           minLength: 0
           type: string
         foreignUseIndicator:
-          description: 'Length: 1
+          description: 'Foreign use indicator.
 
-            Foreign use indicator.Its possible values are:
 
-            * Zero, space, or low-values = Local account
+            Values:
+
+            * Space = Local account;
+
+            * Low-values = Local account;
+
+            * 0 = Local account;
 
             * 1 = Foreign account.
 
+
             VisionPLUS Service Data: ASXNAI-FOREIGN-USE-IND'
-          example: ''
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         letterCode:
-          description: 'Length: 3
+          description: 'User-defined code assigned to the letter that the system will
+            send to the customer via batch processing.
 
-            User-defined code assigned to the letter that the system will send to
-            the customer via batch processing.
 
             VisionPLUS Service Data: ASXNAI-LTR-CODE'
           example: '123'
@@ -10924,9 +10942,10 @@ components:
           minLength: 0
           type: string
         letterOrganization:
-          description: 'Length: 3
+          description: 'Letter organization of the LTS letter to be sent to the customer
 
-            Letter organization of the LTS letter to be sent to the customer'
+
+            VisionPLUS Service Data: ASXNAI-LTR-ORG'
           example: '123'
           maxLength: 3
           minLength: 0
@@ -10934,20 +10953,32 @@ components:
         memo:
           $ref: '#/components/schemas/NonMonetaryActionCodeRequest.Memo'
         organizationNumber:
-          description: 'Length: 3
+          description: '* Min Length: 1
 
-            CMS organization associated with the account'
+            * Max Length: 3
+
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: ASXNAI-ORG'
           example: 807
           format: int32
           type: integer
         referralOption:
-          description: 'Length: 1
+          description: 'Manual referral option.
 
-            Manual referral option. Its possible values are:
 
-            * 0, space or low-values = Referral off
+            Values:
+
+            low-values = Referral off;
+
+            space = Referral off;
+
+            * 0 = Referral off;
 
             * 1 = Referral on.
+
 
             VisionPLUS Service Data: ASXNAI-REFERRAL-OPTION'
           example: '0'
@@ -10957,13 +10988,14 @@ components:
         referralRepresentative:
           $ref: '#/components/schemas/NonMonetaryActionCodeRequest.ReferralRep'
         reviewDate:
-          description: "Length: 8\nDate when the account is to be placed in the representative\u2019\
-            s queue for review.\nVisionPLUS Service Data: ASXNAI-REVIEW-DATE"
+          description: "Date when the account is to be placed in the representative\u2019\
+            s queue for review (in ISO 8601).\n\nVisionPLUS Service Data: ASXNAI-REVIEW-DATE"
+          example: 2023-04-21
           format: date
           type: string
         reviewTime:
-          description: "Length: 4\nTime when the account is to be placed in the representative\u2019\
-            s queue for review\nVisionPLUS Service Data: ASXNAI-REVIEW-TIME"
+          description: "Time when the account is to be placed in the representative\u2019\
+            s queue for review.\n\nVisionPLUS Service Data: ASXNAI-REVIEW-TIME"
           example: 0957
           maxLength: 4
           minLength: 0
@@ -10977,54 +11009,74 @@ components:
       description: Memo lines
       properties:
         line1:
-          description: 'Length: 60
+          description: '* Max Length: 60
+
 
             Memo line 1
 
-            ASXNAI-LINE-1'
+
+            VisionPLUS Service Data: ASXNAI-LINE-1'
+          example: '1'
           type: string
         line2:
-          description: 'Length: 60
+          description: '* Max Length: 60
+
 
             Memo line 2
 
-            ASXNAI-LINE-2'
+
+            VisionPLUS Service Data: ASXNAI-LINE-2'
+          example: '2'
           type: string
         line3:
-          description: 'Length: 60
+          description: '* Max Length: 60
+
 
             Memo line 3
 
-            ASXNAI-LINE-3'
+
+            VisionPLUS Service Data: ASXNAI-LINE-3'
+          example: '3'
           type: string
         line4:
-          description: 'Length: 60
+          description: '* Max Length: 60
+
 
             Memo line 4
 
-            ASXNAI-LINE-4'
+
+            VisionPLUS Service Data: ASXNAI-LINE-4'
+          example: '4'
           type: string
         line5:
-          description: 'Length: 60
+          description: '* Max Length: 60
+
 
             Memo line 5
 
-            ASXNAI-LINE-5'
+
+            VisionPLUS Service Data: ASXNAI-LINE-5'
+          example: '5'
           type: string
       type: object
     NonMonetaryActionCodeRequest.ReferralRep:
       description: ASM referral representative
       properties:
         organizationNumber:
-          description: "Length: 3\nASM referral representative organization number.\
-            \ This field is required when\u2019referralOption\u2019 is 1.\nVisionPLUS\
-            \ Service Data: ASXNAI-REFERRAL-REP-ORG"
+          description: '* Max Length: 3
+
+
+            ASM referral representative organization number. This field is required
+            when "referralOption" is 1.
+
+
+            VisionPLUS Service Data: ASXNAI-REFERRAL-REP-ORG'
           example: 801
           format: int32
           type: integer
         representativeId:
-          description: "Length: 3\nASM referral representative ID. This field is required\
-            \ when \u2018referralOption\u2019 is 1.\nVisionPLUS Service Data: ASXNAI-REFERRAL-REP-ID"
+          description: "ASM referral representative ID. This field is required when\
+            \ \u2018referralOption\u2019 is 1.\n\nVisionPLUS Service Data: ASXNAI-REFERRAL-REP-ID"
           maxLength: 3
           minLength: 0
           type: string
@@ -11039,212 +11091,336 @@ components:
       description: Non-monetary action code service response, action data
       properties:
         actionCode:
-          description: 'Length : 5
+          description: 'Max Length: 5
+
 
             Action code assigned to the note
 
+
             VisionPLUS Service Data: ASXNAO-ACTION-CODE'
+          example: '0'
           type: string
         actionCodeDescription:
-          description: 'Length : 20
+          description: 'Max Length: 20
 
-            Action code description'
+
+            Action code description
+
+
+            VisionPLUS Service Data: '
+          example: '0'
           type: string
         actionCodePriority:
-          description: 'Length : 1
+          description: 'Max Length: 1
+
 
             Action code priority assigned to this note
 
+
             VisionPLUS Service Data: ASXNAO-ACTION-CODE-PRI'
+          example: '0'
           type: string
         actionDate:
-          description: 'Length : 8
+          description: 'Action date
 
-            Action dateThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-ACTION-DATE'
           format: date
           type: string
         actionRepresentativeId:
-          description: 'Length : 3
+          description: 'Max Length: 3
 
-            Action representative ID'
+
+            Action representative ID
+
+
+            VisionPLUS Service Data: '
+          example: '0'
           type: string
         actionRepresentativeOrganizationNumber:
-          description: 'Length : 3
+          description: 'Max Length: 3
 
-            Organization number of the representative that performed the action'
+
+            Organization number of the representative that performed the action
+
+
+            VisionPLUS Service Data: '
+          example: '0'
           type: string
         approveOrDecline:
-          description: 'Length : 1
+          description: 'Max Length: 1
 
-            Approve or declineThis field is never populated, but is present for compatibility
-            with the monetary Action Code service'
+
+            Approve or decline
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         authorizationNumber:
-          description: 'Length : 6
+          description: 'Max Length: 6
 
-            Authorization numberThis field is never populated, but is present for
-            compatibility with the monetary Action Code service'
+
+            Authorization number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         cardNumber:
-          description: 'Length : 19
+          description: 'Max Length: 19
+
 
             Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).'
+            instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: '
           example: 000540208ID5IXX3865
           type: string
         cardSequenceNumber:
-          description: 'Length : 5
+          description: 'Max Length: 5
 
-            Card sequence number'
+
+            Card sequence number
+
+
+            VisionPLUS Service Data: '
+          example: '1234'
           type: string
         ctaFile:
-          description: 'Length : 1
+          description: 'Max Length: 1
 
-            CTA fileThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            CTA file
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-CTA-FILE'
           type: string
         ctaSequenceNumber:
-          description: 'Length : 5
+          description: 'Max Length: 5
 
-            Cta sequence numberThis field is never populated, but is present for compatibility
-            to call the Notes History service
+
+            Cta sequence number
+
+
+            This field is never populated, but is present for compatibility to call
+            the Notes History service
+
 
             VisionPLUS Service Data: ASXNAO-CTA-SEQ-NBR'
           type: string
         departmentNumber:
-          description: 'Length : 4
+          description: 'Max Length: 4
 
-            Department numberThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Department number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-DEPT-NBR'
           type: string
         effectiveDate:
-          description: 'Length : 8
+          description: 'Effective Date
 
-            Effective DateThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-EFF-DATE'
           format: date
           type: string
         historyDate:
-          description: 'Length : 7
+          description: 'Max Length: 7
 
-            History date assigned to this note
+
+            History date assigned to this note (in ISO 8601)
+
 
             VisionPLUS Service Data: ASXNAO-HIST-DATE'
+          example: 2023-05-16
           format: date
           type: string
         historyTime:
-          description: 'Length : 7
+          description: 'Max Length: 7
+
 
             History time assigned to this note
 
+
             VisionPLUS Service Data: ASXNAO-HIST-TIME'
+          example: '0'
           type: string
         insuranceType:
-          description: 'Length : 2
+          description: 'Max Length: 2
 
-            Insurance typeThis field is never populated, but is present for compatibility
-            with the monetary Action Code service'
+
+            Insurance type
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         letterCode:
-          description: 'Length : 3
+          description: 'Max Length: 3
+
 
             Letter code
 
+
             VisionPLUS Service Data: ASXNAO-LETTER'
+          example: '0'
           type: string
         letterOrganization:
-          description: 'Length : 3
+          description: 'Max Length: 3
+
 
             Letter organization number
 
+
             VisionPLUS Service Data: ASXNAO-LTR-ORG'
+          example: '0'
           type: string
         lineData:
-          description: 'Length : 60
+          description: 'Max Length: 60
+
 
             Note text in 5 groups of 60 characters
 
-            Occurs 5 times'
+
+            VisionPLUS Service Data: '
+          example: '0'
           type: string
         monetaryType:
-          description: 'Length : 1
+          description: 'Max Length: 1
 
-            Monetary typeThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Monetary type
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-MON-TYPE'
           type: string
         pdDeclineReason:
-          description: 'Length : 30
+          description: 'Max Length: 30
 
-            PD decline reasonThis field is never populated, but is present for compatibility
-            with the monetary Action Code service'
+
+            PD decline reason
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         pdFundCard:
           $ref: '#/components/schemas/NonMonetaryActionCodeResponse.ActionData.PdFundCard'
         planNumber:
-          description: 'Length : 5
+          description: 'Max Length: 5
 
-            Plan NumberThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Plan Number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-PLAN-NBR'
           type: string
         planSequenceNumber:
-          description: 'Length : 2
+          description: 'Max Length: 2
 
-            Plan Sequence NumberThis field is never populated, but is present for
-            compatibility with the monetary Action Code service
+
+            Plan Sequence Number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-PLAN-SEQ'
           type: string
         pointsAmount:
-          description: 'Length : 9
+          description: 'Max Length: 9
 
-            Points amountThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Points amount
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-PTS-AMT'
           type: number
         pointsProgram:
-          description: 'Length : 1
+          description: 'Max Length: 1
 
-            Points programThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Points program
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-PTS-PGM'
           type: string
         purchaseOrderNumber:
-          description: 'Length : 16
+          description: 'Max Length: 16
 
-            Purchase orderThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Purchase order
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-PURCHASE-ORDERNBR'
           type: string
         purgeDate:
-          description: 'Length : 8
+          description: 'Date note is to be purged (in ISO 8601)
 
-            Date note is to be purged
 
             VisionPLUS Service Data: ASXNAO-PURGE-DATE'
+          example: 2023-06-14
           format: date
           type: string
         recordType:
-          description: 'Length : 1
+          description: 'Max Length: 1
+
 
             Record type
 
-            The values are:
+
+            Values:
 
             * F = Prepaid
 
@@ -11262,59 +11438,108 @@ components:
 
             * 3 = Memo
 
+
             VisionPLUS Service Data: ASXNAO-RECORD-TYPE'
+          example: M
           type: string
         referenceNumber:
-          description: 'Length : 24
+          description: 'Max Length: 24
 
-            Reference numberThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Reference number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-REFERENCE-NBR'
           type: string
         referralReferenceNumber:
-          description: 'Length : 24
+          description: 'Max Length: 24
 
-            Referral reference numberThis field is never populated, but is present
-            for compatibility with the monetary Action Code service'
+
+            Referral reference number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         referralRepresentativeId:
-          description: 'Length : 3
+          description: 'Max Length: 3
 
-            Representative ID of the referral representative'
+
+            Representative ID of the referral representative
+
+
+            VisionPLUS Service Data: '
+          example: '0'
           type: string
         referralRepresentativeOrganizationNumber:
-          description: 'Length : 3
+          description: 'Max Length: 3
 
-            Organization number of the referral representative'
+
+            Organization number of the referral representative
+
+
+            VisionPLUS Service Data: '
+          example: '0'
           type: string
         retentionIndicator:
-          description: 'Length : 1
+          description: 'Max Length: 1
 
-            Retention indicatorThis field is never populated, but is present for compatibility
-            with the monetary Action Code service'
+
+            Retention indicator
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         reviewDate:
-          description: 'Length : 8
+          description: 'Next review date of this note
 
-            Next review date of this note'
+
+            VisionPLUS Service Data: '
+          example: 2023-09-14
           format: date
           type: string
         reviewTime:
-          description: Next review time of this note.
+          description: 'Max Length: 7
+
+
+            Next review time of this note.
+
+
+            VisionPLUS Service Data: '
+          example: '0'
           type: string
         salesClerkId:
-          description: 'Length : 12
+          description: 'Max Length: 12
 
-            Sales clerk idThis field is never populated, but is present for compatibility
-            with the monetary Action Code service'
+
+            Sales clerk id
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         status:
-          description: 'Length : 1
+          description: 'Max Length: 1
+
 
             1C Notes history status
 
-            The values are:
+
+            Values:
 
             * O = Open-held
 
@@ -11326,58 +11551,90 @@ components:
 
             * D = Declined
 
+
             VisionPLUS Service Data: ASXNAO-STATUS'
+          example: A
           type: string
         stockKeepingUnitNumber:
-          description: 'Length : 9
+          description: 'Max Length: 9
 
-            Stock keeping unit numberThis field is never populated, but is present
-            for compatibility with the monetary Action Code service'
+
+            Stock keeping unit number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         storeNumber:
-          description: 'Length : 9
+          description: 'Max Length: 9
 
-            Store numberThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Store number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-STORE-NBR'
           type: string
         storeOrganization:
-          description: 'Length : 3
+          description: 'Max Length: 3
 
-            Store organizationThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Store organization
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-STORE-ORG'
           type: string
         ticketNumber:
-          description: 'Length : 15
+          description: 'Max Length: 15
 
-            Ticket numberThis field is never populated, but is present for compatibility
-            with the monetary Action Code service
+
+            Ticket number
+
+
+            This field is never populated, but is present for compatibility with the
+            monetary Action Code service
+
 
             VisionPLUS Service Data: ASXNAO-TICKET-NBR'
           type: string
         transactionAmount:
-          description: "Length 17: \nTransaction AmountThis field is never populated,\
-            \ but is present for compatibility with the monetary Action Code service\n\
-            VisionPLUS Service Data: ASXNAO-TRAN-AMT"
+          description: "Max Length: 17 \n\nTransaction Amount\n\nThis field is never\
+            \ populated, but is present for compatibility with the monetary Action\
+            \ Code service\n\nVisionPLUS Service Data: ASXNAO-TRAN-AMT"
           type: number
       type: object
     NonMonetaryActionCodeResponse.ActionData.PdFundCard:
       description: Non-monetary action code service response, PD fund card
       properties:
         pdFundCard16To19:
-          description: 'Length : 4
+          description: 'Max Length: 4
+
 
             PD fund card 16 to 19This field is never populated, but is present for
-            compatibility with the monetary Action Code service'
+            compatibility with the monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
         pdFundCard1To15:
-          description: 'Length : 15
+          description: 'Max Length: 15
+
 
             PD fund card 1 to 15This field is never populated, but is present for
-            compatibility with the monetary Action Code service'
+            compatibility with the monetary Action Code service
+
+
+            VisionPLUS Service Data: '
           type: string
       type: object
     NotesHistoryInquiryRequest.StartToken:
@@ -11780,682 +12037,2810 @@ components:
     OrganizationInquiryResponse:
       properties:
         HolidayDate1:
+          description: 'Holiday 1.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-1'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate10:
+          description: 'Holiday 10.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-10'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate11:
+          description: 'Holiday 11.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-11'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate12:
+          description: 'Holiday 12.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-12'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate13:
+          description: 'Holiday 13.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-13'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate14:
+          description: 'Holiday 14.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-14'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate15:
+          description: 'Holiday 15.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-15'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate16:
+          description: 'Holiday 16.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-16'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate17:
+          description: 'Holiday 17.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-17'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate18:
+          description: 'Holiday 18.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-18'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate19:
+          description: 'Holiday 19.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-19'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate2:
+          description: 'Holiday 2.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-2'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate20:
+          description: 'Holiday 20.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-20'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate21:
+          description: 'Holiday 21.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-21'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate22:
+          description: 'Holiday 22.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-22'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate23:
+          description: 'Holiday 23.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-23'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate24:
+          description: 'Holiday 24.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-24'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate25:
+          description: 'Holiday 25.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-25'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate3:
+          description: 'Holiday 3.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-3'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate4:
+          description: 'Holiday 4.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-4'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate5:
+          description: 'Holiday 5.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-5'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate6:
+          description: 'Holiday 6.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-6'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate7:
+          description: 'Holiday 7.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-7'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate8:
+          description: 'Holiday 8.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-8'
+          example: 2023-07-10
           format: date
           type: string
         HolidayDate9:
+          description: 'Holiday 9.0 (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-HOLIDAYS-9'
+          example: 2023-07-10
           format: date
           type: string
         absModCheck:
+          description: 'Max Length: 1
+
+
+            Account mod-check method.
+
+
+            VisionPLUS Service Data: ARXQOO-ABS-MOD-CHECK'
+          example: N
           type: string
         accountPurgeIndicator:
+          description: 'Max Length: 1
+
+
+            Purge account extract.
+
+
+            VisionPLUS Service Data: ARXQOO-ACCT-PURGE-SW'
+          example: 3
           format: int32
           type: integer
         achBankAba:
+          description: 'Max Length: 9
+
+
+            ACH bank ABA.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-BANK-ABA'
+          example: 610000000
           format: int32
           type: integer
         achCancelFlag:
+          description: 'Max Length: 1
+
+
+            ACH cancel indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-CANCEL-FLAG'
+          example: N
           type: string
         achDebitOption:
+          description: 'Max Length: 1
+
+
+            ACH debit option.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-DEBIT-OPTION'
+          example: P
           type: string
         achDestinationBank:
+          description: 'Max Length: 23
+
+
+            Direct debit destination bank.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-DEST-BANK'
+          example: ABCDE FGHIJ KLMNOP
           type: string
         achDestinationRouting:
+          description: 'Max Length: 10
+
+
+            Destination routing number.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-DEST-RT'
+          example: '0'
           type: string
         achDirectDebitCreditIndicator:
+          description: 'Max Length: 1
+
+
+            ACH or Non-ACH file format.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-DD-DC-IND'
+          example: '0'
           type: string
         achIdMod:
+          description: 'Max Length: 1
+
+
+            Multiple file identifier.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-ID-MOD'
+          example: 1
           format: int32
           type: integer
         achNsfFlag:
+          description: 'Max Length: 1
+
+
+            ACH NSF indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-NSF-FLAG'
+          example: N
           type: string
         achOrganizationDescription:
+          description: 'Max Length: 10
+
+
+            Payment description.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-ORG-ENTRY-DESC'
+          example: ABCDEFGHIJ
           type: string
         achOrganizationName:
+          description: 'Max Length: 16
+
+
+            ACH origination institution.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-ORG-NAME'
+          example: ABCDEFGHIJKLMNOP
           type: string
         achOriginationBank:
+          description: 'Max Length: 23
+
+
+            Direct debit origination bank.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-ORIG-BANK'
+          example: ABCDE FGHIJ KLMNOP
           type: string
         achOriginationRouting:
+          description: 'Max Length: 10
+
+
+            Origination routing number.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-ORIG-RT'
+          example: '0'
           type: string
         achPreNoteDelay:
+          description: 'Max Length: 9
+
+
+            Prenote delay days.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-PRENOTE-DELAY'
+          example: 123456789
           format: int32
           type: integer
         achPreNoteSwitch:
+          description: 'Max Length: 1
+
+
+            ACH prenote indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-PRENOTE-SWITCH'
+          example: N
           type: string
         achTaxIdNumber:
+          description: 'Max Length: 15
+
+
+            Tax identification number.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-TAX-ID-NBR'
+          example: '123456789123456'
           type: string
         achUserDefinition1:
+          description: 'Max Length: 6
+
+
+            Direct debit user field 1.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-USER-DEF-1'
+          example: ABDEFG
           type: string
         achUserDefinition2:
+          description: 'Max Length: 6
+
+
+            Direct debit user field 2.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-USER-DEF-2'
+          example: ABDEFG
           type: string
         achUserDefinition3:
+          description: 'Max Length: 17
+
+
+            Direct debit user field 3.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-USER-DEF-3'
+          example: ABDEFG
           type: string
         achUserDefinition4:
+          description: 'Max Length: 17
+
+
+            Direct debit user field 4.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ACH-USER-DEF-4'
+          example: ABDEFG
           type: string
         acsAmountExponent:
+          description: 'Max Length: 1
+
+
+            ACS amount exponent.
+
+
+            VisionPLUS Service Data: ARXQOO-ACS-AMT-EXPONENT'
+          example: 0
           format: int32
           type: integer
         acsClientId:
+          description: 'Max Length: 4
+
+
+            Adaptive control system ID.
+
+
+            VisionPLUS Service Data: ARXQOO-ACS-CLIENT-ID'
+          example: 1234
           format: int32
           type: integer
         acsInterfaceIndicator:
+          description: 'Max Length: 1
+
+
+            Adaptive control system active.
+
+
+            VisionPLUS Service Data: ARXQOO-ACS-INTERFACE-FLAG'
+          example: 1
           format: int32
           type: integer
         activityReportControl1:
+          description: 'Max Length: 3
+
+
+            Channel 1.0 report number.
+
+
+            VisionPLUS Service Data: ARXQOO-ARC-RPT-1'
+          example: 123
           format: int32
           type: integer
         activityReportControl2:
+          description: 'Max Length: 3
+
+
+            Channel 2.0 report number.
+
+
+            VisionPLUS Service Data: ARXQOO-ARC-RPT-2'
+          example: 123
           format: int32
           type: integer
         activityReportControl3:
+          description: 'Max Length: 3
+
+
+            Channel 3.0 report number.
+
+
+            VisionPLUS Service Data: ARXQOO-ARC-RPT-3'
+          example: 123
           format: int32
           type: integer
         activityReportControl4:
+          description: 'Max Length: 3
+
+
+            Channel 4.0 report number
+
+
+            VisionPLUS Service Data: ARXQOO-ARC-RPT-4'
+          example: 123
           format: int32
           type: integer
         activityReportControlDetail1:
+          description: 'Max Length: 1
+
+
+            Print channel 1.0 detailed report.
+
+
+            VisionPLUS Service Data: ARXQOO-ARC-DTL-FLAG-1'
+          example: Y
           type: string
         activityReportControlDetail2:
+          description: 'Max Length: 1
+
+
+            Print channel 2.0 detailed report.
+
+
+            VisionPLUS Service Data: ARXQOO-ARC-DTL-FLAG-2'
+          example: N
           type: string
         activityReportControlDetail3:
+          description: 'Max Length: 1
+
+
+            Print channel 3.0 detailed report
+
+
+            VisionPLUS Service Data: ARXQOO-ARC-DTL-FLAG-3'
+          example: N
           type: string
         activityReportControlDetail4:
+          description: 'Max Length: 1
+
+
+            Print channel 4.0 detailed report
+
+
+            VisionPLUS Service Data: ARXQOO-ARC-DTL-FLAG-4'
+          example: N
           type: string
         addStatus:
+          description: 'Max Length: 2
+
+
+            Add status.
+
+
+            VisionPLUS Service Data: ARXQOO-ADD-STATUS'
+          example: 99
           format: int32
           type: integer
         addressLine1:
+          description: 'Max Length: 40
+
+
+            Business unit name.
+
+
+            VisionPLUS Service Data: ARXQOO-NAME-ADDR-1'
+          example: Brookfield
           type: string
         addressLine2:
+          description: 'Max Length: 40
+
+
+            Address line 1.0.
+
+
+            VisionPLUS Service Data: ARXQOO-NAME-ADDR-2'
+          example: 255 Fiserv Dr.
           type: string
         addressLine3:
+          description: 'Max Length: 40
+
+
+            Address line 2.0.
+
+
+            VisionPLUS Service Data: ARXQOO-NAME-ADDR-3'
+          example: Wisconsin
           type: string
         addressLine4:
+          description: 'Max Length: 40
+
+
+            Address line 3.0.
+
+
+            VisionPLUS Service Data: ARXQOO-NAME-ADDR-4'
+          example: WI
           type: string
         alphaDelimiter1:
+          description: 'Max Length: 1
+
+
+            Account embosser - alpha delimiter.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-1'
+          example: B
           type: string
         alphaDelimiter2:
+          description: 'Max Length: 1
+
+
+            Co-owner name 1.0 - alpha delimiter.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-2'
+          example: A
           type: string
         alphaDelimiter3:
+          description: 'Max Length: 1
+
+
+            Co-owner name 2.0 - alpha delimiter.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-3'
+          example: B
           type: string
         alphaDelimiter4:
+          description: 'Max Length: 1
+
+
+            Co-owner name 3.0 - alpha delimiter.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-4'
+          example: '0'
           type: string
         alphaDelimiter5:
+          description: 'Max Length: 1
+
+
+            Customer name 1.0 - alpha delimite.r
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-5'
+          example: '0'
           type: string
         alphaDelimiter6:
+          description: 'Max Length: 1
+
+
+            Customer name 2.0 - alpha delimiter.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-6'
+          example: '0'
           type: string
         alphaDelimiter7:
+          description: 'Max Length: 1
+
+
+            Customer name 3.0 - alpha delimiter.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-7'
+          example: '0'
           type: string
         alphaDelimiter8:
+          description: 'Max Length: 1
+
+
+            Store DBA name - alpha delimiter.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-8'
+          example: '0'
           type: string
         alphaDelimiter9:
+          description: 'Max Length: 1
+
+
+            Store name lines - alpha delimiter.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIMITER-9'
+          example: '0'
           type: string
         alphaDelimiterPosition1:
+          description: 'Max Length: 1
+
+
+            Account embosser - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-1'
+          example: B
           type: string
         alphaDelimiterPosition2:
+          description: 'Max Length: 1
+
+
+            Co-owner name 1.0 - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-2'
+          example: A
           type: string
         alphaDelimiterPosition3:
+          description: 'Max Length: 1
+
+
+            Co-owner name 2.0 - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-3'
+          example: A
           type: string
         alphaDelimiterPosition4:
+          description: 'Max Length: 1
+
+
+            Co-owner name 3.0 - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-4'
+          example: '0'
           type: string
         alphaDelimiterPosition5:
+          description: 'Max Length: 1
+
+
+            Customer name 1.0 - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-5'
+          example: '0'
           type: string
         alphaDelimiterPosition6:
+          description: 'Max Length: 1
+
+
+            Customer name 2.0 - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-6'
+          example: '0'
           type: string
         alphaDelimiterPosition7:
+          description: 'Max Length: 1
+
+
+            Customer name 3.0 - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-7'
+          example: '0'
           type: string
         alphaDelimiterPosition8:
+          description: 'Max Length: 1
+
+
+            Store DBA name - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-8'
+          example: '0'
           type: string
         alphaDelimiterPosition9:
+          description: 'Max Length: 1
+
+
+            Store name lines - delimiter position.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-DELIM-POS-9'
+          example: '0'
           type: string
         alphaKeyCode1:
+          description: 'Max Length: 1
+
+
+            Account embosser - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-1'
+          example: Y
           type: string
         alphaKeyCode2:
+          description: 'Max Length: 1
+
+
+            Co-owner name 1.0 - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-2'
+          example: N
           type: string
         alphaKeyCode3:
+          description: 'Max Length: 1
+
+
+            Co-owner name 2.0 - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-3'
+          example: N
           type: string
         alphaKeyCode4:
+          description: 'Max Length: 1
+
+
+            Co-owner name 3.0 - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-4'
+          example: N
           type: string
         alphaKeyCode5:
+          description: 'Max Length: 1
+
+
+            Customer name 1.0 - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-5'
+          example: Y
           type: string
         alphaKeyCode6:
+          description: 'Max Length: 1
+
+
+            Customer name 2.0 - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-6'
+          example: Y
           type: string
         alphaKeyCode7:
+          description: 'Max Length: 1
+
+
+            Customer name 3.0 - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-7'
+          example: Y
           type: string
         alphaKeyCode8:
+          description: 'Max Length: 1
+
+
+            Store DBA name - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-8'
+          example: N
           type: string
         alphaKeyCode9:
+          description: 'Max Length: 1
+
+
+            Store name lines - generate key.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-KEY-CODE-9'
+          example: N
           type: string
         alphaNameFormat1:
+          description: 'Max Length: 1
+
+
+            Account embosser - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-1'
+          example: B
           type: string
         alphaNameFormat2:
+          description: 'Max Length: 1
+
+
+            Co-owner name 1.0 - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-2'
+          example: B
           type: string
         alphaNameFormat3:
+          description: 'Max Length: 1
+
+
+            Co-owner name 2.0 - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-3'
+          example: B
           type: string
         alphaNameFormat4:
+          description: 'Max Length: 1
+
+
+            Co-owner name 3.0 - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-4'
+          example: B
           type: string
         alphaNameFormat5:
+          description: 'Max Length: 1
+
+
+            Customer name 1.0 - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-5'
+          example: B
           type: string
         alphaNameFormat6:
+          description: 'Max Length: 1
+
+
+            Customer name 2.0 - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-6'
+          example: B
           type: string
         alphaNameFormat7:
+          description: 'Max Length: 1
+
+
+            Customer name 3.0 - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-7'
+          example: B
           type: string
         alphaNameFormat8:
+          description: 'Max Length: 1
+
+
+            Store DBA name - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-8'
+          example: B
           type: string
         alphaNameFormat9:
+          description: 'Max Length: 1
+
+
+            Store name lines - name format.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-NAME-FORMAT-9'
+          example: B
           type: string
         alphaOptionCode1:
+          description: 'Max Length: 1
+
+
+            Account embosser - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-1'
+          example: '3'
           type: string
         alphaOptionCode2:
+          description: 'Max Length: 1
+
+
+            Co-owner name 1.0 - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-2'
+          example: '0'
           type: string
         alphaOptionCode3:
+          description: 'Max Length: 1
+
+
+            Co-owner name 2.0 - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-3'
+          example: '0'
           type: string
         alphaOptionCode4:
+          description: 'Max Length: 1
+
+
+            Co-owner name 3.0 - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-4'
+          example: A
           type: string
         alphaOptionCode5:
+          description: 'Max Length: 1
+
+
+            Customer name 1.0 - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-5'
+          example: '3'
           type: string
         alphaOptionCode6:
+          description: 'Max Length: 1
+
+
+            Customer name 2.0 - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-6'
+          example: '3'
           type: string
         alphaOptionCode7:
+          description: 'Max Length: 1
+
+
+            Customer name 3.0 - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-7'
+          example: '3'
           type: string
         alphaOptionCode8:
+          description: 'Max Length: 1
+
+
+            Store DBA name - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-8'
+          example: '0'
           type: string
         alphaOptionCode9:
+          description: 'Max Length: 1
+
+
+            Store name lines - optional data.
+
+
+            VisionPLUS Service Data: ARXQOO-ALPHA-OPT-CODE-9'
+          example: '0'
           type: string
         alternateLanguageCode1:
+          description: 'Max Length: 3
+
+
+            Alternate language code 1.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-1'
+          example: POR
           type: string
         alternateLanguageCode10:
+          description: 'Max Length: 3
+
+
+            Alternate language code 10.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-10'
+          example: HEB
           type: string
         alternateLanguageCode2:
+          description: 'Max Length: 3
+
+
+            Alternate language code 2.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-2'
+          example: SPA
           type: string
         alternateLanguageCode3:
+          description: 'Max Length: 3
+
+
+            Alternate language code 3.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-3'
+          example: DEU
           type: string
         alternateLanguageCode4:
+          description: 'Max Length: 3
+
+
+            Alternate language code 4.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-4'
+          example: ITA
           type: string
         alternateLanguageCode5:
+          description: 'Max Length: 3
+
+
+            Alternate language code 5.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-5'
+          example: JPN
           type: string
         alternateLanguageCode6:
+          description: 'Max Length: 3
+
+
+            Alternate language code 6.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-6'
+          example: UKR
           type: string
         alternateLanguageCode7:
+          description: 'Max Length: 3
+
+
+            Alternate language code 7.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-7'
+          example: VIE
           type: string
         alternateLanguageCode8:
+          description: 'Max Length: 3
+
+
+            Alternate language code 8.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-8'
+          example: GLE
           type: string
         alternateLanguageCode9:
+          description: 'Max Length: 3
+
+
+            Alternate language code 9.0.
+
+
+            VisionPLUS Service Data: ARXQOO-ALT-LANG-CODE-9'
+          example: IND
           type: string
         alternateLanguageCodeVersion1:
+          description: 'Max Length: 1
+
+
+            Version 1.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-1'
+          example: '0'
           type: string
         alternateLanguageCodeVersion10:
+          description: 'Max Length: 1
+
+
+            Version 10.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-10'
+          example: '0'
           type: string
         alternateLanguageCodeVersion2:
+          description: 'Max Length: 1
+
+
+            Version 2.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-2'
+          example: '0'
           type: string
         alternateLanguageCodeVersion3:
+          description: 'Max Length: 1
+
+
+            Version 3.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-3'
+          example: '0'
           type: string
         alternateLanguageCodeVersion4:
+          description: 'Max Length: 1
+
+
+            Version 4.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-4'
+          example: '0'
           type: string
         alternateLanguageCodeVersion5:
+          description: 'Max Length: 1
+
+
+            Version 5.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-5'
+          example: '0'
           type: string
         alternateLanguageCodeVersion6:
+          description: 'Max Length: 1
+
+
+            Version 6.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-6'
+          example: '0'
           type: string
         alternateLanguageCodeVersion7:
+          description: 'Max Length: 1
+
+
+            Version 7.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-7'
+          example: '0'
           type: string
         alternateLanguageCodeVersion8:
+          description: 'Max Length: 1
+
+
+            Version 8.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-8'
+          example: '0'
           type: string
         alternateLanguageCodeVersion9:
+          description: 'Max Length: 1
+
+
+            Version 9.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VERSION-9'
+          example: '0'
           type: string
         amexInterfaceIndicator:
+          description: 'Max Length: 1
+
+
+            American express active.
+
+
+            VisionPLUS Service Data: ARXQOO-AMEX-INTERFACE-FLAG'
+          example: '0'
           type: string
         amexInvoluntaryAttritionBlockCode1:
+          description: 'Max Length: 1
+
+
+            Involuntary attrition code 1.0.
+
+
+            VisionPLUS Service Data: ARXQOO-INVOL-ATTR-BLKCODES-1'
+          example: '0'
           type: string
         amexInvoluntaryAttritionBlockCode2:
+          description: 'Max Length: 1
+
+
+            Involuntary attrition code 2.0.
+
+
+            VisionPLUS Service Data: ARXQOO-INVOL-ATTR-BLKCODES-2'
+          example: '0'
           type: string
         amexInvoluntaryAttritionBlockCode3:
+          description: 'Max Length: 1
+
+
+            Involuntary attrition code 3.0.
+
+
+            VisionPLUS Service Data: ARXQOO-INVOL-ATTR-BLKCODES-3'
+          example: '0'
           type: string
         amexInvoluntaryAttritionBlockCode4:
+          description: 'Max Length: 1
+
+
+            Involuntary attrition code 4.0.
+
+
+            VisionPLUS Service Data: ARXQOO-INVOL-ATTR-BLKCODES-4'
+          example: '0'
           type: string
         amexInvoluntaryAttritionBlockCode5:
+          description: 'Max Length: 1
+
+
+            Involuntary attrition code 5.0.
+
+
+            VisionPLUS Service Data: ARXQOO-INVOL-ATTR-BLKCODES-5'
+          example: '0'
           type: string
         amexVoluntaryAttritionBlockCode1:
+          description: 'Max Length: 1
+
+
+            Voluntary attrition code 1.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VOL-ATTR-BLK-CODES-1'
+          example: '0'
           type: string
         amexVoluntaryAttritionBlockCode2:
+          description: 'Max Length: 1
+
+
+            Voluntary attrition code 2.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VOL-ATTR-BLK-CODES-2'
+          example: '0'
           type: string
         amexVoluntaryAttritionBlockCode3:
+          description: 'Max Length: 1
+
+
+            Voluntary attrition code 3.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VOL-ATTR-BLK-CODES-3'
+          example: '0'
           type: string
         amexVoluntaryAttritionBlockCode4:
+          description: 'Max Length: 1
+
+
+            Voluntary attrition code 4.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VOL-ATTR-BLK-CODES-4'
+          example: '0'
           type: string
         amexVoluntaryAttritionBlockCode5:
+          description: 'Max Length: 1
+
+
+            Voluntary attrition code 5.0.
+
+
+            VisionPLUS Service Data: ARXQOO-VOL-ATTR-BLK-CODES-5'
+          example: '0'
           type: string
         ammrLastUsed:
+          description: 'Max Length: 5
+
+
+            Extract and maintenance report last used.
+
+
+            VisionPLUS Service Data: ARXQOO-AMMR-LAST-USED'
+          example: 12340
           format: int32
           type: integer
         amortizationIndicator:
+          description: 'Max Length: 1
+
+
+            Amortization active.
+
+
+            VisionPLUS Service Data: ARXQOO-AMORT-ACTIVE-FLAG'
+          example: 1
           format: int32
           type: integer
         authorizationCriteriaSeed:
+          description: 'Max Length: 3
+
+
+            Authorization criteria seed.
+
+
+            VisionPLUS Service Data: ARXQOO-AUTH-CRITERIA-SEED'
+          example: AAA
           type: string
         authorizationsDeltaExtractsIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-AUTH-DELTA-QUALIF'
+          example: 1
           format: int32
           type: integer
         autoChargebackIndicator:
+          description: 'Max Length: 1
+
+
+            Auto chargeback active.
+
+
+            VisionPLUS Service Data: ARXQOO-AUTO-CHGBK-SW'
+          example: 0
           format: int32
           type: integer
         autoChargebackNonPostDebit:
+          description: 'Max Length: 4
+
+
+            Non posted debit transaction code.
+
+
+            VisionPLUS Service Data: ARXQOO-AUTO-CHGBK-NPP-DB'
+          example: 1234
           format: int32
           type: integer
         autoChargebackNonPostPurge:
+          description: 'Max Length: 4
+
+
+            Non posted memo transaction code.
+
+
+            VisionPLUS Service Data: ARXQOO-AUTO-CHGBK-NPPMEMO'
+          example: 1234
           format: int32
           type: integer
         automaticGenerationCustomerNumberId:
+          description: 'Max Length: 8
+
+
+            Customer number generation table.
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-CUST-NBR-ID'
+          example: ABCD1234
           type: string
         automaticGenerationRelationshipNumberId:
+          description: 'Max Length: 8
+
+
+            Relationship number generation table.
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-REL-NBR-ID'
+          example: ABCD1234
           type: string
         automaticNumberGenerationBeginning:
+          description: 'Max Length: 19
+
+
+            Beginning number.
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-BEG-NBR'
+          example: '0000000000000000000'
           type: string
         automaticNumberGenerationDateLastMaintained:
+          description: 'Date of last maintenance (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-DATE-LST-MAINT'
+          example: 2023-07-10
           format: date
           type: string
         automaticNumberGenerationDateLastUsed:
+          description: 'Date last number assignment  (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-DATE-LAST-USED'
+          example: 2023-07-10
           format: date
           type: string
         automaticNumberGenerationEnding:
+          description: 'Max Length: 19
+
+
+            Ending number.
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-END-NBR'
+          example: 0999999999999999999
           type: string
         automaticNumberGenerationIncrementBy:
+          description: 'Max Length: 5
+
+
+            Increment by value.
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-INCREMENT-BY'
+          example: 10000
           format: int32
           type: integer
         automaticNumberGenerationIndicator:
+          description: 'Max Length: 1
+
+
+            Auto-generate numbers method.
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-USE-AUTO-GEN'
+          example: I
           type: string
         automaticNumberGenerationLastUsed:
+          description: 'Max Length: 19
+
+
+            Last number assigned.
+
+
+            VisionPLUS Service Data: ARXQOO-ANG-LAST-USED'
+          example: 0123456789123456789
           type: string
         batchNonPostCredit:
+          description: 'Max Length: 19
+
+
+            Batch non-posted credits.
+
+
+            VisionPLUS Service Data: ARXQOO-BATCH-NON-POST-CR'
+          example: 0123456789ABCDEFGHI
           type: string
         batchNonPostCreditReversal:
+          description: 'Max Length: 19
+
+
+            Batch non-post credit reversals.
+
+
+            VisionPLUS Service Data: ARXQOO-BATCH-NON-POST-CRREV'
+          example: 0123456789ABCDEFGHI
           type: string
         batchNonPostDebit:
+          description: 'Max Length: 19
+
+
+            Batch non-posted debits.
+
+
+            VisionPLUS Service Data: ARXQOO-BATCH-NON-POST-DB'
+          example: 0123456789ABCDEFGHI
           type: string
         batchNonPostDebitReversal:
+          description: 'Max Length: 19
+
+
+            Batch non-post debit reversals.
+
+
+            VisionPLUS Service Data: ARXQOO-BATCH-NON-POST-DBREV'
+          example: 0123456789ABCDEFGHI
           type: string
         batchSettlementQuoteIndicator:
+          description: 'Max Length: 1
+
+
+            Early settlement quotes process.
+
+
+            VisionPLUS Service Data: ARXQOO-BATCH-STTLMT-QUOTE'
+          example: 1
           format: int32
           type: integer
         behaviourHistoryIndicator:
+          description: 'Max Length: 1
+
+
+            Behavior history file active.
+
+
+            VisionPLUS Service Data: ARXQOO-BASE-HIST-SW'
+          example: Y
           type: string
         billNotPaidLongDescription1:
+          description: 'Max Length: 15
+
+
+            Long description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-LONG-1'
+          example: ABCDE FGHIJ KLM
           type: string
         billNotPaidLongDescription2:
+          description: 'Max Length: 15
+
+
+            Long description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-LONG-2'
+          example: ABCDE FGHIJ KLM
           type: string
         billNotPaidLongDescription3:
+          description: 'Max Length: 15
+
+
+            Long description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-LONG-3'
+          example: ABCDE FGHIJ KLM
           type: string
         billNotPaidLongDescription4:
+          description: 'Max Length: 15
+
+
+            Long description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-LONG-4'
+          example: ABCDE FGHIJ KLM
           type: string
         billNotPaidLongDescription5:
+          description: 'Max Length: 15
+
+
+            Long description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-LONG-5'
+          example: ABCDE FGHIJ KLM
           type: string
         billNotPaidLongDescription6:
+          description: 'Max Length: 15
+
+
+            Long description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-LONG-6'
+          example: ABCDE FGHIJ KLM
           type: string
         billNotPaidShortDescription1:
+          description: 'Max Length: 4
+
+
+            Short description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-SHORT-1'
+          example: TAX1
           type: string
         billNotPaidShortDescription2:
+          description: 'Max Length: 4
+
+
+            Short description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-SHORT-2'
+          example: TAX2
           type: string
         billNotPaidShortDescription3:
+          description: 'Max Length: 4
+
+
+            Short description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-SHORT-3'
+          example: TAX3
           type: string
         billNotPaidShortDescription4:
+          description: 'Max Length: 4
+
+
+            Short description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-SHORT-4'
+          example: TAX4
           type: string
         billNotPaidShortDescription5:
+          description: 'Max Length: 4
+
+
+            Short description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-SHORT-5'
+          example: TAX5
           type: string
         billNotPaidShortDescription6:
+          description: 'Max Length: 4
+
+
+            Short description.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-DESC-SHORT-6'
+          example: TAX5
           type: string
         billingCycleChangeIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-CYCLE-DATE-CHG'
+          example: 1
           format: int32
           type: integer
         billingHistoryIndicator:
+          description: 'Max Length: 1
+
+
+            Maintain billing history.
+
+
+            VisionPLUS Service Data: ARXQOO-BILL-HIST-SW'
+          example: '1'
           type: string
         billingMethod:
+          description: 'Max Length: 1
+
+
+            Billing method.
+
+
+            VisionPLUS Service Data: ARXQOO-CC-BILLING-METHOD'
+          example: D
           type: string
         bnpMinimumPaymentFunctionalityIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-BNP-MIN-PMT'
+          example: 0
           format: int32
           type: integer
         cardHolderRelationshipManagementIndicator:
+          description: 'Max Length: 1
+
+
+            Cardholder relationship management processing.
+
+
+            VisionPLUS Service Data: ARXQOO-CRM-ACTIVE'
+          example: 3
           format: int32
           type: integer
         cardHolderRelationshipManagementRetentionMonths:
+          description: 'Max Length: 2
+
+
+            Relationship retention months.
+
+
+            VisionPLUS Service Data: ARXQOO-CRM-RTNTN-MTHS'
+          example: 0
           format: int32
           type: integer
         cardScheme:
+          description: 'Max Length: 1
+
+
+            Card scheme 2.0 or 3.0 active.
+
+
+            VisionPLUS Service Data: ARXQOO-CRD-SCM-2-OR-3-ACTIVE'
+          example: 1
           format: int32
           type: integer
         cashLimit:
+          description: 'Max Length: 17
+
+
+            Cash credit limit.
+
+
+            VisionPLUS Service Data: ARXQOO-CASH-LIMIT'
+          example: 100000
           type: number
         cashLimitIndicator:
+          description: 'Max Length: 1
+
+
+            Cash credit limit calculation method.
+
+
+            VisionPLUS Service Data: ARXQOO-CASH-LIMIT-FLAG'
+          example: A
           type: string
         collateralSecuredIndicator:
+          description: 'Max Length: 1
+
+
+            Use collateral or secured accounts.
+
+
+            VisionPLUS Service Data: ARXQOO-CLLTRL-SECUR'
+          example: N
           type: string
         collectionPhoneNumber:
+          description: 'Max Length: 20
+
+
+            Collection telephone number.
+
+
+            VisionPLUS Service Data: ARXQOO-COLLECTION-PHONENBR'
+          example: +1 111-222-3333
           type: string
         commercialCardFlag:
+          description: 'Max Length: 1
+
+
+            Commercial cards allowed.
+
+
+            VisionPLUS Service Data: ARXQOO-COMMRCL-FLAG'
+          example: 1
           format: int32
           type: integer
         consolidatedPaymentFlag:
+          description: 'Max Length: 1
+
+
+            Allow consolidated payments.
+
+
+            VisionPLUS Service Data: ARXQOO-CNSLDTD-PMT-ACTV'
+          example: 1
           format: int32
           type: integer
         country:
+          description: 'Max Length: 3
+
+
+            Country code.
+
+
+            VisionPLUS Service Data: ARXQOO-COUNTRY'
+          example: USA
           type: string
         creditBalanceOtbIndicator:
+          description: 'Max Length: 1
+
+
+            OTB credit balance definition.
+
+
+            VisionPLUS Service Data: ARXQOO-CR-BAL-OTB-FLAG'
+          example: 1
           format: int32
           type: integer
         crmFeeProcessingIndicator:
+          description: 'Max Length: 1
+
+
+            CRM fee processing
+
+
+            VisionPLUS Service. Data: ARXQOO-CRM-FEE-ACCT'
+          example: 1
           format: int32
           type: integer
         currencyCode:
+          description: 'Max Length: 3
+
+
+            Currency code.
+
+
+            VisionPLUS Service Data: ARXQOO-CURR-NBR'
+          example: 840
           format: int32
           type: integer
         currencyExchangePaymentProcessing:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-CURR-EXCH-PROC'
+          example: 0
           format: int32
           type: integer
         currencyIndicator:
+          description: 'Max Length: 1
+
+
+            Local/foreign currency indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-CURRENCY-IND'
+          example: 0
           format: int32
           type: integer
         currencyTable:
+          description: 'Max Length: 2
+
+
+            Currency conversion rate table.
+
+
+            VisionPLUS Service Data: ARXQOO-CURRENCY-TABLE'
+          example: 20
           format: int32
           type: integer
         customStatementFormatterFlag:
+          description: 'Max Length: 1
+
+
+            Use custom statement formatter.
+
+
+            VisionPLUS Service Data: ARXQOO-CSF-ACTV'
+          example: 1
           format: int32
           type: integer
         customerNumberModCheck:
+          description: 'Max Length: 1
+
+
+            Customer mod-check method.
+
+
+            VisionPLUS Service Data: ARXQOO-CUST-MOD-CHECK'
+          example: N
           type: string
         customerOrganizationNumber:
+          description: 'Max Length: 3
+
+
+            Customer business unit ID.
+
+
+            VisionPLUS Service Data: ARXQOO-CUSTOMER-ORG'
+          example: 123
           format: int32
           type: integer
         customerServicePhoneNumber:
+          description: 'Max Length: 20
+
+
+            Customer service phone number.
+
+
+            VisionPLUS Service Data: ARXQOO-CUST-SVC-PHONE-NBR'
+          example: +1 111-222-3333
           type: string
         dailyInterestAccrualsDeltaExtractsIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-DLYINTACR-DELTAQUALIF'
+          example: 1
           format: int32
           type: integer
         dateAccruedThru:
+          description: 'Date interest accrued through (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-ACCR-THRU-DATE'
+          example: 2023-07-10
           format: date
           type: string
         dateLastAccrued:
+          description: 'Date last accrued (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-DATE-LAST-ACCR'
+          example: 2023-07-10
           format: date
           type: string
         dateLastMaintained:
+          description: 'Date last maintenance (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-DATE-LAST-MAINT'
+          example: 2023-07-10
           format: date
           type: string
         dateLastProcessing:
+          description: 'Date last processed (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-DATE-LAST-PROC'
+          example: 2023-07-10
           format: date
           type: string
         dateNextProcessing:
+          description: 'Date next process (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-DATE-NEXT-PROC'
+          example: 2023-07-10
           format: date
           type: string
         dayOfWeek:
+          description: 'Max Length: 1
+
+
+            Day of week.
+
+
+            VisionPLUS Service Data: ARXQOO-C-DAY-OF-WEEK'
+          example: 5
           format: int32
           type: integer
         debitCardFunctionality:
+          description: 'Max Length: 1
+
+
+            Use debit card functionality.
+
+
+            VisionPLUS Service Data: ARXQOO-DEBIT-ACTIVE-SW'
+          example: '0'
           type: string
         defaultIssuerNumber:
+          description: 'Max Length: 6
+
+
+            Default issuer number.
+
+
+            VisionPLUS Service Data: ARXQOO-DEFAULT-ISS-NUMBER'
+          example: 123456
           format: int32
           type: integer
         defaultLanguageCode:
+          description: 'Max Length: 3
+
+
+            Default language.
+
+
+            VisionPLUS Service Data: ARXQOO-DFLT-LANG'
+          example: ENG
           type: string
         defaultState:
+          description: 'Max Length: 3
+
+
+            Business unit level default state.
+
+
+            VisionPLUS Service Data: ARXQOO-DFLT-STATE'
+          example: '001'
           type: string
         disputedAmountOtbIndicator:
+          description: 'Max Length: 1
+
+
+            Exclude default disputed amounts.
+
+
+            VisionPLUS Service Data: ARXQOO-DISP-AMT-OTB-FLAG'
+          example: 1
           format: int32
           type: integer
         dualCurrencyCode:
+          description: 'Max Length: 3
+
+
+            Dual currency code.
+
+
+            VisionPLUS Service Data: ARXQOO-DUAL-CURRENCY-CDE'
+          example: 840
           format: int32
           type: integer
         dualCurrencyOrganizationNumber:
+          description: 'Max Length: 3
+
+
+            Duplicate business unit.
+
+
+            VisionPLUS Service Data: ARXQOO-DUAL-CURRENCY-ORG'
+          example: 998
           format: int32
           type: integer
         electronicCorrespondenceThreshold:
+          description: 'Max Length: 2
+
+
+            Electronic contact attempts.
+
+
+            VisionPLUS Service Data: ARXQOO-EC-THRESHOLD'
+          example: 10
           format: int32
           type: integer
         encryptPinMailIndicator:
+          description: 'Max Length: 1
+
+
+            Use PIN mailer encrypted PIN.
+
+
+            VisionPLUS Service Data: ARXQOO-ENCRYP-PIN-MAIL'
+          example: 1
           format: int32
           type: integer
         eodOfMonthYearFlag:
+          description: 'Max Length: 1
+
+
+            EOM EOY indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-C-EOM-EOY-FLAG'
+          example: 1
           format: int32
           type: integer
         euroReportingIndicator:
+          description: 'Max Length: 1
+
+
+            Use euro-equivalent reporting.
+
+
+            VisionPLUS Service Data: ARXQOO-EURO-RPT-ID'
+          example: 1
           format: int32
           type: integer
         eventFeesIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-EVENT-FEES'
+          example: 1
           format: int32
           type: integer
         extendedNameFormat:
+          description: 'Max Length: 1
+
+
+            Customer search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-NAME-FMT'
+          example: 1
           format: int32
           type: integer
         extendedNameLine1BuildMethod:
+          description: 'Max Length: 1
+
+
+            Name line 1.0 build method.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-NAME-LINE1'
+          example: 1
           format: int32
           type: integer
         extendedSearchIdIndicator:
+          description: 'Max Length: 1
+
+
+            Primary search on identification number.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-ID'
+          example: 1
           format: int32
           type: integer
         extendedSearchIdOwnerIndicator:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on identification key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-ID-OWNER-X'
+          example: 1
           format: int32
           type: integer
         extendedSearchIdPendingIndicator:
+          description: 'Max Length: 1
+
+
+            Activate/deactivate identification number search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-ID-PEND-SW'
+          example: 1
           format: int32
           type: integer
         extendedSearchNameIndicator:
+          description: 'Max Length: 1
+
+
+            Primary search on name.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-NAME'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalIndicator1:
+          description: 'Max Length: 1
+
+
+            Optional search on date of birth.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-ACTIVESW-1'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalIndicator2:
+          description: 'Max Length: 1
+
+
+            Optional search on title.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-ACTIVESW-2'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalIndicator3:
+          description: 'Max Length: 1
+
+
+            Optional search on suffix.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-ACTIVESW-3'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalIndicator4:
+          description: 'Max Length: 1
+
+
+            Optional search on country.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-ACTIVESW-4'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalIndicator5:
+          description: 'Max Length: 1
+
+
+            Optional search on user 14.0.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-ACTIVESW-5'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalIndicator6:
+          description: 'Max Length: 1
+
+
+            Optional search on user 15.0.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-ACTIVESW-6'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalIndicator7:
+          description: 'Max Length: 1
+
+
+            EXT SHOAS.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-ACTIVESW-7'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalOwnerIndicator1:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on date of birth key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-OWNERX-1'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalOwnerIndicator2:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on title key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-OWNERX-2'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalOwnerIndicator3:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on suffix key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-OWNERX-3'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalOwnerIndicator4:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on country key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-OWNERX-4'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalOwnerIndicator5:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on user 14.0 key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-OWNERX-5'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalOwnerIndicator6:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on user 15.0 key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-OWNERX-6'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalOwnerIndicator7:
+          description: 'Max Length: 1
+
+
+            ESHOOX.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-OWNERX-7'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalPendingIndicator1:
+          description: 'Max Length: 1
+
+
+            Activate or deactivate date of birth search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-PENDSW-1'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalPendingIndicator2:
+          description: 'Max Length: 1
+
+
+            Activate or deactivate title search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-PENDSW-2'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalPendingIndicator3:
+          description: 'Max Length: 1
+
+
+            Activate or deactivate suffix search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-PENDSW-3'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalPendingIndicator4:
+          description: 'Max Length: 1
+
+
+            Activate or deactivate country search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-PENDSW-4'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalPendingIndicator5:
+          description: 'Max Length: 1
+
+
+            Activate or deactivate user 14.0 search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-PENDSW-5'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalPendingIndicator6:
+          description: 'Max Length: 1
+
+
+            Activate or deactivate user 15.0 search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-PENDSW-6'
+          example: 1
           format: int32
           type: integer
         extendedSearchOptionalPendingIndicator7:
+          description: 'Max Length: 1
+
+
+            EXT SROP indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-OPT-PENDSW-7'
+          example: 1
           format: int32
           type: integer
         extendedSearchOwnerIndicator:
+          description: 'Max Length: 1
+
+
+            Include owner/co-owner on name key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-NAMEOWNER-X'
+          example: 1
           format: int32
           type: integer
         extendedSearchPhoneIndicator:
+          description: 'Max Length: 1
+
+
+            Primary search on phone number.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-PHONE'
+          example: 0
           format: int32
           type: integer
         extendedSearchPhoneOwnerIndicator:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on phone number key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-PHONEOWNER-X'
+          example: 0
           format: int32
           type: integer
         extendedSearchPhonePendingIndicator:
+          description: 'Max Length: 1
+
+
+            Activate or deactivate phone number search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-PHONEPEND-SW'
+          example: 0
           format: int32
           type: integer
         extendedSearchPostalCodeOwnerIndicator:
+          description: 'Max Length: 1
+
+
+            Include owner or co-owner on postal code key.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-PSTLOWNER-X'
+          example: 0
           format: int32
           type: integer
         extendedSearchPostalCodePendingIndicator:
+          description: 'Max Length: 1
+
+
+            Activate or deactivate postal code search.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-PSTL-PENDSW'
+          example: 0
           format: int32
           type: integer
         extendedSearchPostalIndicator:
+          description: 'Max Length: 1
+
+
+            Primary search on postal code.
+
+
+            VisionPLUS Service Data: ARXQOO-EXT-SRCH-PSTL-CD'
+          example: 0
           format: int32
           type: integer
         falconClientId:
+          description: 'Max Length: 16
+
+
+            Client ID header.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-CLIENTID'
+          example: ABDEF GHIJK LMNO
           type: string
         falconCurrencyConversionRate:
+          description: 'Max Length: 9
+
+
+            Current conversion rate.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-CURR-CONV-RATE'
+          example: 123456789
           format: int32
           type: integer
         falconCustomerNumberIndicator:
+          description: 'Max Length: 1
+
+
+            Customer number indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-CUST-NBR-FLAG'
+          example: 1
           format: int32
           type: integer
         falconCustomerRepresentIndicator:
+          description: 'Max Length: 1
+
+
+            Falcon customer represent indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-CUST-REPRESENTIND'
+          example: 1
           format: int32
           type: integer
         falconInterfaceIndicator:
+          description: 'Max Length: 1
+
+
+            Falcon 6.0 active.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-INTERFACE-FLAG'
+          example: 1
           format: int32
           type: integer
         falconModelControl1:
+          description: 'Max Length: 1
+
+
+            Model control 1.0.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-MODEL-CNTRL-1'
+          example: '0'
           type: string
         falconModelControl2:
+          description: 'Max Length: 1
+
+
+            Model control 2.0.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-MODEL-CNTRL-2'
+          example: '0'
           type: string
         falconModelControl3:
+          description: 'Max Length: 1
+
+
+            Model control 3.0.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-MODEL-CNTRL-3'
+          example: '0'
           type: string
         falconModelControl4:
+          description: 'Max Length: 1
+
+
+            Model control 4.0.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-MODEL-CNTRL-4'
+          example: '0'
           type: string
         falconNonMonOnlineIndicator:
+          description: 'Max Length: 1
+
+
+            Falcon NMON in online in batch.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-NMON-ONLINE'
+          example: 4
           format: int32
           type: integer
         falconPostingIndicator:
+          description: 'Max Length: 1
+
+
+            Posting indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-POSTING-FLAG'
+          example: 1
           format: int32
           type: integer
         falconProdInterface:
+          description: 'Max Length: 2
+
+
+            Product interface ID.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-PROD-INTERFACE'
+          example: 10
           format: int32
           type: integer
         falconWorkflow:
+          description: 'Max Length: 16
+
+
+            Work flow.
+
+
+            VisionPLUS Service Data: ARXQOO-FL-WORKFLOW'
+          example: ABDEF12345
           type: string
         ficheCode:
+          description: 'Max Length: 1
+
+
+            Archival identifier.
+
+
+            VisionPLUS Service Data: ARXQOO-FICHE-CODE'
+          example: 3
           format: int32
           type: integer
         forceCycleIndicator:
+          description: 'Max Length: 1
+
+
+            Use loan force-cycle.
+
+
+            VisionPLUS Service Data: ARXQOO-FORCE-CYCLE-ACTIVE'
+          example: 1
           format: int32
           type: integer
         formCode:
+          description: 'Max Length: 2
+
+
+            Form type or associated printer.
+
+
+            VisionPLUS Service Data: ARXQOO-FORM-CODE'
+          example: 10
           format: int32
           type: integer
         fraudCdm:
+          description: 'Max Length: 1
+
+
+            Applications fraud file process.
+
+
+            VisionPLUS Service Data: ARXQOO-FRAUD-CDM'
+          example: N
           type: string
         fraudOnline:
+          description: 'Max Length: 1
+
+
+            Online fraud file process.
+
+
+            VisionPLUS Service Data: ARXQOO-FRAUD-ONLINE'
+          example: N
           type: string
         fraudUserInput:
+          description: 'Max Length: 1
+
+
+            User input fraud file process.
+
+
+            VisionPLUS Service Data: ARXQOO-FRAUD-USER-INPUT'
+          example: N
           type: string
         frequentShopperIndicator:
+          description: 'Max Length: 1
+
+
+            Frequent shopper active.
+
+
+            VisionPLUS Service Data: ARXQOO-FREQUENT-SHOPPERSW'
+          example: Y
           type: string
         generalLedgerAccountingMethod:
+          description: 'Max Length: 1
+
+
+            Accounting method.
+
+
+            VisionPLUS Service Data: ARXQOO-GL-ACCTG-METHOD'
+          example: A
           type: string
         generalLedgerBalanceIn:
+          description: 'Max Length: 17
+
+
+            Base segment balance in.
+
+
+            VisionPLUS Service Data: ARXQOO-BS-BAL-IN'
+          example: 1000000
           type: number
         generalLedgerBalanceOut:
+          description: 'Max Length: 17
+
+
+            Base segment balance out.
+
+
+            VisionPLUS Service Data: ARXQOO-BS-BAL-OUT'
+          example: 1000000
           type: number
         generalLedgerControlFlag:
+          description: 'Max Length: 1
+
+
+            General ledger control indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-GL-CONTROL-FLAG'
+          example: D
           type: string
         generalLedgerDefaultCredit:
+          description: 'Max Length: 19
+
+
+            Default GL account for credits.
+
+
+            VisionPLUS Service Data: ARXQOO-GL-DEFAULT-CR'
+          example: 0123456789ABCDEFGHI
           type: string
         generalLedgerDefaultDebit:
+          description: 'Max Length: 19
+
+
+            Default GL account for debits.
+
+
+            VisionPLUS Service Data: ARXQOO-GL-DEFAULT-DB'
+          example: 0123456789ABCDEFGHI
           type: string
         generalLedgerReportLevels:
+          description: 'Max Length: 4
+
+
+            GL reporting level.
+
+
+            VisionPLUS Service Data: ARXQOO-GL-RPT-LEVELS'
+          example: ABCD
           type: string
         generalLedgerReportingType:
+          description: 'Max Length: 1
+
+
+            General ledger reporting type.
+
+
+            VisionPLUS Service Data: ARXQOO-GL-PERIOD'
+          example: D
           type: string
         highRiskCallCenterNumber:
+          description: 'Max Length: 20
+
+
+            High risk.
+
+
+            VisionPLUS Service Data: ARXQOO-HR-CALL-CNTR-NBR'
+          example: 01234567891234567890
           type: string
         holidayDate1:
           format: date
@@ -12533,497 +14918,1893 @@ components:
           format: date
           type: string
         impactReportingIndicator:
+          description: 'Max Length: 1
+
+
+            Account processing reporting active.
+
+
+            VisionPLUS Service Data: ARXQOO-IMPACT-RPT-ACTV'
+          example: 1
           format: int32
           type: integer
         installmentPaymentIndicator:
+          description: 'Max Length: 1
+
+
+            Installment loans active.
+
+
+            VisionPLUS Service Data: ARXQOO-INSTALL-ACTIVE-FLAG'
+          example: 1
           format: int32
           type: integer
         installmentPaymentProcessing:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-INST-PROC'
+          example: 0
           format: int32
           type: integer
         installmentPaymentProcessingIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-INST-PROC-IND'
+          example: 1
           format: int32
           type: integer
         insuranceHistoryIndicator:
+          description: 'Max Length: 1
+
+
+            Maintain insurance or product history.
+
+
+            VisionPLUS Service Data: ARXQOO-INS-HIST-SW'
+          example: '1'
           type: string
         isoLanguageCodeIndicator:
+          description: 'Max Length: 1
+
+
+            Validate ISO language code.
+
+
+            VisionPLUS Service Data: ARXQOO-ISO-LANGUAGE-CODE'
+          example: 1
           format: int32
           type: integer
         jcbLicenseId:
+          description: 'Max Length: 6
+
+
+            JCB licensee ID.
+
+
+            VisionPLUS Service Data: ARXQOO-JCB-LICENSEE-ID'
+          example: 123456
           format: int32
           type: integer
         lastBillingCycleDate1:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-1'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate10:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-10'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate11:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-11'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate12:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-12'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate13:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-13'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate14:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-14'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate15:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-15'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate16:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-16'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate17:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-17'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate18:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-18'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate19:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-19'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate2:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-2'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate20:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-20'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate21:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-21'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate22:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-22'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate23:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-23'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate24:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-24'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate25:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-25'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate26:
+          description: 'Date last statement produced (in ISO 8601)
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-26'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate27:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-27'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate28:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-28'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate29:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-29'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate3:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-3'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate30:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-30'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate31:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-31'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate4:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-4'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate5:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-5'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate6:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-6'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate7:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-7'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate8:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-8'
+          example: 2023-07-10
           format: date
           type: string
         lastBillingCycleDate9:
+          description: 'Date last statement produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DATE-LAST-9'
+          example: 2023-07-10
           format: date
           type: string
         lastTimeStamp:
+          description: 'Max Length: 10
+
+
+            Last time stamp.
+
+
+            VisionPLUS Service Data: ARXQOO-C-LAST-TIME-STAMP'
+          example: 1806550000
           format: int32
           type: integer
         linePerPage:
+          description: 'Max Length: 2
+
+
+            Number of lines per page.
+
+
+            VisionPLUS Service Data: ARXQOO-LINE-PER-PAGE'
+          example: 60
           format: int32
           type: integer
         loanLimit:
+          description: 'Max Length: 17
+
+
+            Loan credit limit.
+
+
+            VisionPLUS Service Data: ARXQOO-LOAN-LIMIT'
+          example: 100000
           type: number
         loanLimitIndicator:
+          description: 'Max Length: 1
+
+
+            Loan limit calculation method.
+
+
+            VisionPLUS Service Data: ARXQOO-LOAN-LIMIT-FLAG'
+          example: A
           type: string
         loanOtbIndicator:
+          description: 'Max Length: 1
+
+
+            Default loan amounts.
+
+
+            VisionPLUS Service Data: ARXQOO-LOAN-OTB-FLAG'
+          example: 1
           format: int32
           type: integer
         logo:
+          description: 'Max Length: 3
+
+
+            Product.
+
+
+            VisionPLUS Service Data: ARXQOO-LOGO'
+          example: 998
           format: int32
           type: integer
         memberId:
+          description: 'Max Length: 9
+
+
+            On-us intra processing ID.
+
+
+            VisionPLUS Service Data: ARXQOO-MEMBER-ID'
+          example: 123456789
           format: int32
           type: integer
         monetaryDeltaExtractsIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-MON-DELTA-QUALIF'
+          example: 1
           format: int32
           type: integer
         multiLanguageCodeIndicator:
+          description: 'Max Length: 1
+
+
+            Multi language indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-MULTI-LANG-IND'
+          example: 1
           format: int32
           type: integer
         multiStreamLetterOrganizationNumber:
+          description: 'Max Length: 3
+
+
+            Multi stream letter business unit.
+
+
+            VisionPLUS Service Data: ARXQOO-MULTI-STREAM-LTR-ORG'
+          example: 100
           format: int32
           type: integer
         multiWalletIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-MULTI-WLT-ACTV-FLAG'
+          example: 0
           format: int32
           type: integer
         nameLocateMinimum:
-          format: int32
-          type: integer
-        nextBillingCycleDa14:
+          description: 'Max Length: 1
+
+
+            Name search minimum characters.
+
+
+            VisionPLUS Service Data: ARXQOO-NAME-LOCATE-MIN'
+          example: 1
           format: int32
           type: integer
         nextBillingCycleDay1:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-1'
+          example: 1
           format: int32
           type: integer
         nextBillingCycleDay10:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-10'
+          example: 10
           format: int32
           type: integer
         nextBillingCycleDay11:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-11'
+          example: 11
           format: int32
           type: integer
         nextBillingCycleDay12:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-12'
+          example: 12
           format: int32
           type: integer
         nextBillingCycleDay13:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-13'
+          example: 13
           format: int32
           type: integer
         nextBillingCycleDay14:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-14'
+          example: 14
+          format: int32
+          type: integer
+        nextBillingCycleDay15:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-15'
+          example: 15
           format: int32
           type: integer
         nextBillingCycleDay16:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-16'
+          example: 16
           format: int32
           type: integer
         nextBillingCycleDay17:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-17'
+          example: 17
           format: int32
           type: integer
         nextBillingCycleDay18:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-18'
+          example: 18
           format: int32
           type: integer
         nextBillingCycleDay19:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-19'
+          example: 19
           format: int32
           type: integer
         nextBillingCycleDay2:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-2'
+          example: 2
           format: int32
           type: integer
         nextBillingCycleDay20:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-20'
+          example: 20
           format: int32
           type: integer
         nextBillingCycleDay21:
+          description: 'Max Length: 2
+
+
+            Next cycle day
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-21'
+          example: 21
           format: int32
           type: integer
         nextBillingCycleDay22:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-22'
+          example: 22
           format: int32
           type: integer
         nextBillingCycleDay23:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-23'
+          example: 23
           format: int32
           type: integer
         nextBillingCycleDay24:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-24'
+          example: 24
           format: int32
           type: integer
         nextBillingCycleDay25:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-25'
+          example: 25
           format: int32
           type: integer
         nextBillingCycleDay26:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-26'
+          example: 26
           format: int32
           type: integer
         nextBillingCycleDay27:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-27'
+          example: 27
           format: int32
           type: integer
         nextBillingCycleDay28:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-28'
+          example: 28
           format: int32
           type: integer
         nextBillingCycleDay29:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-29'
+          example: 29
           format: int32
           type: integer
         nextBillingCycleDay3:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-3'
+          example: 3
           format: int32
           type: integer
         nextBillingCycleDay30:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-30'
+          example: 30
           format: int32
           type: integer
         nextBillingCycleDay31:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-31'
+          example: 31
           format: int32
           type: integer
         nextBillingCycleDay4:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-4'
+          example: 4
           format: int32
           type: integer
         nextBillingCycleDay5:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-5'
+          example: 5
           format: int32
           type: integer
         nextBillingCycleDay6:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-6'
+          example: 6
           format: int32
           type: integer
         nextBillingCycleDay7:
+          description: 'Max Length: 2
+
+
+            Next cycle day
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-7'
+          example: 7
           format: int32
           type: integer
         nextBillingCycleDay8:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-8'
+          example: 8
           format: int32
           type: integer
         nextBillingCycleDay9:
+          description: 'Max Length: 2
+
+
+            Next cycle day.
+
+
+            VisionPLUS Service Data: ARXQOO-CCC-DAY-NEXT-9'
+          example: 9
           format: int32
           type: integer
         nonMonetaryDeltaExtractsIndicator:
+          description: 'Max Length: 1
+
+
+            Processing options.
+
+
+            VisionPLUS Service Data: ARXQOO-NON-MON-DELTAQUALIF'
+          example: 2
           format: int32
           type: integer
         nonPostCredit:
+          description: 'Max Length: 19
+
+
+            Non-posted credits.
+
+
+            VisionPLUS Service Data: ARXQOO-NON-POST-CR'
+          example: 0123456789ABCDEFGHI
           type: string
         nonPostCreditPurge:
+          description: 'Max Length: 19
+
+
+            Non-posted credit purges.
+
+
+            VisionPLUS Service Data: ARXQOO-NON-POST-CR-PURGE'
+          example: 0123456789ABCDEFGHI
           type: string
         nonPostCreditReversal:
+          description: 'Max Length: 19
+
+
+            Non-posted credit reversals.
+
+
+            VisionPLUS Service Data: ARXQOO-NON-POST-CR-REV'
+          example: 0123456789ABCDEFGHI
           type: string
         nonPostDebit:
+          description: 'Max Length: 19
+
+
+            Non-posted debits.
+
+
+            VisionPLUS Service Data: ARXQOO-NON-POST-DB'
+          example: 0123456789ABCDEFGHI
           type: string
         nonPostDebitPurge:
+          description: 'Max Length: 19
+
+
+            Non-posted debit purges.
+
+
+            VisionPLUS Service Data: ARXQOO-NON-POST-DB-PURGE'
+          example: 0123456789ABCDEFGHI
           type: string
         nonPostDebitReversal:
+          description: 'Max Length: 19
+
+
+            Non-posted debit reversals.
+
+
+            VisionPLUS Service Data: ARXQOO-NON-POST-DB-REV'
+          example: 0123456789ABCDEFGHI
           type: string
         organizationNumber:
+          description: 'Max Length: 3
+
+
+            Business unit.
+
+
+            VisionPLUS Service Data: ARXQOO-ORG'
+          example: 998
           format: int32
           type: integer
         outstandingBalanceBegin:
+          description: 'Max Length: 17
+
+
+            Beginning balance.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-BEG-BAL'
+          example: 1000000
           type: number
         outstandingBalanceCreditAmount:
+          description: 'Max Length: 17
+
+
+            Amount credit.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-AMT-CR'
+          example: 10000000
           type: number
         outstandingBalanceCreditNbr:
+          description: 'Max Length: 9
+
+
+            Number credit.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-NBR-CR'
+          example: 123456789
           format: int32
           type: integer
         outstandingBalanceDebitAmount:
+          description: 'Max Length: 17
+
+
+            Amount debit.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-AMT-DB'
+          example: 10000000
           type: number
         outstandingBalanceDebitNbr:
+          description: 'Max Length: 9
+
+
+            Number debit.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-NBR-DB'
+          example: 123465789
           format: int32
           type: integer
         outstandingBalanceEnd:
+          description: 'Max Length: 17
+
+
+            End balance.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-END-BAL'
+          example: 1000000
           type: number
         outstandingBalanceGeneralLedgerBalance:
+          description: 'Max Length: 17
+
+
+            General ledger balance.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-GL-BAL'
+          example: 1000000
           type: number
         outstandingBalanceUnappliedTransactionsAmount:
+          description: 'Max Length: 17
+
+
+            Unapplied transaction amount.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-UT-AMT'
+          example: 1000000
           type: number
         outstandingBalanceUnappliedTransactionsNbr:
+          description: 'Max Length: 9
+
+
+            Unapplied transaction number.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-UT-NBR'
+          example: 1000000
           format: int32
           type: integer
         outstandingBalanceWarehousedTransactionsAmount:
+          description: 'Max Length: 17
+
+
+            Warehoused transaction amount.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-WT-AMT'
+          example: 1000000
           type: number
         outstandingBalanceWarehousedTransactionsNbr:
+          description: 'Max Length: 9
+
+
+            Warehoused transaction number.
+
+
+            VisionPLUS Service Data: ARXQOO-OB-WT-NBR'
+          example: 123456789
           format: int32
           type: integer
         paymentHistoryIndicator:
+          description: 'Max Length: 1
+
+
+            Maintain payment history.
+
+
+            VisionPLUS Service Data: ARXQOO-PAY-HIST-SW'
+          example: '1'
           type: string
         pctRateNod:
+          description: 'Max Length: 1
+
+
+            PCT rate number of decimals.
+
+
+            VisionPLUS Service Data: ARXQOO-PCT-RATE-NOD'
+          example: 7
           format: int32
           type: integer
         perItemRateNod:
+          description: 'Max Length: 1
+
+
+            Per item rate number of decimals.
+
+
+            VisionPLUS Service Data: ARXQOO-PER-ITEM-NOD'
+          example: 3
           format: int32
           type: integer
         postalCode:
+          description: 'Max Length: 10
+
+
+            Postal code.
+
+
+            VisionPLUS Service Data: ARXQOO-PSTL-CD'
+          example: 53045
           format: int32
           type: integer
         predigyLiftInterfaceIndicator:
+          description: 'Max Length: 1
+
+
+            Predigy active.
+
+
+            VisionPLUS Service Data: ARXQOO-PREDIGY-FLAG'
+          example: 1
           format: int32
           type: integer
         prepaidDetailStatementMonths:
+          description: 'Max Length: 2
+
+
+            Number of detail statements retained.
+
+
+            VisionPLUS Service Data: ARXQOO-PPD-OSR-DTL-STMTMTHS'
+          example: 10
           format: int32
           type: integer
         prepaidIndicator:
+          description: 'Max Length: 1
+
+
+            Prepaid functionality control.
+
+
+            VisionPLUS Service Data: ARXQOO-PREPAID-SW'
+          example: 1
           format: int32
           type: integer
         prepaidReloadableDetailStatementMonths:
+          description: 'Max Length: 2
+
+
+            Number of detail statements retained.
+
+
+            VisionPLUS Service Data: ARXQOO-PPR-OSR-DTL-STMTMTHS'
+          example: 10
           format: int32
           type: integer
         prepaidReloadableStatementRetentionIndicator:
+          description: 'Max Length: 1
+
+
+            Retain statements indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-PPR-STMT-RET-IND'
+          example: 1
           format: int32
           type: integer
         prepaidReloadableTotalStatementMonths:
+          description: 'Max Length: 2
+
+
+            Total number of statements retained.
+
+
+            VisionPLUS Service Data: ARXQOO-PPR-OSR-TOT-STMTMTHS'
+          example: 10
           format: int32
           type: integer
         prepaidReloadableTransactionHistoryIndicator:
+          description: 'Max Length: 1
+
+
+            Retain transaction history.
+
+
+            VisionPLUS Service Data: ARXQOO-PPR-TRAN-HST-FLAG'
+          example: 1
           format: int32
           type: integer
         prepaidStatementRetentionIndicator:
+          description: 'Max Length: 1
+
+
+            Retain statements indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-PPD-STMT-RET-IND'
+          example: 1
           format: int32
           type: integer
         prepaidTotalStatementMonths:
+          description: 'Max Length: 2
+
+
+            Total number of statements retained.
+
+
+            VisionPLUS Service Data: ARXQOO-PPD-OSR-TOT-STMTMTHS'
+          example: 10
           format: int32
           type: integer
         prepaidTransactionHistoryIndicator:
+          description: 'Max Length: 1
+
+
+            Retain transaction history.
+
+
+            VisionPLUS Service Data: ARXQOO-PPD-TRAN-HST-FLAG'
+          example: 1
           format: int32
           type: integer
         priorAddressIndicator:
+          description: 'Max Length: 1
+
+
+            Generate prior address record.
+
+
+            VisionPLUS Service Data: ARXQOO-PRIOR-ADDR-FLAG'
+          example: Y
           type: string
         processingSwitch:
+          description: 'Max Length: 1
+
+
+            Processing indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-C-PROCESSING-SW'
+          example: Y
           type: string
         recordNumber:
+          description: 'Max Length: 2
+
+
+            Record number.
+
+
+            VisionPLUS Service Data: ARXQOO-REC-NBR'
+          example: 10
           format: int32
           type: integer
         relationshipAuthorizationIndicator:
+          description: 'Max Length: 1
+
+
+            Relationship authorization active.
+
+
+            VisionPLUS Service Data: ARXQOO-REL-AUTH-FLAG'
+          example: 1
           format: int32
           type: integer
         reportDeliveryMethod:
+          description: 'Max Length: 1
+
+
+            Generate InfoSpan extract.
+
+
+            VisionPLUS Service Data: ARXQOO-REPT-DELV-METH'
+          example: 1
           format: int32
           type: integer
         residenceIdIndicator:
+          description: 'Max Length: 1
+
+
+            Residence ID auto update.
+
+
+            VisionPLUS Service Data: ARXQOO-UPDATE-ST-OF-RESID'
+          example: N
           type: string
         returnMailIndicator:
+          description: 'Max Length: 1
+
+
+            Reset return mail counter.
+
+
+            VisionPLUS Service Data: ARXQOO-UPDATE-RTN-MAIL-CTR'
+          example: N
           type: string
         serviceChargeIndicator:
+          description: 'Max Length: 1
+
+
+            Use service charges.
+
+
+            VisionPLUS Service Data: ARXQOO-SVCHG-IND'
+          example: Y
           type: string
         shortNameIndicator:
+          description: 'Max Length: 1
+
+
+            Short name auto update.
+
+
+            VisionPLUS Service Data: ARXQOO-UPDATE-SHORT-NAME'
+          example: N
           type: string
         singleCreditLimitIndicator:
+          description: 'Max Length: 1
+
+
+            Business unit details.
+
+
+            VisionPLUS Service Data: ARXQOO-SINGL-CR-LIMIT-IND'
+          example: 1
           format: int32
           type: integer
         standardRiskCallCenterNumber:
+          description: 'Max Length: 20
+
+
+            STD risk.
+
+
+            VisionPLUS Service Data: ARXQOO-SR-CALL-CNTR-NBR'
+          example: 01234567891234567890
           type: string
         stateAreaCode:
+          description: 'Max Length: 1
+
+
+            Use phone code to state/province value.
+
+
+            VisionPLUS Service Data: ARXQOO-STATE-AREA-CODE'
+          example: N
           type: string
         stateFeeMaximumIndicator:
+          description: 'Max Length: 1
+
+
+            State fee maximum.
+
+
+            VisionPLUS Service Data: ARXQOO-STATE-FEE-MAX-SW'
+          example: 1
           format: int32
           type: integer
         stateProvincePostalCode:
+          description: 'Max Length: 1
+
+
+            Use postal code to state/province value.
+
+
+            VisionPLUS Service Data: ARXQOO-ST-PR-PSTL-CD'
+          example: N
           type: string
         statementRetentionIndicator:
+          description: 'Max Length: 1
+
+
+            Statement retention indicator.
+
+
+            VisionPLUS Service Data: ARXQOO-STMT-RET-IND'
+          example: 1
           format: int32
           type: integer
         storeNumberModCheck:
+          description: 'Max Length: 1
+
+
+            Store mod-check method.
+
+
+            VisionPLUS Service Data: ARXQOO-STORE-MOD-CHECK'
+          example: N
           type: string
         taxFunctionalityIndicator:
+          description: 'Max Length: 1
+
+
+            Tax active.
+
+
+            VisionPLUS Service Data: ARXQOO-TAX-CALC-SW'
+          example: 7
           format: int32
           type: integer
         taxLogicModule1:
+          description: 'Max Length: 3
+
+
+            Tax 1.0 logic module.
+
+
+            VisionPLUS Service Data: ARXQOO-TAX-TX1-LM'
+          example: 123
           format: int32
           type: integer
         taxLogicModule2:
+          description: 'Max Length: 3
+
+
+            Tax 2.0 logic module.
+
+
+            VisionPLUS Service Data: ARXQOO-TAX-TX2-LM'
+          example: 456
           format: int32
           type: integer
         taxManualAssessment:
+          description: 'Max Length: 1
+
+
+            Manual transactions assessment.
+
+
+            VisionPLUS Service Data: ARXQOO-TAX-ASSMT'
+          example: 2
           format: int32
           type: integer
         taxTableLevel:
+          description: 'Max Length: 1
+
+
+            Assessed table level.
+
+
+            VisionPLUS Service Data: ARXQOO-TAX-TBL-LVL'
+          example: S
           type: string
         time:
+          description: 'Max Length: 10
+
+
+            Time stamp.
+
+
+            VisionPLUS Service Data: ARXQOO-C-TIME-STAMP'
+          example: 1807200000
           format: int32
           type: integer
         todayCalendarDate:
+          description: 'Todays calendar (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQOO-C-TODAYS-CALENDAR'
+          example: 2023-07-10
           format: date
           type: string
         todayJulianDate:
+          description: 'Todays Julian.
+
+
+            VisionPLUS Service Data: ARXQOO-C-TODAYS-JULIAN'
           format: date
           type: string
         tokenServiceMessage:
+          description: 'Max Length: 30
+
+
+            Token service message or version.
+
+
+            VisionPLUS Service Data: ARXQOO-TKN-SVC-MSG'
+          example: ABC.DEFGHIJKLM.OPQ
           type: string
         totalNumberOfDetailedStatements:
+          description: 'Max Length: 2
+
+
+            Total number of statements.
+
+
+            VisionPLUS Service Data: ARXQOO-OSR-TOTAL-STMTMONTHS'
+          example: 18
           format: int32
           type: integer
         totalNumberOfOnlineStatements:
+          description: 'Max Length: 2
+
+
+            Number of detail statements.
+
+
+            VisionPLUS Service Data: ARXQOO-OSR-DETAIL-STMTMONTHS'
+          example: 18
           format: int32
           type: integer
         transactionBasedOffer1:
+          description: 'Max Length: 1
+
+
+            Transaction based offers.
+
+
+            VisionPLUS Service Data: ARXQOO-TBO-P1'
+          example: 5
           format: int32
           type: integer
         transactionBasedOffer2:
+          description: 'Max Length: 1
+
+
+            Transaction based offer priority.
+
+
+            VisionPLUS Service Data: ARXQOO-TBO-P2'
+          example: 3
           format: int32
           type: integer
         transactionHistoryFlag:
+          description: 'Max Length: 1
+
+
+            Retain transaction history.
+
+
+            VisionPLUS Service Data: ARXQOO-TRAN-HST-FLAG'
+          example: 1
           format: int32
           type: integer
         transferBalanceControlCode:
+          description: 'Max Length: 1
+
+
+            Add unpaid min. amount due balances.
+
+
+            VisionPLUS Service Data: ARXQOO-XBC-ACTN'
+          example: 1
           format: int32
           type: integer
         transferBalanceControlPlanNumber:
+          description: 'Max Length: 5
+
+
+            Transfer to plan.
+
+
+            VisionPLUS Service Data: ARXQOO-XBC-PLAN'
+          example: 10000
           format: int32
           type: integer
         userFee1:
+          description: 'Max Length: 15
+
+
+            User fee 1.0 custom name.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-1'
+          example: ABCDE FGHJI
           type: string
         userFee2:
+          description: 'Max Length: 15
+
+
+            User fee 2.0 custom name.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-2'
+          example: ABCDE FGHJI
           type: string
         userFee3:
+          description: 'Max Length: 15
+
+
+            User fee 3.0 custom name.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-3'
+          example: ABCDE FGHJI
           type: string
         userFee4:
+          description: 'Max Length: 15
+
+
+            User fee 4.0 custom name.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-4'
+          example: ABCDE FGHJI
           type: string
         userFee5:
+          description: 'Max Length: 15
+
+
+            User fee 5.0 custom name.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-5'
+          example: ABCDE FGHJI
           type: string
         userFee6:
+          description: 'Max Length: 15
+
+
+            User fee 6.0 custom name.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-6'
+          example: ABCDE FGHJI
           type: string
         userFeeFlag1:
+          description: 'Max Length: 1
+
+
+            User fee 1.0 calculation level.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-FLAG-1'
+          example: '0'
           type: string
         userFeeFlag2:
+          description: 'Max Length: 1
+
+
+            User fee 2.0 calculation level.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-FLAG-2'
+          example: '0'
           type: string
         userFeeFlag3:
+          description: 'Max Length: 1
+
+
+            User fee 3.0 calculation level.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-FLAG-3'
+          example: '0'
           type: string
         userFeeFlag4:
+          description: 'Max Length: 1
+
+
+            User fee 4.0 calculation level.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-FLAG-4'
+          example: '0'
           type: string
         userFeeFlag5:
+          description: 'Max Length: 1
+
+
+            User fee 5.0 calculation level.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-FLAG-5'
+          example: '0'
           type: string
         userFeeFlag6:
+          description: 'Max Length: 1
+
+
+            User fee 6.0 calculation level.
+
+
+            VisionPLUS Service Data: ARXQOO-USER-FEE-FLAG-6'
+          example: '0'
           type: string
         usuryIndicator:
+          description: 'Max Length: 1
+
+
+            Verify interest against usury.
+
+
+            VisionPLUS Service Data: ARXQOO-USURY-SW'
+          example: '0'
           type: string
         vatIndicator:
+          description: 'Max Length: 1
+
+
+            Frequency.
+
+
+            VisionPLUS Service Data: ARXQOO-VAT-MONTHLY'
+          example: 2
           format: int32
           type: integer
         visaQpRegion:
+          description: 'Max Length: 1
+
+
+            Business unit region.
+
+
+            VisionPLUS Service Data: ARXQOO-VISA-QP-REGION'
+          example: 5
           format: int32
           type: integer
         walletServiceProviderAdditionalLetterId1:
+          description: 'Max Length: 3
+
+
+            LTR additional.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-ADDTNL-1'
+          example: '012'
           type: string
         walletServiceProviderAdditionalLetterId2:
+          description: 'Max Length: 3
+
+
+            LTR additional.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-ADDTNL-2'
+          example: '012'
           type: string
         walletServiceProviderAdditionalLetterId3:
+          description: 'Max Length: 3
+
+
+            LTR additional.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-ADDTNL-3'
+          example: '012'
           type: string
         walletServiceProviderAdditionalLetterId4:
+          description: 'Max Length: 3
+
+
+            LTR additional.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-ADDTNL-4'
+          example: '012'
           type: string
         walletServiceProviderAdditionalLetterId5:
+          description: 'Max Length: 3
+
+
+            LTR additional.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-ADDTNL-5'
+          example: '012'
           type: string
         walletServiceProviderDescription1:
+          description: 'Max Length: 15
+
+
+            WSP description.
+
+
+            VisionPLUS Service Data: ARXQOO-WSP-DESC-1'
+          example: APPLE PAY
           type: string
         walletServiceProviderDescription2:
+          description: 'Max Length: 15
+
+
+            WSP description.
+
+
+            VisionPLUS Service Data: ARXQOO-WSP-DESC-2'
+          example: GOOGLE PAY
           type: string
         walletServiceProviderDescription3:
+          description: 'Max Length: 15
+
+
+            WSP description.
+
+
+            VisionPLUS Service Data: ARXQOO-WSP-DESC-3'
+          example: SAMSUNG PAY
           type: string
         walletServiceProviderDescription4:
+          description: 'Max Length: 15
+
+
+            WSP description.
+
+
+            VisionPLUS Service Data: ARXQOO-WSP-DESC-4'
+          example: MASTERCARD M4M
           type: string
         walletServiceProviderDescription5:
+          description: 'Max Length: 15
+
+
+            WSP description.
+
+
+            VisionPLUS Service Data: ARXQOO-WSP-DESC-5'
+          example: ABCDE FGHIJ KLM
           type: string
         walletServiceProviderMasterCardId1:
+          description: 'Max Length: 3
+
+
+            MasterCard wid.
+
+
+            VisionPLUS Service Data: ARXQOO-MC-WSP-ID-1'
+          example: '012'
           type: string
         walletServiceProviderMasterCardId2:
+          description: 'Max Length: 3
+
+
+            MasterCard wid.
+
+
+            VisionPLUS Service Data: ARXQOO-MC-WSP-ID-2'
+          example: '012'
           type: string
         walletServiceProviderMasterCardId3:
+          description: 'Max Length: 3
+
+
+            MasterCard wid.
+
+
+            VisionPLUS Service Data: ARXQOO-MC-WSP-ID-3'
+          example: '012'
           type: string
         walletServiceProviderMasterCardId4:
+          description: 'Max Length: 3
+
+
+            MasterCard wid.
+
+
+            VisionPLUS Service Data: ARXQOO-MC-WSP-ID-4'
+          example: '012'
           type: string
         walletServiceProviderMasterCardId5:
+          description: 'Max Length: 3
+
+
+            MasterCard wid.
+
+
+            VisionPLUS Service Data: ARXQOO-MC-WSP-ID-5'
+          example: '012'
           type: string
         walletServiceProviderPrimaryLetterId1:
+          description: 'Max Length: 3
+
+
+            LTR primary.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-PRIM-1'
+          example: '012'
           type: string
         walletServiceProviderPrimaryLetterId2:
+          description: 'Max Length: 3
+
+
+            LTR primary.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-PRIM-2'
+          example: '012'
           type: string
         walletServiceProviderPrimaryLetterId3:
+          description: 'Max Length: 3
+
+
+            LTR primary.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-PRIM-3'
+          example: '012'
           type: string
         walletServiceProviderPrimaryLetterId4:
+          description: 'Max Length: 3
+
+
+            LTR primary.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-PRIM-4'
+          example: '012'
           type: string
         walletServiceProviderPrimaryLetterId5:
+          description: 'Max Length: 3
+
+
+            LTR primary.
+
+
+            VisionPLUS Service Data: ARXQOO-LTR-ID-PRIM-5'
+          example: '012'
           type: string
         walletServiceProviderVisaRequestorId1:
+          description: 'Max Length: 11
+
+
+            VISA ID.
+
+
+            VisionPLUS Service Data: ARXQOO-VISA-RQTR-ID-1'
+          example: ABC123
           type: string
         walletServiceProviderVisaRequestorId2:
+          description: 'Max Length: 11
+
+
+            VISA ID.
+
+
+            VisionPLUS Service Data: ARXQOO-VISA-RQTR-ID-2'
+          example: DEF456 7891
           type: string
         walletServiceProviderVisaRequestorId3:
+          description: 'Max Length: 11
+
+
+            VISA ID.
+
+
+            VisionPLUS Service Data: ARXQOO-VISA-RQTR-ID-3'
+          example: GHI78 GHI78
           type: string
         walletServiceProviderVisaRequestorId4:
+          description: 'Max Length: 11
+
+
+            VISA ID.
+
+
+            VisionPLUS Service Data: ARXQOO-VISA-RQTR-ID-4'
+          example: ABCDE FGHIJ
           type: string
         walletServiceProviderVisaRequestorId5:
+          description: 'Max Length: 11
+
+
+            VISA ID.
+
+
+            VisionPLUS Service Data: ARXQOO-VISA-RQTR-ID-5'
+          example: ABCDE FGHIJ
           type: string
         workWeek:
+          description: 'Max Length: 7
+
+
+            Work week.
+
+
+            VisionPLUS Service Data: ARXQOO-C-WORK-WEEK'
+          example: ABCDEFG
           type: string
       type: object
     OutstandingAuthorizationCmsResponse:
@@ -14126,152 +17907,559 @@ components:
     PctTableInquiryResponse:
       properties:
         accountTable:
+          description: 'Max Length: 3
+
+
+            Account control table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-ACCT-TBL'
+          example: 0
           format: int32
           type: integer
         addStatus:
+          description: 'Max Length: 2
+
+
+            Pct add status.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-ADD-STATUS'
+          example: 0
           format: int32
           type: integer
         bonusPointsIndicator:
+          description: 'Max Length: 1
+
+
+            Bonus points flag.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-BONUS-PNTS-FLAG'
+          example: '0'
           type: string
         dateLastMaintained:
+          description: 'Last maintenance date (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-DATE-LAST-MAINT'
+          example: 2023-06-25
           format: date
           type: string
         description:
+          description: 'Max Length: 40
+
+
+            Table name.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-DESC'
+          example: '0'
           type: string
         effectiveDate:
+          description: 'Effective date (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-EFF-DATE'
+          example: 2023-06-25
           format: date
           type: string
         feeTable:
+          description: 'Max Length: 3
+
+
+            Current fee table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-FEE-TBL'
+          example: 0
           format: int32
           type: integer
         id:
+          description: 'Max Length: 3
+
+
+            Processing control table ID.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-ID'
+          example: 0
           format: int32
           type: integer
         insuranceTable:
+          description: 'Max Length: 3
+
+
+            Current supplemental offering table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INS-TBL'
+          example: 0
           format: int32
           type: integer
         interestTable1:
+          description: 'Max Length: 3
+
+
+            Current rate table 1.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-1'
+          example: 0
           format: int32
           type: integer
         interestTable10:
+          description: 'Max Length: 3
+
+
+            Current rate table 10.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-10'
+          example: 0
           format: int32
           type: integer
         interestTable11:
+          description: 'Max Length: 3
+
+
+            Current rate table 11.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-11'
+          example: 0
           format: int32
           type: integer
         interestTable12:
+          description: 'Max Length: 3
+
+
+            Current rate table 12.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-12'
+          example: 0
           format: int32
           type: integer
         interestTable2:
+          description: 'Max Length: 3
+
+
+            Current rate table 2.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-2'
+          example: 0
           format: int32
           type: integer
         interestTable3:
+          description: 'Max Length: 3
+
+
+            Current rate table 3.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-3'
+          example: 0
           format: int32
           type: integer
         interestTable4:
+          description: 'Max Length: 3
+
+
+            Current rate table 4.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-4'
+          example: 0
           format: int32
           type: integer
         interestTable5:
+          description: 'Max Length: 3
+
+
+            Current rate table 5.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-5'
+          example: 0
           format: int32
           type: integer
         interestTable6:
+          description: 'Max Length: 3
+
+
+            Current rate table 6.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-6'
+          example: 0
           format: int32
           type: integer
         interestTable7:
+          description: 'Max Length: 3
+
+
+            Current rate table 7.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-7'
+          example: 0
           format: int32
           type: integer
         interestTable8:
+          description: 'Max Length: 3
+
+
+            Current rate table 8.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-8'
+          example: 0
           format: int32
           type: integer
         interestTable9:
+          description: 'Max Length: 3
+
+
+            Current rate table 9.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-9'
+          example: 0
           format: int32
           type: integer
         interestType:
+          description: 'Max Length: 1
+
+
+            Ratification method.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TYPE'
+          example: '0'
           type: string
         logo:
+          description: 'Max Length: 3
+
+
+            Logo.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-LOGO'
+          example: 501
           format: int32
           type: integer
         mccTable:
+          description: 'Max Length: 3
+
+
+            Current prepaid MCC table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-MCC-TBL'
+          example: 0
           format: int32
           type: integer
         newAccountDate:
+          description: 'New account date (in ISO 8601).
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-NEW-ACCT-DATE'
+          example: 2023-06-25
           format: date
           type: string
         newAccountFlag:
+          description: 'Max Length: 1
+
+
+            New account indicator.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-NEW-ACCT-FLAG'
+          example: '0'
           type: string
         organizationNumber:
+          description: 'Max Length: 3
+
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-ORG'
+          example: 999
           format: int32
           type: integer
         pendingAccountTable:
+          description: 'Max Length: 3
+
+
+            Pending account control table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-ACCT-TBL-PEND'
+          example: 0
           format: int32
           type: integer
         pendingFeeTable:
+          description: 'Max Length: 3
+
+
+            Pending fee table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-FEE-TBL-PEND'
+          example: 0
           format: int32
           type: integer
         pendingInsuranceTable:
+          description: 'Max Length: 3
+
+
+            Pending supplemental offering table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INS-TBL-PEND'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable1:
+          description: 'Max Length: 3
+
+
+            Pending rate table 1.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-1'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable10:
+          description: 'Max Length: 3
+
+
+            Pending rate table 10.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-10'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable11:
+          description: 'Max Length: 3
+
+
+            Pending rate table 11.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-11'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable12:
+          description: 'Max Length: 3
+
+
+            Pending rate table 12.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-12'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable2:
+          description: 'Max Length: 3
+
+
+            Pending rate table 2.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-2'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable3:
+          description: 'Max Length: 3
+
+
+            Pending rate table 3.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-3'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable4:
+          description: 'Max Length: 3
+
+
+            Pending rate table 4.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-4'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable5:
+          description: 'Max Length: 3
+
+
+            Pending rate table 5.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-5'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable6:
+          description: 'Max Length: 3
+
+
+            Pending rate table 6.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-6'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable7:
+          description: 'Max Length: 3
+
+
+            Pending rate table 7.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-7'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable8:
+          description: 'Max Length: 3
+
+
+            Pending rate table 8.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-8'
+          example: 0
           format: int32
           type: integer
         pendingInterestTable9:
+          description: 'Max Length: 3
+
+
+            Pending rate table 9.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-INT-TBL-PEND-9'
+          example: 0
           format: int32
           type: integer
         pendingMccTable:
+          description: 'Max Length: 3
+
+
+            Pending prepaid MCC criteria table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-MCC-TBL-PEND'
+          example: 0
           format: int32
           type: integer
         pendingTaxTable:
+          description: 'Max Length: 3
+
+
+            Pending tax table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-TAX-TBL-PEND'
+          example: 0
           format: int32
           type: integer
         pendingUsdFeeTable:
+          description: 'Max Length: 3
+
+
+            Pending USD fee table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-USD-FEE-TBL-PEND'
+          example: 0
           format: int32
           type: integer
         pendingWalletTable:
+          description: 'Max Length: 2
+
+
+            Pending wallet table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-WLT-TBL-PEND'
+          example: 0
           format: int32
           type: integer
         prod:
+          description: 'Max Length: 2
+
+
+            Product.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-PROD'
+          example: '0'
           type: string
         recordType:
+          description: 'Max Length: 1
+
+
+            Record type.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-REC-TYPE'
+          example: '0'
           type: string
         status:
+          description: 'Max Length: 1
+
+
+            Pct status.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-STATUS'
+          example: '0'
           type: string
         taxTable:
+          description: 'Max Length: 3
+
+
+            Tax table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-TAX-TBL'
+          example: 0
           format: int32
           type: integer
         usdFeeTable:
+          description: 'Max Length: 3
+
+
+            USD fee table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-USD-FEE-TBL'
+          example: 0
           format: int32
           type: integer
         walletTable:
+          description: 'Max Length: 2
+
+
+            Wallet table.
+
+
+            VisionPLUS Service Data: ARXQFO-PCT-WLT-TBL'
+          example: 0
           format: int32
           type: integer
       type: object
@@ -14981,169 +19169,618 @@ components:
     PrepaidLogoInquiryResponse:
       properties:
         actionCode:
+          description: 'Max Length: 1
+
+
+            Action Code
+
+
+            VisionPLUS Service Data: ARXQPO-AUTO-RELOAD-ASM-ACT'
           type: string
         allowAtmBalanceInquiry:
+          description: 'Max Length: 1
+
+
+            Allow ATM Balance Inquiry
+
+
+            VisionPLUS Service Data: ARXQPO-ATM-BAL-INQ-ALLOWED'
           format: int32
           type: integer
         allowAtmUsage:
+          description: 'Max Length: 1
+
+
+            Allow ATM Usage
+
+
+            VisionPLUS Service Data: ARXQPO-ATM-USAGE-ALLOWED'
           format: int32
           type: integer
         allowAutomaticReload:
+          description: 'Max Length: 3
+
+
+            Allow Automatic Reload
+
+
+            VisionPLUS Service Data: ARXQPO-AUTO-RELOAD-SW'
           format: int32
           type: integer
         allowPosBalanceInquiry:
+          description: 'Max Length: 1
+
+
+            Allow POS Balance Inquiry
+
+
+            VisionPLUS Service Data: ARXQPO-POS-BAL-INQ-ALLOWED'
           format: int32
           type: integer
         allowPosCashbackTransaction:
+          description: 'Max Length: 1
+
+
+            Allow POS Cashback Transaction
+
+
+            VisionPLUS Service Data: ARXQPO-POS-CASHBACK-ALLOWED'
           format: int32
           type: integer
         allowPosUsage:
+          description: 'Max Length: 1
+
+
+            Allow POS Usage
+
+
+            VisionPLUS Service Data: ARXQPO-POS-USAGE-ALLOWED'
           format: int32
           type: integer
         allowableOverlimitAmount:
+          description: 'Max Length: 17
+
+
+            Allowable Overlimit Amount
+
+
+            VisionPLUS Service Data: ARXQPO-OVERLIMIT-AMT'
           type: number
         allowsUpdateEmbossedNameAccountType:
+          description: 'Max Length: 17
+
+
+            Allows Update Of Embossed Name And Account Type
+
+
+            VisionPLUS Service Data: ARXQPO-PPD-PRSNL-SW'
           type: string
         assessDomRealtimeAtmFee:
+          description: 'Max Length: 1
+
+
+            Assess DOM Real-time ATM Fee
+
+
+            VisionPLUS Service Data: ARXQPO-DOM-ATM-FEE-ACTIVE'
           format: int32
           type: integer
         assessDomRealtimePosFee:
+          description: 'Max Length: 1
+
+
+            Assess DOM Real-time POS Fee
+
+
+            VisionPLUS Service Data: ARXQPO-DOM-POS-FEE-ACTIVE'
           format: int32
           type: integer
         assessInternationalAtmFee:
+          description: 'Max Length: 1
+
+
+            Assess International ATM Fee
+
+
+            VisionPLUS Service Data: ARXQPO-INT-ATM-FEE-ACTIVE'
           format: int32
           type: integer
         assessInternationalPosFee:
+          description: 'Max Length: 2
+
+
+            Assess International POS Fee
+
+
+            VisionPLUS Service Data: ARXQPO-INT-POS-FEE-ACTIVE'
           format: int32
           type: integer
         automaticReloadLetterCode:
+          description: 'Max Length: 3
+
+
+            Automatic Reload Letter Code
+
+
+            VisionPLUS Service Data: ARXQPO-AUTO-RELOAD-LTR'
           type: string
         businessUnit:
+          description: 'Max Length: 3
+
+
+            Business Unit
+
+
+            VisionPLUS Service Data: ARXQPO-ORG'
+          example: 998
           format: int32
           type: integer
         creditBalanceToDormantStatus:
+          description: 'Max Length: 1
+
+
+            Credit Balance To Dormant Status
+
+
+            VisionPLUS Service Data: ARXQPO-CRBAL-THRESHOLD'
           format: int32
           type: integer
         dataEncryptionKeyIndexGeneration:
+          description: 'Max Length: 2
+
+
+            Data Encryption Key Index Generation
+
+
+            VisionPLUS Service Data: ARXQPO-DEK-KEY-IDX-GEN-METH'
           format: int32
           type: integer
         defaultCustomerNumber:
+          description: 'Max Length: 26
+
+
+            Default Customer Number
+
+
+            VisionPLUS Service Data: ARXQPO-DEFAULT-CUST-NBR'
           type: string
         disposableOrReloadableCards:
+          description: 'Max Length: 1
+
+
+            Disposable Or Reloadable Cards
+
+
+            VisionPLUS Service Data: ARXQPO-PREPAID-PROD-TYPE'
           format: int32
           type: integer
         domesticAtmWithdrawalWithoutFees:
+          description: 'Max Length: 3
+
+
+            Domestic ATM Withdrawal Can Be Performed Without Fees
+
+
+            VisionPLUS Service Data: ARXQPO-DOM-CSH-WDRL-FEE-CTR'
           format: int32
           type: integer
         embossedName1:
+          description: 'Max Length: 26
+
+
+            Embossed Name 1
+
+
+            VisionPLUS Service Data: ARXQPO-DEFAULT-NAME-1'
           type: string
         embossedName2:
+          description: 'Max Length: 17
+
+
+            Embossed Name 2
+
+
+            VisionPLUS Service Data: ARXQPO-DEFAULT-NAME-2'
           type: string
         letterToBeSent:
+          description: 'Max Length: 2
+
+
+            Letter To Be Sent When The Account Meets Criteria
+
+
+            VisionPLUS Service Data: ARXQPO-PCF-OVL-NOTC-LTR-NBR'
           type: string
         maximumBalanceToDetermineFeeAmount:
+          description: 'Max Length: 3
+
+
+            Maximum Balance Used To Determine Fee Amount
+
+
+            VisionPLUS Service Data: ARXQPO-MAX-BAL-AMT'
           type: number
         maximumCashbackAllowedAmount:
+          description: 'Max Length: 17
+
+
+            Maximum Cashback Allowed Amount
+
+
+            VisionPLUS Service Data: ARXQPO-MAX-CASHBACK-AMT'
           type: number
         migrateAccountToInactiveFile:
+          description: 'Max Length: 1
+
+
+            Migrate Account To Inactive File
+
+
+            VisionPLUS Service Data: ARXQPO-A-I-MIGRATION-SW'
           format: int32
           type: integer
         minimumCashbackAllowedAmount:
+          description: 'Max Length: 17
+
+
+            Minimum Cashback Allowed Amount
+
+
+            VisionPLUS Service Data: ARXQPO-MIN-CASHBACK-AMT'
           type: number
         nonPersonalisedChipOrPinCardTerm:
+          description: 'Max Length: 1
+
+
+            Non-Personalised CHIP/PIN Card Term
+
+
+            VisionPLUS Service Data: ARXQPO-NP-SMART-TERM-MONTHS'
           format: int32
           type: integer
         nonPersonalisedLoadFrequency:
+          description: 'Max Length: 2
+
+
+            Non-Personalised Load Frequency
+
+
+            VisionPLUS Service Data: ARXQPO-NP-LOAD-FREQ'
           format: int32
           type: integer
         nonPersonalisedLoadMinimumAmount:
+          description: 'Max Length: 17
+
+
+            Non-Personalised Load Minimum Amount
+
+
+            VisionPLUS Service Data: ARXQPO-NP-MIN-SNGL-LOAD-AMT'
           type: number
         nonPersonalisedMagneticStripeCardTerm:
+          description: 'Max Length: 3
+
+
+            Non-Personalised Magnetic Stripe Card Term
+
+
+            VisionPLUS Service Data: ARXQPO-NP-CARD-TERM-MONTHS'
           format: int32
           type: integer
         nonPersonalisedMaximumInitialLoadAmount:
+          description: 'Max Length: 17
+
+
+            Non-Personalised Max Initial Load Amount
+
+
+            VisionPLUS Service Data: ARXQPO-NP-MAX-INIT-LOAD-AMT'
           type: number
         nonPersonalisedMaximumLifetimeAmount:
+          description: 'Max Length: 17
+
+
+            Non-Personalised Max Lifetime Amount
+
+
+            VisionPLUS Service Data: ARXQPO-NP-MAX-LT-LOAD-AMT'
           type: number
         nonPersonalisedMaximumLifetimeNumber:
+          description: 'Max Length: 17
+
+
+            Non-Personalised Max Lifetime Number
+
+
+            VisionPLUS Service Data: ARXQPO-NP-MAX-LT-LOAD-NBR'
           format: int32
           type: integer
         nonPersonalisedMaximumLoadAmount:
+          description: 'Max Length: 17
+
+
+            Non-Personalised Max Load Amount
+
+
+            VisionPLUS Service Data: ARXQPO-NP-LOAD-AMT'
           type: number
         nonPersonalisedMinimumInitialAmount:
+          description: 'Max Length: 17
+
+
+            Non-Personalised Minimum Initial Amount
+
+
+            VisionPLUS Service Data: ARXQPO-NP-MIN-INIT-LOAD-AMT'
           type: number
         nonPersonalisedSingleMaximumAmount:
+          description: 'Max Length: 5
+
+
+            Non-Personalised Single Max Amount
+
+
+            VisionPLUS Service Data: ARXQPO-NP-MAX-SNGL-LOAD-AMT'
           type: number
         nonPersonalisedSubsequentLoadNumber:
+          description: 'Max Length: 17
+
+
+            Non-Personalised Subsequent Load Number
+
+
+            VisionPLUS Service Data: ARXQPO-NP-LOAD-NBR'
           format: int32
           type: integer
         nonToPersonalizedAutoReissue:
+          description: 'Max Length: 19
+
+
+            Non To Personalized Auto Reissue
+
+
+            VisionPLUS Service Data: ARXQPO-AUTO-REISSUE-SW'
           format: int32
           type: integer
         numberOfGenericLoadsAllowed:
+          description: 'Max Length: 1
+
+
+            Number Of Generic Loads Allowed
+
+
+            VisionPLUS Service Data: ARXQPO-NBR-GENERIC-LOADS'
           format: int32
           type: integer
         numberOfOccurrencesForDek:
+          description: 'Max Length: 1
+
+
+            Number Of Occurrences For DEK
+
+
+            VisionPLUS Service Data: ARXQPO-DEK-KEY-MAXORFIX'
           format: int32
           type: integer
         overlimitAmountToGenerateLetter:
+          description: 'Max Length: 17
+
+
+            Overlimit Amount To Generate Letter
+
+
+            VisionPLUS Service Data: ARXQPO-OVLM-LTR-AMT'
           type: number
         overlimitAmountToGenerateReport:
+          description: 'Max Length: 17
+
+
+            Overlimit Amount To Generate Report
+
+
+            VisionPLUS Service Data: ARXQPO-OVLM-RPT-AMT'
           type: number
         personalizedCardsAllowed:
+          description: 'Max Length: 1
+
+
+            Personalised Cards Allowed
+
+
+            VisionPLUS Service Data: ARXQPO-PREPAID-PERSO-TYPE'
           format: int32
           type: integer
         personalizedChipOrPinCardTerm:
+          description: 'Max Length: 1
+
+
+            Personalised CHIP/PIN Card Term
+
+
+            VisionPLUS Service Data: ARXQPO-PE-SMART-TERM-MONTHS'
           format: int32
           type: integer
         personalizedLoadFrequency:
+          description: 'Max Length: 2
+
+
+            Personalised Load Frequency
+
+
+            VisionPLUS Service Data: ARXQPO-PE-LOAD-FREQ'
           format: int32
           type: integer
         personalizedMagneticStripeCardTerm:
+          description: 'Max Length: 3
+
+
+            Personalised Magnetic Stripe Card Term
+
+
+            VisionPLUS Service Data: ARXQPO-PE-CARD-TERM-MONTHS'
           format: int32
           type: integer
         personalizedMaximumInitialLoadAmount:
+          description: 'Max Length: 17
+
+
+            Personalised Max Initial Load Amount
+
+
+            VisionPLUS Service Data: ARXQPO-PE-MAX-INIT-LOAD-AMT'
           type: number
         personalizedMaximumLifetimeAmount:
+          description: 'Max Length: 3
+
+
+            Personalised Max Lifetime Amount
+
+
+            VisionPLUS Service Data: ARXQPO-PE-MAX-LT-LOAD-AMT'
           type: number
         personalizedMaximumLifetimeNumber:
+          description: 'Max Length: 17
+
+
+            Personalised Max Lifetime Number
+
+
+            VisionPLUS Service Data: ARXQPO-PE-MAX-LT-LOAD-NBR'
           format: int32
           type: integer
         personalizedMaximumLoadAmount:
+          description: 'Max Length: 17
+
+
+            Personalised Max Load Amount
+
+
+            VisionPLUS Service Data: ARXQPO-PE-LOAD-AMT'
           type: number
         personalizedMinimumInitialLoadAmount:
+          description: 'Max Length: 17
+
+
+            Personalised Minimum Initial Load Amount
+
+
+            VisionPLUS Service Data: ARXQPO-PE-MIN-INIT-LOAD-AMT'
           type: number
         personalizedSingleMaximumAmount:
+          description: 'Max Length: 5
+
+
+            Personalised Single Max Amount
+
+
+            VisionPLUS Service Data: ARXQPO-PE-MAX-SNGL-LOAD-AMT'
           type: number
         personalizedSingleMinimumAmount:
+          description: 'Max Length: 17
+
+
+            Personalised Single Minimum Amount
+
+
+            VisionPLUS Service Data: ARXQPO-PE-MIN-SNGL-LOAD-AMT'
           type: number
         personalizedSubsequentLoadNumber:
+          description: 'Max Length: 17
+
+
+            Personalised Subsequent Load Number
+
+
+            VisionPLUS Service Data: ARXQPO-PE-LOAD-NBR'
           format: int32
           type: integer
         prepaidProgramType:
+          description: 'Max Length: 1
+
+
+            Prepaid Program Type
+
+
+            VisionPLUS Service Data: ARXQPO-PREPAID-TYPE'
           format: int32
           type: integer
         producesAnnualStatements:
+          description: 'Max Length: 1
+
+
+            Produces Annual Statements For Accounts
+
+
+            VisionPLUS Service Data: ARXQPO-ANNUAL-STMT-OPTION'
           type: string
         product:
+          description: 'Max Length: 1
+
+
+            Product
+
+
+            VisionPLUS Service Data: ARXQPO-LOGO'
           format: int32
           type: integer
         reissueNonPersonalizedCardAtExpiration:
+          description: 'Max Length: 1
+
+
+            Reissue Non Personalized Card At Expiration
+
+
+            VisionPLUS Service Data: ARXQPO-NP-REISS-SW'
           format: int32
           type: integer
         reissuePersonalizedCardAtExpiration:
+          description: 'Max Length: 1
+
+
+            Reissue Personalized Card At Expiration
+
+
+            VisionPLUS Service Data: ARXQPO-PE-REISS-SW'
           format: int32
           type: integer
         reloadAsmBusinessUnit:
+          description: 'Max Length: 3
+
+
+            Business Unit
+
+
+            VisionPLUS Service Data: ARXQPO-AUTO-RELOAD-ASM-ORG'
           format: int32
           type: integer
         representativeId:
+          description: 'Max Length: 4
+
+
+            Representative ID
+
+
+            VisionPLUS Service Data: ARXQPO-AUTO-RELOAD-ASM-REP'
           type: string
         sameDayExpiry:
+          description: 'Max Length: 1
+
+
+            SAME DAY EXPRY
+
+
+            VisionPLUS Service Data: ARXQPO-SAME-DAY-EXPRY'
           type: string
         serviceReturn:
           type: string
         statementGenerationMethod:
+          description: 'Max Length: 1
+
+
+            Statement Generation Method
+
+
+            VisionPLUS Service Data: ARXQPO-STMT-FLAG'
           type: string
       type: object
     PromoRateUpdateRequest:
@@ -17124,72 +21761,106 @@ paths:
           description: 'VPL8SNA06S - ORGANIZATION MUST BE NUMERIC AND VALID VALUES
             ARE 001-998
 
+
             VPL8SNA07S - ACCOUNT OR CARD NUMBER REQUIRED
+
 
             VPL8SNA08S - ACTION CODE IS REQUIRED
 
+
             VPL8SNA09S - ORGANIZATION NUMBER IS NOT ON FILE
+
 
             VPL8SNA10S - INVALID ORGANIZATION NUMBER
 
+
             VPL8SNA13S - ORGANIZATION NUMBER NOT FOUND
+
 
             VPL8SNA14S - ACCOUNT NOT FOUND
 
+
             VPL8SNA15S - ACCOUNT NUMBER NOT FOUND
+
 
             VPL8SNA16S - ACCOUNT NUMBER NOT FOUND
 
+
             VPL8SNA17S - ACCOUNT NUMBER NOT FOUND
+
 
             VPL8SNA18S - INVALID REQUEST ON A LOCAL ACCOUNT
 
+
             VPL8SNA19S - ACTION CODE IS NOT ON FILE
+
 
             VPL8SNA20S - ACTION CODE IS NOT ON FILE
 
+
             VPL8SNA24S - CONTROL RECORD NOT FOUND
+
 
             VPL8SNA25S - LETTER ORG IS NOT FOUND
 
+
             VPL8SNA26S - LETTER ORG IS NOT FOUND
+
 
             VPL8SNA27E - FOREIGN USE INDICATOR INVALID - MUST BE 0 OR 1
 
+
             VPL8SNA28E - REVIEW DATE MUST BE NUMERIC AND GREATER THAN ZEROS
+
 
             VPL8SNA29E - REVIEW TIME IS INVALID
 
+
             VPL8SNA30E - REVIEW TIME MUST BE NUMERIC AND GREATER THAN ZEROS
+
 
             VPL8SNA31E - LETTER ORG MUST BE NUMERIC AND VALID VALUES ARE 001 TO 998
 
+
             VPL8SNA32E - CARD SEQUENCE MUST BE NUMERIC
+
 
             VPL8SNA33E - CARD NUMBER MUST BE NUMERIC
 
+
             VPL8SNA34E - REVIEW DATE MUST BE GREATER THAN TODAY
+
 
             VPL8SNA35E - REVIEW DATE IS INVALID
 
+
             VPL8SNA36E - RETURN MAIL - LETTER CANNOT BE PROCESSED - ENTER SPACES
+
 
             VPL8SNA37E - CARD NUMBER IS REQUIRED
 
+
             VPL8SNA38E - CARD SEQUENCE IS REQUIRED
+
 
             VPL8SNA39E - PRIORITY MUST BE NUMERIC AND VALID VALUES ARE 0 - 3
 
+
             VPL8SNA40E - ACTION TYPE IS INVALID AND MUST BE "N", "I", SPACE OR LOW-VALUE
+
 
             VPL8SNA41E - MANUAL REFERRAL OPTION INVALID. MUST BE ZERO, SPACES, LV
             OR 1.
 
+
             VPL8SNA42E - MANUAL REFERRAL ORG NUMBER MUST BE NUMERIC AND < 999
+
 
             VPL8SNA43E - MANUAL REFERRAL REP ID WAS NOT SUPPLIED
 
+
             VPL8SNA44S - MANUAL REFERRAL ORG/REP NOT FOUND
+
 
             VPL8SNA45S - MANUAL REFERRAL ORG/REP NOT ELIGIBLE FOR THIS REQUEST'
         '500':
@@ -17423,15 +22094,22 @@ paths:
         \ R8V1"
       operationId: organizationInquiry
       parameters:
-      - description: Organization Number
-        example: 807
+      - description: '* Min Length: 1
+
+          * Max Length: 3
+
+
+          Organization Number.
+
+
+          VisionPLUS Service Data: ARXQOI-INT-ORG'
+        example: 998
         in: query
         name: organizationNumber
         required: true
         schema:
-          maximum: 999
-          minimum: 1
-          type: string
+          format: int32
+          type: integer
       - description: API Key
         in: header
         name: apikey
@@ -17484,7 +22162,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/DResponse'
           description: Backend Error
-      summary: 'Organization Inquiry. VMX Service: M.CMS.ORG.INQ, R8V1'
+      summary: "Organization number Inquiry and details. \nVMX Service: M.CMS.ORG.INQ,\
+        \ R8V1"
       tags:
       - Transactions
       x-group-name: Transactions
@@ -17697,37 +22376,56 @@ paths:
         \ R8V1"
       operationId: pctTableInquiry
       parameters:
-      - description: Organization Number
-        example: 807
+      - example: 807
         in: query
         name: organizationNumber
         required: true
         schema:
+          description: "* Max Length: 3 \n\nOrganization\n\nVisionPLUS Service Data\
+            \ ARXQF-PCT-ORG"
           maximum: 999
           minimum: 1
           type: string
-      - description: Logo
-        example: 400
+      - example: 400
         in: query
         name: logo
         required: true
         schema:
+          description: '* Max Length: 3
+
+
+            Logo
+
+
+            VisionPLUS Service Data ARXQF-PCT-LOGO'
           maximum: 999
           minimum: 0
           type: string
-      - description: Table
-        example: 1
+      - example: 1
         in: query
         name: table
         required: true
         schema:
+          description: '* Max Length: 3
+
+
+            Processing control table
+
+
+            VisionPLUS Service Data ARXQF-PCT-TABLE'
           type: string
-      - description: Product
-        example: 1
+      - example: 1
         in: query
         name: product
         required: true
         schema:
+          description: '* Max Length: 2
+
+
+            Product
+
+
+            VisionPLUS Service Data ARXQF-PCT-PROD'
           type: string
       - description: API Key
         in: header
@@ -17770,24 +22468,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-          description: 'VPL5SQF06S - ORG IS INVALID
-
-            VPL5SQF07S - PCT TABLE MUST BE NUMERIC AND GT 0
-
-            VPL5SQF08S - PCT PROD IS INVALID
-
-            VPL5SQF09S - REQUESTED ORG NUMBER IS NOT FOUND
-
-            VPL5SQF12S - ORG RECORD NOT FOUND/ADD PENDING
-
-            VPL5SQF13S - PCT TABLE NOT FOUND/ADD PENDING'
+          description: "VPL5SQF02S - SERVICE INPUT IS AN INCORRECT LENGTH \n\nVPL5SQF06S\
+            \ - ORG IS INVALID \n\nVPL5SQF07S - PCT TABLE MUST BE NUMERIC AND GT 0\
+            \ \n\nVPL5SQF08S - PCT PROD IS INVALID \n\nVPL5SQF09S - REQUESTED ORG\
+            \ NUMBER IS NOT FOUND \n\nVPL5SQF12S - ORG RECORD NOT FOUND/ADD PENDING\
+            \ \n\nVPL5SQF13S - PCT TABLE NOT FOUND/ADD PENDING"
         '500':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
           description: Backend Error
-      summary: PCT Table Inquiry. M.CMS.PCT.TBL.INQ, R8V1
+      summary: "PCT Table Inquiry and details. \nVMX Service: M.CMS.PCT.TBL.INQ, R8V1"
       tags:
       - Transactions
       x-group-name: Transactions
@@ -17961,6 +22653,10 @@ paths:
         name: organizationNumber
         required: true
         schema:
+          description: 'Organization Number
+
+
+            VisionPLUS Service Data: ARXQPI-ORG'
           maximum: 999
           minimum: 1
           type: string
@@ -17970,6 +22666,10 @@ paths:
         name: logo
         required: true
         schema:
+          description: 'Logo
+
+
+            VisionPLUS Service Data: ARXQPI-LOGO'
           maximum: 999
           minimum: 0
           type: string
@@ -18015,7 +22715,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/DResponse'
           description: Backend Error
-      summary: 'Prepaid Logo Inquiry. VMX Service: M.CMS.LOGO.PREPD.INQ, R8V1'
+      summary: "Prepaid Logo Inquiry and details. \nVMX Service: M.CMS.LOGO.PREPD.INQ,\
+        \ R8V1"
       tags:
       - Transactions
       x-group-name: Transactions
