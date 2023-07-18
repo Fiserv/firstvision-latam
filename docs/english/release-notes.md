@@ -1,5 +1,104 @@
 ---
-tags: [Release Notes, January, February, March, April, May]
+tags: [Release Notes, January, February, March, April, May, June, July]
+---
+
+
+---
+
+## July
+
+### What's New?
+
+- N/A
+
+### Enhancements
+
+API's description improvement:
+- /transactions/organization
+- /transactions/pct-table
+- /transactions/prepaid-logo
+- /account/relationship/{relationshipNumber}/account
+- /account/associatedParties
+- /account/bankAccount
+- /account/directDebit
+- /account/{accountNumber}/credit-debit
+- /account/v1/statementInstallments/{numberOfTerms}
+- /cards/v3/embosser
+- /transactions/non-monetary-action-code
+- /customer/generation
+- /cards/details
+- /account/relationship/account
+- /cards/statement-detail/date
+- /cards/embosser/encrypted-card-pan
+- /cards/transfer
+- /transactions/summary-details
+- /account/v2/customer
+- /account/{accountNumber}/ibs-debit
+- /account/enrollment POST
+- /account/enrollment PUT
+- /account/service-charge-table
+- /account/{accountNumber}/relationship
+- /account/{accountNumber}/product
+- /account/{tableInquiry}/account-control-table-inquiry
+- /account/account-demographic
+- /cards/embosser/l8vf
+- /cards/status-L8V1  
+- /customer/{customerNumber}/relationship 
+- /account/enroll/{accountNumber} 
+- /account/wallet-priority-order
+- /account/{accountNumber}/overview
+- /customer/{accountNumber}/current-prior-address
+- /transactions/outstanding-authorizations-L8V3/details
+- /transactions/mcct-table
+
+### Fixed
+
+Endpoints moved to version 1.1.0:
+- /account/balance
+- /account/FL-balance
+
+### Obsolete
+- /cards/embosser/encrypted-card-pan
+
+---
+
+
+# Release Notes
+
+## June 2023
+
+### What's New?
+
+- N/A
+
+### Enhancements
+
+API's description improvement:
+- /cards/details
+- /account/relationship/account
+- /cards/statement-detail/date
+- /cards/embosser/encrypted-card-pan
+- /cards/transfer
+- /transactions/summary-details
+- /account/v2/customer
+- /account/{accountNumber}/ibs-debit
+- /account/enrollment POST
+- /account/enrollment PUT
+- /account/service-charge-table
+- /account/{accountNumber}/relationship
+- /account/{accountNumber}/product
+- /account/{tableInquiry}/account-control-table-inquiry
+- /account/account-demographic
+- /cards/embosser/l8vf
+
+### Fixed
+
+- N/A
+
+### Obsolete
+
+- N/A
+
 ---
 
 # Release Notes

@@ -1,5 +1,106 @@
 ---
-tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo]
+tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio]
+---
+
+
+---
+
+# Release Notes
+
+## Julio
+
+### ¿Qué hay de nuevo?
+
+- N/A
+
+### Mejoras
+
+Descripción de API's mejorada:
+- /transactions/organization
+- /transactions/pct-table
+- /transactions/prepaid-logo
+- /account/relationship/{relationshipNumber}/account
+- /account/associatedParties
+- /account/bankAccount
+- /account/directDebit
+- /account/{accountNumber}/credit-debit
+- /account/v1/statementInstallments/{numberOfTerms}
+- /cards/v3/embosser
+- /transactions/non-monetary-action-code
+- /customer/generation
+- /cards/details
+- /account/relationship/account
+- /cards/statement-detail/date
+- /cards/embosser/encrypted-card-pan
+- /cards/transfer
+- /transactions/summary-details
+- /account/v2/customer
+- /account/{accountNumber}/ibs-debit
+- /account/enrollment POST
+- /account/enrollment PUT
+- /account/service-charge-table
+- /account/{accountNumber}/relationship
+- /account/{accountNumber}/product
+- /account/{tableInquiry}/account-control-table-inquiry
+- /account/account-demographic
+- /cards/embosser/l8vf
+- /cards/status-L8V1  
+- /customer/{customerNumber}/relationship 
+- /account/enroll/{accountNumber} 
+- /account/wallet-priority-order
+- /account/{accountNumber}/overview
+- /customer/{accountNumber}/current-prior-address
+- /transactions/outstanding-authorizations-L8V3/details
+- /transactions/mcct-table
+
+### Problemas solucionados
+
+Endpoints se movieron a la versión 1.1.0:
+- /account/balance
+- /account/FL-balance
+
+### Obsoleto
+- /cards/embosser/encrypted-card-pan
+
+---
+
+
+# Release Notes
+
+## Junio 2023
+
+### ¿Qué hay de nuevo?
+
+- N/A
+
+### Mejoras
+
+Descripción de API's mejorada:
+- /cards/details
+- /account/relationship/account
+- /cards/statement-detail/date
+- /cards/embosser/encrypted-card-pan
+- /cards/transfer
+- /transactions/summary-details
+- /account/v2/customer
+- /account/{accountNumber}/ibs-debit
+- /account/enrollment POST
+- /account/enrollment PUT
+- /account/service-charge-table
+- /account/{accountNumber}/relationship
+- /account/{accountNumber}/product
+- /account/{tableInquiry}/account-control-table-inquiry
+- /account/account-demographic
+- /cards/embosser/l8vf
+
+### Problemas solucionados
+
+- N/A
+
+### Obsoleto
+
+- N/A
+
 ---
 
 # Release Notes
