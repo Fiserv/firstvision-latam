@@ -7,7 +7,7 @@ tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio]
 
 # Release Notes
 
-## Julio 06 2023
+## Julio
 
 ### ¿Qué hay de nuevo?
 
@@ -16,6 +16,18 @@ tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio]
 ### Mejoras
 
 Descripción de API's mejorada:
+- /transactions/organization
+- /transactions/pct-table
+- /transactions/prepaid-logo
+- /account/relationship/{relationshipNumber}/account
+- /account/associatedParties
+- /account/bankAccount
+- /account/directDebit
+- /account/{accountNumber}/credit-debit
+- /account/v1/statementInstallments/{numberOfTerms}
+- /cards/v3/embosser
+- /transactions/non-monetary-action-code
+- /customer/generation
 - /cards/details
 - /account/relationship/account
 - /cards/statement-detail/date
