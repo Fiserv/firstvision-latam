@@ -3,11 +3,9 @@ tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio]
 ---
 
 
----
-
 # Release Notes
 
-## Julio
+## Julio 2023
 
 ### ¿Qué hay de nuevo?
 
@@ -65,8 +63,6 @@ Endpoints se movieron a la versión 1.1.0:
 ---
 
 
-# Release Notes
-
 ## Junio 2023
 
 ### ¿Qué hay de nuevo?
@@ -103,7 +99,6 @@ Descripción de API's mejorada:
 
 ---
 
-# Release Notes
 
 ## Mayo 2023
 
