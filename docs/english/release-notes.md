@@ -3,9 +3,7 @@ tags: [Release Notes, January, February, March, April, May, June, July]
 ---
 
 
----
-
-## July
+## July 2023
 
 ### What's New?
 
@@ -63,8 +61,6 @@ Endpoints moved to version 1.1.0:
 ---
 
 
-# Release Notes
-
 ## June 2023
 
 ### What's New?
@@ -100,8 +96,6 @@ API's description improvement:
 - N/A
 
 ---
-
-# Release Notes
 
 ## May 2023
 
