@@ -1,0 +1,1571 @@
+openapi: 3.0.0
+x-stoplight:
+  id: 4y0fpwoerzsr9
+info:
+  title: Webhook v4.0
+  version: '1.0'
+  description: Webhook events version 4
+  contact:
+    name: Cinthya Rivera
+    url: 'null'
+    email: cinthya.rivera@fiserv.com
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /notifications/v3/authorization:
+    post:
+      x-proxy-name: Authorization
+      x-group-name: FV Events
+      x-child-product-name: Notifications
+      summary: Authorization
+      operationId: authorization
+      description: 1 - Authorization event
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: context
+          description: 'Security context. VMX: M_CONTEXT Max length: 20. Example: VMX.MULTICHANNEL.REQ'
+        - schema:
+            type: string
+          in: header
+          description: 'VMX Version.  VMX: M_NAME Max length: 20. Example: R8V1'
+          name: version
+        - schema:
+            type: integer
+          in: header
+          name: organizationNumber
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+        - schema:
+            type: string
+          in: header
+          name: accountNumber
+          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+        - schema:
+            type: string
+          in: header
+          name: customerNumber
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+        - schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+          in: header
+          name: channelType
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
+              properties:
+                description:
+                  type: string
+                  maxLength: 20
+                  minLength: 0
+                  example: APPROVED
+                  description: |-
+                    Event message description.
+                    APPROVED / DECLINED - REASON with 25 bytes max.
+                    VMX: M_DESC
+                cardNumber:
+                  type: string
+                  minLength: 0
+                  maxLength: 65
+                  example: 000540208ID5IXX3865
+                  description: |
+                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+                    VMX: M_LINE_6
+                transaction:
+                  type: object
+                  description: Information related to event transaction
+                  properties:
+                    id:
+                      type: string
+                      description: |
+                        Position 1-2 bytes: DE3 Proc code
+                        Position 3-15 bytes: DE42 Merchant ID
+                        Pos 18 - 12 bytes: DE37 reference number
+                        Pos 30 - 4 bytes: Message type ID / MTI
+                        Pos 34 - 1 bytes: FAS request type ID A: Authorization, R - reversal
+                        Pos 35 - 6 bytes: Authorization Code
+                        Pos 41 - 14 bytes: DE6 Card holder billing amount
+                        Pos 55 - 01 byte : Field separator "/"
+                        Pos 56 - 02 bytes : Installment number.
+                        VMX: M_LINE_12
+                      example: 01ABCDFGHIJK0000X0000000000010001AABC00100000000001.01/01
+                      maxLength: 65
+                      minLength: 0
+                    additionInformation:
+                      type: string
+                      description: |-
+                        Pos 1 - 3 bytes : DE22 POS Entry mode
+                        Pos 4 - 1 byte : Ecommerce flag
+                        Pos 5 - 3 Acquirer country code 
+                        Pos - 8 - 13 bytes - Merchant City
+                        Pos 21 - 2 bytes : Merchant country
+                        Pos 23 - 10 bytes : DE55 Terminal verification results TVR
+                        Pos 33 - 16 bytes - DE55 ARQC
+                        Pos 49 - 6 bytes - DE55 CVM results
+                        Pos 55 - 1 byte : ARQC result
+                        Pos 56 - 1 byte - Terminal capability Ind
+                        Pos 57 - 5 bytes : DE18 MCC
+                        Pos 62 - 1 byte - Cardholder ID method
+                        Pos 63 - 1 byte - Draft Capture flag
+                        VMX: M_LINE_13
+                      example: 00 0000 00000000000000
+                      minLength: 0
+                      maxLength: 65
+                    acceptorName:
+                      type: string
+                      description: |
+                        Card Acceptor Name / Merchant name. ISO 8533 based on data element 43 (1–23 street address, –36 city, –38 state, 39–40 country).
+                        VMX: M_LINE_8
+                      maxLength: 65
+                      minLength: 0
+                    reason:
+                      type: string
+                      description: |-
+                        Declination reason.
+                        Number between 001 to 800
+                        Blocked card SMS is 108.
+                        Authorization is 296.
+                        VMX: M_LINE_5
+                      minLength: 0
+                      example: '294'
+                      maxLength: 65
+                    feeAmount:
+                      type: string
+                      description: |
+                        Transaction fee amount. ISO 8533 based on data element 54 (Additional amounts)
+                        Pos 01 - 13 bytes
+                        VMX: M_LINE_15
+                      maxLength: 65
+                      example: '00000000010.00'
+                    amount:
+                      type: string
+                      description: |
+                        Transaction Amount in original currency. ISO 8533 based on data element 4 (Amount Transaction).
+                        VMX: M_LINE_7
+                      minLength: 0
+                      maxLength: 65
+                      example: '00000000010.00'
+                    cashbackAmount:
+                      type: string
+                      description: |
+                        Pos 01 - 12 bytes - DE 54 - Cashback amount
+
+                        VMX: M_LINE_14
+                      minLength: 0
+                      maxLength: 65
+                      example: '00000000010.00'
+                    currency:
+                      type: string
+                      description: |
+                        Transaction currency. ISO 8533 based on data element 49 (Currency code, transaction).
+                        VMX: M_LINE_11
+                      example: MXN
+                      minLength: 0
+                      maxLength: 65
+                    authorizationDate:
+                      type: string
+                      description: |
+                        Authorization Date. YYYYMMDD.
+                        VMX: M_LINE_9
+                      minLength: 0
+                      maxLength: 65
+                      example: '1202'
+                    authorizationTime:
+                      type: string
+                      description: |
+                        Authorization Time (hhmmss).
+                        VMX: M_LINE_10
+                      example: '141638'
+                      maxLength: 65
+                      minLength: 0
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          Vision Service Data:
+                          * PRINCIPAL_EMAIL: messageLine4
+                          * PRINCIPAL_PHONE: messageLine3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        minLength: 0
+                        maxLength: 65
+                        example: mail@domain.com
+                        x-stoplight:
+                          id: k61mhkqlvuv8o
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+                          VMX: 
+                          M_LINE_16
+                          M_LINE_17
+                          M_LINE_18
+                          M_LINE_19
+                          M_LINE_20
+                          M_LINE_21
+                      value:
+                        type: string
+                        description: Message value
+            examples:
+              request:
+                value:
+                  description: APPROVED
+                  cardNumber: 000540208ID5IXX3865
+                  transaction:
+                    id: 01765999999998 2013572895880110A00000000000000000000 /12 00
+                    additionInformation: 0120484MEXICO 0
+                    acceptorName: TEST MERCHANT
+                    reason: '294'
+                    feeAmount: '00000000010.00'
+                    amount: '00000000010.00'
+                    cashbackAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20221202'
+                    authorizationTime: '141638'
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  metadata:
+                    - key: M_LINE_21
+                      value: '00'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
+      x-stoplight:
+        id: pnn9qtlop0b35
+    parameters: []
+  /notifications/v3/paymentCycle:
+    post:
+      x-proxy-name: Payment Cycle
+      x-group-name: FV Events
+      x-child-product-name: Notifications
+      summary: Payment Cycle
+      operationId: paymentCycle
+      responses:
+        '200':
+          description: OK
+      description: |-
+        2 - Payment Due Date Event
+        3 - Account Cycle Event
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: context
+          description: 'Security context. VMX: M_CONTEXT Max length: 20. Example: VMX.MULTICHANNEL.REQ'
+        - schema:
+            type: string
+          in: header
+          description: 'VMX Version.  VMX: M_NAME Max length: 20. Example: R8V1'
+          name: version
+        - schema:
+            type: integer
+          in: header
+          name: organizationNumber
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+        - schema:
+            type: string
+          in: header
+          name: accountNumber
+          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+        - schema:
+            type: string
+          in: header
+          name: customerNumber
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+        - schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+          in: header
+          name: channelType
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
+              properties:
+                description:
+                  type: string
+                  maxLength: 20
+                  minLength: 0
+                  example: APPROVED
+                  description: |-
+                    Event message description. 
+                    VMX: M_DESC 
+                transaction:
+                  type: object
+                  description: Information related to event transaction
+                  properties:
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+                        VMX: M_LINE_9
+                      minLength: 0
+                      maxLength: 65
+                      example: '20220127'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Authorization Time (hhmmss).
+                        VMX: M_LINE_10
+                      example: '141638'
+                      maxLength: 65
+                      minLength: 0
+                    statementInformation:
+                      type: string
+                      description: |-
+                        Last Statement Balance | Current Balance | Total Payment Due | Number Cycles due
+                        If the balance is CREDIT balance, you receive '-' sign. If not, the balance is positive, you receive "+"
+                        VMX: M_LINE_12
+                        Example: 
+                        -00000003299.67|-00000003299.67|00000000032.99|1
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          Vision Service Data:
+                          * PRINCIPAL_EMAIL: messageLine4
+                          * PRINCIPAL_PHONE: messageLine3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        minLength: 0
+                        maxLength: 65
+                        example: mail@domain.com
+                        x-stoplight:
+                          id: 9kixfmnulvvkx
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+                          VMX: 
+                          M_LINE_16
+                          M_LINE_17
+                          M_LINE_18
+                          M_LINE_19
+                          M_LINE_20
+                          M_LINE_21
+                      value:
+                        type: string
+                        description: Message value
+            examples:
+              request:
+                value:
+                  description: APPROVED
+                  transaction:
+                    eventDate: '20220127'
+                    eventTime: '141638'
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  metadata:
+                    - key: M_LINE_21
+                      value: '0'
+        description: ''
+      x-stoplight:
+        id: 6p9w2jdwtj3z6
+    parameters: []
+  /notifications/v3/cardManagement:
+    post:
+      x-proxy-name: Card Management
+      x-group-name: FV Events
+      x-child-product-name: Notifications
+      summary: Card Management
+      operationId: cardManagement
+      description: |-
+        4 - Available Credit Event
+        5 - Payment Posted Event
+        6 - Change of Address
+        10 - Payment Due Date Change
+        11 - Credit Limit Change
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: context
+          description: 'Security context. VMX: M_CONTEXT Max length: 20. Example: VMX.MULTICHANNEL.REQ'
+        - schema:
+            type: string
+          in: header
+          description: 'VMX Version.  VMX: M_NAME Max length: 20. Example: R8V1'
+          name: version
+        - schema:
+            type: integer
+          in: header
+          name: organizationNumber
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+        - schema:
+            type: string
+          in: header
+          name: accountNumber
+          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+        - schema:
+            type: string
+          in: header
+          name: customerNumber
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+        - schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+          in: header
+          name: channelType
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
+              properties:
+                description:
+                  type: string
+                  maxLength: 20
+                  minLength: 0
+                  example: APPROVED
+                  description: |-
+                    Event message description. 
+                    VMX: M_DESC 
+                transaction:
+                  type: object
+                  description: Information related to event transaction
+                  properties:
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+                        VMX: M_LINE_9
+                      minLength: 0
+                      maxLength: 65
+                      example: '20220127'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Authorization Time (hhmmss).
+                        VMX: M_LINE_10
+                      example: '141638'
+                      maxLength: 65
+                      minLength: 0
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          Vision Service Data:
+                          * PRINCIPAL_EMAIL: messageLine4
+                          * PRINCIPAL_PHONE: messageLine3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        minLength: 0
+                        maxLength: 65
+                        example: mail@domain.com
+                        x-stoplight:
+                          id: n0qs7ez5ew31p
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+                          VMX: 
+                          M_LINE_16
+                          M_LINE_17
+                          M_LINE_18
+                          M_LINE_19
+                          M_LINE_20
+                          M_LINE_21
+                      value:
+                        type: string
+                        description: Message value
+            examples:
+              request:
+                value:
+                  description: APPROVED
+                  transaction:
+                    eventDate: '20220127'
+                    eventTime: '141638'
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  metadata:
+                    - key: M_LINE_21
+                      value: '00'
+        description: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
+      x-stoplight:
+        id: ym4bgs09s70iu
+    parameters: []
+  /notifications/v3/cardLifeCycle:
+    post:
+      x-proxy-name: Card Life Cycle
+      x-group-name: FV Events
+      x-child-product-name: Notifications
+      summary: Card Life Cycle
+      operationId: cardLifeCycle
+      description: |-
+        Card life cycle event
+         7 - Card Blocked message
+         8 - Activation message
+         9 - Card Action/Embossing
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: context
+          description: 'Security context. VMX: M_CONTEXT Max length: 20. Example: VMX.MULTICHANNEL.REQ'
+        - schema:
+            type: string
+          in: header
+          description: 'VMX Version.  VMX: M_NAME Max length: 20. Example: R8V1'
+          name: version
+        - schema:
+            type: integer
+          in: header
+          name: organizationNumber
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+        - schema:
+            type: string
+          in: header
+          name: accountNumber
+          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+        - schema:
+            type: string
+          in: header
+          name: customerNumber
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+        - schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+          in: header
+          name: channelType
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  customerData: ''
+                  customerId: ''
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
+              properties:
+                description:
+                  type: string
+                  maxLength: 20
+                  minLength: 0
+                  example: APPROVED
+                  description: |-
+                    Event message description.
+                    CARD BLOCKED / CARD UNBLOCKED 
+                    VMX: M_DESC
+                cardNumber:
+                  type: string
+                  minLength: 0
+                  maxLength: 65
+                  example: 000540208ID5IXX3865
+                  description: |-
+                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+                    VMX: M_LINE_6
+                transaction:
+                  type: object
+                  description: Information related to event transaction
+                  properties:
+                    isActivated:
+                      type: string
+                      description: |-
+                        Activation Flag.
+                        True - Y = needs activation
+                        False - N = Card Activated
+                        VMX: M_LINE_8
+                      maxLength: 65
+                      minLength: 0
+                      example: 'Y'
+                    blockReason:
+                      type: string
+                      description: |-
+                        Block code reason.
+                        VMX: M_LINE_7
+                      minLength: 0
+                      maxLength: 65
+                      example: TEST MERCHANT
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+                        VMX: M_LINE_9
+                      minLength: 0
+                      maxLength: 65
+                      example: '1202'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Authorization Time (hhmmss).
+                        VMX: M_LINE_10
+                      example: '141638'
+                      maxLength: 65
+                      minLength: 0
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          Vision Service Data:
+                          * PRINCIPAL_EMAIL: messageLine4
+                          * PRINCIPAL_PHONE: messageLine3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        minLength: 0
+                        maxLength: 65
+                        example: mail@domain.com
+                        x-stoplight:
+                          id: mk7a6s86p8ban
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+                          VMX: 
+                          M_LINE_16
+                          M_LINE_17
+                          M_LINE_18
+                          M_LINE_19
+                          M_LINE_20
+                          M_LINE_21
+                      value:
+                        type: string
+                        description: Message value
+            examples:
+              request:
+                value:
+                  description: APPROVED
+                  cardNumber: 000540208ID5IXX3865
+                  transaction:
+                    isActivated: 'Y'
+                    blockReason: TEST MERCHANT
+                    eventDate: '20221202'
+                    eventTime: '141638'
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  metadata:
+                    - key: M_LINE_21
+                      value: '00'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
+      x-stoplight:
+        id: 5ij1ydr1qfbc7
+    parameters: []
+  /notifications/v3/fraudAuthorization:
+    post:
+      x-proxy-name: Fraud Authorization
+      x-group-name: FV Events
+      x-child-product-name: Notifications
+      summary: Fraud Authorization
+      operationId: fraudAuthorization
+      description: 12a - Fraud Authorization event
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: context
+          description: 'Security context. VMX: M_CONTEXT Max length: 20. Example: VMX: VMX.MULTICHANNEL.REQ'
+        - schema:
+            type: string
+          in: header
+          description: 'VMX Version.  VMX: M_NAME Max length: 20. Example: R8V1'
+          name: version
+        - schema:
+            type: integer
+          in: header
+          name: organizationNumber
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+        - schema:
+            type: string
+          in: header
+          name: accountNumber
+          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+        - schema:
+            type: string
+          in: header
+          name: customerNumber
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+        - schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+          in: header
+          name: channelType
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
+              properties:
+                description:
+                  type: string
+                  maxLength: 20
+                  minLength: 0
+                  example: APPROVED
+                  description: |-
+                    Event message description.
+                    APPROVED / DECLINED - REASON with 25 bytes max.
+                    VMX: M_DESC
+                cardNumber:
+                  type: string
+                  minLength: 0
+                  maxLength: 65
+                  example: 000540208ID5IXX3865
+                  description: |-
+                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+                    VMX: M_LINE_6
+                transaction:
+                  type: object
+                  description: Information related to event transaction
+                  properties:
+                    acceptorName:
+                      type: string
+                      description: |-
+                        Card Acceptor Name / Merchant name. ISO 8533 based on data element 43 (1–23 street address, –36 city, –38 state, 39–40 country).
+                        VMX: M_LINE_8
+                      maxLength: 65
+                      minLength: 0
+                    reason:
+                      type: string
+                      description: |-
+                        FAS authorization action reason
+                        VMX: M_LINE_5
+                      minLength: 0
+                      example: '294'
+                      maxLength: 65
+                    amount:
+                      type: string
+                      description: |-
+                        Transaction Amount in original currency. ISO 8533 based on data element 4 (Amount Transaction).
+                        VMX: M_LINE_7
+                      minLength: 0
+                      maxLength: 65
+                      example: '00000000010.00'
+                    currency:
+                      type: string
+                      description: |-
+                        Transaction currency. ISO 8533 based on data element 49 (Currency code, transaction).
+                        VMX: M_LINE_11
+                      example: MXN
+                      minLength: 0
+                      maxLength: 65
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+                        VMX: M_LINE_9
+                      minLength: 0
+                      maxLength: 65
+                      example: '1202'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Event Time (hhmmss).
+                        VMX: M_LINE_10
+                      example: '141638'
+                      maxLength: 65
+                      minLength: 0
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          Vision Service Data:
+                          * PRINCIPAL_EMAIL: messageLine4
+                          * PRINCIPAL_PHONE: messageLine3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        minLength: 0
+                        maxLength: 65
+                        example: mail@domain.com
+                        x-stoplight:
+                          id: 56fr7xndhpcuc
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+                          VMX: 
+                          M_LINE_16
+                          M_LINE_17
+                          M_LINE_18
+                          M_LINE_19
+                          M_LINE_20
+                          M_LINE_21
+                      value:
+                        type: string
+                        description: Message value
+            examples:
+              request:
+                value:
+                  description: APPROVED
+                  cardNumber: 000540208ID5IXX3865
+                  transaction:
+                    acceptorName: TEST MERCHANT
+                    reason: '294'
+                    amount: '00000000010.00'
+                    currency: MXN
+                    eventDate: '20221202'
+                    eventTime: '141638'
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  metadata:
+                    - key: M_LINE_21
+                      value: '00'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
+      x-stoplight:
+        id: yth852nah10ny
+    parameters: []
+  /notifications/v3/fraudBlock:
+    post:
+      x-proxy-name: Fraud Block
+      x-group-name: FV Events
+      x-child-product-name: Notifications
+      summary: Fraud Block
+      operationId: fraudBlock
+      description: 12b - Fraud Block Code update
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: context
+          description: 'Security context. VMX: M_CONTEXT Max length: 20. Example: VMX.MULTICHANNEL.UPD'
+        - schema:
+            type: string
+          in: header
+          description: 'VMX Version.  VMX: M_NAME Max length: 20. Example: R8V1'
+          name: version
+        - schema:
+            type: integer
+          in: header
+          name: organizationNumber
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+        - schema:
+            type: string
+          in: header
+          name: accountNumber
+          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+        - schema:
+            type: string
+          in: header
+          name: customerNumber
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+        - schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+          in: header
+          name: channelType
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
+              properties:
+                description:
+                  type: string
+                  maxLength: 20
+                  minLength: 0
+                  example: APPROVED
+                  description: |-
+                    Event message description.
+                    APPROVED / DECLINED - REASON with 25 bytes max.
+                    VMX: M_DESC
+                cardNumber:
+                  type: string
+                  minLength: 0
+                  maxLength: 65
+                  example: 000540208ID5IXX3865
+                  description: |-
+                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+                    VMX: M_LINE_6
+                transaction:
+                  type: object
+                  description: Information related to event transaction
+                  properties:
+                    reason:
+                      type: string
+                      description: |-
+                        FAS authorization action reason.
+                        Blocked card SMS is 108.
+                        VMX: M_LINE_5
+                      minLength: 0
+                      example: '294'
+                      maxLength: 65
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+                        VMX: M_LINE_9
+                      minLength: 0
+                      maxLength: 65
+                      example: '1202'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Event Time. ISO 8533 based on data element 12 (hhmmss).
+                        VMX: M_LINE_10
+                      example: '141638'
+                      maxLength: 65
+                      minLength: 0
+                    blockReason:
+                      type: string
+                      description: |-
+                        Block code reason.
+                        VMX: M_LINE_7
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          Vision Service Data:
+                          * PRINCIPAL_EMAIL: messageLine4
+                          * PRINCIPAL_PHONE: messageLine3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        minLength: 0
+                        maxLength: 65
+                        example: mail@domain.com
+                        x-stoplight:
+                          id: u6s9dnkk01du4
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+                          VMX: 
+                          M_LINE_16
+                          M_LINE_17
+                          M_LINE_18
+                          M_LINE_19
+                          M_LINE_20
+                          M_LINE_21
+                      value:
+                        type: string
+                        description: Message value
+            examples:
+              request:
+                value:
+                  description: APPROVED
+                  cardNumber: 000540208ID5IXX3865
+                  transaction:
+                    reason: '294'
+                    eventDate: '20221202'
+                    eventTime: '141638'
+                    blockReason: MERCHANT
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  metadata:
+                    - key: M_LINE_21
+                      value: '00'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
+      x-stoplight:
+        id: t4l8mrixzhzop
+    parameters: []
