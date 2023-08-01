@@ -14,6 +14,13 @@ tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio]
 ### Mejoras
 
 Descripción de API's mejorada:
+- /transactions/plan-settlement-quote
+- /account/v1/statementInstallments
+- /account/blockCodesWarning
+- /loyalty/
+- /transactions/offer
+- /cards/spend-limits-L8V3
+- /account/feeWaiver
 - /transactions/organization
 - /transactions/pct-table
 - /transactions/prepaid-logo
@@ -53,12 +60,22 @@ Descripción de API's mejorada:
 
 ### Problemas solucionados
 
+Endpoints se movieron a la versión 1.2.0:
+- /account/FL-balance
+- /account/balance
+
 Endpoints se movieron a la versión 1.1.0:
 - /account/balance
 - /account/FL-balance
+- /account/v2/balance
+- /account/v1/falconMonetaryInquiry
+- /account/v2/cardAssignment
 
 ### Obsoleto
 - /cards/embosser/encrypted-card-pan
+- /account/QR-balance
+- /account/QR-transfer
+- /account/transfer
 
 ---
 
