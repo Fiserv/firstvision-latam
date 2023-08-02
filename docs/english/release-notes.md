@@ -2,10 +2,7 @@
 tags: [Release Notes, January, February, March, April, May, June, July]
 ---
 
-
----
-
-## July
+## July 2023
 
 ### What's New?
 
@@ -14,6 +11,13 @@ tags: [Release Notes, January, February, March, April, May, June, July]
 ### Enhancements
 
 API's description improvement:
+- /transactions/plan-settlement-quote
+- /account/v1/statementInstallments
+- /account/blockCodesWarning
+- /loyalty/
+- /transactions/offer
+- /cards/spend-limits-L8V3
+- /account/feeWaiver
 - /transactions/organization
 - /transactions/pct-table
 - /transactions/prepaid-logo
@@ -53,17 +57,25 @@ API's description improvement:
 
 ### Fixed
 
+Endpoints moved to version 1.2.0:
+- /account/FL-balance
+- /account/balance
+
 Endpoints moved to version 1.1.0:
+- /account/v2/balance
+- /account/v1/falconMonetaryInquiry
+- /account/v2/cardAssignment
 - /account/balance
 - /account/FL-balance
 
 ### Obsolete
+- /account/QR-balance
+- /account/QR-transfer
+- /account/transfer
 - /cards/embosser/encrypted-card-pan
 
 ---
 
-
-# Release Notes
 
 ## June 2023
 
@@ -100,8 +112,6 @@ API's description improvement:
 - N/A
 
 ---
-
-# Release Notes
 
 ## May 2023
 
