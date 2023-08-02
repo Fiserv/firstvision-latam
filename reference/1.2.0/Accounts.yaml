@@ -3056,6 +3056,514 @@ components:
           format: int32
           type: integer
       type: object
+    AccountBalanceFlRequest:
+      description: Modify Account BalanceFl Request
+      properties:
+        accountNumber:
+          description: "Number of Customer\u2019s account or Card"
+          example: '9500500190739621112'
+          maxLength: 19
+          minLength: 19
+          type: string
+        accountOrganization:
+          description: accountOrganization
+          type: string
+        actionCodePri:
+          description: actionCodePri
+          type: string
+        foreignUse:
+          description: foreignUse
+          type: string
+        letterData:
+          $ref: '#/components/schemas/AccountBalanceFlRequest.LetterData'
+        memoData:
+          $ref: '#/components/schemas/AccountBalanceFlRequest.MemoData'
+        organizationNumber:
+          description: Organization Number
+          example: 950
+          format: int32
+          type: integer
+        referralOption:
+          description: referralOption
+          type: string
+        referralRepresentation:
+          $ref: '#/components/schemas/AccountBalanceFlRequest.ReferralRepresentation'
+        representativeId:
+          description: ID of Representative
+          example: A00
+          maxLength: 3
+          minLength: 1
+          type: string
+        transactionData:
+          $ref: '#/components/schemas/AccountBalanceFlRequest.TxData'
+      required:
+      - accountNumber
+      - organizationNumber
+      - representativeId
+      type: object
+    AccountBalanceFlRequest.LetterData:
+      properties:
+        code:
+          description: code
+          type: string
+        organization:
+          description: organization
+          type: string
+      type: object
+    AccountBalanceFlRequest.MemoData:
+      properties:
+        line1:
+          description: line1
+          type: string
+        line2:
+          description: line2
+          type: string
+        line3:
+          description: line3
+          type: string
+        line4:
+          description: line4
+          type: string
+        line5:
+          description: line5
+          type: string
+      type: object
+    AccountBalanceFlRequest.ReferralRepresentation:
+      properties:
+        id:
+          description: id
+          type: string
+        organization:
+          description: organization
+          type: string
+      type: object
+    AccountBalanceFlRequest.TxData:
+      properties:
+        actionCode:
+          description: Code that identifies the action to be taken
+          enum:
+          - 8000, 8001
+          example: '8000'
+          type: string
+        authorizationCode:
+          description: Identifier used to identify the transaction for reconciliation
+            purpose
+          example: '123456'
+          maxLength: 6
+          minLength: 0
+          type: string
+        beneficiaryAccount:
+          description: Receiver(Payee) account number
+          example: 012180000000011114
+          maxLength: 20
+          minLength: 0
+          type: string
+        box:
+          description: cashier number
+          example: '1'
+          maxLength: 1
+          minLength: 0
+          type: string
+        cardNumber:
+          description: Unique identifier or token associated with the card number
+            or payment instrument (FirstVision PAN Token).
+          example: 000540208ID5IXX3865
+          maxLength: 19
+          minLength: 12
+          type: string
+        cardSequence:
+          description: Card Sequence
+          example: 1
+          format: int32
+          type: integer
+        counterpartInstitution:
+          description: Institutions Code where the payment goes to(Regarding to catalog)
+          example: '96545'
+          maxLength: 5
+          minLength: 0
+          type: string
+        crPlaza:
+          description: OXXO region identifier
+          example: 10MON
+          maxLength: 5
+          minLength: 0
+          type: string
+        crStore:
+          description: OXXO store identifier
+          example: 50EDI
+          maxLength: 5
+          minLength: 0
+          type: string
+        departmentCode:
+          description: Department Code
+          example: PPLD
+          type: string
+        description:
+          description: Description of the transaction
+          example: Description
+          type: string
+        device:
+          description: unique identifier of the used device
+          example: 898ds-090ds-9d0s9-0ds9d0-0d9sd00
+          maxLength: 32
+          minLength: 0
+          type: string
+        effectiveDate:
+          description: Date that specifies when the transaction takes effect in the
+            account
+          format: date
+          type: string
+        frcUprkBeneficiary:
+          description: Receiver Federal Register of Contributors(FRC) or Unique Population
+            Registration Key(UPRK)
+          example: MACE881212TR3
+          maxLength: 13
+          minLength: 0
+          type: string
+        identifier:
+          description: Where does the transaction comes from
+          example: UBCF
+          maxLength: 4
+          minLength: 0
+          type: string
+        insuranceCode:
+          description: insuranceCode
+          type: string
+        ip:
+          description: The ip address that originated the transaction
+          example: 198.162.200.200
+          maxLength: 15
+          minLength: 0
+          type: string
+        keyTracking:
+          description: "key of standard identification recognized by Banco de M\xE9\
+            xico"
+          example: UBCF202007158252885919
+          maxLength: 30
+          minLength: 0
+          type: string
+        latitude:
+          description: The latitude where the transaction originated
+          example: '-109.699951'
+          maxLength: 12
+          minLength: 0
+          type: string
+        longitude:
+          description: The longitude where the transaction originated
+          example: '23.062283'
+          maxLength: 10
+          minLength: 0
+          type: string
+        memoPostIndividual:
+          description: "* Min Length: 1 \n* Max Length: 1 \n\nMemo Post Indicator.\
+            \ \n\nValues: \n* N = Do not post memo ;\n* R = Reverse memo. \n \nVisionPLUS\
+            \ Service Data: AZXMAI-MEMO-POST-IND"
+          example: N
+          type: string
+        monSupp:
+          description: "* Min Length: 1 \n* Max Length: 1 \n\nMonetary Supress. \n\
+            \nValues: \n* N = Do not Suppress Monetary transaction ;\n* Y = Supress\
+            \ Monetary transaction. \n \nVisionPLUS Service Data: AZXMAI-MON-SUPP"
+          example: N
+          type: string
+        n1N2Bypass:
+          description: N1 and N2 rule validation bypass
+          enum:
+          - Y,N
+          example: Y
+          maxLength: 1
+          minLength: 0
+          type: string
+        numberInstallments:
+          description: numberInstallments
+          type: string
+        operatingInstitution:
+          description: Institutions Code where the payment comes from(Regarding to
+            catalog)
+          example: '90646'
+          maxLength: 5
+          minLength: 0
+          type: string
+        orderingFrcUprk:
+          description: Issuer Federal Register of Contributors(FRC) or Unique Population
+            Registration Key(UPRK)
+          example: MACE881212TR3
+          maxLength: 13
+          minLength: 0
+          type: string
+        orderingName:
+          description: Issuer name
+          example: Diego Martinez Cruz
+          maxLength: 30
+          minLength: 0
+          type: string
+        otbUpdateIndicator:
+          description: "* Min Length: 1 \n* Max Length: 1 \n\nOTB update indicator.\n\
+            \nValues: \n* 0 = Update OTB; \n* 1 = Do not update OTB. \n\nVisionPLUS\
+            \ Service Data: AZXMAI-OTB-UPDATE-IND"
+          example: 0
+          format: int32
+          type: integer
+        paidConcept:
+          description: Issuer description about the payment
+          example: Money for groseries
+          maxLength: 20
+          minLength: 0
+          type: string
+        paymentSourceId:
+          description: Card's id label.
+          example: tok_test_visa_4242
+          maxLength: 22
+          minLength: 0
+          type: string
+        planNumber:
+          description: Plan Number
+          example: 60000
+          format: int32
+          type: integer
+        planSequence:
+          description: Plan Sequence
+          example: 1
+          format: int32
+          type: integer
+        purchaseOrderNumber:
+          description: purchaseOrderNumber
+          type: string
+        recipientName:
+          description: Receiver(Payee) name
+          example: Eduardo Martinez Cruz
+          maxLength: 30
+          minLength: 0
+          type: string
+        referenceNumber:
+          description: Reference Number
+          example: '12345678901234'
+          type: string
+        resolutionReferenceNumber:
+          description: Resolution Reference Number For Payments Received For Open
+            Billing Accounts
+          example: '123456789012'
+          type: string
+        salesClerk:
+          description: salesClerk
+          type: string
+        senderAccount:
+          description: Issuer account number
+          example: 012180000000011114
+          maxLength: 20
+          minLength: 0
+          type: string
+        skuNumber:
+          description: skuNumber
+          format: int32
+          type: integer
+        storeNumber:
+          description: Store Number
+          example: 999999998
+          format: int32
+          type: integer
+        ticketNumber:
+          description: ticketNumber
+          type: string
+        transactionAmount:
+          description: Transaction Amount
+          example: 100
+          type: number
+        walletId:
+          description: walletId
+          type: string
+      required:
+      - actionCode
+      - beneficiaryAccount
+      - box
+      - cardNumber
+      - cardSequence
+      - counterpartInstitution
+      - crPlaza
+      - crStore
+      - description
+      - device
+      - effectiveDate
+      - frcUprkBeneficiary
+      - identifier
+      - ip
+      - keyTracking
+      - latitude
+      - longitude
+      - n1N2Bypass
+      - operatingInstitution
+      - orderingFrcUprk
+      - orderingName
+      - otbUpdateIndicator
+      - paidConcept
+      - paymentSourceId
+      - planNumber
+      - planSequence
+      - recipientName
+      - referenceNumber
+      - resolutionReferenceNumber
+      - senderAccount
+      - storeNumber
+      - transactionAmount
+      type: object
+    AccountBalanceFlResponse:
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountBalanceFlResponse.Account'
+        actionCodePri:
+          format: int32
+          type: integer
+        actionDate:
+          format: date
+          type: string
+        actionDescription:
+          type: string
+        cardNumber:
+          description: Unique identifier or token associated with the card number
+            or payment instrument (FirstVision PAN Token).
+          example: 000540208ID5IXX3865
+          type: string
+        cardSequence:
+          format: int32
+          type: integer
+        collectionSequenceNumber:
+          format: int32
+          type: integer
+        ctaFile:
+          type: string
+        foreignUseIndicator:
+          type: string
+        historyDate:
+          format: date
+          type: string
+        historyTime:
+          type: string
+        letterData:
+          $ref: '#/components/schemas/AccountBalanceFlResponse.LetterData'
+        organizationNumber:
+          format: int32
+          type: integer
+        purgeDate:
+          format: date
+          type: string
+        recordType:
+          type: string
+        referralAsmOrganization:
+          format: int32
+          type: integer
+        referralRepresentative:
+          type: string
+        representativeId:
+          type: string
+        retention:
+          type: string
+        status:
+          type: string
+        transactionData:
+          $ref: '#/components/schemas/AccountBalanceFlResponse.TransactionData'
+      type: object
+    AccountBalanceFlResponse.Account:
+      properties:
+        logo:
+          format: int32
+          type: integer
+        number:
+          type: string
+        organizationNumber:
+          format: int32
+          type: integer
+      type: object
+    AccountBalanceFlResponse.LetterData:
+      properties:
+        code:
+          type: string
+        organization:
+          type: string
+      type: object
+    AccountBalanceFlResponse.TransactionData:
+      properties:
+        actionCode:
+          type: string
+        approvalIndicator:
+          type: string
+        authorizationCode:
+          type: string
+        authorizationNumber:
+          type: string
+        cashAvailable:
+          type: number
+        creditLimit:
+          type: number
+        currencyData:
+          $ref: '#/components/schemas/AccountBalanceFlResponse.TransactionData.CurrencyData'
+        currencyNumber:
+          type: string
+        currentBalance:
+          type: number
+        departmentCode:
+          type: string
+        effectiveDate:
+          format: date
+          type: string
+        feeAmount:
+          type: number
+        fundCard:
+          type: string
+        fundCardDeclinedReason:
+          type: string
+        insuranceCode:
+          type: string
+        monetaryType:
+          type: string
+        openToBuy:
+          type: number
+        planNumber:
+          type: string
+        planSequence:
+          format: int32
+          type: integer
+        pointsAmount:
+          type: number
+        pointsProgram:
+          format: int32
+          type: integer
+        purchaseOrderNumber:
+          type: string
+        referenceNum:
+          type: string
+        referenceNumber:
+          type: string
+        reversalDate:
+          format: date
+          type: string
+        reversalTime:
+          type: string
+        salesClerk:
+          type: string
+        stockKeepingUnitNumber:
+          type: string
+        storeNumber:
+          type: string
+        storeOrganizationNumber:
+          format: int32
+          type: integer
+        ticketNumber:
+          type: string
+        transactionAmount:
+          type: number
+        transactionCode:
+          type: string
+        transactionDescription:
+          type: string
+      type: object
+    AccountBalanceFlResponse.TransactionData.CurrencyData:
+      properties:
+        currencyCode:
+          type: string
+        currencyNumberOfDecimal:
+          format: int32
+          type: integer
+      type: object
     AccountBoardingDriverRequestL8V3:
       description: Account boarding driver Service
       properties:
@@ -6620,45 +7128,75 @@ components:
       description: Fee waiver Account Maintenance request
       properties:
         accountNumber:
-          description: Account number.
+          description: 'Account number.
+
+
+            VisionPLUS Service Data: ARXWFI-ACCT'
+          example: '7600010732545213551'
           maxLength: 19
           minLength: 19
           type: string
-        context:
-          type: string
         cycleSpendingFee:
-          description: Flag that indicates whether to waive the cycle spend fee for
-            the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the cycle spend fee for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-CYCLE-SPEND-FEE'
+          example: 1
           format: int32
           type: integer
         foreignUseIndicator:
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Foreign use indicator.
 
-            The values are:
 
-            * Space, 0 or low values = Local account
+            Values:
 
-            * 1 = Foreign account'
+            * Space = Local account;
+
+            * low values = Local account;
+
+            * 0 = Local account;
+
+            * 1 = Foreign account.
+
+
+            VisionPLUS Service Data: ARXWFI-FOREIGN-USE'
+          example: '0'
           type: string
         organization:
+          description: 'Organization for the Account.
+
+            VisionPLUS Service Data: ARXWFI-ORG'
+          example: '999'
           maxLength: 3
           minLength: 0
           type: string
-        signonName:
-          description: "Unique name this person will enter when \nsigning on to the\
-            \ system. Each sign-on record added for a \nclient must be assigned a\
-            \ unique sign-on name."
-          type: string
         waiveCardFee:
-          description: Flag that indicates whether to waive card issuance fees whenever
-            cards are issued on the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive card issuance fees whenever cards
+            are issued on the account.
+
+            '
+          example: 1
           format: int32
           type: integer
         waiveCardFeeIndicator:
-          description: Flag that indicates whether to waive card issuance fees whenever
-            cards are issued on the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive card issuance fees whenever cards
+            are issued on the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-CARD-FEE-IND'
+          example: 1
           format: int32
           type: integer
         waiveCashAdvanceFeeGroup:
@@ -6666,66 +7204,156 @@ components:
             $ref: '#/components/schemas/AccountFeeWaiverMaintenanceRequest.WaiveCashAdvanceFeeGroup'
           type: array
         waiveInterest:
-          description: Flag that indicates whether to waive interest for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive interest for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-INTR-CHG'
+          example: 1
           format: int32
           type: integer
         waiveInterestCharge:
-          description: Flag that indicates whether to waive interest for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive interest for the account.
+
+            '
+          example: 1
           format: int32
           type: integer
         waiveLateFee:
-          description: Flag that indicates whether to waive late charges for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive late charges for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-LATE-CHG'
+          example: 1
           format: int32
           type: integer
         waiveLateNotice:
-          description: Flag that indicates whether to waive late notices for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive late notices for the account.
+
+            '
+          example: 1
           format: int32
           type: integer
         waiveLateNotices:
-          description: Flag that indicates whether to waive late notices for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive late notices for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-LATE-NOTC'
+          example: 1
           format: int32
           type: integer
         waiveLetterFee:
-          description: Flag that indicates whether to waive the letter fee for the
-            account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the letter fee for the account.
+
+            '
+          example: 1
           format: int32
           type: integer
         waiveLetterFees:
-          description: Flag that indicates whether to waive the annual membership
-            fee for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the annual membership fee for the
+            account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-LTR-CHG'
+          example: 1
           format: int32
           type: integer
         waiveMembershipFee:
-          description: Flag that indicates whether to waive the annual membership
-            fee for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the annual membership fee for the
+            account.
+
+            '
+          example: 1
           format: int32
           type: integer
         waiveMembershipFees:
-          description: Flag that indicates whether to waive the annual membership
-            fee for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the annual membership fee for the
+            account.
+
+
+            VisionPLUS Service Data: RXWFI-WAIVE-FEE-CHG'
+          example: 1
           format: int32
           type: integer
         waiveNotSufficientFunds:
-          description: Flag that indicates whether to waive non sufficient funds (NSF)
-            Fee 1 for returned checks.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive non sufficient funds (NSF) Fee 1
+            for returned checks.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-NSF-FEE-IND'
+          example: 1
           format: int32
           type: integer
         waiveOverLimitFee:
-          description: Flag that indicates whether to waive the overlimit fee for
-            the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the overlimit fee for the account.
+
+            '
+          example: 1
           format: int32
           type: integer
         waiveOverLimitFees:
-          description: Flag that indicates whether to waive the overlimit notice.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the overlimit notice.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-OVLM'
+          example: 1
           format: int32
           type: integer
         waiveOverLimitNotice:
-          description: Flag that indicates whether to waive the overlimit notice.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the overlimit notice.
+
+            '
+          example: 1
           format: int32
           type: integer
         waiveOverLimitNotice2:
-          description: Flag that indicates whether to waive the annual membership
-            fee for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the annual membership fee for the
+            account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-OVLM-NOTC'
+          example: 1
           format: int32
           type: integer
         waiveServiceChargeGroup:
@@ -6733,105 +7361,214 @@ components:
             $ref: '#/components/schemas/AccountFeeWaiverMaintenanceRequest.WaiveServiceChargeGroup'
           type: array
         waiveSupplementaryMembershipFee:
-          description: Flag that indicates whether to waive all supplemental card
-            membership fees.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive all supplemental card membership
+            fees.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-SUPP-MEM-FEE'
+          example: 1
           format: int32
           type: integer
         waiveTax:
-          description: Flag that indicates whether to waive the tax for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive the tax for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-TAX-CALC'
+          example: 1
           format: int32
           type: integer
         waiveUserFee1:
-          description: Flag that indicates whether to waive user fees 1 to 6 for the
-            account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive user fees 1 to 6 for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-USER-FEE-1'
+          example: 1
           format: int32
           type: integer
         waiveUserFee2:
-          description: Flag that indicates whether to waive user fees 1 to 6 for the
-            account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive user fees 1 to 6 for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-USER-FEE-2'
+          example: 1
           format: int32
           type: integer
         waiveUserFee3:
-          description: Flag that indicates whether to waive user fees 1 to 6 for the
-            account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive user fees 1 to 6 for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-USER-FEE-3'
+          example: 1
           format: int32
           type: integer
         waiveUserFee4:
-          description: Flag that indicates whether to waive user fees 1 to 6 for the
-            account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive user fees 1 to 6 for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-USER-FEE-4'
+          example: 1
           format: int32
           type: integer
         waiveUserFee5:
-          description: Flag that indicates whether to waive user fees 1 to 6 for the
-            account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive user fees 1 to 6 for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-USER-FEE-5'
+          example: 1
           format: int32
           type: integer
         waiveUserFee6:
-          description: Flag that indicates whether to waive user fees 1 to 6 for the
-            account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive user fees 1 to 6 for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-USER-FEE-6'
+          example: 1
           format: int32
           type: integer
       required:
       - accountNumber
-      - context
       - organization
-      - signonName
       type: object
     AccountFeeWaiverMaintenanceRequest.WaiveCashAdvanceFeeGroup:
       properties:
         waiveCashAdvanceFee:
-          description: Flag that indicates whether to waive cash advance fees 1 to
-            10 for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive cash advance fees 1 to 10 for the
+            account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-CASH-ADV-FEE'
+          example: 1
           format: int32
           type: integer
       type: object
     AccountFeeWaiverMaintenanceRequest.WaiveServiceChargeGroup:
       properties:
         waiveServiceCharge:
-          description: Flag that indicates whether to waive service charges 1 to 10
-            for the account.
+          description: '* Max Length: 1
+
+
+            Flag that indicates whether to waive service charges 1 to 10 for the account.
+
+
+            VisionPLUS Service Data: ARXWFI-WAIVE-SVC-CHG'
+          example: 1
           format: int32
           type: integer
       type: object
     AccountFeeWaiverMaintenanceResponse:
       properties:
         accountNumber:
-          description: "Account number.\n VisionPLUS Service Data: ARXWFO-ACCT"
+          description: 'Max Length: 19
+
+
+            Account number.
+
+
+            VisionPLUS Service Data: ARXWFO-ACCT'
+          example: '7600010732545213551'
           type: string
         cardNumber:
-          description: "Unique identifier or token associated with the card number\
-            \ or payment instrument (FirstVision PAN Token).\n VisionPLUS Service\
-            \ Data: ARXWFO-CARD-NBR"
+          description: 'Max Length: 19
+
+
+            * Unique identifier or token associated with the card number or payment
+            instrument (FirstVision PAN Token.)
+
+
+            VisionPLUS Service Data: ARXWFO-CARD-NBR'
           example: 000540208ID5IXX3865
           type: string
         currencyCode:
-          description: "Currency Code. \n VisionPLUS Service Data: ARXWFO-CURRENCY-CODE"
+          description: 'Max Length: 3
+
+
+            Currency Code.
+
+
+            VisionPLUS Service Data: ARXWFO-CURRENCY-CODE'
+          example: 0
           format: int32
           type: integer
         currencyNod:
-          description: "Currency NOD. \n VisionPLUS Service Data: ARXWFO-CURRENCY-NOD"
+          description: 'Max Length: 3
+
+
+            Currency node.
+
+
+            VisionPLUS Service Data: ARXWFO-CURRENCY-NOD'
+          example: '0'
           type: string
         foreignOrg:
-          description: "Organization associated with the foreign account.\n VisionPLUS\
-            \ Service Data: ARXWFO-FOREIGN-ORG"
+          description: 'Max Length: 3
+
+
+            Organization associated with the foreign account.
+
+
+            VisionPLUS Service Data: ARXWFO-FOREIGN-ORG'
+          example: 998
           format: int32
           type: integer
         foreignUse:
-          description: "The FOREIGN USE indicator is provided in the input message\
-            \ so the requesting source can specify whether the request applies to\
-            \ the local or foreign account when the account is in a dual currency\
-            \ processing organization. The default is to the local account.. \n VisionPLUS\
-            \ Service Data: ARXWFO-FOREIGN-USE"
+          description: "Max Length: 1\n\nThe FOREIGN USE indicator is provided in\
+            \ the input message so the requesting source \ncan specify whether the\
+            \ request applies to the local or foreign account when the account is\
+            \ in \na dual currency processing organization. The default is to the\
+            \ local account..\n\nVisionPLUS Service Data: ARXWFO-FOREIGN-USE"
+          example: '0'
           type: string
         functionType:
-          description: "Function type.\n VisionPLUS Service Data: ARXWFO-FUNCTION-TYPE"
+          description: 'Function type.
+
+            '
           type: string
         logo:
-          description: "Logo.\n VisionPLUS Service Data: ARXWFO-LOGO"
+          description: 'Max Length: 3
+
+
+            Logo.
+
+            VisionPLUS Service Data: ARXWFO-LOGO'
+          example: 501
           format: int32
           type: integer
         organization:
-          description: "CMS Organization.\n VisionPLUS Service Data: ARXWFO-ORG"
+          description: 'Max Length: 3
+
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: ARXWFO-ORG'
+          example: '998'
           type: string
         updateWaiveFlagsOut:
           $ref: '#/components/schemas/AccountFeeWaiverMaintenanceResponse.UpdateWaiveFlagsResponse.UpdateWaiveFlagsResponse'
@@ -6839,18 +7576,36 @@ components:
     AccountFeeWaiverMaintenanceResponse.UpdateWaiveFlagsResponse.PrepaidFees:
       properties:
         waiveDormancyFees:
-          description: "Waive dormancy fees (prepaid accounts only) \n VisionPLUS\
-            \ Service Data: ARXWFO-WAIVE-DORM-FEE"
+          description: 'Max Length: 1
+
+
+            Waive dormancy fees (prepaid accounts only).
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-DORM-FEE'
+          example: 0
           format: int32
           type: integer
         waiveRefundFee:
-          description: "Waive refund fees (prepaid accounts only) \n VisionPLUS Service\
-            \ Data: ARXWFO-WAIVE-REFUND-FEE"
+          description: 'Max Length: 1
+
+
+            Waive refund fees (prepaid accounts only).
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-REFUND-FEE'
+          example: 0
           format: int32
           type: integer
         waiveStatementFee:
-          description: "Waive statement fees (prepaid accounts only) \n VisionPLUS\
-            \ Service Data: ARXWFO-WAIVE-STMT-FEE"
+          description: 'Max Length: 1
+
+
+            Waive statement fees (prepaid accounts only).
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-STMT-FEE'
+          example: 0
           format: int32
           type: integer
         waiveTransactionFeeGroup:
@@ -6861,11 +7616,22 @@ components:
     AccountFeeWaiverMaintenanceResponse.UpdateWaiveFlagsResponse.UpdateWaiveFlagsResponse:
       properties:
         forexFee:
-          description: "Waive Forex fees.\n VisionPLUS Service Data: ARXWFO-FOREX-FEE"
+          description: 'Max Length: 2
+
+
+            Waive Forex fees.
+
+
+            VisionPLUS Service Data: ARXWFO-FOREX-FEE'
+          example: 0
           format: int32
           type: integer
         forexFeeWaiveExpiryDate:
-          description: "Forex fee waive expiry date.\n VisionPLUS Service Data: ARXWFO-FOREX-FEE-WV-EXP-DT"
+          description: 'Forex fee waive expiry date.
+
+
+            VisionPLUS Service Data: ARXWFO-FOREX-FEE-WV-EXP-DT'
+          example: 2023-06-19
           properties:
             country:
               type: string
@@ -6906,7 +7672,11 @@ components:
               type: string
           type: object
         forexFeeWaiveStartDate:
-          description: "Forex fee waive start date.\n VisionPLUS Service Data: ARXWFO-FOREX-FEE-WV-ST-DT"
+          description: 'Forex fee waive start date.
+
+
+            VisionPLUS Service Data: ARXWFO-FOREX-FEE-WV-ST-DT'
+          example: 2023-06-19
           properties:
             country:
               type: string
@@ -6947,12 +7717,27 @@ components:
               type: string
           type: object
         membMeth:
+          description: 'Max Length: 1
+
+
+            Membership method.
+
+
+            VisionPLUS Service Data: ARXWFO-MEMB-METH'
+          example: 0
           format: int32
           type: integer
         prepaidFees:
           $ref: '#/components/schemas/AccountFeeWaiverMaintenanceResponse.UpdateWaiveFlagsResponse.PrepaidFees'
         waiveCardIssuanceFee:
-          description: "Waive card issuance fees.\n VisionPLUS Service Data: ARXWFO-WAIVE-CARD-FEE-IND"
+          description: 'Max Length: 1
+
+
+            Waive card issuance fees.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-CARD-FEE-IND'
+          example: 0
           format: int32
           type: integer
         waiveCashAdvanceFeeGroup:
@@ -6960,47 +7745,124 @@ components:
             $ref: '#/components/schemas/AccountFeeWaiverMaintenanceResponse.UpdateWaiveFlagsResponse.WaiveCashAdvanceFeeGroup'
           type: array
         waiveCrossWalletXfrFee:
-          description: "Waive cross wallet xfr fee.\n VisionPLUS Service Data: ARXWFO-WAIVE-CROS-WLT-XFR-FEE"
+          description: 'Max Length: 1
+
+
+            Waive cross wallet xfr fee.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-CROS-WLT-XFR-FEE'
+          example: 0
           format: int32
           type: integer
         waiveCustomWalletXfrFee:
-          description: "Waive custom wallet xfr fee.\n VisionPLUS Service Data: ARXWFO-WAIVE-CUST-WLT-XFR-FEE"
+          description: 'Max Length: 1
+
+
+            Waive custom wallet xfr fee.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-CUST-WLT-XFR-FEE'
+          example: 0
           format: int32
           type: integer
         waiveCycleSpendFee:
-          description: "Waive cycle spend fee.\n VisionPLUS Service Data: ARXWFO-WAIVE-CYC-SPEND-FEE"
+          description: 'Max Length: 1
+
+
+            Waive cycle spend fee.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-CYC-SPND-CHG'
+          example: 0
           format: int32
           type: integer
         waiveInterest:
-          description: "Waive Interest Charges.\n VisionPLUS Service Data: ARXWFO-WAIVE-INTR-CHG"
+          description: 'Max Length: 1
+
+
+            Waive Interest Charges.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-INTR-CHG'
+          example: 0
           format: int32
           type: integer
         waiveLateCharges:
-          description: "Waive late Charges.\n VisionPLUS Service Data: ARXWFO-WAIVE-LATE-CHG"
+          description: 'Max Length: 1
+
+
+            Waive late Charges.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-LATE-CHG'
+          example: 0
           format: int32
           type: integer
         waiveLateNotice:
-          description: "Waive late notices.\n VisionPLUS Service Data: ARXWFO-WAIVE-LATE-NOTC"
+          description: 'Max Length: 1
+
+
+            Waive late notices.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-LATE-NOTC'
+          example: 0
           format: int32
           type: integer
         waiveLetterFees:
-          description: "Waive letter fees.\n VisionPLUS Service Data: ARXWFO-WAIVE-LTR-CHG"
+          description: 'Max Length: 1
+
+
+            Waive letter fees.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-LTR-CHG'
+          example: 0
           format: int32
           type: integer
         waiveMembershipFee:
-          description: "Waive membership fees.\n VisionPLUS Service Data: ARXWFO-WAIVE-FEE-CHG"
+          description: 'Max Length: 1
+
+
+            Waive membership fees.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-FEE-CHG'
+          example: 0
           format: int32
           type: integer
         waiveNotSufficientFunds:
-          description: "Waive NSF fees.\n VisionPLUS Service Data: ARXWFO-WAIVE-NSF-FEE-IND"
+          description: 'Max Length: 1
+
+
+            Waive NSF fees.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-NSF-FEE-IND'
+          example: 0
           format: int32
           type: integer
         waiveOverLimitFee:
-          description: "Waive overlimit fees.\n VisionPLUS Service Data: ARXWFO-WAIVE-OVLM"
+          description: 'Max Length: 1
+
+
+            Waive overlimit fees.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-OVLM'
+          example: 0
           format: int32
           type: integer
         waiveOverLimitNotice:
-          description: "Waive overlimit notice.\n VisionPLUS Service Data: ARXWFO-WAIVE-OVLM-NOTC"
+          description: 'Max Length: 1
+
+
+            Waive overlimit notice.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-OVLM-NOTC'
+          example: 0
           format: int32
           type: integer
         waiveServiceChargeGroup:
@@ -7008,36 +7870,92 @@ components:
             $ref: '#/components/schemas/AccountFeeWaiverMaintenanceResponse.UpdateWaiveFlagsResponse.WaiveServiceChargeGroup'
           type: array
         waiveSupplementaryMembershipFee:
-          description: "Flag that indicates whether to waive all supplemental card\
-            \ membership fees.\n VisionPLUS Service Data: ARXWFO-SUPP-MEM-FEET"
+          description: 'Max Length: 1
+
+
+            Flag that indicates whether to waive all supplemental card membership
+            fees.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-SUPP-MEM-FEE'
+          example: 0
           format: int32
           type: integer
         waiveTaxCalculator:
-          description: "Waive tax calculator.\n VisionPLUS Service Data: ARXWFO-WAIVE-TAX-CALC"
+          description: 'Max Length: 1
+
+
+            Waive tax calculator.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-TAX-CALC'
+          example: 0
           format: int32
           type: integer
         waiveUserFee1:
-          description: "Waive user fees (1).\n VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-1"
+          description: 'Max Length: 1
+
+
+            Waive user fees 1.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-1'
+          example: 0
           format: int32
           type: integer
         waiveUserFee2:
-          description: "Waive user fees (2).\n VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-2"
+          description: 'Max Length: 1
+
+
+            Waive user fees 2.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-2'
+          example: 0
           format: int32
           type: integer
         waiveUserFee3:
-          description: "Waive user fees (3).\n VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-3"
+          description: 'Max Length: 1
+
+
+            Waive user fees 3.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-3'
+          example: 0
           format: int32
           type: integer
         waiveUserFee4:
-          description: "Waive user fees (4).\n VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-4"
+          description: 'Max Length: 1
+
+
+            Waive user fees 4.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-4'
+          example: 0
           format: int32
           type: integer
         waiveUserFee5:
-          description: "Waive user fees (5).\n VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-5"
+          description: 'Max Length: 1
+
+
+            Waive user fees 5.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-5'
+          example: 0
           format: int32
           type: integer
         waiveUserFee6:
-          description: "Waive user fees (6).\n VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-6"
+          description: 'Max Length: 1
+
+
+            Waive user fees 6.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-USER-FEE-6'
+          example: 0
           format: int32
           type: integer
       type: object
@@ -7048,8 +7966,14 @@ components:
           format: int32
           type: integer
         waiveCashAdvanceFee:
-          description: "Waive cash advance fees (1-10) Occurs 10 times.\n VisionPLUS\
-            \ Service Data: ARXWFO-WAIVE-CASH-ADV-FEE"
+          description: 'Max Length: 1
+
+
+            Waive cash advance fees.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-CASH-ADV-FEE'
+          example: 0
           format: int32
           type: integer
       type: object
@@ -7060,8 +7984,14 @@ components:
           format: int32
           type: integer
         waiveServiceCharge:
-          description: "Waive service charges (1-25) Occurs 25 times.\n VisionPLUS\
-            \ Service Data: ARXWFO-WAIVE-SVC-CHG"
+          description: 'Max Length: 1
+
+
+            Waive service charges.
+
+
+            VisionPLUS Service Data:ARXWFO-WAIVE-SVC-CHG '
+          example: 0
           format: int32
           type: integer
       type: object
@@ -7072,8 +8002,14 @@ components:
           format: int32
           type: integer
         waiveTransactionFee:
-          description: "Waive transaction fees (Occurs 8 times) \n VisionPLUS Service\
-            \ Data: ARXWFO-WAIVE-TXN-FEE"
+          description: 'Max Length: 1
+
+
+            Waive transaction fees.
+
+
+            VisionPLUS Service Data: ARXWFO-WAIVE-TXN-FEE'
+          example: 0
           format: int32
           type: integer
       type: object
@@ -14588,222 +15524,339 @@ components:
       description: Block Codes Warning Request
       properties:
         blockCode1:
-          description: 'Length: 1
+          description: 'Block code equal to space for blocking request.
 
-            Block code equal to space for blocking request.Block code not equal to
-            space for unblock request.
+            Block code not equal to space for unblock request.
 
             This field identifies the block codes assigned to this account.
 
             Block codes control specific processing options at the account level.
 
-            Valid block codes are the letters A to Z and blank (or space). When both
-            block code fields are filled
+            Valid block codes are the letters A to Z and blank(or space).
 
-            only a block code with a higher priority can replace an existing block
-            code.
 
-            AZXABI-BLOCK-CODE-1'
-          example: '765'
+            When both block code fields are filled, only a block code with a higher
+            priority can replace an existing block code.
+
+
+            VisionPLUS Service Data: AZXABI-BLOCK-CODE-1'
+          example: A
           maxLength: 1
           minLength: 0
           type: string
         blockCode2:
-          description: 'Length: 1
+          description: 'Block code equal to space for blocking request.
 
-            Block code equal to space for blocking request.Block code not equal to
-            space for unblock request.
+            Block code not equal to space for unblock request.
 
-            This field identifies the block codes assigned to this account. Block
-            codes control specific processing options at the account level. Valid
-            block codes are the letters A to Z and blank (or space). When both block
-            code fields are filled, only a block code with a higher priority can replace
-            an existing block code.
+            This field identifies the block codes assigned to this account.
 
-            AZXABI-BLOCK-CODE-2'
+            Block codes control specific processing options at the account level.
+
+
+            Valid block codes are the letters A to Z and blank(or space).
+
+
+            When both block code fields are filled, only a block code with a higher
+            priority can replace an existing block code.
+
+
+            VisionPLUS Service Data: AZXABI-BLOCK-CODE-2'
+          example: A
           maxLength: 1
           minLength: 0
           type: string
         cardNumber:
-          description: 'Length: 19
+          description: 'Unique identifier or token associated with the card number
+            or payment instrument(FirstVision PAN Token).
 
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
 
-            AZXABI-CARD-NBR'
+            VisionPLUS Service Data: AZXABI-CARD-NBR'
           example: 000540208ID5IXX3865
           maxLength: 19
           minLength: 0
           type: string
         foreignUse:
-          description: 'Length: 1
-
-            Foreign use indicator not equal to space 0 1 or 2.The FOREIGN USE indicator
-            is provided in the input message so the
-
-            requesting source can specify whether the request applies to the
-
-            local or foreign account when the account is in a dual currency
-
-            processing organization. The default is to the local account.
+          description: 'The FOREIGN USE indicator is provided in the input message
+            so the requesting source can specify whether the request applies to the
+            local or foreign account when the account is in a dual currency processing
+            organization. The default is to the local account.
 
 
-            AZXABI-FOREIGN-USE'
+            VisionPLUS Service Data: AZXABI-FOREIGN-USE'
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         functionCode:
-          description: "Length: 1\nFunction code\nFunction code value should be \u2018\
-            A\u2019 to \u2018H\u2019 or Spaces.\n* A-Block both block codes.\n* B-Block\
-            \ block code 1.\n* C-Block block code 2.\n* D-Unblock both block codes.\n\
-            * E-Unblock block code 1.\n* F-Unblock block code 2.\n* G-Blcok block\
-            \ code 1 and unblock block code 2.\n* H-Unblock block code 1 and block\
-            \ block code 2.\n* Spaces- No updates to any of the block codes.\nMake\
-            \ sure that the cross validations are applied for valid values of the\
-            \ function code against block codes and warning codes.\nAZXABI-FUNC-CODE"
+          description: "Function code.\nFunction code value should be \u2018A\u2019\
+            \ to \u2018H\u2019 or Spaces.\n\nMake sure that the cross validations\
+            \ are applied for valid values of the function code against block codes\
+            \ and warning codes.\n\nValues:\n* A = Block both block codes;\n* B =\
+            \ Block block code 1;\n* C = Block block code 2;\n* D = Unblock both block\
+            \ codes;\n* E = Unblock block code 1;\n* F = Unblock block code 2;\n*\
+            \ G = Block block code 1 and unblock block code 2;\n* H = Unblock block\
+            \ code 1 and block block code 2;\n* Spaces = No updates to any of the\
+            \ block codes.\n\nVisionPLUS Service Data: AZXABI-FUNC-CODE"
+          example: E
           maxLength: 1
           minLength: 0
           type: string
         organizationNumber:
-          description: 'Length: 3
+          description: '* Max Length: 3
 
-            Organization Number
 
-            AZXABI-ORG'
-          example: '765'
+            Organization Number.
+
+
+            VisionPLUS Service Data: AZXABI-ORG'
+          example: '999'
           type: string
         processingFlag1:
-          description: 'Length: 1
+          description: 'Processing flag 1.
 
-            Processing flag 1
 
-            AZXABI-PROCESSING-FLAG-1'
+            VisionPLUS Service Data: AZXABI-PROCESSING-FLAG-1'
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         processingFlag2:
-          description: 'Length: 1
+          description: 'Processing flag 2.
 
-            Processing flag 2
 
-            AZXABI-PROCESSING-FLAG-2'
+            VisionPLUS Service Data: AZXABI-PROCESSING-FLAG-2'
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         processingFlag3:
-          description: 'Length: 1
+          description: 'Processing flag 3.
 
-            Processing flag 3
 
-            AZXABI-PROCESSING-FLAG-3'
+            VisionPLUS Service Data: AZXABI-PROCESSING-FLAG-3'
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         processingFlag4:
-          description: 'Length: 1
+          description: 'Processing flag 4.
 
-            Processing flag 4
 
-            AZXABI-PROCESSING-FLAG-4'
+            VisionPLUS Service Data: AZXABI-PROCESSING-FLAG-4'
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         processingFlag5:
-          description: 'Length: 1
+          description: 'Processing flag 5.
 
-            Processing flag 5
 
-            AZXABI-PROCESSING-FLAG-5'
+            VisionPLUS Service Data: AZXABI-PROCESSING-FLAG-5'
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         warningCode2:
-          description: "Length: 1\nWarning code 2 valid values are spaces, 0, 1, 2,\
-            \ 3 or 4.\nSpaces will be considered as no update to warning code 2\n\
-            This field identifies warning code 1. You cannot change the value of warning\
-            \ code 1. CMS sets the value of warning code 1 based on the block code\
-            \ assigned to the account  (BLK CODE 1 / 2 on ARMB01). The authorization\
-            \ code assigned to a block code at the product. \nThe values for warning\
-            \ code 1 are:* 0 = Normal authorizations (Default)\n* 1 = Decline\n* 2\
-            \ = Decline and pick up\n* 3 = Decline and pick up for fraud or lost/stolen\
-            \ card\n* 4 = Decline with referral\n* 5 = Approve after verifying cardholder\
-            \ ID\n* 6 = Decline for suspected fraud\n* 8 = Decline with a user exit\n\
-            * 9 = VIP account; always approve\nAZXABI-WARN-CODE-2"
+          description: 'Spaces will be considered as no update to warning code 2
+
+
+            This field identifies warning code 2. You cannot change the value of warning
+            code 2. CMS sets the value of warning code 2 based on the block code assigned
+            to the account.
+
+
+            The authorization code assigned to a block code at the product.
+
+
+            Values:
+
+            * 0 = Normal authorizations(Default);
+
+            * 1 = Decline;
+
+            * 2 = Decline and pick up;
+
+            * 3 = Decline and pick up for fraud or lost/stolen card;
+
+            * 4 = Decline with referral;
+
+            * 5 = Approve after verifying cardholder ID;
+
+            * 6 = Decline for suspected fraud;
+
+            * 8 = Decline with a user exit;
+
+            * 9 = VIP account; always approve.
+
+
+            VisionPLUS Service Data: AZXABI-WARN-CODE-2'
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         warningCode3:
-          description: "Length: 1\nWarning code 3 valid values are spaces, 0, 1, or\
-            \ 2.\nSpaces will be considered as no update to warning code 3.\nYou can\
-            \ set the value of warning codes 3. You can set warning codes 3 through\
-            \ a modifiable program in the CMS daily run. If you change any of the\
-            \ values for warning codes 3, CMS recalculates the warning codes during\
-            \ the CMS daily run and updates these fields as needed, which may replace\
-            \ values entered manually in this field. \nThe values are:\n* 0 = No action\n\
-            * 1 = Paid profit and loss (P & L) account\n* 2 = Write-off/charge-off\
-            \ account\n* 3 = Delinquent level 1\n* 4 = Delinquent level 2.\nA user-defined\
-            \ set of parameters in the batch program \ndetermines delinquent levels\
-            \ 1 and 2.\nAZXABI-WARN-CODE-3"
+          description: 'Spaces will be considered as no update to warning code 3.
+
+
+            You can set the value of warning codes 3. You can set warning codes 3
+            through a modifiable program in the CMS daily run. If you change any of
+            the values for warning codes 3, CMS recalculates the warning codes during
+            the CMS daily run and updates these fields as needed, which may replace
+            values entered manually in this field.
+
+
+            A user-defined set of parameters in the batch program determines delinquent
+            levels 1 and 2.
+
+
+            Values:
+
+            * 0 = No action;
+
+            * 1 = Paid profit and loss(P & L) account;
+
+            * 2 = Write-off/charge-off account;
+
+            * 3 = Delinquent level 1;
+
+            * 4 = Delinquent level 2.
+
+
+            VisionPLUS Service Data: AZXABI-WARN-CODE-3'
+          example: '3'
           maxLength: 1
           minLength: 0
           type: string
         warningCode4:
-          description: "Length: 1\nWarning code 4 valid values are spaces, 0, 1, 2,\
-            \ 3, 4, 5, 6 or 7.\nSpaces will be considered as no update to warning\
-            \ code 4\nYou can set the value of warning codes 4. You can set warning\
-            \ codes 4 through a modifiable program in the CMS daily run. If you change\
-            \ any of the values for warning codes 4, CMS recalculates the warning\
-            \ codes during the CMS daily run and updates these fields as needed, which\
-            \ may replace values entered manually in this field.\nThe values are:\n\
-            * 0 = No action\n* 1 = Paid profit and loss (P & L) account\n* 2 = Write-off/charge-off\
-            \ account\n* 3 = Delinquent level 1\n* 4 = Delinquent level 2.\nA user-defined\
-            \ set of parameters in the batch program \ndetermines delinquent levels\
-            \ 1 and 2.\nAZXABI-WARN-CODE-4"
+          description: 'Spaces will be considered as no update to warning code 4
+
+
+            You can set the value of warning codes 4. You can set warning codes 4
+            through a modifiable program in the CMS daily run. If you change any of
+            the values for warning codes 4 CMS recalculates the warning codes during
+            the CMS daily run and updates these fields as needed which may replace
+            values entered manually in this field.
+
+
+            A user-defined set of parameters in the batch program determines delinquent
+            levels 1 and 2.
+
+
+            Values:
+
+            * 0 = No action;
+
+            * 1 = Paid profit and loss(P & L) account;
+
+            * 2 = Write-off/charge-off account;
+
+            * 3 = Delinquent level 1;
+
+            * 4 = Delinquent level 2.
+
+
+            VisionPLUS Service Data: AZXABI-WARN-CODE-4'
+          example: '0'
           maxLength: 1
           minLength: 0
           type: string
         warningCode5:
-          description: "Length: 1\nWarning code 5 valid values are spaces, 0, 1, 2,\
-            \ 3, 4, 5, 6 or 7.\nSpaces will be considered as no update to warning\
-            \ code 5.\nYou can set the value of warning codes 5. You can set warning\
-            \ codes 5 through a modifiable program in the CMS daily run. If you change\
-            \ any of the values for warning codes 5, CMS recalculates the warning\
-            \ codes during the CMS daily run and updates these fields as needed, which\
-            \ may replace values entered manually in this field. \nThe values are:\n\
-            * 0 = No action\n* 1 = Paid profit and loss (P & L) account\n* 2 = Write-off/charge-off\
-            \ account\n* 3 = Delinquent level 1\n* 4 = Delinquent level 2\nA user-defined\
-            \ set of parameters in the batch program \ndetermines delinquent levels\
-            \ 1 and 2.\nAZXABI-WARN-CODE-5"
+          description: 'Spaces will be considered as no update to warning code 5
+
+
+            You can set the value of warning codes 5. You can set warning codes 5
+            through a modifiable program in the CMS daily run. If you change any of
+            the values for warning codes 5 CMS recalculates the warning codes during
+            the CMS daily run and updates these fields as needed which may replace
+            values entered manually in this field.
+
+
+            A user-defined set of parameters in the batch program determines delinquent
+            levels 1 and 2.
+
+
+            Values:
+
+            * 0 = No action;
+
+            * 1 = Paid profit and loss(P & L) account;
+
+            * 2 = Write-off/charge-off account;
+
+            * 3 = Delinquent level 1;
+
+            * 4 = Delinquent level 2;
+
+
+            VisionPLUS Service Data: AZXABI-WARN-CODE-5'
+          example: '4'
           maxLength: 1
           minLength: 0
           type: string
         warningCode6:
-          description: "Length: 1\nWarning code 6 valid values are spaces, 0, 1, 2,\
-            \ 3, 4, 5, or 6.\nSpaces will be considered as no update to warning code\
-            \ 6.\nYou can set the value of warning codes 6. You can set warning codes\
-            \ 6 through a modifiable program in the CMS daily run. If you change any\
-            \ of the values for warning codes 6,CMS recalculates the warning codes\
-            \ during the CMS daily run and updates these fields as needed, which may\
-            \ replace values entered manually in this field. \nThe values are:\n*\
-            \ 0 = No action\n* 1 = Paid profit and loss (P & L) account\n* 2 = Write-off/charge-off\
-            \ account\n* 3 = Delinquent level 1\n* 4 = Delinquent level 2.\nA user-defined\
-            \ set of parameters in the batch program\ndetermines delinquent levels\
-            \ 1 and 2\nAZXABI-WARN-CODE-6"
+          description: 'Spaces will be considered as no update to warning code 6
+
+
+            You can set the value of warning codes 6. You can set warning codes 6
+            through a modifiable program in the CMS daily run. If you change any of
+            the values for warning codes 6 nCMS recalculates the warning codes during
+            the CMS daily run and updates these fields as needed which may replace
+            values entered manually in this field.
+
+
+            A user-defined set of parameters in the batch program determines delinquent
+            levels 1 and 2.
+
+
+            Values:
+
+            * 0 = No action;
+
+            * 1 = Paid profit and loss(P & L) account;
+
+            * 2 = Write-off/charge-off account;
+
+            * 3 = Delinquent level 1;
+
+            * 4 = Delinquent level 2.
+
+
+            VisionPLUS Service Data: AZXABI-WARN-CODE-6'
+          example: '2'
           maxLength: 1
           minLength: 0
           type: string
         warningCode7:
-          description: "Length: 1\nWarning code 7 valid values are spaces, 1, 2, 3,\
-            \ 4, 5, 6, 7, 8, 9 or A.\nSpaces will be considered as no update to warning\
-            \ code 7.\nYou can set the value of warning codes 7. You can set warning\
-            \ codes 7 through a modifiable program in the CMS daily run. If you change\
-            \ any of the values for warning codes 7, CMS recalculates the warning\
-            \ codes during the CMS daily run and updates these fields as needed, which\
-            \ may replace values entered manually in this field. \nThe values are:\n\
-            0 = No action\n1 = Paid profit and loss (P & L) account\n2 = Write-off/charge-off\
-            \ account\n3 = Delinquent level 1\n4 = Delinquent level 2.\nA user-defined\
-            \ set of parameters in the batch program \ndetermines delinquent levels\
-            \ 1 and 2.\nAZXABI-WARN-CODE-7"
+          description: 'Spaces will be considered as no update to warning code 7
+
+
+            You can set the value of warning codes 7. You can set warning codes 7
+            through a modifiable program in the CMS daily run. If you change any of
+            the values for warning codes 7 CMS recalculates the warning codes during
+            the CMS daily run and updates these fields as needed which may replace
+            values entered manually in this field.
+
+
+            A user-defined set of parameters in the batch program determines delinquent
+            levels 1 and 2.
+
+
+            Values:
+
+            0 = No action;
+
+            1 = Paid profit and loss(P & L) account;
+
+            2 = Write-off/charge-off account;
+
+            3 = Delinquent level 1;
+
+            4 = Delinquent level 2.
+
+
+            VisionPLUS Service Data: AZXABI-WARN-CODE-7'
+          example: '3'
           maxLength: 1
           minLength: 0
           type: string
@@ -14814,279 +15867,315 @@ components:
     BlockCodesWarningResponse:
       properties:
         accountNumber:
-          description: 'Length: 19
+          description: 'Max Length: 19
 
-            Account number associated with the block code update
 
-            AZXABO-ACCT'
+            Account number associated with the block code update.
+
+
+            VisionPLUS Service Data: AZXABO-ACCT'
+          example: '7600010732545213551'
           type: string
         blockCode1Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Block code 1 stored on the foreign Account Base Segment record after the
+            service update is applied.
 
-            service update is applied
 
-
-            AZXABO-BLOCK-CD-1-FOREIGN'
+            VisionPLUS Service Data: AZXABO-BLOCK-CD-1-FOREIGN'
+          example: '0'
           type: string
         blockCode1Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Block code 1 stored on the local Account Base Segment record after the
-            service
-
-            update is applied
+            service update is applied.
 
 
-            AZXABO-BLOCK-CD-1-LOCAL'
+            VisionPLUS Service Data: AZXABO-BLOCK-CD-1-LOCAL'
+          example: '0'
           type: string
         blockCode2Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Block code 2 stored on the foreign Account Base Segment record after the
+            service update is applied.
 
-            service update is applied
 
-
-            AZXABO-BLOCK-CD-2-FOREIGN'
+            VisionPLUS Service Data: AZXABO-BLOCK-CD-2-FOREIGN'
+          example: '0'
           type: string
         blockCode2Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Block code 2 stored on the local Account Base Segment record after the
-            service
-
-            update is applied
+            service update is applied.
 
 
-            AZXABO-BLOCK-CD-2-LOCAL'
+            VisionPLUS Service Data: AZXABO-BLOCK-CD-2-LOCAL'
+          example: '0'
           type: string
         cardNumber:
-          description: 'Length: 19
+          description: 'Max Length: 19
+
 
             Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
+            instrument (FirstVision PAN Token.
 
-            AZXABO-CARD-NBR'
+
+            VisionPLUS Service Data: AZXABO-CARD-NBR'
           example: 000540208ID5IXX3865
           type: string
         foreignOrg:
-          description: 'Length: 3
+          description: 'Max Length: 3
 
-            Organization associated with the foreign account
 
-            AZXABO-FOREIGN-ORG'
+            Organization associated with the foreign account.
+
+
+            VisionPLUS Service Data: AZXABO-FOREIGN-ORG'
+          example: 999
           format: int32
           type: integer
         foreignUse:
-          description: 'Length: 1
+          description: 'Max Length: 1
 
-            The FOREIGN USE indicator is provided in the input message so the requesting
 
-            AZXABO-FOREIGN-USE'
+            The FOREIGN USE indicator is provided in the input message so the requesting.
+
+
+            VisionPLUS Service Data: AZXABO-FOREIGN-USE'
+          example: '0'
           type: string
         functionCode:
-          description: 'Length: 1
+          description: 'Max Length: 1
 
-            Function code
 
-            AZXABO-FUNC-CODE'
+            Function code.
+
+
+            VisionPLUS Service Data: AZXABO-FUNC-CODE'
+          example: A
           type: string
         organizationNumber:
-          description: 'Length: 3
+          description: 'Max Length: 3
 
-            Organization associated with the foreign account
 
-            AZXABO-OR'
+            Organization number.
+
+
+            VisionPLUS Service Data: AZXABO-ORG'
+          example: '999'
           type: string
         processingFlag1:
-          description: 'Length: 1
+          description: 'Max Length: 1
 
-            Processing flag 1
 
-            AZXABO-PROCESSING-FLAG-1'
+            Processing flag 1.
+
+
+            VisionPLUS Service Data: AZXABO-PROCESSING-FLAG-1'
+          example: '0'
           type: string
         processingFlag2:
-          description: 'Length: 1
+          description: 'Max Length: 1
 
-            Processing flag 2
 
-            AZXABO-PROCESSING-FLAG-2'
+            Processing flag 2.
+
+
+            VisionPLUS Service Data: AZXABO-PROCESSING-FLAG-2'
+          example: '0'
           type: string
         processingFlag3:
-          description: 'Length: 1
+          description: 'Max Length: 1
 
-            Processing flag 3
 
-            AZXABO-PROCESSING-FLAG-3'
+            Processing flag 3.
+
+
+            VisionPLUS Service Data: AZXABO-PROCESSING-FLAG-3'
+          example: '0'
           type: string
         processingFlag4:
-          description: 'Length: 1
+          description: 'Max Length: 1
 
-            Processing flag 4
 
-            AZXABO-PROCESSING-FLAG-4'
+            Processing flag 4.
+
+
+            VisionPLUS Service Data: AZXABO-PROCESSING-FLAG-4'
+          example: '0'
           type: string
         processingFlag5:
-          description: 'Length: 1
+          description: 'Max Length: 1
 
-            Processing flag 5
 
-            AZXABO-PROCESSING-FLAG-5'
+            Processing flag 5.
+
+
+            VisionPLUS Service Data: AZXABO-PROCESSING-FLAG-5'
+          example: '0'
           type: string
         warningCode1Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 1 stored on the foreign Account Base Segment record after
             the service update is applied.
 
-            AZXABO-WARN-CD-1-FOREIGN'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-1-FOREIGN'
+          example: '0'
           type: string
         warningCode1Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 1 stored on the local Account Base Segment record after the
             service update is applied.
 
-            AZXABO-WARN-CD-1-LOCAL'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-1-LOCAL'
+          example: '0'
           type: string
         warningCode2Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 2 stored on the foreign Account Base Segment record after
             the service update is applied.
 
-            AZXABO-WARN-CD-2-FOREIGN'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-2-FOREIGN'
+          example: '0'
           type: string
         warningCode2Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 2 stored on the local Account Base Segment record after the
             service update is applied.
 
-            AZXABO-WARN-CD-2-LOCAL'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-2-LOCAL'
+          example: '0'
           type: string
         warningCode3Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 3 stored on the foreign Account Base Segment record after
             the service update is applied.
 
-            AZXABO-WARN-CD-3-FOREIGN'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-3-FOREIGN'
+          example: '0'
           type: string
         warningCode3Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 3 stored on the local Account Base Segment record after the
             service update is applied.
 
-            AZXABO-WARN-CD-3-LOCAL'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-3-LOCAL'
+          example: '0'
           type: string
         warningCode4Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 4 stored on the foreign Account Base Segment record after
             the service update is applied.
 
-            AZXABO-WARN-CD-4-FOREIGN'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-4-FOREIGN'
+          example: '0'
           type: string
         warningCode4Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 4 stored on the local Account Base Segment record after the
             service update is applied.
 
-            AZXABO-WARN-CD-4-LOCAL'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-4-LOCAL'
+          example: '0'
           type: string
         warningCode5Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 5 stored on the foreign Account Base Segment record after
             the service update is applied.
 
-            AZXABO-WARN-CD-5-FOREIGN'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-5-FOREIGN'
+          example: '0'
           type: string
         warningCode5Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 5 stored on the local Account Base Segment record after the
             service update is applied.
 
-            AZXABO-WARN-CD-5-LOCAL'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-5-LOCAL'
+          example: '0'
           type: string
         warningCode6Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 6 stored on the foreign Account Base Segment record after
             the service update is applied.
 
-            AZXABO-WARN-CD-6-FOREIGN'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-6-FOREIGN'
+          example: '0'
           type: string
         warningCode6Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 6 stored on the local Account Base Segment record after the
             service update is applied.
 
-            AZXABO-WARN-CD-6-LOCAL'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-6-LOCAL'
+          example: '0'
           type: string
         warningCode7Foreign:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 7 stored on the foreign Account Base Segment record after
             the service update is applied.
 
-            AZXABO-WARN-CD-7-FOREIGN'
+
+            VisionPLUS Service Data: AZXABO-WARN-CD-7-FOREIGN'
+          example: '0'
           type: string
         warningCode7Local:
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Warning code 7 stored on the local Account Base Segment record after the
             service update is applied.
 
-            AZXABO-WARN-CD-7-LOCAL'
-          type: string
-      type: object
-    CardAssignmentRequest:
-      description: Card Assignment Request
-      properties:
-        accountNumber:
-          description: "Identification of the account number associated with the customer\
-            \ number that you want to modify or view.\n If the customer number is\
-            \ not provided, the account number must be informed.\n\nVisionPLUS Service\
-            \ Data: AZXPCI-ACCT"
-          example: 0123456789012345678
-          maxLength: 19
-          minLength: 0
-          type: string
-        cardNumber:
-          description: 'Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
 
-
-            VisionPLUS Service Data: AZXPCI-CARD-NBR'
-          example: 000123456ID5IXX1234
-          maxLength: 19
-          minLength: 12
+            VisionPLUS Service Data: AZXABO-WARN-CD-7-LOCAL'
+          example: '0'
           type: string
-        customerNumber:
-          description: "Customer number that identifies the Customer Name/Address\
-            \ record to which this account is assigned. \n\nVisionPLUS Service Data:\
-            \ AZXPCI-ACCT"
-          example: 0123456789012345678
-          maxLength: 19
-          minLength: 0
-          type: string
-        isPrimaryCard:
-          description: "Card Type Flag \u2013 Card to be associated as primary or\
-            \ secondary.\n\nValues: \n* true = Primary;\n* false = Secondary.\n\n\
-            VisionPLUS Service Data: AZXPCI-CARDHOLDER-TYPE"
-          example: true
-          type: boolean
-      required:
-      - cardNumber
-      - isPrimaryCard
       type: object
     ChargeFeeTableOverrideUpdRequest:
       description: Charge/Fee Table Override Update Request
@@ -16217,727 +17306,6 @@ components:
           type: string
         description:
           type: string
-      type: object
-    FalconMonetaryInquiryRequest:
-      description: Falcon Monetary Inquiry Request
-      properties:
-        accept:
-          description: 'HTTP Accept request header is included in an HTTP message
-            to indicate the types of content that the client can understand.
-
-
-            VisionPLUS Service Data: AZXRBI-ACCEPT'
-          example: text/html
-          maxLength: 20
-          minLength: 0
-          type: string
-        acceptCharSet:
-          description: "Accept CharSet of the device. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-ACCEPT-CHAR-SET"
-          example: utf-8
-          maxLength: 20
-          minLength: 0
-          type: string
-        acceptEncoding:
-          description: "Accept Encoding of the device. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-ACCEPT-ENCODING"
-          example: gzip
-          maxLength: 20
-          minLength: 0
-          type: string
-        acceptLanguage:
-          description: "Accept Language of the device. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-ACCEPT-LANGUAGE"
-          example: en-US
-          maxLength: 20
-          minLength: 0
-          type: string
-        accountNumber:
-          description: "Unique identifier account number. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-PRIM-ACCT-NBR"
-          example: '00000000032'
-          maxLength: 11
-          minLength: 1
-          type: string
-        accountType:
-          description: 'Account Type.
-
-
-            VisionPLUS Service Data: AZXRBI-ACCT-TYPE'
-          example: ABC
-          maxLength: 17
-          minLength: 1
-          type: string
-        agentName:
-          description: "Agent Name of the device. \n\nVisionPLUS Service Data: AZXRBI-AGENT-NAME"
-          example: Chrome
-          maxLength: 20
-          minLength: 0
-          type: string
-        agentType:
-          description: "Agent Type of the device. \n\nVisionPLUS Service Data: AZXRBI-AGENT-TYPE"
-          example: Chrome for Mobile
-          maxLength: 20
-          minLength: 0
-          type: string
-        agentVersion:
-          description: "Agent Version of the device. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-AGENT-VERSION"
-          example: 94.0.4606.81
-          maxLength: 20
-          minLength: 0
-          type: string
-        batchID:
-          description: "* Min Length: 1 \n* Max Length: 10 \n\nUser-defined information.\
-            \ Editable in Fraud Prevention Expert rules. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-BATCH-ID"
-          example: 1111111111
-          maximum: 9999999999
-          minimum: 1
-          type: integer
-        batchOnlineIndicator:
-          description: "Batch Online Transaction Indicator. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-BTCH-ONLINE-IND"
-          example: online
-          maxLength: 6
-          minLength: 1
-          type: string
-        benWireAccountHolderName:
-          description: "Payer name as it appears on the payment. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-BENWIRE-ACCTHLDR-NAME"
-          example: KRISHNA
-          maxLength: 30
-          minLength: 1
-          type: string
-        benWireAccountID:
-          description: "The bank ID associated with the account having funds credited.\
-            \ \n\nVisionPLUS Service Data: AZXRBI-BEN-WIRE-ACCT-ID"
-          example: 001500287654770602
-          maxLength: 40
-          minLength: 1
-          type: string
-        benWireCountryCode:
-          description: "* Min Length: 0\n* Max Length: 3 \n\nThe country code for\
-            \ the country in which the account being credited is held.Use the ISO\
-            \ 3166-1 three-digit numeric country code.\n\nVisionPLUS Service Data:\
-            \ AZXRBI-BEN-WIRE-CNTRY-CODE"
-          example: 999
-          format: int32
-          maximum: 999
-          minimum: 0
-          type: integer
-        benWireCurrencyCode:
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nThe currency code for\
-            \ the credit Amount field. Use the ISO 4217 three-digit numeric currency\
-            \ code.\n\nVisionPLUS Service Data: AZXRBI-BEN-WIRE-CRNCY-CODE"
-          example: 123
-          format: int32
-          maximum: 999
-          minimum: 1
-          type: integer
-        benWireInstallmentIDNum:
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nThe bank ID associated\
-            \ with the account having funds credited. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-BEN-WIRE-INST-ID-NUM"
-          example: 123
-          format: int32
-          maximum: 999
-          minimum: 1
-          type: integer
-        benWireInstallmentName:
-          description: "The bank ID associated with the account having funds credited.\
-            \ \n\nVisionPLUS Service Data: AZXRBI-ORIG-WIRE-INST-NAME"
-          example: '40002'
-          maxLength: 5
-          minLength: 1
-          type: string
-        bin:
-          description: "* Min Length: 1\n* Max Length: 8 \n\nIf sending the card,\
-            \ send the BIN of the card associated with the account. \n\nVisionPLUS\
-            \ Service Data: AZXRBI-BIN"
-          example: 54943943
-          format: int32
-          maximum: 99999999
-          minimum: 1
-          type: integer
-        clientIP:
-          description: "* Min Length: 1 \n* Max Length: 13 \n\nClient Internet Protocol.\
-            \ \n\nVisionPLUS Service Data: AZXRBI-CLIENT-IP"
-          example: 1701861591501
-          maximum: 9999999999999
-          minimum: 1
-          type: integer
-        clientLanguage:
-          description: "Client Language of device. \n\nVisionPLUS Service Data: AZXRBI-CLIENT-LANGUAGE"
-          example: ENGLISH
-          maxLength: 20
-          minLength: 1
-          type: string
-        credDebIndicator:
-          description: 'Credit Debit Indicator.
-
-            VisionPLUS Service Data: AZXRBI-CRED-DEB-IND'
-          example: ABCDEFG
-          maxLength: 7
-          minLength: 1
-          type: string
-        customerHeader:
-          description: "Security signon name. \n\n VisionPLUS Service Data: AZXRBI-CUST-HEADER"
-          example: X-Custom-Header-123
-          maxLength: 20
-          minLength: 0
-          type: string
-        customerId:
-          description: 'Customer Identifier.
-
-
-            VisionPLUS Service Data: AZXRBI-CUST-ID'
-          example: '3874619203'
-          maxLength: 10
-          minLength: 1
-          type: string
-        deviceName:
-          description: "Device Name. \n\nVisionPLUS Service Data: AZXRBI-DEVICE-NAME"
-          example: LAPTOP
-          maxLength: 40
-          minLength: 1
-          type: string
-        deviceVersion:
-          description: "Device Version. \n\nVisionPLUS Service Data: AZXRBI-DEVICE-VERSION"
-          example: R2208
-          maxLength: 20
-          minLength: 1
-          type: string
-        employId:
-          description: "Employee Identification. \n\nVisionPLUS Service Data: AZXRBI-EMPL-ID"
-          example: '321980'
-          maxLength: 8
-          maximum: 99999999
-          minLength: 0
-          type: string
-        fiID:
-          description: "* Min Length: 1\n* Max Length: 5 \n\nFinancial Institution\
-            \ Identifier.\n\nVisionPLUS Service Data: AZXRBI-FIID"
-          example: 40072
-          format: int32
-          maximum: 99999
-          minimum: 1
-          type: integer
-        hostDecision:
-          description: "Decision for the transaction before reaching Fraud Prevention.\n\
-            \nValues: \n* Approve/Accepted \n* Decline/Reject \n* Refer \n* Other\
-            \ \n* Blank = Unknown \n\nVisionPLUS Service Data: AZXRBI-HOST-DECISION"
-          example: Accepted
-          maxLength: 20
-          minLength: 1
-          type: string
-        ibk1InstallmentIDNum:
-          description: "Internet Banking Kit 1 Installment ID Number. \n\nVisionPLUS\
-            \ Service Data: AZXRBI-IBK1-INST-ID-NUM"
-          example: K1VX8Y3A9B2C7D6E5F4
-          maxLength: 20
-          minLength: 0
-          type: string
-        ibk1InstallmentName:
-          description: "Internet Banking Kit 1 Installment Name. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-IBK1-INST-NAME"
-          example: Bank Express 1
-          maxLength: 20
-          minLength: 0
-          type: string
-        ibk2InstallmentName:
-          description: "Internet Banking Kit 2 Installment Name. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-IBK2-INST-NAME"
-          example: Bank Express 2
-          maxLength: 20
-          minLength: 0
-          type: string
-        logo:
-          description: "* Min Length: 1\n* Max Length: 3 \n\nLogo number. \n\nVisionPLUS\
-            \ Service Data: AZXRBI-LOGO"
-          example: 100
-          format: int32
-          maximum: 999
-          minimum: 1
-          type: integer
-        messageSource:
-          description: "User-defined information. Editable in Fraud Prevention Expert\
-            \ rules. \n\nVisionPLUS Service Data: AZXRBI-WIRE-ID"
-          example: User Defined Message
-          maxLength: 35
-          minLength: 1
-          type: string
-        messageType:
-          description: 'Message Type.
-
-
-            VisionPLUS Service Data: AZXRBI-MSG-TYPE'
-          example: '0001'
-          maxLength: 4
-          minLength: 1
-          type: string
-        org:
-          description: "* Min Length: 1\n* Max Length: 3\n\nIdentification number\
-            \ of the organization associated with the account. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-ORG"
-          example: 800
-          format: int32
-          maximum: 998
-          minimum: 1
-          type: integer
-        originAccountName:
-          description: "Payer name as it appears on the payment. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-ORIG-WIRE-ACCT-NAME"
-          example: KRISHNA
-          maxLength: 30
-          minLength: 1
-          type: string
-        originCurrencyCode:
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nThe currency code for\
-            \ the debitAmount field. Use the ISO 4217 three-digit numeric currency\
-            \ code.\n\nVisionPLUS Service Data: AZXRBI-ORIG-CURR-CODE"
-          example: 768
-          format: int32
-          maximum: 999
-          minimum: 1
-          type: integer
-        originWireAccountID:
-          description: "* Min Length: 1 \n* Max Length: 18 \n\nThe unique identifier\
-            \ for the account having funds debited. \n\nVisionPLUS Service Data: AZXRBI-ORIG-WIRE-ACCT-ID"
-          example: 1500287611111111
-          maximum: 999999999999999999
-          minimum: 1
-          type: integer
-        originWireCountryCode:
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nThe currency code for\
-            \ the transactionAmount field. Use the ISO 3166-1 three-digit numeric\
-            \ country code.\n\nVisionPLUS Service Data: AZXRBI-ORIG-WIRE-CNTRY-CODE"
-          example: 999
-          format: int32
-          maximum: 999
-          minimum: 1
-          type: integer
-        originWireCurrencyCode:
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nThe currency code for\
-            \ the transaction Amount field. Use the ISO4217 three-digit numeric currency\
-            \ code. \n\nVisionPLUS Service Data: AZXRBI-ORIG-WIRE-CRNCY-CODE"
-          example: 123
-          format: int32
-          maximum: 999
-          minimum: 1
-          type: integer
-        originWireInstallmentAddress1:
-          description: "Origin Wire Installment Address 1. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-ORIG-WIRE-INST-ADR1"
-          example: Curielmouth
-          maxLength: 20
-          minLength: 0
-          type: string
-        originWireInstallmentAddress2:
-          description: "Origin Wire Installment Address 2. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-ORIG-WIRE-INST-ADR2"
-          example: Lakewood
-          maxLength: 20
-          minLength: 0
-          type: string
-        originWireInstallmentIDNum:
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nThe bank ID associated\
-            \ with the account having funds credited. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-ORIG-WIRE-INST-ID-NUM"
-          example: 123
-          format: int32
-          maximum: 999
-          minimum: 1
-          type: integer
-        osName:
-          description: "Operational System Name. \n\nVisionPLUS Service Data: AZXRBI-OS-NAME"
-          example: IOS
-          maxLength: 20
-          minLength: 0
-          type: string
-        osVersion:
-          description: "Operational System version. \n\nVisionPLUS Service Data: AZXRBI-OS-VERSION"
-          example: '16.4'
-          maxLength: 20
-          minLength: 0
-          type: string
-        postDate:
-          description: "Posting date on which the amount is expected to be credited\
-            \ to the credit account in ISO 8601. \n\nVisionPLUS Service Data: AZXRBI-POST-DATE"
-          example: 2023-02-20
-          format: date
-          maximum: 10
-          minimum: 10
-          pattern: CCYY-MM-DD
-          type: string
-        proxy1P:
-          description: "Device Proxy 1P. \n\nVisionPLUS Service Data: AZXRBI-PROXY1P"
-          example: Proxy1Device
-          maxLength: 20
-          minLength: 0
-          type: string
-        proxy2P:
-          description: "Device Proxy 2P. \n\nVisionPLUS Service Data: AZXRBI-PROXY2P"
-          example: Proxy2Device
-          maxLength: 20
-          minLength: 0
-          type: string
-        realTimeRuleDsps:
-          description: "Real-time rule DSPs (Decision Support Platforms). \n\nVisionPLUS\
-            \ Service Data: AZXRBI-REAL-TIME-RULE-DSPS"
-          example: A
-          maxLength: 20
-          minLength: 1
-          type: string
-        remoteIP:
-          description: "Remote Internet Protocol. \n\nVisionPLUS Service Data: AZXRBI-REMOTE-IP"
-          example: '1701861591502'
-          maxLength: 20
-          minLength: 0
-          type: string
-        respCode:
-          description: "* Min Length: 1 \n* Max Length: 4 \n\nResponse Code (only\
-            \ valid for NRT or NRTU).\n\nVisionPLUS Service Data: AZXRBI-RESP-CODE"
-          example: 12
-          format: int32
-          maximum: 9999
-          minimum: 1
-          type: integer
-        retailID:
-          description: "* Min Length: 0\n* Max Length: 15 \n\nTrade Identifier.\n\n\
-            VisionPLUS Service Data: AZXRBI-RETLID"
-          example: 123456789012345
-          maximum: 999999999999999
-          minimum: 0
-          type: integer
-        riskMessageType:
-          description: '* Min Length: 1
-
-            * Max Length: 6
-
-
-            Risk Message Type.
-
-
-            VisionPLUS Service Data: AZXRBI-RISK-MSG-TYPE'
-          example: '500002'
-          maximum: 999999
-          minimum: 1
-          type: string
-        secondaryAccountCountryCode:
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nThe country code for\
-            \ the country in which the account being credited is held. \nUse the ISO\
-            \ 3166-1 three-digit numeric country code.\n\nVisionPLUS Service Data:\
-            \ AZXRBI-SEC-ACCT-CNTRY-CODE"
-          example: 999
-          format: int32
-          maximum: 999
-          minimum: 1
-          type: integer
-        secondaryAccountNumber:
-          description: "The unique identifier for the account having funds credited.\
-            \ \n\nVisionPLUS Service Data: AZXRBI-SEC-ACCT-NMBR"
-          example: '765150028761111111'
-          maxLength: 18
-          minLength: 1
-          type: string
-        secondaryAccountType:
-          description: 'Beneficiary name as it appears on the payment.
-
-
-            VisionPLUS Service Data: AZXRBI-SEC-ACCT-TYPE'
-          example: AB
-          maxLength: 2
-          minLength: 1
-          type: string
-        securityLevel:
-          description: "Security Level  refers to the level of security or authentication\
-            \ required for a particular transaction. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-SECURITY-LEVEL"
-          example: Verify Passcode
-          maxLength: 20
-          minLength: 0
-          type: string
-        sessionID:
-          description: "Unique identifier number of the customer's online session\
-            \ associated with the transaction. \n\nVisionPLUS Service Data: AZXRBI-SESSION-ID"
-          example: a1b2c3d4e5f6g7h8
-          maxLength: 20
-          minLength: 0
-          type: string
-        termCity:
-          description: "Terminal City. \n\nVisionPLUS Service Data: AZXRBI-TERM-CITY"
-          example: Pachuca
-          maxLength: 20
-          minLength: 0
-          type: string
-        termCntr:
-          description: "Terminal Country. \n\nVisionPLUS Service Data: AZXRBI-TERM-CNTR"
-          example: Mexico
-          maxLength: 20
-          minLength: 0
-          type: string
-        termId:
-          description: 'Terminal Identifier.
-
-
-            VisionPLUS Service Data: AZXRBI-TERM-ID'
-          example: ABC
-          maxLength: 40
-          minLength: 0
-          type: string
-        termNameLoc:
-          description: "Specific identification number of the device where the transaction\
-            \ was initiated: \n* ATM ID = ATM based transaction \n* Branch ID = Teller\
-            \ based transaction \n* Web ID = online transaction \n* Telephone Number\
-            \ = telephone transaction \n* Terminal ID = POS transaction \n* IMEI =\
-            \ Mobile transaction \n\nVisionPLUS Service Data: AZXRBI-TERM-NAME-LOC"
-          example: JH3QKD4PHK
-          maxLength: 20
-          minLength: 0
-          type: string
-        termPostalCode:
-          description: "* Min Length: 1 \n* Max Length: 10 \n\nTerminal Zip Code.\n\
-            \nVisionPLUS Service Data: AZXRBI-TERM-PSTL-CODE"
-          example: 42000
-          format: int32
-          maximum: 9999999999
-          type: integer
-        termSt:
-          description: "Terminal State. \n\nVisionPLUS Service Data: AZXRBI-TERM-ST"
-          example: Hidalgo
-          maxLength: 20
-          minLength: 0
-          type: string
-        transactionAmount1:
-          description: 'The monetary amount credited to the credit account. Amountshould
-            be in the currency of the credit. Fees or charges can cause the credited
-            amount to differ from the debited amount in a constant currency.
-
-
-            VisionPLUS Service Data: AZXRBI-TRAN-AMT1'
-          example: '15000'
-          maxLength: 23
-          minLength: 1
-          type: string
-        transactionAmount2:
-          description: "The monetary amount debited from the debit account. Amount\
-            \ should be in the currency of the debit. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-TRAN-AMT2"
-          example: '15000'
-          maxLength: 23
-          minLength: 1
-          type: string
-        transactionDate:
-          description: "Date of transaction in ISO 8601. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-TRAN-DATE"
-          example: 2023-05-15
-          format: date
-          pattern: CCYY-MM-DD
-          type: string
-        transactionSequence:
-          description: 'Transaction Sequence. Direct SPEI.
-
-
-            VisionPLUS Service Data: AZXRBI-SEQ-NBR'
-          maxLength: 32
-          minLength: 0
-          type: string
-        transactionTime:
-          $ref: '#/components/schemas/LocalTime'
-        userAccountID:
-          description: "Electronic banking user identifier. \n\nVisionPLUS Service\
-            \ Data: AZXRBI-USER-ACCT-ID"
-          example: ABCDEFG
-          maxLength: 7
-          minLength: 1
-          type: string
-        userAgent:
-          description: "User Agent of the device. \n\nVisionPLUS Service Data: AZXRBI-USER-AGENT"
-          example: Chrome/94.0.4606.81
-          maxLength: 20
-          minLength: 0
-          type: string
-        userAgentToken:
-          description: "User Agent Token of the device. \n\nVisionPLUS Service Data:\
-            \ AZXRBI-USER-AGENT-TOKEN"
-          example: Chrome/94.0.4606.81
-          maxLength: 20
-          minLength: 0
-          type: string
-        userCode1:
-          description: '* Min Length: 0
-
-            * Max Length: 3
-
-
-            User-defined information.
-
-
-            VisionPLUS Service Data: AZXRBI-USER-CODE-1'
-          example: 90
-          format: int32
-          maximum: 999
-          minimum: 0
-          type: integer
-        userData11:
-          description: "* Min Length: 9\n* Max Length: 16\n\nUnique identifier of\
-            \ the card number. \n\nVisionPLUS Service Data: AZXRBI-USER-DATA11"
-          example: 5494394370204256
-          format: int64
-          maximum: 9999999999999999
-          minimum: 100000000
-          type: integer
-        userData26:
-          description: "Device Geo Location. \n\nVisionPLUS Service Data: AZXRBI-USER-DATA26"
-          example: 19.426591,-99.170140
-          maxLength: 33
-          minLength: 0
-          type: string
-        visaAdvancedAuthConditionalCode1:
-          description: "* Min Length: 0 \n* Max Length: 4 \n\nVisa's Advanced Authorization\
-            \ Conditional Code 1. \n\nVisionPLUS Service Data: AZXRBI-VI-ADV-AUTH-CND-CD1"
-          example: 1234
-          format: int32
-          maximum: 9999
-          type: integer
-        visaAdvancedAuthConditionalCode2:
-          description: "* Min Length: 0 \n* Max Length: 4 \n\nVisa's Advanced Authorization\
-            \ Conditional Code 2. \n\nVisionPLUS Service Data: AZXRBI-VI-ADV-AUTH-CND-CD2"
-          example: 1234
-          format: int32
-          maximum: 9999
-          type: integer
-        visaAdvancedAuthConditionalCode3:
-          description: "* Min Length: 0 \n* Max Length: 4 \n\nVisa's Advanced Authorization\
-            \ Conditional Code 3.\n\nVisionPLUS Service Data: AZXRBI-VI-ADV-AUTH-CND-CD3"
-          example: 1234
-          format: int32
-          maximum: 9999
-          type: integer
-        visaAdvancedAuthReasonCode1:
-          description: "* Min Length: 0 \n* Max Length: 4 \n\nVisa Advanced Auth Reason\
-            \ Code 1. \n\nVisionPLUS Service Data: AZXRBI-VI-ADV-AUTH-RSN-CD1"
-          example: 1234
-          format: int32
-          maximum: 9999
-          type: integer
-        visaAdvancedAuthReasonCode2:
-          description: "* Min Length: 0 \n* Max Length: 4 \n\nVisa's Advanced Authorization\
-            \ Reason Code 2. \n\nVisionPLUS Service Data: AZXRBI-VI-ADV-AUTH-RSN-CD2"
-          example: 1234
-          format: int32
-          maximum: 9999
-          type: integer
-        visaAdvancedAuthorType:
-          description: "* Min Length: 0 \n* Max Length: 4 \n\nVisa Advanced Author\
-            \ Type. \n\nVisionPLUS Service Data: AZXRBI-VI-ADV-AUTHSCOR_TYPE"
-          example: 1234
-          format: int32
-          maximum: 9999
-          type: integer
-        wireID:
-          description: "User-defined information. Editable in Fraud Prevention Expert\
-            \ rules. \n\nVisionPLUS Service Data: AZXRBI-BEN-WIRE-INST-NAME"
-          example: F1U2QB8
-          maxLength: 35
-          minLength: 1
-          type: string
-        wireReleaseDatetime:
-          description: 'Scheduled Transaction Date.
-
-
-            VisionPLUS Service Data: AZXRBI-WIRE-RLS-DATETIME'
-          example: 2023-02-20
-          format: date
-          maximum: 10
-          minimum: 10
-          pattern: CCYY-MM-DD
-          type: string
-        xForwardedFor:
-          description: "Device Forwarded For (X-Forwarded-For). \n\nVisionPLUS Service\
-            \ Data: AZXRBI-XFWDED-FOR"
-          example: 192.168.1.100
-          maxLength: 20
-          maximum: 20
-          minLength: 0
-          type: string
-      required:
-      - accountNumber
-      - accountType
-      - batchID
-      - batchOnlineIndicator
-      - benWireAccountHolderName
-      - benWireAccountID
-      - benWireCurrencyCode
-      - benWireInstallmentIDNum
-      - benWireInstallmentName
-      - bin
-      - clientIP
-      - clientLanguage
-      - credDebIndicator
-      - customerId
-      - deviceName
-      - deviceVersion
-      - fiID
-      - hostDecision
-      - logo
-      - messageSource
-      - messageType
-      - org
-      - originAccountName
-      - originCurrencyCode
-      - originWireAccountID
-      - originWireCurrencyCode
-      - originWireInstallmentIDNum
-      - postDate
-      - realTimeRuleDsps
-      - respCode
-      - riskMessageType
-      - secondaryAccountCountryCode
-      - secondaryAccountNumber
-      - secondaryAccountType
-      - transactionAmount1
-      - transactionAmount2
-      - transactionDate
-      - transactionTime
-      - userAccountID
-      - wireID
-      - wireReleaseDatetime
-      type: object
-    FalconMonetaryInquiryResponse:
-      properties:
-        falconContainerName:
-          description: "Max Length: 16 \n\nFraud Prevention Container Name describe\
-            \ the specific fraud prevention container name that is being used to analyze\
-            \ and assess the transaction for potential fraudulent activity. \n\nVisionPLUS\
-            \ Service Data: AZXRBO-FALCON-CONTAINER-NAME "
-          example: FALCON_CONTAINER_NAME
-          type: string
-        falconDecision:
-          description: "Max Length: 1 \n\nFraud Prevention Decision is the term used\
-            \ in retail banking transactions to describe the process by which the\
-            \ institution makes a decision about whether a particular transaction\
-            \ is likely to be fraudulent activities before they can cause significant\
-            \ harm or not. It helps to protect both the customer and the institution\
-            \ from potential fraud and financial loss, while also minimizing the impact\
-            \ on legitimate transactions and customer experience. \n\nVisionPLUS Service\
-            \ Data: AZXRBO-FALCON-DECISION \n"
-          example: A
-          type: string
-        falconScore:
-          description: "Max Length: 3 \n\nFraud Prevention Score is the term used\
-            \ in retail banking transactions to describe the rating that is assigned\
-            \ to a particular transaction based on the likelihood that it is fraudulent:\
-            \ \n* 0 = Low Risk - The low value may indicate that the transaction is\
-            \ less likely to be fraudulent or suspicious. \n* 900 = High Risk - The\
-            \ higher the value, the greater the likelihood that the transaction is\
-            \ fraudulent or suspicious. \n\nNote: It's important to note that a low\
-            \ score does not necessarily mean that the transaction is completely safe\
-            \ or risk-free. \n\nVisionPLUS Service Data: AZXRBO-FALCON-SCORE"
-          example: 100
-          format: int32
-          type: integer
       type: object
     FindOrganizationRulesLevelsResponse:
       properties:
@@ -18452,17 +18820,6 @@ components:
           format: int32
           type: integer
       type: object
-    ItemRequestString:
-      example:
-        id: 1
-        value: ALPHANUMERIC DATA 1
-      properties:
-        id:
-          format: int32
-          type: integer
-        value:
-          type: string
-      type: object
     ItemResponseNullableString:
       description: 'Length: (160, 80)
 
@@ -18477,31 +18834,720 @@ components:
         value:
           type: string
       type: object
-    LocalTime:
-      description: "* Min Length: 8 \n* Max Length: 8 \n\nTransaction Time in HH:MM:SS\
-        \ Format.\n\nVisionPLUS Service Data: AZXRBI-TRAN-TIME"
-      example: 86399
-      maximum: 8
-      pattern: HH:MM:SS
-      properties:
-        hour:
-          format: int32
-          type: integer
-        minute:
-          format: int32
-          type: integer
-        nano:
-          format: int32
-          type: integer
-        second:
-          format: int32
-          type: integer
-      type: object
     MiscellaneousUserFieldsDto:
       properties:
         applicationMiscellaneousUserField:
           type: string
         id:
+          format: int32
+          type: integer
+      type: object
+    ModifyAccountBalanceRequest:
+      description: Modify Account Balance Request
+      properties:
+        accountNumber:
+          description: 'Length: 19
+
+
+            Number of Customer''s account or card.
+
+
+            VisionPLUS Service Data: AZXMAI-ACCT-NBR'
+          example: '4198194069732810121'
+          maxLength: 19
+          minLength: 19
+          type: string
+        asmOrganizationNumber:
+          description: 'Length: 3
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: AZXMAI-ASM-ORG'
+          example: 809
+          format: int32
+          type: integer
+        foreignUse:
+          description: 'Length: 1
+
+            Foreign Use indicator.
+
+            Values:
+
+            0: Local
+
+            1: Foreign
+
+            VisionPLUS Service Data: AZXMAI-FOREIGN-USE-IND'
+          example: '0'
+          type: string
+        representativeId:
+          description: 'Length: 3
+
+            ID of Representative.
+
+
+            VisionPLUS Service Data: AZXMAI-ASM-REP'
+          example: A00
+          maxLength: 3
+          minLength: 1
+          type: string
+        transactionData:
+          $ref: '#/components/schemas/ModifyAccountBalanceRequest.TxData'
+      required:
+      - accountNumber
+      - asmOrganizationNumber
+      - representativeId
+      type: object
+    ModifyAccountBalanceRequest.TxData:
+      description: 'Length: 3
+
+        ModifyAccountBalanceRequestTxData'
+      properties:
+        actionCode:
+          description: 'Length: 4
+
+            Code that identifies the action to be taken.
+
+
+            VisionPLUS Service Data: AZXMAI-ACTION-CODE'
+          example: FUND
+          type: string
+        authorizationCode:
+          description: 'Length: 6
+
+
+            identifier used to identify the transaction for reconciliation purpose.
+
+
+            VisionPLUS Service Data: AZXMAI-AUTH-CODE'
+          example: '123456'
+          maxLength: 6
+          minLength: 0
+          type: string
+        cardNumber:
+          description: 'Length: 19
+
+            Unique identifier or token associated with the card number or payment
+            instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: AZXMAI-CARD-NBR'
+          example: 000540208ID5IXX3865
+          maxLength: 19
+          minLength: 12
+          type: string
+        cardSequence:
+          description: 'Length: 4
+
+            Card Sequence.
+
+
+            VisionPLUS Service Data: AZXMAI-CARD-SEQ'
+          example: 1
+          format: int32
+          type: integer
+        departmentCode:
+          description: 'Length: 4
+
+            Department Code.
+
+            VisionPLUS Service Data: AZXMAI-DEPT-CODE'
+          example: PPLD
+          type: string
+        description:
+          description: 'Length: 40
+
+
+            Description of the transaction.
+
+
+            VisionPLUS Service Data: AZXMAI-DESC'
+          example: Description
+          type: string
+        effectiveDate:
+          description: 'Date that specifies when the transaction takes effect in the
+            account.
+
+
+            VisionPLUS Service Data: AZXMAI-EFF-DATE'
+          format: date
+          type: string
+        otbUpdateIndicator:
+          description: 'Length: 1
+
+            OTB Update Indicator. The values are:
+
+            0 = Update OTB
+
+            1 = Do not update OTB
+
+            VisionPLUS Service Data: AZXMAI-OTB-UPDATE-IND'
+          example: 0
+          format: int32
+          type: integer
+        planNumber:
+          description: 'Length: 5
+
+            Plan Number.
+
+
+            VisionPLUS Service Data: AZXMAI-PLAN-NBR'
+          example: 60000
+          format: int32
+          type: integer
+        planSequence:
+          description: 'Length: 2
+
+            Plan Sequence.
+
+
+            VisionPLUS Service Data: AZXMAI PLAN-SEQ'
+          example: 1
+          format: int32
+          type: integer
+        referenceNumber:
+          description: 'Length: 12
+
+            Reference Number.
+
+
+            VisionPLUS Service Data: AZXMAI-REF-NUM'
+          example: '123456789012'
+          type: string
+        resolutionReferenceNumber:
+          description: 'Length: 14
+
+            Resolution Reference Number For Payments Received For Open Billing Accounts.
+
+
+            VisionPLUS Service Data: AZXMAI-R-REF-NBR'
+          example: '123456789012'
+          type: string
+        storeNumber:
+          description: 'Length: 9
+
+            Store Number.
+
+
+            VisionPLUS Service Data: AZXMAI-STORE-NBR'
+          example: 999999998
+          format: int32
+          type: integer
+        transactionAmount:
+          description: 'Length: 17
+
+
+            Transaction Amount.
+
+
+            VisionPLUS Service Data: AZXMAI-TXN-AMOUNT'
+          example: 100
+          type: number
+      required:
+      - actionCode
+      - cardNumber
+      - cardSequence
+      - description
+      - effectiveDate
+      - otbUpdateIndicator
+      - planNumber
+      - planSequence
+      - referenceNumber
+      - resolutionReferenceNumber
+      - storeNumber
+      - transactionAmount
+      type: object
+    ModifyAccountBalanceResponse:
+      properties:
+        account:
+          $ref: '#/components/schemas/ModifyAccountBalanceResponse.Account'
+        actionCodePri:
+          description: 'Length: 1
+
+            Action code pri.
+
+
+            VisionPLUS Service Data: AZXMAO-ACTION-CODE-PRI'
+          format: int32
+          type: integer
+        actionDate:
+          description: 'Action date.
+
+
+            VisionPLUS Service Data: AZXMAO-ACTION-DATE'
+          format: date
+          type: string
+        actionDescription:
+          description: 'Length: 20
+
+            Action description.
+
+
+            VisionPLUS Service Data: AZXMAO-ACTION-DESC'
+          type: string
+        asmOrganizationNumber:
+          description: 'Length: 3
+
+            Organization number.
+
+
+            VisionPLUS Service Data: AZXMAO-ACTION-ASM-ORG'
+          format: int32
+          type: integer
+        asmRepresentativeId:
+          description: 'Length: 3
+
+            Representative id.
+
+
+            VisionPLUS Service Data: AZXMAO-ACTION-REP'
+          type: string
+        cardNumber:
+          description: 'Length: 19
+
+            Unique identifier or token associated with the card number or payment
+            instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: AZXMAO-CARD-NBR'
+          example: 000540208ID5IXX3865
+          type: string
+        cardSequence:
+          description: 'Length: 5
+
+            Card sequence.
+
+
+            VisionPLUS Service Data: AZXMAO-CARD-SEQ'
+          format: int32
+          type: integer
+        collectionSequenceNumber:
+          description: 'Length: 5
+
+            Collection sequence number.
+
+
+            VisionPLUS Service Data: AZXMAO-CTA-SEQ-NBR'
+          format: int32
+          type: integer
+        ctaFile:
+          description: 'Length: 1
+
+            CTA file.
+
+
+            VisionPLUS Service Data: AZXMAO-CTA-FILE'
+          type: string
+        foreignUseIndicator:
+          description: 'Length: 1
+
+            Foreign use indicator.
+
+
+            VisionPLUS Service Data: AZXMAO-FOREIGN-USE-IND'
+          type: string
+        historyDate:
+          description: 'History date.
+
+
+            VisionPLUS Service Data: AZXMAO-HIST-DATE'
+          format: date
+          type: string
+        historyTime:
+          description: 'History time.
+
+
+            VisionPLUS Service Data: AZXMAO-HIST-TIME'
+          type: string
+        letterData:
+          $ref: '#/components/schemas/ModifyAccountBalanceResponse.LetterData'
+        purgeDate:
+          description: 'Purge date.
+
+
+            VisionPLUS Service Data: AZXMAO-PURGE-DATE'
+          format: date
+          type: string
+        recordType:
+          description: 'Length: 1
+
+            Record type.
+
+
+            VisionPLUS Service Data: AZXMAO-RECORD-TYPE'
+          type: string
+        referralAsmOrganization:
+          description: 'Length: 3
+
+            Referral asm organization.
+
+
+            VisionPLUS Service Data: AZXMAO-REFERRAL-ASM-ORG'
+          format: int32
+          type: integer
+        referralRepresentative:
+          description: 'Length: 3
+
+            Referral Representative.
+
+
+            VisionPLUS Service Data: AZXMAO-REFERRAL-REP'
+          type: string
+        retention:
+          description: 'Length: 1
+
+            Retention.
+
+
+            VisionPLUS Service Data: AZXMAO-RETENTION'
+          type: string
+        status:
+          description: 'Length: 1
+
+            Status.
+
+
+            VisionPLUS Service Data: AZXMAO-STATUS'
+          type: string
+        transactionData:
+          $ref: '#/components/schemas/ModifyAccountBalanceResponse.TransactionData'
+      type: object
+    ModifyAccountBalanceResponse.Account:
+      properties:
+        logo:
+          description: 'Length: 3
+
+            Logo.
+
+
+            VisionPLUS Service Data: AZXMAO-ACCT-LOGO'
+          format: int32
+          type: integer
+        number:
+          description: 'Length: 19
+
+            Number.
+
+
+            VisionPLUS Service Data: AZXMAO-ACCT-NBR'
+          type: string
+        organizationNumber:
+          description: 'Length: 3
+
+            Organization number.
+
+
+            VisionPLUS Service Data: AZXMAO-ACCT-ORG'
+          format: int32
+          type: integer
+      type: object
+    ModifyAccountBalanceResponse.LetterData:
+      properties:
+        code:
+          description: 'Length: 3
+
+            Code.
+
+
+            VisionPLUS Service Data: AZXMAO-LETTER'
+          type: string
+        organization:
+          description: 'Length: 3
+
+            Organization.
+
+
+            VisionPLUS Service Data: AZXMAO-LTR-ORG'
+          type: string
+      type: object
+    ModifyAccountBalanceResponse.TransactionData:
+      properties:
+        actionCode:
+          description: 'Length: 5
+
+            Action code.
+
+
+            VisionPLUS Service Data: AZXMAO-ACTION-CODE'
+          type: string
+        approvalIndicator:
+          description: 'Length: 1
+
+            Approval indicator.
+
+
+            VisionPLUS Service Data: AZXMAO-APPR-DECL'
+          type: string
+        authorizationCode:
+          description: 'Length: 6
+
+            Authorization code.
+
+
+            VisionPLUS Service Data: AZXMAO-AUTH-NBR'
+          type: string
+        authorizationNumber:
+          description: 'Length: 6
+
+            Authorization number.
+
+
+            VisionPLUS Service Data: AZXMAO-AUTH-NUMBER'
+          type: string
+        cashAvailable:
+          description: 'Length: 17
+
+            Cash available.
+
+
+            VisionPLUS Service Data: AZXMAO-CASH-AVAIL-CR'
+          type: number
+        creditLimit:
+          description: 'Length: 17
+
+            Credit Limit.
+
+
+            VisionPLUS Service Data: AZXMAO-CREDIT-LIMIT'
+          type: number
+        currencyData:
+          $ref: '#/components/schemas/ModifyAccountBalanceResponse.TransactionData.CurrencyData'
+        currencyNumber:
+          description: 'Length: 3
+
+            Currency number.
+
+
+            VisionPLUS Service Data: AZXMAO-WALLET'
+          type: string
+        currentBalance:
+          description: 'Length: 17
+
+            Current balance.
+
+
+            VisionPLUS Service Data: AZXMAO-CURR-BAL'
+          type: number
+        departmentCode:
+          description: 'Length: 4
+
+            Department code.
+
+
+            VisionPLUS Service Data: AZXMAO-DEPT-NBR'
+          type: string
+        effectiveDate:
+          description: 'Effective date.
+
+
+            VisionPLUS Service Data: AZXMAO-EFF-DATE'
+          format: date
+          type: string
+        feeAmount:
+          description: 'Length: 17
+
+            Fee Amount.
+
+
+            VisionPLUS Service Data: AZXMAO-FEE-AMT'
+          type: number
+        fundCard:
+          description: 'Length: 19
+
+            Fund card.
+
+
+            VisionPLUS Service Data: AZXMAO-PD-FUND-CARD'
+          type: string
+        fundCardDeclinedReason:
+          description: 'Length: 30
+
+            Fund card declined reason.
+
+
+            VisionPLUS Service Data: AZXMAO-PD-DECL-RSN'
+          type: string
+        insuranceCode:
+          description: 'Length: 2
+
+            Insurance code.
+
+
+            VisionPLUS Service Data: AZXMAO-INS'
+          type: string
+        monetaryType:
+          description: 'Length: 1
+
+            Monetary type.
+
+
+            VisionPLUS Service Data: AZXMAO-MON-TYPE'
+          type: string
+        openToBuy:
+          description: 'Length: 17
+
+            Open to buy.
+
+
+            VisionPLUS Service Data: AZXMAO-OPEN-TO-BUY'
+          type: number
+        planNumber:
+          description: 'Length: 5
+
+            Plan number.
+
+
+            VisionPLUS Service Data: AZXMAO-PLAN-NBR'
+          type: string
+        planSequence:
+          description: 'Length: 2
+
+            Plan sequence.
+
+
+            VisionPLUS Service Data: AZXMAO-PLAN-SEQ'
+          format: int32
+          type: integer
+        pointsAmount:
+          description: 'Length: 9
+
+            Points amount.
+
+
+            VisionPLUS Service Data: AZXMAO-PTS-AMT'
+          type: number
+        pointsProgram:
+          description: 'Length: 1
+
+            Points program.
+
+
+            VisionPLUS Service Data: AZXMAO-PTS-PGM'
+          format: int32
+          type: integer
+        purchaseOrderNumber:
+          description: 'Length: 16
+
+            Purchase order number.
+
+
+            VisionPLUS Service Data: AZXMAO-PURCHASE-ORDER-NBR'
+          type: string
+        referenceNum:
+          description: 'Length: 15
+
+            Reference.
+
+
+            VisionPLUS Service Data: AZXMAO-R-REF-NBR'
+          type: string
+        referenceNumber:
+          description: 'Length: 24
+
+            Reference number.
+
+
+            VisionPLUS Service Data: AZXMAO-REFERENCE-NBR'
+          type: string
+        reversalDate:
+          description: 'Reversal date.
+
+
+            VisionPLUS Service Data: AZXMAO-REV-DATE'
+          format: date
+          type: string
+        reversalTime:
+          description: 'Length: 7
+
+            Reversal time.
+
+
+            VisionPLUS Service Data: AZXMAO-REV-TIME'
+          type: string
+        salesClerk:
+          description: 'Length: 12
+
+            Sales clerk.
+
+
+            VisionPLUS Service Data: AZXMAO-CLERK'
+          type: string
+        stockKeepingUnitNumber:
+          description: 'Length: 3
+
+            Stock keeping unit number.
+
+
+            VisionPLUS Service Data: AZXMAO-SKU-NBR'
+          type: string
+        storeNumber:
+          description: 'Length: 9
+
+            Store number.
+
+
+            VisionPLUS Service Data: AZXMAO-STORE-NBR'
+          type: string
+        storeOrganizationNumber:
+          description: 'Length: 3
+
+            Store organization number.
+
+
+            VisionPLUS Service Data: AZXMAO-STORE-ORG'
+          format: int32
+          type: integer
+        ticketNumber:
+          description: 'Length: 15
+
+            Ticket number.
+
+
+            VisionPLUS Service Data: AZXMAO-TICKET-NBR'
+          type: string
+        transactionAmount:
+          description: 'Length: 17
+
+            Transaction amount.
+
+
+            VisionPLUS Service Data: AZXMAO-TRAN-AMT'
+          type: number
+        transactionCode:
+          description: 'Length: 3
+
+            Transaction code.
+
+
+            VisionPLUS Service Data: AZXMAO-TXN-CODE'
+          type: string
+        transactionDescription:
+          description: 'Length: 40
+
+            Transaction description.
+
+
+            VisionPLUS Service Data: AZXMAO-TXN-DESC'
+          type: string
+      type: object
+    ModifyAccountBalanceResponse.TransactionData.CurrencyData:
+      properties:
+        currencyCode:
+          description: 'Length: 3
+
+            Currency code.
+
+
+            VisionPLUS Service Data: AZXMAO-CURRENCY-CODE'
+          type: string
+        currencyNumberOfDecimal:
+          description: 'Length: 1
+
+            Currency number of decimal.
+
+
+            VisionPLUS Service Data: AZXMAO-CURRENCY-NOD'
           format: int32
           type: integer
       type: object
@@ -19734,1076 +20780,6 @@ components:
           example: 0
           format: int32
           type: integer
-      type: object
-    PurchaseAndCashAdvanceRequest:
-      description: Purchase and cash advance Request
-      properties:
-        accountData:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceRequest.AccountData'
-        actionCodePriority:
-          description: "* Min Length: 1\n* Max Length: 1\n\nNotes history priority.\
-            \ If not specified, the priority defined on the action \nrecord is substituted\
-            \ for this value on the history file\nValues:\n* low-values = Unspecified\
-            \ priority\n* 0 = Unspecified priority\n* 1 = Low priority \n* 2 = Medium\
-            \ priority \n* 3 = High priority.\n\nVisionPLUS Service Data: AZXMAI-ACTION-CODE-PRI"
-          example: 1
-          format: int32
-          type: integer
-        fraudPreventionData:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceRequest.FraudPreventionData'
-        hasReferral:
-          description: 'Referral Option.
-
-
-            Values:
-
-
-            * false = Referral off
-
-            * true = Referral on
-
-
-            VisionPLUS Service Data: AZXMAI-REFERRAL-OPTION'
-          example: true
-          type: boolean
-        isForeign:
-          description: 'The FOREIGN USE indicator is provided in the input message
-            so the requesting source can specify whether the request applies to the
-            local or foreign account when the account is in a dual currency processing
-            organization. The default is to the local account.
-
-
-            Values:
-
-
-            * false = local account
-
-            * true = foreign account
-
-
-            VisionPLUS Service Data: AZXMAI-FOREIGN-USE-IND'
-          example: false
-          type: boolean
-        metaData:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceRequest.MetaData'
-        organizationNumber:
-          description: '* Min Length: 1
-
-            * Max Length: 3
-
-
-            Identification number of the organization associated with the account
-
-
-            VisionPLUS Service Data: AZXMAI-ASM-ORG'
-          example: 800
-          format: int32
-          type: integer
-        referralRepresentation:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceRequest.ReferralRepresentation'
-        representativeId:
-          description: 'ID of Representative
-
-
-            VisionPLUS Service Data: AZXMAI-ASM-REP'
-          example: A00
-          maxLength: 3
-          minLength: 1
-          type: string
-        transactionData:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceRequest.TransactionData'
-      required:
-      - actionCodePriority
-      - organizationNumber
-      - representativeId
-      type: object
-    PurchaseAndCashAdvanceRequest.AccountData:
-      properties:
-        number:
-          description: "Number of Customer\u2019s account.\n\nVisionPLUS Service Data:\
-            \ AZXMAI-ACCT-NBR"
-          example: '9500500180739621112'
-          maxLength: 19
-          minLength: 19
-          type: string
-        organizationNumber:
-          description: '* Min Length: 3
-
-            * Max Length: 3
-
-
-            Account organization number.
-
-
-            VisionPLUS Service Data: AZXMAI-ACCT-ORG'
-          example: 800
-          format: int32
-          type: integer
-      required:
-      - number
-      type: object
-    PurchaseAndCashAdvanceRequest.FraudPreventionData:
-      properties:
-        accountLevelByPass:
-          description: 'Account Level apply the limits of accounts N1 and N2 to the
-            transactions that are triggered from the acquisition.
-
-
-            Values:
-
-            * false = Do Not ByPass Account Level Rule Validation
-
-            * true = ByPass Account Level Rule Validation
-
-
-            VisionPLUS Service Data: AZXMAI-N1N2-BYPASS'
-          example: false
-          type: boolean
-        beneficiaryAccount:
-          description: 'Receiver account number.
-
-
-            VisionPLUS Service Data: AZXMAI-RECEIVER-ACCT-NBR'
-          example: 012180000000011114
-          maxLength: 20
-          minLength: 1
-          type: string
-        cardLabelId:
-          description: 'Card''s id label.
-
-
-            VisionPLUS Service Data: AZXMAI-CARD-LABEL-ID'
-          example: tok_test_logo_4242
-          maxLength: 22
-          minLength: 1
-          type: string
-        cashierNumber:
-          description: 'Cashier number.
-
-
-            VisionPLUS Service Data: AZXMAI-CASHIER-NBR'
-          example: '1'
-          maxLength: 1
-          minLength: 1
-          type: string
-        counterpartInstitution:
-          description: 'Institutions Code where the payment goes to (regarding to
-            catalog).
-
-
-            VisionPLUS Service Data: AZXMAI-COUNTERPART-INST'
-          example: '96545'
-          maxLength: 5
-          minLength: 1
-          type: string
-        device:
-          description: 'Unique identifier of the used device.
-
-
-            VisionPLUS Service Data: AZXMAI-DEVICE'
-          example: 898ds-090ds-9d0s9-0ds9d0-0d9sd00
-          maxLength: 32
-          minLength: 1
-          type: string
-        ecommerceTransactionLimitsIndicator:
-          description: 'Flag to check for transaction limits for e-commerce transactions.
-
-
-            Values:
-
-            * false = Spending Limits for E-Commerce off
-
-            * true = Spending Limits for E-Commerce on
-
-
-            VisionPLUS Service Data: AZXMAI-SPND-LIM-ECOM-FLAG'
-          example: true
-          type: boolean
-        identifier:
-          description: 'Where the transaction comes from.
-
-
-            VisionPLUS Service Data: AZXMAI-IDENTIFIER'
-          example: TWU3
-          maxLength: 4
-          minLength: 1
-          type: string
-        ip:
-          description: 'The ip address that originated the transaction.
-
-
-            VisionPLUS Service Data: AZXMAI-INTRT-PROTOCOL'
-          example: 198.162.200.200
-          maxLength: 15
-          minLength: 1
-          type: string
-        isOpenToBuy:
-          description: 'Open To Buy Flag Switch for Debit Transactions.
-
-
-            Values:
-
-            * false = Debit Transaction off
-
-            * true = Debit Transaction on
-
-
-            VisionPLUS Service Data: AZXMAI-OTB-CHECK-FLAG'
-          example: true
-          type: boolean
-        isReversedMemo:
-          description: 'Memo Post Indicator must be either true or false.
-
-
-            Values:
-
-            * false = Do not post memo
-
-            * true = Reverse memo
-
-
-            VisionPLUS Service Data: AZXMAI-MEMO-POST-IND'
-          example: false
-          type: boolean
-        keyTracing:
-          description: 'Tracing key.
-
-
-            VisionPLUS Service Data: AZXMAI-TRACING-KEY'
-          example: EFFI202007158252885919
-          maxLength: 30
-          minLength: 1
-          type: string
-        latitude:
-          description: 'The latitude where the transaction originated
-
-
-            VisionPLUS Service Data: AZXMAI-LATITUDE'
-          example: '-109.699951'
-          maxLength: 12
-          minLength: 1
-          type: string
-        longitude:
-          description: 'The longitude where the transaction originated.
-
-
-            VisionPLUS Service Data: AZXMAI-LONGITUDE'
-          example: '23.062283'
-          maxLength: 10
-          minLength: 1
-          type: string
-        monetarySupress:
-          description: 'Monetary Supress must be either true or false.
-
-
-            Values:
-
-            * false = Do not Suppress Monetary transaction
-
-            * true = Suppress Monetary transaction
-
-
-            VisionPLUS Service Data: AZXMAI-MON-SUPP'
-          example: true
-          type: boolean
-        operatingInstitution:
-          description: 'Institutions Code where the payment comes from (regarding
-            to catalog).
-
-
-            VisionPLUS Service Data: AZXMAI-OPERATING-INST'
-          example: '90646'
-          maxLength: 5
-          minLength: 1
-          type: string
-        orderingName:
-          description: 'Issuer name.
-
-
-            VisionPLUS Service Data: AZXMAI-ISSUE-NAME'
-          example: Diego Martinez
-          maxLength: 30
-          minLength: 1
-          type: string
-        paymentAcceptIndicator:
-          description: 'Flag to indicate whether service accepts or rejects a payment
-            when the balance of the account exceeds the credit balance.
-
-
-            Values:
-
-            * false = Reject Payment
-
-            * true = Accept Payment
-
-
-            VisionPLUS Service Data: AZXMAI-PMT-ACCP-REJ-FLAG'
-          example: true
-          type: boolean
-        paymentDescription:
-          description: 'Issuer description about the payment.
-
-
-            VisionPLUS Service Data: AZXMAI-ISSUER-PMT-DESC'
-          example: MONEY
-          maxLength: 20
-          minLength: 1
-          type: string
-        receiverContributorFederalRegister:
-          description: 'Receiver Federal Register of Contributors.
-
-
-            VisionPLUS Service Data: AAZXMAI-RECEIVER-RCF'
-          example: MACE881212TR3
-          maxLength: 13
-          minLength: 1
-          type: string
-        recipientName:
-          description: 'Receiver name.
-
-
-            VisionPLUS Service Data: AZXMAI-RECEIVER-NAME'
-          example: Eduardo Martinez
-          maxLength: 30
-          minLength: 1
-          type: string
-        regionIdentifier:
-          description: 'Region identifier.
-
-
-            VisionPLUS Service Data: AZXMAI-REGION-IDENTIFIER'
-          example: 10MON
-          maxLength: 5
-          minLength: 1
-          type: string
-        resolutionReferenceNumber:
-          description: 'Resolution Reference Number For Payments Received For Open
-            Billing Accounts.
-
-
-            VisionPLUS Service Data: AZXMAI-R-REF-NBR'
-          example: 05698622426763
-          maxLength: 14
-          minLength: 1
-          type: string
-        senderAccount:
-          description: 'Issuer account number.
-
-
-            VisionPLUS Service Data: AZXMAI-ISSUER-ACCT-NBR'
-          example: 012180000000011114
-          maxLength: 20
-          minLength: 1
-          type: string
-        senderContributorFederalRegister:
-          description: 'Issuer Federal Register of Contributors.
-
-
-            VisionPLUS Service Data: AZXMAI-ISSUER-RCF'
-          example: MACE881212TR3
-          maxLength: 13
-          minLength: 1
-          type: string
-        storeIdentifier:
-          description: 'Store identifier.
-
-
-            VisionPLUS Service Data: AZXMAI-STORE-IDENTIFIER'
-          example: 50EDI
-          maxLength: 5
-          minLength: 1
-          type: string
-      type: object
-    PurchaseAndCashAdvanceRequest.LetterInformation:
-      properties:
-        code:
-          description: 'Letter Code.
-
-
-            VisionPLUS Service Data: AZXMAI-LTR-CODE'
-          example: G52
-          maxLength: 3
-          minLength: 1
-          type: string
-        organization:
-          description: 'Letter organization number.
-
-
-            VisionPLUS Service Data: AZXMAI-LTR-ORG'
-          example: '800'
-          type: string
-      type: object
-    PurchaseAndCashAdvanceRequest.MetaData:
-      properties:
-        memoLine:
-          items:
-            $ref: '#/components/schemas/ItemRequestString'
-          type: array
-      type: object
-    PurchaseAndCashAdvanceRequest.ReferralRepresentation:
-      properties:
-        id:
-          description: 'Referral Representation ID. Mandatory if referral is ON.
-
-
-            VisionPLUS Service Data: AZXMAI-REFERRAL-REP'
-          example: '998'
-          maxLength: 3
-          minLength: 1
-          type: string
-        organization:
-          description: '* Min Length: 1
-
-            * Max Length: 3
-
-
-            Referral Representation organization. Mandatory if referral is ON.
-
-
-            VisionPLUS Service Data: AZXMAI-REFERRAL-REP-ORG'
-          example: 800
-          format: int32
-          type: integer
-      type: object
-    PurchaseAndCashAdvanceRequest.TransactionData:
-      properties:
-        actionCode:
-          description: 'Code that identifies the action to be taken. Values are parameterizable
-            by organization in AMAC file.
-
-
-            VisionPLUS Service Data: AZXMAI-ACTION-CODE'
-          example: FUND
-          maxLength: 4
-          minLength: 4
-          type: string
-        authorizationCode:
-          description: 'Identifier used to identify the transaction for reconciliation
-            purpose.
-
-
-            VisionPLUS Service Data: AZXMAI-AUTH-CODE'
-          example: '281013'
-          maxLength: 6
-          minLength: 6
-          type: string
-        cardNumber:
-          description: 'Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
-
-
-            VisionPLUS Service Data: AZXMAI-CARD-NBR'
-          example: 000540208ID5AXX3865
-          maxLength: 19
-          minLength: 12
-          type: string
-        cardSequence:
-          description: '* Min Length: 1
-
-            * Max Length: 4
-
-
-            Card Sequence.
-
-
-            VisionPLUS Service Data: AZXMAI-CARD-SEQ'
-          example: 6084
-          format: int32
-          type: integer
-        departmentCode:
-          description: "Department Code \n\nVisionPLUS Service Data: AZXMAI-DEPT-CODE"
-          example: PPLD
-          maxLength: 4
-          minLength: 1
-          type: string
-        description:
-          description: 'Description of the transaction.
-
-
-            VisionPLUS Service Data: AZXMAI-DESC'
-          example: DESCRIPTION
-          maxLength: 40
-          minLength: 1
-          type: string
-        effectiveDate:
-          description: 'Date that specifies when the transaction takes effect in the
-            account in ISO 8601.
-
-
-            VisionPLUS Service Data: AZXMAI-EFF-DATE'
-          example: 2023-10-30
-          format: date
-          type: string
-        installmentNumber:
-          description: "* Min Length: 1\n* Max Length: 2 \n\nInstallment Number.\n\
-            \nInstallment number should be zero for non-installment plan.\n\nInstallment\
-            \ number should not exceed default instalment number defined at plan level\
-            \ (AMCP-INST-REPMT-DFLT-INST-NBR)\n\nInstalment number should be greater\
-            \ than zero only for sales transaction.\n\nVisionPLUS Service Data: AZXMAI-INST-NBR"
-          example: 24
-          format: int32
-          type: integer
-        insuranceCode:
-          description: 'Insurance code.
-
-
-            VisionPLUS Service Data: AZXMAI-INS-CODE'
-          example: 3U
-          maxLength: 2
-          minLength: 1
-          type: string
-        letterInformation:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceRequest.LetterInformation'
-        openToBuyUpdateIndicator:
-          description: 'Open to Buy Update Indicator.
-
-
-            Values:
-
-            * false = Do not update Open To Buy
-
-            * true = Update Open To Buy
-
-
-            VisionPLUS Service Data: AZXMAI-OTB-UPDATE-IND'
-          example: true
-          type: boolean
-        planNumber:
-          description: '* Min Length: 1
-
-            * Max Length: 5
-
-
-            Plan Number.
-
-
-            VisionPLUS Service Data: AZXMAI-PLAN-NBR'
-          example: 1
-          format: int32
-          type: integer
-        planSequence:
-          description: '* Min Length: 1
-
-            * Max Length: 2
-
-
-            Plan Sequence.
-
-
-            VisionPLUS Service Data: AZXMAI-PLAN-SEQ'
-          example: 1
-          format: int32
-          type: integer
-        purchaseOrderNumber:
-          description: 'Purchase order number.
-
-
-            VisionPLUS Service Data: AZXMAI-PURCHASE-ORDER-NBR'
-          example: 0BGY7RVF00ADMEU0
-          maxLength: 16
-          minLength: 1
-          type: string
-        referenceNumber:
-          description: '* Min Length: 1
-
-            * Max Length: 12
-
-
-            Reference Number.
-
-
-            VisionPLUS Service Data: AZXMAI-REF-NUM'
-          example: 292717013062
-          format: int64
-          type: integer
-        salesClerk:
-          description: 'Sales clerk.
-
-
-            VisionPLUS Service Data: AZXMAI-SALES-CLERK'
-          example: 6651972850FL
-          maxLength: 12
-          minLength: 1
-          type: string
-        stockKeepingUnitNumber:
-          description: '* Min Length: 1
-
-            * Max Length: 9
-
-
-            Stock Keeping Unit Number.
-
-
-            VisionPLUS Service Data: AZXMAI-SKU-NBR'
-          example: 775032483
-          format: int32
-          type: integer
-        storeNumber:
-          description: '* Min Length: 1
-
-            * Max Length: 9
-
-
-            Store Number.
-
-
-            VisionPLUS Service Data: AZXMAI-STORE-NBR'
-          example: 999999998
-          format: int32
-          type: integer
-        ticketNumber:
-          description: 'Ticket Number.
-
-
-            VisionPLUS Service Data: AZXMAI-TICKET-NBR'
-          example: BN0AD3PMLZJOL7Q
-          maxLength: 15
-          minLength: 1
-          type: string
-        transactionAmount:
-          description: '* Min Length: 1
-
-            * Max Length: 17
-
-
-            Transaction Amount in ISO 4217.
-
-
-            VisionPLUS Service Data: AZXMAI-TXN-AMOUNT'
-          example: 100.0
-          type: number
-        walletId:
-          description: 'Currency number Or Wallet ID
-
-
-            VisionPLUS Service Data: AZXMAI-WALLET-ID'
-          example: MXN
-          maxLength: 3
-          minLength: 1
-          type: string
-      required:
-      - actionCode
-      - authorizationCode
-      - departmentCode
-      - effectiveDate
-      - openToBuyUpdateIndicator
-      - planNumber
-      - planSequence
-      - purchaseOrderNumber
-      - referenceNumber
-      - salesClerk
-      - stockKeepingUnitNumber
-      - storeNumber
-      - ticketNumber
-      - transactionAmount
-      - walletId
-      type: object
-    PurchaseAndCashAdvanceResponse:
-      properties:
-        account:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceResponse.Account'
-        actionDate:
-          description: 'Action Date.
-
-
-            VisionPLUS Service Data: AZXMAO-ACTION-DATE'
-          example: 2020-10-10
-          format: date
-          type: string
-        actionDescription:
-          description: 'Max Length:  20
-
-
-            Action Code Description.
-
-
-            VisionPLUS Service Data: AZXMAO-ACTION-DESC'
-          example: COMP INST PARCEL AMOUNT
-          type: string
-        cardNumber:
-          description: 'Max Length:  3
-
-
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
-
-
-            VisionPLUS Service Data: AZXMAO-CARD-NBR'
-          example: 000540208ID5AXX3865
-          type: string
-        cardSequence:
-          description: 'Max Length:  5
-
-
-            Card Sequence Number.
-
-
-            VisionPLUS Service Data: AZXMAO-CARD-SEQ'
-          example: 5453
-          format: int32
-          type: integer
-        collectionSequenceNumber:
-          description: 'Max Length:  5
-
-
-            CTA Sequence Number.
-
-
-            VisionPLUS Service Data: AZXMAO-CTA-SEQ-NBR'
-          example: 59832
-          format: int32
-          type: integer
-        ctaFile:
-          description: 'Max Length:  1
-
-
-            CTA file.
-
-
-            VisionPLUS Service Data: AZXMAO-CTA-FILE'
-          example: A
-          type: string
-        historyDate:
-          description: 'History date.
-
-            VisionPLUS Service Data: AZXMAO-HIST-DATE'
-          example: 2020-10-10
-          format: date
-          type: string
-        historyTime:
-          description: 'Max Length:  7
-
-
-            History Time.
-
-
-            VisionPLUS Service Data: AZXMAO-HIST-TIME'
-          example: '1122022'
-          type: string
-        purgeDate:
-          description: 'Purge Date.
-
-
-            VisionPLUS Service Data: AZXMAO-PURGE-DATE'
-          example: 2020-10-10
-          format: date
-          type: string
-        recordType:
-          description: 'Max Length:  1
-
-
-            Record Type.
-
-
-            VisionPLUS Service Data: AZXMAO-RECORD-TYPE'
-          enum:
-          - PREPAID
-          - INFORMATION
-          - MONETARY
-          - NON_MONETARY
-          - TRANSCRIPT
-          - ACTION
-          - MAINTENANCE
-          - MEMO
-          example: MONETARY
-          type: string
-        referralAsmOrganization:
-          description: 'Max Length:  3
-
-
-            Referral ASM Organization.
-
-
-            VisionPLUS Service Data: AZXMAO-REFERRAL-ASM-ORG'
-          example: 800
-          format: int32
-          type: integer
-        retention:
-          description: 'Max Length:  1
-
-
-            Retention Code.
-
-
-            VisionPLUS Service Data: AZXMAO-RETENTION'
-          enum:
-          - DELETE_NEXT_REVIEW
-          - DELETE_WHEN_SATISFIED
-          - KEEP_FOR_HISTORY
-          - HISTORY
-          example: DELETE_NEXT_REVIEW
-          type: string
-        status:
-          description: 'Max Length:  1
-
-
-            History Record Status.
-
-
-            VisionPLUS Service Data: AZXMAO-STATUS'
-          enum:
-          - OPEN_HELD
-          - CLOSED
-          - OPEN_REFERRED
-          - APPROVED
-          - DECLINED
-          example: OPEN_REFERRED
-          type: string
-        transactionData:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceResponse.TransactionData'
-      type: object
-    PurchaseAndCashAdvanceResponse.Account:
-      properties:
-        logo:
-          description: 'Max Length:  3
-
-
-            Account Logo.
-
-
-            VisionPLUS Service Data: AZXMAO-ACCT-LOGO'
-          example: 801
-          format: int32
-          type: integer
-        organizationNumber:
-          description: 'Max Length:  3
-
-
-            Account Organization.
-
-
-            VisionPLUS Service Data: AZXMAO-ACCT-ORG'
-          example: 800
-          format: int32
-          type: integer
-      type: object
-    PurchaseAndCashAdvanceResponse.TransactionData:
-      properties:
-        approvalIndicator:
-          description: 'Max Length:  1
-
-
-            Approved/declined indicator.
-
-
-            VisionPLUS Service Data: AZXMAO-APPR-DECL'
-          example: true
-          type: boolean
-        authorizationNumber:
-          description: 'Max Length:  6
-
-
-            Authorization Number.
-
-
-            VisionPLUS Service Data: AZXMAO-AUTH-NUMBER'
-          example: 31AMJC
-          type: string
-        cashAvailable:
-          description: 'Max Length:  17
-
-
-            Available Cash Credit.
-
-
-            VisionPLUS Service Data: AZXMAO-CASH-AVAIL-CR'
-          example: 100.0
-          type: number
-        creditLimit:
-          description: 'Max Length:  17
-
-
-            Credit Limit.
-
-
-            VisionPLUS Service Data: AZXMAO-CREDIT-LIMIT'
-          example: 100.0
-          type: number
-        currencyData:
-          $ref: '#/components/schemas/PurchaseAndCashAdvanceResponse.TransactionData.CurrencyData'
-        currentBalance:
-          description: 'Max Length:  17
-
-
-            Current Balance.
-
-
-            VisionPLUS Service Data: AZXMAO-CURR-BAL'
-          example: 100.0
-          type: number
-        feeAmount:
-          description: 'Max Length:  17
-
-
-            Fee Amount.
-
-
-            VisionPLUS Service Data: AZXMAO-FEE-AMT'
-          example: 100.0
-          type: number
-        fundCard:
-          description: 'Max Length:  19
-
-
-            Fund Card.
-
-
-            VisionPLUS Service Data: AZXMAO-PD-FUND-CARD'
-          example: 9I884P4S3RW5BPRMV8D
-          type: string
-        fundCardDeclinedReason:
-          description: 'Max Length:  30
-
-
-            Fund Card Declined Reason.
-
-
-            VisionPLUS Service Data: AZXMAO-PD-DECL-RSN'
-          example: HUUO5SP127E3JQSXOJ5OAGHHDX5J1Q
-          type: string
-        installmentTermNumber:
-          description: 'Max Length:  2
-
-
-            Installment Term Number.
-
-
-            VisionPLUS Service Data: AZXMAO-INST-TERM'
-          example: '12'
-          type: string
-        insuranceCode:
-          description: 'Max Length:  2
-
-
-            Insurance product associated with the transaction.
-
-
-            VisionPLUS Service Data: AZXMAO-INS'
-          example: G8
-          type: string
-        monetaryType:
-          description: 'Max Length:  1
-
-
-            Monetary Type.
-
-
-            VisionPLUS Service Data: AZXMAO-MON-TYPE'
-          example: C
-          type: string
-        openToBuy:
-          description: 'Max Length:  17
-
-
-            Open to Buy.
-
-
-            VisionPLUS Service Data: AZXMAO-OPEN-TO-BUY'
-          example: 100.0
-          type: number
-        pointsAmount:
-          description: 'Max Length:  9
-
-
-            Points Amount.
-
-
-            VisionPLUS Service Data: AZXMAO-PTS-AMT'
-          example: 100.0
-          type: number
-        pointsProgram:
-          description: 'Max Length:  1
-
-
-            Points Program.
-
-
-            VisionPLUS Service Data: AZXMAO-PTS-PGM'
-          example: 1
-          format: int32
-          type: integer
-        referenceNumber:
-          description: 'Max Length:  24
-
-
-            Reference Number.
-
-
-            VisionPLUS Service Data: AZXMAO-REFERENCE-NBR'
-          example: CA80SLSE1VQK3VOXT14L53JS
-          type: string
-        referralReferenceNumber:
-          description: 'Max Length:  15
-
-
-            Referral Reference number.
-
-
-            VisionPLUS Service Data: AZXMAO-R-REF-NBR'
-          example: NYG4S61PEXOBG2L
-          type: string
-        reviewDate:
-          description: 'Review Date.
-
-
-            VisionPLUS Service Data: AZXMAO-REV-DATE'
-          example: 2020-10-10
-          format: date
-          type: string
-        reviewTime:
-          description: 'Max Length:  7
-
-
-            Review Time.
-
-
-            VisionPLUS Service Data: AZXMAO-REV-TIME'
-          example: '1122003'
-          type: string
-        storeOrganizationNumber:
-          description: 'Max Length:  3
-
-
-            Store Organization.
-
-
-            VisionPLUS Service Data: AZXMAO-STORE-ORG'
-          example: 800
-          format: int32
-          type: integer
-        transactionCode:
-          description: 'Max Length:  4
-
-
-            Transaction Code.
-
-
-            VisionPLUS Service Data: AZXMAO-TXN-CODE'
-          example: '9999'
-          type: string
-        transactionDescription:
-          description: 'Max Length:  40
-
-
-            Transaction Description.
-
-
-            VisionPLUS Service Data: AZXMAO-TXN-DESC'
-          example: COMP INST PARCEL AMOUNT
-          type: string
-      type: object
-    PurchaseAndCashAdvanceResponse.TransactionData.CurrencyData:
-      properties:
-        currencyCode:
-          description: 'Max Length:  3
-
-
-            Currency Code.
-
-
-            VisionPLUS Service Data: AZXMAO-CURRENCY-CODE'
-          example: MXN
-          type: string
       type: object
     RelationshipDetailsResponse:
       properties:
@@ -22225,7 +22201,7 @@ components:
     StatementInstallmentInquiryResponse.CurrencyInformation:
       properties:
         cmsOrganization:
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             Three-digit code which identifies the company or business unit for an
@@ -22233,17 +22209,21 @@ components:
 
 
             VisionPLUS Service Data: AMCR-ORG'
+          example: 998
           format: int32
           type: integer
         currencyCode:
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             The three-digit code which defines the name of the currency for the account
-            org, as established by ISO 4217.
+            org,
+
+            as established by ISO 4217.
 
 
             VisionPLUS Service Data: AMCR-O-CURR-NBR'
+          example: 100
           format: int32
           type: integer
         installmentConfirmationData:
@@ -22253,13 +22233,14 @@ components:
         installmentInquiryData:
           $ref: '#/components/schemas/StatementInstallmentInquiryResponse.InstallmentInquiryData'
         logo:
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             Logo of the account.
 
 
             VisionPLUS Service Data: AMBS-LOGO'
+          example: 998
           format: int32
           type: integer
         offersData:
@@ -22268,136 +22249,167 @@ components:
     StatementInstallmentInquiryResponse.InstallmentConfirmationData:
       properties:
         calculatedFtt:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
-            FTT amount of installment contract calculated by the simulation of the
-            NEW option (37th).
+            FTT amount of installment contract calculated by the simulation
+
+            of the NEW option (37th).
 
 
-            VisionPLUS Service Data: FTT AMOUNT
+            NOT STORAGED IN AM1S, available just during the calculation.
 
-            NOT STORAGED IN AM1S, available just during the calculation.'
+
+            VisionPLUS Service Data: FTT AMOUNT'
+          example: 10000000000000000
           type: number
         calculatedInterest:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
-            Interest amount of installment contract calculated by the simulation of
-            the NEW option (37th).
+            Interest amount of installment contract calculated by the simulation
+
+            of the NEW option (37th).
 
 
-            VisionPLUS Service Data: INTEREST AMOUNT
+            NOT STORAGED IN AM1S, available just during the calculation.
 
-            NOT STORAGED IN AM1S, available just during the calculation.'
+
+            VisionPLUS Service Data: INTEREST AMOUNT'
+          example: 10000000000000000
           type: number
         confirmedSimulation:
-          description: "Length: 1\n\nConfirmation field to be populated if Confirmation\
-            \ FLAG was sent with \u201CC\u201D:  \nY = Accepted - the simulation will\
+          description: "Max Length: 1\n\nConfirmation field to be populated if Confirmation\
+            \ FLAG was sent with \u201CC\u201D:\n* Y = Accepted - the simulation will\
             \ be saved on AM1S file and wait for a payment for first installment.\n\
-            N = Pending (not confirmed).\n\nVisionPLUS Service Data: AZ1S-FLAG-SIMULATION"
+            * N = Pending (not confirmed).\n\nVisionPLUS Service Data: AZ1S-FLAG-SIMULATION"
+          example: Y
           type: string
         etcRate:
-          description: 'Length: 7
+          description: 'Max Length: 7
 
 
-            ETC (Effective transaction Cost) rate calculated used on simulation to
-            be saved as the NEW option (37th), if confirmed.
+            ETC (Effective transaction Cost) rate calculated used on simulation
+
+            to be saved as the NEW option (37th), if confirmed.
 
 
             VisionPLUS Service Data: AZ1S-INST-ETC'
+          example: 1000000
           type: number
         firstInstallmentAmount:
-          description: 'Length: 17
-
-
-            If amount calculated on simulation is less than INSTALLMENT MIN AMOUNT
-            AZML35 service will return error INSTALLMENT VALUE IS LESS THAN ALLOWED.
-
-            Amount to be paid to activate statement installment calculated by the
-            simulation of the NEW option (37th).
-
-
-            VisionPLUS Service Data: FIRST-INSTALLMENT-AMOUNT
-
-            NOT STORAGED IN AM1S, available just during the calculation.'
+          description: "Max Length: 17\n\nIf amount calculated on simulation is less\
+            \ than INSTALLMENT MIN AMOUNT AZML35 service\n will return error INSTALLMENT\
+            \ VALUE IS LESS THAN ALLOWED.\n Amount to be paid to activate statement\
+            \ installment calculated by the simulation of\n the NEW option (37th).\n\
+            \nNOT STORAGED IN AM1S, available just during the calculation.\n\nVisionPLUS\
+            \ Service Data: FIRST-INSTALLMENT-AMOUNT"
+          example: 10000000000000000
           type: number
         installmentAmount:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
             Installment amount after first installment calculated on the simulation
+
             to be saved as the NEW option (37th), if confirmed.
 
 
             VisionPLUS Service Data: AZ1S-INST-AMT'
+          example: 10000000000000000
           type: number
         installmentNumber:
-          description: 'Length: 2
+          description: 'Max Length: 2
 
 
             Number of installments used on simulation to be the saved as NEW option
-            (37th), if confirmed.
+            (37th),
+
+            if confirmed.
 
 
             VisionPLUS Service Data: AZ1S-AZ1S-NBR-INSTMTS'
+          example: 10
           format: int32
           type: integer
         principalAmountInstallment:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
             Principal amount of installment contract calculated by the simulation
+
             of the NEW option (37th).
 
 
-            VisionPLUS Service Data: PRINCIPAL AMOUNT
+            NOT STORAGED IN AM1S, available just during the calculation.
 
-            NOT STORAGED IN AM1S, available just during the calculation.'
+
+            VisionPLUS Service Data: PRINCIPAL AMOUNT'
+          example: 10000000000000000
           type: number
         totalAmount:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
             Total contract amount (including principal, interest and FTT) used on
-            simulation to be saved in the NEW option (37th), if confirmed.
+            simulation
+
+            to be saved in the NEW option (37th), if confirmed.
 
 
             VisionPLUS Service Data: AZ1S-AZ1S-TOT-AMT'
+          example: 10000000000000000
           type: number
       type: object
     StatementInstallmentInquiryResponse.InstallmentData:
       properties:
         installmentAmount:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
             Amount entered in the inquiry to be subject to calculate new installments
-            simulation presented.'
+            simulation presented.
+
+
+            VisionPLUS Service Data: AZX1SO-AMOUNT'
+          example: 10000000000000000
           type: number
         installmentNumber:
-          description: 'Length: 2
+          description: 'Max Length: 2
 
 
             Number of installments entered in the inquiry to be subject to calculate
-            new installments simulation presented.'
+            new
+
+            installments simulation presented.
+
+            VisionPLUS Service Data: AZX1SO-NBR'
+          example: 10
           format: int32
           type: integer
         interestRate:
-          description: 'Length: 7
+          description: 'Max Length: 7
 
 
             Interest rate entered in the inquiry to be subject to calculate new installments
-            simulation presented.'
+
+            simulation presented.
+
+            VisionPLUS Service Data: AZX1SO-RATE'
+          example: 1000000
           type: number
       type: object
     StatementInstallmentInquiryResponse.InstallmentInquiryData:
       properties:
         installmentNumber:
-          description: 'Length: 2
+          description: 'Max Length: 2
 
 
-            Number of installments calculated.'
+            Number of installments calculated.
+
+
+            VisionPLUS Service Data: AZX1SO-II-NBR-INSTMTS'
+          example: 10
           format: int32
           type: integer
         optionData:
@@ -22409,80 +22421,86 @@ components:
     StatementInstallmentInquiryResponse.OffersData:
       properties:
         creditPlan:
-          description: 'Length: 5
+          description: 'Max Length: 5
 
 
             Credit Plan when the statement installment will be created.
 
 
             VisionPLUS Service Data: AM1S-CREDIT PLAN'
+          example: 10000
           format: int32
           type: integer
         currentSavedBalance:
-          description: "Length: 17\n\nCurrent Balance Saved on the cycle date - without\
-            \ the interest accrued after due date and without the future transactions\
-            \ (installments to be due) - it corresponds to the billed not paid balance\
-            \ of the last statement (as it was saved on the cycle date it does not\
-            \ have the current transaction posted after cycle date) - the \u201Cnon\
-            \ financeable\u201D amount of the balance is part of this balance.\n\n\
-            VisionPLUS Service Data: AM1S-CURR-BALANCE"
+          description: "Max Length: 17\n\nCurrent Balance Saved on the cycle date\n\
+            - without the interest accrued after due date and without the future transactions\n\
+            (installments to be due)\n- it corresponds to the billed not paid balance\
+            \ of the last statement (as it was\nsaved on the cycle date it does not\
+            \ have the current transaction posted after cycle\ndate)\n- the \u201C\
+            non financeable\u201D amount of the balance is part of this balance.\n\
+            \nVisionPLUS Service Data: AM1S-CURR-BALANCE"
+          example: 10000000000000000
           type: number
         cycleDate:
-          description: 'Length: 10
-
-
-            Statement generation date (cycle date) in ISO 8601.
+          description: 'Statement generation date (cycle date) in ISO 8601.
 
 
             VisionPLUS Service Data: AM1S-STATEMENT-ID-CODE'
+          example: 2023-07-25
           format: date
           type: string
         installmentAmount:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
             Balance subject to statement installment.
 
 
             VisionPLUS Service Data: AM1S-INST-AMOUNT'
+          example: 10000000000000000
           type: number
         interestRateLastCycle:
-          description: 'Length: 7
+          description: 'Max Length: 7
 
 
             Interest rate for installments calculated on last cycle date.
 
 
             VisionPLUS Service Data: AM1S-INT-FEE'
+          example: 1000000
           type: number
         minimumPayment:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
             Minimum Payment calculated to the Account on the last cycle date.
 
 
             VisionPLUS Service Data: AM1S-MIN-PAYMENT'
+          example: 10000000000000000
           type: number
         nonFinanciableBalance:
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
             It is the non-financeable balance, that cannot be subject to statement
-            installments (in general, a balance that was already financed cannot be
-            included in a new statement installment offer).
+            installments
+
+            (in general, a balance that was already financed cannot be included in
+            a new
+
+            statement installment offer).
 
 
             VisionPLUS Service Data: AM1S-NON-PARC-AMT'
+          example: 10000000000000000
           type: number
         paymentDueDate:
-          description: 'Length: 10
-
-
-            Date payment due for the statement in ISO 8601.
+          description: 'Date payment due for the statement in ISO 8601.
 
 
             VisionPLUS Service Data: AM1S-DUE-DAY-DATE'
+          example: 2023-07-25
           format: date
           type: string
       type: object
@@ -24977,6 +24995,69 @@ info:
   version: '1.2'
 openapi: 3.0.1
 paths:
+  /account/FL-balance:
+    put:
+      description: "Integrate Cash-in & Cash-out and Integrate Quick Response (QR)\
+        \ transaction information to be used in Fraud Prevention Rules. \n\nVMX Service:\
+        \ M.ASM.MONETARY.ACT, L8V4"
+      operationId: Cash-in & Cash-out With Fraud Prevention
+      parameters:
+      - description: API Key
+        in: header
+        name: apikey
+        required: true
+        schema:
+          type: string
+      - description: Client ID
+        example: 00970
+        in: header
+        name: X-ClientID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountBalanceFlRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalanceFlResponse'
+          description: Success
+        '300':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+          description: Redirection
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+          description: Backend Error
+      summary: "Integrate Cash-in & Cash-out and Integrate Quick Response (QR) transaction\
+        \ information to be used in Fraud Prevention Rules. \n\nVMX Service: M.ASM.MONETARY.ACT,\
+        \ L8V4"
+      tags:
+      - Account
+      x-child-product-name: Accounts
+      x-group-name: Account
+      x-proxy-name: Cash-in & Cash-out With Fraud Prevention
   /account/account-demographic:
     post:
       description: "The Account Demographic Inquiry service provides a comprehensive\
@@ -25954,6 +26035,69 @@ paths:
       x-child-product-name: Accounts
       x-group-name: Account
       x-proxy-name: Account Authorization Criteria Update
+  /account/balance:
+    put:
+      description: "Credits (cash in) or Debits (cash out) transactions from available\
+        \ funds or credit open to buy in an Account. \n\nVMX Service: M.ASM.MONETARY.ACT,\
+        \ L8V2"
+      operationId: Cash-in & Cash-out Request
+      parameters:
+      - description: API Key
+        in: header
+        name: apikey
+        required: true
+        schema:
+          type: string
+      - description: Client ID
+        example: 00970
+        in: header
+        name: X-ClientID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyAccountBalanceRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModifyAccountBalanceResponse'
+          description: Success
+        '300':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+          description: Redirection
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+          description: Backend Error
+      summary: "Credits (cash in) or Debits (cash out) transactions from available\
+        \ funds or credit open to buy in an Account. \n\nVMX Service: M.ASM.MONETARY.ACT,\
+        \ L8V2"
+      tags:
+      - Account
+      x-child-product-name: Accounts
+      x-group-name: Account
+      x-proxy-name: Cash-in & Cash-out Request
   /account/balance/details:
     post:
       description: "Provides Account balance details. \nVMX Service: M.CMS.BALANCE.INQ,\
@@ -26344,81 +26488,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-          description: 'Unprocessable Entity
-
-
-            VPL5SAB10S - ORGANIZATION NUMBER NOT FOUND
-
-
-            VPL5SAB11S - LOGO NUMBER NOT FOUND
-
-
-            VPL5SAB12S - CARD NUMBER NOT FOUND
-
-
-            VPL5SAB21E - INVALID FOREIGN USE IND SPECIFIED - VALID VALUES ARE 0-2
-
-
-            VPL5SAB36S - INVALID FUNCTION CODE - VALID VALUES ARE A TO H AND SPACE
-
-
-            VPL5SAB41S - INVALID WARNING CODE 2,VALID VALUES ARE 0-4,SPACE
-
-
-            VPL5SAB42S - INVALID WARNING CODE 3,VALID VALUES ARE 0-2,SPACE
-
-
-            VPL5SAB43S - INVALID WARNING CODE 4,VALID VALUES ARE 0-7,SPACE
-
-
-            VPL5SAB44S - INVALID WARNING CODE 5,VALID VALUES ARE 0-7,SPACE
-
-
-            VPL5SAB45S - INVALID WARNING CODE 6,VALID VALUES ARE 0-6,SPACE
-
-
-            VPL5SAB46S - INVALID WARNING CODE 7,VALID VALUES ARE 1-9,A,SPACE
-
-
-            VPL5SAB47S - IF FC A,VALID BLOCK CODES: BC-1 ''A''-''Z'' & BC-2 ''A''-''Z''
-
-
-            VPL5SAB48S - IF FC B,VALID BLOCK CODES: BC-1 ''A''-''Z'' & BC-2 SPACE/NO-INPUT
-
-
-            VPL5SAB49S - IF FC C,VALID BLOCK CODES: BC-1 SPACE/NO-INPUT & BC-2 ''A''-''Z''
-
-
-            VPL5SAB50S - IF FC D,VALID BLOCK CODES: BC-1 SPACE & BC-2 SPACE
-
-
-            VPL5SAB51S - IF FC E,VALID BLOCK CODES: BC-1 SPACE & BC-2 SPACE/NO-INPUT
-
-
-            VPL5SAB52S - IF FC F,VALID BLOCK CODES: BC-1 SPACE/NO-INPUT & BC-2 SPACE
-
-
-            VPL5SAB53S - IF FC G,VALID BLOCK CODES: BC-1 ''A''-''Z'' & BC-2 SPACE
-
-
-            VPL5SAB54S - IF FC H,VALID BLOCK CODES: BC-1 SPACE & BC-2 ''A''-''Z''
-
-
-            VPL5SAB55S - IF FC SPACE,BC-1 AND BC-2 MUST BE SPACES OR LOW-VALUES
-
-
-            VPL5SAB56S - NO VALID ACTION: FC IS BLANK & NO VALID WARNING CODE PROVIDED
-
-
-            VPL5SCL11S - FOREIGN ORGANIZATION NOT FOUND ON FILE'
+          description: "VPL5SAB36S - INVALID FUNCTION CODE - VALID VALUES ARE A TO\
+            \ H AND SPACE \n\nVPL5SAB41S - INVALID WARNING CODE 2, VALID VALUES ARE\
+            \ 0-4, SPACE \n\nVPL5SAB42S - INVALID WARNING CODE 3, VALID VALUES ARE\
+            \ 0-2, SPACE \n\nVPL5SAB43S - INVALID WARNING CODE 4, VALID VALUES ARE\
+            \ 0-7, SPACE \n\nVPL5SAB44S - INVALID WARNING CODE 5, VALID VALUES ARE\
+            \ 0-7, SPACE \n\nVPL5SAB45S - INVALID WARNING CODE 6, VALID VALUES ARE\
+            \ 0-6, SPACE \n\nVPL5SAB46S - INVALID WARNING CODE 7, VALID VALUES ARE\
+            \ 1-9, A, SPACE \n\nVPL5SAB47S - IF FC A, VALID BLOCK CODES: BC-1 \u2018\
+            A\u2019-\u2019Z\u2019 & BC-2 \u2018A\u2019-\u2019Z\u2019 \n\nVPL5SAB48S\
+            \ - IF FC B, VALID BLOCK CODES: BC-1 \u2018A\u2019-\u2019Z\u2019 & BC-2\
+            \ SPACE/NO-INPUT \n\nVPL5SAB49S - IF FC C, VALID BLOCK CODES: BC-1 SPACE/NO-INPUT\
+            \ & BC-2 \u2018A\u2019 \n\nVPL5SAB50S - IF FC D, VALID BLOCK CODES: BC-1\
+            \ SPACE & BC-2 SPACE \n\nVPL5SAB51S - IF FC E, VALID BLOCK CODES: BC-1\
+            \ SPACE & BC-2 SPACE/NO-INPUT \n\nVPL5SAB52S - IF FC F, VALID BLOCK CODES:\
+            \ BC-1 SPACE/NO-INPUT & BC-2 SPACE \n\nVPL5SAB53S - IF FC G, VALID BLOCK\
+            \ CODES: BC-1 'A'-'Z' & BC-2 SPACE \n\nVPL5SAB54S - IF FC H, VALID BLOCK\
+            \ CODES: BC-1 SPACE & BC-2 'A'-'Z' \n\nVPL5SAB55S - IF FC SPACE, BC-1\
+            \ AND BC-2 MUST BE SPACES OR LOW-VALUES \n\nVPL5SAB56S - NO VALID ACTION:\
+            \ FC IS BLANK & NO VALID WARNING CODE PROVIDED \n\nVPL5SAB57S - BC-1 CANNOT\
+            \ BE REPLACED WITH ONE OF A LOWER PRIORITY \n\nVPL5SAB58S - BC-2 CANNOT\
+            \ BE REPLACED WITH ONE OF A LOWER PRIORITY"
         '500':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
           description: Backend Error
-      summary: 'Block Codes Warning Update. (VMX Service: M.CMS.ACCT.BLKCD.WARNCD.UPD,
-        L8V1)'
+      summary: "Block Codes Warning Update. \nVMX Service: M.CMS.ACCT.BLKCD.WARNCD.UPD,\
+        \ L8V1"
       tags:
       - Account
       x-child-product-name: Accounts
@@ -27322,7 +27420,7 @@ paths:
       x-proxy-name: Offer Enrollment Update
   /account/feeWaiver:
     put:
-      description: "Fee waiver Account Maintenance. \nVMX Service: M.CMS.WAIVEFLAG.UPD,\
+      description: "Fee waiver Account Maintenance. \n\nVMX Service: M.CMS.WAIVEFLAG.UPD,\
         \ R8V5"
       operationId: Account Fee Waiver Update
       parameters:
@@ -27370,88 +27468,72 @@ paths:
           description: Method Not Allowed
         '422':
           content:
-            application/json: {}
-          description: 'Unprocessable Entity
-
-            VPE5SWF03E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
-
-            VPE5SWF04E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES
-
-            VPE5SWF05E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0
-
-            VPE5SWF06E - INVALID REQUEST TYPE VALID VALUES ARE 0, 1 OR 2
-
-            VPE5SWF14E - INVALID WAIVE INTR CHG INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF15E - INVALID WAIVE LATE CHG INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF16E - INVALID WAIVE LATE NOTC INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF17E - INVALID WAIVE FEE CHG INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF18E - INVALID WAIVE LTR CHG INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF19E - INVALID WAIVE OVLM INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF20E - INVALID WAIVE OVLM NOTC INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF21E - INVALID WAIVE NSF FEE INDICATOR VALID VALUES ARE 0,1,2,3,4,5,6
-
-            VPE5SWF22E - INVALID WAIVE SVC CHG INDICATOR VALID VALUES ARE 0,1,2,3,4,5,6
-
-            VPE5SWF23E - INVALID WAIVE CASH ADV FEE INDICATOR VALIDVALUE ARE 0,1,2,3,4,5,
-
-            VPE5SWF24E - INVALID WAIVE USER FEE 1 INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF25E - INVALID WAIVE USER FEE 2 INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF26E - INVALID WAIVE USER FEE 3 INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF27E - INVALID WAIVE USER FEE 4 INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF28E - INVALID WAIVE USER FEE 5 INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF29E - INVALID WAIVE USER FEE 6 INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF30E - INVALID WAIVE CARD FEE INDICATOR VALID VALUES ARE 0,1,4,5,6
-
-            VPE5SWF31E - INVALID WAIVE REFUND INDICATOR VALID VALUES ARE 0 OR 1
-
-            VPE5SWF32E - INVALID WAIVE REFUND INDICATOR VALID VALUES ARE 0 OR 1
-
-            VPE5SWF33E - INVALID WAIVE STMT FEE INDICATOR VALID VALUES ARE 0 OR 1
-
-            VPE5SWF35E - INVAILD CYCLE SPEND FEE INDICATOR - VALID VALUES ARE 0 OR
-            1
-
-            VPE5SWF36E - VALID VALUES ARE 00,01 TO 99
-
-            VPE5SWF37E - VALID VALUES ARE W, R AND SPACES
-
-            VPE5SWF38E - FOREX FEE VALUE MUST BE 98 WHEN FOREX FEE WAIVE DATES ENTRD
-
-            VPE5SWF39E - INVALID WAIVE SUPP MEM FEE INDICATOR VALID VALUES ARE 0 OR
-            1
-
-            VPE5SWF40E - INVALID WAIVE TAX CALC INDICATOR VALID VALUES ARE 0 OR 1
-
-            VPE5SWF42E - FOREX FEE WAIVE START DATE IS NOT NUMERIC
-
-            VPE5SWF44E - FOREX FEE WAIVE EXPIR DATE IS NOT NUMERIC
-
-            VPE5SWF45E - FOREX FEE WAIVE DATES MUST BE ENTRD WHEN FOREX FEE VALUE
-            IS 98
-
-            VPE5SWF46E - FOREX FEE WAIVE START AND EXPIR DATE MUST BE >OR= TO CURRENT
-            DATE
-
-            VPE5SWF47E - FOREX FEE WAIVE EXPIR DATE MUST BE GREATER THAN START DATE
-
-            VPE5SWF54E - VALID VALUES ARE 0 OR 1 FOR CROS WLT WAIVE XFR FEE
-
-            VPE5SWF55E - VALID VALUES ARE 0 OR 1 FOR CROS WLT WAIVE XFR FEE
-
-            VPE5SWF56S - VALID VALUES ARE 0 OR 1 FOR CROS WLT WAIVE XFR FEE'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+          description: "VPE5SWF03E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
+            \ VALUES ARE \n\nVPE5SWF04E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES\
+            \ \n\nVPE5SWF05E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE,\
+            \ 0 \n\nVPE5SWF06E - INVALID REQUEST TYPE VALID VALUES ARE 0, 1 OR 2 \n\
+            \nVPE5SWF11S - ACCOUNT IS NOT PREPAID AND UPDATE REQUEST IS FOR PREPAID\
+            \ \n\nVPE5SWF12S - LOGO RECORD NOT FOUND \n\nVPE5SWF13I - NO FIELDS UPDATED;\
+            \ ALL HAVE SAME VALUES \n\nVPE5SWF14E - INVALID WAIVE INTR CHG INDICATOR\
+            \ VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF15E - INVALID WAIVE LATE CHG INDICATOR\
+            \ VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF16E - INVALID WAIVE LATE NOTC\
+            \ INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF17E - INVALID WAIVE\
+            \ FEE CHG INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF18E - INVALID\
+            \ WAIVE LTR CHG INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF19E -\
+            \ INVALID WAIVE OVLM INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF20E\
+            \ - INVALID WAIVE OVLM NOTC INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\n\
+            VPE5SWF21E - INVALID WAIVE NSF FEE INDICATOR VALID VALUES ARE 0,1,2,3,4,5,6\
+            \ \n\nVPE5SWF22E - INVALID WAIVE SVC CHG INDICATOR VALID VALUES ARE 0,1,2,3,4,5,6\
+            \ \n\nVPE5SWF23E - INVALID WAIVE CASH ADV FEE INDICATOR VALIDVALUE ARE\
+            \ 0,1,2,3,4,5, \n\nVPE5SWF24E - INVALID WAIVE USER FEE 1 INDICATOR VALID\
+            \ VALUES ARE 0,1,4,5,6 \n\nVPE5SWF25E - INVALID WAIVE USER FEE 2 INDICATOR\
+            \ VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF26E - INVALID WAIVE USER FEE 3\
+            \ INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF27E - INVALID WAIVE\
+            \ USER FEE 4 INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF28E - INVALID\
+            \ WAIVE USER FEE 5 INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF29E\
+            \ - INVALID WAIVE USER FEE 6 INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\n\
+            VPE5SWF30E - INVALID WAIVE CARD FEE INDICATOR VALID VALUES ARE 0,1,4,5,6\
+            \ \n\nVPE5SWF31E - INVALID WAIVE REFUND INDICATOR VALID VALUES ARE 0 OR\
+            \ 1 \n\nVPE5SWF32E - INVALID WAIVE REFUND INDICATOR VALID VALUES ARE 0\
+            \ OR 1 \n\nVPE5SWF33E - INVALID WAIVE STMT FEE INDICATOR VALID VALUES\
+            \ ARE 0 OR 1 \n\nVPE5SWF35E - INVAILD CYCLE SPEND FEE INDICATOR - VALID\
+            \ VALUES ARE 0 OR 1 \n\nVPE5SWF34E - INVALID WAIVE TXN FEE INDICATOR VALID\
+            \ VALUES ARE 0 OR 1 \n\nVPE5SWF36E - VALID VALUES ARE 00,01 TO 99 \n\n\
+            VPE5SWF37E - VALID VALUES ARE W, R AND SPACES \n\nVPE5SWF38E - FOREX FEE\
+            \ VALUE MUST BE 98 WHEN FOREX FEE WAIVE DATES ENTRD \n\nVPE5SWF39E - INVALID\
+            \ WAIVE SUPP MEM FEE INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF40E\
+            \ - INVALID WAIVE TAX CALC INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF41E\
+            \ - FOREX FEE WAIVE START DATE MUST BE A VALID DATE \n\nVPE5SWF42E - FOREX\
+            \ FEE WAIVE START DATE IS NOT NUMERIC \n\nVPE5SWF43E - FOREX FEE WAIVE\
+            \ EXPIR DATE MUST BE A VALID DATE \n\nVPE5SWF44E - FOREX FEE WAIVE EXPIR\
+            \ DATE IS NOT NUMERIC \n\nVPE5SWF45E - FOREX FEE WAIVE DATES MUST BE ENTRD\
+            \ WHEN FOREX FEE VALUE IS 98 \n\nVPE5SWF46E - FOREX FEE WAIVE START AND\
+            \ EXPIR DATE MUST BE >OR= TO CURRENT DATE \n\nVPE5SWF47E - FOREX FEE WAIVE\
+            \ EXPIR DATE MUST BE GREATER THAN START DATE \n\nVPE5SWF54E - VALID VALUES\
+            \ ARE 0 OR 1 FOR CROS WLT WAIVE XFR FEE \n\nVPE5SWF55E - VALID VALUES\
+            \ ARE 0 OR 1 FOR CROS WLT WAIVE XFR FEE \n\nVPE5SWF56S - WALLET TABLE\
+            \ RECORD NOT FOUND \n\nVPE5SWF57E - INVALID WAIVE INTR CHG INDICATOR VALID\
+            \ VALUES ARE 0 OR 1 \n\nVPE5SWF58E - INVALID WAIVE LATE CHG IND VALID\
+            \ VALUES ARE 0 OR 1 \n\nVPE5SWF59E - INVALID WAIVE LATE NOTC IND VALID\
+            \ VALUES ARE 0 OR 1 \n\nVPE5SWF60E - INVALID MEMBERSHIP FEE CHG IND VALID\
+            \ VALUES ARE 0 OR 1 OR 2 OR 3 \n\nVPE5SWF61E - INVALID WAIVE OVLM FEE\
+            \ IND VALID VALUES ARE 0 OR 1 \n\nVPE5SWF62E - INVALID WAIVE OVLM NOTC\
+            \ IND VALID VALUES ARE 0 OR 1 \n\nVPE5SWF63E - INVALID WAIVE SVC CHG IND\
+            \ VALID VALUES ARE 0 OR 1 OR 2 OR 3 \n\nVPE5SWF64E - INVALID WAIVE CASH\
+            \ ADV FEE IND VALID VALUES ARE 0 OR 1 OR 2 OR 3 \n\nVPE5SWF65E - INVALID\
+            \ WAIVE NSF FEE INDICATOR VALID VALUES ARE 0,1,2,3 \n\nVPE5SWF66E - INVALID\
+            \ WAIVE CARD FEE INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF67E - INVALID\
+            \ WAIVE LTR CHG INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF69E - INVALID\
+            \ WAIVE TAX CALC INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF70E - INVALID\
+            \ WAIVE USER FEE 1 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF71E -\
+            \ INVALID WAIVE USER FEE 2 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF72E\
+            \ - INVALID WAIVE USER FEE 3 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF73E\
+            \ - INVALID WAIVE USER FEE 4 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF74E\
+            \ - INVALID WAIVE USER FEE 5 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF75E\
+            \ - INVALID WAIVE USER FEE 6 INDICATOR VALID VALUES ARE 0 OR 1 "
         '500':
           content:
             application/json:
@@ -29973,110 +30055,6 @@ paths:
       x-child-product-name: Accounts
       x-group-name: Account
       x-proxy-name: Updated Debit Balances Inquiry
-  /account/v1/falconMonetaryInquiry:
-    post:
-      description: "IN DEVELOPMENT\n\nSend the monetary transfer information to Fraud\
-        \ Prevention for evaluation. \n\nVMX Service: M.CMS.FLCN.MON.TRANSFER.INQ,\
-        \ L8V1"
-      operationId: Monetary Inquiry
-      parameters:
-      - description: API Key
-        in: header
-        name: apikey
-        required: true
-        schema:
-          type: string
-      - description: Client ID
-        example: 00970
-        in: header
-        name: X-ClientID
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FalconMonetaryInquiryRequest'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FalconMonetaryInquiryResponse'
-          description: Success
-        '300':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: Redirection
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
-          content:
-            application/json: {}
-          description: "Unprocessable Entity\nVPL5SRB47E - ORGANIZATION VALUE MUST\
-            \ BE NUMBERIC AND VALID VALES ARE 000-999 \n\nVPL5SRB23S - SERVICE INPUT\
-            \ TO M/A SERVICE IS AN INCORRECT LENGTH \n\nVPL5SRB24S - USER HAS NOT\
-            \ SIGNED ON -PLEASE SIGNON \n\nVPL5SRB48E - ACCOUNT NUMBER MUST BE VALID\
-            \ \n\nVPL5SRB49E - CLIENT ID MUST BE NUMERIC \n\nVPL5SRB04E - RISK MESSAGE\
-            \ TYPE ID MUST BE NUMERIC \n\nVPL5SRB05E - MESSAGE TYPE ID MUST BE GREATER\
-            \ THAN SPACES \n\nVPL5SRB06E - PROD IND MUST BE NUMEREIC \n\nVPL5SRB07E\
-            \ - FIID MUST BE NUMEREIC \n\nVPL5SRB08E - BIN MUST BE NUMEREIC \n\nVPL5SRB09E\
-            \ - INVALID TRANSACTION DATE \n\nVPL5SRB10E - LOGO VALUE MUST BE NUMERIC\
-            \ \n\nVPL5SRB11E - TRANSACTION AMOUNT MUST BE NUMERIC \n\nVPL5SRB12E -\
-            \ DEBIT AMOUNT MUST BE NUMERIC \n\nVPL5SRB13E - USER DATA11 MUST BE NUMERIC\
-            \ \n\nVPL5SRB14E - RESPONSE CODE MUST BE NUMERIC \n\nVPL5SRB15E - INVALID\
-            \ POST DATE  \n\nVPL5SRB17E - BATCH ONLINE IND MUST BE GREATER THAN SPACES\
-            \ \n\nVPL5SRB19E - CREDIT DEBIT IND MUST BE GREATER THAN SPACES \n\nVPL5SRB20E\
-            \ - CURRENCY CODE MUST BE NUMERIC \n\nVPL5SRB21E - ACCOUNT TYPE MUST BE\
-            \ GREATER THAN SPACES \n\nVPL5SRB22E - SECONDARY ACCOUNT NUMBER MUST BE\
-            \ VALID \n\nVPL5SRB23E - SECONDARY ACCOUNT TYPE MUST BE GREATER THAN SPACES\
-            \ \n\nVPL5SRB24E - SECONDARY ACCT CNTRY CODE MUST BE NUMERIC \n\nVPL5SRB25E\
-            \ - ORIG WIRE INST ID NUMBER MUST BE NUMERIC \n\nVPL5SRB27E - ORIG WIRE\
-            \ CURRENCY CODE MUST BE NUMERIC \n\nVPL5SRB28E - ORIG WIRE ACCT ID MUST\
-            \ BE GREATER THAN SPACES \n\nVPL5SRB29E - BEN WIRE INST ID NUMBER MUST\
-            \ BE NUMERIC \n\nVPL5SRB31E - BEN WIRE CURRENCY CODE MUST BE NUMERIC \n\
-            \nVPL5SRB32E - BEN WIRE ACCOUNT ID MUST BE GREATER THAN SPACES \n\nVPL5SRB33E\
-            \ - WIRE RELEASE DATE TIME MUST BE NUMEREIC \n\nVPL5SRB34E - USER ACCT\
-            \ ID MUST BE GREATER THAN SPACES \n\nVPL5SRB35E - CLIENT LANG MUST BE\
-            \ GREATER THAN SPACES \n\nVPL5SRB36E - DEVICE NAME MUST BE GREATER THAN\
-            \ SPACES \n\nVPL5SRB37E - DEVICE VERSION MUST BE GREATER THAN SPACES \n\
-            \nVPL5SRB38E - CLIENT IP MUST BE NUMERIC \n\nVPL5SRB39E - WIRE ID MUST\
-            \ BE GREATER THAN SPACES \n\nVPL5SRB40E - BEN WIRE INST NAME MUST BE GREATER\
-            \ THAN SPACES \n\nVPL5SRB42E - BEN WIRE ACCT HOLDER NAME MUST BE GREATER\
-            \ THAN SPACES \n\nVPL5SRB43E - HOST DECISION MUST BE GREATER THAN SPACES\
-            \ \n\nVPL5SRB44E - REAL TIME RULE DSPS MUST BE GREATER THAN SPACES \n\n\
-            VPL5SRB45E - ORIG WIRE ACCT NAME MUST BE GREATER THAN SPACES \n\nVPL5SRB46E\
-            \ - PROCESS DATE MUST BE NUMERIC \n\nVPL5SRB50E - INPUT TIME MUST BE VALID\
-            \ IN HH:MM:SS FORMAT \n\nVPL5SRB26S - REQUESTED ORG NOT FOUND \n\nVPL5SRB05S\
-            \ - APPLICATION IN NO-PROCESSING STATUS, RETRY IN A FEW MINUTES \n\nVPL5SRB20S\
-            \ - ORGANIZATION FILE NOT AVAILABLE \n\nVPL5SRB21S - ACCOUNT NUMBER NOT\
-            \ FOUND \n\nVPL5SRB22S - LOGO RECORD NOT FOUND \n\nVPL5SRB77S - CUSTOMER\
-            \ RECORD NOT FOUND \n\nVPL5SRB78S - ACCOUNT NUMBER NOT FOUND \n\nVPL5SRB79S\
-            \ - ERROR WHILE SENDING NON-MON DATA TO FALCON"
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: Backend Error
-      summary: 'Monetary Inquiry. VMX Service: M.CMS.FLCN.MON.TRANSFER.INQ, L8V1'
-      tags:
-      - Account
-      x-child-product-name: Accounts
-      x-group-name: Account
-      x-proxy-name: Monetary Inquiry
   /account/v1/insuranceProducts/{insuranceProduct-id}:
     patch:
       description: "The Account Insurance Maintenance service updates of an insurance\
@@ -30353,17 +30331,21 @@ paths:
         VMX Service: M.CMS.INSTSTMTSIM.ACT, L8V1'
       operationId: Statement Installment Options Inquiry
       parameters:
-      - description: "Length: 3\n\nOrganization number that identifies the Organization\
-          \ record assigned to an account.\n VisionPLUS Service Data: AMBS-ORG"
-        example: 807
+      - description: "* Min Length: 1\n* Max Length: 3\n\nOrganization number that\
+          \ identifies the Organization.\n\nrecord assigned to an account.\n VisionPLUS\
+          \ Service Data: AMBS-ORG"
+        example: 998
         in: header
         name: organizationNumber
         required: false
         schema:
           format: int32
           type: integer
-      - description: "Length: 19\n\nAccount number.\n VisionPLUS Service Data: AMBS-ACCT"
-        example: 0004349950000268001
+      - description: 'Account number.
+
+
+          VisionPLUS Service Data: AMBS-ACCT'
+        example: '0001234560000123456'
         in: header
         name: accountNumber
         required: true
@@ -30407,6 +30389,41 @@ paths:
           description: Not Found
         '405':
           description: Method Not Allowed
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+          description: "VPL5SIS01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
+            \ VALUES ARE 001-998 \n\nVPL5SIS02E - REQUESTED ACCT / CARD NUMBER IS\
+            \ NOT NUMERIC OR EQUAL TO SPACES \n\nVPL5S1S03E - RATE VALUE IS INVALID\
+            \ \n\nVPL5S1S04E - AMOUNT VALUE IS INVALID \n\nVPL5S1S05E - VALUE MUST\
+            \ BE INFORMED \n\nVPL5S1S06E - INSTL COMPUTATION MODE MUST BE EITHER \"\
+            \ \", S OR C ONLY \n\nVPL5SIS07E - CAN NOT CALCULATE INSTALLMENT, VERIFY\
+            \ INPUT VALUES \n\nVPL5SIS08S - SYSTEM RECORD NOT FOUND ON FILE \n\nVPL5SIS09S\
+            \ - ORGANIZATION NOT FOUND ON FILE \n\nVPL5SIS10S - INSTALLMENTS NOT ACTIVE\
+            \ FOR ORGANIZATION, INVALID REQUEST \n\nVPL5SIS11S - ACCT / CARD NOT FOUND\
+            \ ON FILE \n\nVPL5S1S12S - SIMULATION CANNOT BE DONE. ACCOUNT NOT ACTIVE\
+            \ \n\nVPL5S1S13S - SIMULATION CANNOT BE DONE. ACCOUNT FLAG IS NOT ACTIVE\
+            \ \n\nVPL5SIS14S - ORGANIZATION LOGO UNAVAILABLE \n\nVPL5S1S15S - ORG/ACCOUNT\
+            \ NOT FOUND IN AM1S FILE \n\nVPL5S1S16E - LOGO NOT FOUND FOR THIS ORG/ACCOUNT\
+            \ \n\nVPL5SIS17S - INST PLAN NBR NOT FOUND \n\nVPL5S1S18S - SIMULATION\
+            \ CANNOT BE DONE. CONTRACT NOT ACTIVE FOR THIS ACCOUNT \n\nVPL5SIS19S\
+            \ - PROCESSING CONTROL TABLE NOT FOUND \n\nVPL5SIS20S - INTEREST TABLE\
+            \ IS NOT FOUND \n\nVPL5SIS25S - AMRT TAX TABLE NOT FOUND \n\nVPL5S1S21S\
+            \ - SIMULATION CANNOT BE DONE. ACCOUNT BLOCK CODE 1 DOES NOT ALLOW IT\
+            \ \n\nVPL5S1S22S - SIMULATION CANNOT BE DONE. ACCOUNT BLOCK CODE 2 DOES\
+            \ NOT ALLOW IT \n\nVPL5S1S23S - SIMULATION CANNOT BE DONE. INSTALLMENT\
+            \ PROC NOT ACTIVE FOR LOGO \n\nVPL5S1S24S - VALUE INFORMED GREATER THAN\
+            \ AVAILABLE FOR SIMULATION \n\nVPL5S1S25S - VALUE INFORMED LESS THAN MINIMUM\
+            \ SET IN THE PARAMETER \n\nVPL5S1S26S - VALUE INFORMED GREATER THAN MAXIMUM\
+            \ SET IN THE PARAMETER \n\nVPL5S1S27S - LOGO INST CREDIT PLAN CANNOT BE\
+            \ ZEROS \n\nVPL5S1S28S - INSTALLMENT VALUE IS LESS THAN ALLOWED \n\nVPL5SISZ2S\
+            \ - SERVICE INPUT TO INSTALLMENT SERVICE IS AN INCORRECT LENGTH \n\nVPL5SISZ6S\
+            \ - ORGANIZATION NUMBER COULD NOT BE DETERMINED \n\nVPL5SISZ7S - REQUESTED\
+            \ ORGANIZATION NUMBER IS NOT FOUND \n\nVPL5SISZAS - LOGO LEVEL PCT TABLE\
+            \ COULD NOT BE DETERMINED \n\nVPL5SISZBS - ORG LEVEL PCT TABLE COULD NOT\
+            \ BE DETERMINED \n\nVPL5SISZCS - SYSTEM LEVEL PCT TABLE COULD NOT BE DETERMINED "
         '500':
           content:
             application/json:
@@ -31010,244 +31027,6 @@ paths:
       x-child-product-name: Accounts
       x-group-name: Account
       x-proxy-name: Account Update
-  /account/v2/balance:
-    put:
-      description: '[IN DEVELOPMENT]
-
-
-        Credits (cash in) or Debits (cash out) transactions from available funds or
-        credit open to buy in an Account.Can integrate Cash-in & Cash-out transaction
-        information to be used in Fraud Prevention Rules. VMX Service: M.ASM.MONETARY.ACT,
-        L8V5'
-      operationId: Balance Update (Cash-in & Cash-out)
-      parameters:
-      - description: API Key
-        in: header
-        name: apikey
-        required: true
-        schema:
-          type: string
-      - description: Client ID
-        example: 00970
-        in: header
-        name: X-ClientID
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PurchaseAndCashAdvanceRequest'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PurchaseAndCashAdvanceResponse'
-          description: Success
-        '300':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: Redirection
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
-          content:
-            application/json: {}
-          description: 'Unprocessable Entity
-
-
-            VPJ8SMA01S - OTB CHECK FLAG IS AL-NUMERIC, VALID VALUES ARE SPACES/ 0/
-            1
-
-
-            VPJ8SMA02S - SPNDLT ECOM FLAG IS AL-NUMERIC, VALID VALUES ARE SPACES/
-            0/ 1
-
-
-            VPJ8SMA03S - PMNT ACC-REJ FLAG IS AL-NUMERIC, VALID VALUES ARE SPACES/
-            0/ 1
-
-
-            VPJ8SMA04S - SERVICE IP TXN AMOUNT > ARME06:INTERNET PURCHASE:SNGL TXN
-            LMT
-
-
-            VPJ8SMA05S - ARME23:ACCUMULATED AUTH NBR ACCUM > ARME06:AUTH INTR NBR
-
-
-            VPJ8SMA06S - ARME23:ACCUMULATED AUTH AMT ACCUM > ARME06:AUTH INTR AMT
-
-
-            VPJ8SMA07S - ARME06: AUTH INTR NBR / AUTH INTR AMT IS NOT > ZEROES
-
-
-            VPJ8SMA08S - MAX PAYMENT ALLOWD VALUE IS LESS THAN SERVICE INPUT TXN AMOUNT'
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: Backend Error
-      summary: "Purchase and Cash Advance \u2013 Cash In Cash Out. VMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V5"
-      tags:
-      - Account
-      x-child-product-name: Accounts
-      x-group-name: Account
-      x-proxy-name: Balance Update (Cash-in & Cash-out)
-  /account/v2/cardAssignment:
-    put:
-      description: "[IN DEVELOPMENT]\n\nThe Card Assignment API links an account or\
-        \ a customer with their corresponding cards. \n\nVMX Service: M.CMS.PREPAIDACCT.ASSIGN.UPD,\
-        \ L8V1"
-      operationId: Account or Customer Card Assignment
-      parameters:
-      - description: API Key
-        in: header
-        name: apikey
-        required: true
-        schema:
-          type: string
-      - description: Client ID
-        example: 00970
-        in: header
-        name: X-ClientID
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CardAssignmentRequest'
-        required: true
-      responses:
-        '200':
-          content: {}
-          description: Success
-        '204':
-          content: {}
-          description: Account or Customer Card Assignment Successful. No Content.
-        '300':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: Redirection
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: 'VPL5SPSZ6S - ORGANIZATION COULD NOT BE DETERMINED FOR INPUT
-            CARD
-
-
-            VPL5SPSZ7S - ORGANIZATION COULD NOT BE DETERMINED FOR CUSTOMER ACCT
-
-
-            VPL5SPSZ8S - INVALID ORGANIZATION NUMBER
-
-
-            VPL5SPS02E - CUSTOMER ACCT NBR MUST BE NUMERIC AND > ZEROES
-
-
-            VPL5SPS03E - CARD NBR MUST BE NUMERIC AND > ZEROES
-
-
-            VPL5SPS04E - CARDHOLDER TYPE MUST BE 0 OR 1
-
-
-            VPL5SPS05S - LOGO COULD NOT BE DETERMINED FOR FOR INPUT CARD
-
-
-            VPL5SPS06S - LOGO COULD NOT BE DETERMINED FOR CUSTOMER ACCT
-
-
-            VPL5SPS07E - ORG & LOGO MUST BE SAME FOR NON-PERSONAL & CUSTOMER ACCT
-
-
-            VPL5SPS08S - SYSTEM RECORD NOT FOUND
-
-
-            VPL5SPS09S - ORG RECORD NOT FOUND OR IN ADD PENDING STATUS
-
-
-            VPL5SPS10S - LOGO RECORD NOT FOUND OR IN ADD PENDING STATUS
-
-
-            VPL5SPS11E - LOGO MUST BE PREPAID LOGO
-
-
-            VPL5SPS12S - EMBOSSER RECORD NOT FOUND OR ADD PENDING OR PURGED STATUS
-
-
-            VPL5SPS13E - CARD MUST NOT BE ACTIVATED
-
-
-            VPL5SPS15S - NON PERSONAL ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE STATUS
-
-
-            VPL5SPS16E - NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD MUST BE GENERIC
-            PPD
-
-
-            VPL5SPS17E - CARD NUMBER DECRYPTED FROM PAN TOKEN IS SPACES/ZEROS
-
-
-            VPL5SPS17S - CUSTOMER ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE STATUS
-
-
-            VPL5SPS18E - CARD NUMBER SHOULD NOT BE SPACES
-
-
-            VPL5SPS19E - ORG LEVEL PAN TOKEN SW INACTIVE
-
-
-            VPL5SPS19S - CUST NBR ASSOCIATED WITH CUST ACCT NOT FOUND/ADD PENDNG/CLSD/PURG
-
-
-            VPL5SPS20S - EXISTNG PRIMRY CARD MAPPED TO CUST ACCT IN AMAX,NOT FOUND
-            IN AMED
-
-
-            VPL5SPS22S - CUSTOMER ACCT NOT FOUND IN BASE SEGMENT FILE'
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-          description: Backend Error
-      summary: "The Card Assignment API links an account or a customer with their\
-        \ corresponding cards. \n\nVMX Service: M.CMS.PREPAIDACCT.ASSIGN.UPD, L8V1"
-      tags:
-      - Account
-      x-child-product-name: Accounts
-      x-group-name: Account
-      x-proxy-name: Account or Customer Card Assignment
   /account/v2/customer:
     put:
       description: "Updates the Customer Address on the Account. \nVMX Service: M.CMS.ACCTCUSTNBR.UPD,\
