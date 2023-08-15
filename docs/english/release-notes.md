@@ -1,5 +1,5 @@
 ---
-tags: [Release Notes, January, February, March, April, May, June, July]
+tags: [Release Notes, January, February, March, April, May, June, July, August]
 ---
 
 ## August 2023
