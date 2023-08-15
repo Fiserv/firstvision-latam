@@ -1,5 +1,37 @@
 ---
-tags: [Release Notes, January, February, March, April, May, June, July]
+tags: [Release Notes, January, February, March, April, May, June, July, August]
+---
+
+## August 2023
+
+### What's New?
+
+- N/A
+
+### Enhancements
+
+API's description improvement:
+- /account/v2/accounts
+- /cards/spend-limits-L8V3
+- /cards/temporary-credit-limit
+- /customer/v3/cards/details
+- /loyalty/demographic/{accountNumber}
+- /transactions/{feeTableNumber}/fee-table-information
+- /transactions/{tableInsurance}/insurance-table
+- /transactions/currency-rate
+- /transactions/currency-rate
+- /transactions/currency-rate
+- /transactions/currency-rate-table
+- /transactions/notes-R8V3
+
+### Fixed
+
+- N/A
+
+### Obsolete
+
+- N/A
+
 ---
 
 ## July 2023
@@ -75,7 +107,6 @@ Endpoints moved to version 1.1.0:
 - /cards/embosser/encrypted-card-pan
 
 ---
-
 
 ## June 2023
 
@@ -241,7 +272,6 @@ Endpoints moved to version 1.1.0:
 - /customer/v4/cards/details
 
 ---
-
 
 ## February 2023
 
