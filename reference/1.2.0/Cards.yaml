@@ -1,0 +1,205 @@
+openapi: 3.0.1
+info:
+  description: "This documentation describes the REST APIs provided by the FirstVision\u2122\
+    \ Cards Microservice, which provides functionality for the issuing, management\
+    \ and processing of credit cards, including bank, co-branded, private label, debit,\
+    \ commercial, and prepaid"
+  title: "FirstVision\u2122 Cards Issuing Service - API Documentation"
+  version: '1.2'
+servers:
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
+paths:
+  /cards/v1/cards/account:
+    put:
+      tags:
+      - Card
+      summary: "Update the account to which the card is currently associated with.\
+        \ \n\nVMX Service: M.CMS.PREPAIDACCT.ASSIGN.UPD, L8V1"
+      description: "Update the account to which the card is currently associated with.\
+        \ \n\nVMX Service: M.CMS.PREPAIDACCT.ASSIGN.UPD, L8V1"
+      operationId: Account Card Assignment
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardAssignmentRequest'
+        required: true
+      responses:
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '204':
+          description: Account Card Assignment Successful. No Content.
+          content: {}
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '422':
+          description: 'VPL5SPSZ6S - ORGANIZATION COULD NOT BE DETERMINED FOR INPUT
+            CARD
+
+
+            VPL5SPSZ7S - ORGANIZATION COULD NOT BE DETERMINED FOR CUSTOMER ACCT
+
+
+            VPL5SPSZ8S - INVALID ORGANIZATION NUMBER
+
+
+            VPL5SPS02E - CUSTOMER ACCT NBR MUST BE NUMERIC AND > ZEROES
+
+
+            VPL5SPS03E - CARD NBR MUST BE NUMERIC AND > ZEROES
+
+
+            VPL5SPS04E - CARDHOLDER TYPE MUST BE 0 OR 1
+
+
+            VPL5SPS05S - LOGO COULD NOT BE DETERMINED FOR FOR INPUT CARD
+
+
+            VPL5SPS06S - LOGO COULD NOT BE DETERMINED FOR CUSTOMER ACCT
+
+
+            VPL5SPS07E - ORG & LOGO MUST BE SAME FOR NON-PERSONAL & CUSTOMER ACCT
+
+
+            VPL5SPS08S - SYSTEM RECORD NOT FOUND
+
+
+            VPL5SPS09S - ORG RECORD NOT FOUND OR IN ADD PENDING STATUS
+
+
+            VPL5SPS10S - LOGO RECORD NOT FOUND OR IN ADD PENDING STATUS
+
+
+            VPL5SPS11E - LOGO MUST BE PREPAID LOGO
+
+
+            VPL5SPS12S - EMBOSSER RECORD NOT FOUND OR ADD PENDING OR PURGED STATUS
+
+
+            VPL5SPS13E - CARD MUST NOT BE ACTIVATED
+
+
+            VPL5SPS15S - NON PERSONAL ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE STATUS
+
+
+            VPL5SPS16E - NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD MUST BE GENERIC
+            PPD
+
+
+            VPL5SPS17E - CARD NUMBER DECRYPTED FROM PAN TOKEN IS SPACES/ZEROS
+
+
+            VPL5SPS17S - CUSTOMER ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE STATUS
+
+
+            VPL5SPS18E - CARD NUMBER SHOULD NOT BE SPACES
+
+
+            VPL5SPS19E - ORG LEVEL PAN TOKEN SW INACTIVE
+
+
+            VPL5SPS19S - CUST NBR ASSOCIATED WITH CUST ACCT NOT FOUND/ADD PENDNG/CLSD/PURG
+
+
+            VPL5SPS20S - EXISTNG PRIMRY CARD MAPPED TO CUST ACCT IN AMAX,NOT FOUND
+            IN AMED
+
+
+            VPL5SPS22S - CUSTOMER ACCT NOT FOUND IN BASE SEGMENT FILE'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '200':
+          description: Success
+          content: {}
+      x-proxy-name: Account Card Assignment
+      x-group-name: Card
+      x-child-product-name: Cards
+components:
+  schemas:
+    CardAssignmentRequest:
+      required:
+      - accountNumber
+      - cardNumber
+      - isPrimaryCard
+      type: object
+      properties:
+        accountNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: 'New account number to which the card will be reassigned to.
+
+
+            VisionPLUS Service Data: AZXPCI-ACCT'
+          example: '4444888833330009999'
+        cardNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: 'Unique identifier or token associated with the card number
+            or payment instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: AZXPCI-CARD-NBR'
+          example: 000123456ID5IXX1234
+        isPrimaryCard:
+          type: boolean
+          description: "Card Type Flag \u2013 Card to be associated as primary or\
+            \ additional cardholder.\n\nValues: \n* true = Primary cardholder;\n*\
+            \ false = Additional cardholder.\n\n\nVisionPLUS Service Data: AZXPCI-CARDHOLDER-TYPE"
+          example: true
+      description: Card Assignment Request
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+x-config:
+  tryItOut: 'true'
