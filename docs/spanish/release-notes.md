@@ -4,6 +4,38 @@ tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio]
 
 # Release Notes
 
+## Agosto 2023
+
+### ¿Qué hay de nuevo?
+
+- N/A
+
+### Mejoras
+
+API's description improvement:
+- /account/v2/accounts
+- /cards/spend-limits-L8V3
+- /cards/temporary-credit-limit
+- /customer/v3/cards/details
+- /loyalty/demographic/{accountNumber}
+- /transactions/{feeTableNumber}/fee-table-information
+- /transactions/{tableInsurance}/insurance-table
+- /transactions/currency-rate
+- /transactions/currency-rate
+- /transactions/currency-rate
+- /transactions/currency-rate-table
+- /transactions/notes-R8V3
+
+### Problemas solucionados
+
+- N/A
+
+### Obsoleto
+
+- N/A
+
+---
+
 ## Julio 2023
 
 ### ¿Qué hay de nuevo?
