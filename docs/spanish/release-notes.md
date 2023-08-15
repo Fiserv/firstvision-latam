@@ -1,5 +1,5 @@
 ---
-tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio]
+tags: [Release Notes, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto]
 ---
 
 # Release Notes
