@@ -19,11 +19,6 @@ paths:
                 - Authorization
                 - Card Blocked
                 - Card Activation
-      description: |-
-                Notifications for events
-                - Authorization
-                - Card Blocked
-                - Card Activation
       operationId: Notifications v2
       parameters:
       - name: apikey
@@ -87,19 +82,19 @@ components:
           maxLength: 4
           example: "0001"
           description:  |-
-            <p>Event code.</p>
+            <p>SMS event code.</p>
         eventTitle:
           type: string
           maxLength: 40
           example: "TRANSACTION ALERTS"
           description:  |-
-            <p>Event title.</p>
+            <p>SMS event title.</p>
         eventNumber:
           type: integer
           maxLength: 2
           example: 1
           description:  |-
-            <p>Event number.</p>
+            <p>SMS event number.</p>
         organizationNumber:
           type: integer
           maxLength: 3
@@ -177,7 +172,7 @@ components:
           maxLength: 65
           example: "00000000010.00"
           description:  |-
-            <p>For Authorization Event: Transaction Amount in original currency. ISO element DE4 from authorization. For blocked card the line contains block code</p>
+            <p>For Authorization Event: Transaction Amount in original currency. ISO element DE4 from authorization. For blocked card SMS the line contains block code</p>
         messageLine8:
           type: string
           maxLength: 65
@@ -208,7 +203,7 @@ components:
         messageLine12:
           type: string
           maxLength: 65
-          example: "00 0000 00000000000000"
+          example: "01ABCDFGHIJK0000X0000000000010001AABC00100000000001.01/01"
           description:  |-
            <p>For Authorization Event:</p>
             <p>Position 1-2 bytes : DE3 Proc code</p>
@@ -218,6 +213,7 @@ components:
             <p>Pos 34 - 1 bytes : FAS request type ID A : Authorization, R - reversal</p>
             <p>Pos 35 - 6 bytes : Authorization Code</p>
             <p>Pos 41 - 14 bytes : DE6 Card holder billing amount</p>
+            <p>Pos 55 - 01 byte : Field separator "/". Pos 56 - 02 bytes : Installment number.</p>
         messageLine13:
           type: string
           maxLength: 65
