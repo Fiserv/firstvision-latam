@@ -6,7 +6,8 @@ tags: [Release Notes, January, February, March, April, May, June, July, August]
 
 ### What's New?
 
-- N/A
+- /cards/v1/cards/account
+- /account/v2/balance
 
 ### Enhancements
 
@@ -23,14 +24,37 @@ API's description improvement:
 - /transactions/currency-rate
 - /transactions/currency-rate-table
 - /transactions/notes-R8V3
+- /account/{accountNumber}/balance
+- /account/product
+- /account/v1/statementInstallments
+- /cards/mass-card-issue-L8V3
+- /loyalty/points
+- /transactions/logo-block-codes
+- /account/organizationNumber/level-limits
+- /account/organizationNumber/level-limits
+- /account/{organizationNumber}/level-limits
+- /cards/embosser/{cardNumber}/navigational
+- /transactions/outstanding-authorizations/{accountNumber}
+- /account/organizationNumber/level-limits/validate-amount
+- /transactions/outstanding-authorizations-L8V3/details
+- /loyalty/statementLists
+- /loyalty/statementSummary/{accountNumber}
+- /account/transferP2P
+- /vtis/v1/checkEligibility
+- /vtis/v1/getSelectedCards
 
 ### Fixed
 
-- N/A
+Moved to 1.1.0 version
+- /account/FL-balance
+- /account/balance
 
 ### Obsolete
 
-- N/A
+- /account/prepaid
+- /account/QR-balance
+- /account/QR-transfer
+- /account/transfer
 
 ---
 
