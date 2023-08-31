@@ -1,0 +1,140 @@
+openapi: 3.0.1
+info:
+  description: "This documentation describes the REST APIs provided by the FirstVision\u2122\
+    \ Cards Microservice, which provides functionality for the issuing, management\
+    \ and processing of credit cards, including bank, co-branded, private label, debit,\
+    \ commercial, and prepaid"
+  title: "FirstVision\u2122 Transaction Service - API Documentation"
+  version: '1.2'
+servers:
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
+paths:
+  /transactions/mx/v1/udiRate:
+    put:
+      tags:
+      - Transactions
+      summary: "UDI rate update or addition. \n\nNote: This API is available only\
+        \ in Mexico.\n\nVMX Service: CMS.UDIRATE.UPD, L8V1"
+      description: "UDI rate update or addition. \n\nNote: This API is available only\
+        \ in Mexico.\n\nVMX Service: CMS.UDIRATE.UPD, L8V1"
+      operationId: udiRate
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UDIRateRequest'
+        required: true
+      responses:
+        '405':
+          description: Method Not Allowed
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '422':
+          description: "VPL5SUA01S - APPLICATION IN NO-PROCESSING STATUS, RETRY IN\
+            \ A FEW MINUTES\n\nVPL5SUA02S - UDI DATE NOT ENTERED                 \
+            \                           \n\nVPL5SUA03S - INVALID UDI DATE        \
+            \                                        \n\nVPL5SUA04S - UDI RATE NOT\
+            \ ENTERED                                            \n\nVPL5SUA05S -\
+            \ ENTER VALID NUMERIC UDI RATE                                    \n\n\
+            VPL5SUA06S - UDI RATE MUST BE GREATER THAN ZERO                      \
+            \        \n\nVPL5SUA07S - UDI RECORD NOT PRESENT                     \
+            \                     \n\nVPL5SUA08S - UDI DATE IS NOT FUTURE DATE, NOT\
+            \ MATCHING WITH ANY EXISTING DATE\n\nVPL5SUA13S - DATE MUST BE > LATEST\
+            \ ENTRY AND MUST BE < 30 DAYS FROM TODAY\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UDIRateResponse'
+      x-proxy-name: UDI Rate Update
+      x-group-name: Transactions
+components:
+  schemas:
+    UDIRateRequest:
+      required:
+      - udiDate
+      - udiRate
+      type: object
+      properties:
+        udiDate:
+          type: string
+          description: "The effective date (in ISO 8601) for UDI (Unidad de Inversi\xF3\
+            n) Rate.\n\nVisionPLUS Service Data: AZXUAI-UDI-DATE"
+          format: date
+          example: 2028-01-03
+        udiRate:
+          maximum: 9.999999
+          exclusiveMaximum: false
+          minimum: 1.0e-06
+          exclusiveMinimum: false
+          type: number
+          description: "* Min Length: 8\n* Max Length: 8\n\nThe rate for the UDI (Unidad\
+            \ de Inversi\xF3n) for a specific date.\n\nVisionPLUS Service Data: AZXUAI-UDI-RATE"
+          example: 3.345679
+      description: UDI Rate Request
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    UDIRateResponse:
+      type: object
+      properties:
+        inflationRate:
+          type: number
+          description: "Length: 8\n\nInflation rate is the ratio calculated between\
+            \ the current UDI (Unidad de Inversi\xF3n) date and the previous UDI date.\n\
+            \nVisionPLUS Service Data: AZXUAO-INF-RATE"
+          example: 1.0e-06
+x-config:
+  tryItOut: 'true'
