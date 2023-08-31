@@ -39,34 +39,34 @@ paths:
               $ref: '#/components/schemas/PointsDisbursementRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PointsDisbursementResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Points Account Auto Disbursement Data Update
       x-group-name: Loyalty
   /loyalty/pointsAdjust:
@@ -98,43 +98,50 @@ paths:
               $ref: '#/components/schemas/PointsAdjustRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PointsAdjustResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Points Account Adjustment
       x-group-name: Loyalty
   /loyalty/statementLists:
     post:
       tags:
       - Loyalty
-      summary: 'Statement lists. VMX Service: M.LMS.STMT.LIST.INQ, R8V1'
-      description: "Inquires on existing statement summaries that are available for\
-        \ a specific account in LMS. \nVMX Service: M.LMS.STMT.LIST.INQ, R8V1"
+      summary: 'Inquires on existing statement summaries that are available for a
+        specific account in LMS.
+
+
+        VMX Service: M.LMS.STMT.LIST.INQ, R8V1'
+      description: 'Inquires on existing statement summaries that are available for
+        a specific account in LMS.
+
+
+        VMX Service: M.LMS.STMT.LIST.INQ, R8V1'
       operationId: loyaltyStatementList
       parameters:
       - name: apikey
@@ -157,34 +164,34 @@ paths:
               $ref: '#/components/schemas/LoyaltyStatementListRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoyaltyStatementListResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Loyalty Account Transactions Inquiry
       x-group-name: Loyalty
   /loyalty/redemption:
@@ -217,43 +224,48 @@ paths:
               $ref: '#/components/schemas/RedemptionAddRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RedemptionAddResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Redemption Transaction Add
       x-group-name: Loyalty
   /loyalty/points:
     post:
       tags:
       - Loyalty
-      summary: 'LMS Account point details. VMX Service: M.LMS.POINTS.ACCT.INQ, R8V2'
-      description: "Finds Loyalty Points associated with a CMS Account number. \n\
-        VMX Service: M.LMS.POINTS.ACCT.INQ, R8V2"
+      summary: 'Finds Loyalty Points associated with a CMS Account number.
+
+
+        VMX Service: M.LMS.POINTS.ACCT.INQ, R8V2'
+      description: 'Finds Loyalty Points associated with a CMS Account number.
+
+
+        VMX Service: M.LMS.POINTS.ACCT.INQ, R8V2'
       operationId: Find points details
       parameters:
       - name: apikey
@@ -276,34 +288,86 @@ paths:
               $ref: '#/components/schemas/PointsDetailsRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
+        '422':
+          description: 'VPLKSAI06S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
+            001-997
+
+
+            VPLKSAI07S - INVALID ACCOUNT NUMBER
+
+
+            VPLKSAI08S - REQUESTED ORGANIZATION NOT FOUND
+
+
+            VPLKSAI11S - ORGANIZATION RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAI12S - ORGANIZATION RECORD STATUS IS INCOMPLETE OR PURGED OR CLOSED
+
+
+            VPLKSAI13S - ORGANIZATION RECORD NOT FOUND
+
+
+            VPLKSAI14S - POINTS ACCOUNT RECORD NOT FOUND
+
+
+            VPLKSAI15E - POINT ACCOUNT RECORD IS INCOMPLETE/CLOSED/PENDING PURGED/PURGED
+
+
+            VPLKSAI16S - ACCOUNT DEMOGRAPHIC RECORD NOT FOUND
+
+
+            VPLKSAI17E - ACCOUNT DEMOGRAPHIC RECORD STATUS IS INCOMPLETE
+
+
+            VPLKSAI18S - POINTS SCHEME RECORD NOT FOUND
+
+
+            VPLKSAI19E - POINTS SCHEME RECORD IS INCOMPLETE/CLOSED/PURGED
+
+
+            VPLKSAI20E - POINTS SCHEME RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAI21E - ACCOUNT DEMOGRAPHIC RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAI22E - POINTS ACCOUNT RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAI23E - INVALID SCHEME DATE RANGE'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PointsDetailsResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Points Account Inquiry
       x-group-name: Loyalty
   /loyalty/pointsExpireHistory:
@@ -337,34 +401,34 @@ paths:
               $ref: '#/components/schemas/PointsExpiryHistoryRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PointsExpiryHistoryResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Points Expiration Details Inquiry
       x-group-name: Loyalty
   /loyalty/pointsAccount:
@@ -396,34 +460,34 @@ paths:
               $ref: '#/components/schemas/PointsAccountAddRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PointsAccountAddResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Points Account Add
       x-group-name: Loyalty
   /loyalty/crossReference:
@@ -456,34 +520,34 @@ paths:
               $ref: '#/components/schemas/CrossReferenceInquiryRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CrossReferenceInquiryResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Cross Reference Inquiry
       x-group-name: Loyalty
   /loyalty/:
@@ -516,26 +580,28 @@ paths:
               $ref: '#/components/schemas/LmsTransactionInquiryRequest'
         required: true
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '422':
           description: "VPLKSTI02S - SERVICE INPUT TO EXPIRY-HIST-INQ SERVICE IS AN\
             \ INCORRECT LENGTH \n\nVPLKSTI06S - ORG NUMBER MUST BE NUMERIC AND VALID\
@@ -558,22 +624,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LmsTransactionInquiryResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Statement Lists Inquiry
       x-group-name: Loyalty
   /loyalty/statementSummary/{accountNumber}:
     get:
       tags:
       - Loyalty
-      summary: 'Statement Summary Inquiry. VMX service: M.LMS.STMT.SUMMARY.INQ, R8V1'
+      summary: "Inquires on a statement summary account in the LMS. \nVMX Service:\
+        \ M.LMS.STMT.SUMMARY.INQ, R8V1"
       description: "Inquires on a statement summary account in the LMS. \nVMX Service:\
         \ M.LMS.STMT.SUMMARY.INQ, R8V1"
       operationId: statementSummaryDetails
       parameters:
       - name: accountNumber
         in: path
-        description: Account number to search
+        description: 'Account number to search
+
+
+          VisionPLUS Service Data: GPXSII-ACCOUNT-NBR'
         required: true
         schema:
           maximum: 19
@@ -581,26 +649,45 @@ paths:
           maxLength: 19
           minLength: 19
           type: string
-        example: 1801000000004844172
+        example: 000012345XXXXX12345
       - name: organizationNumber
         in: query
-        description: Organization Number
+        description: '* Min Length = 1
+
+          * Max Length = 3
+
+
+          Organization Number.
+
+
+          VisionPLUS Service Data: GPXSII-ORG'
         required: true
         schema:
           maximum: 999
           minimum: 1
           type: string
-        example: 807
+        example: 998
       - name: Scheme
         in: query
-        description: Starting scheme associated with the scroll
+        description: '* Min Length = 1
+
+          * Max Length = 5
+
+
+          Starting scheme associated with the scroll.
+
+
+          VisionPLUS Service Data: GPXSII-SCHEME'
         required: true
         schema:
           type: string
-        example: 00029
+        example: 11111
       - name: statementDate
         in: query
-        description: Date when the next statement will be produced (Julian format)
+        description: 'Date when the next statement will be produced (Julian format).
+
+
+          VisionPLUS Service Data: GPXSII-STMT-DATE'
         required: true
         schema:
           type: string
@@ -619,22 +706,44 @@ paths:
           type: string
         example: 00970
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '422':
+          description: "VPLKSSI02S - SERVICE INPUT TO STMT SUMMARY INQ SERVICE IS\
+            \ AN INCORRECT LENGTH \n\nVPLKSSI06S - ORG NUMBER MUST BE NUMERIC AND\
+            \ VALID VALUES ARE 001-997 \n\nVPLKSSI07S - INVALID ACCOUNT NUMBER \n\n\
+            VPLKSSI08S - REQUESTED ORGANIZATION NOT FOUND \n\nVPLKSSI11S - ORGANIZATION\
+            \ RECORD IS IN PENDING ADD STATUS \n\nVPLKSSI12S - ORGANIZATION RECORD\
+            \ STATUS IS INCOMPLETE OR PURGED OR CLOSED \n\nVPLKSSI13S - ORGANIZATION\
+            \ RECORD NOT FOUND \n\nVPLKSSI14S - POINTS ACCOUNT RECORD NOT FOUND \n\
+            \nVPLKSSI15S - POINTS ACCOUNT RECORD IS IN PENDING ADD STATUS \n\nVPLKSSI16S\
+            \ - ACCOUNT DEMOGRAPHIC RECORD NOT FOUND \n\nVPLKSSI17S - ACCOUNT DEMOGRAPHIC\
+            \ RECORD STATUS IS INCOMPLETE/CLOSED/PURGED \n\nVPLKSSI18S - STATEMENT\
+            \ MASTER RECORD NOT FOUND \n\nVPLKSSI19S - POINTS SCHEME RECORD NOT FOUND\
+            \ \n\nVPLKSSI20S - POINTS SCHEME RECORD IS INCOMPLETE/CLOSED/PURGED \n\
+            \nVPLKSSI21S - POINTS ACCOUNT RECORD IS INCOMPLETE/CLOSED/PURGED/PENDING\
+            \ PURGED \n\nVPLKSSI22S - ACCOUNT DEMOGRAPHIC RECORD IS IN PENDING ADD\
+            \ STATUS \n\nVPLKSSI23S - POINT SCHEME RECORD IS IN PENDING ADD STATUS"
           content:
             application/json:
               schema:
@@ -645,8 +754,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementSummaryResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Statement Summary Inquiry
       x-group-name: Loyalty
   /loyalty/demographic/{accountNumber}:
@@ -701,12 +808,28 @@ paths:
           type: string
         example: 00970
       responses:
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '405':
+          description: Method Not Allowed
         '400':
           description: Bad Request
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '422':
           description: "VPLKSDS02S - SERVICE INPUT TO DEMOGRAPHIC INQ SERVICE IS AN\
             \ INCORRECT LENGTH \n\nVPLKSDS06S - ORG NUMBER MUST BE NUMERIC AND VALID\
@@ -721,28 +844,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DemographicAccountDataResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Demographic Data Inquiry
       x-group-name: Loyalty
 components:
@@ -1110,78 +1217,81 @@ components:
       type: object
       properties:
         organizationNumber:
-          maximum: 999
-          minimum: 1
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization number that identifies the existing Organization record assigned
             to the Points Account record.
+
 
             VisionPLUS Service Data: GPXTRI-ORG'
           format: int32
           example: 807
         accountNumber:
-          maximum: 19
-          minimum: 19
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
+
 
             LMS account number that identifies the LMS Points Account record
+
 
             VisionPLUS Service Data: GPXSLI-ACCOUNT-NBR'
           example: '4513074002573466583'
         scheme:
-          maximum: 5
           maxLength: 5
           minLength: 0
           type: string
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             LMS scheme ID that identifies is associated with the LMS Points Account
             record
 
+
             VisionPLUS Service Data: GPXSLI-SCHEME'
           example: '10002'
         numberOfTransactions:
-          maximum: 99
-          minimum: 0
           type: integer
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Number of transactions
+
 
             VisionPLUS Service Data: GPXSLI-NO-TXNS'
           format: int32
           example: 0
         startDate:
           type: string
-          description: 'Length: 8
+          description: 'Starting date associated with the scroll
 
-            Starting date associated with the scroll
 
             VisionPLUS Service Data: GPXSLI-START-DATE'
           format: date
+          example: 2023-05-23
         startingScheme:
           maxLength: 5
           minLength: 0
           type: string
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Starting scheme associated with the scroll
 
+
             VisionPLUS Service Data: GPXSLI-START-SCHEME'
+          example: '0'
         scrollingFeature:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Length: 1
+          description: 'Scrolling feature.
 
-            Scrolling feature.
 
-            The values are:
+            Values:
 
             * Space = First 20 items
 
@@ -1189,39 +1299,65 @@ components:
 
             * P = Previous 20 items
 
+
             VisionPLUS Service Data: GPXSLI-FUNC-CODE'
+          example: P
       description: Transactions Details Request
     LoyaltyStatementListResponse:
       type: object
       properties:
         organizationNumber:
           type: integer
-          description: "Length: 3Number that identifies the Organization record assigned\
-            \ to the LMS Account.The values are 001\u2013997.\nVisionPLUS Service\
-            \ Data: GPXSLO-ORG"
+          description: 'Max Length: 3
+
+
+            Number that identifies the Organization record assigned to the LMS Account.
+
+
+            VisionPLUS Service Data: GPXSLO-ORG'
           format: int32
+          example: 999
         organizationName:
           type: string
-          description: 'Length: 40Description assigned to the organization.
+          description: 'Max Length: 40
+
+
+            Description assigned to the organization.
+
 
             VisionPLUS Service Data: GPXSLO-ORG-NAME'
+          example: Organization description
         accountNumber:
           type: string
-          description: 'Length: 19LMS account number that identifies the LMS Points
-            Account record.
+          description: 'Max Length: 19
+
+
+            LMS account number that identifies the LMS Points Account record.
+
 
             VisionPLUS Service Data: GPXSLO-ACCOUNT-NBR'
+          example: '7600010732545213551'
         accountName:
           type: string
-          description: 'Length: 40Name of the account holder.
+          description: 'Max Length: 40
+
+
+            Name of the account holder.
+
 
             VisionPLUS Service Data: GPXSLO-ACCOUNT-NAME'
+          example: Account Holder Name
         numberOfTransactions:
           type: integer
-          description: 'Length: 2Number of transactions.
+          description: 'Max Length: 2
+
+
+            Number of transactions.
+
 
             VisionPLUS Service Data: GPXSLO-NO-TXNS-RQST'
           format: int32
+          example: 29
         statementDetailsList:
           type: array
           description: Statement details list
@@ -1229,20 +1365,31 @@ components:
             $ref: '#/components/schemas/LoyaltyStatementListResponse.StatementDetails'
         moreStatements:
           type: string
-          description: 'Length: 1Code that indicates whether more records are on file.
+          description: 'Max Length: 1
+
+            Code that indicates whether more records are on file.
+
 
             VisionPLUS Service Data: GPXSLO-MORE-STMT'
+          example: '0'
         startingDate:
           type: string
-          description: 'Length: 8Starting date associated with the scroll.
+          description: 'Starting date associated with the scroll (in ISO 8601).
+
 
             VisionPLUS Service Data: GPXSLO-START-DATE'
           format: date
+          example: 2021-09-30
         startingScheme:
           type: string
-          description: 'Length: 5Starting scheme associated with the scroll.
+          description: 'Max Length: 5
+
+
+            Starting scheme associated with the scroll.
+
 
             VisionPLUS Service Data: GPXSLO-START-SCHEME'
+          example: '0'
     LoyaltyStatementListResponse.StatementDetails:
       type: object
       properties:
@@ -1252,18 +1399,31 @@ components:
           format: int32
         date:
           type: string
-          description: 'Length: 8Statement date.
+          description: 'Statement date (in ISO 8601).
+
 
             VisionPLUS Service Data: GPXSLO-STMT-DATE'
           format: date
+          example: 2022-01-15
         scheme:
           type: string
-          description: Scheme
+          description: 'Max Length: 5
+
+            Scheme
+
+
+            VisionPLUS Service Data: GPXSLO-STMT-SCHEM'
+          example: '0'
         flag:
           type: string
-          description: 'Length: 1Statement flag.
+          description: 'Max Length: 1
+
+
+            Statement flag.
+
 
             VisionPLUS Service Data: GPXSLO-STMT-FLAG'
+          example: '0'
       description: Statement details list
     RedemptionAddRequest:
       required:
@@ -1401,18 +1561,35 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Organization Number.VisionPLUS Service Data: GPXAII-ORG'
+          description: '* Min Length: 1
+
+            * Max Length: 3
+
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: GPXAII-ORG'
           format: int32
-          example: 801
+          example: 999
         accountNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Account Number.VisionPLUS Service Data: GPXAII-ACCOUNT-NBR'
-          example: '1801000000053684742'
+          description: 'Account Number.
+
+
+            VisionPLUS Service Data: GPXAII-ACCOUNT-NBR'
+          example: '7600010732545213551'
         scheme:
           type: string
-          description: 'Scheme identification number.VisionPLUS Service Data: GPXAII-SCHEME'
+          description: '* Max Length: 5
+
+
+            Scheme identification number.
+
+
+            VisionPLUS Service Data: GPXAII-SCHEME'
           example: 00008
       description: Find points details Request
     PointsDetailsResponse:
@@ -1420,137 +1597,257 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3Organization number'
+          description: 'Max Length: 3
+
+
+            Organization number.
+
+
+            VisionPLUS Service Data: GPXAIO-ORG'
           format: int32
+          example: 999
         organizationName:
           type: string
-          description: 'Length: 3Organization number that identifies the existing
-            Organization record assigned. VisionPLUS Service Data: GPXAIO-ORG'
+          description: 'Max Length: 40
+
+
+            Name portion of the mailing address for the promotional group.
+
+
+            VisionPLUS Service Data: GPXAIO-NAME-ADDR'
+          example: '0'
         accountNumber:
           type: string
-          description: 'Length: 19LMS account Name that identifies the Points Account
-            record. VisionPLUS Service Data: GPXAIO-ACCT'
+          description: 'Max Length: 19
+
+
+            Account Number.
+
+
+            VisionPLUS Service Data: GPXAIO-ACCT'
+          example: '7600010732545213551'
         accountName:
           type: string
-          description: 'Length: 19LMS account number that identifies the Points Account
-            record.VisionPLUS Service Data: GPXAIO-ACCT'
+          description: 'Max Length: 40
+
+
+            Name of the account holder.
+
+
+            VisionPLUS Service Data: GPXAIO-NAME-1'
+          example: '0'
         scheme:
           type: integer
-          description: 'Length: 5Scheme identification number. VisionPLUS Service
-            Data: GPXAIO-SCHEME-ID'
+          description: 'Max Length: 5
+
+
+            Scheme identification number.
+
+
+            VisionPLUS Service Data: GPXAIO-SCHEME-ID'
           format: int32
+          example: 0
         schemeName:
           type: string
-          description: 'Length: 40Name assigned to that Points Scheme record. VisionPLUS
-            Service Data: GPXAIO-SCHEME-NAME'
+          description: 'Max Length: 40
+
+
+            Name assigned to that Points Scheme record
+
+
+            VisionPLUS Service Data: GPXAIO-SCHEME-NAME'
+          example: '0'
         status:
           type: integer
-          description: 'Length: 1Status of the Points Account record.
+          description: 'Max Length: 1
 
-            The values are:
 
-            * 1 = Active
+            Status of the Points Account record.
 
-            * 2 = Inactive (batch status method)
 
-            * 3 = On hold (batch status method)
+            Values:
 
-            * 4 = Frozen (batch status method)
+            * 1 = Active ;
 
-            * 6 = Pending close (batch status method)
+            * 2 = Inactive (batch status method);
 
-            * 7 = Closed
+            * 3 = On hold (batch status method);
 
-            * 8 = Pending purge (batch status method)
+            * 4 = Frozen (batch status method);
 
-            * 9 = Purged VisionPLUS Service Data: GPXAIO-INT-STATUS'
+            * 6 = Pending close (batch status method);
+
+            * 7 = Closed ;
+
+            * 8 = Pending purge (batch status method);
+
+            * 9 = Purged.
+
+
+            VisionPLUS Service Data: GPXAIO-INT-STATUS'
           format: int32
+          example: 7
         statusName:
           type: string
-          description: 'Length: 12Name of the account holder. VisionPLUS Service Data:
-            GPXAIO-STATUS-NAME'
+          description: 'Max Length: 12
+
+
+            Name of the account holder.
+
+
+            VisionPLUS Service Data: GPXAIO-STATUS-NAME'
+          example: '0'
         statusChangeDate:
           type: string
-          description: 'Length: 8Date when the last status change occurred for the
-            Points Account record. VisionPLUS Service Data: GPXAIO-STATUS-CHANGE-DATE'
+          description: 'Date when the last status change occurred for the Points Account
+            record (in ISO 8601).
+
+
+            VisionPLUS Service Data: GPXAIO-STATUS-CHANGE-DATE'
           format: date
+          example: 2022-07-22
         lastMaintenanceOnThePointsId:
           type: string
-          description: 'Length: 3Operator ID of the person who performed the last
-            maintenance on the Points Account record. VisionPLUS Service Data: GPXAIO-OPER-LAST-MAINT'
+          description: 'Max Length: 3
+
+
+            Operator ID of the person who performed the last maintenance on the Points
+            Account record.
+
+
+            VisionPLUS Service Data: GPXAIO-OPER-LAST-MAINT'
+          example: '0'
         lastMaintenanceOnThePoints:
           type: string
-          description: 'Length: 8Last maintenance on the points.'
+          description: 'Last maintenance on the points (in ISO 8601).
+
+
+            VisionPLUS Service Data: GPXAIO-DATE-LAST-MAINT'
           format: date
+          example: 2022-07-22
         typeOfCustomerFlag:
           type: string
-          description: 'Length: 17Type of customer flag.'
+          description: 'Max Length: 1
+
+
+            Type of customer flag.
+
+
+            VisionPLUS Service Data: GPXAIO-SERVICE-FLAG'
+          example: '0'
         serviceFlagName:
           type: string
-          description: 'Length: 12Description of value shown for service flag.
+          description: 'Max Length: 12
 
-            The values are:
 
-            * B = Business
+            Description of value shown for service flag.
 
-            * C = Consolidated
 
-            * I = Individual VisionPLUS Service Data: GPXAIO-SERVICE-FLAG-NAME'
+            Values:
+
+            * B = Business;
+
+            * C = Consolidated;
+
+            * I = Individual.
+
+
+            VisionPLUS Service Data: GPXAIO-SERVICE-FLAG-NAME'
+          example: C
         automaticDisbursementFlag:
           type: string
-          description: 'Length: 1Flag that indicates whether automatic disbursements
-            are used for the Points Account record.
+          description: 'Max Length: 1
 
-            The values are:
 
-            * N = Automatic disbursement is not active
+            Flag that indicates whether automatic disbursements are used for the Points
+            Account record.
 
-            * Y = Automatic disbursement is active.VisionPLUS Service Data: GPXAIO-AUTO-DISB-FLAG'
+
+            Values:
+
+            * N = Automatic disbursement is not active;
+
+            * Y = Automatic disbursement is active.
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-FLAG'
+          example: Y
         automaticDisbursementLastDate:
           type: string
-          description: 'Length: 8Date when the last automatic disbursement occurred.
-            VisionPLUS Service Data: GPXAIO-START-DISBURSE-DATE'
+          description: 'Date when the last automatic disbursement occurred (in ISO
+            8601)
+
+
+            Format : CCYY-MM-DD (Gregorian Date)
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-LAST-DATE'
           format: date
+          example: 2022-07-22
         automaticDisbursementAccount:
           type: string
-          description: 'Length: 25Account number that identifies the accounts receivable
-            account to which automatic disbursements will be disbursed. VisionPLUS
-            Service Data: GPXAIO-AUTO-DISB-ACCT'
+          description: 'Max Length: 25
+
+
+            Account number that identifies the accounts receivable account to which
+            automatic disbursements will.
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-ACCT'
+          example: '0'
         blockCode1:
           type: string
-          description: 'Length: 1Block code assigned to the Points Account record.
+          description: 'Max Length: 1
+
+
+            Block code assigned to the Points Account record
+
+
             VisionPLUS Service Data: GPXAIO-BLOCK-CODE-1'
+          example: '0'
         blockMode:
           type: string
-          description: 'Length: 1Code that indicates which accounts receivable accounts
-            linked to a Points Account record are checked for block codes and which
-            block codes are applied.
+          description: 'Max Length: 1
 
-            The values are:
+
+            Code that indicates which accounts receivable accounts linked to a Points
+            Account record are checked ,for block codes and which block codes are
+            applied.
+
+
+            Values:
 
             * N = Check only the accounts receivable account identified on the transaction
             being processed. If the account number is not identified on the transaction,
-            perform processing as indicated by value P.* P = Check only the accounts
-            receivable primary account linked to the Points Account record (PRIMARY
-            ACCOUNT NUMBER on GPMA01). The block code assigned to the primary account
-            controls processing for all linked accounts receivable accounts.
+            perform processing as indicated by value P.
 
-            * V = Do not check accounts receivable accounts for block codes.Apply
+            * P = Check only the accounts receivable primary account linked to the
+            Points Account record
+
+            (PRIMARY ACCOUNT NUMBER on GPMA01). The block code assigned to the primary
+            account controls processing for all linked accounts receivable accounts.
+
+            * V = Do not check accounts receivable accounts for block codes. Apply
             only the LMS block code assigned to the Points Account record (LMS BLOCK
             CODE on GPMC01).
 
             * Y = Check all accounts receivable accounts for block codes. If any account
             is assigned a block code that is set to not earn or not redeem points,
-            none of the linked accounts can earn or redeem points.VisionPLUS Service
-            Data: GPXAIO-BLOCK-MODE'
+            none of the linked accounts can earn or redeem points.
+
+
+            VisionPLUS Service Data: GPXAIO-BLOCK-MODE'
+          example: P
         delinquencyMode:
           type: string
-          description: 'Length: 1Flag that indicates which accounts receivable accounts
-            linked to the Points Account record are checked for delinquency and which
-            delinquency is applied.
+          description: 'Max Length: 1
 
 
-            The values are:
+            Flag that indicates which accounts receivable accounts linked to the Points
+            Account record are checked for delinquency and which delinquency is applied.
+
+
+            Values:
 
             * N = Check all accounts receivable accounts for delinquency.
 
@@ -1565,247 +1862,551 @@ components:
             primary account is delinquent, all accounts receivable accounts linked
             to the Points Account record are treated as delinquent.
 
-            * V = Do not check accounts receivable accounts for delinquency.Delinquency
+            * V = Do not check accounts receivable accounts for delinquency. Delinquency
             is ignored on accounts receivable accounts linked to the Points Account
             record.
 
             * Y = Check all accounts receivable accounts for delinquency. If any account
             is delinquent and is set to not earn or not redeem points, none of the
-            linked accounts can earn or redeem points. VisionPLUS Service Data: GPXAIO-DELINQUENCY-MODE'
+            linked accounts can earn or redeem points.
+
+
+            VisionPLUS Service Data: GPXAIO-DELINQUENCY-MODE'
+          example: P
         monetaryValueLoyaltyPoints:
           type: number
-          description: 'Length: 17Monetary value of the loyalty points. VisionPLUS
-            Service Data: GPXAIO-HIGH-REDEEM-AMT'
+          description: "Max Length: 17\n\nMonetary value of the loyalty points.\n\n\
+            Format: A2 = Amount\u2014format with decimals only (per NOD)\n\nVisionPLUS\
+            \ Service Data: GPXAIO-HIGH-REDEEM-AMT"
+          example: 0
         totalPointsAvailableToRedeem:
           type: number
-          description: 'Length: 17Total number of points currently available to redeem.
+          description: 'Max Length: 17
+
+
+            Total number of points currently available to redeem
+
+
             VisionPLUS Service Data: GPXAIO-HIGH-REDEEM-POINTS'
+          example: 0
         totalCashValue:
           type: number
-          description: 'Length: 17Monetary value of the loyalty points. VisionPLUS
-            Service Data: GPXAIO-TOT-CASH-VALUE'
+          description: "Max Length: 17\n\nMonetary value of the loyalty points.\n\n\
+            Format: A2 = Amount\u2014format with decimals only (per NOD)\n\nVisionPLUS\
+            \ Service Data: GPXAIO-TOT-CASH-VALUE"
+          example: 0
         basicEarnedPointsCycleToDate:
           type: number
-          description: 'Length: 17Total number of basic earned points cycle-to-date.
+          description: 'Max Length: 17
+
+
+            Total number of basic earned points cycle-to-date
+
+
             VisionPLUS Service Data: GPXAIO-CTD-PTS-EARNED'
+          example: 0
         boughtPointsCycleToDate:
           type: number
-          description: 'Length: 17Total number of bought points cycle-to-date. VisionPLUS
-            Service Data: GPXAIO-CTD-PTS-BOUGHT'
+          description: 'Max Length: 17
+
+
+            Total number of bought points cycle-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-CTD-PTS-BOUGHT'
+          example: 0
         bonusPointsCycleToDate:
           type: number
-          description: 'Length: 17Total number of bonus points cycle-to-date. VisionPLUS
-            Service Data: GPXAIO-CTD-PTS-BONUS'
+          description: 'Max Length: 17
+
+
+            Total number of bonus points cycle-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-CTD-PTS-BONUS'
+          example: 0
         redeemedPointsCycleToDate:
           type: number
-          description: 'Length: 17Total number of redeemed points cycle-to-date. VisionPLUS
-            Service Data: GPXAIO-CTD-PTS-REDEEMED'
+          description: 'Max Length: 17
+
+
+            Total number of redeemed points cycle-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-CTD-PTS-REDEEMED'
+          example: 0
         closedPointsCycleToDate:
           type: number
-          description: 'Length: 17Total number of closed points cycle-to-date.VisionPLUS
-            Service Data: GPXAIO-CTD-PTS-CLOSED'
+          description: 'Max Length: 17
+
+
+            Total number of closed points cycle-to-date.
+
+
+            VisionPLUS Service Data: GPXAIO-CTD-PTS-CLOSED'
+          example: 0
         expiredPointsCycleToDate:
           type: number
-          description: 'Length: 17Total number of expired points cycle-to-date VisionPLUS
-            Service Data: GPXAIO-CTD-PTS-EXPIRED.'
+          description: 'Max Length: 17
+
+
+            Total number of expired points cycle-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-CTD-PTS-EXPIRED'
+          example: 0
         adjustedInPointsCycleToDate:
           type: number
-          description: 'Length: 17Total number of adjusted in points cycle-to-date.
+          description: 'Max Length: 17
+
+
+            Total number of adjusted in points cycle-to-date
+
+
             VisionPLUS Service Data: GPXAIO-CTD-PTS-ADJUST-IN'
+          example: 0
         adjustedOutPointsCycleToDate:
           type: number
-          description: 'Length: 17Total number of adjusted out points cycle-to-date.
+          description: 'Max Length: 17
+
+
+            Total number of adjusted out points cycle-to-date
+
+
             VisionPLUS Service Data: GPXAIO-CTD-PTS-ADJUST-OUT'
+          example: 0
         expiredPointsRetainedInAGracePeriodCycleToDate:
           type: number
-          description: 'Length: 17Total number of expired points retained in a grace
-            period cycle-to-date. VisionPLUS Service Data: GPXAIO-GRACE-CTD'
+          description: 'Max Length: 17
+
+
+            Total number of expired points retained in a grace period cycle-to-date.
+
+
+            VisionPLUS Service Data: GPXAIO-GRACE-CTD'
+          example: 0
         totalNumberOfAllPointsCycleToDate:
           type: number
-          description: Total number of all points cycle to date.
+          description: 'Max Length: 17
+
+
+            Total number of all points cycle to date.
+
+
+            VisionPLUS Service Data: GPXAIO-CYC-TO-DATE-TOT'
+          example: 0
         basicSpendAmountCycleToDate:
           type: number
-          description: 'Length: 17Total cycle-to-date basic spend amount. VisionPLUS
-            Service Data: GPXAIO-CTD-SPEND-EARNED'
+          description: "Max Length: 17\n\nTotal cycle-to-date basic spend amount\n\
+            \nFormat : A2 = Amount\u2014format with decimals only (per NOD)\n\nVisionPLUS\
+            \ Service Data: GPXAIO-CTD-SPEND-EARNED"
+          example: 0
         basicEarnedPointsLifeToDate:
           type: number
-          description: 'Length: 17Total number of basic earned points life-to-date.
+          description: 'Max Length: 17
+
+
+            Total number of basic earned points life-to-date
+
+
             VisionPLUS Service Data: GPXAIO-LTD-PTS-EARNED'
+          example: 0
         boughtPointsLifeToDate:
           type: number
-          description: 'Length: 17Total number of bought points life-to-date. VisionPLUS
-            Service Data: GPXAIO-LTD-PTS-BOUGHT'
+          description: 'Max Length: 17
+
+
+            Total number of bought points life-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-LTD-PTS-BOUGHT'
+          example: 0
         bonusPointsLifeToDate:
           type: number
-          description: 'Length: 17Total number of bonus points life-to-date. VisionPLUS
-            Service Data: GPXAIO-LTD-PTS-BONUS'
+          description: 'Max Length: 17
+
+
+            Total number of bonus points life-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-LTD-PTS-BONUS'
+          example: 0
         redeemedPointsLifeToDate:
           type: number
-          description: 'Length: 17Total number of redeemed points life-to-date. VisionPLUS
-            Service Data: GPXAIO-LTD-PTS-REDEEMED'
+          description: 'Max Length: 17
+
+
+            Total number of redeemed points life-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-LTD-PTS-REDEEMED'
+          example: 0
         closedPointsLifeToDate:
           type: number
-          description: 'Length: 17Total number of closed points life-to-date. VisionPLUS
-            Service Data: GPXAIO-LTD-PTS-CLOSED'
+          description: 'Max Length: 17
+
+
+            Total number of closed points life-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-LTD-PTS-CLOSED'
+          example: 0
         expiredPointsLifeToDate:
           type: number
-          description: 'Length: 17Total number of expired points life-to-date. VisionPLUS
-            Service Data: GPXAIO-LTD-PTS-EXPIRED'
+          description: 'Max Length: 17
+
+
+            Total number of expired points life-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-LTD-PTS-EXPIRED'
+          example: 0
         adjustedInPointsLifeToDate:
           type: number
-          description: 'Length: 17Total number of adjusted in points life-to-date.
+          description: 'Max Length: 17
+
+
+            Total number of adjusted in points life-to-date
+
+
             VisionPLUS Service Data: GPXAIO-LTD-PTS-ADJUST-IN'
+          example: 0
         adjustedOutPointsLifeToDate:
           type: number
-          description: 'Length: 17Total number of adjusted out points life-to-date.VisionPLUS
-            Service Data: GPXAIO-LTD-PTS-ADJUST-OUT'
+          description: 'Max Length: 17
+
+
+            Total number of adjusted out points life-to-date
+
+
+            VisionPLUS Service Data: GPXAIO-LTD-PTS-ADJUST-OUT'
+          example: 0
         basicSpendAmountYearToDate:
           type: number
-          description: Total year-to-date basic spend amount.
+          description: 'Max Length: 17
+
+
+            Total year-to-date basic spend amount.
+
+
+            VisionPLUS Service Data: GPXAIO-YTD-SPEND-EARNED'
+          example: 0
         expiredPointsRetainedInGracePeriodLifeToDate:
           type: number
-          description: 'Length: 17Total number of expired points retained in a grace
-            period life-to-date. VisionPLUS Service Data: GPXAIO-GRACE-LTD'
+          description: 'Max Length: 17
+
+
+            Total number of expired points retained in a grace period life-to-date.
+
+
+            VisionPLUS Service Data: GPXAIO-GRACE-LTD'
+          example: 0
         totalNumberOfAllPointsLifeToDate:
           type: number
-          description: Total number of all points life to date.
+          description: 'Max Length: 17
+
+
+            Total number of all points life to date.
+
+
+            VisionPLUS Service Data: GPXAIO-LIFE-TO-DT-TOT'
+          example: 0
         totalNumberOfOutstandingMemoPostedPoints:
           type: number
-          description: 'Total number of outstanding memo posted points that have been
-            processed but the actual points transactions have not been received. VisionPLUS
-            Service Data: GPXAIO-PT-PROC-NOT-RCD'
+          description: 'Max Length: 17
+
+
+            Total number of outstanding memo posted points that have been processed
+            but the actual.
+
+
+            VisionPLUS Service Data: GPXAIO-PT-PROC-NOT-RCD'
+          example: 0
         openToRedeemCalculatedValue:
           type: number
-          description: 'Length: 2Open-to-redeem calculated value, which is the total
-            number of points less the memo-posted transactions. VisionPLUS Service
-            Data: GPXAIO-STMT-MONTH-FREQ'
+          description: 'Max Length: 2
+
+
+            Open-to-redeem calculated value, which is the total number of points less
+            the memo-posted transactions.
+
+
+            VisionPLUS Service Data: GPXAIO-OPEN-TO-RED-ON-SCR'
+          example: 0
         monthlyIntervalFrequency:
           type: integer
-          description: 'Length: 17Monthly interval when indicator is monthly and specific
-            month when indicator is specific. VisionPLUS Service Data: GPXAIO-OPEN-TO-RED-ON-SCR'
+          description: 'Max Length: 17
+
+
+            Monthly interval when indicator is monthly and specific month when indicator
+            is specific.
+
+
+            VisionPLUS Service Data: GPXAIO-STMT-MONTH-FREQ'
           format: int32
+          example: 0
         dayOfTheMonthStatementsProduced:
           type: integer
-          description: 'Length: 2Day of the month on which statements are produced.
+          description: 'Max Length: 2
+
+
+            Day of the month on which statements are produced
+
+
             VisionPLUS Service Data: GPXAIO-STMT-DAY-OF-MONTH'
           format: int32
+          example: 0
         dateLastStatementProduced:
           type: string
-          description: 'Length: 8Date when the last statement was produced. VisionPLUS
-            Service Data: GPXAIO-LAST-STMT-DATE'
+          description: 'Date when the last statement was produced (in ISO 8601)
+
+
+            Format : CCYY-MM-DD (Gregorian Date)
+
+
+            VisionPLUS Service Data: GPXAIO-LAST-STMT-DATE'
           format: date
+          example: 2022-07-22
         dateNextStatementWillBeProduced:
           type: string
-          description: 'Length: 8Date when the next statement will be produced. VisionPLUS
-            Service Data: GPXAIO-NEXT-STMT-DATE'
+          description: 'Date when the next statement will be produced (in ISO 8601)
+
+
+            Format : CCYY-MM-DD (Gregorian Date)
+
+
+            VisionPLUS Service Data: GPXAIO-NEXT-STMT-DATE'
           format: date
+          example: 2022-07-22
         dateThePointsAccountOpened:
           type: string
-          description: 'Length: 8Date when the Points Account record was opened. VisionPLUS
-            Service Data: GPXAIO-DATE-OPENED'
+          description: 'Date when the Points Account record was opened (in ISO 8601).
+
+
+            Format : CCYY-MM-DD (Gregorian Date)
+
+
+            VisionPLUS Service Data: GPXAIO-DATE-OPENED'
           format: date
+          example: 2022-07-22
         pointsInADisbursementPacket:
           type: number
-          description: Points in disbursement packet.
+          description: 'Max Length: 17
+
+
+            Points in disbursement packet.
+
+
+            VisionPLUS Service Data: GPXAIO-DISB-PACKET-POINTS'
+          example: 0
         valueOfTheDisbursementPacket:
           type: number
-          description: 'Length: 17Monetary value of the disbursement packet. VisionPLUS
-            Service Data: GPXAIO-DISB-PKT-MON-VALPOINTS'
+          description: "Max Length: 17\n\nMonetary value of the disbursement packet\n\
+            \nFormat : A2 = Amount\u2014format with decimals only (per NOD)\n\nVisionPLUS\
+            \ Service Data: GPXAIO-DISB-PKT-MON-VALPOINTS"
+          example: 0
         frequencyPeriodCode:
           type: integer
-          description: "Length: 2Code that identifies the frequency period.\nThe values\
-            \ are:\n* 00 = Not used (Default)\n* 01\u201312 = Specifies the monthly\
+          description: "Max Length: 2\n\nCode that identifies the frequency period.\n\
+            \nValues:\n* 00 = Not used (Default);\n* 01\u201312 = Specifies the monthly\
             \ interval when the indicator is M, or specifies the specific month when\
-            \ the indicator is S. VisionPLUS Service Data: GPXAIO-AUTO-DISB-FREQ"
+            \ the indicator is S.\n\nVisionPLUS Service Data: GPXAIO-AUTO-DISB-FREQ"
           format: int32
+          example: 0
         monthDayAutomaticDisbursementsOccur:
           type: integer
-          description: Month Day Automatic Disbursements Occur.
+          description: 'Max Length: 2
+
+
+            Month Day Automatic Disbursements Occur.
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-DAY-OFMONTH'
           format: int32
+          example: 0
         automaticDisbursementPointsAccountFlag:
           type: string
-          description: 'Length: 1Flag that indicates whether automatic disbursements
-            are used for the Points Account record.
+          description: 'Max Length: 1
 
-            The values are:
 
-            * N = Automatic disbursement is not active
+            Flag that indicates whether automatic disbursements are used for the Points
+            Account record.
 
-            * Y = Automatic disbursement is active.VisionPLUS Service Data: GPXAIO-AUTO-DISB-FLAG'
+
+            Values:
+
+            * N = Automatic disbursement is not active;
+
+            * Y = Automatic disbursement is active.
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-IND'
+          example: Y
         automaticDisbursementDoingBusinessAsName:
           type: string
-          description: 'Length: 43Store DBA (doing-business-as) name that identifies
-            an existing Store record designated as a redemption store. VisionPLUS
-            Service Data: GPXAIO-AUTO-DISB-DBA-NAME'
+          description: 'Max Length: 43
+
+
+            Store DBA (doing-business-as) name that identifies an existing Store record
+            designated as a redemption ,.
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-DBA-NAME'
+          example: '0'
         lastAutomaticDisbursementOccurred:
           type: string
-          description: 'Length: 8Last automatic disbursement occurred.'
+          description: 'Last automatic disbursement occurred (in ISO 8601).
+
+
+            VisionPLUS Service Data: GPXAIO-START-DISBURSE-DATE'
           format: date
+          example: 2022-07-22
         methodUsedToDisburseRewards:
           type: string
-          description: 'Length: 6Method used to disburse rewards.
+          description: 'Max Length: 6
 
-            The values are:
 
-            * CERT = Certificate
+            Method used to disburse rewards.
 
-            * CHECK = Check
 
-            * CREDIT = Credit
+            Values:
+
+            * CERT = Certificate;
+
+            * CHECK = Check;
+
+            * CREDIT = Credit.
+
 
             VisionPLUS Service Data: GPXAIO-REWARDS-CATEGORY'
+          example: CERT
         pointsEarnedBeforeAutomaticDisbursements:
           type: number
-          description: Points earned before automatic disbursements.
+          description: 'Max Length: 17
+
+
+            Points earned before automatic disbursements.
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-THRESHOLD'
+          example: 0
         monetaryEarnedBeforeAutomaticDisbursements:
           type: number
-          description: Monetary Earned Before Automatic Disbursements.
+          description: 'Max Length: 17
+
+
+            Monetary Earned Before Automatic Disbursements.
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-MON-VAL'
+          example: 0
         enrolledOrOpenedUserDefinedCode:
           type: string
-          description: 'Length: 4User-defined code that identifies the method by which
-            the account was enrolled or opened. VisionPLUS Service Data: GPXAIO-ENROLLMENT-CHANNEL'
+          description: 'Max Length: 4
+
+
+            User-defined code that identifies the method by which the account was
+            enrolled or opened.
+
+
+            VisionPLUS Service Data: GPXAIO-ENROLLMENT-CHANNEL'
+          example: '0'
         waiveMembershipFeeFlag:
           type: string
-          description: 'Length: 1Flag that indicates whether to waive the membership
-            fee on the Points Account record.
+          description: 'Max Length: 1
 
-            The values are:
 
-            * N = Do not waive membership fee
+            Flag that indicates whether to waive the membership fee on the Points
+            Account record.
 
-            * Y = Waive membership fee
+
+            Values:
+
+            * N = Do not waive membership fee;
+
+            * Y = Waive membership fee.
+
 
             VisionPLUS Service Data: GPXAIO-WAIVE-MEMB-FEE'
+          example: Y
         dateLastStatusChangeOccurred:
           type: string
-          description: 'Length: 8Date when the last status change occurred for the
-            Points Account record. VisionPLUS Service Data: GPXAIO-AR-OPEN-DATE'
+          description: 'Date when the last status change occurred for the Points Account
+            record (in ISO 8601).
+
+
+            VisionPLUS Service Data: GPXAIO-AR-OPEN-DATE'
           format: date
+          example: 2022-07-22
         amountOfTheRebate:
           type: number
-          description: 'Length: 17Amount of the rebate. VisionPLUS Service Data: GPXAIO-REBATE-AMT'
+          description: "Max Length: 17\n\nAmount of the rebate\n\nFormat: A2 = Amount\u2014\
+            format with decimals only (per NOD)\n\nVisionPLUS Service Data: GPXAIO-REBATE-AMT"
+          example: 0
         decimalPositionsRightInMonetaryAmountFields:
           type: integer
-          description: Decimal positions right in monetary amount fields.
+          description: 'Max Length: 1
+
+
+            Decimal positions right in monetary amount fields.
+
+
+            VisionPLUS Service Data: GPXAIO-CURR-NOD'
           format: int32
+          example: 0
         decimalPositionsRightInPerItemRateFields:
           type: integer
-          description: Decimal positions right in per item rate fields..
+          description: 'Max Length: 1
+
+
+            Decimal positions right in per item rate fields.
+
+
+            VisionPLUS Service Data: GPXAIO-PER-ITEM-NOD'
           format: int32
+          example: 0
         decimalPositionsRightInPercentageFields:
           type: integer
-          description: Decimal positions right in percentage fields.
+          description: 'Max Length: 1
+
+
+            Decimal positions right in percentage fields.
+
+
+            VisionPLUS Service Data: GPXAIO-PCT-RATE-NOD'
           format: int32
+          example: 0
         countryCode:
           type: string
-          description: 'Length: 3Country code. VisionPLUS Service Data: GPXAIO-COUNTRY-CODE'
+          description: 'Max Length: 3
+
+
+            Country code
+
+
+            VisionPLUS Service Data: GPXAIO-COUNTRY-CODE'
+          example: '0'
         currencyCode:
           type: integer
-          description: 'Length: 3Currency code. VisionPLUS Service Data: GPXAIO-CURRENCY-CODE'
+          description: 'Max Length: 3
+
+
+            Currency code
+
+
+            VisionPLUS Service Data: GPXAIO-CURRENCY-CODE'
           format: int32
+          example: 0
         maximumPointsCanAutomaticDisbursement:
           type: number
-          description: Maximum Points Can Automatic Disbursement.
+          description: 'Max Length: 17
+
+
+            Maximum Points Can Automatic Disbursement.
+
+
+            VisionPLUS Service Data: GPXAIO-AUTO-DISB-MAX-LIMIT'
+          example: 0
     PointsExpiryHistoryRequest:
       required:
       - accountNumber
@@ -2819,270 +3420,393 @@ components:
       properties:
         organizationNumber:
           type: string
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             LMS organization number.
 
+
             VisionPLUS Service Data: GPXSIO-LMS-ORG'
+          example: '998'
         organizationName:
           type: string
-          description: 'Length: 40
+          description: 'Max Length: 40
+
 
             LMS organization name.
 
+
             VisionPLUS Service Data: GPXSIO-LMS-ORG-NAME'
+          example: Org Name
         accountNumber:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
+
 
             Account number.
 
+
             VisionPLUS Service Data: GPXSIO-ACCT'
+          example: 000012345XXXX123455
         name1:
           type: string
-          description: 'Length: 40
+          description: 'Max Length: 40
+
 
             Name of the account holder.
 
+
             VisionPLUS Service Data: GPXSIO-NAME-1'
+          example: User Name
         statementDate:
           type: string
-          description: 'Length: 7
+          description: 'Max Length: 7
+
 
             Statement date.
 
+
             VisionPLUS Service Data: GPXSIO-STMT-DATE'
+          example: 2023-05-18
         schemeId:
           type: string
-          description: 'Length: 5
+          description: 'Max Length: 5
+
 
             Scheme identification number.
 
+
             VisionPLUS Service Data: GPXSIO-SCHEME-ID'
+          example: '11111'
         schemeName:
           type: string
-          description: 'Length: 40
+          description: 'Max Length: 40
+
 
             Scheme name.
 
+
             VisionPLUS Service Data: GPXSIO-SCHEME-NAME'
+          example: Scheme name
         currencyNumber:
           type: string
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Currency code number.
 
+
             VisionPLUS Service Data: GPXSIO-CURR-NBR'
+          example: '111'
         countryCode:
           type: string
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Country code portion of the mailing address of the account holder.
 
+
             VisionPLUS Service Data: GPXSIO-COUNTRY-CODE'
+          example: USA
         currencyNod:
           type: string
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Number of decimal positions to the right of the decimal point (or other
             decimal character) in monetary amount fields.
 
+
             VisionPLUS Service Data: GPXSIO-CURR-NOD'
+          example: '1'
         perItemNod:
           type: string
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Number of decimal positions to the right of the decimal point (or other
             decimal character) in per item rate fields.
 
+
             VisionPLUS Service Data: GPXSIO-PER-ITEM-NOD'
+          example: '1'
         primarySource:
           type: string
-          description: 'Source code of the accounts receivable system of the account
-            in the accounts receivable system that is linked to the Account Demographics
-            record.
+          description: 'Max Length: 5
+
+
+            Source code of the accounts receivable system of the account in the accounts
+            receivable system that is linked to the Account Demographics record.
+
 
             VisionPLUS Service Data: GPXSIO-PRIMARY-SOURCE'
+          example: '00001'
         primaryOrgAcct:
           type: string
-          description: 'Length: 25
+          description: 'Max Length: 25
+
 
             Account number of the account in the accounts receivable system that is
             linked to the Account Demographics record.
 
+
             VisionPLUS Service Data: GPXSIO-PRIMARY-ORG-ACCT'
+          example: 000012345XXXX12345
         statementFormatId:
           type: string
-          description: "Length: 3\nParameter used during statement generation to populate\
-            \ a statement message box.\nThe values are 000\u2013999\nVisionPLUS Service\
-            \ Data: GPXSIO-STMT-FORMAT-ID"
+          description: 'Max Length: 3
+
+
+            Parameter used during statement generation to populate a statement message
+            box.
+
+
+            VisionPLUS Service Data: GPXSIO-STMT-FORMAT-ID'
+          example: '998'
+          enum:
+          - 000 - 999
         basicCtdSpend:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total cycle-to-date basic spend amount.
 
+
             VisionPLUS Service Data: GPXSIO-BASIC-CTD-SPEND'
+          example: '10000000000000000'
         basicYtdSpend:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total year-to-date basic spend amount.
 
+
             VisionPLUS Service Data: GPXSIO-BASIC-YTD-SPEND'
+          example: '10000000000000000'
         graceRebateAmt:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Monetary value of the life-to-date grace points.
 
+
             VisionPLUS Service Data: GPXSIO-GRACE-REBATE-AMT'
+          example: '10000000000000000'
         earnFlagOrganization:
           type: string
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Flag that indicates that the account is allowed to earn points while the
             block code resides on the account.
 
+
             VisionPLUS Service Data: GPXSIO-EARN-FLAG-ORG'
+          example: A
         redeemFlagOrg:
           type: string
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Flag that indicates that the account is allowed to redeem points while
             the block code resides on the account.
 
+
             VisionPLUS Service Data: GPXSIO-REDEEM-FLAG-ORG'
+          example: B
         ctdPtsBought:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of bought points cycle-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-CTD-PTS-BOUGHT'
+          example: '10000000000000000'
         ltdPtsBought:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of bought points life-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-LTD-PTS-BOUGHT'
+          example: '10000000000000000'
         ltdPtsEarned:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of basic earned points life-to-date.
 
-            VisionPLUS Service Data: GPXSIO-LTD-PTS-EARNED'
+
+            VisionPLUS Service Data: GPXSIO-CTD-PTS-EARNED'
+          example: '10000000000000000'
         ctdPtsEarned:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of basic earned points cycle-to-date.
 
-            VisionPLUS Service Data: GPXSIO-CTD-PTS-EARNED'
+
+            VisionPLUS Service Data: GPXSIO-LTD-PTS-EARNED'
+          example: '10000000000000000'
         ctdPtsBonus:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of bonus earned points cycle-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-CTD-PTS-BONUS'
+          example: '10000000000000000'
         ltdPtsBonus:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of bonus earned points life-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-LTD-PTS-BONUS'
+          example: '10000000000000000'
         ctdPtsAdjustIn:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of adjust in points cycle-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-CTD-PTS-ADJUST-IN'
+          example: '10000000000000000'
         ltdPtsAdjustIn:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of adjust in points life-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-LTD-PTS-ADJUST-IN'
+          example: '10000000000000000'
         ctdPtsRedeemed:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of redeemed points cycle-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-CTD-PTS-REDEEMED'
+          example: '10000000000000000'
         ltdPtsRedeemed:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of redeemed points life-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-LTD-PTS-REDEEMED'
+          example: '10000000000000000'
         ctdPtsClosed:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of closed points cycle-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-CTD-PTS-CLOSED'
+          example: '10000000000000000'
         ltdPtsClosed:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of closed points life-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-LTD-PTS-CLOSED'
+          example: '10000000000000000'
         graceCtd:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of expired points retained in a grace period cycle-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-GRACE-CTD'
+          example: '10000000000000000'
         graceLtd:
           type: string
-          description: "\tstring\nLength: 17\nTotal number of expired points retained\
-            \ in a grace period life-to-date.\nVisionPLUS Service Data: GPXSIO-GRACE-LTD"
+          description: 'Max Length: 17
+
+
+            Total number of expired points retained in a grace period life-to-date.
+
+
+            VisionPLUS Service Data: GPXSIO-GRACE-LTD'
+          example: '10000000000000000'
         ctdPtsExpired:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of expired points cycle-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-CTD-PTS-EXPIRED'
+          example: '10000000000000000'
         ltdPtsExpired:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of expired points life-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-LTD-PTS-EXPIRED'
+          example: '10000000000000000'
         ctdPtsAdjustOut:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of adjust out points cycle-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-CTD-PTS-ADJUST-OUT'
+          example: '10000000000000000'
         ltdPtsAdjustOut:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of adjust out points life-to-date.
 
+
             VisionPLUS Service Data: GPXSIO-LTD-PTS-ADJUST-OUT'
+          example: '10000000000000000'
         openToRedOnScr:
           type: string
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             Total number of points available for redemption.
 
+
             VisionPLUS Service Data: GPXSIO-OPEN-TO-RED-ON-SCR'
+          example: '10000000000000000'
     DemographicAccountDataResponse:
       type: object
       properties:
