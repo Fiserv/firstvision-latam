@@ -68,6 +68,8 @@ N/A
 
 - /transactions/mx/v1/udiRate
 
+---
+
 ## Agosto
 
 ### O que há de novo?
