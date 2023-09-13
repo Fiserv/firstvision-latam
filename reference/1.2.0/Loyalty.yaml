@@ -13,10 +13,16 @@ paths:
     put:
       tags:
       - Loyalty
-      summary: 'Points Account Auto Disbursement Data Update. VMX Service: M.LMS.POINTS.ACCT.DISB.DATA.UP,
-        R8V2'
-      description: "Enables to update the disbursement data fields on the Points Account\
-        \ record. \nVMX Service: M.LMS.POINTS.ACCT.DISB.DATA.UP, R8V2"
+      summary: 'Enables to update the disbursement data fields on the Points Account
+        record.
+
+
+        VMX Service: M.LMS.POINTS.ACCT.DISB.DATA.UP, R8V2'
+      description: 'Enables to update the disbursement data fields on the Points Account
+        record.
+
+
+        VMX Service: M.LMS.POINTS.ACCT.DISB.DATA.UP, R8V2'
       operationId: pointsDisbursement
       parameters:
       - name: apikey
@@ -39,28 +45,173 @@ paths:
               $ref: '#/components/schemas/PointsDisbursementRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '422':
+          description: 'VPLKSAD06S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
+            001-997
+
+
+            VPLKSAD07S - INVALID ACCOUNT NUMBER
+
+
+            VPLKSAD08S - REQUESTED ORGANIZATION NOT FOUND
+
+
+            VPLKSAD11S - ORGANIZATION RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAD12S - ORGANIZATION RECORD STATUS IS INCOMP OR PURGED OR CLOSED
+
+
+            VPLKSAD13S - ORGANIZATION RECORD NOT FOUND
+
+
+            VPLKSAD14S - POINTS ACCOUNT RECORD NOT FOUND
+
+
+            VPLKSAD15E - POINTS ACCOUNT RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAD16S - SCHEME ID NOT FOUND OR STATUS IS NOT ACTIVE
+
+
+            VPLKSAD17E - VALID VALUES FOR AUTO DISBURSEMENT FLAG ARE Y AND N
+
+
+            VPLKSAD18E - VALID VALUE FOR DISBURSEMENT PACKETS MUST BE NUMERIC AND
+            >= 0
+
+
+            VPLKSAD19E - AUTO DISB FLAG = ''N'' SO DISBURSEMENT PACKETS MUST BE ZERO
+
+
+            VPLKSAD20E - VALID VALUES FOR REWARD CAT: CERT,CHECK,CREDIT,PPDGEN,PPDREL
+
+
+            VPLKSAD21E - AUTO DISB FLAG = ''N'' SO REWARD CATEGORY MUST BE BLANK
+
+
+            VPLKSAD22E - VALID VALUE FOR DISB FREQ MUST EQUAL 99
+
+
+            VPLKSAD23E - VALID VALUES FOR DISB FREQ MUST BE 01 TO 12
+
+
+            VPLKSAD24E - VALID VALUE FOR DISB FREQ MUST EQUAL 03
+
+
+            VPLKSAD25E - VALID VALUE FOR DISB FREQ MUST EQUAL 01
+
+
+            VPLKSAD26E - AUTO DISB FLAG = ''''N'''' SO AUTO DISB FREQ MUST BE BLANK
+
+
+            VPLKSAD27E - VALID VALUE FOR AUTO DISB IND: A,D,M,Q,S
+
+
+            VPLKSAD28E - AUTO DISB FLAG = ''''N'''' SO AUTO DISB IND MUST BE BLANK
+
+
+            VPLKSAD29E - VALID VALUES FOR AUTO DISB DAY OF MONTH ARE:01-31, 98, 99
+
+
+            VPLKSAD30E - AUTO DISB FLAG = ''''N'''' SO AUTO DISB DAY OF MONTH BE ZERO
+
+
+            VPLKSAD31E - DISB ACCT REQUIRED FOR CREDIT AND PPDREL REWARD CATEGORIES
+
+
+            VPLKSAD32E - DISB ACCT MUST BE 0 OR SPACES FOR NON CREDIT REWARD CATEGORIES
+
+
+            VPLKSAD33E - WHEN DISP FLAG IS N DISB ACCT MUST BE 0 OR SPACE
+
+
+            VPLKSAD34E - WHEN DISP FLAG IS Y, VALID ENTRY REQUIRED FOR DBA NAME
+
+
+            VPLKSAD35E - AUTO DISB FLAG = ''''N'''' SO DBA NAME MUST BE BLANK
+
+
+            VPLKSAD36E - VALID VALUE FOR DISBURSEMENT THRESHOLD IS NUMERIC
+
+
+            VPLKSAD37E - AUTO DISB FLAG = ''''N'''' SO DISBURSEMENT THRESHOLD MUST
+            BE ZEROS
+
+
+            VPLKSAD39E - THIS STORE DBA IS CURRENTLY NOT ACTIVE
+
+
+            VPLKSAD40E - DBA NOT ON STORE MASTER
+
+
+            VPLKSAD41E - THIS STORE DBA IS NOT SET UP FOR REDEMPTIONS
+
+
+            VPLKSAD42E - NO ENTRY ALLOWED IN DAY-OF-MONTH WHEN AUTO-DISB-IND = ''A'',''D'',''Q''
+
+
+            VPLKSAD43E - POINT SCHEME RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAD44E - POINT SCHEME RECORD STATUS IS PURGED
+
+
+            VPLKSAD45E - INVALID SCHEME DATE RANGE
+
+
+            VPLKSAD46S - ACCOUNT DEMOGRAPHIC RECORD NOT FOUND
+
+
+            VPLKSAD47E - ACCOUNT DEMOGRAPHIC RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAD48E - ACCOUNT DEMOGRAPHIC RECORD IS IN A PURGED STATUS
+
+
+            VPLKSAD49E - ACCOUNT RECORD IS IN A CLOSED OR PENDING PURGE OR PURGED
+            STATUS
+
+
+            VPLKSAD50E - ACCOUNT DEMOGRAPHICS PRIMARY SOURCE SHOULD BE CMS
+
+
+            VPLKSAD51E - ,ACCOUNT/CARD NUMBER REQUIRED
+
+
+            VPLKSAD52E - ACCOUNT NUMBER ENTERED IS NOT PREPAID
+
+
+            VPLKSAD53E - CMS AND LMS CURRENCY CODE NOT MATCHING
+
+
+            VPLKSAD54E - PREPAID ACCOUNT ENTERED IS NON-RELOADABLE'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -73,9 +224,16 @@ paths:
     put:
       tags:
       - Loyalty
-      summary: 'Points Account Adjustment. VMX Service: M.LMS.POINTS.ADJ.ADD, R8V1'
-      description: "Enables to adjust earned, bonus, bought and adjusted points on\
-        \ a LMS Points Account record. \nVMX Service: M.LMS.POINTS.ADJ.ADD, R8V1"
+      summary: 'Enables to adjust earned, bonus, bought and adjusted points on a LMS
+        Points Account record.
+
+
+        VMX Service: M.LMS.POINTS.ADJ.ADD, R8V1'
+      description: 'Enables to adjust earned, bonus, bought and adjusted points on
+        a LMS Points Account record.
+
+
+        VMX Service: M.LMS.POINTS.ADJ.ADD, R8V1'
       operationId: pointsAdjust
       parameters:
       - name: apikey
@@ -98,28 +256,137 @@ paths:
               $ref: '#/components/schemas/PointsAdjustRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
+        '422':
+          description: 'VPLKSPA06S - INVALID ORG, VALID VALUES ARE 1-997
+
+
+            VPLKSPA07E - CARD NUMBER ALREADY ENTERED,ACCOUNT NUMBER NOT REQUIRED
+
+
+            VPLKSPA08S - SECURITY IS INVALID FOR ORGANIZATION
+
+
+            VPLKSPA11S - ORGANIZATION RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSPA12S - ORGANIZATION RECORD STATUS IS INCOMPLETE OR PURGED OR CLOSED
+
+
+            VPLKSPA13S - ORGANIZATION RECORD NOT FOUND
+
+
+            VPLKSPA14E - CARD NUMBER ALREADY ENTERED,SCHEME NOT REQUIRED
+
+
+            VPLKSPA15E - ENTER EITHER VALID CARD NUMBER OR ACCOUNT NUMBER-SCHEME
+
+
+            VPLKSPA16E - ENTER EITHER VALID CARD NUMBER OR ACCOUNT NUMBER-SCHEME
+
+
+            VPLKSPA17S - POINT SCHEME ACCOUNT RECORD NOT FOUND
+
+
+            VPLKSPA18S - POINT SCHEME ACCOUNT RECORD ADD-PENDING STATUS
+
+
+            VPLKSPA19E - TRANSACTION DATE INVALID
+
+
+            VPLKSPA20S - POINTS ACCOUNT RECORD NOT FOUND
+
+
+            VPLKSPA21S - POINTS ACCOUNT RECORD ADD-PENDING STATUS
+
+
+            VPLKSPA22S - ACCOUNT STRIP FILE RECORD NOT FOUND
+
+
+            VPLKSPA23E - CANNOT BE REDEEMED BY CARD FOR THE ENTERED ORG
+
+
+            VPLKSPA24S - ACCOUNT DEMOGRAPHICS RECORD NOT FOUND
+
+
+            VPLKSPA25S - ACCOUNT DEMOGRAPHICS RECORD ADD-PENDING STATUS
+
+
+            VPLKSPA26S - CARD STRIP FILE RECORD NOT FOUND
+
+
+            VPLKSPA27S - INVALID CARD NUMBER - DIFFERENT LMS ORG
+
+
+            VPLKSPA28S - POINTS PLAN RECORD NOT FOUND
+
+
+            VPLKSPA29S - TRANSACTION DATE IS INVALID FOR POINTS PLAN RECORD
+
+
+            VPLKSPA30E - TRANSACTION CODE ENTERED IS INVALID
+
+
+            VPLKSPA31E - TRANSACTION AMT ENTERED SHOULD BE NUMERIC AND GREATER THAN
+            ZERO
+
+
+            VPLKSPA32E - ACTUAL VALUE ENTERED SHOULD BE NUMERIC
+
+
+            VPLKSPA33E - GROUP CODE CANNOT BE SPACES
+
+
+            VPLKSPA34E - ENTER VALID PLAN TYPE
+
+
+            VPLKSPA35E - ENTER VALID PLAN PRIORITY
+
+
+            VPLKSPA36E - STORE NUMBER CANNOT BE SPACES FOR ENTERED TRANSACTION TYPE
+
+
+            VPLKSPA37E - STORE NUMBER HAS TO BE SPACES FOR ENTERED TRANSACTION TYPE
+
+
+            VPLKSPA38E - READ ON LMS POINTS MAINTENANCE RECORD FAILED
+
+
+            VPLKSPA39E - ONLINE LMS POINTS MAINTENANCE RECORD FULL
+
+
+            VPLKSPA40E - CANNOT BE REDEEMED BY CARD FOR THE ENTERED ORG
+
+
+            VPLKSPA41E - STORE NUMBER NOT ON STORE FILE
+
+
+            VPLKSPA42E - INVALID STORE NUMBER'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -164,28 +431,28 @@ paths:
               $ref: '#/components/schemas/LoyaltyStatementListRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -198,10 +465,16 @@ paths:
     post:
       tags:
       - Loyalty
-      summary: 'Redemption Transaction Add. VMX Service: M.LMS.REDEMPTION.ADD, R8V1'
-      description: "Shows the loyalty points to be redeemed after a cardholder has\
-        \ earned enough loyalty points to qualify for a reward. \nVMX Service: M.LMS.REDEMPTION.ADD,\
-        \ R8V1"
+      summary: 'Shows the loyalty points to be redeemed after a cardholder has earned
+        enough loyalty points to qualify for a reward.
+
+
+        VMX Service: M.LMS.REDEMPTION.ADD, R8V1'
+      description: 'Shows the loyalty points to be redeemed after a cardholder has
+        earned enough loyalty points to qualify for a reward.
+
+
+        VMX Service: M.LMS.REDEMPTION.ADD, R8V1'
       operationId: redemptionAdd
       parameters:
       - name: apikey
@@ -224,28 +497,175 @@ paths:
               $ref: '#/components/schemas/RedemptionAddRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '422':
+          description: 'VPLKSRA06S - INVALID ORG, VALID VALUES ARE 001-997
+
+
+            VPLKSRA07E - CARD NUMBER ALREADY ENTERED, ACCOUNT NUMBER NOT REQUIRED
+
+
+            VPLKSRA08S - SECURITY IS INVALID FOR ORGANIZATION
+
+
+            VPLKSRA11S - ORGANIZATION RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSRA12S - ORGANIZATION RECORD STATUS IS INCOMP OR PURGED OR CLOSED
+
+
+            VPLKSRA13S - ORGANIZATION RECORD NOT FOUND
+
+
+            VPLKSRA14E - CMS CARD NUMBER ALREADY ENTERED, SCHEME NOT REQUIRED
+
+
+            VPLKSRA15E - INVALID ACCOUNT - MUST BE NUMERIC
+
+
+            VPLKSRA16E - ENTER EITHER VALID CARD NUMBER OR ACCOUNT NUMBER-SCHEME
+
+
+            VPLKSRA17S - POINT SCHEME ACCOUNT RECORD NOT FOUND
+
+
+            VPLKSRA18S - POINT SCHEME ACCOUNT RECORD INVALID
+
+
+            VPLKSRA19E - INVALID TRANSACTION DATE
+
+
+            VPLKSRA20S - POINTS ACCOUNT RECORD NOT FOUND
+
+
+            VPLKSRA21S - POINTS ACCOUNT RECORD INVALID
+
+
+            VPLKSRA22S - ACCOUNT STRIP FILE RECORD NOT FOUND
+
+
+            VPLKSRA23E - REDEMPTION BY CARD IS NOT ALLOWED FOR THE ENTERED ORG
+
+
+            VPLKSRA24S - ACCOUNT DEMOGRAPHICS RECORD NOT FOUND
+
+
+            VPLKSRA25S - ACCOUNT DEMOGRAPHICS RECORD INVALID
+
+
+            VPLKSRA26S - INVALID CARD NUMBER
+
+
+            VPLKSRA27S - INVALID CARD NUMBER - DIFFERENT LMS ORG
+
+
+            VPLKSRA28S - REWARD ITEM NOT AVAILABLE
+
+
+            VPLKSRA29S - REWARD ITEM NOT ACTIVE
+
+
+            VPLKSRA30E - INVALID REWARD ITEM
+
+
+            VPLKSRA30S - REWARD ITEM NOT FOUND
+
+
+            VPLKSRA31E - POINTS VALUE MUST BE NUMERIC AND > 0
+
+
+            VPLKSRA32E - TO ENTER VALUE PTS ENTERABLE SHOULD BE = Y
+
+
+            VPLKSRA33E - NAME 1 FIELD IS REQUIRED
+
+
+            VPLKSRA34E - NAME 2 FIELD IS REQUIRED
+
+
+            VPLKSRA35S - COUPONS NOT USED FOR PREPAID CARDS
+
+
+            VPLKSRA37E - INVALID COUPON DENOMINATION - MUST BE NUMERIC
+
+
+            VPLKSRA38E - COUPON DENOMINATION MUST BE ENTERED
+
+
+            VPLKSRA39E - COUPON NUMBER MUST BE ENTERED
+
+
+            VPLKSRA40E - COUPON DATA REQUIRED FOR THIS REWARDS CATEGORY
+
+
+            VPLKSRA41E - SUM OF COUPON DENOM DOES NOT EQUAL ACTUAL VALUE
+
+
+            VPLKSRA42E - RELOAD CARD NUMBER IS REQUIRED
+
+
+            VPLKSRA43E - ACCOUNT DEMOGRAPHICS ACCOUNT INVALID
+
+
+            VPLKSRA44E - ACCOUNT DEMOGRAPHICS PRIMARY SOURCE SHOULD BE CMS
+
+
+            VPLKSRA45E - ACCOUNT NUMBER ENTERED IS NOT PREPAID
+
+
+            VPLKSRA46E - NO MATCHING CURRENCY FOUND
+
+
+            VPLKSRA48E - PREPAID CARD NUMBER SHOULD BE SPACES
+
+
+            VPLKSRA49E - NUMBER POINTS MUST BE MULTIPLE OF PACKET POINTS
+
+
+            VPLKSRA50E - INSUFFICIENT POINTS FOR REDEMPTION
+
+
+            VPLKSRA51E - DISBURSEMENT THRESHOLD NOT REACHED
+
+
+            VPLKSRA52E - STORE NOT FOUND
+
+
+            VPLKSRA53E - INVALID STORE NUMBER
+
+
+            VPLKSRA54E - INVALID COUPON NUMBER - MUST BE NUMERIC
+
+
+            VPLKSRA55E - PREPAID ACCOUNT ENTERED IS NON RELOADABLE
+
+
+            VPLKSRA56E - POINTS REDEMPTION IS NOT ALLOWED'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -288,6 +708,24 @@ paths:
               $ref: '#/components/schemas/PointsDetailsRequest'
         required: true
       responses:
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
         '422':
           description: 'VPLKSAI06S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
             001-997
@@ -340,28 +778,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -401,28 +821,28 @@ paths:
               $ref: '#/components/schemas/PointsExpiryHistoryRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -435,9 +855,14 @@ paths:
     post:
       tags:
       - Loyalty
-      summary: 'LMS Adds Account points. VMX Service: M.LMS.POINTS.ACCT.ADD, R8V1'
-      description: "Adds an LMS Points Account Record. \nVMX Service: M.LMS.POINTS.ACCT.ADD,\
-        \ R8V1"
+      summary: 'Adds an LMS Points Account Record.
+
+
+        VMX Service: M.LMS.POINTS.ACCT.ADD, R8V1'
+      description: 'Adds an LMS Points Account Record.
+
+
+        VMX Service: M.LMS.POINTS.ACCT.ADD, R8V1'
       operationId: Points Account Add
       parameters:
       - name: apikey
@@ -460,28 +885,115 @@ paths:
               $ref: '#/components/schemas/PointsAccountAddRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '422':
+          description: 'VPLKSAA16S - POINT SCHEME RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAA17S - POINT SCHEME RECORD STATUS IS IN PURGED STATUS
+
+
+            VPLKSAA18S - INVALID SCHEME DATE RANGE
+
+
+            VPLKSAA19S - INVALID POINTS SCHEME RECORD
+
+
+            VPLKSAA20S - POINTS ACCOUNT RECORD IS ALREADY IN COMPLETE STATUS
+
+
+            VPLKSAA21E - INVALID SERVICE FLAG VALUE, VALID VALUES ARE ''B'' ''C''
+            ''I''
+
+
+            VPLKSAA22S - ACCOUNT DEMOGRAPHICS RECORD NOT FOUND
+
+
+            VPLKSAA23S - DEMOGRAPHICS RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAA24S - DEMOGRAPHICS RECORD STATUS IS IN PURGED STATUS
+
+
+            VPLKSAA25S - INVALID DEMOGRAPHICS DATE RANGE
+
+
+            VPLKSAA26S - DEMOGRAPHICS RECORD IS NOT IN ACTIVE STATUS
+
+
+            VPLKSAA27S - PRIMARY ACCOUNT SOURCE IS NOT ''CMS''
+
+
+            VPLKSAA28E - INVALID ACTION REQUESTED FOR POINTS RECORD
+
+
+            VPLKSAA29E - INVALID STATEMENT MONTH FREQ VALUE, VALID VALUES ARE 01 THRU
+            99
+
+
+            VPLKSAA30E - INVALID STMT DAY OF MONTH, VALID VALUES ARE 01 THRU 31, AND
+            99
+
+
+            VPLKSAA31E - NEXT STATEMENT DATE IS INVALID
+
+
+            VPLKSAA32E - NEXT STATEMENT DATE IS NOT A VALID FUTURE DATE
+
+
+            VPLKSAA06S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-997
+
+
+            VPLKSAA07S - INVALID ACCOUNT NUMBER
+
+
+            VPLKSAA08S - REQUESTED ORGANIZATION NOT FOUND
+
+
+            VPLKSAA09S - FILE-TABLE USED BY THIS SERVICE IS NOT FOUND
+
+
+            VPLKSAA10S - APPLICATION IN NO-PROCESSING STATUS, RETRY IN A FEW MINUTES
+
+
+            VPLKSAA11S - ORGANIZATION RECORD IS IN PENDING ADD STATUS
+
+
+            VPLKSAA12S - ORGANIZATION RECORD STATUS IS INCOMP OR PURGED OR CLOSED
+
+
+            VPLKSAA13S - ORGANIZATION RECORD NOT FOUND
+
+
+            VPLKSAA14S - ENTRY REQUIRED FOR SCHEME
+
+
+            VPLKSAA15S - POINT SCHEME RECORD NOT FOUND'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -494,10 +1006,16 @@ paths:
     post:
       tags:
       - Loyalty
-      summary: 'LMS/CMS or CMS/LMS Account cross reference. VMX Service: M.LMS.ACCOUNT.XREF.INQ,
-        R8V1'
-      description: "Enables to perform an inquiry on an existing Account Cross-reference\
-        \ record. \nVMX Service: M.LMS.ACCOUNT.XREF.INQ, R8V1"
+      summary: 'Enables to perform an inquiry on an existing Account Cross-reference
+        record.
+
+
+        VMX Service: M.LMS.ACCOUNT.XREF.INQ, R8V1'
+      description: 'Enables to perform an inquiry on an existing Account Cross-reference
+        record.
+
+
+        VMX Service: M.LMS.ACCOUNT.XREF.INQ, R8V1'
       operationId: Cross Reference Inquiry
       parameters:
       - name: apikey
@@ -520,28 +1038,75 @@ paths:
               $ref: '#/components/schemas/CrossReferenceInquiryRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '422':
+          description: 'VPLKSXI12S - ORGANIZATION RECORD STATUS IS INCOMPLETE OR PURGED
+            OR CLOSED
+
+
+            VPLKSXI13S - ORGANIZATION RECORD NOT FOUND
+
+
+            VPLKSXI14S - INVALID SOURCE, VALID VALUES ARE ''CMS'' OR ''LMS''
+
+
+            VPLKSXI15S - STARTING ORG AND ACCOUNT NUMBER SHOULD BE ENTERED FOR SCROLLING
+
+
+            VPLKSXI16E - ACCOUNT DEMOGRAPHICS RECORD NOT FOUND
+
+
+            VPLKSXI17E - ACCOUNT DEMOGRAPHICS RECORD ADD PENDING STATUS
+
+
+            VPLKSXI18E - INPUT DATA INCORRECT, PLEASE ENTER VALID VALUES
+
+
+            VPLKSXI19S - FUNCTION CODE OTHER THAN P/N/SPACES ENTERED
+
+
+            VPLKSXI01S - SERVICE COULD NOT OBTAIN STORAGE AREA
+
+
+            VPLKSXI02S - SERVICE INPUT TO EXPIRY-HIST-INQ SERVICE IS AN INCORRECT
+            LENGTH
+
+
+            VPLKSXI06S - INVALID ORG, VALID VALUES ARE 1 -997
+
+
+            VPLKSXI07S - ACCOUNT NUMBER MUST BE NUMERIC AND GREATER THAN ZEROS
+
+
+            VPLKSXI08S - REQUESTED ORGANIZATION NOT FOUND
+
+
+            VPLKSXI11S - ORGANIZATION RECORD IS IN PENDING ADD STATUS'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -580,28 +1145,6 @@ paths:
               $ref: '#/components/schemas/LmsTransactionInquiryRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
         '422':
           description: "VPLKSTI02S - SERVICE INPUT TO EXPIRY-HIST-INQ SERVICE IS AN\
             \ INCORRECT LENGTH \n\nVPLKSTI06S - ORG NUMBER MUST BE NUMERIC AND VALID\
@@ -618,6 +1161,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -706,28 +1271,12 @@ paths:
           type: string
         example: 00970
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
         '422':
           description: "VPLKSSI02S - SERVICE INPUT TO STMT SUMMARY INQ SERVICE IS\
             \ AN INCORRECT LENGTH \n\nVPLKSSI06S - ORG NUMBER MUST BE NUMERIC AND\
@@ -748,6 +1297,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -808,28 +1373,6 @@ paths:
           type: string
         example: 00970
       responses:
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
         '422':
           description: "VPLKSDS02S - SERVICE INPUT TO DEMOGRAPHIC INQ SERVICE IS AN\
             \ INCORRECT LENGTH \n\nVPLKSDS06S - ORG NUMBER MUST BE NUMERIC AND VALID\
@@ -844,6 +1387,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -862,136 +1427,151 @@ components:
       type: object
       properties:
         organizationNumber:
-          maximum: 999
-          minimum: 1
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization.
+
 
             VisionPLUS Service Data: GPXADI-ORG'
           format: int32
           example: 807
         accountNumber:
-          maximum: 19
-          minimum: 19
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Length: 19
+          description: 'Account number.
 
-            Account number.
 
             VisionPLUS Service Data: GPXADI-ACCOUNT-NBR'
           example: '4513074002573466583'
         schemeId:
           type: string
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Scheme identification number.
+
 
             VisionPLUS Service Data: GPXADI-SCHEME'
           example: '12345'
         autoDisbFlag:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Flag that indicates whether automatic disbursements are used for the Points
             Account record.
 
-            The values are:
 
-            * N = Automatic disbursement is not active
+            Values:
 
-            * Y = Automatic disbursement is active
+            * N = Automatic disbursement is not active;
+
+            * Y = Automatic disbursement is active.
+
 
             VisionPLUS Service Data: GPXADI-AUTO-DISB-FLAG'
           example: N
         rewardsCategory:
           type: string
-          description: 'Length: 6
+          description: '* Max Length: 6
+
 
             Method used to disburse rewards.
 
-            The values are:
 
-            * CHECK = Check
+            Values:
 
-            * CERT = Certificate
+            * CHECK = Check;
 
-            * CREDIT = Credit
+            * CERT = Certificate;
 
-            * PPDGEN = Prepaid generic
+            * CREDIT = Credit;
 
-            * PPDREL = Prepaid reload
+            * PPDGEN = Prepaid generic;
+
+            * PPDREL = Prepaid reload.
+
 
             VisionPLUS Service Data: GPXADI-REWARDS-CAT'
-          example: '100'
+          example: CERT
         disbPacketPoints:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Number of points in a disbursement packet.
+
 
             VisionPLUS Service Data: GPXADI-DISB-PACKET-PTS'
           example: 100
         autoDisbFreq:
           type: integer
-          description: "Length: 2\nCode that indicates the frequency period.\nThe\
-            \ values are:\n* 1\u201312 = Specifies the month when the interval is\
-            \ monthly.\n* 99 = Daily frequency\nVisionPLUS Service Data: GPXADI-AUTO-DISB-FREQ"
+          description: "* Max Length: 2\n\nCode that indicates the frequency period.\n\
+            \nValues:\n* 1\u201312 = Specifies the month when the interval is monthly;\n\
+            * 99 = Daily frequency.\n\nVisionPLUS Service Data: GPXADI-AUTO-DISB-FREQ"
           format: int32
-          example: 20
+          example: 12
         autoDisbInd:
           type: string
-          description: "Length: 1\nFrequency indicator for automatic disbursements.\n\
-            The values are:\n* A = Anniversary of the LMS account enrollment; FREQ\
-            \ must be 00\n* D = Daily; FREQ must be 00\n* M = Monthly; FREQ must be\
-            \ 01\u201312\n* Q = Quarterly (end of calendar quarter); FREQ must be\
-            \ 03\n* S = Specific month; FREQ must be 01\u201312\n* Blank = Not used\n\
+          description: "* Max Length: 1\n\nFrequency indicator for automatic disbursements.\n\
+            \nValues:\n* A = Anniversary of the LMS account enrollment; FREQ must\
+            \ be 00;\n* D = Daily; FREQ must be 00;\n* M = Monthly; FREQ must be 01\u2013\
+            12;\n* Q = Quarterly (end of calendar quarter); FREQ must be 03;\n* S\
+            \ = Specific month; FREQ must be 01\u201312;\n* Blank = Not used.\n\n\
             VisionPLUS Service Data: GPXADI-AUTO-DISB-IND"
           example: M
         autoDisbDayOfMonth:
           type: integer
-          description: "Length: 2\nDay of the month when automatic disbursements occur.\n\
-            The values are:\n* 1\u201331 = Specifies the month when the interval is\
-            \ monthly\n* 99 = Daily frequency\nVisionPLUS Service Data: GPXADI-AUTO-DISB-DAY-OF-MNT"
+          description: "* Max Length: 2\n\nDay of the month when automatic disbursements\
+            \ occur.\n\nValues:\n* 1\u201331 = Specifies the month when the interval\
+            \ is monthly;\n* 99 = Daily frequency.\n\nVisionPLUS Service Data: GPXADI-AUTO-DISB-DAY-OF-MNT"
           format: int32
           example: 13
         autoDisbAccount:
           type: string
-          description: 'Length: 25
+          description: '* Max Length: 25
+
 
             Account number that identifies the accounts receivable account to which
             automatic disbursements will be disbursed.
+
 
             VisionPLUS Service Data: GPXADI-AUTO-DISB-ACCT'
           example: '12345678901234'
         autoDisbDbaName:
           type: string
-          description: 'Length: 43
+          description: '* Max Length: 43
+
 
             Store DBA (doing-business-as) name that identifies an existing store record
             designated as a redemption store.
+
 
             VisionPLUS Service Data: GPXADI-AUTO-DISB-DBA-NAME'
           example: doing business as
         autoDisbThreshold:
           type: integer
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Minimum number of points that must be earned before automatic disbursement
             occurs.
+
 
             VisionPLUS Service Data: GPXADI-AUTO-DISB-THRESHOLD'
           format: int32
           example: 123456789
         autoDisbMaxLimit:
           type: integer
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Maximum number of points that can be disbursed when automatic disbursement
             occurs.
+
 
             VisionPLUS Service Data: GPXADI-AUTO-DISB-MAX-LIMIT'
           format: int32
@@ -1033,173 +1613,195 @@ components:
       type: object
       properties:
         organizationNumber:
-          maximum: 999
-          minimum: 1
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization number that identifies the existing Organization record assigned
             to the Points Account record.
+
 
             VisionPLUS Service Data: GPXPAI-ORG'
           format: int32
           example: 807
         cardNumber:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
+
 
             Unique identifier or token associated with the card number or payment
             instrument (FirstVision PAN Token).
 
+
             VisionPLUS Service Data: GPXPAI-CARD-NBR'
           example: 000540208ID5IXX3865
         accountNumber:
-          maximum: 19
-          minimum: 19
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Length: 19
+          description: 'LMS account number that identifies the Points Account record.
 
-            LMS account number that identifies the Points Account record.
 
             VisionPLUS Service Data: GPXPAI-ACCT-NBR'
           example: '4513074002573466583'
         schemeId:
           type: string
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Scheme ID that identifies the existing Points Scheme record assigned to
             the Points Account record.
+
 
             VisionPLUS Service Data: GPXPAI-SCHEME-ID'
           example: '12345'
         transactionCode:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Default LMS transaction code that populates the POINTS TXN CODE field
             of each points transaction in the batch if you do not enter a transaction
-            code. The values, grouped by the type of points, are:
+            code.
 
-            Earned points transactions-
 
-            * 050 = Earned points credit
+            Values (grouped by the type of points):
 
-            * 070 = Earned points debit
 
-            Bonus points transactions-
+            Earned points transactions
 
-            * 052 = Bonus points credit
+            * 050 = Earned points credit;
 
-            * 072 = Bonus points debit
+            * 070 = Earned points debit.
 
-            Adjusted points transactions-
 
-            * 054 = Adjusted points credit
+            Bonus points transactions
 
-            * 074 = Adjusted points debit
+            * 052 = Bonus points credit;
 
-            Bought points transactions-
+            * 072 = Bonus points debit.
 
-            * 056 = Closed points credit
 
-            * 076 = Closed points debit
+            Adjusted points transactions
 
-            Grace expiration points transactions-
+            * 054 = Adjusted points credit;
 
-            * 077 = Grace expiration points credit
+            * 074 = Adjusted points debit.
+
+
+            Bought points transactions
+
+            * 056 = Closed points credit;
+
+            * 076 = Closed points debit.
+
+
+            Grace expiration points transactions
+
+            * 077 = Grace expiration points credit.
+
 
             VisionPLUS Service Data: GPXPAI-TXN-CODE'
           format: int32
           example: 52
         transactionAmount:
-          maximum: 100
-          minimum: 0
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Number of loyalty points for this points transaction.
+
 
             VisionPLUS Service Data: GPXPAI-TRAN-AMT'
           example: 100
         actualValue:
-          maximum: 100
-          minimum: 0
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Actual monetary value of the points.
+
 
             VisionPLUS Service Data: GPXPAI-ACTUAL-VALUE'
           example: 100
         description:
-          maximum: 40
-          minimum: 1
           type: string
-          description: 'Length: 40
+          description: '* Max Length: 40
+
 
             Description of the points transaction.
+
 
             VisionPLUS Service Data: GPXPAI-DESC'
           example: Description
         groupCode:
           type: string
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Group code that identifies an existing Promotional Group record for this
             points transaction.
+
 
             VisionPLUS Service Data: GPXPAI-GROUP-CODE'
           example: '123'
         tableType:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Plan type that together with plan priority identifies an existing Points
             Plan record for this points transaction.
 
-            The values are:
 
-            * B = Base
+            Values:
 
-            * O = Override
+            * B = Base;
 
-            * S = Supplementary
+            * O = Override;
 
-            * X = Extra points on cycle
+            * S = Supplementary;
+
+            * X = Extra points on cycle.
+
 
             VisionPLUS Service Data: GPXPAI-TABLE-TYPE'
           example: B
         tablePriority:
           type: integer
-          description: "Length: 2\nPlan priority that together with plan type identifies\
-            \ an existing Points Plan record for this points transaction.\nThe values\
-            \ are 00\u201399\nVisionPLUS Service Data: GPXPAI-TABLE-PRI"
+          description: "* Max Length: 2\n\nPlan priority that together with plan type\
+            \ identifies an existing Points Plan record for this points transaction.\n\
+            \nThe values are 00\u201399.\n\nVisionPLUS Service Data: GPXPAI-TABLE-PRI"
           format: int32
           example: 1
         referenceNumber:
           type: string
-          description: 'Length: 18
+          description: '* Max Length: 18
+
 
             User-defined reference number for this points transaction.
+
 
             VisionPLUS Service Data: GPXPAI-REF-NBR'
           example: '123'
         reasonCode:
           type: string
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             User-defined reason code for this points transaction.
+
 
             VisionPLUS Service Data: GPXPAI-REASON-CODE'
           example: '12'
         storeNumber:
           type: integer
-          description: 'Length: 9
+          description: '* Max Length: 9
+
 
             Store number that identifies an existing Store record for this points
             transaction.
+
 
             VisionPLUS Service Data: GPXPAI-STORE-NBR'
           format: int32
@@ -1434,84 +2036,98 @@ components:
       type: object
       properties:
         organizationNumber:
-          maximum: 999
-          minimum: 1
           type: integer
-          description: 'Organization NumberVisionPLUS Service Data: GPXRAI-ORG'
+          description: '* Max Length: 3
+
+
+            Organization Number
+
+
+            VisionPLUS Service Data: GPXRAI-ORG'
           format: int32
           example: 807
         cardNumber:
-          maximum: 19
-          minimum: 19
           maxLength: 19
           minLength: 0
           type: string
           description: 'Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).VisionPLUS Service Data:
-            GPXRAI-CARD-NBR'
+            or payment instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: GPXRAI-CARD-NBR'
           example: 000540208ID5IXX3865
         accountNumber:
-          maximum: 19
-          minimum: 19
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Account NumberVisionPLUS Service Data: GPXRAI-ACCT-NBR'
+          description: 'Account Number
+
+
+            VisionPLUS Service Data: GPXRAI-ACCT-NBR'
           example: '4513074002573466583'
         schemeId:
           maxLength: 5
           minLength: 5
           type: string
-          description: 'Identification number of the points schemeVisionPLUS Service
-            Data: GPXRAI-SCHEME-ID'
+          description: 'Identification number of the points scheme
+
+
+            VisionPLUS Service Data: GPXRAI-SCHEME-ID'
           example: '12345'
         rewardItem:
           maxLength: 19
           minLength: 1
           type: string
           description: 'A reward item record identifies a type of reward that can
-            be issued to cardholders who
+            be issued to cardholders who redeem loyalty points.
 
-            redeem loyalty points.VisionPLUS Service Data: GPXRAI-REWARD-ITEM'
+
+            VisionPLUS Service Data: GPXRAI-REWARD-ITEM'
           example: Coupon
         prepaidCardNumber:
-          maximum: 19
-          minimum: 19
           maxLength: 19
           minLength: 0
           type: string
-          description: 'Prepaid Card NumberVisionPLUS Service Data: GPXRAI-PREPAID-CARD-NBR'
+          description: 'Prepaid Card Number
+
+
+            VisionPLUS Service Data: GPXRAI-PREPAID-CARD-NBR'
           example: '4513074002573466583'
         numberOfPoints:
           type: integer
-          description: 'Number of PointsVisionPLUS Service Data: GPXRAI-POINTS'
+          description: '* Max Length: 17
+
+
+            Number of Points
+
+
+            VisionPLUS Service Data: GPXRAI-POINTS'
           format: int64
           example: 250
         reasonCode:
-          maximum: 2
-          minimum: 2
           maxLength: 2
           minLength: 0
           type: string
-          description: 'User-defined reason code for this points transaction.VisionPLUS
-            Service Data: GPXRAI-REASON-CODE'
+          description: 'User-defined reason code for this points transaction.
+
+
+            VisionPLUS Service Data: GPXRAI-REASON-CODE'
           example: '12'
         userData:
           maxLength: 26
           minLength: 0
           type: string
-          description: 'User-defined field that can be used when generating an
+          description: 'User-defined field that can be used when generating an interface
+            file to send to a third-party vendor for prepaid cards (REWARD CATEGORY
+            is PPDGEN).
 
-            interface file to send to a third-party vendor for prepaid cards
 
-            (REWARD CATEGORY is PPDGEN).VisionPLUS Service Data: GPXRAI-USER-DATA'
+            VisionPLUS Service Data: GPXRAI-USER-DATA'
+          example: '0'
         couponData:
           type: array
-          description: 'Denomination and number of coupons
-
-            in each domination to disburse. Valid only if the disbursement
-
-            reward category is by certificate.'
+          description: Denomination and number of coupons in each domination to disburse.
+            Valid only if the disbursement reward category is by certificate.
           items:
             $ref: '#/components/schemas/RedemptionAddRequest.Coupon'
         nameOne:
@@ -1519,30 +2135,45 @@ components:
           minLength: 0
           type: string
           description: 'Name to be embossed on the first line of the prepaid card.
-            Enter
+            Enter the name exactly as it is to appear on the card.
 
-            the name exactly as it is to appear on the card.VisionPLUS Service Data:
-            GPXRAI-NAME-1'
+
+            VisionPLUS Service Data: GPXRAI-NAME-1'
+          example: Name in first line
         nameTwo:
           maxLength: 26
           minLength: 0
           type: string
           description: 'Name to be embossed on the second line of the prepaid card.
+            Enter the name exactly as it is to appear on the card.
 
-            Enter the name exactly as it is to appear on the card.VisionPLUS Service
-            Data: GPXRAI-NAME-2'
+
+            VisionPLUS Service Data: GPXRAI-NAME-2'
+          example: Name in second line
       description: Redemption Add Request
     RedemptionAddRequest.Coupon:
       type: object
       properties:
         couponDenomination:
           type: integer
-          description: 'Coupon denominationVisionPLUS Service Data: GPXRAI-COUPON-DENOM'
+          description: '* Max Length: 5
+
+
+            Coupon denomination
+
+
+            VisionPLUS Service Data: GPXRAI-COUPON-DENOM'
           format: int32
           example: 12345
         couponNumber:
           type: integer
-          description: Coupon number
+          description: '* Max Length: 2
+
+
+            Coupon number.
+
+
+            VisionPLUS Service Data: GPXRAI-COUPON-NBR'
           format: int32
           example: 12
       description: Denomination and number of coupons in each domination to disburse.
@@ -2573,57 +3204,87 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3Organization Number. VisionPLUS Service Data: GPXAAI-ORG'
+          description: '* Max Length: 3
+
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: GPXAAI-ORG'
           format: int32
           example: 823
         accountNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Length: 19LMS Account Number. VisionPLUS Service Data: GPXAAI-ACCOUNT-NBR'
+          description: 'LMS Account Number.
+
+
+            VisionPLUS Service Data: GPXAAI-ACCOUNT-NBR'
           example: '4004894352313040331'
         schemeId:
           type: string
-          description: 'Length: 5Scheme ID. VisionPLUS Service Data: GPXAAI-SCHEME'
+          description: '* Max Length: 5
+
+
+            Scheme ID.
+
+
+            VisionPLUS Service Data: GPXAAI-SCHEME'
           example: '12345'
         enrollmentChannel:
           type: string
-          description: 'Length: 4User-defined code that identifies the method by which
-            the account was enrolled or opened. VisionPLUS Service Data: GPXAAI-ENROLLMENT-CHANNEL'
-          example: '12345'
+          description: '* Max Length: 4
+
+
+            User-defined code that identifies the method by which the account was
+            enrolled or opened.
+
+
+            VisionPLUS Service Data: GPXAAI-ENROLLMENT-CHANNEL'
+          example: '1234'
         serviceFlag:
           type: string
-          description: 'Length: 1Length: 1
+          description: '* Max Length: 1
+
+            * Max Length: 1
+
 
             Type of customer.
 
-            The values are:
 
-            B = Business
+            Values:
 
-            C = Consolidated
+            * B = Business;
 
-            I = Individual
+            * C = Consolidated;
+
+            * I = Individual.
+
 
             VisionPLUS Service Data: GPXAAI-SERVICE-FLAG'
           example: I
         statementMonthFreq:
           type: integer
-          description: "Length: 2Frequency in months at which statements are produced.\
-            \ The values are 01\u201399. VisionPLUS Service Data: GPXAAI-STMT-MONTH-FREQ"
+          description: "* Max Length: 2\n\nFrequency in months at which statements\
+            \ are produced. The values are 01\u201399.\n\nVisionPLUS Service Data:\
+            \ GPXAAI-STMT-MONTH-FREQ"
           format: int32
           example: 15
         statementMonthDay:
           type: integer
-          description: "Length: 2Day of the month on which statements are produced.\
-            \ The values are 01\u201331. VisionPLUS Service Data: GPXAAI-STMT-DAY-OF-MONTH"
+          description: "* Max Length: 2\n\nDay of the month on which statements are\
+            \ produced. The values are 01\u201331.\n\nVisionPLUS Service Data: GPXAAI-STMT-DAY-OF-MONTH"
           format: int32
           example: 12
         nextStatementDate:
           type: string
-          description: 'Length: 8Date when the next statement will be produced. VisionPLUS
-            Service Data: GPXAAI-NEXT-STMT-DATE'
+          description: 'Date when the next statement will be produced (in ISO 8601).
+
+
+            VisionPLUS Service Data: GPXAAI-NEXT-STMT-DATE'
           format: date
+          example: 2023-07-13
       description: Add LMS account
     PointsAccountAddResponse:
       type: object
@@ -2640,28 +3301,30 @@ components:
       properties:
         nameAddSourceFlag:
           maxLength: 5
-          minLength: 0
+          minLength: 1
           type: string
-          description: 'Length: 5
+          description: 'Source code that identifies the system where the account exists.
 
-            Source code that identifies the system where the account exists.
 
-            The values are:
+            Values:
 
             * LMS = Loyalty Management System. Enter this source code if the account
-            number (ACCOUNT field) identifies an LMS Points Account record.
+            number (ACCOUNT field) identifies an LMS Points Account record;
 
             * CMS = Credit Management System. Enter this source code if the account
             number (ACCOUNT field) identifies a CMS base segment account number.
+
 
             VisionPLUS Service Data: GPXXII-NAME-ADD-SRC-FLAG'
           example: CMS
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization number that identifies theOrganization record assigned to
             an account.
+
 
             VisionPLUS Service Data: GPXXII-ORG'
           format: int32
@@ -2670,31 +3333,31 @@ components:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Length: 19
-
-            LMS points account number, CMS account base segment number, or accounts
-            receivable account number assigned to an AR/LMS Account Cross-reference
+          description: 'LMS points account number, CMS account base segment number,
+            or accounts receivable account number assigned to an AR/LMS Account Cross-reference
             record.
+
 
             VisionPLUS Service Data: GPXXII-ACCOUNT-NBR'
           example: '4506684000316710701'
         startingOrganizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Starting organization associated with the scroll.
+
 
             VisionPLUS Service Data: GPXXII-SVC-START-ORG'
           format: int32
           example: 801
         startingItem:
           maxLength: 19
-          minLength: 0
+          minLength: 1
           type: string
-          description: 'Length: 19
+          description: 'Starting item (populated from the previous output message)
+            associated with the scroll.
 
-            Starting item (populated from the previous output message) associated
-            with the scroll.
 
             VisionPLUS Service Data: GPXXII-SVC-START-ITEM'
           example: '1801000000053684700'
@@ -2702,20 +3365,20 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Length: 1
+          description: 'Scrolling feature.
 
-            Scrolling feature.
 
-            The values are:
+            Values:
 
-            Space = First 20 items
+            * Space = First 20 items;
 
-            * N = Next 20 items
+            * N = Next 20 items;
 
-            * P = Previous 20 items
+            * P = Previous 20 items.
+
 
             VisionPLUS Service Data: GPXXII-SVC-FUNC-CODE'
-          example: U
+          example: P
       description: Cross Reference Inquiry Request
     CrossReferenceInquiryResponse:
       type: object
@@ -2724,18 +3387,24 @@ components:
           type: integer
           description: 'Length: 3
 
+
             Organization number.
+
 
             VisionPLUS Service Data: GPXXIO-ORG'
           format: int32
+          example: 999
         accountCounter:
           type: integer
           description: 'Length: 2
 
+
             Number of accounts.
+
 
             VisionPLUS Service Data: GPXXIO-ACCOUNTS-CNT'
           format: int32
+          example: 14
         accountList:
           type: array
           description: Account list
@@ -2745,25 +3414,34 @@ components:
           type: string
           description: 'Length: 1
 
+
             Code that indicates whether more records are on file.
 
+
             VisionPLUS Service Data: GPXXIO-MORE-STMT'
+          example: '0'
         startingOrganizationNumber:
           type: integer
           description: 'Length: 3
 
+
             Starting organization associated with the scroll.
+
 
             VisionPLUS Service Data: GPXXIO-SVC-START-ORG'
           format: int32
+          example: 999
         startingItem:
           type: string
           description: 'Length: 19
 
+
             Starting item (populated from the previous output message) associated
             with the scroll.
 
+
             VisionPLUS Service Data: GPXXIO-SVC-START-ITEM'
+          example: '0'
     CrossReferenceInquiryResponse.Account:
       type: object
       properties:
@@ -2775,16 +3453,22 @@ components:
           type: string
           description: 'Length: 19
 
+
             Account number.
 
+
             VisionPLUS Service Data: GPXXIO-ACCOUNT-NBR'
+          example: '7600010732545213551'
         accountName:
           type: string
           description: 'Length: 40
 
+
             Account name.
 
+
             VisionPLUS Service Data: GPXXIO-ACCOUNT-NAME'
+          example: ACCOUNT NAME
       description: Account list
     LmsTransactionInquiryRequest:
       required:

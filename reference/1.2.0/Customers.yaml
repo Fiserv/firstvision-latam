@@ -38,26 +38,18 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerReversalRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerReversalResponse'
         '300':
           description: Redirection
           content:
@@ -66,15 +58,28 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerReversalResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Customer Reversal Update
       x-group-name: Customers
   /customer/:
     put:
       tags:
       - Customers
-      summary: 'Update Customer VMX Service: M.CMS.CUSTOMER.UPD, R8V5'
-      description: "Updates the demographic and user data on the Customer record.\
-        \ \nVMX Service: M.CMS.CUSTOMER.UPD, R8V5"
+      summary: 'Updates the demographic and user data on the Customer record.
+
+
+        VMX Service: M.CMS.CUSTOMER.UPD, R8V5'
+      description: 'Updates the demographic and user data on the Customer record.
+
+
+        VMX Service: M.CMS.CUSTOMER.UPD, R8V5'
       operationId: Customer Update
       parameters:
       - name: apikey
@@ -97,153 +102,197 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
         '422':
           description: 'VPL5SGC01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
 
+
             VPL5SGC01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
+
 
             VPL5SGC02E - CUSTOMER, ACCOUNT OR CARD NUMBER REQUIRED
 
+
             VPL5SGC02S - ORGANIZATION NUMBER NOT FOUND
+
 
             VPL5SGC03E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0
             OR 1
 
+
             VPL5SGC03S - ACCOUNT NUMBER NOT FOUND
+
 
             VPL5SGC04E - INVALID NUMBER TYPE INDICATOR - VALID VALUES ARE SPACE, 0
             OR 1
 
+
             VPL5SGC04S - CUSTOMER NUMBER NOT FOUND
+
 
             VPL5SGC05E - ORGANIZATION NUMBER REQUIRED WHEN NUMBER TYPE 1
 
+
             VPL5SGC06E - INVALID DEMOGRAPHIC DATA INDICATOR - VALID VALUES ARE SPACE,0,1,2
+
 
             VPL5SGC07E - INVALID USER DATA INDICATOR - VALID VALUES ARE SPACE, 0,
             1 OR 2
 
+
             VPL5SGC08E - DEMOGRAPHIC DATA AND USER DATA INDICATORS MUST BE CORRESPONDING
+
 
             VPL5SGC09E - STATUS MUST BE NUMERIC AND VALID VALUES ARE 0, 1 OR 2 ONLY
 
+
             VPL5SGC10E - VIP STATUS MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1 ONLY
+
 
             VPL5SGC11E - SIC CODE MUST BE NUMERIC
 
+
             VPL5SGC12E - MARITAL STATUS MUST BE NUMERIC AND VALUES ARE 0 THRU 4
+
 
             VPL5SGC13E - NAME TYPE 1 IND MUST BE NUMERIC AND VALID VALUES ARE 0, 1
             OR 2
 
+
             VPL5SGC14E - NAME TYPE 2 IND MUST BE NUMERIC AND VALID VALUES ARE 0, 1
             OR 2
+
 
             VPL5SGC15E - NAME TYPE 3 IND MUST BE NUMERIC AND VALID VALUES ARE 0, 1
             OR 2
 
+
             VPL5SGC16E - POSTAL CODE MUST BE ALPHA, SPACE, DASH OR NUMBER
+
 
             VPL5SGC17E - RESIDENCE CODE MUST BE NUMERIC AND VALID VALUES ARE 0 THRU
             3
 
+
             VPL5SGC18E - CONTACT IND MUST BE NUMERIC
 
+
             VPL5SGC19E - CARRIER ROUTE LAST 2 CHARACTERS MUST BE NUMERIC
+
 
             VPL5SGC20E - SENT DATE MUST BE NUMERIC AND HAS VALUE ZERO OR VALID DATE
             FORMAT
 
+
             VPL5SGC21E - SENT DATE MUST BE <= THAN NEXT PROCESSING DATE OR ZERO
+
 
             VPL5SGC22E - STATEMENT MESSAGE INDICATOR MUST BE NUMERIC
 
+
             VPL5SGC23E - DATE OF BIRTH MUST BE ZERO OR HAVE VALID DATE FORMAT
+
 
             VPL5SGC24E - TAX IDENTIFICATION MUST BE NUMERIC AND VALID VALUES ARE 0,
             1 OR 2
 
+
             VPL5SGC25E - WHEN TAX ID = 0 FIRST 9 CHARACTERS TAX ID NUMBER MUST BE
             NUMERIC
 
+
             VPL5SGC26E - FILED DATE MUST BE ZERO OR HAVE VALID DATE FORMAT
+
 
             VPL5SGC27E - FILED DATE MUST BE <= THAN NEXT PROCESSING DATE OR ZERO
 
+
             VPL5SGC28E - FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
+
 
             VPL5SGC29E - NUMBER OF DEPENDANTS MUST BE NUMERIC
 
+
             VPL5SGC30E - USER 10 DATE MUST BE ZERO OR VALID DATE FORMAT
+
 
             VPL5SGC31E - USER 11 DATE MUST BE ZERO OR VALID DATE FORMAT
 
+
             VPL5SGC33E - CAN NOT CHANGE STATUS TO PURGE WITH ACTIVE RELATIONSHIP
+
 
             VPL5SGC34E - CAN NOT CHANGE STATUS TO PURGE WITH ACTIVE ACCOUNT
 
+
             VPL5SGC35E - COUNTRY CODE MUST EXIST IN THE SECURITY SUBSYSTEM
+
 
             VPL5SGC36E - HOME PHONE FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR
             1
 
+
             VPL5SGC37E - FAX PHONE FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR
             1
+
 
             VPL5SGC38E - MOBILE PHONE FLAG MUST BE NUMERIC AND VALID VALUES ARE 0
             OR 1
 
+
             VPL5SGC39E - EMAIL FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
+
 
             VPL5SGC40E - GENDER CODE MUST BE NUMERIC AND VALID VALUES ARE 0, 1 OR
             2
 
+
             VPL5SGC41E - SMS FLAG MUST BE NUMERIC AND VALID VALUES ARE 0 OR 1
+
 
             VPL5SGC42E - AMONG HOME,WORK,FAX,MOBILE AND EMAIL IND, ONE CAN HAVE VALUE
             2
 
+
             VPL5SGC44E - WHEN HOME PHONE FLAG IS 1 OR 2, ENTRY REQUIRED FOR HOME PHONE
 
+
             VPL5SGC45E - WHEN FAX PHONE FLAG IS 1 OR 2, ENTRY REQUIRED FOR FAX PHONE
+
 
             VPL5SGC46E - WHEN MOBILE PHONE FLAG IS 1 OR 2, ENTRY REQUIRED FOR MOBILE
             PHONE
 
+
             VPL5SGC47E - WHEN EMAIL FLAG IS 1 OR 2, ENTRY REQUIRED FOR EMAIL
+
 
             VPL5SGC53E - DATE OF BIRTH MUST BE LESS THAN NEXT PROCESSING DATE
 
+
             VPL5SGC54E - NAME-LINE-1 NOT MAINTAINABLE WHEN EXTENDED LOOKUP IS ACTIVE
 
+
             VPL5SGCZ4S - REQUESTED ORG NUMBER IS NOT FOUND
+
 
             VPL5SGCZ8S - FOREIGN ORGANIZATION NUMBER NOT FOUND'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateCustomerResponse'
         '300':
           description: Redirection
           content:
@@ -252,6 +301,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCustomerResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Customer Update
       x-group-name: Customers
   /customer/relationship:
@@ -284,16 +341,16 @@ paths:
               $ref: '#/components/schemas/CustomerRelationshipDetailsRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SAR03S - CUSTOMER NUMBER IS INVALID
 
@@ -551,14 +608,6 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerRelationshipDetailsResponse'
         '300':
           description: Redirection
           content:
@@ -567,6 +616,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerRelationshipDetailsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Relationship Number Add
       x-group-name: Customers
   /customer/l8v2:
@@ -599,16 +656,16 @@ paths:
               $ref: '#/components/schemas/AddCustomerRequestL8V2'
         required: true
       responses:
-        '400':
-          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
         '422':
@@ -644,14 +701,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddCustomerResponseL8V2'
         '300':
           description: Redirection
           content:
@@ -660,16 +709,30 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddCustomerResponseL8V2'
+        '404':
+          description: Not Found
       x-proxy-name: Customer Add
       x-group-name: Customers
   /customer/generation:
     post:
       tags:
       - Customers
-      summary: "This service generates customer, relationship, account, and embosser\
-        \ numbers. \nVMX Service: M.CMS.NBRGENERATION.ACT, L8V1"
-      description: "This service generates customer, relationship, account, and embosser\
-        \ numbers. \nVMX Service: M.CMS.NBRGENERATION.ACT, L8V1"
+      summary: 'This service generates customer, relationship, account, and embosser
+        numbers.
+
+
+        VMX Service: M.CMS.NBRGENERATION.ACT, L8V1'
+      description: 'This service generates customer, relationship, account, and embosser
+        numbers.
+
+
+        VMX Service: M.CMS.NBRGENERATION.ACT, L8V1'
       operationId: Customer and Account Number Generate
       parameters:
       - name: apikey
@@ -692,16 +755,16 @@ paths:
               $ref: '#/components/schemas/CmsNumberGenerationRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SNG01S - SERVICE INPUT TO N/G SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL5SNG04S - ONLY NUMERIC ACCOUNT NUMBERS ALLOWED FOR AUTO\
@@ -733,14 +796,6 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CmsNumberGenerationResponse'
         '300':
           description: Redirection
           content:
@@ -749,6 +804,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CmsNumberGenerationResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Customer and Account Number Generate
       x-group-name: Customers
   /customer/demographicData-l8v2:
@@ -783,14 +846,16 @@ paths:
               $ref: '#/components/schemas/DemographicInquiryRequestL8V2'
         required: true
       responses:
-        '400':
-          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SZL03S-MAXIMUM ALLOWED RECORDS REQUIRED IS 50 ONLY
 
@@ -856,18 +921,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '405':
           description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DemographicInquiryResponseL8V2'
         '300':
           description: Redirection
           content:
@@ -876,6 +931,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemographicInquiryResponseL8V2'
+        '404':
+          description: Not Found
       x-proxy-name: Demographic Inquiry
       x-group-name: Customers
   /customer/activation:
@@ -908,26 +971,18 @@ paths:
               $ref: '#/components/schemas/AddCustomerActivationRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddCustomerActivationResponse'
         '300':
           description: Redirection
           content:
@@ -936,6 +991,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddCustomerActivationResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Customer with PAN Activation Add
       x-group-name: Customers
   /customer/accountNumber:
@@ -986,26 +1049,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerToAccountInquiryResponse'
         '300':
           description: Redirection
           content:
@@ -1014,6 +1069,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerToAccountInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Number Inquiry
       x-group-name: Customers
   /customer/{customerNumber}/relationship:
@@ -1063,14 +1126,6 @@ paths:
           type: string
         example: 00970
       responses:
-        '400':
-          description: Bad Request
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '422':
@@ -1081,16 +1136,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerRelationshipFindDetailsResponse'
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '300':
           description: Redirection
           content:
@@ -1099,6 +1154,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerRelationshipFindDetailsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Relationship Number Inquiry
       x-group-name: Customers
   /customer/{accountNumber}/current-prior-address:
@@ -1186,26 +1249,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CurrentPriorAddressResponse'
         '300':
           description: Redirection
           content:
@@ -1214,6 +1269,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentPriorAddressResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Current/Prior Address Inquiry
       x-group-name: Customers
   /customer/v3/cards/details:
@@ -1347,16 +1410,6 @@ paths:
           type: string
         example: 00970
       responses:
-        '400':
-          description: Bad Request
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '422':
           description: "VPL5SCE02S - SERVICE INPUT IS OF INCORRECT LENGTH \n\nVPL5SCE06S\
             \ - ORGANIZATION RECORD NOT FOUND \n\nVPL5SCE07S - ORGANIZATION RECORD\
@@ -1370,16 +1423,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '404':
-          description: Not Found
-        '200':
-          description: Success
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerCardsDetailsResponseV3'
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '300':
           description: Redirection
           content:
@@ -1388,6 +1443,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCardsDetailsResponseV3'
+        '404':
+          description: Not Found
       x-proxy-name: Cards Details Inquiry
       x-group-name: Customers
   /customer/v1/cards:
@@ -1446,9 +1509,12 @@ paths:
           Level Details need to be retrieved or both Embosser & Account level Details
           need to retrieve.
 
+
           Code that indicates whether the card is issued as a primary or secondary
           card.
 
+
+          Values:
 
           * false = Service will retrieve card details only at Embosser Level Details
           for the given Customer Number.
@@ -1464,7 +1530,7 @@ paths:
         example: true
       - name: pageNumber
         in: query
-        description: "* Min Length: 1\n\n* Max Length: 2\n\nUsed to display the page\
+        description: "* Min Length: 1\n* Max Length: 2\n\nUsed to display the page\
           \ that will load the cards.\n\nIn-case Page Number is passed as \u20180\u2019\
           / \u20191\u2019, service will consider 1st Page.\n\nMaximum limit is up\
           \ to 5 cards per-page that can be displayed at a time in response.\n\nVisionPLUS\
@@ -1488,18 +1554,6 @@ paths:
           type: string
         example: 00970
       responses:
-        '400':
-          description: Bad Request
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '405':
-          description: Method Not Allowed
         '422':
           description: 'Unprocessable Entity
 
@@ -1545,14 +1599,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '200':
-          description: Success
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OutputArea'
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '300':
           description: Redirection
           content:
@@ -1561,6 +1619,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputArea'
+        '404':
+          description: Not Found
       x-proxy-name: Cards Inquiry
       x-group-name: Customers
 components:
@@ -2159,292 +2225,467 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: "Length 999 \nOrganization Number\nVisionPLUS Service Data:\
-            \ ARXGCI-ORG"
+          description: '* Max Length: 3
+
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: ARXGCI-ORG'
           format: int32
           example: 807
         customerNumber:
           type: string
-          description: Unique identifier or token associated with the card number
+          description: 'Unique identifier or token associated with the card number
             or payment instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: ARXGCI-CARD-NBR'
           example: 000540208ID5IXX3865
         numberType:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Type of number in the ARXGCI-CARD-NBR field. The values are:
 
-            * Zero, space, or low values = Card number
+            Type of number in the ARXGCI-CARD-NBR field.
 
-            * 1 = Customer number
+
+            Values:
+
+            * Low values = Card number;
+
+            * Space = Card number;
+
+            * 0 = Card number;
+
+            * 1 = Customer number;
+
 
             If zero, space, or low values is specified, the primary customer record
             associated with the account will be updated with the information provided
             to the service.
 
-            * If an alternate customer record, a correspondence customer record, or
+
+            If an alternate customer record, a correspondence customer record, or
             a customer record associated with a card is needed, use the customer number.
+
 
             VisionPLUS Service Data: ARXGCI-NBR-TYPE'
           example: '1'
         foreignUseIndicator:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Foreign Use Indicator. The values are :
 
-            * Zero, space, or low values = Local account
+            Foreign Use Indicator.
 
-            * 1 = Foreign account
+
+            Values:
+
+            * Low values = Local account;
+
+            * Space = Local account;
+
+            * 0 = Local account;
+
+            * 1 = Foreign account.
+
 
             VisionPLUS Service Data: ARXGCI-FOREIGN-USE-FLAG'
           example: '0'
         demographicDataIndicator:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Demographic Data Indicator. The values are :
 
-            * Zero, space, or low values = Do not update
+            Demographic Data Indicator.
 
-            * 1 = Update owner
 
-            * 2 = Update co-owner
+            Values:
+
+            * Low values = Do not update;
+
+            * Space = Do not update;
+
+            * 0 = Do not update;
+
+            * 1 = Update owner;
+
+            * 2 = Update co-owner.
+
 
             VisionPLUS Service Data: ARXGCI-DEMOGRAPHIC-DATAIND'
           example: '1'
         userDataIndicator:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            User Data Indicator. The values are :
 
-            * Zero, space, or low values = Do not update
+            User Data Indicator.
 
-            * 1 = Update owner
 
-            * 2 = Update co-owner
+            Values:
+
+            * Low values = Do not update;
+
+            * Space = Do not update;
+
+            * 0 = Do not update;
+
+            * 1 = Update owner;
+
+            * 2 = Update co-owner.
+
 
             VisionPLUS Service Data: ARXGCI-USER-DATA-IND'
           example: '1'
         vipStatus:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            VIP Status Indicator. The values are:
 
-            * 0 = Not VIP customer
+            VIP Status Indicator.
 
-            * 1 = VIP customer
+
+            Values:
+
+            * 0 = Not VIP customer;
+
+            * 1 = VIP customer.
+
 
             VisionPLUS Service Data: ARXGCI-VIP-STATUS'
           format: int32
           example: 1
         status:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Status Of The Account
+
+            Status Of The Account.
+
 
             VisionPLUS Service Data: ARXGCI-STATUS'
           format: int32
           example: 1
         sicCode:
           type: integer
-          description: 'Length: 6
+          description: '* Max Length: 6
+
 
             Standard Industrial Classification code used to identify the industry
             to which the commercial card customer is associated.
+
 
             VisionPLUS Service Data: ARXGCI-SIC-CODE'
           format: int32
           example: 123456
         title:
           type: string
-          description: "Length 40 \nTitle\nVisionPLUS Service Data: ARXGCI-TITLE"
+          description: '* Max Length: 40
+
+
+            Title.
+
+
+            VisionPLUS Service Data: ARXGCI-TITLE'
           example: Monsieur
         maritalStatus:
           type: string
-          description: "Length: 1 \nMarital Status\nVisionPLUS Service Data: ARXGCI-MARITAL-STATUS"
+          description: '* Max Length: 1
+
+
+            Marital Status.
+
+
+            VisionPLUS Service Data: ARXGCI-MARITAL-STATUS'
           example: '1'
         nameLine1:
           type: string
-          description: "Length 40 \n Name Line 1\nVisionPLUS Service Data: ARXGCI-NAME-LINE-1"
+          description: '* Max Length: 40
+
+
+            Name Line 1.
+
+
+            VisionPLUS Service Data: ARXGCI-NAME-LINE-1'
           example: OWN NAME L1
         nameTypeIndicator1:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Name Type Indicator 1. indicates the type of name. The values are -
 
-            * 0 = Personal name (Default)
+            Name Type Indicator 1. indicates the type of name.
 
-            * 1 = Business name
 
-            * 2 = Store name
+            Values:
 
-            * 3 = Generic name
+            * 0 = Personal name (Default);
+
+            * 1 = Business name;
+
+            * 2 = Store name;
+
+            * 3 = Generic name.
+
 
             VisionPLUS Service Data: ARXGCI-NAME-LINE-1-TYP'
           format: int32
           example: 0
         nameLine2:
           type: string
-          description: "Length 40 \n Name Line 2\nVisionPLUS Service Data: ARXGCI-NAME-LINE-2"
+          description: '* Max Length: 40
+
+
+            Name Line 2.
+
+
+            VisionPLUS Service Data: ARXGCI-NAME-LINE-2'
           example: OWN NAME L2 TEST9
         nameTypeIndicator2:
           type: integer
-          description: 'Length: 1Name Type Indicator 2. indicates the type of name.
-            The values are -
+          description: '* Max Length: 1
 
-            * 0 = Personal name (Default)
 
-            * 1 = Business name
+            Name Type Indicator 2. indicates the type of name.
 
-            * 2 = Store name
 
-            * 3 = Generic name
+            Values:
+
+            * 0 = Personal name (Default);
+
+            * 1 = Business name;
+
+            * 2 = Store name;
+
+            * 3 = Generic name.
+
 
             VisionPLUS Service Data: ARXGCI-NAME-LINE-2-TYP'
           format: int32
           example: 0
         nameLine3:
           type: string
-          description: "Length 40 \n Name Line 3\nVisionPLUS Service Data: ARXGCI-NAME-LINE-3"
+          description: '* Max Length: 40
+
+
+            Name Line 3.
+
+
+            VisionPLUS Service Data: ARXGCI-NAME-LINE-3'
           example: OWN NAME L3
         nameTypeIndicator3:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Name Type Indicator 3. indicates the type of name. The values are -
 
-            * 0 = Personal name (Default)
+            Name Type Indicator 3. indicates the type of name.
 
-            * 1 = Business name
 
-            * 2 = Store name
+            Values:
 
-            * 3 = Generic name
+            * 0 = Personal name (Default);
+
+            * 1 = Business name;
+
+            * 2 = Store name;
+
+            * 3 = Generic name.
+
 
             VisionPLUS Service Data: ARXGCI-NAME-LINE-3-TYP'
           format: int32
           example: 0
         houseNumber:
           type: string
-          description: "Length 20 \nInternal number of the residence\nVisionPLUS Service\
-            \ Data: ARXGCI-HOUSE-NBR"
+          description: '* Max Length: 20
+
+
+            Internal number of the residence.
+
+
+            VisionPLUS Service Data: ARXGCI-HOUSE-NBR'
           example: '12349'
         houseName:
           type: string
-          description: "Length 40 \nHouse name\nVisionPLUS Service Data: ARXGCI-HOUSE-NAME"
+          description: '* Max Length: 40
+
+
+            House name.
+
+
+            VisionPLUS Service Data: ARXGCI-HOUSE-NAME'
           example: LILY RESIDENCE
         houseAddress1:
           type: string
-          description: "Length 40 \nHouse Address 1\nVisionPLUS Service Data: ARXGCI-ADDR-1"
+          description: '* Max Length: 40
+
+
+            House Address 1.
+
+
+            VisionPLUS Service Data: ARXGCI-ADDR-1'
           example: OWN ADDR L19
         houseAddress2:
           type: string
-          description: "Length 40 \nHouse Address 2\nVisionPLUS Service Data: ARXGCI-ADDR-2"
+          description: '* Max Length: 40
+
+
+            House Address 2.
+
+
+            VisionPLUS Service Data: ARXGCI-ADDR-2'
           example: OWN ADDR L19
         houseAddress3:
           type: string
-          description: "Length 40 \nHouse Address 3\nVisionPLUS Service Data: ARXGCI-ADDR-3"
+          description: '* Max Length: 40
+
+
+            House Address 3.
+
+
+            VisionPLUS Service Data: ARXGCI-ADDR-3'
           example: OWN ADDR L19
         houseAddress4:
           type: string
-          description: "Length 40 \nHouse Address 4\nVisionPLUS Service Data: ARXGCI-ADDR-4"
+          description: '* Max Length: 40
+
+
+            House Address 4.
+
+
+            VisionPLUS Service Data: ARXGCI-ADDR-4'
           example: OWN ADDR L19
         city:
           type: string
-          description: "Length: 30 \nResidence City.\nVisionPLUS Service Data: ARXGCI-CITY"
+          description: '* Max Length: 30
+
+
+            Residence City.
+
+
+            VisionPLUS Service Data: ARXGCI-CITY'
           example: SUNSHINE
         state:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Residence state. This is derived based on the state code.
 
-            VisionPLUS Service Data: ARXGCI-STATE'
+
+            VisionPLUS:
+
+            * Service Data: ARXGCI-STATE
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: STATE / PR'
           example: FL
         postalCode:
           type: string
-          description: 'Length: 10
+          description: '* Max Length: 10
 
-            Residence Postal Code
+
+            Residence Postal Code.
+
 
             VisionPLUS Service Data: ARXGCI-PSTL-CD'
           example: '12345679'
         countryCode:
           type: string
-          description: 'Length: 30
+          description: '* Max Length: 30
+
 
             Code that identifies the country in which this organization is located.
+
 
             VisionPLUS Service Data: ARXGCI-CNTRY-CD'
           example: USA
         ownOrRentResidenceFlag:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Code indicating whether the primary residence is owned or rented
+
+            Code indicating whether the primary residence is owned or rented.
+
 
             VisionPLUS Service Data: ARXGCI-OWN-RENT-RESID-FLAG'
           format: int32
           example: 2
         languageIndicator:
           type: string
-          description: "Length: 3 \nSpoken Language Indicator\nVisionPLUS Service\
-            \ Data: ARXGCI-LANGUAGE-IND"
+          description: '* Max Length: 3
+
+
+            Spoken Language Indicator.
+
+
+            VisionPLUS Service Data: ARXGCI-LANGUAGE-IND'
           example: ENG
         mailingList:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Code indicating whether the owner wants to be on a mailing List
+
+            Code indicating whether the owner wants to be on a mailing List.
+
 
             VisionPLUS Service Data: ARXGCI-MAILING-LIST'
           example: '1'
         contactIndicator:
           type: integer
-          description: "Length: 2\nCode Indicating Whether Customer Contact Is Restricted\
-            \ or Not.\nThe values are:\n* 00 = No restriction (Default)\n* 01 = Do\
-            \ not telephone\n* 02 = Do not mail\n* 03 = Do not mail or telephone\n\
-            * 04\u201309 = Reserved for future use\n* 10\u201399 = User-defined by\
-            \ client.\nVisionPLUS Service Data: ARXGCI-CONTACT-IND"
+          description: "* Max Length: 2\n\nCode Indicating Whether Customer Contact\
+            \ Is Restricted or Not.\n\nValues:\n* 00 = No restriction (Default);\n\
+            * 01 = Do not telephone;\n* 02 = Do not mail;\n* 03 = Do not mail or telephone;\n\
+            * 04\u201309 = Reserved for future use;\n* 10\u201399 = User-defined by\
+            \ client.\n\nVisionPLUS Service Data: ARXGCI-CONTACT-IND"
           format: int32
           example: 12
         genderCode:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Gender code. The values are:
 
-            * 0 = Unspecified (Default)
+            Gender code.
 
-            * 1 = Male
 
-            * 2 = Female
+            Values:
+
+            * 0 = Unspecified (Default);
+
+            * 1 = Male;
+
+            * 2 = Female.
+
 
             VisionPLUS Service Data: ARXGCI-GENDER-CODE'
           format: int32
           example: 1
         homePhoneNumber:
           type: string
-          description: "Length: 20\nThree-part field that indicates the fax number\
-            \ of the customer, whether you have the customer\u2019s permission to\
-            \ contact the customer at this number, and the date on which the fax number\
-            \ was last modified\nVisionPLUS Service Data: ARXGCI-HOME-PHONE"
+          description: "* Max Length: 20\n\nThree-part field that indicates the fax\
+            \ number of the customer, whether you have the customer\u2019s permission\
+            \ to contact the customer at this number, and the date on which the fax\
+            \ number was last modified\n\nVisionPLUS Service Data: ARXGCI-HOME-PHONE"
           example: 123-456-9990
         homePhoneIndicator:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Call indicator specifying whether you can contact the customer at this
-            number. The values are :
+            number.
 
-            * 0 = Customer may not be contacted using this number
 
-            * 1 = Customer may be contacted using this number (Default)
+            Values:
+
+            * 0 = Customer may not be contacted using this number;
+
+            * 1 = Customer may be contacted using this number (Default).
+
 
             VisionPLUS Service Data: ARXGCI-HOME-PHONE-IND'
           format: int32
@@ -2453,302 +2694,536 @@ components:
           - null
         faxPhoneNumber:
           type: string
-          description: "Length 20 \nFAX Phone Number\nVisionPLUS Service Data: ARXGCI-FAX-PHONE"
+          description: '* Max Length: 20
+
+
+            FAX Phone Number
+
+
+            VisionPLUS Service Data: ARXGCI-FAX-PHONE'
           example: 223-456-7890
         faxPhoneIndicator:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Call indicator specifying whether you can contact the customer at this
-            number. The values are :
+            number.
 
-            * 0 = Customer may not be contacted using this number
 
-            * 1 = Customer may be contacted using this number (Default)
+            Values:
+
+            * 0 = Customer may not be contacted using this number;
+
+            * 1 = Customer may be contacted using this number (Default).
+
 
             VisionPLUS Service Data: ARXGCI-FAX-PHONE-IND'
           format: int32
           example: 1
         mobilePhoneNumber:
           type: string
-          description: "Length 20 \n Mobile Phone Number\nVisionPLUS Service Data:\
-            \ ARXGCI-MOBILE-PHONE"
+          description: '* Max Length: 20
+
+
+            Mobile Phone Number
+
+
+            VisionPLUS Service Data: ARXGCI-MOBILE-PHONE'
           example: 323-456-7890
         mobilePhoneIndicator:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Call indicator specifying whether you can contact the customer at this
-            number. The values are:
+            number.
 
-            * 0 = Customer may not be contacted using this number
 
-            * 1 = Customer may be contacted using this number (Default)
+            Values:
+
+            * 0 = Customer may not be contacted using this number;
+
+            * 1 = Customer may be contacted using this number (Default).
+
 
             VisionPLUS Service Data: ARXGCI-MOBILE-PHONE-IND'
           format: int32
           example: 1
-          enum:
-          - null
         dateOfBirth:
           type: string
-          description: 'Date of birth of the customer.
+          description: 'Date of birth of the customer (in ISO 8601).
+
 
             VisionPLUS Service Data: ARXGCI-DOB'
           format: date
+          example: 1991-10-23
         driverLicense:
           $ref: '#/components/schemas/DriverLicense'
         taxIdType:
           type: integer
-          description: "Length 1 \nTAX ID Type\nVisionPLUS Service Data: ARXGCI-TAX-ID-TYP"
+          description: '* Max Length: 1
+
+
+            TAX ID Type
+
+
+            VisionPLUS Service Data: ARXGCI-TAX-ID-TYP'
           format: int32
           example: 1
         taxIdNumber:
           type: string
-          description: "Length 25 \nTAX ID Number\nVisionPLUS Service Data: ARXGCI-TAX-ID"
+          description: '* Max Length: 25
+
+
+            TAX ID Number
+
+
+            VisionPLUS Service Data: ARXGCI-TAX-ID'
           example: '123456789'
         dateFiledForm:
           type: string
-          description: 'Length: 10
+          description: 'Date on which the tax identification number of the owner was
+            recorded in the Customer Name/Address record as a result of receiving
+            the W-9 form (in ISO 8601).
 
-            Date on which the tax identification number of the owner was recorded
-            in the Customer Name/Address record as a result of receiving the W-9 form.
 
             VisionPLUS Service Data: ARXGCI-1099C-W9-DATE-FILE'
           format: date
+          example: 2023-08-18
         employerName:
           type: string
-          description: "Length 40 \nEmployer Name.\nVisionPLUS Service Data: ARXGCI-EMPLOYER"
+          description: '* Max Length: 40
+
+
+            Employer Name.
+
+
+            VisionPLUS Service Data: ARXGCI-EMPLOYER'
           example: Milton
         employerAddress1:
           type: string
-          description: 'Length: 40
+          description: '* Max Length: 40
+
 
             Two-part field that indicates the mailing address of the employer of the
             owner.
+
 
             VisionPLUS Service Data: ARXGCI-EMPLOYER-ADDR-1'
           example: EMP ADDR L1
         employerAddress2:
           type: string
-          description: 'Length: 40
+          description: '* Max Length: 40
+
 
             Two-part field that indicates the mailing address of the employer of the
             owner.
+
 
             VisionPLUS Service Data: ARXGCI-EMPLOYER-ADDR-2'
           example: EMP ADDR L2
         employerPhoneNumber:
           type: string
-          description: "Length 20 \nEmployer Phone Number\nVisionPLUS Service Data:\
-            \ ARXGCI-EMPLOYER-ADDR-1"
+          description: '* Max Length: 20
+
+
+            Employer Phone Number
+
+
+            VisionPLUS Service Data: ARXGCI-EMPLOYER-ADDR-1'
           example: 123-456-7890
         employerExtensionPhoneNumber:
           type: string
-          description: "Length 6 \nEmployee Phone Extension.\nVisionPLUS Service Data:\
-            \ ARXGCI-EMP-PHONE-EXTN"
+          description: '* Max Length: 6
+
+
+            Employee Phone Extension.
+
+
+            VisionPLUS Service Data: ARXGCI-EMP-PHONE-EXTN'
           example: '123456'
         employerPhoneFlag:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Employer Phone Flag. The values are:
 
-            * 0 = Do not fax
+            Employer Phone Flag.
 
-            * 1 = May be faxed
 
-            * 2 = Prefers to be faxed
+            Values:
+
+            * 0 = Do not fax;
+
+            * 1 = May be faxed;
+
+            * 2 = Prefers to be faxed.
+
 
             VisionPLUS Service Data: ARXGCI-EMP-PHONE-FLAG'
           format: int32
           example: 1
         position:
           type: string
-          description: 'Length: 4
+          description: '* Max Length: 4
+
 
             User-defined code to indicate the position or job title of the owner.
+
 
             VisionPLUS Service Data: ARXGCI-POSITION'
           example: CEO
         relativeName:
           type: string
-          description: "Length 40 \n Relative Name\nVisionPLUS Service Data: ARXGCI-RELATIVE-NAME"
+          description: '* Max Length: 40
+
+
+            Relative Name
+
+
+            VisionPLUS:
+
+            * Service Data: ARXGCI-RELATIVE-NAME
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: RELATIVE NAME'
           example: Relative Name
         numberOfDependents:
           type: integer
-          description: "Length 3 \nNumber of Dependents\nVisionPLUS Service Data:\
-            \ ARXGCI-NBR-OF-DEPENDENTS"
+          description: '* Max Length: 3
+
+
+            Number of Dependents
+
+
+            VisionPLUS Service Data: ARXGCI-NBR-OF-DEPENDENTS'
           format: int32
           example: 999
         email:
           type: string
-          description: "Length: 19 \nEmail of customer.\nVisionPLUS Service Data:\
-            \ ARXGCI-EMAIL"
+          description: '* Max Length: 19
+
+
+            Email of customer.
+
+
+            VisionPLUS Service Data: ARXGCI-EMAIL'
           example: ABC.DEF@yahoo.com
         emailIndicator:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            The values are:
 
-            * 0 = Do not e-mail
+            Values:
 
-            * 1 = May be e-mailed
+            * 0 = Do not e-mail;
 
-            * 2 = Prefers to be e-mailed
+            * 1 = May be e-mailed;
+
+            * 2 = Prefers to be e-mailed.
+
 
             VisionPLUS Service Data: ARXGCI-EMAIL-IND'
           format: int32
           example: 1
         smsIndicator:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Short message service (sms) indicator. The values are :
 
-            * 0 = No, do not send message
+            Short message service (sms) indicator.
 
-            * 1 = yes, you can send message
 
-            VisionPLUS Service Data: ARXGCI-SMS-IND'
+            Values:
+
+            * 0 = No, do not send message;
+
+            * 1 = yes, you can send message.
+
+
+            VisionPLUS:
+
+            * Service Data: ARXGCI-SMS-IND
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: SMS IND'
           format: int32
           example: 1
-          enum:
-          - null
         firstName:
           type: string
-          description: "Length 40 \nFirst name\nVisionPLUS Service Data: ARXGCI-FIRST-NAME"
+          description: '* Max Length: 40
+
+
+            First name
+
+
+            VisionPLUS Service Data: ARXGCI-FIRST-NAME'
           example: FirstName
         middleName:
           type: string
-          description: "Length 40 \n Middle name\nVisionPLUS Service Data: ARXGCI-MIDDLE-NAME"
+          description: '* Max Length: 40
+
+
+            Middle name.
+
+
+            VisionPLUS Service Data: ARXGCI-MIDDLE-NAME'
           example: MiddleName
         lastName:
           type: string
-          description: "Length: 40 \nLast name\nVisionPLUS Service Data: ARXGCI-LAST-NAME"
+          description: '* Max Length: 40
+
+
+            Last name.
+
+
+            VisionPLUS Service Data: ARXGCI-LAST-NAME'
           example: LastName
         suffix:
           type: string
-          description: 'Length 20
+          description: '* Max Length: 20
+
+
+            Suffix.
 
             VisionPLUS Service Data: ARXGCI-SUFFIX'
           example: Sr
         county:
           type: string
-          description: 'Length: 30
+          description: '* Max Length: 30
+
 
             County portion of the mailing address of the owner.
+
 
             VisionPLUS Service Data: ARXGCI-COUNTY'
           example: Orange
         memo1:
           type: string
-          description: "Length 60 \nMemo 1\nVisionPLUS Service Data: ARXGCI-MEMO-2"
+          description: '* Max Length: 60
+
+
+            Memo 1
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-2'
           example: Memo 1
         memo2:
           type: string
-          description: "Length 60 \nMemo 2\nVisionPLUS Service Data: ARXGCI-MEMO-2"
+          description: '* Max Length: 60
+
+
+            Memo 2
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-2'
           example: Memo 2
         user1:
           type: string
-          description: "Length 2 \nUser 1\nVisionPLUS Service Data: ARXGCI-MEMO-1"
+          description: '* Max Length: 2
+
+
+            User 1
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-1'
           example: U1
         user2:
           type: string
-          description: "Length 2 \nUser 2\nVisionPLUS Service Data: ARXGCI-MEMO-2"
+          description: '* Max Length: 2
+
+
+            User 2
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-2'
           example: U2
         user3:
           type: string
-          description: "Length 7 \nUser 3\nVisionPLUS Service Data: ARXGCI-MEMO-3"
+          description: '* Max Length: 7
+
+
+            User 3
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-3'
           example: U323323
         user4:
           type: string
-          description: "Length 1 \nUser 4\nVisionPLUS Service Data: ARXGCI-MEMO-4"
+          description: '* Max Length: 1
+
+
+            User 4
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-4'
           example: U
         user5:
           type: string
-          description: "Length 1 \nUser 5\nVisionPLUS Service Data: ARXGCI-MEMO-5"
+          description: '* Max Length: 1
+
+
+            User 5
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-5'
           example: U
         user6:
           type: string
-          description: "Length 2 \nUser 6\nVisionPLUS Service Data: ARXGCI-MEMO-6"
+          description: '* Max Length: 2
+
+
+            User 6
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-6'
           example: U6
         user7:
           type: string
-          description: "Length 2 \nUser 7\nVisionPLUS Service Data: ARXGCI-MEMO-7"
+          description: '* Max Length: 2
+
+
+            User 7
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-7'
           example: U7
         user8:
           type: string
-          description: "Length 2 \nUser 8\nVisionPLUS Service Data: ARXGCI-MEMO-8"
+          description: '* Max Length: 2
+
+
+            User 8
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-8'
           example: U8
         user9:
           type: string
-          description: "Length 2 \nUser 9\nVisionPLUS Service Data: ARXGCI-MEMO-9"
+          description: '* Max Length: 2
+
+
+            User 9
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-9'
           example: U8
         user10:
           type: integer
-          description: "Length 7 \nUser 10\nVisionPLUS Service Data: ARXGCI-MEMO-10"
+          description: '* Max Length: 7
+
+
+            User 10
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-10'
           format: int32
           example: 2011031
         user11:
           type: integer
-          description: "Length 7 \nUser 11\nVisionPLUS Service Data: ARXGCI-MEMO-11"
+          description: '* Max Length: 7
+
+
+            User 11
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-11'
           format: int32
           example: 2011032
         user12:
           type: string
-          description: "Length 30 \nUser 12\nVisionPLUS Service Data: ARXGCI-MEMO-12"
+          description: '* Max Length: 30
+
+
+            User 12
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-12'
           example: U12
         user13:
           type: string
-          description: "Length 30 \nUser 13\nVisionPLUS Service Data: ARXGCI-MEMO-13"
+          description: '* Max Length: 30
+
+
+            User 13
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-13'
           example: U13
         user14:
           type: string
-          description: "Length 20 \n User 14\nVisionPLUS Service Data: ARXGCI-MEMO-14"
+          description: '* Max Length: 20
+
+
+            User 14
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-14'
           example: U14
         user15:
           type: string
-          description: "Length 20 \n User 15\nVisionPLUS Service Data: ARXGCI-MEMO-15"
+          description: '* Max Length: 20
+
+
+            User 15.
+
+
+            VisionPLUS Service Data: ARXGCI-MEMO-15'
           example: U15
         userDemographic1:
           type: string
-          description: 'Length: 20
+          description: '* Max Length: 20
+
 
             Demographic 1. User-defined demographic data or other information for
-            an ownerr.
+            an owner.
+
 
             VisionPLUS Service Data: ARXGCI-USER-DEMO-1'
           example: USER DEMO 1
         userDemographic2:
           type: string
-          description: 'Length: 20
+          description: '* Max Length: 20
+
 
             Demographic 2. User-defined demographic data or other information for
             an owner.
+
 
             VisionPLUS Service Data: ARXGCI-USER-DEMO-2'
           example: USER DEMO 2
         userDemographic3:
           type: string
-          description: 'Length: 20
+          description: '* Max Length: 20
+
 
             Demographic 3. User-defined demographic data or other information for
             an owner.
+
 
             VisionPLUS Service Data: ARXGCI-USER-DEMO-3'
           example: USER DEMO 3
         foreignFormIndicator:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            1099C foreign indicator. The values are:
 
-            * Blank = Does not live in a foreign country (Default)
+            1099C foreign indicator.
+
+
+            Values:
+
+            * Blank = Does not live in a foreign country (Default);
 
             * Any character = Lives in a foreign country. Format the address to the
             IRS standard.
+
 
             VisionPLUS Service Data: ARXGCI-1099C-FOREIGN-IND'
           example: A
@@ -2756,13 +3231,29 @@ components:
           $ref: '#/components/schemas/CarrierRoute'
         formDateSent:
           type: string
-          description: "Length: 10 \nC1099/W9 Date Sent\nVisionPLUS Service Data:\
-            \ ARXGCI-1099C-W9-DATE-SENT"
+          description: 'C1099/W9 Date Sent (in ISO 8601)
+
+
+            VisionPLUS Service Data: ARXGCI-1099C-W9-DATE-SENT'
           format: date
+          example: 2023-01-19
         statementMessageIndicator:
           type: integer
-          description: "Length 1 \nStatement Message Indicator\nVisionPLUS Service\
-            \ Data: ARXGCI-STMT-MSG-INDIC"
+          description: '* Max Length: 1
+
+
+            Statement Message Indicator
+
+
+            VisionPLUS:
+
+            * Service Data: ARXGCI-STMT-MSG-INDIC
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: STATEMENT MESSAGE IND'
           format: int32
           example: 1
       description: Update Customer Request
@@ -2778,7 +3269,9 @@ components:
           type: integer
           description: 'Length: 3
 
+
             Organization Number.
+
 
             VisionPLUS Service Data: ARXGCO-ORG'
           format: int32
@@ -2787,28 +3280,42 @@ components:
           type: string
           description: 'Length: 19
 
+
             Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).'
+            instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: ARXGCO-CARD-NBR'
           example: 000540208ID5IXX3865
         numberType:
           type: string
-          description: "Length: 1\nType Of Number In The 'idNumber' Field. The values\
-            \ are :\n* Zero, space, or low values = Card number\n* 1 = Customer number\
-            \ \n * If zero, space, or low values is specified, the primary customer\
-            \ record associated with the account will be updated with the information\
-            \ provided to the service.\n* If an alternate customer record, a correspondence\
-            \ customer record, or a customer record associated with a card is needed,\
-            \ use the customer number.\nVisionPLUS Service Data: ARXGCO-NBR-TYPE"
+          description: "Length: 1\n\nType Of Number In The 'idNumber' Field.\n\nValues:\n\
+            * Low values = Card number;\n* Space = Card number;\n* 0 = Card number;\n\
+            * 1 = Customer number.\n \nIf zero, space, or low values is specified,\
+            \ the primary customer record associated with the account will be updated\
+            \ with the information provided to the service.\n\nIf an alternate customer\
+            \ record, a correspondence customer record, or a customer record associated\
+            \ with a card is needed, use the customer number.\n\nVisionPLUS Service\
+            \ Data: ARXGCO-NBR-TYPE"
           example: '1'
         foreignUseIndicator:
           type: string
           description: 'Length: 1
 
-            Foreign Use Indicator. The values are :
 
-            * Zero, space, or low values = Local account
+            Foreign Use Indicator.
 
-            * 1 = Foreign account
+
+            Values:
+
+            * Low values = Local account;
+
+            * Space = Local account;
+
+            * 0 = Local account;
+
+            * 1 = Foreign account.
+
 
             VisionPLUS Service Data: ARXGCO-FOREIGN-USE-FLAG'
           example: '1'
@@ -2816,13 +3323,21 @@ components:
           type: string
           description: 'Length: 1
 
-            Demographic Data Indicator. The values are :
 
-            * Zero, space, or low values = Do not update
+            Demographic Data Indicator.
 
-            * 1 = Update owner
+            Values:
 
-            * 2 = Update co-owner
+            * Low values = Do not update;
+
+            * Space = Do not update;
+
+            * 0 = Do not update;
+
+            * 1 = Update owner;
+
+            * 2 = Update co-owner.
+
 
             VisionPLUS Service Data: ARXGCO-DEMOGRAPHIC-DATAIND'
           example: '1'
@@ -2830,13 +3345,22 @@ components:
           type: string
           description: 'Length: 1
 
-            User Data Indicator. The values are :
 
-            * Zero, space, or low values = Do not update
+            User Data Indicator.
 
-            * 1 = Update owner
 
-            * 2 = Update co-owner
+            Values:
+
+            * Low values = Do not update;
+
+            * Space = Do not update;
+
+            * 0 = Do not update;
+
+            * 1 = Update owner;
+
+            * 2 = Update co-owner.
+
 
             VisionPLUS Service Data: ARXGCI-USER-DATA-IND'
           example: '1'
@@ -2844,7 +3368,9 @@ components:
           type: integer
           description: 'Length: 3
 
+
             Organization Number.
+
 
             VisionPLUS Service Data: ARXGCO-ORG'
           format: int32
@@ -2853,8 +3379,10 @@ components:
           type: string
           description: 'Length: 19
 
+
             Identification of the account number associated with the customer number
             (demographic data) that you want to modify or view.
+
 
             VisionPLUS Service Data: ARXGCO-ACCT-NBR'
           example: '1234567890123450000'
@@ -3968,7 +4496,7 @@ components:
             User-defined 8.
 
 
-            VisionPLUS Service Data: AZXNAI-C-USER-8.'
+            VisionPLUS Service Data: AZXNAI-C-USER-8'
           example: U8
         user9:
           type: string
@@ -4569,7 +5097,15 @@ components:
           description: 'Title.
 
 
-            VisionPLUS Service Data: AZXNAI-M-TITLE'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-TITLE
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: TITLE'
         maritalStatus:
           maxLength: 1
           minLength: 0
@@ -4586,7 +5122,15 @@ components:
           description: 'Name Line 1.
 
 
-            VisionPLUS Service Data: AZXNAI-M-NAME-LINE-1'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-NAME-LINE-1
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: NAME LINE 1'
           example: Cabin Maclin
         nameTypeIndicator1:
           maximum: 1
@@ -4605,7 +5149,15 @@ components:
           description: 'Name Line 2.
 
 
-            VisionPLUS Service Data: AZXNAI-M-NAME-LINE-2'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-NAME-LINE-2
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: NAME LINE 2'
           example: Luha Colditz
         nameTypeIndicator2:
           maximum: 1
@@ -4627,7 +5179,15 @@ components:
             Name Line 3.
 
 
-            VisionPLUS Service Data: AZXNAI-M-NAME-LINE-3'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-NAME-LINE-3
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: NAME LINE 3'
           example: Kauri Grout
         nameTypeIndicator3:
           maximum: 1
@@ -4647,7 +5207,15 @@ components:
           description: 'House Number.
 
 
-            VisionPLUS Service Data: AZXNAI-M-HOUSE-NBR'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-HOUSE-NBR
+
+            * Screen: ARQN
+
+            * Page: 2
+
+            * Field: HOUSE NUMBER'
           example: '204'
         houseName:
           maxLength: 40
@@ -4656,7 +5224,15 @@ components:
           description: 'House Name.
 
 
-            VisionPLUS Service Data: AZXNAI-M-HOUSE-NAME'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-HOUSE-NAME
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: HOUSE NAME'
           example: MACLIN RESIDENCE
         houseAddress1:
           type: string
@@ -4668,7 +5244,15 @@ components:
             House Address 1.
 
 
-            VisionPLUS Service Data: AZXNAI-M-ADDR-1'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-ADDR-1
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: ADDRESS LINE 1'
           example: 1574 Lynn Ogden Lane
         houseAddress2:
           type: string
@@ -4680,7 +5264,15 @@ components:
             House Address 2.
 
 
-            VisionPLUS Service Data: AZXNAI-M-ADDR-2'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-ADDR-2
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: ADDRESS LINE 2'
           example: Hilton 40
         houseAddress3:
           type: string
@@ -4692,7 +5284,15 @@ components:
             House Address 3.
 
 
-            VisionPLUS Service Data: AZXNAI-M-ADDR-3'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-ADDR-3
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: ADDRESS LINE 3'
           example: Apt. 2
         houseAddress4:
           type: string
@@ -4704,7 +5304,15 @@ components:
             House Address 4.
 
 
-            VisionPLUS Service Data: AZXNAI-M-ADDR-4'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-ADDR-4
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: ADDRESS LINE 4'
           example: Georgetown
         city:
           maxLength: 30
@@ -4713,7 +5321,15 @@ components:
           description: 'Residence City.
 
 
-            VisionPLUS Service Data: AZXNAI-M-CITY'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-CITY
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: CITY'
           example: Houston
         state:
           maxLength: 3
@@ -4722,7 +5338,15 @@ components:
           description: 'Residence State.
 
 
-            VisionPLUS Service Data: AZXNAI-M-STATE'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-STATE
+
+            * Screen: ARQN
+
+            * Page: 2
+
+            * Field: STATE/PROVINCE'
           example: TX
         postalCode:
           maxLength: 10
@@ -4731,7 +5355,15 @@ components:
           description: 'Residence Postal Code.
 
 
-            VisionPLUS Service Data: AZXNAI-M-PSTL-CD'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-PSTL-CD
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: POSTAL CODE'
           example: H0M 1A2
         countryCode:
           maxLength: 3
@@ -4740,7 +5372,15 @@ components:
           description: 'Country Code.
 
 
-            VisionPLUS Service Data: AZXNAI-M-CNTRY-CD'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-CNTRY-CD
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: COUNTRY CODE'
           example: USA
         ownOrRentResidenceFlag:
           type: integer
@@ -4766,7 +5406,15 @@ components:
           description: 'Spoken language indicator.
 
 
-            VisionPLUS Service Data: AZXNAI-M-LANGUAGE-IND'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-LANGUAGE-IND
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: LANG IND'
           example: ENG
         mailingListIndicator:
           maxLength: 1
@@ -4776,7 +5424,15 @@ components:
             list.
 
 
-            VisionPLUS Service Data: AZXNAI-M-MAILING-LIST'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-MAILING-LIST
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: MAILING LIST'
         contactIndicator:
           type: integer
           description: '* Min Length: 1
@@ -4832,7 +5488,15 @@ components:
           description: 'Home Phone Number.
 
 
-            VisionPLUS Service Data: AZXNAI-M-HOME-PHONE'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-HOME-PHONE
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: HOME PHONE'
           example: 123-456-9990
         homeFaxPhoneNumber:
           maxLength: 20
@@ -4841,7 +5505,15 @@ components:
           description: 'Home FAX Phone Number.
 
 
-            VisionPLUS Service Data: AZXNAI-M-FAX-PHONE'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-FAX-PHONE
+
+            * Screen: ARQN
+
+            * Page: 3
+
+            * Field: FAX PHONE'
           example: 223-456-7890
         mobilePhoneNumber:
           type: string
@@ -4870,7 +5542,15 @@ components:
           description: 'Driver''s License Number.
 
 
-            VisionPLUS Service Data: AZXNAI-M-DL-NBR'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-C-DL-NBR
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: DRIVER LICENSE / ST/PR /CTRY'
         driverLicenseState:
           maxLength: 3
           minLength: 0
@@ -4878,14 +5558,23 @@ components:
           description: 'Driver''s License State.
 
 
-            VisionPLUS Service Data: AZXNAI-M-DL-STATE'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-DL-STATE
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: DRIVER LICENSE / ST/PR /CTRY'
           example: TX
         driverLicenseCountry:
           maxLength: 3
           minLength: 0
           type: string
-          description: "Driver\u2019s License Country.\n\nVisionPLUS Service Data:\
-            \ AZXNAI-M-DL-CNTRY"
+          description: "Driver\u2019s License Country.\n\nVisionPLUS:\n* Service Data:\
+            \ AZXNAI-M-DL-CNTRY\n* Screen: ARQN\n* Page: 4\n* Field: DRIVER LICENSE\
+            \ / ST/PR /CTRY"
           example: USA
         identificationNumberFlag:
           type: integer
@@ -4946,7 +5635,15 @@ components:
           description: 'Employer Name.
 
 
-            VisionPLUS Service Data: AZXNAI-M-EMPLOYER'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-EMPLOYER
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: EMPLOYER'
           example: Milton A.
         employerAddress1:
           type: string
@@ -4958,7 +5655,15 @@ components:
             Employer Address 1.
 
 
-            VisionPLUS Service Data: AZXNAI-M-EMPLOYER-ADDR-1'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-EMPLOYER-ADDR-1
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: EMPLOYER ADDRESS 1'
           example: 3198 Sherman Street
         employerAddress2:
           type: string
@@ -4970,7 +5675,15 @@ components:
             Employer Address 2.
 
 
-            VisionPLUS Service Data: AZXNAI-M-EMPLOYER-ADDR-2'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-EMPLOYER-ADDR-2
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: EMPLOYER ADDRESS 2'
           example: Apt. 4
         employerPhoneNumber:
           maxLength: 20
@@ -4979,7 +5692,15 @@ components:
           description: 'Employer Phone Number.
 
 
-            VisionPLUS Service Data: AZXNAI-M-EMP-PHONE'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-EMP-PHONE
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: WORK PHONE'
           example: 123-456-7890
         employerPhoneExtension:
           maxLength: 6
@@ -4988,7 +5709,15 @@ components:
           description: 'Employer Phone Extension.
 
 
-            VisionPLUS Service Data: AZXNAI-M-EMP-PHONE-EXTN'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-EMP-PHONE-EXTN
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: WORK PHONE'
         employerPhoneFlag:
           type: integer
           description: '* Min Length: 1
@@ -5018,13 +5747,22 @@ components:
           description: 'Position.
 
 
-            VisionPLUS Service Data: AZXNAI-M-POSITION'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-POSITION
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: POSITION'
           example: CEO
         relativeName:
           maxLength: 40
           minLength: 0
           type: string
-          description: "Relative\u2019s Name.\n\nVisionPLUS Service Data: AZXNAI-M-RELATIVE-NAME"
+          description: "Relative\u2019s Name.\n\nVisionPLUS:\n* Service Data: AZXNAI-M-RELATIVE-NAME\n\
+            * Screen: ARQN\n* Page: 4\n* Field: RELATIVE NAME"
           example: Luha Colditz
         numberOfDependents:
           type: integer
@@ -5047,7 +5785,15 @@ components:
           description: 'E-mail.
 
 
-            VisionPLUS Service Data: AZXNAI-M-EMAIL'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-EMAIL
+
+            * Screen: ARQN
+
+            * Page: 4
+
+            * Field: EMAIL'
           example: ABC.DEF@emailCompany.com
         memo1:
           type: string
@@ -5080,7 +5826,15 @@ components:
           description: 'User-defined 1.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-1'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-1
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 1'
           example: U1
         user2:
           maxLength: 2
@@ -5089,7 +5843,15 @@ components:
           description: 'User-defined 2.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-2'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-2
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 2'
           example: U2
         user3:
           maxLength: 7
@@ -5098,7 +5860,15 @@ components:
           description: 'User-defined 3.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-3'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-3
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 3'
           example: U323323
         user4:
           maxLength: 1
@@ -5107,7 +5877,15 @@ components:
           description: 'User-defined 4.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-4'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-4
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 4'
           example: U
         user5:
           maxLength: 1
@@ -5116,7 +5894,15 @@ components:
           description: 'User-defined 5.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-5'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-5
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 5'
           example: U
         user6:
           maxLength: 2
@@ -5125,7 +5911,15 @@ components:
           description: 'User-defined 6.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-6'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-6
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 6'
           example: U6
         user7:
           maxLength: 2
@@ -5134,7 +5928,15 @@ components:
           description: 'User-defined 7.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-7'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-7
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 7'
           example: U7
         user8:
           maxLength: 3
@@ -5143,7 +5945,15 @@ components:
           description: 'User-defined 8.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-8'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-8
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 8'
           example: U8
         user9:
           maxLength: 3
@@ -5152,7 +5962,15 @@ components:
           description: 'User-defined 9.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-9'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-9
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 9'
           example: U9
         user10:
           maxLength: 7
@@ -5161,7 +5979,15 @@ components:
           description: 'User-defined 10.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-10'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-10
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 10'
           example: '2011031'
         user11:
           maxLength: 7
@@ -5170,7 +5996,15 @@ components:
           description: 'User-defined 11.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-11'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-11
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 11'
           example: '2011032'
         user12:
           maxLength: 30
@@ -5179,7 +6013,15 @@ components:
           description: 'User-defined 12.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-12'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-12
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 12'
           example: U12
         user13:
           maxLength: 30
@@ -5188,7 +6030,15 @@ components:
           description: 'User-defined 13.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-13'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-13
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 13'
           example: U13
         user14:
           maxLength: 20
@@ -5197,7 +6047,15 @@ components:
           description: 'User-defined 14.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-14'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-14
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 14'
           example: U14
         user15:
           maxLength: 20
@@ -5206,7 +6064,15 @@ components:
           description: 'User-defined 15.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-15'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-15
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER 15'
           example: U15
         demographic1:
           type: string
@@ -5218,7 +6084,15 @@ components:
             User-defined demographic data or other information for an owner.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-DEMO-1'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-DEMO-1
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: DEMO 1'
           example: USER DEMO 1
         demographic2:
           type: string
@@ -5230,7 +6104,15 @@ components:
             User-defined demographic data or other information for an owner.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-DEMO-2'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-DEMO-2
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: DEMO 2'
           example: USER DEMO 2
         demographic3:
           type: string
@@ -5242,7 +6124,15 @@ components:
             User-defined demographic data or other information for an owner.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-DEMO-3'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-DEMO-3
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: DEMO 3'
           example: USER DEMO 3
         homePhoneFlag:
           type: integer
@@ -5359,7 +6249,15 @@ components:
           description: 'Last Name.
 
 
-            VisionPLUS Service Data: AZXNAI-M-LAST-NAME'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-LAST-NAME
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: LAST NAME/NAME LINE 1'
           example: Gonzalez
         middleName:
           maxLength: 40
@@ -5368,7 +6266,15 @@ components:
           description: 'Middle Name.
 
 
-            VisionPLUS Service Data: AZXNAI-M-MIDDLE-NAME'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-MIDDLE-NAME
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: MIDDLE NAME/NAME LINE 1'
           example: Pedro
         firstName:
           maxLength: 40
@@ -5377,7 +6283,15 @@ components:
           description: 'First Name.
 
 
-            VisionPLUS Service Data: AZXNAI-M-FIRST-NAME'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-FIRST-NAME
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: FIRST NAME/NAME LINE 1'
           example: Juan
         suffix:
           maxLength: 20
@@ -5386,7 +6300,15 @@ components:
           description: 'Suffix.
 
 
-            VisionPLUS Service Data: AZXNAI-M-SUFFIX'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-SUFFIX
+
+            * Screen: ARQN
+
+            * Page: 2/3
+
+            * Field: SUFFIX/NAME LINE 1'
           example: Sr
         county:
           maxLength: 30
@@ -5395,7 +6317,15 @@ components:
           description: 'County.
 
 
-            VisionPLUS Service Data: AZXNAI-M-COUNTY'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-COUNTY
+
+            * Screen: ARQN
+
+            * Page: 2
+
+            * Field: COUNTY'
         ffNumber:
           maxLength: 15
           minLength: 0
@@ -5403,7 +6333,15 @@ components:
           description: 'FF number.
 
 
-            VisionPLUS Service Data: AZXNAI-M-FF-NUMBER'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-FF-NUMBER
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: FREQ FLYER'
         statement2Indicator:
           maxLength: 1
           minLength: 0
@@ -5442,7 +6380,15 @@ components:
             * P = P.O. box.
 
 
-            VisionPLUS Service Data: AZXNAI-M-ADDR-2-INDIC'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-ADDR-2-INDIC
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: ADDR2 IND'
           example: B
         address3Indicator:
           maxLength: 1
@@ -5473,7 +6419,15 @@ components:
           description: 'Address 2 Line 1.
 
 
-            VisionPLUS Service Data: AZXNAI-M-ADDR-2-LINE-1'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-ADDR-2-LINE-1
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: ADDR2LINE1'
           example: 2123 Orphan Road
         address2Line2:
           maxLength: 40
@@ -5482,7 +6436,15 @@ components:
           description: 'Address 2 Line 2.
 
 
-            VisionPLUS Service Data: AZXNAI-M-ADDR-2-LINE-2'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-ADDR-2-LINE-2
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: ADDR2LINE2'
           example: Apt. 5
         address2Line3:
           maxLength: 40
@@ -5491,7 +6453,15 @@ components:
           description: 'Address 2 Line 3.
 
 
-            VisionPLUS Service Data: AZXNAI-M-ADDR-2-LINE-3'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-ADDR-2-LINE-3
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: ADDR2LINE3'
           example: Mackville
         city2:
           maxLength: 25
@@ -5500,7 +6470,15 @@ components:
           description: 'City 2.
 
 
-            VisionPLUS Service Data: AZXNAI-M-CITY-2'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-CITY-2
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: CITY/COUNTRY 2'
           example: Appleton
         postalCode2:
           maxLength: 9
@@ -5518,7 +6496,15 @@ components:
           description: 'Country Code 2.
 
 
-            VisionPLUS Service Data: AZXNAI-M-CNTRY-CD-2'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-CNTRY-CD-2
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: ADDR2LINE2'
           example: USA
         address3Line1:
           maxLength: 40
@@ -5554,7 +6540,15 @@ components:
           description: 'City 3.
 
 
-            VisionPLUS Service Data: AZXNAI-M-CITY-3'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-CITY-3
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: CITY/COUNTRY 3'
           example: Berkeley
         postalCode3:
           maxLength: 9
@@ -5572,14 +6566,30 @@ components:
           description: 'Country Code 3.
 
 
-            VisionPLUS Service Data: AZXNAI-M-CNTRY-CD-3'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-CNTRY-CD-3
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: ADDR2LINE3'
           example: USA
         userDate3:
           type: string
           description: 'User Date 3 in ISO 8601.
 
 
-            VisionPLUS Service Data: AZXNAI-M-USER-DATE-3'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-USER-DATE-3
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: USER DATE 3'
           format: date
           example: 2023-01-13
         income:
@@ -5592,7 +6602,15 @@ components:
             Income.
 
 
-            VisionPLUS Service Data: AZXNAI-M-INCOME'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-INCOME
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: INCOME'
           format: int32
           example: 10
         cuit:
@@ -5603,7 +6621,15 @@ components:
           description: 'CUIT (11 numbers, no hyphens).
 
 
-            VisionPLUS Service Data: AZXNAI-M-CUIT'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-CUIT
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: CUIT'
           example: '20374645497'
         occupationCode:
           maxLength: 6
@@ -5623,7 +6649,15 @@ components:
           description: 'IVA Position.
 
 
-            VisionPLUS Service Data: AZXNAI-M-IVA-POS'
+            VisionPLUS:
+
+            * Service Data: AZXNAI-M-IVA-POS
+
+            * Screen: AZQN
+
+            * Page: 21
+
+            * Field: IVA POSITION'
           example: '1'
     AddCustomerRequestL8V2.ResvData:
       type: object
@@ -9950,21 +10984,65 @@ components:
           example: 22489.5
         accountStatus:
           type: string
-          description: "Max Length: 1\n\nCode that identifies the status of the account.\n\
-            \nThis field does not display during add mode; it displays during maintenance\
-            \ mode and inquiry mode only.\n\nValues: \n* A = Active\n* B = Conversion\
-            \ fraud\n* C = Conversion transfer\n* D = Dormant\n* F = Fraud transfer\n\
-            * H = Closed/conversion\n* I = Inactive\n* J = Transfer in, migrated from\
-            \ inactive\n* K = Transfer out, migrated from inactive\n* M = Migrated\n\
-            * N = New\n* P = To be purged in next reload\n* Q = Transfer in today\n\
-            * R = Transfer out today\n* T = Transfer\n* V = Conversion\n* X = Charge-off/conversion\n\
-            * Z = Charge-off\n* 8 = Closed\n* 9 = To be purged after reload Account\
-            \ Status Code\n\nVisionPLUS Service Data: AZXBQO-INT-STATUS"
+          description: 'Max Length: 1
+
+
+            Code that identifies the status of the account.
+
+
+            This field does not display during add mode; it displays during maintenance
+            mode and inquiry mode only.
+
+
+            Values:
+
+            * A = Active;
+
+            * B = Conversion fraud;
+
+            * C = Conversion transfer;
+
+            * D = Dormant;
+
+            * F = Fraud transfer;
+
+            * H = Closed/conversion;
+
+            * I = Inactive;
+
+            * J = Transfer in, migrated from inactive;
+
+            * K = Transfer out, migrated from inactive;
+
+            * M = Migrated;
+
+            * N = New;
+
+            * P = To be purged in next reload;
+
+            * Q = Transfer in today;
+
+            * R = Transfer out today;
+
+            * T = Transfer;
+
+            * V = Conversion;
+
+            * X = Charge-off/conversion;
+
+            * Z = Charge-off;
+
+            * 8 = Closed;
+
+            * 9 = To be purged after reload Account Status Code.
+
+
+            VisionPLUS Service Data: AZXBQO-INT-STATUS'
           example: A
         isActive:
           type: boolean
-          description: "Current Credit Activation \n\n Values: \n * true = Activated\n\
-            * false = Not activated\n\nVisionPLUS Service Data: AZXBQO-CURR-CRD-ACT"
+          description: "Current Credit Activation.\n\n Values: \n * true = Activated;\n\
+            * false = Not activated.\n\nVisionPLUS Service Data: AZXBQO-CURR-CRD-ACT"
           example: true
         cardBlockCode:
           type: string
@@ -9981,17 +11059,47 @@ components:
           example: '0'
         accountBlockCodes:
           type: array
-          description: "Items max length: 1\n\nList size: 2\n\nBlock codes assigned\
-            \ to this account.\n\nBlock codes control specific processing options\
-            \ at the account level.\n\nVisionPLUS Services Data: \n\nAZXBQO-BLOCK-CODE-1\n\
-            \nAZXBQO-BLOCK-CODE-2"
+          description: 'Items max length: 1
+
+
+            List size: 2
+
+
+            Block codes assigned to this account.
+
+
+            Block codes control specific processing options at the account level.
+
+
+            VisionPLUS Services Data:
+
+            * AZXBQO-BLOCK-CODE-1
+
+            * AZXBQO-BLOCK-CODE-2'
           items:
             $ref: '#/components/schemas/ItemResponseNullableString'
         userAmounts:
           type: array
-          description: "Items max length: 17\n\nList size: 5\n\nFields are for future\
-            \ reference.\n\nVisionPLUS Services Data: \n\nAZXBQO-USER-AMT-1\n\nAZXBQO-USER-AMT-2\n\
-            \nAZXBQO-USER-AMT-3\n\nAZXBQO-USER-AMT-4\n\nAZXBQO-USER-AMT-5"
+          description: 'Items max length: 17
+
+
+            List size: 5
+
+
+            Fields are for future reference.
+
+
+            VisionPLUS Services Data:
+
+            * AZXBQO-USER-AMT-1
+
+            * AZXBQO-USER-AMT-2
+
+            * AZXBQO-USER-AMT-3
+
+            * AZXBQO-USER-AMT-4
+
+            * AZXBQO-USER-AMT-5'
           items:
             $ref: '#/components/schemas/ItemResponseNullableBigDecimal'
         userDates:
@@ -10007,20 +11115,15 @@ components:
 
             VisionPLUS Services Data:
 
+            * AZXBQO-USER-DATE-1
 
-            AZXBQO-USER-DATE-1
+            * AZXBQO-USER-DATE-2
 
+            * AZXBQO-USER-DATE-3
 
-            AZXBQO-USER-DATE-2
+            * AZXBQO-USER-DATE-4
 
-
-            AZXBQO-USER-DATE-3
-
-
-            AZXBQO-USER-DATE-4
-
-
-            AZXBQO-USER-DATE-5)'
+            * AZXBQO-USER-DATE-5)'
           items:
             $ref: '#/components/schemas/ItemResponseNullableLocalDate'
         userCodes:
@@ -10036,35 +11139,25 @@ components:
 
             VisionPLUS Services Data:
 
+            * AZXBQO-USER-CDE-1
 
-            AZXBQO-USER-CDE-1
+            * AZXBQO-USER-CDE-2
 
+            * AZXBQO-USER-CDE-3
 
-            AZXBQO-USER-CDE-2
+            * AZXBQO-USER-CDE-4
 
+            * AZXBQO-USER-CDE-5
 
-            AZXBQO-USER-CDE-3
+            * AZXBQO-USER-CDE-6
 
+            * AZXBQO-USER-CDE-7
 
-            AZXBQO-USER-CDE-4
+            * AZXBQO-USER-CDE-8
 
+            * AZXBQO-USER-CDE-9
 
-            AZXBQO-USER-CDE-5
-
-
-            AZXBQO-USER-CDE-6
-
-
-            AZXBQO-USER-CDE-7
-
-
-            AZXBQO-USER-CDE-8
-
-
-            AZXBQO-USER-CDE-9
-
-
-            AZXBQO-USER-CDE-10'
+            * AZXBQO-USER-CDE-10'
           items:
             $ref: '#/components/schemas/ItemResponseNullableString'
     ItemResponseNullableBigDecimal:
@@ -10074,9 +11167,26 @@ components:
           type: string
         value:
           type: string
-      description: "Items max length: 17\n\nList size: 5\n\nFields are for future\
-        \ reference.\n\nVisionPLUS Services Data: \n\nAZXBQO-USER-AMT-1\n\nAZXBQO-USER-AMT-2\n\
-        \nAZXBQO-USER-AMT-3\n\nAZXBQO-USER-AMT-4\n\nAZXBQO-USER-AMT-5"
+      description: 'Items max length: 17
+
+
+        List size: 5
+
+
+        Fields are for future reference.
+
+
+        VisionPLUS Services Data:
+
+        * AZXBQO-USER-AMT-1
+
+        * AZXBQO-USER-AMT-2
+
+        * AZXBQO-USER-AMT-3
+
+        * AZXBQO-USER-AMT-4
+
+        * AZXBQO-USER-AMT-5'
     ItemResponseNullableLocalDate:
       type: object
       properties:
@@ -10095,20 +11205,15 @@ components:
 
         VisionPLUS Services Data:
 
+        * AZXBQO-USER-DATE-1
 
-        AZXBQO-USER-DATE-1
+        * AZXBQO-USER-DATE-2
 
+        * AZXBQO-USER-DATE-3
 
-        AZXBQO-USER-DATE-2
+        * AZXBQO-USER-DATE-4
 
-
-        AZXBQO-USER-DATE-3
-
-
-        AZXBQO-USER-DATE-4
-
-
-        AZXBQO-USER-DATE-5)'
+        * AZXBQO-USER-DATE-5)'
     ItemResponseNullableString:
       type: object
       properties:
@@ -10127,48 +11232,38 @@ components:
 
         VisionPLUS Services Data:
 
+        * AZXBQO-USER-CDE-1
 
-        AZXBQO-USER-CDE-1
+        * AZXBQO-USER-CDE-2
 
+        * AZXBQO-USER-CDE-3
 
-        AZXBQO-USER-CDE-2
+        * AZXBQO-USER-CDE-4
 
+        * AZXBQO-USER-CDE-5
 
-        AZXBQO-USER-CDE-3
+        * AZXBQO-USER-CDE-6
 
+        * AZXBQO-USER-CDE-7
 
-        AZXBQO-USER-CDE-4
+        * AZXBQO-USER-CDE-8
 
+        * AZXBQO-USER-CDE-9
 
-        AZXBQO-USER-CDE-5
-
-
-        AZXBQO-USER-CDE-6
-
-
-        AZXBQO-USER-CDE-7
-
-
-        AZXBQO-USER-CDE-8
-
-
-        AZXBQO-USER-CDE-9
-
-
-        AZXBQO-USER-CDE-10'
+        * AZXBQO-USER-CDE-10'
     OutputArea:
       type: object
       properties:
         hasMoreRecords:
           type: boolean
-          description: 'Code that indicates if more records are on file
+          description: 'Code that indicates if more records are on file.
 
 
             Values:
 
-            * false = No more records on file
+            * false = No more records on file;
 
-            * true = More records on file
+            * true = More records on file.
 
 
             VisionPLUS Service Data: AZXBQO-AT-MORE'

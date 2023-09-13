@@ -48,10 +48,6 @@ paths:
               $ref: '#/components/schemas/UpdateEmbosserRequestV3'
         required: true
       responses:
-        '401':
-          description: Unauthorized
-        '400':
-          description: Bad Request
         '422':
           description: "Unprocessable Entity\n\nVPL5SEUZ2S - SERVICE INPUT TO CARD\
             \ UPDATE SERVICE IS AN INCORRECT LENGTH \n\nVPL5SEU01E - ORGANIZATION\
@@ -88,30 +84,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateEmbosserResponseV3'
+        '404':
+          description: Not Found
       x-proxy-name: Embosser Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -228,29 +228,29 @@ paths:
           content: {}
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content: {}
+        '404':
+          description: Not Found
       x-proxy-name: Account Card Assignment
       x-group-name: Card
       x-child-product-name: Cards
@@ -258,9 +258,14 @@ paths:
     put:
       tags:
       - Card
-      summary: 'Update Travel Indicator Data. VMX Service: M.CMS.TRAVELIND.UPD, L8V1'
-      description: "Updates cardholder travel Indicator data (travel notice). \nVMX\
-        \ Service: M.CMS.TRAVELIND.UPD, L8V1"
+      summary: 'Updates cardholder travel Indicator data (travel notice).
+
+
+        VMX Service: M.CMS.TRAVELIND.UPD, L8V1'
+      description: 'Updates cardholder travel Indicator data (travel notice).
+
+
+        VMX Service: M.CMS.TRAVELIND.UPD, L8V1'
       operationId: Travel Indicator Update
       parameters:
       - name: apikey
@@ -283,63 +288,77 @@ paths:
               $ref: '#/components/schemas/TravelUpdateRequest'
         required: true
       responses:
-        '422':
-          description: 'VPL5STV02E - ORG NOT FOUND
-
-            VPL5STV04S - CARD NUMBER NOT FOUND
-
-            VPL5STV06E - FOREIGN USE IND - NON VALID VALUES OTHER THAN ("0","1" &
-            SPACES)
-
-            VPL5STVZ4S - ORG LOGO NOT FOUND
-
-            VPL5STVZ5S - REQUESTED ORGANIZATION NOT FOUND
-
-            VPL5STV14S - ORG REC NOT FOUND
-
-            VPL5STV15I - INCOMING ORG NOT FOUND AND ALSO NOT MATCHING WITH DUAL ORG
-
-            VPL5STV16S - ORG RECORD NOT FOUND OR ORG RECORD STATUS IS PENDING
-
-            VPL5STV18S - CARD NUMBER NOT FOUND OR ADD PENDING OR PURGED
-
-            VPL5STV19S - LOGO RECORD NOT FOUND OR ADD PENDING
-
-            VPL5STV20S - ALPHA COUNTRY NOT FOUND
-
-            VPL5STV08E - INVALID AMED TRAVEL START/END DATE FOR 1ST OCCURANCE
-
-            VPL5STV09E - INVALID AMED TRAVEL START/END DATE FOR 2ND OCCURANCE
-
-            VPL5STV10E - INVALID AMED TRAVEL START/END DATE FOR 3RD OCCURANCE
-
-            VPL5STV11E - INVALID AMED TRAVEL START/END DATE FOR 4TH OCCURANCE
-
-            VPL5STV12E - INVALID AMED TRAVEL START/END DATE FOR 5TH OCCURANCE
-
-            VPL5STV07E - VALID TRAVEL IND VALUES ARE 0,1,OR 2'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '422':
+          description: 'VPL5STV02E - ORG NOT FOUND
+
+
+            VPL5STV04S - CARD NUMBER NOT FOUND
+
+
+            VPL5STV06E - FOREIGN USE IND - NON VALID VALUES OTHER THAN ("0","1" &
+            SPACES)
+
+
+            VPL5STVZ4S - ORG LOGO NOT FOUND
+
+
+            VPL5STVZ5S - REQUESTED ORGANIZATION NOT FOUND
+
+
+            VPL5STV14S - ORG REC NOT FOUND
+
+
+            VPL5STV15I - INCOMING ORG NOT FOUND AND ALSO NOT MATCHING WITH DUAL ORG
+
+
+            VPL5STV16S - ORG RECORD NOT FOUND OR ORG RECORD STATUS IS PENDING
+
+
+            VPL5STV18S - CARD NUMBER NOT FOUND OR ADD PENDING OR PURGED
+
+
+            VPL5STV19S - LOGO RECORD NOT FOUND OR ADD PENDING
+
+
+            VPL5STV20S - ALPHA COUNTRY NOT FOUND
+
+
+            VPL5STV08E - INVALID AMED TRAVEL START/END DATE FOR 1ST OCCURANCE
+
+
+            VPL5STV09E - INVALID AMED TRAVEL START/END DATE FOR 2ND OCCURANCE
+
+
+            VPL5STV10E - INVALID AMED TRAVEL START/END DATE FOR 3RD OCCURANCE
+
+
+            VPL5STV11E - INVALID AMED TRAVEL START/END DATE FOR 4TH OCCURANCE
+
+
+            VPL5STV12E - INVALID AMED TRAVEL START/END DATE FOR 5TH OCCURANCE
+
+
+            VPL5STV07E - VALID TRAVEL IND VALUES ARE 0,1,OR 2'
           content:
             application/json:
               schema:
@@ -350,6 +369,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TravelUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Travel Indicator Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -385,26 +406,14 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: "VPL1S0100S-SERVICE INPUT FOR SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5S0004E-CARD NUMBER IS NOT NUMERIC \n\nVPL5S1005E-NO ORGANIZATION\
@@ -443,12 +452,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Card Transfer Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -482,6 +503,26 @@ paths:
               $ref: '#/components/schemas/TemporaryCreditLimitUpdRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '422':
           description: "VPL5SAAM4E - CREDIT LIMIT CAN NOT EXCEED RELATIONSHIP CREDIT\
             \ LIMIT \n\nVPL5SCL05E - CREDIT LIMIT - DOES NOT CONFORM TO CURRENCY NOD\
@@ -517,34 +558,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '400':
-          description: Bad Request
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemporaryCreditLimitUpdResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Temporary Credit Limit Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -582,8 +603,6 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '422':
           description: "VPL5SCSZ2S - SERVICE INPUT TO ACCOUNT INQ SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL5SCSZ6S - REQUESTED ORGANIZATION NOT FOUND \n\nVPL5SCS02S\
@@ -610,24 +629,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardStatusResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Card Status Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -664,32 +685,32 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpendLimitsL8V3Response'
+        '404':
+          description: Not Found
       x-proxy-name: Spending Limits Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -723,6 +744,14 @@ paths:
               $ref: '#/components/schemas/PinBlockUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '422':
           description: 'VPL5SRP03E - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
@@ -767,34 +796,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '400':
           description: Bad Request
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinBlockUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: PIN Block/Unblock
       x-group-name: PIN
       x-child-product-name: Cards
@@ -830,8 +851,6 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '422':
           description: 'VPL5SCP06S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 998
@@ -933,24 +952,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinChangeResponse'
+        '404':
+          description: Not Found
       x-proxy-name: PIN Change
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1066,32 +1087,32 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinReassignmentResponse'
+        '404':
+          description: Not Found
       x-proxy-name: PIN Reassign
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1099,11 +1120,16 @@ paths:
     put:
       tags:
       - Embosser
-      summary: 'Card Action Update version L8V2. VMX Service: M.CMS.EMB.CARDACTION.UPD,
-        L8V2'
-      description: "Enables a user to update the card action field on the embosser\
-        \ record with all possible user available actions. \nVMX Service: M.CMS.EMB.CARDACTION.UPD,\
-        \ L8V2"
+      summary: 'Enables a user to update the card action field on the embosser record
+        with all possible user available actions.
+
+
+        VMX Service: M.CMS.EMB.CARDACTION.UPD, L8V2'
+      description: 'Enables a user to update the card action field on the embosser
+        record with all possible user available actions.
+
+
+        VMX Service: M.CMS.EMB.CARDACTION.UPD, L8V2'
       operationId: Card Action Update
       parameters:
       - name: apikey
@@ -1128,32 +1154,277 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '422':
+          description: 'VPL5SPR04E - INVALID INPUT CARD ACTION - VALID VALUES ARE
+            0 TO 7
+
+
+            VPL5SCP29S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
+
+
+            VPL5SPR01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
+            001-998
+
+
+            VPL5SPR01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
+
+
+            VPL5SPR02E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
+
+
+            VPL5SPR02S - ORG NUMBER NOT FOUND
+
+
+            VPL5SPR03E - CARD SEQUENCE IS NOT NUMERIC
+
+
+            VPL5SPR03S - REQUEST FOR LOCAL ORG, BUT PASSED FOREIGN ORG
+
+
+            VPL5SPR04S - CARD NUMBER NOT FOUND
+
+
+            VPL5SPR05E - NUMBER OF CARDS REQUESTED IS NOT NUMERIC
+
+
+            VPL5SPR05S - ACCOUNT NUMBER NOT FOUND
+
+
+            VPL5SPR06E - NUMBER OF CARDS RETURNED IS NOT NUMERIC
+
+
+            VPL5SPR06S - LOGO NUMBER NOT FOUND
+
+
+            VPL5SPR07E - VALID BANCOLOMBIA REASON CODES ARE A/B/C/D/E/F/G/K & SPACESVPL5SPR07S
+            - ACTION OF ''2'' IS NOT ALLOWED FOR SMART CARD
+
+
+            VPL5SPR08S - ACTION OF ''1'' ALLOWED ONLY IF THE DATE LAST PLASTIC IS
+            ZERO
+
+
+            VPL5SPR09S - INVALID ACTION,VALID ACTION IS ''0'' OR ''1'' WHEN DATE LAST
+            PLASTIC IS ZERO
+
+
+            VPL5SPR10S - # CARD REQ MUST BE GREATER THAN ZERO FOR ACTION 1 OR 2 OR
+            3 OR 6
+
+
+            VPL5SPR11S - NBR OF CARD RETURNED MUST BE GREATER THAN ZERO WHEN ACTION
+            OF ''4''
+
+
+            VPL5SPR12S - NBR OF CRDS RETURNED CAN NOT BE GREATER THAN THE NBR OUTSTANDING
+
+
+            VPL5SPR13S - # CARD REQ CAN NOT BE GREATER THAN # OUTSTANDNG FOR ACTION
+            3 OR 6
+
+
+            VPL5SPR14S - CARD CANNOT BE REISSUED - SEQ OUT OF RANGE FOR SMART CARD
+
+
+            VPL5SPR15S - CANNOT REISSUE EMBOSSER WITH STATUS OF ''S'' FOR SMART CARD
+
+
+            VPL5SPR16S - SMART CARD EMBOSSING RECORD NOT FOUND
+
+
+            VPL5SPR17S - CARD REQUESTED MUST BE ZERO WHEN ACTION 0 OR 4 OR 5
+
+
+            VPL5SPR18S - ONLY ACTION OF ''4'' ALLOWED NBR CARD RETURNED GREATER THAN
+            ZERO
+
+
+            VPL5SPR19S - INVALID NUMBER REQUEST FOR SMART CARD, VALID VALUE IS''1''
+
+
+            VPL5SPR20S - SMART CARD PROGRAM NOT FOUND
+
+
+            VPL5SPR21S - INVALID SEQ NBR FOR CARD SCHEME ''3'' - VALID VALUE IS ''0''
+            OR ''1''
+
+
+            VPL5SPR22S - SEQ NBR MUST BE GREATER THAN ZERO FOR CARD SCHEME 0 OR 1
+            OR 2
+
+
+            VPL5SPR23S - SDP REQUEST IS IN PROCESS, CARD ACTION CAN NOT BE UPDATED
+
+
+            VPL5SPR24E - INVALID PROCESS TYPE, VALID VALUES ARE 0,1,SPACES
+
+
+            VPL5SPR25E - SYSTEM RECORD NOT FOUND
+
+
+            VPL5SPR26E - SDP REQUEST NOT SUPPORTED BY LOGO
+
+
+            VPL5SPR27E - SDP REQUEST NOT SUPPORTED BY SYSTEM
+
+
+            VPL5SPR28S - SDP REQUEST CAN BE 0 OR 1 ONLY IF CARD ACTION IS 1 OR 3 OR
+            6
+
+
+            VPL5SPR29S - RANDOM PIN GEN CAN BE ACTIVE ONLY IF CARD ACTION IS 5
+
+
+            VPL5SPR30S - RANDOM PIN GEN SHOULD BE INACTIVE WHEN OFFLINE PIN IS 1
+
+
+            VPL5SPRZ1S - SERVICE COULD NOT OBTAIN STORAGE AREA
+
+
+            VPL5SPRZ2S - SERVICE INPUT TO CARD ACTION UPD SERVICE IS AN INCORRECT
+            LENGTHVPL5SPRZ3S - USER HAS NOT SIGNED ON - PLEASE SIGN ON
+
+
+            VPL5SPRZ4S - FILE-TABLE USED BY THIS SERVICE IS NOT FOUND
+
+
+            VPL5SPRZ5S - INVALID ORG
+
+
+            VPL5SPRZ6S - APPLICATION IN NO-PROCESSING STATUS, RE-TRY IN A FEW MINUTES
+
+
+            VPL5SPRZ7S - ORGANIZATION FILE UNAVAILABLE
+
+
+            VPL5SPRZ8S - CARD FILE UNAVAILABLE
+
+
+            VPL5SPRZ9S - ACCOUNT FILE UNAVAILABLE
+
+
+            VPL5SPRZAS - LOGO FILE UNAVAILABLE
+
+
+            VPL5SPR32E - INVALID INSTANT PROCESS TYPE, VALID VALUES ARE 0 AND 1
+
+
+            VPL5SPR49E - AMEC RECORD NOT FOUND
+
+
+            VPL5SPR50E - NBR REQUESTED NOT GREATER THAN 0 AND ACTION IS NOT 4 OR 5
+
+
+            VPL5SPR51E - USER DATA 2 POPULATION RETURN CODE 3
+
+
+            VPL5SPR52E - USER DATA 2 POPULATION RETURN CODE 4
+
+
+            VPL5SPR53E - USER DATA 2 POPULATION RETURN CODE 5
+
+
+            VPL5SPR54E - USER DATA 1 POPULATION RETURN CODE 6
+
+
+            VPL5SPR55E - USER DATA 1 POPULATION RETURN CODE 7
+
+
+            VPL5SPR56E - USER DATA 1 POPULATION RETURN CODE 8
+
+
+            VPL5SPR57E - ETK TYPE AND ZONE ARE SPACES
+
+
+            VPL5SPR58E - SCKMLK RESPONSE CODE VALUE 2
+
+
+            VPL5SPR59E - SCKMLK RESPONSE CODE VALUE 3
+
+
+            VPL5SPR60E - SCKMLK RESPONSE CODE VALUES ARE 4 OR 86
+
+
+            VPL5SPR61E - SCKMLK RESPONSE CODE OTHER VALUES
+
+
+            VPL5SPR66E - AMEC ARXVCP1 SERVICE GETMAIN INPUT ERROR
+
+
+            VPL5SPR67E - AMEC ARXVCP1 SERVICE GETMAIN OUTPUT ERRORVPL5S2001E - HSM
+            CALL FAILS IF LB ETK TYPE/ZONE IS SPACES
+
+
+            VPL5S2002E - SCKMLK RESPONSE CODE VALUES IS 86
+
+
+            VPL5S2003E - SCKMLK RESPONSE CODE VALUES IS OTHER THAN 86
+
+
+            VPL5S2004E - ENCRYPT ROUTINE FAILS FOR ENC ORG EQUAL TO 999
+
+
+            VPL5S2005E - ENCRYPT ROUTINE FAILS FOR ENC LEN EQUAL TO 99
+
+
+            VPL5S2006E - ENCRYPT ROUTINE FAILS FOR ENC TXT EQUAL TO ALL 9
+
+
+            VPL5S2007E - AMCY ARXVCP1 SERVICE GETMAIN INPUT ERROR
+
+
+            VPL5S2008E - AMCY ARXVCP1 SERVICE GETMAIN OUTPUT ERROR
+
+
+            VPL5S2000E - INVALID ISSUE TYPE - VALID VALUES ARE SPACE,1,I OR R
+
+
+            VPL5SPR46E - ENCRYPT ROUTINE FAILS FOR ENC ORG EQUAL TO 999
+
+
+            VPL5SPR47E - ENCRYPT ROUTINE FAILS FOR ENC LEN EQUAL TO 99
+
+
+            VPL5SPR48E - ENCRYPT ROUTINE FAILS FOR ENC TXT EQUAL TO ALL 9
+
+
+            VPL5SIEZ1S - SERVICE COULD NOT OBTAIN STORAGE AREA
+
+
+            VPL5SIEZ2S - SERVICE INPUT TO PLAN VIEWER SERVICE IS INCORRECT LENGTH
+
+
+            VPL5SPR28S - SDP REQUEST CAN BE 0 OR 1 ONLY IF CARD ACT IS 1 OR 3 OR 6'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserCardActionL8V2Response'
+        '404':
+          description: Not Found
       x-proxy-name: Card Action Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1189,8 +1460,6 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
@@ -1225,24 +1494,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Embosser Block Code Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1250,9 +1521,14 @@ paths:
     put:
       tags:
       - Card
-      summary: 'Update Credit Limit. VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1'
-      description: "Updates the credit limit amount of an Account. \nVMX Service:\
-        \ M.CMS.CREDITLIMIT.UPD, R8V1"
+      summary: 'Updates the credit limit amount of an Account.
+
+
+        VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1'
+      description: 'Updates the credit limit amount of an Account.
+
+
+        VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1'
       operationId: Credit Limit Update
       parameters:
       - name: apikey
@@ -1277,90 +1553,115 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
         '422':
           description: 'VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
 
+
             VPL5SCL04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
+
 
             VPL5SCL05E - CREDIT LIMIT - DOES NOT CONFORM TO CURRENCY NOD
 
+
             VPL5SCL06E - CREDIT LIMIT MUST BE NUMERIC
+
 
             VPL5SCL07E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0
             OR 1
 
+
             VPL5SCL08I - CREDIT LIMIT UNCHANGED, UPDATE BYPASSED
+
 
             VPL5SCL10S - ORGANIZATION NOT FOUND ON FILE
 
+
             VPL5SCL11S - FOREIGN ORGANIZATION NOT FOUND ON FILE
+
 
             VPL5SCL12S - ACCOUNT NOT FOUND ON FILE
 
+
             VPL5SCL13S - RELATIONSHIP ACCOUNT NOT FOUND ON FILE
+
 
             VPL5SCL14S - LOGO NOT FOUND ON FILE
 
+
             VPL5SCL15E - CREDIT LIMIT INVALID FOR PREPAID/DEBIT ACCOUNT TYPES
+
 
             VPL5SCL16E - CREDIT LIMIT INVALID FOR RELATIONSHIP SUB-ACCOUNT
 
+
             VPL5SCL17E - CREDIT LIMIT CAN NOT EXCEED LOGO CREDIT LIMIT
+
 
             VPL5SCL19E - CREDIT LIMIT EXCEEDS SECURED AMOUNT
 
+
             VPL5SCL20E - CREDIT LIMIT CAN NOT EXCEED COMPANY NODE CREDIT AVAILABLE
+
 
             VPL5SCL21E - CREDIT LIMIT CAN NOT EXCEED PARENT NODE CREDIT AVAILABLE
 
+
             VPL5SCL23I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
+
 
             VPL5SCL24E - CREDIT LIMIT SHOULD BE ZERO FOR FOREIGN ACCOUNT
 
+
             VPL5SCL25E - CREDIT LIMIT CANNOT BE LESS THAN ACCT FLOOR LIMIT
+
 
             VPL5SCL40E - DELQ AMT EXCEEDED FOR CREDIT LIMIT INCREASE
 
+
             VPL5SCL41E - DELQ LVL EXCEEDED FOR CREDIT LIMIT INCREASE
+
 
             VPL5SCL42E - ACCT BLOCKED FOR CREDIT LIMIT INCREASE
 
+
             VPL5SCLZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
 
+
             VPL5SCLZ5S - REQUESTED ORGANIZATION NOT FOUND
+
 
             '
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreditLimitUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Credit Limit Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -1420,32 +1721,32 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardActivationResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Card Activation
       x-group-name: Card
       x-child-product-name: Cards
@@ -1481,26 +1782,14 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SCIZ1S - SERVICE INPUT TO FS SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5SCIZ3S-FILE-TABLE USED BY THIS SERVICE IS MISSING \n\nVPL5SCI01E\
@@ -1520,12 +1809,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponseV2'
+        '404':
+          description: Not Found
       x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1559,12 +1860,21 @@ paths:
               $ref: '#/components/schemas/EmbosserCardsDetailsRequestV1'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '422':
-          description: 'Unprocessable Entity
-
-
-            VPL5SEQ01E -  ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
-            001-998
+          description: 'VPL5SEQ01E -  ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
+            VALUES ARE 001-998
 
 
             VPL5SEQ02S -  SERVICE INPUT IS OF INCORRECT LENGTH
@@ -1610,34 +1920,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '400':
-          description: Bad Request
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OutputArea'
+        '404':
+          description: Not Found
       x-proxy-name: Embosser List Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1673,8 +1971,6 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '422':
           description: "VPL5S0005E-ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES \n\
             \nVPL5S0006S-REQUESTED ORG NUMBER IS NOT FOUND \n\nVPL5S0008E-ORGANIZATION\
@@ -1701,24 +1997,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Statement Inquiry
       x-group-name: Statement
       x-child-product-name: Cards
@@ -1768,32 +2066,32 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementDateInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Statement Details By Date Inquiry
       x-group-name: Statement
       x-child-product-name: Cards
@@ -1829,26 +2127,14 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SVP03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
@@ -1934,12 +2220,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinValidateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: PIN Validate
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1997,32 +2295,32 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SecurityCodeDetailsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Security Values Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -2060,8 +2358,6 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '422':
           description: 'VPZ5SPT03S - ORG IS NOT NUMERIC OR MUST BE BETWEEN 000 AND
             999
@@ -2098,24 +2394,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidPintAttemptsInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Invalid Attempts Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -2151,8 +2449,6 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '422':
           description: 'VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
@@ -2244,24 +2540,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DynamicValuesResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Dynamic Values Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -2269,8 +2567,11 @@ paths:
     get:
       tags:
       - Card
-      summary: 'Find Mass Card Reissue information. VMX Service: M.CMS.MASS.CARD.ISSUE.INQ,
-        L8V3'
+      summary: 'The Mass Card Issue Inquiry service retrieves records from the Mass
+        Card Reissue.
+
+
+        VMX Service: M.CMS.MASS.CARD.ISSUE.INQ, L8V3'
       description: 'The Mass Card Issue Inquiry service retrieves records from the
         Mass Card Reissue.
 
@@ -2280,7 +2581,13 @@ paths:
       parameters:
       - name: organizationNumber
         in: query
-        description: Organization Number
+        description: '* Max Length: 3
+
+
+          Organization Number.
+
+
+          VisionPLUS Service Data: AZXQCI-ORG'
         required: true
         schema:
           maximum: 999
@@ -2289,15 +2596,27 @@ paths:
         example: 950
       - name: logo
         in: query
-        description: logo
+        description: '* Max Length: 3
+
+
+          Logo.
+
+
+          VisionPLUS Service Data:  AZXQCI-LOGO'
         required: true
         schema:
           type: integer
           format: int32
-        example: 50
+        example: 501
       - name: serviceType
         in: query
-        description: serviceType
+        description: '* Max Length: 2
+
+
+          Card Type.
+
+
+          VisionPLUS Service Data: AZXQCI-CARD-TYPE'
         required: true
         schema:
           type: integer
@@ -2317,34 +2636,67 @@ paths:
           type: string
         example: 00970
       responses:
+        '422':
+          description: 'VPL5SQC01E - INVALID ORGANIZATION NUMBER
+
+
+            VPL5SQC04E - INVALID LOGO NUMBER
+
+
+            VPL5SQC01S - ORG RECORD NOT FOUND
+
+
+            VPL5SQC02S - LOGO RECORD NOT FOUND
+
+
+            VPL5SQC03S - REQUESTED RECORD IS PENDING ADD
+
+
+            VPL5SQC04S - REQUESTED RECORD NOT ON FILE
+
+
+            VPL5SQCZ1S - SERVICE INPUT TO INQ MASS CARD SERVICE IS INCORRECT
+
+
+            VPL5SQC02E - NON-NUMERIC INPUT FIELD ORG
+
+
+            VPL5SQC03E - REQUESTED RECORD IS PENDING ADD
+
+
+            VPL5SQC05E - NON-NUMERIC INPUT FIELD CARD_TYPE'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V3'
+        '404':
+          description: Not Found
       x-proxy-name: Mass Card Reissue Inquiry
       x-group-name: Card
       x-child-product-name: Cards
@@ -2381,16 +2733,24 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '422':
           description: "VPL5SMC01E - INVALID ORGANIZATION NUMBER \n\nVPL5SMC04E -\
             \ INVALID LOGO NUMBER \n\nVPL5SMC06E - FUNCTION TYPE VALID VALUES ARE\
@@ -2438,22 +2798,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardIssueAddResponseL8V3'
+        '404':
+          description: Not Found
       x-proxy-name: Mass Card Issue Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -2461,10 +2813,14 @@ paths:
     post:
       tags:
       - Embosser
-      summary: 'Same day plastic add/update. VMX Service: M.CMS.SAMEDAYPLASTIC.UPD,
-        R8V1'
-      description: "Allows a user to add or update same day plastic requests. \nVMX\
-        \ Service: M.CMS.SAMEDAYPLASTIC.UPD, R8V1"
+      summary: 'Allows a user to add or update same day plastic requests.
+
+
+        VMX Service: M.CMS.SAMEDAYPLASTIC.UPD, R8V1'
+      description: 'Allows a user to add or update same day plastic requests.
+
+
+        VMX Service: M.CMS.SAMEDAYPLASTIC.UPD, R8V1'
       operationId: Same Day Plastic Add/Update
       parameters:
       - name: apikey
@@ -2489,66 +2845,80 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '422':
           description: 'VPL5SSP03S - CMS ORG IS INVALID
 
+
             VPL5SSP04S - CMS LOGO IS INVALID
+
 
             VPL5SSP05S - INVALID CARD NUMBER
 
+
             VPL5SSP06E - CARD SEQ IS INVALID
+
 
             VPL5SSP07E - VALID CARD ACTION FOR SDP ARE 1, 3 AND 6
 
+
             VPL5SSP08E - VALID SDP PROCESS TYPE ARE 0 , 1 OR SPACES
+
 
             VPL5SSP09E - CARD ACTION SHOULD BE NUMERIC
 
+
             VPL5SSP15E - SDP REQUEST IS IN PENDING STATUS OR OVERRUN
+
 
             VPL5SSP16E - SDP CROSS REFERENCE RECORD NOT FOUND
 
+
             VPL5SSP10S - REQUESTED ORG LOGO NOT FOUND
+
 
             VPL5SSP11S - REQUESTED LOGO NOT FOUND IN CMS
 
+
             VPL5SSP14S - SDP NOT ACTIVE AT LOGO LEVEL
+
 
             VPL5SSP30S - ORGANIZATION IS ADD PENDING
 
+
             VPL5SSP34S - ORGANIZATION NUMBER NOT FOUND
+
 
             VPL5SSP36S - REQUESTED ORG NUMBER IS NOT FOUND'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SameDayEmbossingAddResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Same Day Plastic Add/Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2584,32 +2954,32 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddEmbosserL8VFResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Embosser Add
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2617,10 +2987,20 @@ paths:
     post:
       tags:
       - Embosser
-      summary: 'Card or PAN Token Inquiry. VMX Service: M.CMS.CARD.PAN.INQ, L8V2.This
-        API can be used only by PCI Compliant financial institutions and issuers.'
-      description: "Inquiry Card number or PAN Token. \nVMX Service: M.CMS.CARD.PAN.INQ,\
-        \ L8V2"
+      summary: 'Inquiry Card number or PAN Token.
+
+
+        This API can be used only by PCI Compliant financial institutions and issuers.
+
+
+        VMX Service: M.CMS.CARD.PAN.INQ, L8V2.'
+      description: 'Inquiry Card number or PAN Token.
+
+
+        This API can be used only by PCI Compliant financial institutions and issuers.
+
+
+        VMX Service: M.CMS.CARD.PAN.INQ, L8V2.'
       operationId: Card Or PAN Token Inquiry
       parameters:
       - name: apikey
@@ -2646,30 +3026,43 @@ paths:
         '422':
           description: 'VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND
 
+
             VPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
             000-998
 
+
             VPL5SCI03E - INPUT CARD NUMBER IS NOT NUMERIC
+
 
             VPL5SCI04E - CARD SEQUENCE NUMBER IS NOT NUMERIC
 
+
             VPL5SCI05S - REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND
+
 
             VPL5SCI07S - ORG RECORD NOT FOUND
 
+
             VPL5SCI09S - EMBOSSER RECORD NOT FOUND
+
 
             VPL5SEA04E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
 
+
             VPL5SEA05E - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+
 
             VPL5SEA16S - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
 
+
             VPL5SIE31S - ENC-FAILURE INVALID ORG
+
 
             VPL5SIE32S - ENC-FAILURE INV LENGTH
 
+
             VPL5SIE33S - ENC-FAILURE CALL FAILURE
+
 
             '
           content:
@@ -2678,32 +3071,32 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardPanInquiryL8V2Response'
+        '404':
+          description: Not Found
       x-proxy-name: Card Or PAN Token Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2749,8 +3142,6 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '422':
           description: 'VPL5SAEZ8S - REQUESTED ORG NOT FOUND
 
@@ -2786,24 +3177,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsL8V3Response'
+        '404':
+          description: Not Found
       x-proxy-name: Account To Card Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2840,18 +3233,12 @@ paths:
       responses:
         '401':
           description: Unauthorized
-        '400':
-          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
         '422':
           description: "VPL5SEI03E - ORGANIZATION IS NOT NUMERIC OR VALUE MUST BE\
             \ BETWEEN 000 AND 999 \n\nVPL5SEI04E - CARD NUMBER IS NOT NUMERIC OR EQUAL\
@@ -2864,20 +3251,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardsDetailsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Card and Account Details Inquiry
       x-group-name: Card
       x-child-product-name: Cards
@@ -2955,6 +3348,14 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '422':
           description: 'VPL5S0015E - REQUESTED FUNCTION TYPE IS NOT VALID
 
@@ -2977,34 +3378,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '400':
           description: Bad Request
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/NavigationalServiceResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Embosser Navigational Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -3873,7 +4266,7 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Organization Number.
@@ -3886,18 +4279,15 @@ components:
           maxLength: 19
           minLength: 12
           type: string
-          description: 'Length: 19
-
-
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
+          description: 'Unique identifier or token associated with the card number
+            or payment instrument (FirstVision PAN Token).
 
 
             VisionPLUS Service Data: AZXTII-CARD'
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
-          description: 'Length: 4
+          description: '* Max Length: 4
 
 
             Card Sequence.
@@ -3908,26 +4298,28 @@ components:
           example: 1
         foreignUseIndicator:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Foreign Use Indicator.
 
 
-            The values are:
+            Values:
 
+            * Low values = Local account;
 
-            Zero, space, low values = Local account
+            * Spaces = Local account;
 
+            * 0 = Local account;
 
-            1 = Foreign account
+            * 1 = Foreign account.
 
 
             VisionPLUS Service Data: AZXTII-FOREIGN-USE'
           example: '1'
         travelIndicator:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Travel indicator.
@@ -3938,7 +4330,7 @@ components:
           example: 1
         travelIndicatorOccurrence:
           type: integer
-          description: 'Length: 2
+          description: '* Max Length: 2
 
 
             Travel indicator occurrence.
@@ -3957,7 +4349,7 @@ components:
       properties:
         country:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Country of travel.
@@ -3967,24 +4359,26 @@ components:
           example: ARG
         startDate:
           type: string
-          description: 'Start date of travel.
+          description: 'Start date of travel (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXTII-TRAVEL-STRT-DT'
           format: date
+          example: 2023-03-21
         endDate:
           type: string
-          description: 'End date of travel.
+          description: 'End date of travel (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXTII-TRAVEL-END-DT'
           format: date
+          example: 2023-07-13
     TravelUpdateResponse:
       type: object
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             Organization Number.
@@ -3992,9 +4386,10 @@ components:
 
             VisionPLUS Service Data: AZXTIO-ORG'
           format: int32
+          example: 999
         cardNumber:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
 
 
             Unique identifier or token associated with the card number or payment
@@ -5358,76 +5753,84 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization.
+
 
             VisionPLUS Service Data: AZXPRI-ORG'
           format: int32
           example: 807
-          enum:
-          - null
         cardNumber:
           maxLength: 19
           minLength: 12
           type: string
-          description: 'Length: 19
+          description: 'Unique identifier or token associated with the card number
+            or payment instrument (FirstVision PAN Token).
 
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: AZXPRI-CARD-NBR'
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
-          description: 'Length: 4
+          description: '* Max Length: 4
+
 
             Card sequence number.
 
+
             VisionPLUS Service Data: AZXPRI-CARD-SEQ'
           format: int32
-          example: 1
+          example: 1234
         cardAction:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Card action.
+
 
             VisionPLUS Service Data: AZXPRI-ACTION'
           format: int32
           example: 6
-          enum:
-          - null
         numberCardsRequested:
           type: integer
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Number of cards requested.
+
 
             VisionPLUS Service Data: AZXPRI-NBR-REQ-CARDS'
           format: int32
           example: 1
         numberCardsReturned:
           type: integer
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Number of cards returned.
+
 
             VisionPLUS Service Data: AZXPRI-NBR-RET-CARDS'
           format: int32
           example: 0
         randomPin:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Code that indicates whether to generate a random PIN for the existing
             card.
 
-            The values are:
 
-            0 = Do not generate new random PIN (Default)
+            Values:
 
-            1 = Generate new random PIN
+            * 0 = Do not generate new random PIN (Default);
+
+            * 1 = Generate new random PIN.
+
 
             VisionPLUS Service Data: AZXPRI-RANDOM-PIN-GEN'
           format: int32
@@ -5437,11 +5840,11 @@ components:
         processingType:
           pattern: ^[0-1]{0,1}$
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Length: 1
 
             Same day processing type.
+
 
             VisionPLUS Service Data: ARXPRI-SDP-PROCESS-TYPE'
           example: '0'
@@ -5449,11 +5852,11 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Length: 1
+          description: 'Reason code associated with the card issue action codes.
 
-            Reason code associated with the card issue action codes.
 
             The values are user-defined.
+
 
             VisionPLUS Service Data: AZXPRI-CARD-ACTION-REASON'
           example: N
@@ -5461,15 +5864,15 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Length: 1
+          description: 'Code that indicates whether instant issue is required.
 
-            Code that indicates whether instant issue is required.
 
-            The values are:
+            Values:
 
-            0 = Inactive
+            * 0 = Inactive;
 
-            1 = Active
+            * 1 = Active.
+
 
             VisionPLUS Service Data: AZXPRI-INSTANT-PROCESS-TYPE'
           example: '1'
@@ -5479,25 +5882,29 @@ components:
       properties:
         userDate:
           type: string
-          description: 'Length: 8
+          description: 'User date filler (in ISO 8601).
 
-            User date filler.
 
             VisionPLUS Service Data: ARXPRI-USER-DATE'
           format: date
+          example: 2023-04-19
         userAmount:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             User amount filler.
+
 
             VisionPLUS Service Data: ARXPRI-USER-AMOUNT'
           example: 0
         userCode:
           type: integer
-          description: 'Length: 20
+          description: '* Max Length: 20
+
 
             User code filler.
+
 
             VisionPLUS Service Data: ARXPRI-USER-CODE'
           format: int32
@@ -5507,130 +5914,174 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Organization number.
 
+
             VisionPLUS Service Data: AZXPRO-ORG'
           format: int32
+          example: 999
         cardNumber:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
+
 
             Unique identifier or token associated with the card number or payment
             instrument (FirstVision PAN Token).
+
 
             VisionPLUS Service Data: AZXPRO-CARD-NBR'
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
-          description: 'Length: 4
+          description: 'Max Length: 4
+
 
             Card sequence number.
 
+
             VisionPLUS Service Data: AZXPRO-CARD-SEQ'
           format: int32
+          example: 1234
         cardAction:
           type: integer
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Card action.
 
+
             VisionPLUS Service Data: AZXPRO-ACTION'
           format: int32
+          example: 6
         numberCardsRequested:
           type: integer
-          description: 'Length: 2
+          description: 'Max Length: 2
+
 
             Number of cards requested.
 
+
             VisionPLUS Service Data: AZXPRO-NBR-REQ-CARDS'
           format: int32
+          example: 14
         numberCardsReturned:
           type: integer
-          description: 'Length: 2
+          description: 'Max Length: 2
+
 
             Number of cards returned.
 
+
             VisionPLUS Service Data: AZXPRO-NBR-RET-CARDS'
           format: int32
+          example: 11
         randomPin:
           type: integer
-          description: 'Length: 1
+          description: 'Max Length: 1
+
 
             Flag that indicates whether to generate a new random PIN for the existing
             card.
 
+
             VisionPLUS Service Data: AZXPRO-RANDOM-PIN-GEN'
           format: int32
+          example: 0
         logo:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Logo.
 
+
             VisionPLUS Service Data: AZXPRO-LOGO'
           format: int32
+          example: 501
         customerNumber:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
+
 
             Customer number.
 
+
             VisionPLUS Service Data: AZXPRO-CUST-NBR'
+          example: '4513074002573466583'
         encryptedTrack1:
           type: string
-          description: 'Length: 160
+          description: 'Max Length: 160
+
 
             Track 1 data for scheme.
 
+
             VisionPLUS Service Data: AZXPRO-TRACK1-ENC'
+          example: '0'
         encryptedTrack2:
           type: string
-          description: 'Length: 80
+          description: 'Max Length: 80
+
 
             Track 2 data for scheme that includes 40 bytes data and 40 bytes encrypted
             data.
 
+
             VisionPLUS Service Data: AZXPRO-TRACK2-ENC'
+          example: '0'
         embosserBlockData:
           type: string
-          description: 'Length: 176
+          description: 'Max Length: 176
+
 
             Embosser block data that includes 88 bytes data and 88 bytes encrypted
             data.
 
+
             VisionPLUS Service Data: AZXPRO-EMB-DATA-BLOCK'
+          example: '0'
         embosserName1:
           type: string
-          description: 'Length: 40
+          description: 'Max Length: 40
+
 
             Embosser or cardholder name.
 
+
             VisionPLUS Service Data: AZXPRO-EMBOSSER-NAME-1'
+          example: Embosser or cardholder name
         embosserName2:
           type: string
-          description: 'Length: 40
+          description: 'Max Length: 40
+
 
             Embosser or cardholder''s additional name.
 
+
             VisionPLUS Service Data: AZXPRO-EMBOSSER-NAME-2'
+          example: Embosser/cardholder additional name
         owningBranchNumber:
           type: integer
-          description: 'Length: 9
+          description: 'Max Length: 9
+
 
             Owning branch number associated with the card.
 
+
             VisionPLUS Service Data: AZXPRO-OWNING-BRANCH-NBR'
           format: int32
+          example: 123456789
         expiryDate:
           type: string
-          description: 'Length: 8
+          description: 'Card expiry date (in ISO 8601).
 
-            Card expiry date.
 
             VisionPLUS Service Data: AZXPRO-EXP-DATE'
           format: date
+          example: 2031-06-15
         userData:
           type: array
           items:
@@ -5640,27 +6091,33 @@ components:
       properties:
         userDate:
           type: string
-          description: 'Length: 7
+          description: 'User date filler (in ISO 8601).
 
-            User date filler.
 
             VisionPLUS Service Data: ARXPRI-USER-DATE'
           format: date
+          example: 2023-01-14
         userAmount:
           type: number
-          description: 'Length: 17
+          description: 'Max Length: 17
+
 
             User amount filler.
 
+
             VisionPLUS Service Data: ARXPRI-USER-AMOUNT'
+          example: 0
         userCode:
           type: integer
-          description: 'Length: 20
+          description: 'Max Length: 20
+
 
             User code filler.
 
+
             VisionPLUS Service Data: ARXPRI-USER-CODE'
           format: int32
+          example: 0
     CardDetailsForEmbosserBlockRequest:
       required:
       - blockCode
@@ -5814,7 +6271,7 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Organization Number.
@@ -5827,17 +6284,14 @@ components:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Length: 19
-
-
-            Account Number.
+          description: 'Account Number.
 
 
             VisionPLUS Service Data: ARXCLI-ACCT-NBR'
           example: '4513074002573466583'
         foreignUseIndicator:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             The FOREIGN USE indicator is provided in the input message so the
@@ -5853,7 +6307,7 @@ components:
           example: '1'
         creditLimit:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
 
 
             Credit limit of the account in whole monetary units.
@@ -5863,7 +6317,7 @@ components:
           example: 13000000
         creditLimitBeforeUpdate:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
 
 
             Current Credit Limit before update.
@@ -5879,7 +6333,7 @@ components:
           $ref: '#/components/schemas/CreditLimitUpdateResponse.CurrencyData'
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             Organization.
@@ -5887,9 +6341,10 @@ components:
 
             VisionPLUS Service Data: ARXCLO-ORG'
           format: int32
+          example: 999
         foreignOrganization:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             Foreign organization for dual currency.
@@ -5897,9 +6352,10 @@ components:
 
             VisionPLUS Service Data: ARXCLO-FOREIGN-ORG'
           format: int32
+          example: 999
         foreignUseIndicator:
           type: string
-          description: 'Length: 1
+          description: 'Max Length: 1
 
 
             The FOREIGN USE indicator is provided in the input message so the requesting
@@ -5911,9 +6367,10 @@ components:
 
 
             VisionPLUS Service Data: ARXCLO-FOREIGN-USE'
+          example: '0'
         logo:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             Logo.
@@ -5921,18 +6378,20 @@ components:
 
             VisionPLUS Service Data: ARXCLO-LOGO'
           format: int32
+          example: 501
         accountNumber:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
 
 
             Account number.
 
 
             VisionPLUS Service Data: ARXCLO-ACCT-NBR'
+          example: '7600010732545213551'
         cardNumber:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
 
 
             Unique identifier or token associated with the card number or payment
@@ -5943,27 +6402,35 @@ components:
           example: 000540208ID5IXX3865
         creditLimit:
           type: number
-          description: 'Length: 17
+          description: 'Max Length: 17
 
 
             Credit limit.
 
 
             VisionPLUS Service Data: ARXCLO-CRLIM'
+          example: 20000
         availableCredit:
           type: number
-          description: "Length: 17 \n\nAvailable credit. \n\nVisionPLUS Service Data:\
-            \ AARXCLO-AVAIL-CREDIT"
+          description: "Max Length: 17 \n\nAvailable credit. \n\nVisionPLUS Service\
+            \ Data: AARXCLO-AVAIL-CREDIT"
+          example: 10000
         foreignCreditLimit:
           type: number
-          description: "Length: 17\n\nForeign Credit Limit. \n\nVisionPLUS Service\
-            \ Data: ARXCLO-CRLIM-FGN"
+          description: 'Max Length: 17
+
+
+            Foreign Credit Limit.
+
+
+            VisionPLUS Service Data: ARXCLO-CRLIM-FGN'
+          example: 10000
     CreditLimitUpdateResponse.CurrencyData:
       type: object
       properties:
         numberOfDecimals:
           type: integer
-          description: 'Length: 1
+          description: 'Max Length: 1
 
 
             Number of decimal positions to the right of the decimal point (or other
@@ -5972,9 +6439,10 @@ components:
 
             VisionPLUS Service Data: ARXCLO-CURR-NOD'
           format: int32
+          example: 4
         isoCurrencyCode:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             ISO currency code that identifies the unit of currency for monetary amount
@@ -5983,6 +6451,7 @@ components:
 
             VisionPLUS Service Data: ARXCLO-CURR-CODE'
           format: int32
+          example: 123
     CardActivationRequest:
       required:
       - cardNumber
@@ -8707,53 +9176,62 @@ components:
 
             Values:
 
-            * A = Active
+            * A = Active;
 
-            * B = Conversion fraud
+            * B = Conversion fraud;
 
-            * C = Conversion transfer
+            * C = Conversion transfer;
 
-            * D = Dormant
+            * D = Dormant;
 
-            * F = Fraud transfer
+            * F = Fraud transfer;
 
-            * H = Closed/conversion
+            * H = Closed/conversion;
 
-            * I = Inactive
+            * I = Inactive;
 
-            * J = Transfer in, migrated from inactive
+            * J = Transfer in, migrated from inactive;
 
-            * K = Transfer out, migrated from inactive
+            * K = Transfer out, migrated from inactive;
 
-            * M = Migrated
+            * M = Migrated;
 
-            * N = New
+            * N = New;
 
-            * P = To be purged in next reload
+            * P = To be purged in next reload;
 
-            * Q = Transfer in today
+            * Q = Transfer in today;
 
-            * R = Transfer out today
+            * R = Transfer out today;
 
-            * T = Transfer
+            * T = Transfer;
 
-            * V = Conversion
+            * V = Conversion;
 
-            * X = Charge-off/conversion
+            * X = Charge-off/conversion;
 
-            * Z = Charge-off
+            * Z = Charge-off;
 
-            * 8 = Closed
+            * 8 = Closed;
 
-            * 9 = To be purged after reload Account Status Code
+            * 9 = To be purged after reload Account Status Code.
 
 
             VisionPLUS Service Data: AZXEQO-INT-STATUS'
           example: A
         isActive:
           type: boolean
-          description: "Current Credit Activation \n\n Values: \n * true - Activated\n\
-            * false - Not activated\n\nVisionPLUS Service Data: AZXEQO-CURR-CRD-ACT"
+          description: 'Current Credit Activation.
+
+
+            Values:
+
+            * true = Activated;
+
+            * false = Not activated.
+
+
+            VisionPLUS Service Data: AZXEQO-CURR-CRD-ACT'
           example: true
         cardBlockCode:
           type: string
@@ -8950,14 +9428,14 @@ components:
       properties:
         hasMoreRecords:
           type: boolean
-          description: 'Code that indicates if more records are on file
+          description: 'Code that indicates if more records are on file.
 
 
             Values:
 
-            * false = No more records on file
+            * false = No more records on file;
 
-            * true = More records on file
+            * true = More records on file.
 
 
             VisionPLUS Service Data: AZXEQO-AT-MORE'
@@ -9455,9 +9933,9 @@ components:
           description: "Max Length = 2 \n\nStatement number months \n\nVisionPLUS\
             \ Service Data: ARXSDO-STATEMENT-NBRMONTHS"
           example: '01'
-        cashCreditLimit:
-          type: number
         cashAvailable:
+          type: number
+        cashCreditLimit:
           type: number
         debitAmount:
           type: number
@@ -11047,18 +11525,22 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization number.
+
 
             VisionPLUS Service Data: ARXSPI-ORG'
           format: int32
           example: 807
         logo:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Logo number.
+
 
             VisionPLUS Service Data: ARXSPI-LOGO'
           format: int32
@@ -11067,18 +11549,19 @@ components:
           maxLength: 19
           minLength: 0
           type: string
-          description: 'Length: 19
+          description: 'Unique identifier or token associated with the card number
+            or payment instrument (FirstVision PAN Token).
 
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
 
             VisionPLUS Service Data: ARXSPI-CARD-NBR'
           example: 000540208ID5IXX3865
         cardSequenceNumber:
           type: integer
-          description: 'Length: 4
+          description: '* Max Length: 4
+
 
             Card sequence number.
+
 
             VisionPLUS Service Data: ARXSPI-CARD-SEQ'
           format: int32
@@ -11086,15 +11569,20 @@ components:
         processType:
           pattern: ^(\s|0|1)$
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Process type. The values are:
 
-            Space = No same-day plastic request in process
+            Process type.
 
-            * 0 = Deletions
 
-            * 1 = Additions
+            Values:
+
+            * Space = No same-day plastic request in process;
+
+            * 0 = Deletions;
+
+            * 1 = Additions.
+
 
             VisionPLUS Service Data: ARXSPI-SDP-PROCESS-TYPE'
           example: '1'
@@ -11103,31 +11591,32 @@ components:
           minLength: 0
           pattern: ^(1|3|6)$
           type: string
-          description: 'Length: 1
+          description: 'Card action.
 
-            Card action. The values are:
 
-            1 = Issue new card(s)
+            Values:
 
-            3 = Issue replacement card(s)
+            * 1 = Issue new card(s);
 
-            6 = Issue emergency replacement card(s)
+            * 3 = Issue replacement card(s);
+
+            * 6 = Issue emergency replacement card(s).
+
 
             VisionPLUS Service Data: ARXSPI-CARD-ACTION'
           example: '6'
         requestDate:
           type: string
-          description: 'Length: 8
+          description: 'Request date (yyyy-MM-dd format - ISO 8601).
 
-            Request date (yyyy-MM-dd format).
 
             VisionPLUS Service Data: ARXSPI-REQUEST-DATE'
           format: date
+          example: 2022-01-09
         requestTime:
           type: string
-          description: 'Length: 8
+          description: 'Request time (HHmmss format --24 hs--).
 
-            Request time (HHmmss format --24 hs--).
 
             VisionPLUS Service Data: ARXSPI-REQUEST-TIME'
           example: '145154'
@@ -11136,37 +11625,48 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Organization.
 
+
             VisionPLUS Service Data: ARXSPO-ORG'
           format: int32
+          example: 999
         logo:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
+
 
             Logo.
 
+
             VisionPLUS Service Data: ARXSPO-LOGO'
           format: int32
+          example: 501
         cardNumber:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
+
 
             Unique identifier or token associated with the card number or payment
             instrument (FirstVision PAN Token).
+
 
             VisionPLUS Service Data: ARXSPO-CARD-NBR'
           example: 000540208ID5IXX3865
         cardSequenceNumber:
           type: integer
-          description: 'Length: 4
+          description: 'Max Length: 4
+
 
             Card sequence number.
 
+
             VisionPLUS Service Data: ARXSPO-CARD-SEQ'
           format: int32
+          example: 1234
     AddEmbosserL8VFRequest:
       required:
       - cardNumber
@@ -11823,43 +12323,38 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Organization Number.
 
+
             VisionPLUS Service Data: AZXTCI-ORG'
           format: int32
           example: 807
-          enum:
-          - null
         cardNumber:
           maxLength: 32
           minLength: 12
           type: string
-          description: 'Length: 19
+          description: 'Card number encrypted.
 
-
-            Card number encrypted.
 
             VisionPLUS Service Data: AZXTCI-CARD-PAN'
           example: 000540208ID5IXX3865
-          enum:
-          - range[12,32]
         cardSequence:
           type: integer
-          description: 'Length: 4
+          description: '* Max Length: 4
 
 
             Card Sequence
 
+
             Card sequence number. Default is 1
+
 
             VisionPLUS Service Data: AZXTCI-CARD-SEQ'
           format: int32
           example: 1
-          enum:
-          - null
         functionType:
           pattern: ^(P|C){1}$
           type: string
@@ -11868,14 +12363,14 @@ components:
             * Max Length: 1
 
 
-            Function type. The default value is "C"
+            Function type.
 
 
             Values:
 
             * P = Pan Token;
 
-            * C = Card NUmber.
+            * C = Card Number (Default).
 
 
             VisionPLUS Service Data: AZXTCI-FUNCTION-TYPE'
@@ -11886,25 +12381,28 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             Organization Number.
 
+
             VisionPLUS Service Data: AZXTCO-ORG'
           format: int32
+          example: 999
         logo:
           type: integer
-          description: 'Length: 3
+          description: 'Max Length: 3
 
 
             Logo.
 
             VisionPLUS Service Data: AZXTCO-LOGO'
           format: int32
+          example: 501
         cardNumber:
           type: string
-          description: 'Length: 32
+          description: 'Max Length: 32
 
 
             Card number encrypted.
@@ -11913,30 +12411,36 @@ components:
           example: 936E507C7EF44EB5AC1D95FEB0AC0AAF
         cardSequence:
           type: integer
-          description: 'Length: 4
+          description: 'Max Length: 4
 
 
             Card Sequence.
 
+
             VisionPLUS Service Data: AZXTCO-CARD-SEQ'
           format: int32
+          example: 1234
         accountNumber:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
 
 
             Account Number.
 
+
             VisionPLUS Service Data: AZXTCO-ACCOUNT-NBR'
+          example: '7600010732545213551'
         panToken:
           type: string
-          description: 'Length: 19
+          description: 'Max Length: 19
 
 
             PAN token. Unique identifier or token associated with the card number
             or payment instrument (FirstVision PAN Token)
 
+
             VisionPLUS Service Data: AZXTCO-PAN-TOKEN'
+          example: 000000008ID5IXX3865
     AccountForCardDetailsL8V3Request:
       required:
       - accountNumber
