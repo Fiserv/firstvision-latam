@@ -37,8 +37,14 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '422':
           description: "Unprocessable Entity\n\nVPL5SBB14S - ORGANIZATION NUMBER MUST\
             \ BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SBB01E - STATE OF RESIDENCE\
@@ -78,26 +84,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '403':
           description: Forbidden
         '404':
           description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -136,10 +136,18 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequest'
         required: true
       responses:
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '400':
           description: Bad Request
-        '405':
-          description: Method Not Allowed
+        '403':
+          description: Forbidden
         '422':
           description: 'VPL5SCU06S - ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999
 
@@ -222,24 +230,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -247,69 +247,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/UpdateCustomerNumberResponse'
       x-proxy-name: Customer Address Update
-      x-group-name: Account
-      x-child-product-name: Accounts
-  /account/balance:
-    put:
-      tags:
-      - Account
-      summary: "Credits (cash in) or Debits (cash out) transactions from available\
-        \ funds or credit open to buy in an Account. \n\nVMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V2"
-      description: "Credits (cash in) or Debits (cash out) transactions from available\
-        \ funds or credit open to buy in an Account. \n\nVMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V2"
-      operationId: Cash-in & Cash-out Request
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: 00970
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ModifyAccountBalanceRequest'
-        required: true
-      responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ModifyAccountBalanceResponse'
-      x-proxy-name: Cash-in & Cash-out Request
       x-group-name: Account
       x-child-product-name: Accounts
   /account/FL-transferP2P:
@@ -343,28 +280,28 @@ paths:
               $ref: '#/components/schemas/FlTransferP2PRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -372,69 +309,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/FlTransferP2PResponse'
       x-proxy-name: Account to Account Funds Transfer
-      x-group-name: Account
-      x-child-product-name: Accounts
-  /account/FL-balance:
-    put:
-      tags:
-      - Account
-      summary: "Integrate Cash-in & Cash-out and Integrate Quick Response (QR) transaction\
-        \ information to be used in Fraud Prevention Rules. \n\nVMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V4"
-      description: "Integrate Cash-in & Cash-out and Integrate Quick Response (QR)\
-        \ transaction information to be used in Fraud Prevention Rules. \n\nVMX Service:\
-        \ M.ASM.MONETARY.ACT, L8V4"
-      operationId: Cash-in & Cash-out With Fraud Prevention
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: 00970
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountBalanceFlRequest'
-        required: true
-      responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountBalanceFlResponse'
-      x-proxy-name: Cash-in & Cash-out With Fraud Prevention
       x-group-name: Account
       x-child-product-name: Accounts
   /account/details-L8VG:
@@ -473,26 +347,16 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\nVPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT\
@@ -510,8 +374,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -555,28 +429,28 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V2Request'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -616,20 +490,18 @@ paths:
               $ref: '#/components/schemas/AccountBoardingDriverRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
         '422':
           description: 'VPL5SZ103E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
@@ -737,14 +609,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -785,28 +659,16 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
             001-998
@@ -1672,6 +1534,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -2306,715 +2180,6 @@ components:
 
             VisionPLUS Service Data: ARXCUI-ALT-CUST-EXPIR'
           format: date
-    ModifyAccountBalanceRequest:
-      required:
-      - accountNumber
-      - asmOrganizationNumber
-      - representativeId
-      type: object
-      properties:
-        asmOrganizationNumber:
-          type: integer
-          description: 'Length: 3
-
-            Organization Number.
-
-
-            VisionPLUS Service Data: AZXMAI-ASM-ORG'
-          format: int32
-          example: 809
-        foreignUse:
-          type: string
-          description: 'Length: 1
-
-            Foreign Use indicator.
-
-            Values:
-
-            0: Local
-
-            1: Foreign
-
-            VisionPLUS Service Data: AZXMAI-FOREIGN-USE-IND'
-          example: '0'
-        representativeId:
-          maxLength: 3
-          minLength: 1
-          type: string
-          description: 'Length: 3
-
-            ID of Representative.
-
-
-            VisionPLUS Service Data: AZXMAI-ASM-REP'
-          example: A00
-        accountNumber:
-          maxLength: 19
-          minLength: 19
-          type: string
-          description: 'Length: 19
-
-
-            Number of Customer''s account or card.
-
-
-            VisionPLUS Service Data: AZXMAI-ACCT-NBR'
-          example: '4198194069732810121'
-        transactionData:
-          $ref: '#/components/schemas/ModifyAccountBalanceRequest.TxData'
-      description: Modify Account Balance Request
-    ModifyAccountBalanceRequest.TxData:
-      required:
-      - actionCode
-      - cardNumber
-      - cardSequence
-      - description
-      - effectiveDate
-      - otbUpdateIndicator
-      - planNumber
-      - planSequence
-      - referenceNumber
-      - resolutionReferenceNumber
-      - storeNumber
-      - transactionAmount
-      type: object
-      properties:
-        cardNumber:
-          maxLength: 19
-          minLength: 12
-          type: string
-          description: 'Length: 19
-
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
-
-
-            VisionPLUS Service Data: AZXMAI-CARD-NBR'
-          example: 000540208ID5IXX3865
-        cardSequence:
-          type: integer
-          description: 'Length: 4
-
-            Card Sequence.
-
-
-            VisionPLUS Service Data: AZXMAI-CARD-SEQ'
-          format: int32
-          example: 1
-        actionCode:
-          type: string
-          description: 'Length: 4
-
-            Code that identifies the action to be taken.
-
-
-            VisionPLUS Service Data: AZXMAI-ACTION-CODE'
-          example: FUND
-        effectiveDate:
-          type: string
-          description: 'Date that specifies when the transaction takes effect in the
-            account.
-
-
-            VisionPLUS Service Data: AZXMAI-EFF-DATE'
-          format: date
-        transactionAmount:
-          type: number
-          description: 'Length: 17
-
-
-            Transaction Amount.
-
-
-            VisionPLUS Service Data: AZXMAI-TXN-AMOUNT'
-          example: 100
-        planNumber:
-          type: integer
-          description: 'Length: 5
-
-            Plan Number.
-
-
-            VisionPLUS Service Data: AZXMAI-PLAN-NBR'
-          format: int32
-          example: 60000
-        planSequence:
-          type: integer
-          description: 'Length: 2
-
-            Plan Sequence.
-
-
-            VisionPLUS Service Data: AZXMAI PLAN-SEQ'
-          format: int32
-          example: 1
-        storeNumber:
-          type: integer
-          description: 'Length: 9
-
-            Store Number.
-
-
-            VisionPLUS Service Data: AZXMAI-STORE-NBR'
-          format: int32
-          example: 999999998
-        authorizationCode:
-          maxLength: 6
-          minLength: 0
-          type: string
-          description: 'Length: 6
-
-
-            identifier used to identify the transaction for reconciliation purpose.
-
-
-            VisionPLUS Service Data: AZXMAI-AUTH-CODE'
-          example: '123456'
-        referenceNumber:
-          type: string
-          description: 'Length: 12
-
-            Reference Number.
-
-
-            VisionPLUS Service Data: AZXMAI-REF-NUM'
-          example: '123456789012'
-        resolutionReferenceNumber:
-          type: string
-          description: 'Length: 14
-
-            Resolution Reference Number For Payments Received For Open Billing Accounts.
-
-
-            VisionPLUS Service Data: AZXMAI-R-REF-NBR'
-          example: '123456789012'
-        otbUpdateIndicator:
-          type: integer
-          description: 'Length: 1
-
-            OTB Update Indicator. The values are:
-
-            0 = Update OTB
-
-            1 = Do not update OTB
-
-            VisionPLUS Service Data: AZXMAI-OTB-UPDATE-IND'
-          format: int32
-          example: 0
-        description:
-          type: string
-          description: 'Length: 40
-
-
-            Description of the transaction.
-
-
-            VisionPLUS Service Data: AZXMAI-DESC'
-          example: Description
-        departmentCode:
-          type: string
-          description: 'Length: 4
-
-            Department Code.
-
-            VisionPLUS Service Data: AZXMAI-DEPT-CODE'
-          example: PPLD
-      description: 'Length: 3
-
-        ModifyAccountBalanceRequestTxData'
-    ModifyAccountBalanceResponse:
-      type: object
-      properties:
-        asmOrganizationNumber:
-          type: integer
-          description: 'Length: 3
-
-            Organization number.
-
-
-            VisionPLUS Service Data: AZXMAO-ACTION-ASM-ORG'
-          format: int32
-        asmRepresentativeId:
-          type: string
-          description: 'Length: 3
-
-            Representative id.
-
-
-            VisionPLUS Service Data: AZXMAO-ACTION-REP'
-        referralRepresentative:
-          type: string
-          description: 'Length: 3
-
-            Referral Representative.
-
-
-            VisionPLUS Service Data: AZXMAO-REFERRAL-REP'
-        account:
-          $ref: '#/components/schemas/ModifyAccountBalanceResponse.Account'
-        foreignUseIndicator:
-          type: string
-          description: 'Length: 1
-
-            Foreign use indicator.
-
-
-            VisionPLUS Service Data: AZXMAO-FOREIGN-USE-IND'
-        cardNumber:
-          type: string
-          description: 'Length: 19
-
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
-
-
-            VisionPLUS Service Data: AZXMAO-CARD-NBR'
-          example: 000540208ID5IXX3865
-        historyDate:
-          type: string
-          description: 'History date.
-
-
-            VisionPLUS Service Data: AZXMAO-HIST-DATE'
-          format: date
-        historyTime:
-          type: string
-          description: 'History time.
-
-
-            VisionPLUS Service Data: AZXMAO-HIST-TIME'
-        actionCodePri:
-          type: integer
-          description: 'Length: 1
-
-            Action code pri.
-
-
-            VisionPLUS Service Data: AZXMAO-ACTION-CODE-PRI'
-          format: int32
-        recordType:
-          type: string
-          description: 'Length: 1
-
-            Record type.
-
-
-            VisionPLUS Service Data: AZXMAO-RECORD-TYPE'
-        actionDescription:
-          type: string
-          description: 'Length: 20
-
-            Action description.
-
-
-            VisionPLUS Service Data: AZXMAO-ACTION-DESC'
-        collectionSequenceNumber:
-          type: integer
-          description: 'Length: 5
-
-            Collection sequence number.
-
-
-            VisionPLUS Service Data: AZXMAO-CTA-SEQ-NBR'
-          format: int32
-        status:
-          type: string
-          description: 'Length: 1
-
-            Status.
-
-
-            VisionPLUS Service Data: AZXMAO-STATUS'
-        referralAsmOrganization:
-          type: integer
-          description: 'Length: 3
-
-            Referral asm organization.
-
-
-            VisionPLUS Service Data: AZXMAO-REFERRAL-ASM-ORG'
-          format: int32
-        purgeDate:
-          type: string
-          description: 'Purge date.
-
-
-            VisionPLUS Service Data: AZXMAO-PURGE-DATE'
-          format: date
-        actionDate:
-          type: string
-          description: 'Action date.
-
-
-            VisionPLUS Service Data: AZXMAO-ACTION-DATE'
-          format: date
-        cardSequence:
-          type: integer
-          description: 'Length: 5
-
-            Card sequence.
-
-
-            VisionPLUS Service Data: AZXMAO-CARD-SEQ'
-          format: int32
-        retention:
-          type: string
-          description: 'Length: 1
-
-            Retention.
-
-
-            VisionPLUS Service Data: AZXMAO-RETENTION'
-        ctaFile:
-          type: string
-          description: 'Length: 1
-
-            CTA file.
-
-
-            VisionPLUS Service Data: AZXMAO-CTA-FILE'
-        transactionData:
-          $ref: '#/components/schemas/ModifyAccountBalanceResponse.TransactionData'
-        letterData:
-          $ref: '#/components/schemas/ModifyAccountBalanceResponse.LetterData'
-    ModifyAccountBalanceResponse.Account:
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: 'Length: 3
-
-            Organization number.
-
-
-            VisionPLUS Service Data: AZXMAO-ACCT-ORG'
-          format: int32
-        logo:
-          type: integer
-          description: 'Length: 3
-
-            Logo.
-
-
-            VisionPLUS Service Data: AZXMAO-ACCT-LOGO'
-          format: int32
-        number:
-          type: string
-          description: 'Length: 19
-
-            Number.
-
-
-            VisionPLUS Service Data: AZXMAO-ACCT-NBR'
-    ModifyAccountBalanceResponse.LetterData:
-      type: object
-      properties:
-        organization:
-          type: string
-          description: 'Length: 3
-
-            Organization.
-
-
-            VisionPLUS Service Data: AZXMAO-LTR-ORG'
-        code:
-          type: string
-          description: 'Length: 3
-
-            Code.
-
-
-            VisionPLUS Service Data: AZXMAO-LETTER'
-    ModifyAccountBalanceResponse.TransactionData:
-      type: object
-      properties:
-        currencyData:
-          $ref: '#/components/schemas/ModifyAccountBalanceResponse.TransactionData.CurrencyData'
-        actionCode:
-          type: string
-          description: 'Length: 5
-
-            Action code.
-
-
-            VisionPLUS Service Data: AZXMAO-ACTION-CODE'
-        effectiveDate:
-          type: string
-          description: 'Effective date.
-
-
-            VisionPLUS Service Data: AZXMAO-EFF-DATE'
-          format: date
-        feeAmount:
-          type: number
-          description: 'Length: 17
-
-            Fee Amount.
-
-
-            VisionPLUS Service Data: AZXMAO-FEE-AMT'
-        transactionCode:
-          type: string
-          description: 'Length: 3
-
-            Transaction code.
-
-
-            VisionPLUS Service Data: AZXMAO-TXN-CODE'
-        transactionAmount:
-          type: number
-          description: 'Length: 17
-
-            Transaction amount.
-
-
-            VisionPLUS Service Data: AZXMAO-TRAN-AMT'
-        transactionDescription:
-          type: string
-          description: 'Length: 40
-
-            Transaction description.
-
-
-            VisionPLUS Service Data: AZXMAO-TXN-DESC'
-        creditLimit:
-          type: number
-          description: 'Length: 17
-
-            Credit Limit.
-
-
-            VisionPLUS Service Data: AZXMAO-CREDIT-LIMIT'
-        openToBuy:
-          type: number
-          description: 'Length: 17
-
-            Open to buy.
-
-
-            VisionPLUS Service Data: AZXMAO-OPEN-TO-BUY'
-        cashAvailable:
-          type: number
-          description: 'Length: 17
-
-            Cash available.
-
-
-            VisionPLUS Service Data: AZXMAO-CASH-AVAIL-CR'
-        planNumber:
-          type: string
-          description: 'Length: 5
-
-            Plan number.
-
-
-            VisionPLUS Service Data: AZXMAO-PLAN-NBR'
-        currentBalance:
-          type: number
-          description: 'Length: 17
-
-            Current balance.
-
-
-            VisionPLUS Service Data: AZXMAO-CURR-BAL'
-        planSequence:
-          type: integer
-          description: 'Length: 2
-
-            Plan sequence.
-
-
-            VisionPLUS Service Data: AZXMAO-PLAN-SEQ'
-          format: int32
-        storeNumber:
-          type: string
-          description: 'Length: 9
-
-            Store number.
-
-
-            VisionPLUS Service Data: AZXMAO-STORE-NBR'
-        departmentCode:
-          type: string
-          description: 'Length: 4
-
-            Department code.
-
-
-            VisionPLUS Service Data: AZXMAO-DEPT-NBR'
-        authorizationCode:
-          type: string
-          description: 'Length: 6
-
-            Authorization code.
-
-
-            VisionPLUS Service Data: AZXMAO-AUTH-NBR'
-        stockKeepingUnitNumber:
-          type: string
-          description: 'Length: 3
-
-            Stock keeping unit number.
-
-
-            VisionPLUS Service Data: AZXMAO-SKU-NBR'
-        salesClerk:
-          type: string
-          description: 'Length: 12
-
-            Sales clerk.
-
-
-            VisionPLUS Service Data: AZXMAO-CLERK'
-        ticketNumber:
-          type: string
-          description: 'Length: 15
-
-            Ticket number.
-
-
-            VisionPLUS Service Data: AZXMAO-TICKET-NBR'
-        purchaseOrderNumber:
-          type: string
-          description: 'Length: 16
-
-            Purchase order number.
-
-
-            VisionPLUS Service Data: AZXMAO-PURCHASE-ORDER-NBR'
-        referenceNumber:
-          type: string
-          description: 'Length: 24
-
-            Reference number.
-
-
-            VisionPLUS Service Data: AZXMAO-REFERENCE-NBR'
-        insuranceCode:
-          type: string
-          description: 'Length: 2
-
-            Insurance code.
-
-
-            VisionPLUS Service Data: AZXMAO-INS'
-        reversalDate:
-          type: string
-          description: 'Reversal date.
-
-
-            VisionPLUS Service Data: AZXMAO-REV-DATE'
-          format: date
-        reversalTime:
-          type: string
-          description: 'Length: 7
-
-            Reversal time.
-
-
-            VisionPLUS Service Data: AZXMAO-REV-TIME'
-        storeOrganizationNumber:
-          type: integer
-          description: 'Length: 3
-
-            Store organization number.
-
-
-            VisionPLUS Service Data: AZXMAO-STORE-ORG'
-          format: int32
-        approvalIndicator:
-          type: string
-          description: 'Length: 1
-
-            Approval indicator.
-
-
-            VisionPLUS Service Data: AZXMAO-APPR-DECL'
-        monetaryType:
-          type: string
-          description: 'Length: 1
-
-            Monetary type.
-
-
-            VisionPLUS Service Data: AZXMAO-MON-TYPE'
-        pointsProgram:
-          type: integer
-          description: 'Length: 1
-
-            Points program.
-
-
-            VisionPLUS Service Data: AZXMAO-PTS-PGM'
-          format: int32
-        pointsAmount:
-          type: number
-          description: 'Length: 9
-
-            Points amount.
-
-
-            VisionPLUS Service Data: AZXMAO-PTS-AMT'
-        referenceNum:
-          type: string
-          description: 'Length: 15
-
-            Reference.
-
-
-            VisionPLUS Service Data: AZXMAO-R-REF-NBR'
-        fundCard:
-          type: string
-          description: 'Length: 19
-
-            Fund card.
-
-
-            VisionPLUS Service Data: AZXMAO-PD-FUND-CARD'
-        fundCardDeclinedReason:
-          type: string
-          description: 'Length: 30
-
-            Fund card declined reason.
-
-
-            VisionPLUS Service Data: AZXMAO-PD-DECL-RSN'
-        currencyNumber:
-          type: string
-          description: 'Length: 3
-
-            Currency number.
-
-
-            VisionPLUS Service Data: AZXMAO-WALLET'
-        authorizationNumber:
-          type: string
-          description: 'Length: 6
-
-            Authorization number.
-
-
-            VisionPLUS Service Data: AZXMAO-AUTH-NUMBER'
-    ModifyAccountBalanceResponse.TransactionData.CurrencyData:
-      type: object
-      properties:
-        currencyCode:
-          type: string
-          description: 'Length: 3
-
-            Currency code.
-
-
-            VisionPLUS Service Data: AZXMAO-CURRENCY-CODE'
-        currencyNumberOfDecimal:
-          type: integer
-          description: 'Length: 1
-
-            Currency number of decimal.
-
-
-            VisionPLUS Service Data: AZXMAO-CURRENCY-NOD'
-          format: int32
     FlTransferP2PRequest:
       required:
       - asmRepId
@@ -3288,514 +2453,6 @@ components:
           type: string
         authorizationNumber:
           type: string
-    AccountBalanceFlRequest:
-      required:
-      - accountNumber
-      - organizationNumber
-      - representativeId
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: Organization Number
-          format: int32
-          example: 950
-        representativeId:
-          maxLength: 3
-          minLength: 1
-          type: string
-          description: ID of Representative
-          example: A00
-        accountNumber:
-          maxLength: 19
-          minLength: 19
-          type: string
-          description: "Number of Customer\u2019s account or Card"
-          example: '9500500190739621112'
-        transactionData:
-          $ref: '#/components/schemas/AccountBalanceFlRequest.TxData'
-        accountOrganization:
-          type: string
-          description: accountOrganization
-        foreignUse:
-          type: string
-          description: foreignUse
-        actionCodePri:
-          type: string
-          description: actionCodePri
-        referralOption:
-          type: string
-          description: referralOption
-        referralRepresentation:
-          $ref: '#/components/schemas/AccountBalanceFlRequest.ReferralRepresentation'
-        letterData:
-          $ref: '#/components/schemas/AccountBalanceFlRequest.LetterData'
-        memoData:
-          $ref: '#/components/schemas/AccountBalanceFlRequest.MemoData'
-      description: Modify Account BalanceFl Request
-    AccountBalanceFlRequest.LetterData:
-      type: object
-      properties:
-        organization:
-          type: string
-          description: organization
-        code:
-          type: string
-          description: code
-    AccountBalanceFlRequest.MemoData:
-      type: object
-      properties:
-        line1:
-          type: string
-          description: line1
-        line2:
-          type: string
-          description: line2
-        line3:
-          type: string
-          description: line3
-        line4:
-          type: string
-          description: line4
-        line5:
-          type: string
-          description: line5
-    AccountBalanceFlRequest.ReferralRepresentation:
-      type: object
-      properties:
-        organization:
-          type: string
-          description: organization
-        id:
-          type: string
-          description: id
-    AccountBalanceFlRequest.TxData:
-      required:
-      - actionCode
-      - beneficiaryAccount
-      - box
-      - cardNumber
-      - cardSequence
-      - counterpartInstitution
-      - crPlaza
-      - crStore
-      - description
-      - device
-      - effectiveDate
-      - frcUprkBeneficiary
-      - identifier
-      - ip
-      - keyTracking
-      - latitude
-      - longitude
-      - n1N2Bypass
-      - operatingInstitution
-      - orderingFrcUprk
-      - orderingName
-      - otbUpdateIndicator
-      - paidConcept
-      - paymentSourceId
-      - planNumber
-      - planSequence
-      - recipientName
-      - referenceNumber
-      - resolutionReferenceNumber
-      - senderAccount
-      - storeNumber
-      - transactionAmount
-      type: object
-      properties:
-        cardNumber:
-          maxLength: 19
-          minLength: 12
-          type: string
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
-          example: 000540208ID5IXX3865
-        cardSequence:
-          type: integer
-          description: Card Sequence
-          format: int32
-          example: 1
-        actionCode:
-          type: string
-          description: Code that identifies the action to be taken
-          example: '8000'
-          enum:
-          - 8000, 8001
-        effectiveDate:
-          type: string
-          description: Date that specifies when the transaction takes effect in the
-            account
-          format: date
-        transactionAmount:
-          type: number
-          description: Transaction Amount
-          example: 100
-        planNumber:
-          type: integer
-          description: Plan Number
-          format: int32
-          example: 60000
-        planSequence:
-          type: integer
-          description: Plan Sequence
-          format: int32
-          example: 1
-        storeNumber:
-          type: integer
-          description: Store Number
-          format: int32
-          example: 999999998
-        authorizationCode:
-          maxLength: 6
-          minLength: 0
-          type: string
-          description: Identifier used to identify the transaction for reconciliation
-            purpose
-          example: '123456'
-        referenceNumber:
-          type: string
-          description: Reference Number
-          example: '12345678901234'
-        resolutionReferenceNumber:
-          type: string
-          description: Resolution Reference Number For Payments Received For Open
-            Billing Accounts
-          example: '123456789012'
-        otbUpdateIndicator:
-          type: integer
-          description: "* Min Length: 1 \n* Max Length: 1 \n\nOTB update indicator.\n\
-            \nValues: \n* 0 = Update OTB; \n* 1 = Do not update OTB. \n\nVisionPLUS\
-            \ Service Data: AZXMAI-OTB-UPDATE-IND"
-          format: int32
-          example: 0
-        description:
-          type: string
-          description: Description of the transaction
-          example: Description
-        departmentCode:
-          type: string
-          description: Department Code
-          example: PPLD
-        skuNumber:
-          type: integer
-          description: skuNumber
-          format: int32
-        salesClerk:
-          type: string
-          description: salesClerk
-        ticketNumber:
-          type: string
-          description: ticketNumber
-        purchaseOrderNumber:
-          type: string
-          description: purchaseOrderNumber
-        insuranceCode:
-          type: string
-          description: insuranceCode
-        numberInstallments:
-          type: string
-          description: numberInstallments
-        walletId:
-          type: string
-          description: walletId
-        n1N2Bypass:
-          maxLength: 1
-          minLength: 0
-          type: string
-          description: N1 and N2 rule validation bypass
-          example: Y
-          enum:
-          - Y,N
-        memoPostIndividual:
-          type: string
-          description: "* Max Length: 1 \n\nMemo Post Indicator. \n\nValues: \n* N\
-            \ = Do not post memo ;\n* R = Reverse memo. \n \nVisionPLUS Service Data:\
-            \ AZXMAI-MEMO-POST-IND"
-          example: N
-        monSupp:
-          type: string
-          description: "* Max Length: 1 \n\nMonetary Supress. \n\nValues: \n* N =\
-            \ Do not Suppress Monetary transaction ;\n* Y = Supress Monetary transaction.\
-            \ \n \nVisionPLUS Service Data: AZXMAI-MON-SUPP"
-          example: N
-        identifier:
-          maxLength: 4
-          minLength: 0
-          type: string
-          description: Where does the transaction comes from
-          example: UBCF
-        box:
-          maxLength: 1
-          minLength: 0
-          type: string
-          description: cashier number
-          example: '1'
-        crPlaza:
-          maxLength: 5
-          minLength: 0
-          type: string
-          description: OXXO region identifier
-          example: 10MON
-        crStore:
-          maxLength: 5
-          minLength: 0
-          type: string
-          description: OXXO store identifier
-          example: 50EDI
-        keyTracking:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: "key of standard identification recognized by Banco de M\xE9\
-            xico"
-          example: UBCF202007158252885919
-        paidConcept:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: Issuer description about the payment
-          example: Money for groseries
-        beneficiaryAccount:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: Receiver(Payee) account number
-          example: 012180000000011114
-        senderAccount:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: Issuer account number
-          example: 012180000000011114
-        counterpartInstitution:
-          maxLength: 5
-          minLength: 0
-          type: string
-          description: Institutions Code where the payment goes to(Regarding to catalog)
-          example: '96545'
-        operatingInstitution:
-          maxLength: 5
-          minLength: 0
-          type: string
-          description: Institutions Code where the payment comes from(Regarding to
-            catalog)
-          example: '90646'
-        frcUprkBeneficiary:
-          maxLength: 13
-          minLength: 0
-          type: string
-          description: Receiver Federal Register of Contributors(FRC) or Unique Population
-            Registration Key(UPRK)
-          example: MACE881212TR3
-        orderingFrcUprk:
-          maxLength: 13
-          minLength: 0
-          type: string
-          description: Issuer Federal Register of Contributors(FRC) or Unique Population
-            Registration Key(UPRK)
-          example: MACE881212TR3
-        device:
-          maxLength: 32
-          minLength: 0
-          type: string
-          description: unique identifier of the used device
-          example: 898ds-090ds-9d0s9-0ds9d0-0d9sd00
-        ip:
-          maxLength: 15
-          minLength: 0
-          type: string
-          description: The ip address that originated the transaction
-          example: 198.162.200.200
-        latitude:
-          maxLength: 12
-          minLength: 0
-          type: string
-          description: The latitude where the transaction originated
-          example: '-109.699951'
-        longitude:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: The longitude where the transaction originated
-          example: '23.062283'
-        recipientName:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: Receiver(Payee) name
-          example: Eduardo Martinez Cruz
-        orderingName:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: Issuer name
-          example: Diego Martinez Cruz
-        paymentSourceId:
-          maxLength: 22
-          minLength: 0
-          type: string
-          description: Card's id label.
-          example: tok_test_visa_4242
-    AccountBalanceFlResponse:
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          format: int32
-        representativeId:
-          type: string
-        referralRepresentative:
-          type: string
-        account:
-          $ref: '#/components/schemas/AccountBalanceFlResponse.Account'
-        foreignUseIndicator:
-          type: string
-        cardNumber:
-          type: string
-          description: Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
-          example: 000540208ID5IXX3865
-        historyDate:
-          type: string
-          format: date
-        historyTime:
-          type: string
-        actionCodePri:
-          type: integer
-          format: int32
-        recordType:
-          type: string
-        actionDescription:
-          type: string
-        collectionSequenceNumber:
-          type: integer
-          format: int32
-        status:
-          type: string
-        referralAsmOrganization:
-          type: integer
-          format: int32
-        purgeDate:
-          type: string
-          format: date
-        actionDate:
-          type: string
-          format: date
-        cardSequence:
-          type: integer
-          format: int32
-        retention:
-          type: string
-        ctaFile:
-          type: string
-        transactionData:
-          $ref: '#/components/schemas/AccountBalanceFlResponse.TransactionData'
-        letterData:
-          $ref: '#/components/schemas/AccountBalanceFlResponse.LetterData'
-    AccountBalanceFlResponse.Account:
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          format: int32
-        logo:
-          type: integer
-          format: int32
-        number:
-          type: string
-    AccountBalanceFlResponse.LetterData:
-      type: object
-      properties:
-        organization:
-          type: string
-        code:
-          type: string
-    AccountBalanceFlResponse.TransactionData:
-      type: object
-      properties:
-        currencyData:
-          $ref: '#/components/schemas/AccountBalanceFlResponse.TransactionData.CurrencyData'
-        actionCode:
-          type: string
-        effectiveDate:
-          type: string
-          format: date
-        feeAmount:
-          type: number
-        transactionCode:
-          type: string
-        transactionAmount:
-          type: number
-        transactionDescription:
-          type: string
-        creditLimit:
-          type: number
-        openToBuy:
-          type: number
-        cashAvailable:
-          type: number
-        planNumber:
-          type: string
-        currentBalance:
-          type: number
-        planSequence:
-          type: integer
-          format: int32
-        storeNumber:
-          type: string
-        departmentCode:
-          type: string
-        authorizationCode:
-          type: string
-        stockKeepingUnitNumber:
-          type: string
-        salesClerk:
-          type: string
-        ticketNumber:
-          type: string
-        purchaseOrderNumber:
-          type: string
-        referenceNumber:
-          type: string
-        insuranceCode:
-          type: string
-        reversalDate:
-          type: string
-          format: date
-        reversalTime:
-          type: string
-        storeOrganizationNumber:
-          type: integer
-          format: int32
-        approvalIndicator:
-          type: string
-        monetaryType:
-          type: string
-        pointsProgram:
-          type: integer
-          format: int32
-        pointsAmount:
-          type: number
-        referenceNum:
-          type: string
-        fundCard:
-          type: string
-        fundCardDeclinedReason:
-          type: string
-        currencyNumber:
-          type: string
-        authorizationNumber:
-          type: string
-    AccountBalanceFlResponse.TransactionData.CurrencyData:
-      type: object
-      properties:
-        currencyCode:
-          type: string
-        currencyNumberOfDecimal:
-          type: integer
-          format: int32
     AccountForDetailsL8vgRequest:
       required:
       - accountNumber
