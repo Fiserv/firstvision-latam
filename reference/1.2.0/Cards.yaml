@@ -8,11 +8,8 @@ info:
   version: '1.2'
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
-tags:
-- name: Embosser
-  description: Embosser
 paths:
-  /cards/v1/embosser/generation:
+  /cards/v1/embosser/instantGeneration:
     post:
       tags:
       - Embosser
@@ -20,10 +17,10 @@ paths:
         \ cards, reissue cards, replace cards and receive security values details\
         \ to print the card at the clients embossing machine.\n VMX Service: M.CMS.INSTANT.EMB.GEN\
         \ (R8V5)"
-      description: "[IN DEVELOPMENT]\n\nThe Instant Embossing Generation can be used\
-        \ to add new cards, additional cards, reissue cards, replace cards and receive\
-        \ security values details to print the card at the clients embossing machine.\n\
-        \ VMX Service: M.CMS.INSTANT.EMB.GEN (R8V5)"
+      description: "`[IN DEVELOPMENT]`\n\nThe Instant Embossing Generation can be\
+        \ used to add new cards, additional cards, reissue cards, replace cards and\
+        \ receive security values details to print the card at the clients embossing\
+        \ machine.\n VMX Service: M.CMS.INSTANT.EMB.GEN (R8V5)"
       operationId: 'Instant Embossing Generation. VMX Service: M.CMS.INSTANT.EMB.GEN,
         R8V5'
       parameters:
@@ -49,26 +46,8 @@ paths:
       responses:
         '400':
           description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '422':
           description: 'Unprocessable Entity
 
@@ -162,13 +141,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstantEmbossingResponse'
-      x-proxy-name: 'Instant Embossing Generation'
+        '404':
+          description: Not Found
+      x-proxy-name: Embosser Generation
       x-group-name: Embosser
       x-child-product-name: Cards
 components:
@@ -187,7 +184,7 @@ components:
             * Max Length: 3
 
 
-            The `organizationNumber` field is an attribute that holds the unique identification
+            The organizationNumber field is an attribute that holds the unique identification
             number assigned to an organization within the API.
 
 
@@ -201,10 +198,10 @@ components:
             * Max Length: 3
 
 
-            The `logo` field stores the issuer logo code associated with a payment
-            card. It represents the unique identifier or code assigned to the logo
-            of the card issuer, allowing for accurate identification and association
-            with the issuing bank.
+            The logo field stores the issuer logo code associated with a payment card.
+            It represents the unique identifier or code assigned to the logo of the
+            card issuer, allowing for accurate identification and association with
+            the issuing bank.
 
 
             VisionPLUS Service Data: ARXIEI-LOGO'
@@ -214,7 +211,7 @@ components:
           maxLength: 19
           minLength: 0
           type: string
-          description: 'The `relationshipNumber` field represents a unique identifier
+          description: 'The relationshipNumber field represents a unique identifier
             used to track and associate a specific relationship within a system or
             database.
 
@@ -223,7 +220,7 @@ components:
           example: 0008070010000016386
         createAccount:
           type: boolean
-          description: 'The `createAccount` field is a boolean indicator that influences
+          description: 'The createAccount field is a boolean indicator that influences
             whether the account creation process should be initiated (true) or not
             (false).
 
@@ -244,9 +241,9 @@ components:
             * Max Length: 2
 
 
-            The `billingCycle` field denotes the specific period during which a billing
+            The billingCycle field denotes the specific period during which a billing
             statement is generated, encompassing transactions and charges made on
-            the account. It accepts values between 0 and 31. For accounts in a relationship,
+            the account. It accepts values between 1 and 31. For accounts in a relationship,
             the billing cycle must match the relationship billing cycle. The billing
             cycle must comply with the valid cycles defined at the system level.
 
@@ -255,8 +252,9 @@ components:
           format: int32
           example: 18
         billingAccountType:
+          pattern: ^(0|1|2|3)$
           type: string
-          description: 'The `billingAccountType` field represents a code that indicates
+          description: 'The billingAccountType field represents a code that indicates
             the type of account being added, whether it is a transaction (cardholder),
             billing, control, or diversion account.
 
@@ -275,16 +273,11 @@ components:
 
             VisionPLUS Service Data: ARXIEI-BS-BILLING-ACCT-IND'
           example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-          - '3'
         userCode:
           maxLength: 2
           minLength: 0
           type: string
-          description: 'The `userCode` field represents a unique identifier or code
+          description: 'The userCode field represents a unique identifier or code
             associated with an individual user or account holder.
 
 
@@ -294,7 +287,7 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: 'The `sourceCode` field represents the account''s source code,
+          description: 'The sourceCode field represents the account''s source code,
             which is used to identify the origin or source of the account.
 
 
@@ -302,7 +295,7 @@ components:
           example: walk in
         pinSuppressionIndicator:
           type: boolean
-          description: 'The `pinSuppressionIndicator` field represents the Pin Suppression
+          description: 'The pinSuppressionIndicator field represents the Pin Suppression
             status.
 
 
@@ -344,7 +337,7 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: 'The `address` field represents the first line of the postal
+          description: 'The address field represents the first line of the postal
             address associated with a specific location or entity. It provides essential
             information about the primary address details, such as street name, house
             number, apartment, or suite number. This field is commonly used in address
@@ -358,7 +351,7 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-          description: 'The `additionalAddress` field represents the second line of
+          description: 'The additionalAddress field represents the second line of
             the postal address associated with a specific location or entity. It provides
             additional address details, such as building name, floor, department,
             or any supplementary information.
@@ -370,7 +363,7 @@ components:
           maxLength: 30
           minLength: 0
           type: string
-          description: 'The `city` represents the name of the city in which the address
+          description: 'The city represents the name of the city in which the address
             field is located.
 
 
@@ -380,7 +373,7 @@ components:
           maxLength: 3
           minLength: 0
           type: string
-          description: 'The `state` field represents the code of the administrative
+          description: 'The state field represents the code of the administrative
             region or state within a country associated with a specific address.
 
 
@@ -390,8 +383,8 @@ components:
           maxLength: 10
           minLength: 0
           type: string
-          description: 'The `postalCode` field stores the postal code or ZIP code
-            associated with the address information.
+          description: 'The postalCode field stores the postal code or ZIP code associated
+            with the address information.
 
 
             VisionPLUS Service Data: ARXIEI-PSTL-CD '
@@ -400,9 +393,10 @@ components:
       type: object
       properties:
         indicator:
+          pattern: ^( |A|B|C)$
           type: string
-          description: 'The `indicator` field indicates the status of an alternate
-            customer or relationship for billing purposes.
+          description: 'The indicator field indicates the status of an alternate customer
+            or relationship for billing purposes.
 
 
             Values:
@@ -421,16 +415,11 @@ components:
 
             VisionPLUS Service Data: ARXIEI-BS-ALT-CUST-NBR-FLAG'
           example: A
-          enum:
-          - ' '
-          - A
-          - B
-          - C
         number:
           maxLength: 19
           minLength: 0
           type: string
-          description: 'The `number` field represents a unique identifier for an alternate
+          description: 'The number field represents a unique identifier for an alternate
             customer or relationship, allowing proper management and communication.
 
 
@@ -439,8 +428,8 @@ components:
         startDate:
           pattern: YYYY-MM-DD
           type: string
-          description: 'The `startDate` field represents the start date in for an
-            alternate customer or relationship in ISO 8601 date format.
+          description: 'The startDate field represents the start date in for an alternate
+            customer or relationship in ISO 8601 date format.
 
 
             VisionPLUS Service Data: ARXIEI-BS-DATE-ALT-CUST-STRT'
@@ -449,8 +438,8 @@ components:
         expiryDate:
           pattern: YYYY-MM-DD
           type: string
-          description: 'The `expiryDate` field denotes the expiration date of the
-            alternate customer status in ISO 8601 date format.
+          description: 'The expiryDate field denotes the expiration date of the alternate
+            customer status in ISO 8601 date format.
 
 
             VisionPLUS Service Data: ARXIEI-BS-DATE-ALT-CUST-EXPR'
@@ -468,7 +457,7 @@ components:
             * Max Length: 9
 
 
-            The `owning` field represents the unique identifier or code assigned to
+            The owning field represents the unique identifier or code assigned to
             the branch or location that owns or manages a specific account or transaction.
 
 
@@ -482,7 +471,7 @@ components:
             * Max Length: 9
 
 
-            The `administration` field represents the unique identifier or code assigned
+            The administration field represents the unique identifier or code assigned
             to the administrative branch or location responsible for managing and
             overseeing specific account-related operations and services.
 
@@ -497,7 +486,7 @@ components:
             * Max Length: 9
 
 
-            The `firstIssue` field represents the identifier of the branch or location
+            The firstIssue field represents the identifier of the branch or location
             where a specific item or document was first issued.
 
 
@@ -511,8 +500,9 @@ components:
       type: object
       properties:
         cardTechnology:
+          pattern: ^(0|1|2|3)$
           type: string
-          description: 'The `cardTechnology` field indicates the type of technology
+          description: 'The cardTechnology field indicates the type of technology
             used for the payment card.
 
 
@@ -530,11 +520,6 @@ components:
 
             VisionPLUS Service Data: ARXIEI-CARD-TECHNOLOGY'
           example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-          - '3'
         posServiceCode:
           type: integer
           description: '* Min Length: 0
@@ -542,7 +527,7 @@ components:
             * Max Length: 3
 
 
-            The `posServiceCode` field represents a code that indicates the type of
+            The posServiceCode field represents a code that indicates the type of
             point-of-sale(pos) service applicable to a card. The values for each digit
             vary depending on whether the card is associated with Visa, MasterCard,
             Europay, or a private label card product. This code is essential for identifying
@@ -560,7 +545,7 @@ components:
             * Max Length: 17
 
 
-            The `creditLimit` field indicates the maximum allowed credit for an account.
+            The creditLimit field indicates the maximum allowed credit for an account.
             It sets the upper limit for borrowing or charging to the account.
 
 
@@ -570,9 +555,9 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'The `cardAction` field represents the reason or rationale
-            for a specific action taken on a card, such as issuance, reissuance, or
-            cancellation. The values are user-defined.
+          description: 'The cardAction field represents the reason or rationale for
+            a specific action taken on a card, such as issuance, reissuance, or cancellation.
+            The values are user-defined.
 
 
             VisionPLUS Service Data: ARXIEI-ED-CARD-ACTION-REASON'
@@ -586,7 +571,7 @@ components:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'The `customerNumber` field identifies the Customer Name/Address
+          description: 'The customerNumber field identifies the Customer Name/Address
             record to which this account is assigned. A valid customer name and address
             must be on file for this account.
 
@@ -597,11 +582,11 @@ components:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'The `accountNumber` field is a unique identifier representing
-            an account. If `createAccount` is set to `true`, a valid account number
-            must be provided, and it should not be in add pending status. If `createAccount`
-            is `false`, the `accountNumber` must not be empty, containing spaces,
-            or have low values as it would be considered invalid.
+          description: 'The accountNumber field is a unique identifier representing
+            an account. If createAccount is set to true, a valid account number must
+            be provided, and it should not be in add pending status. If createAccount
+            is false, the accountNumber must not be empty, containing spaces, or have
+            low values as it would be considered invalid.
 
 
             VisionPLUS Service Data: ARXIEI-BS-ACCT'
@@ -618,7 +603,7 @@ components:
           maxLength: 40
           minLength: 1
           type: string
-          description: 'The `name` field represents the name of the embosser or cardholder
+          description: 'The name field represents the name of the embosser or cardholder
             associated with the card production process.
 
 
@@ -628,17 +613,17 @@ components:
           maxLength: 40
           minLength: 1
           type: string
-          description: 'The `additionalName` field represents the additional name
-            of the embosser or cardholder associated with the card production process.
+          description: 'The additionalName field represents the additional name of
+            the embosser or cardholder associated with the card production process.
 
 
             VisionPLUS Service Data: ARXIEI-EMBOSSER-NAME-2'
           example: Alice Rocha Cunha
         shortName:
           maxLength: 20
-          minLength: 1
+          minLength: 0
           type: string
-          description: 'The `shortName` field refers to a concise or abbreviated name
+          description: 'The shortName field refers to a concise or abbreviated name
             or title used to represent a longer or more formal name.
 
 
@@ -651,8 +636,8 @@ components:
             * Max Length: 5
 
 
-            The `affiliateGroup` field identifies the cardholder''s affiliation or
-            affinity group through an embosser code.
+            The affiliateGroup field identifies the cardholder''s affiliation or affinity
+            group through an embosser code.
 
 
             VisionPLUS Service Data: ARXIEI-BS-AFFL-EMBLM'
@@ -662,8 +647,8 @@ components:
           maxLength: 19
           minLength: 0
           type: string
-          description: 'The `customerNumber` field represents a unique identifier
-            or code assigned to a customer or cardholder associated with an embosser.
+          description: 'The customerNumber field represents a unique identifier or
+            code assigned to a customer or cardholder associated with an embosser.
 
 
             VisionPLUS Service Data: ARXIEI-ED-CUSTOMER-NBR'
@@ -672,7 +657,7 @@ components:
           maxLength: 20
           minLength: 0
           type: string
-          description: 'The `operator` field refers to the user or operator responsible
+          description: 'The operator field refers to the user or operator responsible
             for embossing or personalizing the card.
 
 
@@ -685,7 +670,7 @@ components:
             * Max Length: 3
 
 
-            The `reissueDeliveryOption` field indicates the preferred method for delivering
+            The reissueDeliveryOption field indicates the preferred method for delivering
             reissued cards to customers or cardholders through the embosser system.
 
 
@@ -699,7 +684,7 @@ components:
             * Max Length: 3
 
 
-            The `issueDeliveryOption` field indicates the preferred method for delivering
+            The issueDeliveryOption field indicates the preferred method for delivering
             newly issued cards to customers or cardholders through the embosser system.
 
 
@@ -716,8 +701,8 @@ components:
             * List size: 3
 
 
-            The `applicationSourceCodes` field is a list containing source codes,
-            each with a maximum length of 20 characters.
+            The applicationSourceCodes field is a list containing source codes, each
+            with a maximum length of 20 characters.
 
 
             VisionPLUS Service Data: [ARXIEI-BS-APPL-USER-1, ARXIEI-BS-APPL-USER-2,
@@ -731,7 +716,7 @@ components:
             * List size: 4
 
 
-            The `miscellaneousUserCodes` field represents a user-defined code or identifier
+            The miscellaneousUserCodes field represents a user-defined code or identifier
             used for miscellaneous purposes or customized categorization.
 
 
@@ -749,7 +734,7 @@ components:
             * Max Length: 3
 
 
-            The `indicator` field corresponds to the Service Fee Table. It undergoes
+            The indicator field corresponds to the Service Fee Table. It undergoes
             validation to ensure the existence of the PCT table.
 
 
@@ -759,7 +744,7 @@ components:
         startDate:
           pattern: YYYY-MM-DD
           type: string
-          description: 'The `startDate` field represents the start date of the `indicator`
+          description: 'The startDate field represents the start date of the indicator
             in ISO 8601 date format.
 
 
@@ -769,8 +754,8 @@ components:
         expiryDate:
           pattern: YYYY-MM-DD
           type: string
-          description: 'The `expiryDate` field represents the expiration date of the
-            `indicator` in ISO 8601 date format.
+          description: 'The expiryDate field represents the expiration date of the
+            indicator in ISO 8601 date format.
 
 
             VisionPLUS Service Data: ARXIEI-BS-SVC-FEE-EXPIR-DATE'
@@ -786,7 +771,7 @@ components:
             * Max Length: 10
 
 
-            The `routingNumber` field represents the Payment Archive Routing Number.
+            The routingNumber field represents the Payment Archive Routing Number.
             This field stores the routing number used for payment archival, ensuring
             accurate and efficient routing of archived payments for appropriate processing
             and management.
@@ -796,9 +781,9 @@ components:
           format: int64
           example: 8634466596
         debitType:
+          pattern: ^(D|S)$
           type: string
-          description: 'The `debitType` field represents the Payment Archive Debit
-            Type.
+          description: 'The debitType field represents the Payment Archive Debit Type.
 
 
             Values:
@@ -816,14 +801,11 @@ components:
 
             VisionPLUS Service Data: ARXIEI-BS-PMT-ACH-DB-TYPE'
           example: D
-          enum:
-          - D
-          - S
         debitNumber:
           maxLength: 17
           minLength: 0
           type: string
-          description: 'The `debitNumber` field represents the Payment Archive Debit
+          description: 'The debitNumber field represents the Payment Archive Debit
             Number. This field is used to store the unique identifier associated with
             the payment archive debit, facilitating traceability and organization
             of payment archival records.
@@ -833,8 +815,9 @@ components:
           example: '69299344544137784'
         status:
           maximum: 7
+          pattern: ^(0|1|2|7)$
           type: string
-          description: 'The `status` field represents the Payment Archive flag, indicating
+          description: 'The status field represents the Payment Archive flag, indicating
             the status of payment archival.
 
 
@@ -855,14 +838,10 @@ components:
 
             VisionPLUS Service Data: ARXIEI-BS-PMT-ACH-FLAG'
           example: '0'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-          - '7'
         nominatedPaymentIndicator:
+          pattern: ^(0|1|2|3|9)$
           type: string
-          description: 'The `nominatedPaymentIndicator` field denotes the Direct Debit
+          description: 'The nominatedPaymentIndicator field denotes the Direct Debit
             (DD) customer-nominated type of payment.
 
 
@@ -887,12 +866,6 @@ components:
 
             VisionPLUS Service Data: ARXIEI-BS-NOM-ACH-AMTPCT-FL'
           example: '2'
-          enum:
-          - '0'
-          - '1'
-          - '2'
-          - '3'
-          - '9'
     ItemRequestString:
       type: object
       properties:
@@ -906,7 +879,7 @@ components:
         * List size: 4
 
 
-        The `miscellaneousUserCodes` field represents a user-defined code or identifier
+        The miscellaneousUserCodes field represents a user-defined code or identifier
         used for miscellaneous purposes or customized categorization.
 
 
@@ -942,7 +915,7 @@ components:
 
             List size: 2
 
-            The `encryptedTracks` field is a list that contains formatted tracks data
+            The encryptedTracks field is a list that contains formatted tracks data
             encrypted using the 3DES (Triple Data Encryption Standard) algorithm.
 
 
@@ -954,9 +927,9 @@ components:
           description: '* Max Length: 176
 
 
-            The `embosserBlockData` field contains block data specific to digital
-            cards. This information is exclusively sent for digital card transactions,
-            ensuring secure and streamlined processing for these types of cards.
+            The embosserBlockData field contains block data specific to digital cards.
+            This information is exclusively sent for digital card transactions, ensuring
+            secure and streamlined processing for these types of cards.
 
 
             VisionPLUS Service Data: ARXIEO-EMB-DATA-BLOCK'
@@ -965,7 +938,7 @@ components:
           description: '* Max Length: 19
 
 
-            The `cardNumber` field represents a unique identifier or token associated
+            The cardNumber field represents a unique identifier or token associated
             with the card number or payment instrument, known as the FirstVision PAN
             Token. This token serves as a secure and anonymized representation of
             the original card number, enabling safe and efficient payment processing.
@@ -974,11 +947,8 @@ components:
             VisionPLUS Service Data: ARXIEO-CARD-NBR'
         cardExpiryDate:
           type: string
-          description: '* Max Length: 10
-
-
-            The `cardExpiryDate` field indicates the expiration date of a card or
-            payment instrument in ISO 8601 date format.
+          description: 'The cardExpiryDate field indicates the expiration date of
+            a card or payment instrument in ISO 8601 date format.
 
 
             VisionPLUS Service Data: ARXIEO-EXP-DATE'
@@ -994,8 +964,8 @@ components:
 
         List size: 2
 
-        The `encryptedTracks` field is a list that contains formatted tracks data
-        encrypted using the 3DES (Triple Data Encryption Standard) algorithm.
+        The encryptedTracks field is a list that contains formatted tracks data encrypted
+        using the 3DES (Triple Data Encryption Standard) algorithm.
 
 
         VisionPLUS Service Data: [ARXIEO-TRACK1-ENC, ARXIEO-TRACK2-ENC] '
