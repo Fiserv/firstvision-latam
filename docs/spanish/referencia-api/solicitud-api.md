@@ -88,5 +88,7 @@ titles: Ejemplo de Cuerpo de Solicitud
 - [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
 - [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
 - [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Webhook](?path=docs/spanish/referencia-api/4-notificaciones.md)![image](https://github.com/Fiserv/firstvision-latam/assets/111396588/f5a1db1a-abd2-481f-a8cc-8b0e6ac7788f)
+
 
 ---
