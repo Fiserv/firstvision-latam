@@ -2,7 +2,7 @@
 tags: [Referencia de la API, Notificationes, Webhooks, Eventos]
 ---
 
-# Notificationes
+# Notificaciones
 
 Las notificaciones de First Vision les permite a las empresas de tecnología financiera y a las instituciones financieras recibir eventos como autorizaciones, cambios de dirección, bloqueos de tarjeta, activación de tarjetas, reemplazos o reemisiones de tarjetas, fechas de vencimiento de pagos y cambios de Límite de Crédito.
 
