@@ -292,3 +292,12 @@ type: tab
 <!-- type: tab-end -->
 
 ---
+
+## Ver también
+
+- [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
+- [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
+- [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Solicitud de API](?path=docs/spanish/referencia-api/solicitud-api.md)
+
+---
