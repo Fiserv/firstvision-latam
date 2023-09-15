@@ -1,8 +1,76 @@
 ---
-tags: [Release Notes, Janeiro, Fevereiro, Março, Abril, Junho, Julho, Agosto]
+tags: [Release Notes, Janeiro, Fevereiro, Março, Abril, Junho, Julho, Agosto, Setembro]
 ---
 
 # Release Notes
+
+## Setembro 2023
+
+### O que há de novo?
+
+- /account/v1/falconMonetaryInquiry
+
+### Melhorias
+
+Melhoria de descrição das APIs:
+- /account/FL-balance
+- /account/auth-criteria
+- /account/bank-branch-store
+- /account/creditBureau
+- /account/installment-term
+- /account/pctId
+- /account/ppd-load-limits
+- /account/ppd-over-limit
+- /account/settlement-quote
+- /account/skip-payment
+- /account/transfer-promotional-product
+- /account/userData
+- /account/v1/debitBalance
+- /account/v1/insuranceProducts/{insuranceProduct-id}
+- /account/v1/statementFlag
+- /account/v2/accountBoardingDriver
+- /account/v2/accounts
+- /cards/credit-limit
+- /cards/embosser/cardAction-L8V2
+- /cards/embosser/card-pan-l8v2
+- /cards/embosser/sameDay
+- /cards/mass-card-issue-L8V3
+- /cards/travel
+- /cards/v1/embosser/search
+- /customer/
+- /customer/generation
+- /customer/v1/cards
+- /loyalty/crossReference
+- /loyalty/pointsAccount
+- /loyalty/pointsAdjust
+- /loyalty/pointsDisbursement
+- /loyalty/redemption
+- /transactions/br/v1/installmentTransactions/{installmentTransaction-Id}/terms
+- /transactions/promo-rate
+- /transactions/quote-projections
+- /transactions/v1/installmentTransactions/{installmentTransaction-Id}
+- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/simulation
+- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsAnticipationNumber/simulation
+- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsIdAnticipation/simulation
+- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsIdAnticipation/simulation
+- /transactions/v1/installmentTransactions/terms
+- /transactions/v2/installmentTransactions
+- /transactions/v2/installmentTransactions/{installmentTransaction-Id}/terms
+- /transactions/v1/installmentTransactions/{installmentTransaction-Id}/anticipationAmount/simulation
+- /account/balance/details
+- /account/block-code
+
+### Problemas solucionados
+
+N/A
+
+### Obsoleto
+
+- /transactions/mx/v1/udiRate
+
+---
+
+## Agosto
 
 ### O que há de novo?
 
@@ -57,7 +125,6 @@ Moved to 1.1.0 version
 - /account/transfer
 
 ---
-
 
 ## Julho 2023
 

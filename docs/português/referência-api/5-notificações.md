@@ -1,35 +1,8 @@
 ---
-tags: [Referência da API, Notificações, Webhooks, Eventos]
+tags: [Referência da API, Webhook, Eventos]
 ---
 
-# Notificações
-
-As notificações do First Vision permitem que fintechs e instituições financeiras recebam eventos como autorizações, alterações de endereço, bloqueios de cartões, ativação de cartões, substituições ou reemissões de cartões, datas de vencimento de pagamentos e alterações de limite.
-
-A flexibilidade para definir novos eventos no futuro com alterações mínimas no sistema também está disponível.
-
-<!--
-type: tab
-titles: Para quem é ?, Como se usa?, Usos potenciais
--->
-
-Qualquer desenvolvedor que crie ou integre aplicativos que precisem interagir com dados de transações mantidos em plataformas de processamento de contas principal da Fiserv.
-
-<!--
-type: tab
--->
-
-Use essas APIs para desenvolver aplicativos que oferecem experiências únicas ou novos canais por meio dos quais os usuários podem visualizar e gerenciar transações nessas contas.
-
-<!--
-type: tab
--->
-
-Aplicativos que permitem que consumidores e empresas monitorem e gerenciem suas transações financeiras e saldos por meio dos canais que acessam no dia a dia.
-
-<!-- type: tab-end -->
-
-## Webhooks
+# Webhook
 
 Os webhooks são uma forma de os sistemas enviarem notificações em tempo real sobre eventos ocorridos. Eles funcionam permitindo que um Cliente forneça um serviço que pode receber notificações sempre que determinados eventos ocorrerem nos sistemas da Fiserv. Com os webhooks, os aplicativos podem se manter atualizados sobre coisas como alterações de autorização, atualizações de cartão ou conta e alertas de fraude.
 
@@ -322,10 +295,9 @@ type: tab
 
 ## Veja também
 
-- [Cartões](?path=docs/português/referência-api/1-cartões.md)
-- [Cliente](?path=docs/português/referência-api/2-cliente.md)
-- [Conta](?path=docs/português/referência-api/3-conta.md)
-- [Fidelidade](?path=docs/português/referência-api/4-fidelidade.md)
-- [Transações](?path=docs/português/referência-api/6-transações.md)
+- [Gestão de resposta ](?path=docs/português/referência-api/gestão-resposta.md)
+- [Glossário API](?path=docs/português/referência-api/glossário-api.md)
+- [Resposta de Erro](?path=docs/português/referência-api/resposta-erro.md)
+- [Solicitação de API](?path=docs/português/referência-api/solicitação-api.md)
 
 ---

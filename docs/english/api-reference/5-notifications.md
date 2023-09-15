@@ -1,39 +1,8 @@
 ---
-tags: [API Reference, Notifications, Webhooks, Events]
+tags: [API Reference, Webhook, Events]
 ---
 
-# Notifications
-
-First Vision Notification allows Fintechs and Finantial Institutions to receive events such as authorizations, address change, card blocking, card activation, card replacement or reissue, payment due date and credit limit change. 
-
-Flexibility to define new events in future with minimal system changes is also available.
-
----
-
-<!--
-type: tab
-titles: Who is it for, How is it used, Potential uses
--->
-
-Any developer creating or integrating apps that need to interact with transaction data maintained on Fiserv core account processing platforms
-
-<!--
-type: tab
--->
-
-Employ these APIs to develop apps that offer unique experiences or novel channels through which users can view and manage transactions on those accounts
-
-<!--
-type: tab
--->
-
-Apps that enable consumers and businesses to monitor and manage their financial transactions and balances through channels they access in everyday life
-
-<!-- type: tab-end -->
-
----
-
-## Webhooks
+# Webhook
 
 Webhooks are a way for systems to send real-time notifications about events that have occurred. They work by allowing a client to provide a service that can receive notifications whenever certain events happen in Fiserv systems . With webhooks, applications can be kept up-to-date on things like authorization changes, card or account updates, and fraud alerts.
 
@@ -326,10 +295,9 @@ type: tab
 
 ## See Also
 
-- [Account](?path=docs/english/api-reference/1-account.md)
-- [Cards](?path=docs/english/api-reference/2-cards.md)
-- [Customer](?path=docs/english/api-reference/3-customer.md)
-- [Loyalty](?path=docs/english/api-reference/4-loyalty.md)
-- [Transactions](?path=docs/english/api-reference/6-transactions.md)
+- [API Glossary](?path=docs/english/api-reference/api-glossary.md)
+- [API Request](?path=docs/english/api-reference/api-request.md)
+- [Error Handling](?path=docs/english/api-reference/response-handling.md)
+- [Error Response](?path=docs/english/api-reference/error-response.md)
 
 ---

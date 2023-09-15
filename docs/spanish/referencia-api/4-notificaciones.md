@@ -1,35 +1,8 @@
 ---
-tags: [Referencia de la API, Notificationes, Webhooks, Eventos]
+tags: [Referencia de la API, Webhook, Eventos]
 ---
 
-# Notificationes
-
-Las notificaciones de First Vision les permite a las empresas de tecnología financiera y a las instituciones financieras recibir eventos como autorizaciones, cambios de dirección, bloqueos de tarjeta, activación de tarjetas, reemplazos o reemisiones de tarjetas, fechas de vencimiento de pagos y cambios de Límite de Crédito.
-
-También está disponible la flexibilidad para definir nuevos eventos/SMS en el futuro con cambios mínimos en el sistema.
-
-<!--
-type: tab
-titles: ¿Para quién es?, ¿Cómo se usa?, Usos potenciales
--->
-
-Cualquier desarrollador que cree o integre aplicaciones que necesiten interactuar con datos de transacciones mantenidos en plataformas de procesamiento de cuentas centrales de Fiserv.
-
-<!--
-type: tab
--->
-
-Utilice estas API para desarrollar aplicaciones que ofrezcan experiencias únicas o canales novedosos a través de los cuales los usuarios puedan ver y administrar transacciones en esas cuentas.
-
-<!--
-type: tab
--->
-
-Aplicaciones que permiten a los consumidores y las empresas monitorear y administrar sus transacciones y saldos financieros a través de los canales a los que acceden en la vida cotidiana.
-
-<!-- type: tab-end -->
-
-## Webhooks
+# Webhook
 
 Los webhooks son una forma en que los sistemas envían notificaciones en tiempo real sobre eventos que han ocurrido. Funcionan al permitir que un Cliente brinde un servicio que puede recibir notificaciones cada vez que ocurren ciertos eventos en los sistemas de Fiserv. Con los webhooks, las aplicaciones se pueden mantener actualizadas sobre cosas como cambios de autorización, actualizaciones de tarjetas o cuentas y alertas de fraude.
 
@@ -322,10 +295,9 @@ type: tab
 
 ## Ver también
 
-- [Clientes](?path=docs/spanish/referencia-api/1-clientes.md)
-- [Cuentas](?path=docs/spanish/referencia-api/2-cuentas.md)
-- [Lealtad](?path=docs/spanish/referencia-api/3-lealtad.md)
-- [Tarjetas](?path=docs/spanish/referencia-api/5-tarjetas.md)
-- [Transacciones](?path=docs/spanish/referencia-api/6-transacciones.md)
+- [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
+- [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
+- [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Solicitud de API](?path=docs/spanish/referencia-api/solicitud-api.md)
 
 ---
