@@ -1,27 +1,27 @@
 ---
-tags: [API Reference, Account, Cards, Customer, Loyalty, Notifications, Transactions]
+tags: [Referencia de la API, Clientes, Cuentas, Lealtad, Notificaciones, Tarjetas, Transacciones]
 ---
 
 # API Reference
 
 <!--
 type: tab
-titles: Who is it for, How is it used, Potential uses
+titles: ¿Para quién es?, ¿Cómo se usa?, Usos potenciales
 -->
 
-Any developer creating or integrating apps that need to interact with transaction data maintained on Fiserv core account processing platforms
+Cualquier desarrollador que cree o integre aplicaciones que necesiten interactuar con datos de transacciones mantenidos en plataformas de procesamiento de cuentas centrales de Fiserv.
 
 <!--
 type: tab
 -->
 
-Employ these APIs to develop apps that offer unique experiences or novel channels through which users can view and manage transactions on those accounts
+Utilice estas API para desarrollar aplicaciones que ofrezcan experiencias únicas o canales novedosos a través de los cuales los usuarios puedan ver y administrar transacciones en esas cuentas.
 
 <!--
 type: tab
 -->
 
-Apps that enable consumers and businesses to monitor and manage their financial transactions and balances through channels they access in everyday life
+Aplicaciones que permiten a los consumidores y las empresas monitorear y administrar sus transacciones y saldos financieros a través de los canales a los que acceden en la vida cotidiana.
 
 <!-- type: tab-end -->
 
@@ -30,19 +30,20 @@ Apps that enable consumers and businesses to monitor and manage their financial 
 <!-- type: row -->
 
 <!-- type: card
-title: Account
-description: Account basic functions such as add, inquiry and edit account. Also includes account level processing options for a card account such as digital wallet options, instant card, limit management, balance and delinquency management, block code application, transaction management, product reassignment, direct debit and credit processing and other account management functions. 
-Establish cardholder relationships in CMS. Assign Account Base Segment records to a Relationship record. The Relationship record contains information that applies, and controls all linked accounts in the relationship.
+title: Clientes
+description: Funciones de la dirección del nombre del Cliente, como agregar, consultar y editar datos demográficos del Cliente para propietarios, copropietarios y cualquier otra parte asociada con una Cuenta, como firmantes autorizados, garantes y otras partes asociadas (hijos, cónyuge).
+Se pueden asociar varias cuentas con un solo registro de nombre/dirección de cliente. También están disponibles las referencias cruzadas entre los registros del cliente, la cuenta, las tarjetas y las relaciones.
 -->
 
 <!-- type: card
-title:  Cards Summary
-description: Cards functions to add, inquiry and edit card records. A card record contains information about the card (or “plastic”) that is issued to the cardholder. Also includes cross reference between customer, account and card. Card level features such as card activation, issue, reissue, lost and stolen, replacement, limit management, secured PIN management, card details, block code application and authorizations.
+title: Cuentas
+description: Funciones básicas de Cuenta como agregar, consultar y editar cuenta. También incluye opciones de procesamiento a nivel de cuenta para una cuenta de tarjeta, como opciones de monedero digital, tarjeta instantánea, gestión de límites, gestión de saldos y morosidad, aplicación de código de bloqueo, gestión de transacciones, reasignación de productos, procesamiento de débito y crédito directo y otras funciones de gestión de cuentas, establecimiento de relaciones de tarjetahabientes en CMS, asignación de registros de segmentos base de cuentas a un registro de Relación. El registro de relación contiene información que se aplica y controla todas las cuentas vinculadas en la relación.
 -->
 
 <!-- type: card
-title: Customer
-description: Customer Name Address functions such as add, inquiry and edit Customer Demographic data for owners, co-owners, and any other parties associated with an account such as authorized signers, guarantors, and other associated parties (children, spouse). Multiple accounts can be associated with a single Customer Name/Address record. Cross-reference between records customer to account to cards and relationships are also available.
+title: Lealtad
+description: El programa de Lealtad funciona para recompensar a los clientes por su preferencia. Los programas de Lealtad también se conocen como programa de recompensas o programa de puntos.
+Funciones del programa de Lealtad, como consulta de puntos, datos demográficos, gestión de puntos (ajustes, desembolsos, redenciones), referencias cruzadas de cuentas y detalles del estado de cuenta.
 -->
 
 <!-- type: row-end -->
@@ -50,18 +51,21 @@ description: Customer Name Address functions such as add, inquiry and edit Custo
 <!-- type: row -->
 
 <!-- type: card
-title: Loyalty
-description: Loyalty program functions to reward customers for their repeated patronage. Loyalty programs are also known as a rewards program or points program. Loyalty program functions such as point Inquiry, demographic data, point management (adjust, disburse, redeem), account cross-reference and statement details.
+title: Notificaciones
+description: Las notificaciones de First Vision les permite a las empresas de tecnología financiera y a las instituciones financieras recibir eventos como autorizaciones, cambios de dirección, bloqueos de tarjeta, activación de tarjetas, reemplazos o reemisiones de tarjetas, fechas de vencimiento de pagos y cambios de Límite de Crédito.
+
+También está disponible la flexibilidad para definir nuevos eventos/SMS en el futuro con cambios mínimos en el sistema.
 -->
 
 <!-- type: card
-title: Notifications
-description: Short Message Service (SMS) enrollment and cancellation features with the flexibility to trigger SMS and Email’s basis for specific events such as authorizations, address change, card blocking, card activation, card replacement or reissue, payment due date and credit limit change. Flexibility to define new events/SMS in future with minimal system changes is also available.
+title: Tarjetas
+description: Funciones de tarjetas para agregar, consultar y editar registros de tarjetas. Un registro de tarjeta contiene información sobre la tarjeta (o "plástico") que se emite al tarjetahabiente. También incluye referencias cruzadas entre el cliente, la cuenta y la tarjeta.
+Funciones a nivel de tarjeta como activación de tarjeta, emisión, reemisión, pérdida y robo, reemplazo, gestión de límites, gestión de PIN seguro, detalles de la tarjeta, solicitud de código de bloqueo y autorizaciones.
 -->
 
 <!-- type: card
-title: Transactions
-description: Transactions functions to add, adjust or inquiry functions actions. Display transactional details such as outstanding authorizations, cycle-to-date, memo-posted, warehoused, disputed transactions, exchange rate, installment data, transaction details and processing control inquiry.
+title: Transacciones
+description: Funciones de transacciones para agregar, ajustar o consultar acciones de funciones. Muestra los detalles de las transacciones, como las autorizaciones pendientes, el ciclo hasta la fecha, las transacciones en disputa, el tipo de cambio, los datos de las cuotas, los detalles de la transacción y la consulta de control de procesamiento.
 -->
 
 <!-- type: row-end -->

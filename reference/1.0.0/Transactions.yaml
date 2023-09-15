@@ -38,14 +38,6 @@ paths:
               $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Request'
         required: true
       responses:
-        '401':
-          description: Unauthorized
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '422':
           description: "VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\n\nVPL5SOA07E - ACCOUNT NUMBER IS INVALID\n\nVPL5SOA08E\
@@ -65,26 +57,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
+        '401':
+          description: Unauthorized
         '403':
           description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response'
-        '404':
-          description: Not Found
       x-proxy-name: Outstanding Authorizations Inquiry
       x-group-name: Transactions
   /transactions/details:
@@ -117,6 +117,22 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsRequest'
         required: true
       responses:
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
         '422':
           description: 'VPL5STD01I - NO TRANSACTIONS FOUND FOR REQUEST
 
@@ -197,34 +213,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionsDetailsResponse'
-        '404':
-          description: Not Found
       x-proxy-name: Transactions Details Inquiry
       x-group-name: Transactions
 components:
@@ -259,7 +259,7 @@ components:
           type: integer
           description: '* Min Length: 1
 
-            * Max Length: 7
+            * Max Length: 6
 
 
             Effective Authorization Time. Required for navigating results.
@@ -267,7 +267,7 @@ components:
 
             VisionPLUS Service Data: OZXOAI-TIME'
           format: int32
-          example: 1122334
+          example: 112233
         accountNumber:
           maxLength: 19
           minLength: 19
@@ -764,7 +764,7 @@ components:
           description: 'Max Length: 9
 
 
-            Relative byte address of the log record that corresponds to this activity,.
+            Relative byte address of the log record that corresponds to this activity.
 
 
             VisionPLUS Service Data: OZXOAO-RBA'
@@ -967,7 +967,7 @@ components:
           description: 'Transaction local date (in ISO 8601).
 
 
-            VisionPLUS Service Data: OZXOAO-B013-LCL-TXN-DTE'
+            VisionPLUS Service Data: OZXOAO-B013-LCL-TXN-DT'
           format: date
           example: 2023-06-12
         retrievalReferenceNumber:
