@@ -1,5 +1,5 @@
 ---
-tags: [Começando, VMX, Lista de Serviços]
+tags: [Começando, VMX, Lista de Serviços, First Vision, Processamento de Cartões, Pagamentos]
 ---
 
 # Lista de Serviços
