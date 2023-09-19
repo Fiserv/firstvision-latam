@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, VMX, Services List]
+tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processing, Payments]
 ---
 
 # Services List
