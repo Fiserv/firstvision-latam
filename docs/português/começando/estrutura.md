@@ -1,5 +1,5 @@
 ---
-tags: [Começando, Estrutura do Sistema, Estrutura Funcional]
+tags: [Começando, Estrutura do Sistema, Estrutura Funcional, First Vision, Processamento de Cartões, Pagamentos]
 ---
 
 # Estrutura

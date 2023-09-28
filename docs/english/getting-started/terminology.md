@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, Terminology, Account, Customer, Cards, Plan Segments]
+tags: [Getting Started, Terminology, Account, Customer, Cards, Plan Segments, First Vision, Issuing, Card Processing, Payments]
 ---
 
 # Terminology

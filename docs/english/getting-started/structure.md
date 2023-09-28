@@ -1,5 +1,5 @@
 ---
-tags: [Getting Started, System Structure, Functional Structure]
+tags: [Getting Started, System Structure, Functional Structure, First Vision, Issuing, Card Processing, Payments]
 ---
 
 # Structure
