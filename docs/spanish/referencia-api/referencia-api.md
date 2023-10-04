@@ -1,5 +1,5 @@
 ---
-tags: [Referencia de la API, Clientes, Cuentas, Lealtad, Notificaciones, Tarjetas, Transacciones]
+tags: [Referencia de la API, Clientes, Cuentas, Lealtad, Notificaciones, Tarjetas, Transacciones, Tokenizacion]
 ---
 
 # API Reference
@@ -66,6 +66,15 @@ Funciones a nivel de tarjeta como activación de tarjeta, emisión, reemisión, 
 <!-- type: card
 title: Transacciones
 description: Funciones de transacciones para agregar, ajustar o consultar acciones de funciones. Muestra los detalles de las transacciones, como las autorizaciones pendientes, el ciclo hasta la fecha, las transacciones en disputa, el tipo de cambio, los datos de las cuotas, los detalles de la transacción y la consulta de control de procesamiento.
+-->
+
+<!-- type: row-end -->
+
+<!-- type: row -->
+
+<!-- type: card
+title: Tokenizacion
+description: Estos servicios recuperan y validan la lista de tarjetas disponibles asociadas con el número de cuenta solicitado a VISA. Las tarjetas sin tokens activos se consideran disponibles para tokenización. Los servicios permiten a VISA verificar la elegibilidad de las tarjetas para la digitalización a través de la Solicitud de verificación de elegibilidad entrante de Visa. Además, valida si el token existe y está activo y llama cuando el estado del token del emisor ha cambiado. El proveedor de billetera vincula su dispositivo a un token de e-com/COF previamente aprovisionado. El proceso de gestión del ciclo de vida del token también es compatible
 -->
 
 <!-- type: row-end -->
