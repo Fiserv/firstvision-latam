@@ -1,5 +1,5 @@
 ---
-tags: [API Reference, Account, Cards, Customer, Loyalty, Notifications, Transactions, Tikenization]
+tags: [API Reference, Account, Cards, Customer, Loyalty, Notifications, Transactions, Tokenization]
 ---
 
 # API Reference
