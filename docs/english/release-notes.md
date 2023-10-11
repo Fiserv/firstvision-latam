@@ -1,5 +1,28 @@
 ---
-tags: [Release Notes, January, February, March, April, May, June, July, August, September]
+tags: [Release Notes, January, February, March, April, May, June, July, August, September, October]
+---
+
+# Release Notes
+
+## October 2023
+
+### What's New?
+
+- /cards/v1/embosser/instantGeneration
+- /cards/v1/pin/codes
+
+### Enhancements
+
+N/A
+
+### Fixed
+
+N/A
+
+### Obsolete
+
+- /cards/pin/security-codes
+
 ---
 
 ## September 2023
