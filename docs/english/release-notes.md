@@ -1,7 +1,7 @@
 ---
 tags: [Release Notes, January, February, March, April, May, June, July, August, September, October]
 ---
-teste teste
+
 # Release Notes
 
 ## October 2023
