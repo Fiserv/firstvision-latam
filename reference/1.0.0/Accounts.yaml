@@ -39,14 +39,6 @@ paths:
               $ref: '#/components/schemas/UpdateQualificationRequest'
         required: true
       responses:
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -55,6 +47,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
         '422':
           description: 'VPL5SAAI6E - GQ FIELD MUST BE SPACE OR A-Z
 
@@ -124,18 +124,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateQualificationResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Qualification Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -173,8 +173,8 @@ paths:
               $ref: '#/components/schemas/AccountForBlockCodeUpdateRequest'
         required: true
       responses:
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -198,28 +198,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '405':
-          description: Method Not Allowed
+        '401':
+          description: Unauthorized
         '403':
           description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForBlockCodeUpdateResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Block Code Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -255,14 +255,6 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -271,18 +263,26 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '405':
-          description: Method Not Allowed
+        '401':
+          description: Unauthorized
         '403':
           description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ModifyAccountBalanceResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Cash-in & Cash-out Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -290,10 +290,14 @@ paths:
     post:
       tags:
       - Account
-      summary: 'Instant account and digital or physical card addition. VMX Service:
-        M.CMS.INSTANT.CARD.ADD, L8V7'
-      description: "Add an account and digital or physical card. \nVMX Service: M.CMS.INSTANT.CARD.ADD,\
-        \ L8V7"
+      summary: 'Add an account and digital or physical card.
+
+
+        VMX Service: M.CMS.INSTANT.CARD.ADD, L8V7'
+      description: 'Add an account and digital or physical card.
+
+
+        VMX Service: M.CMS.INSTANT.CARD.ADD, L8V7'
       operationId: Instant Card Add
       parameters:
       - name: apikey
@@ -316,14 +320,22 @@ paths:
               $ref: '#/components/schemas/InstantCardAddL8V7Request'
         required: true
       responses:
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
         '422':
           description: "VPL5SICAFE - REVERSAL IS NOT ALLOWED FOR PRIMARY CARD WHEN\
             \ ISSUE TYPE IS 'R' \n\nVPL5SICZ2S - SERVICE INPUT TO PLAN VIEWER SERVICE\
@@ -350,26 +362,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstantCardAddL8V7Response'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Instant Card Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -377,10 +381,16 @@ paths:
     post:
       tags:
       - Account
-      summary: 'Instant Account & Card creation. (VMX Service: M.CMS.INSTANT.CARD.ADD,
-        L8V3)'
-      description: "Creates an Account and Card records for instant use for eCommerce\
-        \ transactions. \nVMX Service: M.CMS.INSTANT.CARD.ADD, L8V3"
+      summary: 'Creates an Account and Card records for instant use for eCommerce
+        transactions.
+
+
+        VMX Service: M.CMS.INSTANT.CARD.ADD, L8V3'
+      description: 'Creates an Account and Card records for instant use for eCommerce
+        transactions.
+
+
+        VMX Service: M.CMS.INSTANT.CARD.ADD, L8V3'
       operationId: Instant Account & Card creation
       parameters:
       - name: apikey
@@ -403,8 +413,8 @@ paths:
               $ref: '#/components/schemas/InstantCardAddRequest'
         required: true
       responses:
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
@@ -426,28 +436,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '405':
-          description: Method Not Allowed
+        '401':
+          description: Unauthorized
         '403':
           description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstantCardAddResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Instant Account & Card creation
       x-group-name: Account
       x-child-product-name: Accounts
@@ -487,14 +497,6 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -503,6 +505,12 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
         '405':
           description: Method Not Allowed
         '422':
@@ -523,16 +531,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForDetailsL8vgResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -574,12 +584,22 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
         '422':
           description: 'VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
             001-998
@@ -1854,28 +1874,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountAddDetailsResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2296,7 +2306,8 @@ components:
       properties:
         asmOrganizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization Number.
 
@@ -2306,15 +2317,18 @@ components:
           example: 809
         foreignUse:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Foreign Use indicator.
 
+
             Values:
 
-            0: Local
+            * 0 = Local;
 
-            1: Foreign
+            * 1 = Foreign.
+
 
             VisionPLUS Service Data: AZXMAI-FOREIGN-USE-IND'
           example: '0'
@@ -2367,7 +2381,8 @@ components:
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
-          description: 'Length: 4
+          description: '* Max Length: 4
+
 
             Card Sequence.
 
@@ -2377,7 +2392,8 @@ components:
           example: 1
         actionCode:
           type: string
-          description: 'Length: 4
+          description: '* Max Length: 4
+
 
             Code that identifies the action to be taken.
 
@@ -2386,15 +2402,15 @@ components:
           example: FUND
         effectiveDate:
           type: string
-          description: 'Date that specifies when the transaction takes effect in the
-            account.
+          description: 'Date (in ISO 8601) that specifies when the transaction takes
+            effect in the account.
 
 
             VisionPLUS Service Data: AZXMAI-EFF-DATE'
           format: date
         transactionAmount:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
 
 
             Transaction Amount.
@@ -2404,7 +2420,8 @@ components:
           example: 100
         planNumber:
           type: integer
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Plan Number.
 
@@ -2414,7 +2431,8 @@ components:
           example: 60000
         planSequence:
           type: integer
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Plan Sequence.
 
@@ -2424,7 +2442,8 @@ components:
           example: 1
         storeNumber:
           type: integer
-          description: 'Length: 9
+          description: '* Max Length: 9
+
 
             Store Number.
 
@@ -2444,7 +2463,8 @@ components:
           example: '123456'
         referenceNumber:
           type: string
-          description: 'Length: 12
+          description: '* Max Length: 12
+
 
             Reference Number.
 
@@ -2453,7 +2473,8 @@ components:
           example: '123456789012'
         resolutionReferenceNumber:
           type: string
-          description: 'Length: 14
+          description: '* Max Length: 14
+
 
             Resolution Reference Number For Payments Received For Open Billing Accounts.
 
@@ -2462,20 +2483,25 @@ components:
           example: '123456789012'
         otbUpdateIndicator:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            OTB Update Indicator. The values are:
 
-            0 = Update OTB
+            OTB Update Indicator.
 
-            1 = Do not update OTB
+
+            Values:
+
+            0 = Update OTB;
+
+            1 = Do not update OTB.
+
 
             VisionPLUS Service Data: AZXMAI-OTB-UPDATE-IND'
           format: int32
           example: 0
         description:
           type: string
-          description: 'Length: 40
+          description: '* Max Length: 40
 
 
             Description of the transaction.
@@ -2485,13 +2511,15 @@ components:
           example: Description
         departmentCode:
           type: string
-          description: 'Length: 4
+          description: '* Max Length: 4
+
 
             Department Code.
 
             VisionPLUS Service Data: AZXMAI-DEPT-CODE'
           example: PPLD
-      description: 'Length: 3
+      description: '* Max Length: 3
+
 
         ModifyAccountBalanceRequestTxData'
     ModifyAccountBalanceResponse:
@@ -2499,7 +2527,8 @@ components:
       properties:
         asmOrganizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization number.
 
@@ -2508,7 +2537,8 @@ components:
           format: int32
         asmRepresentativeId:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Representative id.
 
@@ -2516,7 +2546,8 @@ components:
             VisionPLUS Service Data: AZXMAO-ACTION-REP'
         referralRepresentative:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Referral Representative.
 
@@ -2526,7 +2557,8 @@ components:
           $ref: '#/components/schemas/ModifyAccountBalanceResponse.Account'
         foreignUseIndicator:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Foreign use indicator.
 
@@ -2534,7 +2566,8 @@ components:
             VisionPLUS Service Data: AZXMAO-FOREIGN-USE-IND'
         cardNumber:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
+
 
             Unique identifier or token associated with the card number or payment
             instrument (FirstVision PAN Token).
@@ -2544,7 +2577,7 @@ components:
           example: 000540208ID5IXX3865
         historyDate:
           type: string
-          description: 'History date.
+          description: 'History date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXMAO-HIST-DATE'
@@ -2557,7 +2590,8 @@ components:
             VisionPLUS Service Data: AZXMAO-HIST-TIME'
         actionCodePri:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Action code pri.
 
@@ -2566,7 +2600,8 @@ components:
           format: int32
         recordType:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Record type.
 
@@ -2574,7 +2609,8 @@ components:
             VisionPLUS Service Data: AZXMAO-RECORD-TYPE'
         actionDescription:
           type: string
-          description: 'Length: 20
+          description: '* Max Length: 20
+
 
             Action description.
 
@@ -2582,7 +2618,8 @@ components:
             VisionPLUS Service Data: AZXMAO-ACTION-DESC'
         collectionSequenceNumber:
           type: integer
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Collection sequence number.
 
@@ -2591,7 +2628,8 @@ components:
           format: int32
         status:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Status.
 
@@ -2599,7 +2637,8 @@ components:
             VisionPLUS Service Data: AZXMAO-STATUS'
         referralAsmOrganization:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Referral asm organization.
 
@@ -2608,21 +2647,22 @@ components:
           format: int32
         purgeDate:
           type: string
-          description: 'Purge date.
+          description: 'Purge date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXMAO-PURGE-DATE'
           format: date
         actionDate:
           type: string
-          description: 'Action date.
+          description: 'Action date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXMAO-ACTION-DATE'
           format: date
         cardSequence:
           type: integer
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Card sequence.
 
@@ -2631,7 +2671,8 @@ components:
           format: int32
         retention:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Retention.
 
@@ -2639,7 +2680,8 @@ components:
             VisionPLUS Service Data: AZXMAO-RETENTION'
         ctaFile:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             CTA file.
 
@@ -2654,7 +2696,8 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization number.
 
@@ -2663,7 +2706,8 @@ components:
           format: int32
         logo:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Logo.
 
@@ -2672,7 +2716,8 @@ components:
           format: int32
         number:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
+
 
             Number.
 
@@ -2683,7 +2728,8 @@ components:
       properties:
         organization:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Organization.
 
@@ -2691,7 +2737,8 @@ components:
             VisionPLUS Service Data: AZXMAO-LTR-ORG'
         code:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Code.
 
@@ -2704,7 +2751,8 @@ components:
           $ref: '#/components/schemas/ModifyAccountBalanceResponse.TransactionData.CurrencyData'
         actionCode:
           type: string
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Action code.
 
@@ -2712,14 +2760,15 @@ components:
             VisionPLUS Service Data: AZXMAO-ACTION-CODE'
         effectiveDate:
           type: string
-          description: 'Effective date.
+          description: 'Effective date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXMAO-EFF-DATE'
           format: date
         feeAmount:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Fee Amount.
 
@@ -2727,7 +2776,8 @@ components:
             VisionPLUS Service Data: AZXMAO-FEE-AMT'
         transactionCode:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Transaction code.
 
@@ -2735,7 +2785,8 @@ components:
             VisionPLUS Service Data: AZXMAO-TXN-CODE'
         transactionAmount:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Transaction amount.
 
@@ -2743,7 +2794,8 @@ components:
             VisionPLUS Service Data: AZXMAO-TRAN-AMT'
         transactionDescription:
           type: string
-          description: 'Length: 40
+          description: '* Max Length: 40
+
 
             Transaction description.
 
@@ -2751,7 +2803,8 @@ components:
             VisionPLUS Service Data: AZXMAO-TXN-DESC'
         creditLimit:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Credit Limit.
 
@@ -2759,7 +2812,8 @@ components:
             VisionPLUS Service Data: AZXMAO-CREDIT-LIMIT'
         openToBuy:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Open to buy.
 
@@ -2767,7 +2821,8 @@ components:
             VisionPLUS Service Data: AZXMAO-OPEN-TO-BUY'
         cashAvailable:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Cash available.
 
@@ -2775,7 +2830,8 @@ components:
             VisionPLUS Service Data: AZXMAO-CASH-AVAIL-CR'
         planNumber:
           type: string
-          description: 'Length: 5
+          description: '* Max Length: 5
+
 
             Plan number.
 
@@ -2783,7 +2839,8 @@ components:
             VisionPLUS Service Data: AZXMAO-PLAN-NBR'
         currentBalance:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
+
 
             Current balance.
 
@@ -2791,7 +2848,8 @@ components:
             VisionPLUS Service Data: AZXMAO-CURR-BAL'
         planSequence:
           type: integer
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Plan sequence.
 
@@ -2800,7 +2858,8 @@ components:
           format: int32
         storeNumber:
           type: string
-          description: 'Length: 9
+          description: '* Max Length: 9
+
 
             Store number.
 
@@ -2808,7 +2867,8 @@ components:
             VisionPLUS Service Data: AZXMAO-STORE-NBR'
         departmentCode:
           type: string
-          description: 'Length: 4
+          description: '* Max Length: 4
+
 
             Department code.
 
@@ -2816,7 +2876,8 @@ components:
             VisionPLUS Service Data: AZXMAO-DEPT-NBR'
         authorizationCode:
           type: string
-          description: 'Length: 6
+          description: '* Max Length: 6
+
 
             Authorization code.
 
@@ -2824,7 +2885,8 @@ components:
             VisionPLUS Service Data: AZXMAO-AUTH-NBR'
         stockKeepingUnitNumber:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Stock keeping unit number.
 
@@ -2832,7 +2894,8 @@ components:
             VisionPLUS Service Data: AZXMAO-SKU-NBR'
         salesClerk:
           type: string
-          description: 'Length: 12
+          description: '* Max Length: 12
+
 
             Sales clerk.
 
@@ -2840,7 +2903,8 @@ components:
             VisionPLUS Service Data: AZXMAO-CLERK'
         ticketNumber:
           type: string
-          description: 'Length: 15
+          description: '* Max Length: 15
+
 
             Ticket number.
 
@@ -2848,7 +2912,8 @@ components:
             VisionPLUS Service Data: AZXMAO-TICKET-NBR'
         purchaseOrderNumber:
           type: string
-          description: 'Length: 16
+          description: '* Max Length: 16
+
 
             Purchase order number.
 
@@ -2856,7 +2921,8 @@ components:
             VisionPLUS Service Data: AZXMAO-PURCHASE-ORDER-NBR'
         referenceNumber:
           type: string
-          description: 'Length: 24
+          description: '* Max Length: 24
+
 
             Reference number.
 
@@ -2864,7 +2930,8 @@ components:
             VisionPLUS Service Data: AZXMAO-REFERENCE-NBR'
         insuranceCode:
           type: string
-          description: 'Length: 2
+          description: '* Max Length: 2
+
 
             Insurance code.
 
@@ -2872,14 +2939,15 @@ components:
             VisionPLUS Service Data: AZXMAO-INS'
         reversalDate:
           type: string
-          description: 'Reversal date.
+          description: 'Reversal date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXMAO-REV-DATE'
           format: date
         reversalTime:
           type: string
-          description: 'Length: 7
+          description: '* Max Length: 7
+
 
             Reversal time.
 
@@ -2887,7 +2955,8 @@ components:
             VisionPLUS Service Data: AZXMAO-REV-TIME'
         storeOrganizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Store organization number.
 
@@ -2896,7 +2965,8 @@ components:
           format: int32
         approvalIndicator:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Approval indicator.
 
@@ -2904,7 +2974,8 @@ components:
             VisionPLUS Service Data: AZXMAO-APPR-DECL'
         monetaryType:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Monetary type.
 
@@ -2912,7 +2983,8 @@ components:
             VisionPLUS Service Data: AZXMAO-MON-TYPE'
         pointsProgram:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Points program.
 
@@ -2921,7 +2993,8 @@ components:
           format: int32
         pointsAmount:
           type: number
-          description: 'Length: 9
+          description: '* Max Length: 9
+
 
             Points amount.
 
@@ -2929,7 +3002,8 @@ components:
             VisionPLUS Service Data: AZXMAO-PTS-AMT'
         referenceNum:
           type: string
-          description: 'Length: 15
+          description: '* Max Length: 15
+
 
             Reference.
 
@@ -2937,7 +3011,8 @@ components:
             VisionPLUS Service Data: AZXMAO-R-REF-NBR'
         fundCard:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
+
 
             Fund card.
 
@@ -2945,7 +3020,8 @@ components:
             VisionPLUS Service Data: AZXMAO-PD-FUND-CARD'
         fundCardDeclinedReason:
           type: string
-          description: 'Length: 30
+          description: '* Max Length: 30
+
 
             Fund card declined reason.
 
@@ -2953,7 +3029,8 @@ components:
             VisionPLUS Service Data: AZXMAO-PD-DECL-RSN'
         currencyNumber:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Currency number.
 
@@ -2961,7 +3038,8 @@ components:
             VisionPLUS Service Data: AZXMAO-WALLET'
         authorizationNumber:
           type: string
-          description: 'Length: 6
+          description: '* Max Length: 6
+
 
             Authorization number.
 
@@ -2972,7 +3050,8 @@ components:
       properties:
         currencyCode:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
+
 
             Currency code.
 
@@ -2980,7 +3059,8 @@ components:
             VisionPLUS Service Data: AZXMAO-CURRENCY-CODE'
         currencyNumberOfDecimal:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Currency number of decimal.
 
@@ -4683,10 +4763,15 @@ components:
           description: 'First Purchase Flag.
 
 
+            Values:
+
+            * Y;
+
+            * N.
+
+
             VisionPLUS Service Data: AZXICI-FIRST-PURCH-SW'
           example: Y
-          enum:
-          - Y,N
         accountCreateFlag:
           maxLength: 1
           minLength: 1
@@ -4694,10 +4779,15 @@ components:
           description: 'Account Create Flag.
 
 
+            Values:
+
+            * Y;
+
+            * N.
+
+
             VisionPLUS Service Data: AZXICI-ACCT-CREATE'
           example: Y
-          enum:
-          - Y,N
         sameDayProcessingType:
           type: integer
           description: '* Min Length: 1
@@ -4708,11 +4798,16 @@ components:
             Same Day Processing Type.
 
 
+            Values:
+
+            * 0;
+
+            * 1.
+
+
             VisionPLUS Service Data: AZXICI-SDP-PROCESS-TYPE'
           format: int32
           example: 1
-          enum:
-          - null
         cardActionFlag:
           type: integer
           description: '* Min Length: 1
@@ -4723,11 +4818,16 @@ components:
             Card action flag.
 
 
+            Values:
+
+            * 0;
+
+            * 1.
+
+
             VisionPLUS Service Data: AZXICI-CARD-ACTION'
           format: int32
           example: 1
-          enum:
-          - null
         accountData:
           $ref: '#/components/schemas/InstantCArdAddL8V7Request.AccountData'
         embosserData:
@@ -4738,7 +4838,7 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Max Length: 3
+          description: '* Max Length: 3
 
 
             Organization.
@@ -4749,7 +4849,7 @@ components:
           example: 998
         logo:
           type: integer
-          description: 'Max Length: 3
+          description: '* Max Length: 3
 
 
             Logo.
@@ -4760,7 +4860,7 @@ components:
           example: 998
         customerNumber:
           type: string
-          description: 'Max Length: 19
+          description: '* Max Length: 19
 
 
             Customer number.
@@ -4770,7 +4870,7 @@ components:
           example: 0123456789123456789
         accountNumber:
           type: string
-          description: 'Max Length: 19
+          description: '* Max Length: 19
 
 
             Account number.
@@ -4780,7 +4880,7 @@ components:
           example: 0123456789123456789
         cardNumber:
           type: string
-          description: 'Max Length: 19
+          description: '* Max Length: 19
 
 
             Unique identifier or token associated with the card number or payment
@@ -4791,7 +4891,7 @@ components:
           example: 000123456ID5IXX1234
         cardSequenceNumber:
           type: integer
-          description: 'Max Length: 4
+          description: '* Max Length: 4
 
 
             Card sequence number.
@@ -4802,7 +4902,7 @@ components:
           example: 1
         creditLimit:
           type: number
-          description: 'Max Length: 17
+          description: '* Max Length: 17
 
 
             Credit limit.
@@ -4829,7 +4929,7 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Organization Number.
@@ -4840,7 +4940,7 @@ components:
           example: 807
         logo:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Logo number.
@@ -4853,10 +4953,7 @@ components:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Length: 19
-
-
-            Customer Number.
+          description: 'Customer Number.
 
 
             VisionPLUS Service Data: AZXICI-CUST-NBR'
@@ -4865,7 +4962,7 @@ components:
           maxLength: 2147483647
           minLength: 1
           type: string
-          description: 'Length: 20
+          description: '* Max Length: 20
 
 
             Embosser Name.
@@ -4877,19 +4974,16 @@ components:
           maxLength: 1
           minLength: 1
           type: string
-          description: 'Length: 1
+          description: 'This field indicates whether new account needs to be created
+            or not. If new account needs to created then value needs to populated
+            in Account data. If only card needs to be created then existing account
+            number should be passed.
 
 
-            This field indicates whether new account needs to be created or not. If
-            new account needs to created then value needs to populated in Account
-            data. If only card needs to be created then existing account number should
-            be passed.
-
+            Values:* Y;* N.
 
             VisionPLUS Service Data: AZXICI-ACCT-CREATE'
           example: Y
-          enum:
-          - Y,N
         accountData:
           $ref: '#/components/schemas/InstantCardAddRequest.AccountData'
       description: InstantCardAdd add Request
@@ -4902,7 +4996,7 @@ components:
       properties:
         creditLimit:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
 
 
             Credit limit.
@@ -4912,7 +5006,7 @@ components:
           example: 3000000
         billingCurrency:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Billing currency.
@@ -4923,7 +5017,7 @@ components:
           example: 840
         accountNumber:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
 
 
             Account number.
@@ -4936,7 +5030,7 @@ components:
           example: '123456666666'
         billingAccountIndicator:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Billing account indicator.
@@ -4947,26 +5041,24 @@ components:
           example: 1
         relationshipPrimaryAccountFlag:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Relationship Number.
 
 
-            The values are:
+            Values:
 
+            * Blank = Not primary account;
 
-            Blank = Not primary account
-
-
-            P = Primary account.
+            * P = Primary account.
 
 
             VisionPLUS Service Data: AZXICI-REL-PRIM-ACCT-FLAG'
           example: P
         relationshipNumber:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
 
 
             Relationship Number.
@@ -4976,20 +5068,18 @@ components:
           example: '4567890123000000000'
         relationshipBillingLevel:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Code that indicates whether billing occurs for the account at the relationship
             level or subordinate account level.
 
 
-            The values are:
+            Values:
 
+            * 0 = Relationship level;
 
-            0 = Relationship level
-
-
-            1 = Subordinate account level. (Default)
+            * 1 = Subordinate account level. (Default)
 
 
             VisionPLUS Service Data: AZXICI-REL-BILL-LVL'
@@ -4997,19 +5087,20 @@ components:
           example: 0
         dualBillingFlag:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Code that indicates whether CMS uses the foreign or local currency to
             request the minimum payment.
 
 
-            0 = Dual billing is not active. Bill the foreign account in the foreign
+            Values:
+
+            * 0 = Dual billing is not active. Bill the foreign account in the foreign
             currency. Two statements are generated, one in the foreign currency and
-            one in the local currency.
+            one in the local currency;
 
-
-            1 = Dual billing is active. Bill the foreign account in the local currency.
+            * 1 = Dual billing is active. Bill the foreign account in the local currency.
             Two statements are generated in the local currency.
 
 
@@ -5018,7 +5109,7 @@ components:
           example: 0
         relationshipCardScheme:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Relationship card scheme.
@@ -5029,7 +5120,7 @@ components:
           example: 0
         shortName:
           type: string
-          description: 'Length: 20
+          description: '* Max Length: 20
 
 
             Short name of the Account Holder.
@@ -5039,7 +5130,7 @@ components:
           example: Test account
         statementFrequency:
           type: integer
-          description: 'Length: 2
+          description: '* Max Length: 2
 
 
             Statement frequency.
@@ -5050,7 +5141,7 @@ components:
           example: 0
         statementFlag:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Statement flag.
@@ -5059,7 +5150,7 @@ components:
           example: '1'
         cashPlanNumber:
           type: integer
-          description: 'Length: 5
+          description: '* Max Length: 5
 
 
             Cash Plan Number.
@@ -5070,7 +5161,7 @@ components:
           example: 0
         retailPlanNumber:
           type: integer
-          description: 'Length: 5
+          description: '* Max Length: 5
 
 
             Retail Plan Number.
@@ -5081,7 +5172,7 @@ components:
           example: 0
         promoPlanNumber:
           type: integer
-          description: 'Length: 5
+          description: '* Max Length: 5
 
 
             Promotional Plan Number.
@@ -5092,7 +5183,7 @@ components:
           example: 0
         stateOfResidenceId:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             State of residence ID.
@@ -5102,7 +5193,7 @@ components:
           example: RSA
         stateOfIssuanceId:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             State of issuance ID.
@@ -5112,7 +5203,7 @@ components:
           example: RSA
         processingControlTableControlId:
           type: string
-          description: 'Length: 3
+          description: '* Max Length: 3
 
             PCT ID.
 
@@ -5120,60 +5211,56 @@ components:
           example: '123'
         processingControlTableStartDate:
           type: string
-          description: 'Processing control Start Date.
+          description: 'Processing control Start Date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXICI-PCT-START-DATE'
           format: date
         processingControlTableExpireDate:
           type: string
-          description: 'Processing control expiration Date.
+          description: 'Processing control expiration Date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXICI-PCT-EXPIRE-DATE'
           format: date
         processingControlTableLevel:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Processing control.
 
 
-            The values are:
+            Values:
 
+            * Space = PCT level override is not used;
 
-            Space = PCT level override is not used
+            * S = System-level;
 
+            * O = Organization-level;
 
-            S = System-level
-
-
-            O = Organization-level
-
-
-            L = Logo-level
+            * L = Logo-level.
 
 
             VisionPLUS Service Data: AZXICI-PCT-LEVEL'
           example: O
         processingControlTableLevelStartDate:
           type: string
-          description: 'Processing control Level Start Date.
+          description: 'Processing control Level Start Date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXICI-PCT-LEVEL-START-DATE'
           format: date
         processingControlTableLevelExpireDate:
           type: string
-          description: 'Processing control Level expiration Date.
+          description: 'Processing control Level expiration Date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXICI-PCT-LEVEL-EXPIR-DATE'
           format: date
         ddaAccountNumber:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
 
 
             dda Account Number
@@ -5182,7 +5269,7 @@ components:
           example: '34234234324'
         savAccountNumber:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
 
 
             sav Account Number
@@ -5191,30 +5278,25 @@ components:
           example: '84342430'
         cardTechnology:
           type: integer
-          description: "Length: 1 \n\nCard technology \n\nFlag that identifies the\
-            \ current card technology used for this account.\n\nThe values are:\n\
-            * 0 = Magnetic-stripe card(s) are on issue\n* 1 = Smart card(s) are on\
-            \ issue\n* 2 = Magnetic-stripe contactless card(s) are on issue\n* 3 =\
-            \ Smart contactless card(s) are on issue \n\nThe following edits apply\
-            \ to this field:\n* This field can be 1, 2 or 3 only when the **DEFAULT\
-            \ CARD TECHNOLOGY** field on ARML38 is greater than 0 \nIn the add mode\
-            \ (ARAB), this field must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38)\
-            \ is 1. \n* In the maintenance mode (ARMB), this field is only open to\
-            \ input if no Embosser records are on file for the account. \n* When the\
-            \ account card numbering schema **(CRD# SCM** on ARMB01) is 2, this field\
-            \ must be 0 or 2. \n* When adding an account, CMS uses the card technology\
-            \ from the account's logo as the default value. You can override this\
-            \ default if necessary. \n\nVisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY"
+          description: "* Max Length: 1 \n\nCard technology \n\nFlag that identifies\
+            \ the current card technology used for this account.\n\nValues:\n* 0 =\
+            \ Magnetic-stripe card(s) are on issue;\n* 1 = Smart card(s) are on issue;\n\
+            * 2 = Magnetic-stripe contactless card(s) are on issue;\n* 3 = Smart contactless\
+            \ card(s) are on issue.\n\nThe following edits apply to this field:\n\
+            * This field can be 1, 2 or 3 only when the **DEFAULT CARD TECHNOLOGY**\
+            \ field on ARML38 is greater than 0 \nIn the add mode (ARAB), this field\
+            \ must be 0 or 2 unless **SMART CARD ALLOWED** (ARML38) is 1. \n* In the\
+            \ maintenance mode (ARMB), this field is only open to input if no Embosser\
+            \ records are on file for the account. \n* When the account card numbering\
+            \ schema **(CRD# SCM** on ARMB01) is 2, this field must be 0 or 2. \n\
+            * When adding an account, CMS uses the card technology from the account's\
+            \ logo as the default value. You can override this default if necessary.\
+            \ \n\nVisionPLUS Service Data: AZXICI-CARD-TECHNOLOGY"
           format: int32
           example: 0
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
         temporaryCreditLimit:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
 
 
             Temporary credit limit for the account.
@@ -5224,29 +5306,31 @@ components:
           example: 12745787
         dateTemporaryCreditLimit:
           type: string
-          description: 'date Temporary Credit Limit.
+          description: 'Date (in ISO 8601) Temporary Credit Limit.
 
             VisionPLUS Service Data: AZXICI-DATE-TEMP-CRLIM-EXP'
           format: date
         sameDayProcessingType:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
             same Day Processing Type. VisionPLUS Service Data: AZXICI-SDP-PROCESS-TYPE'
           format: int32
           example: 1
         instantCardOfTransactionsLimit:
           type: integer
-          description: 'Length: 6
+          description: '* Max Length: 6
+
 
             instant Card Of Transactions Limit.
+
 
             VisionPLUS Service Data: AZXICI-IC-TOT-NUM-TXNS'
           format: int32
           example: 1234
         cardActionFlag:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Card action flag.
@@ -5257,7 +5341,7 @@ components:
           example: 1
         billingCycle:
           type: integer
-          description: 'Length: 2
+          description: '* Max Length: 2
 
 
             Billing cycle.
@@ -5268,7 +5352,7 @@ components:
           example: 25
         owningBranchNumber:
           type: integer
-          description: 'Length: 9
+          description: '* Max Length: 9
 
 
             Owning branch number.
@@ -5279,32 +5363,28 @@ components:
           example: 1
         digitalCardFlag:
           type: integer
-          description: 'Length: 1
+          description: '* Max Length: 1
 
 
             Code that indicates whether to add a new digital card.
 
 
-            The values are:
+            Values:
 
+            * 0 = Do not add new digital card;
 
-            0 = Do not add new digital card
-
-
-            1 = Add new digital card
+            * 1 = Add new digital card.
 
 
             VisionPLUS Service Data: AZXICI-DIGITAL-CARD'
           format: int32
           example: 1
-          enum:
-          - null
     InstantCardAddResponse:
       type: object
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Organization number.
@@ -5315,7 +5395,7 @@ components:
           example: 890
         logo:
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
 
             Logo.
@@ -5325,7 +5405,7 @@ components:
           format: int32
         customerNumber:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
 
 
             Customer number.
@@ -5335,7 +5415,7 @@ components:
           example: '4513074002573466600'
         accountNumber:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
 
 
             Account number.
@@ -5345,7 +5425,7 @@ components:
           example: '4513074002573466600'
         cardNumberOfInstantCard:
           type: string
-          description: 'Length: 19
+          description: '* Max Length: 19
 
 
             Card number of instant card.
@@ -5355,7 +5435,7 @@ components:
           example: '4513074002573466600'
         cardSequenceNumber:
           type: integer
-          description: 'Length: 4
+          description: '* Max Length: 4
 
 
             Card sequence number.
@@ -5365,7 +5445,7 @@ components:
           format: int32
         creditLimit:
           type: number
-          description: 'Length: 17
+          description: '* Max Length: 17
 
 
             Credit limit.
@@ -5374,10 +5454,7 @@ components:
             VisionPLUS Service Data: AZXICO-VCRLIM'
         expiryDate:
           type: string
-          description: 'Length: 10
-
-
-            Expirate Date.
+          description: 'Expirate Date (in ISO 8601).
 
 
             VisionPLUS Service Data: AZXICO-VCARD-DATE-EXPIRE'
