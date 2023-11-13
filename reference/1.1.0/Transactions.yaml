@@ -40,12 +40,20 @@ paths:
               $ref: '#/components/schemas/OutstandingAuthorizationFasRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
         '300':
           description: Redirection
           content:
@@ -54,14 +62,6 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '400':
-          description: Bad Request
         '200':
           description: Success
           content:
@@ -76,103 +76,124 @@ components:
       type: object
       properties:
         organizationNumber:
-          maximum: 999
-          minimum: 1
           type: integer
-          description: 'Length: 3
+          description: '* Max Length: 3
 
-            Organization Number'
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: OZXOAI-ORG'
           format: int32
           example: 807
         effectiveAuthorizationDate:
           type: string
-          description: 'Length: 8
+          description: 'Effective Authorization Date (in ISO 8601).
 
-            Effective Authorization Date
 
             VisionPLUS Service Data: OZXOAI-EFF-DATE
 
             '
           format: date
+          example: 2023-12-30
         effectiveAuthorizationTime:
           type: integer
-          description: 'Length: 6
+          description: '* Max Length: 6
 
-            Effective Authorization Time
+
+            Effective Authorization Time.
+
 
             VisionPLUS Service Data: OZXOAI-TIME'
           format: int32
           example: 112233
         accountNumber:
-          maximum: 19
-          minimum: 19
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Length: 19
+          description: 'Account Number.
 
-            Account Number
 
             VisionPLUS Service Data: OZXOAI-ACCT'
           example: '4513074002573466583'
         foreignUseIndicator:
-          maximum: 1
-          minimum: 0
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Length: 1
+          description: 'The FOREIGN USE indicator is provided in the input message
+            so the requesting source can specify whether the request applies to the
+            local or foreign account when the account is in a dual currency processing
+            organization.
 
-            The FOREIGN USE indicator is provided in the input message so the requesting
-            source can specify whether the request applies to the local or foreign
-            account when the account is in a dual currency processing organization.
 
             The default is to the local account.
 
-            The values are:
 
-            * Zero, space, low values = Local account
+            Values:
 
-            * 1 = Foreign account
+            * Space = Local account;
+
+            * Low Values = Local account;
+
+            * 0 = Local account;
+
+            * 1 = Foreign account.
+
 
             VisionPLUS Service Data: OZXOAI-FOREIGN-USE'
-          example: '0'
+          example: '1'
         functionCode:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
 
-            Function code for navigating results
+
+            Function code for navigating results.
+
 
             VisionPLUS Service Data: OZXOAI-SVC-FUNC-CODE'
+          example: '1'
         filter:
           type: string
-          description: 'Length: 1
+          description: '* Max Length: 1
+
 
             Filter for results.
 
-            The values are:
 
-            * Space or low value = All authorizations
+            Values:
 
-            * A = Approved authorizations
+            * Space = All authorizations;
 
-            * D = Declined authorizations
+            * Low Values = All authorizations;
+
+            * A = Approved authorizations;
+
+            * D = Declined authorizations.
+
 
             VisionPLUS Service Data: OZXOAI-ACTION-FILTER'
           example: A
         numberOfAuthorizationsRequested:
           type: integer
-          description: "Number of authorizations requested. The values are 1 through\
-            \ 100. \nThe initial value is 100\nVisionPLUS Service Data: OZXOAI-NBR-OF-RECS-REQ"
+          description: 'Number of authorizations requested. The values are 1 through
+            100.
+
+
+            The initial value is 100.
+
+
+            VisionPLUS Service Data: OZXOAI-NBR-OF-RECS-REQ'
           format: int32
           example: 100
         authorizationDateRange:
           $ref: '#/components/schemas/OutstandingAuthorizationFasRequest.AuthorizationDateRange'
         authorizationNumber:
           type: string
-          description: 'Length: 6
+          description: '* Max Length: 6
 
-            Authorization number
+
+            Authorization number.
+
 
             VisionPLUS Service Data: OZXOAI-AUTH-NBR'
           example: '123'
@@ -182,20 +203,20 @@ components:
       properties:
         from:
           type: string
-          description: 'Length: 8
+          description: 'Starting authorization date (in ISO 8601) range.
 
-            Starting authorization date range.
 
             VisionPLUS Service Data: OZXOAI-AUTH-FROM-DATE'
           format: date
+          example: 2022-01-16
         to:
           type: string
-          description: 'Length: 8
+          description: 'Ending authorization date (in ISO 8601) range.
 
-            Ending authorization date range
 
             VisionPLUS Service Data: OZXOAI-AUTH-TO-DATE'
           format: date
+          example: 2023-10-17
     DResponse:
       type: object
       properties:
