@@ -12,9 +12,6 @@ servers:
 paths:
   /notifications/v3/authorization:
     post:
-      x-proxy-name: Authorization
-      x-group-name: First Vision Events
-      x-child-product-name: Notifications
       summary: Authorization
       description: 1 - Authorization event
       operationId: authorization
@@ -36,7 +33,7 @@ paths:
             type: integer
         - name: accountNumber
           in: header
-          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
           schema:
             type: string
         - name: customerNumber
@@ -48,6 +45,7 @@ paths:
           in: header
           description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
           schema:
+            type: string
             enum:
               - email
               - sms
@@ -196,7 +194,7 @@ paths:
                         type: string
                         description: Contact Value according to the Contact Type.
                         maxLength: 65
-                        example: mail@domain.com
+                        example: mar*******@g****.com
                 metadata:
                   type: array
                   description: |-
@@ -328,11 +326,11 @@ paths:
                     example: Stage Database is not available.
       servers:
         - url: 'http://localhost:3000'
-  /notifications/v3/accountLifeCycle:
-    post:
-      x-proxy-name: Account Life Cycle
+      x-proxy-name: Authorization
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+  /notifications/v3/accountLifeCycle:
+    post:
       summary: Account Life Cycle
       description: |-
         2 - Payment Due Date Event
@@ -356,7 +354,7 @@ paths:
             type: integer
         - name: accountNumber
           in: header
-          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
           schema:
             type: string
         - name: customerNumber
@@ -368,6 +366,7 @@ paths:
           in: header
           description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
           schema:
+            type: string
             enum:
               - email
               - sms
@@ -437,7 +436,7 @@ paths:
                         type: string
                         description: Contact Value according to the Contact Type.
                         maxLength: 65
-                        example: mail@domain.com
+                        example: mar*******@g****.com
                 metadata:
                   type: array
                   description: |-
@@ -514,11 +513,11 @@ paths:
           description: OK
       servers:
         - url: 'http://localhost:3000'
-  /notifications/v3/accountManagement:
-    post:
-      x-proxy-name: Account Management
+      x-proxy-name: Account Life Cycle
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+  /notifications/v3/accountManagement:
+    post:
       summary: Account Management
       description: |-
         4 - Available Credit Event
@@ -545,7 +544,7 @@ paths:
             type: integer
         - name: accountNumber
           in: header
-          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
           schema:
             type: string
         - name: customerNumber
@@ -557,6 +556,7 @@ paths:
           in: header
           description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
           schema:
+            type: string
             enum:
               - email
               - sms
@@ -618,7 +618,7 @@ paths:
                         type: string
                         description: Contact Value according to the Contact Type.
                         maxLength: 65
-                        example: mail@domain.com
+                        example: mar*******@g****.com
                 metadata:
                   type: array
                   description: |-
@@ -741,11 +741,11 @@ paths:
                     example: Stage Database is not available.
       servers:
         - url: 'http://localhost:3000'
-  /notifications/v3/cardLifeCycle:
-    post:
-      x-proxy-name: Card Life Cycle
+      x-proxy-name: Account Management
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+  /notifications/v3/cardLifeCycle:
+    post:
       summary: Card Life Cycle
       description: |-
         Card life cycle event
@@ -771,7 +771,7 @@ paths:
             type: integer
         - name: accountNumber
           in: header
-          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
           schema:
             type: string
         - name: customerNumber
@@ -783,6 +783,7 @@ paths:
           in: header
           description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
           schema:
+            type: string
             enum:
               - email
               - sms
@@ -867,7 +868,7 @@ paths:
                         type: string
                         description: Contact Value according to the Contact Type.
                         maxLength: 65
-                        example: mail@domain.com
+                        example: mar*******@g****.com
                 metadata:
                   type: array
                   description: |-
@@ -995,11 +996,11 @@ paths:
                     example: Stage Database is not available.
       servers:
         - url: 'http://localhost:3000'
-  /notifications/v3/fraudAuthorization:
-    post:
-      x-proxy-name: Fraud Authorization
+      x-proxy-name: Card Life Cycle
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+  /notifications/v3/fraudAuthorization:
+    post:
       summary: Fraud Authorization
       description: 12a - Fraud Authorization event
       operationId: fraudAuthorization
@@ -1021,7 +1022,7 @@ paths:
             type: integer
         - name: accountNumber
           in: header
-          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
           schema:
             type: string
         - name: customerNumber
@@ -1033,6 +1034,7 @@ paths:
           in: header
           description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
           schema:
+            type: string
             enum:
               - email
               - sms
@@ -1128,7 +1130,7 @@ paths:
                         type: string
                         description: Contact Value according to the Contact Type.
                         maxLength: 65
-                        example: mail@domain.com
+                        example: mar*******@g****.com
                 metadata:
                   type: array
                   description: |-
@@ -1256,11 +1258,11 @@ paths:
                     example: Stage Database is not available.
       servers:
         - url: 'http://localhost:3000'
-  /notifications/v3/fraudBlock:
-    post:
-      x-proxy-name: Fraud Block
+      x-proxy-name: Fraud Authorization
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+  /notifications/v3/fraudBlock:
+    post:
       summary: Fraud Block
       description: 12b - Fraud Block Code update
       operationId: fraudBlock
@@ -1282,7 +1284,7 @@ paths:
             type: integer
         - name: accountNumber
           in: header
-          description: 'Account or Card Number: Number of Customer’s account or Card. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
           schema:
             type: string
         - name: customerNumber
@@ -1294,6 +1296,7 @@ paths:
           in: header
           description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
           schema:
+            type: string
             enum:
               - email
               - sms
@@ -1375,7 +1378,7 @@ paths:
                         type: string
                         description: Contact Value according to the Contact Type.
                         maxLength: 65
-                        example: mail@domain.com
+                        example: mar*******@g****.com
                 metadata:
                   type: array
                   description: |-
@@ -1501,3 +1504,6 @@ paths:
                     example: Stage Database is not available.
       servers:
         - url: 'http://localhost:3000'
+      x-proxy-name: Fraud Block
+      x-group-name: First Vision Events
+      x-child-product-name: Notifications
