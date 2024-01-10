@@ -8,6 +8,8 @@ Webhooks are a way for systems to send real-time notifications about events that
 
 To use webhooks, FirstVision can send an HTTP POST request to a designated endpoint whenever an event occurs. This sends a notification to the receiving application, which can then take any necessary action in response. Webhooks provide a quick and efficient way for different systems to communicate and stay informed about important events.
 
+For Webhook implementation, Fiserv provides the standards and API design for the different Endpoints that Clients need to implement on their side. Those endpoints are in charge of the notifications to the End User and any other functionality that Clients want to have internally.
+
 ![image](https://user-images.githubusercontent.com/111396588/209873236-86eb54b6-f214-4f8f-9652-51c03ad8d604.png)
 
 ## Webhooks Events
