@@ -10,286 +10,189 @@ To use webhooks, FirstVision can send an HTTP POST request to a designated endpo
 
 ![image](https://user-images.githubusercontent.com/111396588/209873236-86eb54b6-f214-4f8f-9652-51c03ad8d604.png)
 
-### Webhooks Events
+## Webhooks Events
 
-| Event Number | Description                                                     |
-|--------------|-----------------------------------------------------------------|
-| 01           | Authorization event (approved and declined)                     |
-| 02           | Payment due date trigger                                        |
-| 03           | CMS Account cycling event                                       |
-| 04           | Available Credit event                                          |
-| 05           | Payment Posted event                                            |
-| 06           | Change of Address                                               |
-| 07           | Card Blocking (Declined / Pick up Auth action only)             |
-| 08           | Card Activation                                                 |
-| 09           | Card Embossing                                                  |
-| 10           | Payment due date change                                         |
-| 11           | Credit limit change                                             |
-| 12           | Falcon event trigger during Authorization and Card Level Blocks |
+### Authorization
 
-### Webhooks Examples
-
----
-
-<!--
-type: tab
-titles: Auth Approved, Auth Declined, Payment Due
--->
+Request example:
 
 ```json
 {
-  "securityContext": "VMX.MULTICHANNEL.769",
-  "version": "R8V1",
+  "contact": [
+    {
+      "value": "mail@domain.com",
+      "contactType": "PRINCIPAL_EMAIL"
+    }
+  ],
+  "metadata": [
+    {
+      "key": "M_LINE_21",
+      "value": "00"
+    }
+  ],
+  "cardNumber": "000540208ID5IXX3865",
   "description": "APPROVED",
-  "eventCode": "0001",
-  "eventTitle": "AUTH ALERTS",
-  "eventNumber": 1,
-  "organizationNumber": 769,
-  "accountNumber": "7651500XXXX222557",
-  "customerNumber": "09765000XXX0000162",
-  "mobilePhone": "",
-  "emailAddress": "",
-  "channelType": "BOTH",
-  "messageLine1": "TH 015 ",
-  "messageLine2": "TTTT012345ABCDEF02",
-  "messageLine3": "5500550095",
-  "messageLine4": "mail@epXXfint",
-  "messageLine5": "000",
-  "messageLine6": "00054020XXXXX64795",
-  "messageLine7": "00000000011.00",
-  "messageLine8": "TEST MERCHANT",
-  "messageLine9": "20220113",
-  "messageLine10": "100809",
-  "messageLine11": "MXN",
-  "messageLine12": "01765999999998 2013572895880110A00000000000000000000",
-  "messageLine13": "0120484MEXICO 0",
-  "messageLine14": "06011 0000000000000748321",
-  "messageLine15": ".0",
-  "messageLine16": "",
-  "messageLine17": "",
-  "messageLine18": "",
-  "messageLine19": "",
-  "messageLine20": "",
-  "messageLine21": ""
+  "transaction": {
+    "id": "01765999999998 2013572895880110A00000000000000000000 /12 00",
+    "amount": "00000000010.00",
+    "reason": "294",
+    "currency": "MXN",
+    "feeAmount": "00000000010.00",
+    "acceptorName": "TEST MERCHANT",
+    "cashbackAmount": "00000000010.00",
+    "authorizationDate": "20221202",
+    "authorizationTime": "141638",
+    "additionInformation": "0120484MEXICO 0"
+  }
 }
 ```
 
-<!--
-type: tab
--->
+### Account Life Cycle
+
+Includes events for: **Payment Due Date Event and Account Cycle Event.**
+
+Request example:
 
 ```json
 {
-  "securityContext": "VMX.MULTICHANNEL.769",
-  "version": "R8V1",
-  "description": "DECLINED-UNMATCHEDEXPDTE-KEYED",
-  "eventCode": "0001",
-  "eventTitle": "AUTH ALERTS",
-  "eventNumber": 1,
-  "organizationNumber": 769,
-  "accountNumber": "7651500XXXX222557",
-  "customerNumber": "09765000XXX0000162",
-  "mobilePhone": "",
-  "emailAddress": "",
-  "channelType": "BOTH",
-  "messageLine1": "TH 015",
-  "messageLine2": "TTTT012345ABCDEF02",
-  "messageLine3": "5500550095",
-  "messageLine4": "mail@epXXfint",
-  "messageLine5": "000",
-  "messageLine6": "00054020XXXXX64795",
-  "messageLine7": "00000000011.00",
-  "messageLine8": "TEST MERCHANT",
-  "messageLine9": "20220113",
-  "messageLine10": "100809",
-  "messageLine11": "MXN",
-  "messageLine12": "01765999999998 2013572895880110A00000000000000000000",
-  "messageLine13": "0120484MEXICO 0",
-  "messageLine14": "06011 0000000000000748321",
-  "messageLine15": ".0",
-  "messageLine16": "",
-  "messageLine17": "",
-  "messageLine18": "",
-  "messageLine19": "",
-  "messageLine20": "",
-  "messageLine21": ""
+  "contact": [
+    {
+      "value": "mail@domain.com",
+      "contactType": "PRINCIPAL_EMAIL"
+    }
+  ],
+  "metadata": [
+    {
+      "key": "M_LINE_21",
+      "value": "0"
+    }
+  ],
+  "description": "APPROVED",
+  "transaction": {
+    "eventDate": "20220127",
+    "eventTime": "141638"
+  }
 }
 ```
 
-<!--
-type: tab
--->
+### Account Management
+
+Includes events for: **Available Credit Event, Payment Posted Event, Change of Address, Payment Due Date Change and Credit Limit Change.**
+
+Request example:
 
 ```json
 {
-  "securityContext": "VMX.MULTICHANNEL.770",
-  "version": "R8V1",
-  "description": "",
-  "eventCode": "0002",
-  "eventTitle": "PAYMENT DUE DATE ALERT",
-  "eventNumber": 2,
-  "organizationNumber": 770,
-  "accountNumber": "7651500XXXX222557",
-  "customerNumber": "09765000XXX0000162",
-  "mobilePhone": "",
-  "emailAddress": "",
-  "channelType": "BOTH",
-  "messageLine1": "TH 015",
-  "messageLine2": "TTTT012345ABCDEF02",
-  "messageLine3": "5500550095",
-  "messageLine4": "mail@epXXfint",
-  "messageLine5": "",
-  "messageLine6": "",
-  "messageLine7": "",
-  "messageLine8": "",
-  "messageLine9": "20220113",
-  "messageLine10": "100809",
-  "messageLine11": "",
-  "messageLine12": "",
-  "messageLine13": "",
-  "messageLine14": "",
-  "messageLine15": "",
-  "messageLine16": "",
-  "messageLine17": "",
-  "messageLine18": "",
-  "messageLine19": "",
-  "messageLine20": "",
-  "messageLine21": ""
+  "contact": [
+    {
+      "value": "mail@domain.com",
+      "contactType": "PRINCIPAL_EMAIL"
+    }
+  ],
+  "metadata": [
+    {
+      "key": "M_LINE_21",
+      "value": "00"
+    }
+  ],
+  "description": "APPROVED",
+  "transaction": {
+    "eventDate": "20220127",
+    "eventTime": "141638"
+  }
 }
 ```
 
-<!-- type: tab-end -->
+### Card Life Cycle
 
----
+Includes events for: **Card Blocked Message, Activation Message and Card Action/Embossing.**
 
-<!--
-type: tab
-titles: Card Blocking, Card Activation, Change of Address
--->
+Request example:
 
 ```json
 {
-  "securityContext": "VMX.MULTICHANNEL.770",
-  "version": "R8V1",
-  "description": "",
-  "eventCode": "0007",
-  "eventTitle": "BLOCK CODE ALERT",
-  "eventNumber": 7,
-  "organizationNumber": 770,
-  "accountNumber": "7651500XXXX222557",
-  "customerNumber": "09765000XXX0000162",
-  "mobilePhone": "",
-  "emailAddress": "",
-  "channelType": "BOTH",
-  "messageLine1": "TH 015",
-  "messageLine2": "TTTT012345ABCDEF02",
-  "messageLine3": "5500550095",
-  "messageLine4": "mail@epXXfint",
-  "messageLine5": "",
-  "messageLine6": "",
-  "messageLine7": "",
-  "messageLine8": "N",
-  "messageLine9": "20220113",
-  "messageLine10": "100809",
-  "messageLine11": "",
-  "messageLine12": "",
-  "messageLine13": "",
-  "messageLine14": "",
-  "messageLine15": "",
-  "messageLine16": "",
-  "messageLine17": "",
-  "messageLine18": "",
-  "messageLine19": "",
-  "messageLine20": "",
-  "messageLine21": ""
+  "contact": [
+    {
+      "value": "mail@domain.com",
+      "contactType": "PRINCIPAL_EMAIL"
+    }
+  ],
+  "metadata": [
+    {
+      "key": "M_LINE_21",
+      "value": "00"
+    }
+  ],
+  "cardNumber": "000540208ID5IXX3865",
+  "description": "APPROVED",
+  "transaction": {
+    "eventDate": "20221202",
+    "eventTime": "141638",
+    "blockReason": "TEST MERCHANT",
+    "isActivated": "Y"
+  }
 }
 ```
 
-<!--
-type: tab
--->
+### Fraud Authorization
+
+Request example:
 
 ```json
 {
-  "securityContext": "VMX.MULTICHANNEL.770",
-  "version": "R8V1",
-  "description": "",
-  "eventCode": "0008",
-  "eventTitle": "CARD ACTIVATION ALERT",
-  "eventNumber": 8,
-  "organizationNumber": 770,
-  "accountNumber": "7651500XXXX222557",
-  "customerNumber": "09765000XXX0000162",
-  "mobilePhone": "",
-  "emailAddress": "",
-  "channelType": "BOTH",
-  "messageLine1": "TH 015",
-  "messageLine2": "TTTT012345ABCDEF02",
-  "messageLine3": "5500550095",
-  "messageLine4": "mail@epXXfint",
-  "messageLine5": "",
-  "messageLine6": "",
-  "messageLine7": "",
-  "messageLine8": "N",
-  "messageLine9": "20220113",
-  "messageLine10": "100809",
-  "messageLine11": "",
-  "messageLine12": "",
-  "messageLine13": "",
-  "messageLine14": "",
-  "messageLine15": "",
-  "messageLine16": "",
-  "messageLine17": "",
-  "messageLine18": "",
-  "messageLine19": "",
-  "messageLine20": "",
-  "messageLine21": ""
+  "contact": [
+    {
+      "value": "mail@domain.com",
+      "contactType": "PRINCIPAL_EMAIL"
+    }
+  ],
+  "metadata": [
+    {
+      "key": "M_LINE_21",
+      "value": "00"
+    }
+  ],
+  "cardNumber": "000540208ID5IXX3865",
+  "description": "APPROVED",
+  "transaction": {
+    "amount": "00000000010.00",
+    "reason": "294",
+    "currency": "MXN",
+    "eventDate": "20221202",
+    "eventTime": "141638",
+    "acceptorName": "TEST MERCHANT"
+  }
 }
 ```
 
-<!--
-type: tab
--->
+### Fraud Block
+
+Request example:
 
 ```json
 {
-  "securityContext": "VMX.MULTICHANNEL.771",
-  "version": "R8V1",
-  "description": "",
-  "eventCode": "0006",
-  "eventTitle": "CHANGE ADDRESS ALERT",
-  "eventNumber": 6,
-  "organizationNumber": 771,
-  "accountNumber": "",
-  "customerNumber": "09765000XXX0000162",
-  "mobilePhone": "",
-  "emailAddress": "",
-  "channelType": "BOTH",
-  "messageLine1": "TH 015",
-  "messageLine2": "TTTT012345ABCDEF02",
-  "messageLine3": "5500550095",
-  "messageLine4": "mail@epXXfint",
-  "messageLine5": "",
-  "messageLine6": "",
-  "messageLine7": "",
-  "messageLine8": "",
-  "messageLine9": "20220113",
-  "messageLine10": "100809",
-  "messageLine11": "",
-  "messageLine12": "",
-  "messageLine13": "",
-  "messageLine14": "",
-  "messageLine15": "",
-  "messageLine16": "",
-  "messageLine17": "",
-  "messageLine18": "",
-  "messageLine19": "",
-  "messageLine20": "",
-  "messageLine21": ""
+  "contact": [
+    {
+      "value": "mail@domain.com",
+      "contactType": "PRINCIPAL_EMAIL"
+    }
+  ],
+  "metadata": [
+    {
+      "key": "M_LINE_21",
+      "value": "00"
+    }
+  ],
+  "cardNumber": "000540208ID5IXX3865",
+  "description": "APPROVED",
+  "transaction": {
+    "reason": "294",
+    "eventDate": "20221202",
+    "eventTime": "141638",
+    "blockReason": "MERCHANT"
+  }
 }
 ```
-
-<!-- type: tab-end -->
 
 ---
 
