@@ -47,14 +47,6 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '422':
@@ -97,8 +89,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -113,6 +107,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletStatusUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Wallet Status Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -148,6 +148,8 @@ paths:
               $ref: '#/components/schemas/WalletPriorityOrderUpdateRequest'
         required: true
       responses:
+        '405':
+          description: Method Not Allowed
         '422':
           description: 'VPL5SWUZ2S - SERVICE INPUT TO ASSOC PARTIES SERVICE IS AN
             INCORRECT LENGTH
@@ -224,20 +226,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -252,6 +246,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletPriorityOrderUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Multi Wallet Priority Order Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -287,18 +287,12 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -313,6 +307,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VinculationReversalResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Reversal Vinculate
       x-group-name: Account
       x-child-product-name: Accounts
@@ -348,6 +348,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '422':
           description: "VPL5SCU02S-SERVICE INPUT TO A/A SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5SCU06S-ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999 \n\nVPL5SCU07S-ACCOUNT\
@@ -392,16 +396,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '401':
@@ -412,6 +406,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateCustomerNumberResponseV2'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Customer Number Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -449,14 +449,8 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '404':
+          description: Not Found
         '422':
           description: 'Unprocessable Entity
 
@@ -489,10 +483,10 @@ paths:
             VPJ8SMA08S - MAX PAYMENT ALLOWD VALUE IS LESS THAN SERVICE INPUT TXN AMOUNT'
           content:
             application/json: {}
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -507,6 +501,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PurchaseAndCashAdvanceResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Balance Update (Cash-in & Cash-out)
       x-group-name: Account
       x-child-product-name: Accounts
@@ -608,22 +608,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '422':
           description: "VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998 \n\nVPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT\
@@ -643,6 +631,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '401':
@@ -653,6 +647,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForDetailsL8viResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Information Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -689,24 +689,6 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsV2Request'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '422':
           description: "Unprocessable Entity \n\nError Code - Error Message \n\nVPL5SBB01S\
             \ - SERVICE COULD NOT OBTAIN STORAGE AREA                            \
@@ -880,6 +862,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '401':
@@ -890,6 +884,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAccountDetailsV2Response'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -935,12 +935,8 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
         '403':
           description: Forbidden
         '422':
@@ -973,10 +969,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -991,130 +985,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementInstallmentConfirmationResponse'
-      x-proxy-name: Statement Installment Options Simulation and Confirmation
-      x-group-name: Account
-      x-child-product-name: Accounts
-  /account/v1/link:
-    put:
-      tags:
-      - Account
-      summary: '`[IN DEVELOPMENT]`
-
-
-        Link a Credit Account with an Account sharing the same Customer Number.
-
-
-        VMX Service: M.CMS.LINK.CREDIT.ROTATIVO.UPD, L8V1'
-      description: '`[IN DEVELOPMENT]`
-
-
-        Link a Credit Account with an Account sharing the same Customer Number.
-
-
-        VMX Service: M.CMS.LINK.CREDIT.ROTATIVO.UPD, L8V1'
-      operationId: Account Linking/Unlinking Update.
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: 00970
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LinkUnlinkAccountRequest'
-        required: true
-      responses:
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '422':
-          description: 'Unprocessable Entity
-
-
-            VPL5SLB05S - CANNOT SET A BLOCK CODE ON A BILLING ACCOUNT
-
-
-            VPL5SLB06S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
-            001-998
-
-
-            VPL5SLB07S - SWEEP OPTION INVALID FOR CREDIT ACCOUNT
-
-
-            VPL5SLB08S - SWEEP OPTION INVALID FOR ROTATIVO ACCOUNT
-
-
-            VPL5SLB09S - BOTH CREDIT AND ROTATIVO ACCOUNT MUST BE PROVIDED FOR LINKING
-
-
-            VPL5SLB11S - BOTH CREDIT AND ROTATIVO ACCOUNTS SHOULD NOT BE SPACES
-
-
-            VPL5SLB12S - LINK/UNLINK REQUEST SHOULD ONLY BE L/U
-
-
-            VPL5SLB13S - REQUESTED ORGANIZATION NOT FOUND
-
-
-            VPL5SLB17S - ACCOUNT NUMBER NOT FOUND
-
-
-            VPL5SLB18S - AMCR ORG RECORD NOT FOUND
-
-
-            VPL5SLB19S - AMCR LOGO RECORD NOT FOUND
-
-
-            VPL5SLB20S - SWEEP TO LOGO NOT MATCHING WITH ROTATIVO ACCOUNT LOGO
-
-
-            VPL5SLB21S - CUSTOMER NUMBER NOT MATCHING FOR ACCOUNTS
-
-
-            VPL5SLB22S - CREDIT ACCOUNT NUMBER IS NOT VALID
-
-
-            VPL5SLB23S - ROTATIVO ACCOUNT NUMBER IS NOT VALID'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LinkUnlinkAccountResponse'
-      x-proxy-name: Account Linking/Unlinking Update
+      x-proxy-name: Statement Installment Options Simulation and Confirmation
       x-group-name: Account
       x-child-product-name: Accounts
   /account/user:
@@ -1151,24 +1028,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
+        '403':
+          description: Forbidden
         '422':
           description: 'VPL5SBUZ1S - ORGANIZATION NOT DETERMINED
 
@@ -1247,6 +1110,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -1255,6 +1126,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForUserUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account User Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1296,16 +1173,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SUD03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
@@ -1470,14 +1349,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -1486,6 +1357,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDataUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: User Codes Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1525,6 +1402,20 @@ paths:
               $ref: '#/components/schemas/TransferP2PRequest'
         required: true
       responses:
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL8SPP01E - ORGANIZATION VALUES ARE 000-998
 
@@ -1905,26 +1796,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -1933,6 +1804,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferP2PResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account to Account Funds Transfer
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1974,24 +1851,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
+        '403':
+          description: Forbidden
         '422':
           description: 'VPJ5SPA03S - OLD ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
@@ -2196,6 +2059,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -2204,6 +2075,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferPromotionalProductResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Transfer Promotional Product Upgrade
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2249,6 +2126,8 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
         '422':
           description: 'VPL5SSK01E - ACCOUNT SKIP PMT FLAG MUST BE Z OR X
 
@@ -2355,18 +2234,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2381,6 +2252,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SkipPaymentUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Skip Payment Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2420,16 +2297,6 @@ paths:
               $ref: '#/components/schemas/SettlementQuoteRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '422':
           description: 'VPL5SAQ02S - ORGANIZATION NOT DETERMINED
 
@@ -2509,10 +2376,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2527,6 +2398,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SettlementQuoteResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Level Settlement Quote Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2564,6 +2441,20 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '422':
           description: "VPL5S0029S \u2013 ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\n\nVPL5SSU01E \u2013 INVALID DUAL ACCT INDICATOR\n\
@@ -2587,32 +2478,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChargeFeeTableOverrideUpdResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Service Charge/Fee Table Override Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2652,8 +2529,6 @@ paths:
               $ref: '#/components/schemas/BillingCycleUpdateRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
         '422':
           description: "VPL5SBY06E-ORG NUMBR MUST BE NUMERIC AND VALID VALUES ARE\
             \ 001-998 \n\nVPL5SBY07E-ORG NUMBER REQUIRED WHEN ACCOUNT NUMBER NOT PROVIDED\
@@ -2674,18 +2549,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2700,6 +2571,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillingCycleUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Billing Cycle Update
       x-group-name: Relationship
       x-child-product-name: Accounts
@@ -2739,22 +2616,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '422':
           description: "VPL5SRA51S-ACCOUNT LOGO AND RELATIONSHIP LOGO ARE NOT SAME\
             \ \n\nVPL5SRA37S-ACCOUNT NUMBER MUST REQUIRED \n\nVPL5SRA36S-ACCOUNT ORG\
@@ -2800,6 +2665,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '401':
@@ -2810,6 +2681,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountRelationshipUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Relationship Number Update
       x-group-name: Relationship
       x-child-product-name: Accounts
@@ -2847,16 +2724,6 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '422':
           description: 'VPL5SAAI6E - GQ FIELD MUST BE SPACE OR A-Z
 
@@ -2926,8 +2793,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2942,6 +2813,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateQualificationResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Qualification Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2981,8 +2858,6 @@ paths:
               $ref: '#/components/schemas/ProductTransferRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
         '422':
           description: "VPL5SFR02S-SERVICE INPUT TO FR SERVICE IS AN INCORRECT \n\n\
             VPL5SFR05S-INVALID ACCOUNT \n\nVPL5SFR06S-INVALID ORG \n\nVPL5SFR07S-INVALID\
@@ -3068,18 +2943,14 @@ paths:
             \ NOT ALLOW "
           content:
             application/json: {}
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -3094,6 +2965,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductTransferResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Product Transfer Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3129,16 +3006,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SOL01E - INVALID ORG
 
@@ -3163,14 +3042,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -3179,6 +3050,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PrepaidOverlimitUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Prepaid Over Limit Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3218,16 +3095,20 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '422':
           description: 'VPL5SPL06S - INVALID ORG
 
@@ -3285,22 +3166,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PpdLoadLimitsUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Prepaid Load Limits Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3338,8 +3215,6 @@ paths:
               $ref: '#/components/schemas/PricingControlTableRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
         '422':
           description: 'VPL5SPC03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
@@ -3492,18 +3367,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -3518,6 +3389,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PricingControlTableResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Pricing Control Table Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3553,24 +3430,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
+        '403':
+          description: Forbidden
         '422':
           description: 'VPL5SUL01E - NON-NUMERIC INPUT FIELD ORG
 
@@ -3595,6 +3458,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -3603,6 +3474,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateOrganizationRuleLevelsResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Organization Rule Levels Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3641,26 +3518,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '401':
-          description: Unauthorized
         '422':
           description: "VPL5SAL01E - NON-NUMERIC INPUT FIELD ORG \n\nVPL5SAL01S -\
             \ ORG RECORD NOT FOUND \n\nVPL5SAL02E - LEVEL SHOULD NOT BE SPACES \n\n\
@@ -3679,12 +3548,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddOrganizationRulesLevelsResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Organization Rule Levels Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3724,16 +3601,6 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '422':
           description: 'VPL5S0005E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES
 
@@ -3791,8 +3658,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -3807,6 +3678,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ModifyInstallmentTermResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Installment Terms Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3842,6 +3719,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: "VPE5SWF03E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
             \ VALUES ARE \n\nVPE5SWF04E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES\
@@ -3910,24 +3799,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -3936,6 +3807,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountFeeWaiverMaintenanceResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Fee Waiver Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3975,26 +3852,6 @@ paths:
               $ref: '#/components/schemas/EnrollmentUpdateRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '422':
           description: "VPE8SUA01E - ORGANIZATION MUST BE NUMERIC, VALID VALUES ARE\
             \ 001 - 998 \n\nVPE8SUA02S - ACCOUNT NUMBER MUST BE NUMERIC AND GREATER\
@@ -4027,6 +3884,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -4035,6 +3906,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EnrollmentUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Offer Enrollment Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4071,6 +3948,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: "VPLBSAE01E - ORG MUST BE NUMERIC AND VALID VALUES ARE 001\
             \ TO 998 \n\nVPLBSAE02E - INPUT ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS\
@@ -4097,24 +3986,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -4123,6 +3994,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OfferEnrollmentAddResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Offer Enrollment Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4160,14 +4037,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SDU02E - ACCOUNT OR CARD NUMBER REQUIRED
 
@@ -4397,16 +4278,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -4415,6 +4286,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DirectDebitUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Direct Debit Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4450,26 +4327,6 @@ paths:
               $ref: '#/components/schemas/CreditBureauUpdateRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '422':
           description: 'VPL5SCR01E - ORGANIZATION NUMBER MUST BE NUMERIC
 
@@ -4507,6 +4364,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -4515,6 +4386,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreditBureauUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Credit Bureau Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4559,6 +4436,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SAB36S - INVALID FUNCTION CODE - VALID VALUES ARE A TO\
             \ H AND SPACE \n\nVPL5SAB41S - INVALID WARNING CODE 2, VALID VALUES ARE\
@@ -4585,24 +4474,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -4611,6 +4482,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCodesWarningResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Block Codes Warning Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4646,16 +4523,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SAB02S-SERVICE INPUT TO AB SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5SAB04S-FILE-TABLE USED BY THIS SERVICE IS MISSING \n\nVPL5SAB05S-CANNOT\
@@ -4675,14 +4554,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -4691,6 +4562,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForBlockCodeUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Block Code Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4736,16 +4613,20 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '422':
           description: "VPL5SBA03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998 \n\nVPL5SBA04E - REQUESTED CARD/ACCT NUMBER MUST\
@@ -4761,22 +4642,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BankAccountUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Bank Account Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4816,6 +4693,20 @@ paths:
               $ref: '#/components/schemas/BankBranchStoreUpdateRequest'
         required: true
       responses:
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SUP01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 000-998
@@ -4863,26 +4754,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -4891,6 +4762,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BankBrenchStoreUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Pending Bank, Branch And Store Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4932,14 +4809,6 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '422':
@@ -4999,8 +4868,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -5015,6 +4886,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthorizationCriteriaResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Authorization Criteria Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5050,6 +4927,20 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '422':
           description: "VPL5SAS01I \u2013 FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL\
             \ ORG ACCOUNT DATA\n\nVPL5SASZ4S \u2013 REQUESTED ORGANIZATION COULD NOT\
@@ -5089,32 +4980,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AssociatedPartiesUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Associated Parties Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5150,16 +5027,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SICAFE - REVERSAL IS NOT ALLOWED FOR PRIMARY CARD WHEN\
             \ ISSUE TYPE IS 'R' \n\nVPL5SICZ2S - SERVICE INPUT TO PLAN VIEWER SERVICE\
@@ -5186,14 +5065,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -5202,6 +5073,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstantCardAddL8V7Response'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Instant Card Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5241,6 +5118,20 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '422':
           description: "VPL5SZ1Z1E - SERVICE COULD NOT OBTAIN STORAGE AREA \n\nVPL5SZ1Z2E\
             \ - SERVICE INPUT TO EPIC DRIVER SERVICE IS INCORRECT LENGTH \n\nVPL5SZ103E\
@@ -5302,32 +5193,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBoardingDriverResponseL8V3'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5362,16 +5239,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
+        '403':
+          description: Forbidden
         '422':
           description: "Unprocessable Entity\nVPL5SRB47E - ORGANIZATION VALUE MUST\
             \ BE NUMBERIC AND VALID VALES ARE 000-999 \n\nVPL5SRB23S - SERVICE INPUT\
@@ -5415,8 +5286,8 @@ paths:
             \ - ERROR WHILE SENDING NON-MON DATA TO FALCON"
           content:
             application/json: {}
-        '500':
-          description: Backend Error
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -5431,6 +5302,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FalconMonetaryInquiryResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Monetary Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5468,8 +5345,6 @@ paths:
               $ref: '#/components/schemas/AccountInsuranceProductAddRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
         '422':
           description: "VPL5SIN06E \u2013 INVALID ORG VALUE\n\nVPL5SIN07S \u2013 INVALID\
             \ ACCOUNT\n\nVPL5SIN08E \u2013 INVALID DUAL INDICATOR\n\nVPL5SIN09E \u2013\
@@ -5496,18 +5371,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -5522,6 +5393,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInsuranceProductAddResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Insurance Product Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5559,26 +5436,6 @@ paths:
               $ref: '#/components/schemas/PreValidatedAmountRequest'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '422':
           description: VPL5SGI01S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
@@ -5586,6 +5443,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -5594,6 +5465,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PreValidatedAmountResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Amount Against Rule Levels Validate
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5633,22 +5510,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '422':
           description: "VPL1S0100S-SERVICE INPUT FOR SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5S0006S-REQUESTED ORG NUMBER IS NOT FOUND \n\nVPL5S0007E-CARD/ACCT\
@@ -5658,6 +5523,12 @@ paths:
             \ INDICATOR SPECIFIED \n\nVPL5S9002S-ACCOUNT NUMBER NOT FOUND ON FILE\
             \ \n\nVPL5S9005S-FILE-TABLE RECORD NOT FOUND \n\nVPL5S9006S-ORG RECORD\
             \ NOT ON FILE \n\nVPL5S9007S-LOGO RECORD NOT ON FILE "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -5672,6 +5543,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BalanceDetailsResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Balance Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5707,6 +5584,8 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
         '422':
           description: 'VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
             001-998
@@ -6319,18 +6198,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -6345,6 +6216,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountAddDataResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6388,14 +6265,6 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '422':
@@ -6435,8 +6304,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -6451,6 +6322,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountDemographicInqResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Demographic Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6498,18 +6375,12 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -6524,6 +6395,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementFlagUpdateResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Statement Flag Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6580,14 +6457,6 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '204':
@@ -6596,6 +6465,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SIN58S - THIRD PARTY CARD GENERATION ERROR
 
@@ -6702,14 +6581,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -6718,6 +6589,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInsuranceProductResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Insurance Product Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6787,6 +6664,8 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
         '422':
           description: "VPL5SQY02S -SERVICE INPUT IS AN INCORRECT LENGTH \n\nVPL5SQY06S\
             \ -ORG IS INVALID \n\nVPL5SQY07S -ACCOUNT TABLE MUST BE NUMERIC AND GT\
@@ -6797,18 +6676,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -6823,6 +6694,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountControlTableInquiryResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Control Table Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6873,22 +6750,10 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '422':
           description: "VPL5SUL01E - NON-NUMERIC INPUT FIELD ORG \n\nVPL5SUL01S -\
             \ ORG RECORD NOT FOUND \n\nVPL5SUL02E - LEVEL SHOULD NOT BE SPACES \n\n\
@@ -6896,6 +6761,12 @@ paths:
             \ BE LESS THAN MONTHLY LOAD LIMIT \n\nVPL5SUL03S - RECORD NOT FOUND ON\
             \ FILE \n\nVPL5SUL04E - NON-NUMERIC INPUT FIELD DLY_AMT_LOAD \n\nVPL5SUL05E\
             \ - MONTHLY LOAD LIMIT SHOULD BE GREATER THAN DAILY LOAD LIMIT "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -6910,6 +6781,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FindOrganizationRulesLevelsResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Organization Rule Levels Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6969,16 +6846,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SRI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
@@ -7019,14 +6898,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -7035,6 +6906,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RelationshipDetailsResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Relationship Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7093,14 +6970,6 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '422':
@@ -7155,8 +7024,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -7171,6 +7042,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetInsuranceProductResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Insurance Product Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7235,6 +7112,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SAO19S - SERVICE INPUT TO ACCOUNT INQ SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL5SAO03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
@@ -7251,24 +7140,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -7277,6 +7148,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountOverviewResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Overview Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7327,6 +7204,8 @@ paths:
           type: string
         example: 00970
       responses:
+        '405':
+          description: Method Not Allowed
         '422':
           description: "VPL5SDB01S-ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES\
             \ ARE 001-998 \n\nVPL5SDB02S-ORGANIZATION NOT ON FILE \n\nVPL5SDB03S-ORGANIZATION\
@@ -7340,20 +7219,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -7368,6 +7239,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IbsDebitInquiryResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: IBS Debit File Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7437,6 +7314,20 @@ paths:
           type: string
         example: 00970
       responses:
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SDI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
@@ -7469,26 +7360,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -7497,6 +7368,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreditAndDebitDetailsResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Direct Debit-Credit Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7582,16 +7459,20 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '422':
           description: "VPJ5SRR01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
             \ VALUES ARE 001-998 \n\nVPJ5SRR01I - FOREIGN USE ORG UNAVAILABLE PROCESSED\
@@ -7606,22 +7487,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BalanceRefinanceRestructureResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Restructure and Refinance Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7674,8 +7551,6 @@ paths:
           type: string
         example: 00970
       responses:
-        '405':
-          description: Method Not Allowed
         '422':
           description: "VPL5SIS01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
             \ VALUES ARE 001-998 \n\nVPL5SIS02E - REQUESTED ACCT / CARD NUMBER IS\
@@ -7711,18 +7586,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -7737,6 +7608,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementInstallmentInquiryResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Statement Installment Options Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7795,26 +7672,6 @@ paths:
           type: string
         example: 00970
       responses:
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '422':
           description: 'VPL5SZ301E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
@@ -7838,6 +7695,20 @@ paths:
             '
           content:
             application/json: {}
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -7846,6 +7717,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdatedDebitBalancesInquiryResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Updated Debit Balances Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7951,8 +7828,6 @@ paths:
           type: string
         example: 00970
       responses:
-        '405':
-          description: Method Not Allowed
         '422':
           description: 'VPL5S0009E - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
 
@@ -7987,18 +7862,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '404':
           description: Not Found
-        '500':
-          description: Backend Error
+        '403':
+          description: Forbidden
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -8013,6 +7884,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RelationshipToAccountResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Numbers by Relationship Inquiry
       x-group-name: Relationship
       x-child-product-name: Accounts
@@ -8277,16 +8154,18 @@ paths:
       responses:
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
         '422':
           description: 'VPLBSDE02S - SERVICE INPUT HAS AN INCORRECT LENGTH
 
@@ -8356,14 +8235,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
         '200':
@@ -8372,6 +8243,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountEnrollInquiryResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Enrollment Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -11502,85 +11379,6 @@ components:
 
             VisionPLUS Service Data: AM1S-MIN-PAYMENT'
           example: 1
-    LinkUnlinkAccountRequest:
-      required:
-      - organizationNumber
-      - status
-      type: object
-      properties:
-        organizationNumber:
-          maximum: 998
-          minimum: 1
-          type: integer
-          description: "* Min Length = 1 \n* Max Length = 3 \n\nIdentification number\
-            \ of the organization associated with the account. \n\nVisionPLUS:\n*\
-            \ Service Data: AZXLBI-ORG\n* Screen: ARQB\n* Page: 01\n* Field: ORGANIZATION"
-          format: int32
-          example: 978
-        status:
-          maxLength: 1
-          minLength: 1
-          pattern: ^(L|U)$
-          type: string
-          description: "Linking or Unlinking Request.\nValues:\n* L \u2013 Linking\
-            \ Request\n* U \u2013 Unlinking Request\n\nVisionPLUS Service Data: AZXLBI-LINK-UNLINK-REQ"
-          example: L
-        creditAccountNumber:
-          maxLength: 19
-          minLength: 0
-          type: string
-          description: 'Credit Account Number.
-
-            * Both of these fields are required in Request for linking: creditAccountNumber
-            and revolvingAccountNumber.
-
-            * To unlink Credit Account Number from Sweep Account Number only creditAccountNumber
-            field is required.
-
-
-            VisionPLUS:
-
-            * Service Data: AZXLBI-CREDIT-ACCT-NBR
-
-            * Screen: ARQB
-
-            * Page: 01
-
-            * Field: ACCOUNT'
-          example: 0123456789123456789
-        rotativoAccountNumber:
-          maxLength: 19
-          minLength: 0
-          type: string
-          description: 'Revolving Account Number.
-
-            * Both of these fields are required in Request for linking: creditAccountNumber
-            and revolvingAccountNumber.
-
-            * To unlink Credit Account Number from Sweep Account Number only creditAccountNumber
-            field is required.
-
-
-            VisionPLUS:
-
-            * Service Data: AZXLBI-ROTATIVO-ACCT-NBR
-
-            * Screen: ARQB
-
-            * Page: 03
-
-            * Field: SWEEP ACCOUNT'
-          example: 0123456789123456789
-      description: Link or Unlink Account Request
-    LinkUnlinkAccountResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: "* Max Length = 25 \n\nCustom Message to denote if Linking\
-            \ or Unlinking is successful or un-successful.\n\nVisionPLUS Service Data:\
-            \ AZXLBO-MESSAGE"
-          example: Successful link
     AccountForUserUpdateRequest:
       required:
       - accountNumber
