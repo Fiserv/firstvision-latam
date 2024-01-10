@@ -1,5 +1,5 @@
 ---
-tags: [Referência da API, Cartões, Cliente, Contas, Fidelidade, Notificações, Transactions]
+tags: [Referência da API, Cartões, Cliente, Contas, Fidelidade, Notificações, Transactions, Tokenização]
 ---
 
 # Referência da API
@@ -63,6 +63,15 @@ description: As notificações do First Vision permitem que fintechs e institui�
 <!-- type: card
 title: Transações
 description: Funções de transação para adicionar, ajustar ou consultar ações de transações. Exibe detalhes da transação, como autorizações pendentes, ciclo até a data, transações contestadas, taxa de câmbio, dados de taxas, detalhes da transação e consulta de controle de processamento.
+-->
+
+<!-- type: row-end -->
+
+<!-- type: row -->
+
+<!-- type: card
+title: Tokenização
+description: Estes serviços recuperam e validam a lista de cartões disponíveis associados ao número de conta solicitado à VISA. Cartões sem tokens ativos são considerados disponíveis para tokenização. Os serviços permitem que a VISA verifique a elegibilidade dos cartões para digitalização por meio da solicitação de verificação de elegibilidade recebida da Visa. Além disso, valida se o token existe e está ativo e chama quando o status do token do emissor for alterado. O provedor de carteira vincula seu dispositivo a um token e-com/COF previamente provisionado. O processo de gerenciamento do ciclo de vida do token também é suportado.
 -->
 
 <!-- type: row-end -->
