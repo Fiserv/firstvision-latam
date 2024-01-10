@@ -38,18 +38,8 @@ paths:
               $ref: '#/components/schemas/CustomerChannelVersion4Request'
         required: true
       responses:
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '401':
-          description: Unauthorized
-        '405':
-          description: Method Not Allowed
         '422':
           description: 'VPL5SCE06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
@@ -85,22 +75,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerChannelVersion4Response'
-        '404':
-          description: Not Found
+        '401':
+          description: Unauthorized
       x-proxy-name: Cards Details Inquiry
       x-group-name: Customers
   /customer/demographicData:
@@ -132,16 +132,26 @@ paths:
               $ref: '#/components/schemas/DemographicInquiryRequest'
         required: true
       responses:
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '422':
           description: "VPL5SND02S \u2013 ORGANIZATION NUMBER NOT FOUND\n\nVPL5SND05S\
             \ \u2013 ORG RECORD NOT FOUND\n\nVPL5SND06S \u2013 DUAL ORG RECORD NOT\
@@ -158,24 +168,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DemographicInquiryResponse'
-        '404':
-          description: Not Found
+        '401':
+          description: Unauthorized
       x-proxy-name: Demographic Inquiry
       x-group-name: Customers
   /customer/:
@@ -207,18 +207,24 @@ paths:
               $ref: '#/components/schemas/AddCustomerRequest'
         required: true
       responses:
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '405':
-          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '403':
+          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '422':
           description: "VPL5SNA03S \u2013 N/A SERVICE INPUT AREA IS NOT OF CORRECT\
             \ SIZE\n\nVPL5SNA04S \u2013 OWNER/CO-OWNER INDICATOR MUST BE 1 OR 2\n\n\
@@ -273,22 +279,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddCustomerResponse'
-        '404':
-          description: Not Found
+        '401':
+          description: Unauthorized
       x-proxy-name: Customer Add
       x-group-name: Customers
 components:
