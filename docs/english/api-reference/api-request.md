@@ -19,7 +19,7 @@ To create the header, provide the following values:
 |---------------------|:---------:|:------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Content-Type`      |  *string* |   N/A  | The content type. Valid Value (application/json)                                                                                                                                                                          |
 | `Client-Request-Id` |  *string* |   N/A  | A client-generated ID for request tracking and signature creation, unique per request. This is also used for idempotency control. Recommended 128-bit UUID format.                                                        |
-| `Api-Key`           |  *string* |   N/A  | API Key provided to the merchant associating the requests with the appropriate app in the Developer Portal.                                                                                                               |
+| `apikey`           |  *string* |   N/A  | API Key provided to the merchant associating the requests with the appropriate app in the Developer Portal.                                                                                                               |
 | `Timestamp`         | *integer* |   N/A  | Epoch timestamp in milliseconds in the request from a client system. Used for Message Signature generation and time limit (5 mins).                                                                                       |
 | `Accept-Language`   |  *string* |   N/A  | The Accept-Language header contains information about the language preference of a user. This HTTP header is useful to multilingual sites for deciding the best language to serve to the client. example: en-US or fr-CA. |
 | `Auth-Token-Type`   |  *string* |   N/A  | Indicates Authorization type HMAC or AccessToken.                                                                                                                                                                         |
@@ -34,7 +34,7 @@ type: tab
 "header": {
   "Content-Type": "application/json",
   "Client-Request-Id": "CLIENT_REQUEST_ID",
-  "Api-Key": "API_KEY",
+  "apikey": "API_KEY",
   "Timestamp": "TIMESTAMP",
   "Auth-Token-Type": "AUTH_TOKEN_TYPE" ,
   "Authorization": "ACCESS_TOKEN"
@@ -88,5 +88,6 @@ titles: Request Body Example
 - [API Glossary](?path=docs/english/api-reference/api-glossary.md)
 - [Error Handling](?path=docs/english/api-reference/response-handling.md)
 - [Error Response](?path=docs/english/api-reference/error-response.md)
+- [Webhook](?path=docs/english/api-reference/5-notifications.md)
 
 ---
