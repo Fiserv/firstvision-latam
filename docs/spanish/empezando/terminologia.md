@@ -1,5 +1,5 @@
 ---
-tags: [Empezando, Terminología, Cuenta, Cliente, Tarjetas, Segmentos de Planes]
+tags: [Empezando, Terminología, Cuenta, Cliente, Tarjetas, Segmentos de Planes, First Vision, Emisor, Procesamiento de Tarjetas, Pagos]
 ---
 
 # Terminología
