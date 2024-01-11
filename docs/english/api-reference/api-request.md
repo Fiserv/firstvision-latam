@@ -34,7 +34,7 @@ type: tab
 "header": {
   "Content-Type": "application/json",
   "Client-Request-Id": "CLIENT_REQUEST_ID",
-  "apikey": "apikey",
+  "apikey": "API_KEY",
   "Timestamp": "TIMESTAMP",
   "Auth-Token-Type": "AUTH_TOKEN_TYPE" ,
   "Authorization": "ACCESS_TOKEN"
