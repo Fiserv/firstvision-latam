@@ -1,5 +1,5 @@
 ---
-tags: [API Reference, Account, Cards, Customer, Loyalty, Notifications, Transactions]
+tags: [API Reference, Account, Cards, Customer, Loyalty, Notifications, Transactions, Tokenization]
 ---
 
 # API Reference
@@ -62,6 +62,15 @@ description: Enrollment and cancellation features with the flexibility to trigge
 <!-- type: card
 title: Transactions
 description: Transactions functions to add, adjust or inquiry functions actions. Display transactional details such as outstanding authorizations, cycle-to-date, memo-posted, warehoused, disputed transactions, exchange rate, installment data, transaction details and processing control inquiry.
+-->
+
+<!-- type: row-end -->
+
+<!-- type: row -->
+
+<!-- type: card
+title: Tokenization
+description: These services retrieve and validate list of available cards associated with the account number requested from VISA.  Cards with no active tokens are considered as available for tokenization. The services enable VISA to check the eligibility of the cards for digitization via the incoming Check Eligibility Request from Visa. Also, validates if the token exists and active and call when the issuer's token status has changed.   Wallet provider binds their device for a previously provisioned e-com/COF token. Token Lifecycle Management process is also supported.
 -->
 
 <!-- type: row-end -->
