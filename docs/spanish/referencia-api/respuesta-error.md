@@ -78,6 +78,7 @@ Ejemplo de una respuesta de cargo (400: Solicitud Incorrecta)
 
 - [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
 - [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
-- [Solicitud de API](?path=docs//spanish/referencia-api/solicitud-api.md)
+- [Solicitud de API](?path=docs/spanish/referencia-api/solicitud-api.md)
+- [Webhook](?path=docs/spanish/referencia-api/4-notificaciones.md)
 
 ---
