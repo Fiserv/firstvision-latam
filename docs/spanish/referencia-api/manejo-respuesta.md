@@ -66,6 +66,8 @@ type: tab
 
 - [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
 - [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
-- [Solicitud de API](?path=docs//spanish/referencia-api/solicitud-api.md)
+- [Solicitud de API](?path=docs/spanish/referencia-api/solicitud-api.md)
+- [Webhook](?path=docs/spanish/referencia-api/4-notificaciones.md)
+
 
 ---
