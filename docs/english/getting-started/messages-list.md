@@ -278,7 +278,6 @@ tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processi
 
 ## See Also
 
-- [Getting Started](?path=docs/english/getting-started.md)
 - [Postman Tutorial](?path=docs/english/getting-started/postman.md)
 - [Structure](?path=docs/english/getting-started/structure.md)
 - [Terminology](?path=docs/english/getting-started/terminology.md)
