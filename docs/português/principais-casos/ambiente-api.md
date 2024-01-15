@@ -14,7 +14,7 @@ O ambiente de teste da FirstVision permite diferentes cenários para produtos Vi
 
 Cada um desses cenários de validação foi criado para as regiões da Colômbia, Panamá, México, Argentina, Uruguai e Brasil, o que permite que os clientes de cada uma dessas regiões tenham uma visão mais realista e precisa de como seus produtos funcionarão uma vez que forem implementados no ambiente de produção.
 
-Com o uso de uma chave conhecida como API-KEY, que pode ser solicitada pelo Cliente, cada API pode ser endereçada para testar a franquia, produto e região desejada.
+Com o uso de uma chave conhecida como apikey, que pode ser solicitada pelo Cliente, cada API pode ser endereçada para testar a franquia, produto e região desejada.
 
 ## Diagrama
 
