@@ -4,15 +4,13 @@ tags: [Main Cases, Card Management, cards, embosser, PAN token, security-codes, 
 
 # Card Management
 
-## Embosser Add
+## Card Action Update
 
-Use the API to create a card information used to emboss a new card or plastic. This card information must have relate that an account number created through API **Account Add** and this account number must be related a customer number created through API **Customer Add**.
+Use this API to update the action flag used to re-emboss (re-issue) a specific card number.
 
-This API allow add card information as card expiration date, service code, cardholder name, address to where the card will be deliver, spending limits, etc.
+This API allow to the user request a card reissue for some reason, lost/stolen, damage, card expiration, emergency replace, etc.
 
-The card number is calculated on randomly way by the application, and this number will not be generated again (duplicated).
-
-**POST** `/cards/embosser/l8vf`
+**PUT** `/cards/embosser/cardAction-L8V2`
 
 The description of each API field can be found within the specifications defined in the portal.
 
@@ -30,23 +28,25 @@ Use this API to get the PAN-token calculated for a card number.
 
 The description of this API fields can be found within the specifications defined in the portal.
 
-## Mass Card Issue Update
+## Dynamic Values Inquiry
 
-This API allow the user add or update a request to emboss new cards on massive way. These cards can be credit, debit or prepay card. Quantity of card to emboss is a parameter request by the API.
+Use this API to calculate and inquire a new CVV2 for not present card purchases.
 
-Cards embossed will not have an embosser name, but card number, expiration and card security values will be part of these.
+Currently when card is embossed through the API **Card Embosser**, the static CVV2 code is calculate and printed on sign panel on card back. The new functionality of Dynamic CVV2 allow to the cardholder call this API to generate and calculate a new CVV2 before make a not present purchase. So when API is trigger the static CVV2 is inactivated and each time the cardholder wants to make a new not card present purchase the new CVV2 have to be calculated through this API.
 
-**POST** `/cards/mass-card-issue-L8V3`
+**POST** `/cards/pin/dynamic-values`
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## Card Action Update
+## Embosser Add
 
-Use this API to update the action flag used to re-emboss (re-issue) a specific card number.
+Use the API to create a card information used to emboss a new card or plastic. This card information must have relate that an account number created through API **Account Add** and this account number must be related a customer number created through API **Customer Add**.
 
-This API allow to the user request a card reissue for some reason, lost/stolen, damage, card expiration, emergency replace, etc.
+This API allow add card information as card expiration date, service code, cardholder name, address to where the card will be deliver, spending limits, etc.
 
-**PUT** `/cards/embosser/cardAction-L8V2`
+The card number is calculated on randomly way by the application, and this number will not be generated again (duplicated).
+
+**POST** `/cards/embosser/l8vf`
 
 The description of each API field can be found within the specifications defined in the portal.
 
@@ -57,26 +57,6 @@ This API allow to the user request the creation of account and card on instantly
 Customer information must be created through API **Customer Add** before call API instant card.
 
 **POST** `/account/v2/instantCard`
-
-The description of each API field can be found within the specifications defined in the portal.
-
-## Security Values Inquiry
-
-This API allow to the user get the card security values (CVV, CVV2, ICVV, PIN number) already emboss for a specific card number.
-
-Security values provided by the API will be encrypted using a security key of 32 bytes, so user should use the same security key and 3Des algorithm to decrypt the security values.
-
-**POST** `/cards/pin/security-codes`
-
-The description of each API field can be found within the specifications defined in the portal.
-
-## Dynamic Values Inquiry
-
-Use this API to calculate and inquire a new CVV2 for not present card purchases.
-
-Currently when card is embossed through the API **Card Embosser**, the static CVV2 code is calculate and printed on sign panel on card back. The new functionality of Dynamic CVV2 allow to the cardholder call this API to generate and calculate a new CVV2 before make a not present purchase. So when API is trigger the static CVV2 is inactivated and each time the cardholder wants to make a new not card present purchase the new CVV2 have to be calculated through this API.
-
-**POST** `/cards/pin/dynamic-values`
 
 The description of each API field can be found within the specifications defined in the portal.
 
@@ -92,6 +72,16 @@ Invalid PIN attempts can be reached by many reasons the most popular reason is w
 
 The description of each API field can be found within the specifications defined in the portal.
 
+## Mass Card Issue Update
+
+This API allow the user add or update a request to emboss new cards on massive way. These cards can be credit, debit or prepay card. Quantity of card to emboss is a parameter request by the API.
+
+Cards embossed will not have an embosser name, but card number, expiration and card security values will be part of these.
+
+**POST** `/cards/mass-card-issue-L8V3`
+
+The description of each API field can be found within the specifications defined in the portal.
+
 ## PIN Validation
 
 Use this API to confirm that current PIN generated is correct.
@@ -99,6 +89,16 @@ Use this API to confirm that current PIN generated is correct.
 This API require the PIN block and the card number and not the clear PIN number.
 
 **POST** `/cards/pin/validation`
+
+The description of each API field can be found within the specifications defined in the portal.
+
+## Security Values Inquiry
+
+This API allow to the user get the card security values (CVV, CVV2, ICVV, PIN number) already emboss for a specific card number.
+
+Security values provided by the API will be encrypted using a security key of 32 bytes, so user should use the same security key and 3Des algorithm to decrypt the security values.
+
+**POST** `/cards/v1/pin/codes`
 
 The description of each API field can be found within the specifications defined in the portal.
 
