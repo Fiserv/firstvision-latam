@@ -59,7 +59,7 @@ Information as account status, customer number, account block codes, credit limi
 
 This API require the account number as search parameter along with bank id (organization).
 
-**POST** `/account/v2/accounts`
+**GET** `/account/v2/accounts`
 
 The description of each API field can be found within the specifications defined in the portal.
 
