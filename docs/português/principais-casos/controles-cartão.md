@@ -8,27 +8,17 @@ Esta seção descreve as diferentes APIs do Portal que são usadas para executar
 
 Como principal requisito, é importante que os cartões de crédito, débito, cartões pré-pagos ou carteiras digitais tenham sido criados no ambiente de teste, utilizando as APIs de Criação de Cliente **(Customer Add)**, Criação de Conta **(Account Add) ** e Criação de Cartão **(Embosser Add)**.
 
-## Bloquear ou Desbloquear Cartão
+## Alterar o PIN de um Cartão
 
-Por meio dessa API, o portador do cartão poderá fazer bloqueios preventivos e definitivos nas informações de seu cartão de crédito, cartão de débito, cartão pré-pago e carteira. A fim de evitar possíveis fraudes quando o titular do cartão suspeitar que as informações do cartão podem estar comprometidas.
+A alteração do PIN é uma funcionalidade atual para permitir que o titular do cartão altere o PIN do cartão atual. O motivo para alterar o PIN do cartão pode ser porque o PIN foi comprometido, o titular do cartão deseja fazer a alteração ou o emissor exige isso após um determinado número de dias.
 
-Da mesma forma, o titular do cartão pode efetuar um desbloqueio preventivo do seu cartão quando tiver a certeza de que os dados do seu cartão não estão comprometidos.
+Com esta API, titular do cartão poderá alterar seu número PIN atual para outro número PIN. Ao contrário da API de atualização do PIN do cartão, esta API solicitará o número PIN atual atribuído ao titular do cartão, portanto, ambos os valores devem ser adicionados antes de ativar a API: PIN atual e novo PIN.
 
-As informações exigidas pela API, como número do cartão, código de bloqueio e recurso, devem ser incluídas antes da ativação da API.
+Essa API pode ser usada quando o titular do cartão precisar alterar o número PIN atual para outro número PIN caso essa informação seja comprometida. Esta API pode ser ativada a partir de ATRM, VCR, APP, Web Service, etc. e é 100% online.
 
-**PUT** `/cards/embosser/block`
+Os valores necessários para esta API são Número do Cartão, Canal, PIN de bloqueio Atual, Novo PIN de bloqueio, Associação de Chave (para criptografar blocos de PIN), offset do Novo PIN e Organização do Banco.
 
-A descrição de cada campo da API está dentro das especificações definidas no portal.
-
-## Atualizar Limites para Compras
-
-Esta API permite ao cliente atualizar online os diferentes limites de compras associados a cartões de crédito, cartões de débito, cartões pré-pagos e carteiras digitais. Esses limites de compra são atribuídos para compras em lojas, adiantamentos em dinheiro, compras pela Internet e compras internacionais. Os limites de compra determinam o número de transações e os valores máximos permitidos para uso diário, semanal, quinzenal e mensal. Esses limites de compras podem ser atribuídos tanto ao cartão principal quanto aos cartões adicionais.
-
-Os valores são modificados 100% online e podem ser ajustados quantas vezes forem necessárias.
-
-A API solicita como informação necessária o número do cartão, o número da transação e os valores de cada Limite de Compra.
-
-**PUT** `/cards/spend-limits-L8V3`
+**PUT** `/cards/pin/pin-change`
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
@@ -46,13 +36,49 @@ Os valores exigidos pela API são número do cartão, código ISO do país, inte
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
-## Atualização de Transferência de Cartão
+## Atualizar Limites para Compras
+
+Esta API permite ao cliente atualizar online os diferentes limites de compras associados a cartões de crédito, cartões de débito, cartões pré-pagos e carteiras digitais. Esses limites de compra são atribuídos para compras em lojas, adiantamentos em dinheiro, compras pela Internet e compras internacionais. Os limites de compra determinam o número de transações e os valores máximos permitidos para uso diário, semanal, quinzenal e mensal. Esses limites de compras podem ser atribuídos tanto ao cartão principal quanto aos cartões adicionais.
+
+Os valores são modificados 100% online e podem ser ajustados quantas vezes forem necessárias.
+
+A API solicita como informação necessária o número do cartão, o número da transação e os valores de cada Limite de Compra.
+
+**PUT** `/cards/spend-limits-L8V3`
+
+A descrição de cada campo da API está dentro das especificações definidas no portal.
+
+## Atualizar PIN do Cartão
+
+Esta API permite que o titular do cartão reatribua um novo Número de Identificação Pessoal (PIN). Normalmente usado quando um novo cartão é emitido para o titular do cartão e um novo PIN precisa ser configurado e vinculado ao novo cartão já ativado por meio da API de cartões/ativação.
+
+A API reatribui e atualiza o novo PIN 100% online para que o titular do cartão possa usar o novo PIN depois de atribuído. Esta API pode ser acionada a partir de diferentes canais, como caixa eletrônico, páginas da web, VCR, APP, etc. O titular do cartão escolherá o novo PIN de quatro dígitos e, juntamente com o número do cartão de crédito e a associação da chave (usada para criptografar a nova API), o aplicativo bancário deverá ser capaz de calcular o novo PIN de bloqueio para ativar a API.
+
+Os valores necessários para esta API são número do cartão, organização bancária, canal, PIN de bloqueio e associação de chave.
+
+**PUT** `/cards/pin/`
+
+A descrição de cada campo da API está dentro das especificações definidas no portal.
+
+## Atualizar Transferência de Cartão
 
 Essa API permite que o titular do cartão bloqueie o número do cartão atual e solicite um novo cartão com um número de cartão diferente em um único gatilho. Assim como a API de bloqueio ou desbloqueio de cartão, o número do cartão pode ser bloqueado caso o titular do cartão acredite que as informações do cartão estão comprometidas e ao mesmo tempo pode solicitar um novo número de cartão, assim o novo cartão será gravado em alto relevo durante o processamento em lote e pronto para entrega no dia seguinte.
 
 Como parte dos valores solicitados pela API, são obrigatórios o número do cartão, número da conta, organização e data efetiva.
 
 **PUT** `/cards/transfer`
+
+A descrição de cada campo da API está dentro das especificações definidas no portal.
+
+## Bloquear ou Desbloquear Cartão
+
+Por meio dessa API, o portador do cartão poderá fazer bloqueios preventivos e definitivos nas informações de seu cartão de crédito, cartão de débito, cartão pré-pago e carteira. A fim de evitar possíveis fraudes quando o titular do cartão suspeitar que as informações do cartão podem estar comprometidas.
+
+Da mesma forma, o titular do cartão pode efetuar um desbloqueio preventivo do seu cartão quando tiver a certeza de que os dados do seu cartão não estão comprometidos.
+
+As informações exigidas pela API, como número do cartão, código de bloqueio e recurso, devem ser incluídas antes da ativação da API.
+
+**PUT** `/cards/embosser/block`
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
@@ -70,18 +96,6 @@ Os valores necessários para esta API são número do cartão, identificação d
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
-## Atualizar PIN do Cartão
-
-Esta API permite que o titular do cartão reatribua um novo Número de Identificação Pessoal (PIN). Normalmente usado quando um novo cartão é emitido para o titular do cartão e um novo PIN precisa ser configurado e vinculado ao novo cartão já ativado por meio da API de cartões/ativação.
-
-A API reatribui e atualiza o novo PIN 100% online para que o titular do cartão possa usar o novo PIN depois de atribuído. Esta API pode ser acionada a partir de diferentes canais, como caixa eletrônico, páginas da web, VCR, APP, etc. O titular do cartão escolherá o novo PIN de quatro dígitos e, juntamente com o número do cartão de crédito e a associação da chave (usada para criptografar a nova API), o aplicativo bancário deverá ser capaz de calcular o novo PIN de bloqueio para ativar a API.
-
-Os valores necessários para esta API são número do cartão, organização bancária, canal, PIN de bloqueio e associação de chave.
-
-**PUT** `/cards/pin/`
-
-A descrição de cada campo da API está dentro das especificações definidas no portal.
-
 ## PIN Lock/Unlock
 
 A API permite que o titular do cartão bloqueie seu número PIN atual. Isso pode ser usado quando você acredita que as informações do PIN podem estar comprometidas. Esta API bloqueia apenas o número PIN e não o número do cartão, pelo que o Cliente após acionar esta API para bloquear o PIN, pode ainda utilizar o cartão para compras mas não para adiantamentos de dinheiro.
@@ -95,21 +109,6 @@ Os valores solicitados por esta API são número do cartão, canal, organizaçã
 **PUT** `/cards/pin/status`
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
-
-## Alterar o PIN de um Cartão
-
-A alteração do PIN é uma funcionalidade atual para permitir que o titular do cartão altere o PIN do cartão atual. O motivo para alterar o PIN do cartão pode ser porque o PIN foi comprometido, o titular do cartão deseja fazer a alteração ou o emissor exige isso após um determinado número de dias.
-
-Com esta API, titular do cartão poderá alterar seu número PIN atual para outro número PIN. Ao contrário da API de atualização do PIN do cartão, esta API solicitará o número PIN atual atribuído ao titular do cartão, portanto, ambos os valores devem ser adicionados antes de ativar a API: PIN atual e novo PIN.
-
-Essa API pode ser usada quando o titular do cartão precisar alterar o número PIN atual para outro número PIN caso essa informação seja comprometida. Esta API pode ser ativada a partir de ATRM, VCR, APP, Web Service, etc. e é 100% online.
-
-Os valores necessários para esta API são Número do Cartão, Canal, PIN de bloqueio Atual, Novo PIN de bloqueio, Associação de Chave (para criptografar blocos de PIN), offset do Novo PIN e Organização do Banco.
-
-**PUT** `/cards/pin/pin-change`
-
-A descrição de cada campo da API está dentro das especificações definidas no portal.
-
 ---
 
 ## Veja também
@@ -126,3 +125,4 @@ A descrição de cada campo da API está dentro das especificações definidas n
 - [Relacionamento Cliente-Conta-Cartão](?path=docs/português/principais-casos/relação.md)
 
 ---
+
