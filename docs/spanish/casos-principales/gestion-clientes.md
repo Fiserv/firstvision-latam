@@ -4,7 +4,15 @@ tags: [Casos Principales, Gestión de Clientes, Cliente, Datos Demográficos, Ge
 
 # Gestión de Clientes
 
-## Cliente Nuevo
+## Actualizar Cliente
+
+Esta API permite la actualización de la información demográfica de un cliente específico. Actualmente se ingresa a través de la API **Customer Add**. El valor requerido por esta API es el número de cliente creado a través de la API **Customer Add**.
+
+**PUT** `/customer`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
+## Agregar Cliente
 
 Esta API le permite a un Banco ingresar información demográfica del cliente, como nombre, dirección, número de teléfono, correo electrónico, número de identificación, etc. se agregará por medio de esta API.
 
@@ -16,31 +24,45 @@ Este número de cliente es independiente del número de identificación personal
                 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Actualizar Cliente
+## Agregar Número de Relación
 
-Esta API permite la actualización de la información demográfica de un cliente específico. Actualmente se ingresa a través de la API **Customer Add**. El valor requerido por esta API es el número de cliente creado a través de la API **Customer Add**.
+Esta API permite que un tarjetahabiente agrupe todos los números de relación que ya fueron creados bajo un mismo Número de Cliente.
 
-**PUT** `/customer`
+El número de Relación es un número único asignado a una Tarjeta Corporativa; por ejemplo, Walmart con un número de cliente 123, se identifica con un número de relación único 567 y bajo este número de relación se crean muchas cuentas y tarjetas para los empleados de Walmart. Entonces, al usar el Número de Cliente 123 en esta API, es posible obtener el Número de Relación 567.
+
+**POST** `/customer/relationshipNumber`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Encuentre un Número de Cuenta
+## Consultar Datos Demográficos
+
+Con esta API el tarjetahabiente podrá obtener toda la información demográfica ya agregada a través de la API **Customer Add** cuando se crea un cliente nuevo. La misma información se mostrará en el mensaje de respuesta de la API. La información demográfica del cliente solo se mostrará y no podrá ser actualizada ni eliminada.
+
+La API utilizará los valores del Número de Cliente para obtener la información demográfica del cliente.
+
+**POST** `/customer/demographicData-l8v2`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
+## Consultar de Dirección Actual/Anterior
+
+La API proporciona información de la información demográfica del cliente y la dirección postal anterior.
+
+Cuando se ingresa un número de cuenta o relación como entrada al servicio, el servicio devuelve la información del propietario principal y copropietario del registro del cliente.
+
+El número de cliente adecuado se encuentra utilizando los servicios de navegación. Cuando el número de cliente se ingresa en el servicio, se devuelven los datos para ese registro.
+
+**GET** `/customer/{accountNumber}/current-prior-address`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
+## Encontrar un Número de Cuenta
 
 Esta API le permite a un tarjetahabiente conocer todos los números de cuenta de los productos de Crédito, Deuda, Prepago, Monedero, creados bajo el Número de Cliente, previamente creado con la API **Customer Add**.
 
 Esta información se envía en el mensaje de respuesta de la API una vez que se haya activado. El Número de Cliente será el principal valor utilizado para la búsqueda de los números de cuenta.
 
 **POST** `/customer/accountNumber`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
-## Obtener Detalles de Tarjetas 
-
-Esta API le permite al cliente conocer todos los números de tarjeta creados bajo este número de cliente para productos de tarjetas de crédito, tarjetas de débito, tarjetas prepago o monederos digitales.
-
-Esta información se envía en el mensaje de respuesta de la API una vez que se haya activado. El Número de Cliente será el principal valor utilizado para la búsqueda de los números de cuenta.
-
-**POST** `/customer/v3/cards/details`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
@@ -58,35 +80,13 @@ La respuesta de la API mostrará el número de cliente, cuenta, tarjeta y relaci
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Consultar Datos Demográficos
+## Obtener Detalles de Tarjetas 
 
-Con esta API el tarjetahabiente podrá obtener toda la información demográfica ya agregada a través de la API **Customer Add** cuando se crea un cliente nuevo. La misma información se mostrará en el mensaje de respuesta de la API. La información demográfica del cliente solo se mostrará y no podrá ser actualizada ni eliminada.
+Esta API le permite al cliente conocer todos los números de tarjeta creados bajo este número de cliente para productos de tarjetas de crédito, tarjetas de débito, tarjetas prepago o monederos digitales.
 
-La API utilizará los valores del Número de Cliente para obtener la información demográfica del cliente.
+Esta información se envía en el mensaje de respuesta de la API una vez que se haya activado. El Número de Cliente será el principal valor utilizado para la búsqueda de los números de cuenta.
 
-**POST** `/customer/demographicData-l8v2`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
-## Buscar Número de Relación
-
-Esta API permite que un tarjetahabiente agrupe todos los números de relación que ya fueron creados bajo un mismo Número de Cliente.
-
-El número de Relación es un número único asignado a una Tarjeta Corporativa; por ejemplo, Walmart con un número de cliente 123, se identifica con un número de relación único 567 y bajo este número de relación se crean muchas cuentas y tarjetas para los empleados de Walmart. Entonces, al usar el Número de Cliente 123 en esta API, es posible obtener el Número de Relación 567.
-
-**POST** `/customer/relationshipNumber`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
-## Consulta de Dirección Actual/Anterior
-
-La API proporciona información de la información demográfica del cliente y la dirección postal anterior.
-
-Cuando se ingresa un número de cuenta o relación como entrada al servicio, el servicio devuelve la información del propietario principal y copropietario del registro del cliente.
-
-El número de cliente adecuado se encuentra utilizando los servicios de navegación. Cuando el número de cliente se ingresa en el servicio, se devuelven los datos para ese registro.
-
-**GET** `/customer/{accountNumber}/current-prior-address`
+**GET** `/customer/v3/cards/details`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 

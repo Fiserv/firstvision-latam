@@ -8,15 +8,17 @@ En esta sección se describen las diferentes APIs del Portal que se utilizan par
 
 Como requisito principal, es importante que las tarjetas de crédito, tarjetas de débito, tarjetas prepago o monederos digitales hayan sido creados en el ambiente de prueba como se detalló en este documento, utilizando las APIs para la Creación de Clientes **(Client Add)**, Creación de Cuentas **(Account Add)** y Creación de Tarjetas **(Card Add)**.
 
-## Bloquear o Desbloquear Tarjeta
+## Activar Tarjeta
 
-A través de esta API, el tarjetahabiente podrá realizar bloqueos preventivos y definitivos sobre la información de su tarjeta de crédito, tarjeta de débito, tarjeta prepago y monedero. Con el fin de prevenir cualquier posible fraude cuando el tarjetahabiente sospeche que la información de la tarjeta puede estar comprometida.
+La API activa una tarjeta que ya fue embozada. Esta API le permite al tarjetahabiente activar un número nuevo de tarjeta cuando la recibe por correo o la recoge en una sucursal bancaria. La fecha de activación de la tarjeta se guardará en el ambiente de prueba por motivos de auditoría.
 
-De igual forma, el tarjetahabiente podrá realizar un desbloqueo preventivo de su tarjeta cuando esté seguro de que la información de su tarjeta no está comprometida.
+Si el tarjetahabiente intenta utilizar la tarjeta para realizar compras o adelantos en efectivo, antes de que se active, la solicitud de autorización se rechazará con el motivo de rechazo "La tarjeta no está activada", por lo que el tarjetahabiente podrá activar su tarjeta al disparar esta API.
 
-La información requerida por la API, como el número de tarjeta, el código de bloqueo y la función, debe incluirse antes de la activación de la API.
+Esta API debe ser disparada cada vez que se emboza una tarjeta nueva (principal o adicional), para activar cada tarjeta que sea embozada.
 
-**PUT** `/cards/embosser/block`
+Los valores requeridos para esta API son número de tarjeta, identificación del producto bancario (Organización) y tipo de servicio (A= Activación).
+
+**PUT** `/cards/activation`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
@@ -46,30 +48,6 @@ Los valores requeridos por la API son el número de tarjeta, código ISO del pa�
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Actualizar Transferencia de Tarjeta
-
-Esta API permite que el tarjetahabiente bloquee su número de tarjeta actual y solicite una tarjeta nueva con un número de tarjeta diferente en un solo disparador. Al igual que API de bloqueo o desbloqueo de tarjetas, el número de tarjeta se puede bloquear en caso de que el tarjetahabiente crea que la información de la tarjeta esté comprometida y, al mismo tiempo, puede solicitar un número nuevo de tarjeta, por lo que la nueva tarjeta se grabará en relieve durante el proceso por lotes y estará lista para ser entregada al día siguiente.
-
-Como parte de los valores solicitados por la API, se requiere el número de tarjeta, número de cuenta, la organización y la fecha efectiva.
-
-**PUT** `/cards/transfer`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
-## Activar Tarjeta
-
-La API activa una tarjeta que ya fue embozada. Esta API le permite al tarjetahabiente activar un número nuevo de tarjeta cuando la recibe por correo o la recoge en una sucursal bancaria. La fecha de activación de la tarjeta se guardará en el ambiente de prueba por motivos de auditoría.
-
-Si el tarjetahabiente intenta utilizar la tarjeta para realizar compras o adelantos en efectivo, antes de que se active, la solicitud de autorización se rechazará con el motivo de rechazo "La tarjeta no está activada", por lo que el tarjetahabiente podrá activar su tarjeta al disparar esta API.
-
-Esta API debe ser disparada cada vez que se emboza una tarjeta nueva (principal o adicional), para activar cada tarjeta que sea embozada.
-
-Los valores requeridos para esta API son número de tarjeta, identificación del producto bancario (Organización) y tipo de servicio (A= Activación).
-
-**PUT** `/cards/activation`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
 ## Actualizar PIN de Tarjeta
 
 Esta API le permite al tarjetahabiente reasignar un nuevo número de identificación personal (PIN). Normalmente se usa cuando se entrega una nueva tarjeta al tarjetahabiente y es necesario configurar un nuevo PIN y vincularlo a la nueva tarjeta ya activada mediante la API Cards Activation.
@@ -80,6 +58,16 @@ desde diferentes canales como cajero automático, páginas web, VCR, APP, etc. E
 Los valores requeridos para esta API son número de tarjeta, organización bancaria, canal, PIN Block y asociación de clave.
 
 **PUT** `/cards/pin/`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
+## Actualizar Transferencia de Tarjeta
+
+Esta API permite que el tarjetahabiente bloquee su número de tarjeta actual y solicite una tarjeta nueva con un número de tarjeta diferente en un solo disparador. Al igual que API de bloqueo o desbloqueo de tarjetas, el número de tarjeta se puede bloquear en caso de que el tarjetahabiente crea que la información de la tarjeta esté comprometida y, al mismo tiempo, puede solicitar un número nuevo de tarjeta, por lo que la nueva tarjeta se grabará en relieve durante el proceso por lotes y estará lista para ser entregada al día siguiente.
+
+Como parte de los valores solicitados por la API, se requiere el número de tarjeta, número de cuenta, la organización y la fecha efectiva.
+
+**PUT** `/cards/transfer`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
@@ -94,6 +82,18 @@ Otra función de esta API es permitir que el tarjetahabiente desbloquee un PIN d
 Los valores requeridos por esta API son el número de tarjeta, el canal, la organización del banco y la función del servicio.
 
 **PUT** `/cards/pin/status`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
+## Bloquear/Desbloquear Tarjeta
+
+A través de esta API, el tarjetahabiente podrá realizar bloqueos preventivos y definitivos sobre la información de su tarjeta de crédito, tarjeta de débito, tarjeta prepago y monedero. Con el fin de prevenir cualquier posible fraude cuando el tarjetahabiente sospeche que la información de la tarjeta puede estar comprometida.
+
+De igual forma, el tarjetahabiente podrá realizar un desbloqueo preventivo de su tarjeta cuando esté seguro de que la información de su tarjeta no está comprometida.
+
+La información requerida por la API, como el número de tarjeta, el código de bloqueo y la función, debe incluirse antes de la activación de la API.
+
+**PUT** `/cards/embosser/block`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 

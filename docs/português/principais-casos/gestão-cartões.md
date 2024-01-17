@@ -4,6 +4,16 @@ tags: [Principais Casos, Gestão de Cartões, Cartões, Estampagem(Embossing), T
 
 # Gestão de Cartões
 
+## Adicionar ou Atualizar Cartões de Massa
+
+Esta API, permite que o usuário adicione ou atualize uma solicitação para gravar novos cartões em massa. Esses cartões podem ser de crédito, débito ou pré-pago. A quantidade de cartões que serão estampados é um parâmetro solicitado pela API.
+
+Os cartões Estampados não terão um nome de incorporador, mas o número do cartão, a data de validade e as configurações de segurança do cartão farão parte deles.
+
+**POST** `/cards/mass-card-issue-L8V3`
+
+A descrição de cada campo da API está dentro das especificações definidas no portal.
+
 ## Agregar Registro de Tarjetas 
 
 API permite criar informações de cartão usadas para estampar um novo cartão ou plástico. Essas informações do cartão devem estar relacionadas a um número de conta criado por meio da API **Account Add** e este número de conta deve estar relacionado a um número de cliente criado via API **Customer Add**.
@@ -15,30 +25,6 @@ O número do cartão é calculado aleatoriamente pelo app, e esse número não s
 **POST** `/cards/embosser/l8vf`
 
  A descrição de cada campo da API está dentro das especificações definidas no portal.
-
-## Verifique o Cartão ou PAN Token
-
-Atualmente, quando um cliente não é certificado pela Payment Card Industry (PCI), o número do cartão não pode ser mostrado em nenhum serviço da web, ATM, POS, etc. PAN-TOKEN pode ser mostrado em um serviço da web, ATM, POS ou qualquer outro outro dispositivo ou serviço sem comprometer o número real do cartão.
-
-Para manter esse valor de segurança seguro, é necessário usar um PAN-TOKEN em vez do número do cartão, portanto, quando um número de cartão é criado, a funcionalidade atual gera o PAN-TOKEN como substituto do número do cartão.
-
-Quando um novo cartão é criado através da API **Card Embosser**, o PAN-TOKEN é calculado automaticamente usando uma CHAVE de segurança e pode ter valores numéricos e alfanuméricos.
-
-Use esta API para obter o token PAN calculado para um número de cartão.
-
-**POST** `/cards/embosser/card-pan-l8v2`
-
-A descrição dos campos desta API pode ser encontrada nas especificações definidas no portal.
-
-## Adicionar ou Atualizar Cartões de Massa
-
-Esta API, permite que o usuário adicione ou atualize uma solicitação para gravar novos cartões em massa. Esses cartões podem ser de crédito, débito ou pré-pago. A quantidade de cartões que serão estampados é um parâmetro solicitado pela API.
-
-Os cartões Estampados não terão um nome de incorporador, mas o número do cartão, a data de validade e as configurações de segurança do cartão farão parte deles.
-
-**POST** `/cards/mass-card-issue-L8V3`
-
-A descrição de cada campo da API está dentro das especificações definidas no portal.
 
 ## Atualização da Ação do Cartão
 
@@ -66,7 +52,7 @@ Esta API permite ao usuário obter os valores de segurança do cartão (CVV, CVV
 
 Os valores de segurança fornecidos pela API serão criptografados usando uma chave de segurança de 32 bytes, portanto, o usuário deve usar a mesma chave de segurança e o algoritmo 3Des para descriptografar os valores de segurança.
 
-**POST** `/cards/pin/security-codes`
+**POST** `/cards/v1/pin/codes`
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
@@ -79,6 +65,29 @@ Atualmente, quando o cartão é gravado via API **Card Embosser**, o código CVV
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
+## Validação de PIN
+Esta API confirme se o PIN gerado está correto.
+
+Esta API requer o PIN Block e o número do cartão e não o PIN claro.
+
+**POST** `/cards/pin/validation`
+
+A descrição de cada campo da API está dentro das especificações definidas no portal.
+
+## Verifique o Cartão ou PAN Token
+
+Atualmente, quando um cliente não é certificado pela Payment Card Industry (PCI), o número do cartão não pode ser mostrado em nenhum serviço da web, ATM, POS, etc. PAN-TOKEN pode ser mostrado em um serviço da web, ATM, POS ou qualquer outro outro dispositivo ou serviço sem comprometer o número real do cartão.
+
+Para manter esse valor de segurança seguro, é necessário usar um PAN-TOKEN em vez do número do cartão, portanto, quando um número de cartão é criado, a funcionalidade atual gera o PAN-TOKEN como substituto do número do cartão.
+
+Quando um novo cartão é criado através da API **Card Embosser**, o PAN-TOKEN é calculado automaticamente usando uma CHAVE de segurança e pode ter valores numéricos e alfanuméricos.
+
+Use esta API para obter o token PAN calculado para um número de cartão.
+
+**POST** `/cards/embosser/card-pan-l8v2`
+
+A descrição dos campos desta API pode ser encontrada nas especificações definidas no portal.
+
 ## Verifique o Número de Tentativas Inválidas de PIN
 
 Esta API permite que o titular do cartão obtenha o número de tentativas de PIN inválidas.
@@ -88,15 +97,6 @@ Como parte das configurações de segurança, o número de tentativas inválidas
 Tentativas de PIN inválidas podem ocorrer por vários motivos. O motivo mais comum é quando o titular do cartão comete um erro ao inserir o número PIN no caixa eletrônico.
 
 **POST** `/cards/pin/invalid-attempts`
-
-A descrição de cada campo da API está dentro das especificações definidas no portal.
-
-## Validación PIN
-Esta API confirme se o PIN gerado está correto.
-
-Esta API requer o PIN Block e o número do cartão e não o PIN claro.
-
-**POST** `/cards/pin/validation`
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
@@ -116,3 +116,4 @@ A descrição de cada campo da API está dentro das especificações definidas n
 - [Relacionamento Cliente-Conta-Cartão](?path=docs/português/principais-casos/relação.md)
 
 ---
+
