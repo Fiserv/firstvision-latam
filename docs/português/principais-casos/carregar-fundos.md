@@ -26,7 +26,7 @@ A utilização desta API permite carregar dinheiro a produtos de Débito, Crédi
 
 Através dos parâmetros indicados é possível identificar a conta, cartão do produto do qual será retirado o dinheiro (débito) e definir a conta e cartão para o qual será efetuado o pagamento, sendo também necessário que, como parte dos parâmetros da API, adicionar a localização geográfica (latitude e longitude) da fonte (remetente) que está carregando dinheiro. O número do cartão do qual o dinheiro é recebido (beneficiário) também é exigido como parte dos parâmetros exigidos pela API. A descrição de cada campo da API está dentro das especificações definidas no portal.
 
-**PUT** `/account/FL-balance`
+**PUT** `/account/v2/balance`
       
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
