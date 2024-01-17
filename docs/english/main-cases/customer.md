@@ -20,7 +20,7 @@ This API allows the customer to find out all the card numbers created under this
 
 This information is sent in the API response message once it has been triggered. The Customer Number will be the main value used for the search of the account numbers.
 
-**POST** `/customer/v3/cards/details`
+**GET** `/customer/v3/cards/details`
 
 The description of each API field can be found within the specifications defined in the portal.
 
