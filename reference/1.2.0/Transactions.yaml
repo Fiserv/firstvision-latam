@@ -4,11 +4,112 @@ info:
     \ Cards Microservice, which provides functionality for the issuing, management\
     \ and processing of credit cards, including bank, co-branded, private label, debit,\
     \ commercial, and prepaid"
-  title: "FirstVision\u2122 Account Service - API Documentation"
+  title: "FirstVision\u2122 Transaction Service - API Documentation"
   version: '1.2'
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 paths:
+  /transactions/v1/manualAuthorizations:
+    put:
+      tags:
+      - Transactions
+      summary: "`[IN DEVELOPMENT]`\n\nThe Manual Authorization Request Service handles\
+        \ manual authorization requests for customer-indicated installment transactions,\
+        \ validating available quotas and limitmanualAuthorizs before approval. \n\
+        \nVMX Service: FAS.AUTH.REQ, R8V2\n"
+      description: "`[IN DEVELOPMENT]`\n\nThe Manual Authorization Request Service\
+        \ handles manual authorization requests for customer-indicated installment\
+        \ transactions, validating available quotas and limits before approval. \n\
+        \nVMX Service: FAS.AUTH.REQ, R8V2\n"
+      operationId: Manual Authorization Update
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManualAuthorizationRequest'
+        required: true
+      responses:
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
+        '422':
+          description: "VPL7SAR03S - USER HAS NOT SIGNED ON, PLEASE SIGNON \n\nVPL7SAR06S\
+            \ - CARD NUMBER MUST BE NUMERIC \n\nVPL7SAR07S - CARD TYPE MUST BE EITHER\
+            \ VISA OR MASTERCARD OR AMEX CARD \n\nVPL7SAR09S - STORE ORG MUST BE NUMERIC\
+            \ \n\nVPL7SAR11S - STORE NUMBER MUST BE NUMERIC \n\nVPL7SAR13E - AMOUNT\
+            \ MUST BE NUMERIC \n\nVPL7SAR14S - PLAN NUMBER MUST BE NUMERIC \n\nVPL7SAR15E\
+            \ - INVALID EXPIRE DATE \n\nVPL7SAR17E - INVALID SECURITY CODE INDICATOR,\
+            \ MUST BE 0,1,2 OR 9 \n\nVPL7SAR18E - SECURITY CODE IS NOT NUMERIC \n\n\
+            VPL7SAR19E - INVALID BILL PAYMENT INDICATOR \n\nVPL7SAR20E - INVALID RECURRING\
+            \ PAYMENT INDICATOR \n\nVPL7SAR21S - INVALID ACCOUNT, ORG/LOGO COULD NOT\
+            \ BE FOUND \n\nVPL7SAR30S - AFTER HRS. UPDATE IN PROGRESS. ACCT ACTIVITY\
+            \ UNAVAILABLE \n\nVPL7SAR32S - FAS IN EOD AND CMS IS NOT. ACCT ACTIVITY\
+            \ UNAVAILABLE \n\nVPL7SAR34S - MERCHANT ORG SUPPLIED IS ON DUAL CURRENCY\
+            \ \n\nVPL7SAR37S - ACCOUNT ORG IS ON DUAL CURRENCY \n\nVPL7SAR40S - MERCHANT\
+            \ NOT ALLOWED FOR AUTHORIZING THIS CARD \n\nVPL7SAR44S - ISO COUNTRY CODE\
+            \ IS NOT NUMERIC \n\nVPL7SAR45E - SECURITY CODE IS NOT NUMERIC \n\nVPL7SAR46S\
+            \ - AUTHORIZATION DECLINED \n\nVPL7SAR48E - SEC-CODE INDICATOR AND/OR\
+            \ SEC-CODE MUST BE ENTERED \n\nVPL7SAR49E - IF SEC-CODE IS ENTERED THE\
+            \ SEC PRESENCE IND MUST BE 1 \n\nVPL7SAR50E - AMOUNT MUST BE GREATER THAN\
+            \ ZEROES \n\nVPL7SAR85S - DECRYTPTED PIN-BLOCK VALUE IS NOT NUMERIC \n\
+            \nVPL7SAR86S - CARD ISSUER AND AUTH DATA SHOULD NOT BE SPACES \n\nVPL7SAR87S\
+            \ - PROCESSING CODE SHOULD BE NUMERIC \n\nVPL7SAR88S - TERMINAL DATA SHOULD\
+            \ NOT BE SPACES \n\nVPL7SAR89S - POS ENTRY MODE SHOULD BE NUMERIC \n\n\
+            VPL7SAR90S - REFERENCE NUMBER SHOULD NOT BE SPACES \n\nVPL7SAR91E - NUMBER\
+            \ OF INSTALL MUST BE NUMERIC FOR INSTALLMENTS TXNS \n\nVPL7SAR92S - KEY\
+            \ ASSOCIATION MUST BE GREATER THAN SPACES \n\nVPL7SAR93S - ACCQUIER ID\
+            \ SHOULD BE NUMERIC \n\nVPL7SAR94S - UNABLE TO VALIDATE SECURE CODE DUE\
+            \ TO HOST BASED FLAG OFF \n\nVPL7SAR95S - EITHER SECURITY CODE OR PIN\
+            \ BLOCK SHOULD BE ENTERED \n\nVPL7SAR96S - MCC SHOULD BE 6010 OR 6011\
+            \ WHEN PIN-BLOCK RECEVIED \n\nVPL5SAR97E - INPUT PAN NUMBER SHOULD NOT\
+            \ BE SPACES OR ZEROS \n\nVPL5SAR98E - CARD NUM DECRYPTED FROM INPUT PAN\
+            \ TOKEN IS SPACES/ZEROS \n\nVPL5SAR99E - PAN TOKEN RECEIVED, BUT ORG LVL\
+            \ PAN TOKEN SWITCH INACTIVE"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManualAuthorizationResponse'
+      x-proxy-name: Manual Authorization Update
+      x-group-name: Transactions
   /transactions/v3/installmentTransactions/{installmentTransaction-Id}/terms:
     post:
       tags:
@@ -61,12 +162,6 @@ paths:
               $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Request'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '500':
           description: Backend Error
           content:
@@ -75,12 +170,8 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '401':
           description: Unauthorized
         '422':
@@ -95,6 +186,16 @@ paths:
             \ NOT FOUND \n\n VPL5SZ502S - ACCOUNT NUMBER NOT FOUND \n\n VPL5SZ503S\
             \ - INSTALLMENT RECORD NOT FOUND FOR ACCOUNT \n\n VPL5SZ506S - APPLICATION\
             \ IN NO-PROCESSING STATUS, RETRY IN A FEW MINUTES \n\n "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -151,10 +252,22 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsL8VBRequest'
         required: true
       responses:
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
+        '401':
+          description: Unauthorized
         '403':
           description: Forbidden
+        '404':
+          description: Not Found
         '422':
           description: "VPL5STD05E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES\n\
             \nVPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
@@ -198,24 +311,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
@@ -266,12 +367,6 @@ paths:
               $ref: '#/components/schemas/CalculateCatL8V2Request'
         required: true
       responses:
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '422':
           description: "VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
             \ 001-998 \n\nVPL5SAA11S - ORG RECORD NOT FOUND \n\nVPL5SAA04S - LOGO\
@@ -291,24 +386,704 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
+        '405':
+          description: Method Not Allowed
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculateCatL8V2Response'
-      x-proxy-name: Calculate total annual cost to the credit limit.
+      x-proxy-name: CAT Calculation.
       x-group-name: Transactions
 components:
   schemas:
+    ManualAuthorizationRequest:
+      required:
+      - cardAcceptorInformation
+      - cardInformation
+      - cardIssuerInformation
+      - transactionInformation
+      type: object
+      properties:
+        retailerInformation:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.RetailerInformation'
+        cardInformation:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.CardInformation'
+        cardIssuerInformation:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.CardIssuerInformation'
+        cardAcceptorInformation:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation'
+        paymentInformation:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.PaymentInformation'
+        installmentsInformation:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.InstallmentsInformation'
+        transactionInformation:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.TransactionInformation'
+      description: Manual Authorization Request
+    ManualAuthorizationRequest.CardAcceptorInformation:
+      required:
+      - terminal
+      type: object
+      properties:
+        id:
+          maxLength: 15
+          minLength: 0
+          type: string
+          description: 'The id field includes an identification code that serves to
+            uniquely identify the card acceptor in a transaction, especially when
+            the card acceptor differs from the acquiring institution involved in the
+            transaction.
+
+
+            VisionPLUS Service Data: OFXARI-CRD-ACCPT-ID'
+          example: 43910XXXXX37927
+        terminal:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation.Terminal'
+    ManualAuthorizationRequest.CardAcceptorInformation.Terminal:
+      required:
+      - fieldLengthIndicator
+      - logicalNetwork
+      - mode
+      - ownerFinancialInstitutionId
+      type: object
+      properties:
+        id:
+          maxLength: 41
+          minLength: 0
+          type: string
+          description: 'The id field represents the Card Acceptor Terminal Identification,
+            a distinct code that uniquely identifies the terminal situated at the
+            card acceptor''s location.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ACCPT-TRM'
+          example: G684AYXOPTMZZ3SVCUE5W2HKIP0G1GKS84DUA91A9
+        mode:
+          type: integer
+          description: '* Max Length: 4
+
+
+            The mode field indicates the mode of operation for the point-of-sale (POS)
+            terminal used in a transaction.
+
+
+            VisionPLUS Service Data: OFXARI-POS-MODE'
+          format: int32
+          example: 2200
+        owner:
+          maxLength: 22
+          minLength: 0
+          type: string
+          description: 'The owner field designates the entity or individual responsible
+            for owning or operating the card acceptor terminal.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 01-22.'
+          example: Pizzaria Delivery Ltda
+        fieldLengthIndicator:
+          maxLength: 3
+          minLength: 1
+          type: string
+          description: 'The fieldLengthIndicator is a numeric indicator that specifies
+            the length of data fields in the terminal information.
+
+
+            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 01-03.'
+          example: 019
+        ownerFinancialInstitutionId:
+          maxLength: 4
+          minLength: 1
+          type: string
+          description: 'The ownerFinancialInstitutionId field represents the Financial
+            Institution Identification Number (FIID) of the terminal owner.
+
+
+            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 04-07.'
+          example: P812
+        logicalNetwork:
+          maxLength: 4
+          minLength: 1
+          type: string
+          description: 'The logicalNetwork field refers to the logical network associated
+            with the card acceptor terminal.
+
+
+            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 08-11.'
+          example: P812
+        additionalData:
+          maxLength: 8
+          minLength: 0
+          type: string
+          description: 'The additionalData field encompasses supplementary information
+            relevant to the context or purpose.
+
+
+            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 12-19.'
+          example: JH5JQGS1
+        location:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation.Terminal.Location'
+    ManualAuthorizationRequest.CardAcceptorInformation.Terminal.Location:
+      type: object
+      properties:
+        city:
+          maxLength: 13
+          minLength: 0
+          type: string
+          description: 'The city field represents the city where the terminal is located
+            or associated with.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 23-35.'
+          example: Itapevi
+        state:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: 'The state field indicates the state or region in which the
+            terminal is situated.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 36-38.'
+          example: SP
+        country:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: 'The country field signifies the country where the terminal
+            is located.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position = 39-40.'
+          example: BR
+    ManualAuthorizationRequest.CardInformation:
+      required:
+      - cardNumber
+      - expirationDate
+      - security
+      type: object
+      properties:
+        cardNumber:
+          maxLength: 19
+          minLength: 16
+          type: string
+          description: 'The cardNumber field represents a unique identifier or token
+            associated with the card number or payment instrument, known as the FirstVision
+            PAN Token.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-NBR'
+          example: 000123456ID5IXX1234
+        expirationDate:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.CardInformation.ExpirationDate'
+        security:
+          $ref: '#/components/schemas/ManualAuthorizationRequest.CardInformation.Security'
+    ManualAuthorizationRequest.CardInformation.ExpirationDate:
+      required:
+      - month
+      - year
+      type: object
+      properties:
+        month:
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 2
+
+
+            The month field corresponds to the month component of a card''s expiration
+            date, specifically represented by the two-digit format (MM).
+
+
+            VisionPLUS Service Data: OFXARI-DATE-EXPIRE-MM'
+          format: int32
+          example: 12
+        year:
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 2
+
+
+            The year field corresponds to the year component of a card''s expiration
+            date, represented by the two-digit format (YY).
+
+
+            VisionPLUS Service Data: OFXARI-DATE-EXPIRE-YY'
+          format: int32
+          example: 23
+    ManualAuthorizationRequest.CardInformation.Security:
+      type: object
+      properties:
+        indicator:
+          pattern: ^(0|1|2|9)$
+          type: string
+          description: 'The indicator field indicates the status of the security code.
+            This field is crucial for indicating whether the security code (CVV/CVC/CSC)
+            linked to a card is present or absent, adding a crucial layer of insight
+            for secure card-based transactions. This field value must be 1 if code
+            given in input. Possible values:
+
+
+            * 0 = bypassed;
+
+            * 1 = present;
+
+            * 2 = illegible;
+
+            * 9 = not-imprint.
+
+
+            VisionPLUS Service Data: OFXARI-SEC-PRES-IND'
+          example: '0'
+        code:
+          maxLength: 16
+          minLength: 0
+          type: string
+          description: 'The code field holds the encrypted security code (CVV/CVC/CSC)
+            associated with a card. In the input, either the pin or code should be
+            present, but not both.
+
+
+            VisionPLUS Service Data: OFXARI-SEC-CODE'
+          example: NE09L3AS48ORJNBZ
+        pin:
+          maxLength: 16
+          minLength: 0
+          type: string
+          description: 'The pin field represents the code for the PIN block. In the
+            input, either the pin or code should be present, but not both.
+
+
+            VisionPLUS Service Data: OFXARI-PIN-BLOCK'
+          example: DRZWPZ8W01211DFJ
+    ManualAuthorizationRequest.CardIssuerInformation:
+      required:
+      - fieldLengthIndicator
+      - logicalNetwork
+      - ownerFinancialInstitutionId
+      type: object
+      properties:
+        fieldLengthIndicator:
+          maxLength: 3
+          minLength: 1
+          type: string
+          description: 'The fieldLengthIndicator is a numeric indicator that specifies
+            the length of data fields in the terminal information.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 01-03.'
+          example: 019
+        ownerFinancialInstitutionId:
+          maxLength: 4
+          minLength: 1
+          type: string
+          description: 'The ownerFinancialInstitutionId field represents the Financial
+            Institution Identification Number (FIID) of the terminal owner.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 04-07.'
+          example: P812
+        logicalNetwork:
+          maxLength: 4
+          minLength: 1
+          type: string
+          description: 'The logicalNetwork field refers to the logical network associated
+            with the card acceptor terminal.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 08-11.'
+          example: P812
+        additionalData:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: 'The additionalData field encompasses supplementary information
+            relevant to the context or purpose.
+
+
+            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 12-22.'
+          example: JH5JQGS1
+    ManualAuthorizationRequest.InstallmentsInformation:
+      type: object
+      properties:
+        installmentsNumber:
+          type: integer
+          description: '* Max Length: 2
+
+
+            The installmentsNumber field is mandatory only for installment transactions
+            and indicates the total number of installments associated with the transaction.
+
+
+            VisionPLUS Service Data: OFXARI-NUM-INSTL'
+          format: int32
+          example: 12
+        planType:
+          pattern: ^(20|21|22|26)$
+          type: string
+          description: 'The planType field denotes the type of installment plan used
+            for the transaction.
+
+
+            Possible values:
+
+
+            * 20 = issuer;
+
+            * 21 = acquirer;
+
+            * 22 = acquirer;
+
+            * 26 = issuer.
+
+
+            VisionPLUS Service Data: OFXARI-NUM-INSTL-PLN-TYPE'
+          example: '26'
+        planNumber:
+          type: integer
+          description: '* Max Length: 5
+
+
+            The planNumber field refers to a unique identifier associated with a specific
+            plan or program within the system.
+
+
+            VisionPLUS Service Data: OFXARI-PLAN'
+          format: int32
+          example: 69472
+    ManualAuthorizationRequest.PaymentInformation:
+      type: object
+      properties:
+        billingIndicator:
+          pattern: ^(N|Y|I)$
+          type: string
+          description: "The billing field denotes the status of a bill payment transaction.\
+            \ \n\nPossible values:\n\n* N = Non-bill payment transaction;\n* Y = Bill\
+            \ payment transaction;\n* I = Installment payment transaction.\n\nVisionPLUS\
+            \ Service Data: OFXARI-BILL-PYMT-IND"
+          example: N
+        isRecurring:
+          type: boolean
+          description: 'The recurring field indicates whether a transaction is recurring.
+
+
+            Possible values:
+
+
+            * false = non-recurring payment transaction;
+
+            * true = recurring payment transaction.
+
+
+            VisionPLUS Service Data: OFXARI-RECUR-PYMT-IND'
+          example: false
+    ManualAuthorizationRequest.RetailerInformation:
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: '* Max Length: 3
+
+
+            The organizationNumber field is an attribute that holds the unique identification
+            number assigned to an organization.
+
+
+            VisionPLUS Service Data: OFXARI-STORE-ORG'
+          format: int32
+          example: 991
+        storeNumber:
+          type: integer
+          description: '* Max Length: 9
+
+
+            The storeNumber field stores a unique identifier associated with a specific
+            store.
+
+
+            VisionPLUS Service Data: OFXARI-STORE-NBR'
+          format: int32
+          example: 211678016
+        merchantCategoryCode:
+          type: integer
+          description: '* Max Length: 4
+
+
+            The merchantCategoryCode field represents the classification code assigned
+            to a merchant based on the nature of their business operations.
+
+
+            VisionPLUS Service Data: OFXARI-MERCH-CAT-CDE'
+          format: int32
+          example: 8290
+        acquiringInstitutionId:
+          type: integer
+          description: '* Max Length: 11
+
+
+            The acquiringInstitutionCode field corresponds to the Identification Code
+            of the acquiring institution.
+
+
+            VisionPLUS Service Data: OFXARI-ACQ-ID'
+          format: int64
+          example: 57663358871
+    ManualAuthorizationRequest.TransactionInformation:
+      required:
+      - amount
+      - codeType
+      - fromAccountType
+      - keyAssociation
+      - referenceNumber
+      - toAccountType
+      type: object
+      properties:
+        referenceNumber:
+          maxLength: 12
+          minLength: 1
+          type: string
+          description: 'The referenceNumber field is a unique identifier assigned
+            by the message initiator to track a transaction consistently across all
+            messages during the transaction''s lifecycle. This number remains unchanged
+            for all messages throughout the life of a transaction.
+
+
+            VisionPLUS Service Data: OFXARI-REF-NUM'
+          example: '292717013062'
+        amount:
+          type: number
+          description: '* Max Length: 14
+
+
+            The amount field signifies the transaction''s monetary value, serving
+            as the basis for updating the Open To Buy (OTB) balance for the purpose
+            of authorizing the transaction.
+
+
+            VisionPLUS Service Data: OFXARI-AMT'
+          example: 5969.99
+        keyAssociation:
+          maxLength: 3
+          minLength: 1
+          type: string
+          description: 'The keyAssociation field represents the association of cryptographic
+            keys used for secure transactions, ensuring data integrity and confidentiality.
+
+
+            VisionPLUS Service Data: OFXARI-KEY-ASSOC'
+          example: YVI
+        codeType:
+          maxLength: 2
+          minLength: 1
+          type: string
+          description: 'The codeType field denotes the type of transaction code used
+            for processing.
+
+
+            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 01-02.'
+          example: '13'
+        fromAccountType:
+          maxLength: 2
+          minLength: 1
+          type: string
+          description: 'The fromAccountType field indicates the type of the source
+            account for a transaction.
+
+
+            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 03-04.'
+          example: 08
+        toAccountType:
+          maxLength: 2
+          minLength: 1
+          type: string
+          description: 'The toAccountType field indicates the type of the destination
+            account for a transaction.
+
+
+            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 05-06.'
+          example: '21'
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    ManualAuthorizationResponse:
+      type: object
+      properties:
+        cardType:
+          type: string
+          description: '* Max Length: 1
+
+
+            The cardType field indicates the type or scheme of the card.
+
+
+            Possible values:
+
+
+            * V = Visa;
+
+            * M = MasterCard;
+
+            * A = American Express.
+
+
+            VisionPLUS Service Data: OFXARO-CARD-TYPE'
+          example: V
+        reasonInformation:
+          $ref: '#/components/schemas/ManualAuthorizationResponse.ReasonInformation'
+        transaction:
+          $ref: '#/components/schemas/ManualAuthorizationResponse.Transaction'
+        balance:
+          $ref: '#/components/schemas/ManualAuthorizationResponse.Balance'
+    ManualAuthorizationResponse.Balance:
+      type: object
+      properties:
+        availableCreditLimit:
+          type: number
+          description: '* Max Length: 17
+
+
+            The availableCreditLimit field indicates the available credit limit for
+            transactions on the account.
+
+
+            VisionPLUS Service Data: OFXARO-OPEN-TO-BUY'
+          example: 23965.99
+        currentBalance:
+          type: number
+          description: '* Max Length: 17
+
+
+            The currentBalance field denotes the present balance associated with the
+            account.
+
+
+            VisionPLUS Service Data: OFXARO-ACCT-CURR-BAL'
+          example: 265.99
+        availableCashCredit:
+          type: number
+          description: '* Max Length: 17
+
+
+            The availableCashCredit field indicates the available balance for cash
+            withdrawals or credit transactions on the account.
+
+
+            VisionPLUS Service Data: OFXARO-CASH-AVAIL-CR'
+          example: 22115.99
+    ManualAuthorizationResponse.ReasonInformation:
+      type: object
+      properties:
+        code:
+          type: string
+          description: '* Max Length: 3
+
+
+            The code field represents a code indicating the specific reason or cause
+            behind an action or decision.
+
+
+            VisionPLUS Service Data: OFXARO-ACTION-REASON'
+          example: ABS
+        description:
+          type: string
+          description: '* Max Length: 25
+
+
+            The description field provides a textual explanation or elaboration of
+            the associated reason code.
+
+
+            VisionPLUS Service Data: OFXARO-REASON-DESC'
+          example: reason description
+        actionCode:
+          type: string
+          description: '* Max Length: 1
+
+
+            The actionCode field signifies the outcome of the action taken.
+
+
+            Possible values:
+
+
+            * A = Approved;
+
+            * D = Declined.
+
+
+            VisionPLUS Service Data: OFXARO-ACTION'
+          example: A
+    ManualAuthorizationResponse.Transaction:
+      type: object
+      properties:
+        visaId:
+          type: integer
+          description: '* Max Length: 15
+
+
+            The visaId field represents a unique identifier associated with a Visa
+            transaction.
+
+
+            VisionPLUS Service Data: OFXARO-VISA-TRAN-ID'
+          format: int64
+          example: 164080332032372
+        authorizationCode:
+          type: string
+          description: '* Max Length: 6
+
+
+            The authorizationCode field contains a unique identifier assigned to a
+            transaction by the authorization system to confirm the approval or validation
+            of the transaction.
+
+
+            VisionPLUS Service Data: OFXARO-AUTH-CODE'
+          example: '661420'
+        date:
+          type: string
+          description: 'The date field represents the date when the transaction authorization
+            was requested, in MMDD format.
+
+
+            VisionPLUS Service Data: OFXARO-TRAN-DATE, OFXARO-TRAN-TIME'
+          example: '1031'
+        time:
+          type: string
+          description: 'The time field represents the time when the transaction authorization
+            was requested, in HHmmss format.
+
+
+            VisionPLUS Service Data: OFXARO-TRAN-DATE, OFXARO-TRAN-TIME'
+          example: '000000'
     InstallmentTermsInquiryL8V3Request:
       required:
       - organizationNumber
@@ -364,24 +1139,6 @@ components:
             \ Service Data: AZXZ5I-IVA-FLAG"
           example: Y
       description: Installment Terms Inquiry Request
-    DResponse:
-      type: object
-      properties:
-        hasError:
-          type: boolean
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        data:
-          type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
     InstallmentTermsInquiryL8V3Response:
       type: object
       properties:
