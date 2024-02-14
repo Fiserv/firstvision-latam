@@ -15,8 +15,8 @@ paths:
       - Transactions
       summary: "`[IN DEVELOPMENT]`\n\nThe Manual Authorization Request Service handles\
         \ manual authorization requests for customer-indicated installment transactions,\
-        \ validating available quotas and limitmanualAuthorizs before approval. \n\
-        \nVMX Service: FAS.AUTH.REQ, R8V2\n"
+        \ validating available quotas and limits before approval. \n\nVMX Service:\
+        \ FAS.AUTH.REQ, R8V2\n"
       description: "`[IN DEVELOPMENT]`\n\nThe Manual Authorization Request Service\
         \ handles manual authorization requests for customer-indicated installment\
         \ transactions, validating available quotas and limits before approval. \n\
@@ -43,16 +43,16 @@ paths:
               $ref: '#/components/schemas/ManualAuthorizationRequest'
         required: true
       responses:
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
         '422':
           description: "VPL7SAR03S - USER HAS NOT SIGNED ON, PLEASE SIGNON \n\nVPL7SAR06S\
             \ - CARD NUMBER MUST BE NUMERIC \n\nVPL7SAR07S - CARD TYPE MUST BE EITHER\
@@ -90,12 +90,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
@@ -108,6 +106,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManualAuthorizationResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Manual Authorization Update
       x-group-name: Transactions
   /transactions/v3/installmentTransactions/{installmentTransaction-Id}/terms:
@@ -132,9 +132,9 @@ paths:
       parameters:
       - name: installmentTransaction-Id
         in: path
-        description: "* Min Length = 1\n* Max Length = 3\n\nRecord number that is\
-          \ sequentially assigned to each installment associated with the account.\
-          \ \nMust be numeric and less than 998. \n\nVisionPLUS Service Data: AZXZ5I-REC-NBR"
+        description: "* Min Length: 1\n* Max Length: 3\n\nRecord number that is sequentially\
+          \ assigned to each installment associated with the account. \nMust be numeric\
+          \ and less than 998. \n\nVisionPLUS Service Data: AZXZ5I-REC-NBR"
         required: true
         schema:
           maximum: 998
@@ -162,18 +162,20 @@ paths:
               $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Request'
         required: true
       responses:
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
-        '401':
-          description: Unauthorized
+        '403':
+          description: Forbidden
         '422':
           description: "VPL5SZ501E - ORG IS NOT NUMERIC OR MUST BE BETWEEN 001 AND\
             \ 998 \n\nVPL5SZ502E - REQUESTED ACCT / CARD NUMBER IS NOT NUMERIC OR\
@@ -190,10 +192,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
@@ -206,6 +204,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response'
+        '404':
+          description: Not Found
       x-proxy-name: Installment Billing Transaction Inquiry
       x-group-name: Transactions
   /transactions/v1/transactions:
@@ -252,22 +252,16 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsL8VBRequest'
         required: true
       responses:
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '422':
           description: "VPL5STD05E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES\n\
             \nVPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
@@ -311,6 +305,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
@@ -323,6 +321,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionsDetailsL8VBResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Transactions Payments Details
       x-group-name: Transactions
   /mx/transactions/v1/catCalculation:
@@ -378,22 +378,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
-        '401':
-          description: Unauthorized
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
         '300':
           description: Redirection
           content:
@@ -406,7 +404,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculateCatL8V2Response'
-      x-proxy-name: CAT Calculation
+        '404':
+          description: Not Found
+      x-proxy-name: CAT Calculation.
       x-group-name: Transactions
 components:
   schemas:
@@ -476,8 +476,8 @@ components:
           description: '* Max Length: 4
 
 
-            The mode field indicates the mode of operation for the point-of-sale (POS)
-            terminal used in a transaction.
+            The posMode field indicates the mode of operation for the point-of-sale
+            (POS) terminal used in a transaction.
 
 
             VisionPLUS Service Data: OFXARI-POS-MODE'
@@ -487,8 +487,8 @@ components:
           maxLength: 22
           minLength: 0
           type: string
-          description: 'The owner field designates the entity or individual responsible
-            for owning or operating the card acceptor terminal.
+          description: 'The terminalOwner field designates the entity or individual
+            responsible for owning or operating the card acceptor terminal.
 
 
             VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 01-22.'
@@ -522,7 +522,7 @@ components:
 
 
             VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 08-11.'
-          example: P812
+          example: VAPI
         additionalData:
           maxLength: 8
           minLength: 0
@@ -634,8 +634,10 @@ components:
             This field is crucial for indicating whether the security code (CVV/CVC/CSC)
             linked to a card is present or absent, adding a crucial layer of insight
             for secure card-based transactions. This field value must be 1 if code
-            given in input. Possible values:
+            given in input.
 
+
+            Values:
 
             * 0 = bypassed;
 
@@ -732,14 +734,15 @@ components:
           format: int32
           example: 12
         planType:
+          maxLength: 2
+          minLength: 0
           pattern: ^(20|21|22|26)$
           type: string
           description: 'The planType field denotes the type of installment plan used
             for the transaction.
 
 
-            Possible values:
-
+            Values:
 
             * 20 = issuer;
 
@@ -768,20 +771,21 @@ components:
       type: object
       properties:
         billingIndicator:
+          maxLength: 1
+          minLength: 1
           pattern: ^(N|Y|I)$
           type: string
           description: "The billing field denotes the status of a bill payment transaction.\
-            \ \n\nPossible values:\n\n* N = Non-bill payment transaction;\n* Y = Bill\
-            \ payment transaction;\n* I = Installment payment transaction.\n\nVisionPLUS\
-            \ Service Data: OFXARI-BILL-PYMT-IND"
+            \ \n\nValues:\n* N = Non-bill payment transaction;\n* Y = Bill payment\
+            \ transaction;\n* I = Installment payment transaction.\n\nVisionPLUS Service\
+            \ Data: OFXARI-BILL-PYMT-IND"
           example: N
         isRecurring:
           type: boolean
           description: 'The recurring field indicates whether a transaction is recurring.
 
 
-            Possible values:
-
+            Values:
 
             * false = non-recurring payment transaction;
 
@@ -944,8 +948,7 @@ components:
             The cardType field indicates the type or scheme of the card.
 
 
-            Possible values:
-
+            Values:
 
             * V = Visa;
 
@@ -1031,8 +1034,7 @@ components:
             The actionCode field signifies the outcome of the action taken.
 
 
-            Possible values:
-
+            Values:
 
             * A = Approved;
 
@@ -1070,20 +1072,20 @@ components:
           example: '661420'
         date:
           type: string
-          description: 'The date field represents the date when the transaction authorization
-            was requested, in MMDD format.
+          description: 'The transactionDateTime field represents the date when the
+            transaction authorization was requested, in ISO 8601 format.
 
 
-            VisionPLUS Service Data: OFXARO-TRAN-DATE, OFXARO-TRAN-TIME'
-          example: '1031'
+            VisionPLUS Service Data: OFXARO-TRAN-DATE'
+          example: 2020-12-21
         time:
           type: string
           description: 'The time field represents the time when the transaction authorization
-            was requested, in HHmmss format.
+            was requested, in ISO 8601 format.
 
 
-            VisionPLUS Service Data: OFXARO-TRAN-DATE, OFXARO-TRAN-TIME'
-          example: '000000'
+            VisionPLUS Service Data: OFXARO-TRAN-TIME'
+          example: 43200
     InstallmentTermsInquiryL8V3Request:
       required:
       - organizationNumber
@@ -1093,8 +1095,9 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: "* Min Length = 1 \n* Max Length = 3 \n\nOrganization Number.\
-            \ \n\nVisionPLUS Service Data: AZXZ5I-ORG"
+          description: "* Min Length: 1 \n* Max Length: 3 \n\nOrganization Number.\
+            \ \n\nVisionPLUS:\n\n* Service Data: AZXZ5I-ORG\n* Screen: ARTI\n* Page:\
+            \ 04\n* Field: ORGANIZATION"
           format: int32
           example: 978
         accountNumber:
@@ -1103,7 +1106,8 @@ components:
           type: string
           description: "The accountNumber field is a unique identifier representing\
             \ an account.\nEither Account Number or Card Number must be present in\
-            \ the request, but not both. \n\nVisionPLUS Service Data: AZXZ5I-ACCT-NBR"
+            \ the request, but not both. \n\nVisionPLUS:\n\n* Service Data: AZXZ5I-ACCT-NBR\n\
+            * Screen: ARTI\n* Page: 04\n* Field: ACCOUNT"
           example: '4513074002952958903'
         cardNumber:
           maxLength: 19
@@ -1111,21 +1115,23 @@ components:
           type: string
           description: "Unique identifier or token associated with card number or\
             \ payment instrument (FirstVision PAN Token).\nEither Account Number or\
-            \ Card Number must be present in the request, but not both. \n\nVisionPLUS\
-            \ Service Data: AZXZ5I-ACCT-NBR"
+            \ Card Number must be present in the request, but not both. \n\nVisionPLUS:\n\
+            \n* Service Data: AZXZ5I-ACCT-NBR\n* Screen: ARTI\n* Page: 04\n* Field:\
+            \ ACCOUNT"
           example: 000540208ID5IXX3865
         selectedAction:
           maxLength: 1
           minLength: 1
           type: string
           description: "Selected Action. \n\nValues: \n* T = provides details of the\
-            \ installment components of each term. \n\nVisionPLUS Service Data: AZXZ5I-SEL-ACTION"
+            \ installment components of each term. \n\nVisionPLUS:\n\n* Service Data:\
+            \ AZXZ5I-SEL-ACTION\n* Screen: ARTI\n* Page: 04\n* Field: ACT FLAG"
           example: T
         pagination:
           type: integer
-          description: "* Min Length = 1\n* Max Length = 4 \n\nNext index for installment\
-            \ pagination. \nValues: \n* 1 = First page; \n* 51 = Second page, if exists.\
-            \ \n\nVisionPLUS Service Data: AZXZ5I-IDX-NEXT"
+          description: "* Min Length: 1\n* Max Length: 4 \n\nNext index for installment\
+            \ pagination. \n\nValues: \n* 1 = First page; \n* 51 = Second page, if\
+            \ exists. \n\nVisionPLUS Service Data: AZXZ5I-IDX-NEXT"
           format: int32
           example: 51
         taxIndicator:
@@ -1144,48 +1150,61 @@ components:
       properties:
         logo:
           type: integer
-          description: "* Max Length = 3 \n\nLogo of the account.\n\nVisionPLUS Service\
-            \ Data: AZXZ5O-LOGO"
+          description: "* Max Length: 3 \n\nLogo of the account.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXZ5O-LOGO\n* Screen: ARTI\n* Page: 04\n* Field: LOGO"
           format: int32
           example: 27
         discountPercentage:
           type: number
-          description: "* Max Length = 7 \n\nDiscount percentage to early release.\n\
-            \nVisionPLUS Service Data: AZXZ5O-EARLY-RLSE-DISC"
+          description: "* Max Length: 7 \n\nDiscount percentage to early release.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXZ5O-EARLY-RLSE-DISC\n* Screen: ARTI\n\
+            * Page: 04\n* Field: EARLY RELEASE DISCSOUNT"
           example: 7.05
         originalPurchaseAmount:
           type: number
-          description: "* Max Length = 13 \n\nOriginal Purchase Amount.\n\nVisionPLUS\
-            \ Service Data: AZXZ5O-ORIG-PURCH-AMT"
+          description: "* Max Length: 13 \n\nOriginal Purchase Amount.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXZ5O-ORIG-PURCH-AMT \n* Screen: ARTI\n* Page: 02\n\
+            * Field: AMOUNT"
           example: 6400.05
         purchaseDate:
           type: string
           description: 'Purchase Date (CCYY-MM-DD format) in ISO 8601.
 
 
-            VisionPLUS Service Data: AZXZ5O-PURCH-DATE'
+            VisionPLUS:
+
+
+            * Service Data: AZXZ5O-PURCH-DATE
+
+            * Screen: ARTI
+
+            * Page: 02
+
+            * Field: EFF DATE'
           format: date
           example: 2023-01-31
         termsNumber:
           type: integer
-          description: "* Max Length = 3 \n\nTotal number of terms (occurs filled\
-            \ on table).\n\nVisionPLUS Service Data: AZXZ5O-NBR-INSTMTS"
+          description: "* Max Length: 3 \n\nTotal number of terms (occurs filled on\
+            \ table).\n\nVisionPLUS:\n\n* Service Data: AZXZ5O-NBR-INSTMTS\n* Screen:\
+            \ ARTI\n* Page: 02\n* Field: NBR"
           format: int32
           example: 3
         interestRate:
           type: number
-          description: "* Max Length = 7 \n\nInterest Rate.\n\nVisionPLUS Service\
-            \ Data: AZXZ5O-INTEREST-RATE"
+          description: "* Max Length: 7 \n\nInterest Rate.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXZ5O-INTEREST-RATE\n* Screen: ARTI\n* Page: 03\n* Field: INT\
+            \ RATE"
           example: 164309.15
         totalIVAAmount:
           type: number
-          description: "* Max Length = 13 \n\nTotal IVA (Impuesto al Valor Agregado)\
+          description: "* Max Length: 13 \n\nTotal IVA (Impuesto al Valor Agregado)\
             \ Amount.\n\nVisionPLUS Service Data: AZXZ5O-TOT-IVA-AMT"
           example: 28.44
         merchantName:
           type: string
-          description: "* Max Length = 40 \n\nMerchant Name.\n\nVisionPLUS Service\
-            \ Data: AZXZ5O-MERCHANT-NAME"
+          description: "* Max Length: 40 \n\nMerchant Name.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXZ5O-MERCHANT-NAME\n* Screen: ARTI\n* Page: 02\n* Field: DESCRIPTION"
           example: New Client FL
         terms:
           type: array
@@ -1201,15 +1220,17 @@ components:
       properties:
         percentage:
           type: integer
-          description: "* Max Length = 8 \n\nPercentage discount setup on logo level\
-            \ for the advance installment payments.\n\nVisionPLUS Service Data: AZXZ5O-INST-DISC-PER"
+          description: "* Max Length: 8 \n\nPercentage discount setup on logo level\
+            \ for the advance installment payments.\n\nVisionPLUS:\n\n* Service Data:\
+            \ AZXZ5O-INST-DISC-PER\n* Screen: AZML\n* Page: 30\n* Field: INST % DISC"
           format: int32
           example: 2
         termsNumber:
           type: integer
-          description: "* Max Length = 2 \n\nNumber of terms after which the discount\
+          description: "* Max Length: 2 \n\nNumber of terms after which the discount\
             \ can be given to customer in case of advance payment by customer.\n\n\
-            VisionPLUS Service Data: AZXZ5O-INST-DISC-TERMS"
+            VisionPLUS:\n\n* Service Data: AZXZ5O-INST-DISC-TERMS\n* Screen: AZML\n\
+            * Page: 31\n* Field: INST % DISC TERMS"
           format: int32
           example: 2
     InstallmentTermsInquiryL8V3Response.Pagination:
@@ -1217,14 +1238,14 @@ components:
       properties:
         indexNext:
           type: integer
-          description: "* Max Length = 5 \n\nNext index for inst table pagination.\
+          description: "* Max Length: 5 \n\nNext index for inst table pagination.\
             \ \nOnly, if exists more than 50 occurs on installment\n\nVisionPLUS Service\
             \ Data: AZXZ5O-SEQ-NEXT"
           format: int32
           example: 51
         indexLast:
           type: integer
-          description: "* Max Length = 5 \n\nLast index for inst table pagination.\n\
+          description: "* Max Length: 5 \n\nLast index for inst table pagination.\n\
             VisionPLUS Service Data: AZXZ5O-SEQ-LAST"
           format: int32
           example: 3
@@ -1233,32 +1254,37 @@ components:
       properties:
         firstInstallment:
           type: integer
-          description: "* Max Length = 3 \n\nFirst installment term number.\n\nVisionPLUS\
-            \ Service Data: AZXZ5O-OCCUR-BEG-INST-SEQ "
+          description: "* Max Length: 3 \n\nFirst installment term number.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXZ5O-OCCUR-BEG-INST-SEQ\n* Screen: ARTI\n* Page: 04\n\
+            * Field: NBR first 2 bytes"
           format: int32
           example: 1
         lastInstallment:
           type: integer
-          description: "* Max Length = 3 \n\nLast installment term number.\n\nVisionPLUS\
-            \ Service Data: AZXZ5O-OCCUR-END-INST-SEQ "
+          description: "* Max Length: 3 \n\nLast installment term number.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXZ5O-OCCUR-END-INST-SEQ\n* Screen: ARTI\n* Page: 04\n\
+            * Field: NBR last 2 bytes"
           format: int32
           example: 3
         effectiveDate:
           type: string
-          description: "* Max Length = 10 \n\nEffective Date (CCYY-MM-DD format) in\
-            \ ISO 8601.\n\nVisionPLUS Service Data: AZXZ5O-EFF-DATE"
+          description: "* Max Length: 10 \n\nEffective Date (CCYY-MM-DD format) in\
+            \ ISO 8601.\n\nVisionPLUS:\n\n* Service Data: AZXZ5O-EFF-DATE\n* Screen:\
+            \ ARTI\n* Page: 04\n* Field: EFF DATE"
           format: date
           example: 2022-04-18
         releaseDate:
           type: string
-          description: "* Max Length = 10 \n\nRelease Date (CCYY-MM-DD format) in\
-            \ ISO 8601.\n\nVisionPLUS Service Data: AZXZ5O-RELEASE-DATE"
+          description: "* Max Length: 10 \n\nRelease Date (CCYY-MM-DD format) in ISO\
+            \ 8601.\n\nVisionPLUS:\n\n* Service Data: AZXZ5O-RELEASE-DATE\n* Screen:\
+            \ ARTI\n* Page: 04\n* Field: RELEASE DATE"
           format: date
           example: 2022-04-18
         changeDate:
           type: string
-          description: "* Max Length = 10 \n\nChange Date (CCYY-MM-DD format) in ISO\
-            \ 8601.\n\nVisionPLUS Service Data: AZXZ5O-CHANGE-DATE"
+          description: "* Max Length: 10 \n\nChange Date (CCYY-MM-DD format) in ISO\
+            \ 8601.\n\nVisionPLUS:\n\n* Service Data: AZXZ5O-CHANGE-DATE\n* Screen:\
+            \ ARTI\n* Page: 04\n* Field: ACT FLAG CHG DATE"
           format: date
           example: 2022-04-18
         indicator:
@@ -1271,18 +1297,21 @@ components:
       properties:
         installment:
           type: number
-          description: "* Max Length = 13 \n\nInstallment Amount.\n\nVisionPLUS Service\
-            \ Data: AZXZ5O-OCCUR-INST-AMT"
+          description: "* Max Length: 13 \n\nInstallment Amount.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXZ5O-OCCUR-INST-AMT\n* Screen: ARTI\n* Page: 04\n* Field:\
+            \ INSTALL AMT"
           example: 2192.58
         principal:
           type: number
-          description: "* Max Length = 13 \n\nPrincipal Amount.\n\nVisionPLUS Service\
-            \ Data: AZXZ5O-PRIN-AMT"
+          description: "* Max Length: 13 \n\nPrincipal Amount.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXZ5O-PRIN-AMT\n* Screen: ARTI\n* Page: 04\n* Field:\
+            \ PRINCIPAL AMT"
           example: 2103.27
         interest:
           type: number
-          description: "* Max Length = 13 \n\nInterest Amount.\n\nVisionPLUS Service\
-            \ Data: AZXZ5O-INT-AMT"
+          description: "* Max Length: 13 \n\nInterest Amount.\n\nVisionPLUS:\n\n*\
+            \ Service Data: AZXZ5O-INT-AMT\n* Screen: ARTI\n* Page: 04\n* Field: INTEREST\
+            \ AMT"
           example: 89.31
         fee:
           $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Amount.Fee'
@@ -1291,13 +1320,15 @@ components:
       properties:
         installmentInsurance:
           type: number
-          description: "* Max Length = 13 \n\nInstallment Insurance Fee Amount.\n\n\
-            VisionPLUS Service Data: AZXZ5O-INST-INS-FEE"
+          description: "* Max Length: 13 \n\nInstallment Insurance Fee Amount.\n\n\
+            VisionPLUS:\n\n* Service Data: AZXZ5O-INST-INS-FEE\n* Screen: ARTI\n*\
+            \ Page: 04\n* Field: INST INS FEE"
           example: 20.15
         installment:
           type: number
-          description: "* Max Length = 13 \n\nInstallment Fee Amount.\n\nVisionPLUS\
-            \ Service Data: AZXZ5O-INST-FEE-AMT"
+          description: "* Max Length: 13 \n\nInstallment Fee Amount.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXZ5O-INST-FEE-AMT\n* Screen: ARTI\n* Page: 04\n* Field:\
+            \ INST FEE AMT"
           example: 20.15
         iva:
           $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Amount.Fee.Iva'
@@ -1306,13 +1337,13 @@ components:
       properties:
         totalInstallment:
           type: number
-          description: "* Max Length = 13 \n\nTotal Installment Amount including Interest,\
+          description: "* Max Length: 13 \n\nTotal Installment Amount including Interest,\
             \ IVA (Impuesto al Valor Agregado) & Fee.\n\nVisionPLUS Service Data:\
             \ AZXZ5O-TOT-INST-FEE-IVA-AMT"
           example: 2206.86
         calculated:
           type: number
-          description: "* Max Length = 13 \n\nIVA (Impuesto al Valor Agregado) calculated\
+          description: "* Max Length: 13 \n\nIVA (Impuesto al Valor Agregado) calculated\
             \ on Interest, Insurance Fee and Installment Fee amount.\n\nVisionPLUS\
             \ Service Data: AZXZ5O-IVA-AMT"
           example: 14.28
@@ -1321,13 +1352,15 @@ components:
       properties:
         action:
           type: string
-          description: "* Max Length = 1 \n\nCurrent Action Indicator.\n\nVisionPLUS\
-            \ Service Data: AZXZ5O-ACTION-FLAG"
+          description: "* Max Length: 1 \n\nCurrent Action Indicator.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXZ5O-ACTION-FLAG\n* Screen: ARTI\n* Page: 04\n* Field:\
+            \ ACT FLAG"
           example: s
         lastAction:
           type: integer
-          description: "* Max Length = 1 \n\nLast action indicator set for the transaction.\n\
-            \nVisionPLUS Service Data: AZXZ5O-LAST-ACTN-FLAG"
+          description: "* Max Length: 1 \n\nLast action indicator set for the transaction.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXZ5O-LAST-ACTN-FLAG\n* Screen: ARTI\n\
+            * Page: 04\n* Field: LAST ACT FLAG"
           format: int32
           example: 0
     TransactionsDetailsL8VBRequest:
@@ -2761,6 +2794,7 @@ components:
 
 
             VisionPLUS:
+
 
             * Service Data: AZXECI-ORG
 
