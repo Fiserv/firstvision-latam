@@ -11,6 +11,11 @@ servers:
 paths:
   /send-otp:
     post:
+      tags:
+      - OTP
+      x-proxy-name: Send OTP
+      x-group-name: OTP
+      x-child-product-name: Tokenization
       summary: Send OTP
       description: Endpoint exposed by the issuer to receive the OTP sent by Fiserv. The issuer will deliver the OTP to the cardholder.
       operationId: post-otp
@@ -41,7 +46,6 @@ paths:
               - AMEX
               - MEDS
               - VTIS
-
       requestBody:
         content:
           application/json:
@@ -117,11 +121,13 @@ paths:
           variables:
             issuer Enpoint:
               default: ''
-      x-child-product-name: Tokenization
-      x-group-name: OTP
-      x-proxy-name: Send OTP
   /token:
     post:
+      tags:
+      - OTP
+      x-proxy-name: Token Access
+      x-group-name: OTP
+      x-child-product-name: Tokenization
       summary: Token Access
       description: Endpoint exposed by the issuer to generate an access token. OAuth is required when establishing a connection with the issuer's endpoint via internet.
       operationId: Access Token
@@ -221,9 +227,6 @@ paths:
           variables:
             issuer Enpoint:
               default: ''
-      x-child-product-name: Tokenization
-      x-group-name: OTP
-      x-proxy-name: Token Access
 components:
   responses:
     genericResponse:

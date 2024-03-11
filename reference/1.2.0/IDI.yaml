@@ -1,0 +1,319 @@
+openapi: 3.0.1
+info:
+  version: 2.1.0
+  title: IDI GW Swagger for Push Provisioning v2
+  description: Push Provisioning v2 Swagger - defines APIs for IDI (Patent Pending) Gateway <br><br> Scope of this interface allows use by the issuer app server for push provision to all wallets and merchants
+paths:
+  '/idi/v1/provision/{correlation_id}':
+    post:
+      tags:
+      - IDI
+      x-proxy-name: Push Provision
+      x-group-name: IDID
+      x-child-product-name: Tokenization
+      summary: Push Provision
+      description: 'Push provision to on-device Wallets and Eligible on-file Merchant wallets that have been enabled for the Issuer''s PAN. The fields emailAddress, mobilePhoneNumber, accountCountry and billingAddress are mandatory in the case the customer information is not in FV.'
+      parameters:
+        - name: ISSID
+          in: header
+          schema:
+            type: string
+            pattern: '^[0-9A-Za-z]{1,50}$'
+            minLength: 1
+            maxLength: 50
+            example: LAT99999
+        - name: correlation_id
+          in: path
+          description: Shall not contain all zeros
+          required: true
+          schema:
+            type: string
+            pattern: '^[0-9a-zA-Z]{32,256}$'
+            minLength: 32
+            maxLength: 256
+            example: 8A36131881F44DE494906A0ABC77CCE2
+          examples:
+            default:
+              value: 8A36131881F44DE494906A0ABC77CCE2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PushProvisionRequest'
+            examples:
+              default:
+                value:
+                  walletId: '82993833387'
+                  pan: '5123456789013456'
+                  emailAddress: sample@abc.com
+                  mobilePhoneNumber:
+                    countryDialInCode: '44'
+                    areaAndPhoneNumber: '3884679882'
+                  accountCountry: US
+                  issuerNonce: AZZ990
+                  passthruFromIdiSdk: Iy9jb21wb25lbnRzL3NjaGVtYXMvUGFzc3RocnVGcm9tSWRpU2Rr
+                  returnUri: 'https://issuerABC.com'
+                  returnUriType: WEB
+                  issuerPanReferenceId: FAPLLCAiYXNzZXRJZCI6IjRlYWE1
+                  billingAddress:
+                    line1: 1100 Carr Rd
+                    city: Wilmington
+                    state: Delaware
+                    country: US
+                    postalCode: '19809'
+                  tokenCardArtImageId: MC092384a
+              FV clients request:
+                value:
+                  walletId: '40010030273'
+                  pan: 000123456ID5IXX1234
+                  passthruFromIdiSdk: string
+                  returnUriType: IOS
+      responses:
+        '200':
+          description: Request succeeded and processed Ok
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PushProvisionResponse'
+              examples:
+                with_success_status:
+                  value:
+                    correlationId: 8A36131881F44DE494906A0ABC77CCE2
+                    statusCode: '0000'
+                    passthruToIdiSdk: Iy9jb21wb25lbnRzL3NjaGVtYXMvUGFzc3RocnVUb0lkaVNkaw==
+                with_failure_status:
+                  value:
+                    correlationId: 8A36131881F44DE494906A0ABC77CCE2
+                    statusCode: '1003'
+                    statusDescription: Ineligible BIN
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  value:
+                    correlationId: 8094A1BAA05711EABB370242AC130002
+                    statusCode: '1001'
+                    statusDescription: 'Invalid Request: Invalid Payload'
+        '401':
+          description: Unauthorized
+        '405':
+          description: Method not allowed
+        '503':
+          description: Server unavailable
+components:
+  schemas:
+    PushProvisionRequest:
+      type: object
+      properties:
+        walletId:
+          type: string
+          description: 'Identifier of wallet or merchant for push provision, as selected by end user from onDeviceWallets list or eligibleOnFileWallets list of Get Wallet and Merchant List response.'
+          pattern: '^[0-9]{11,11}$'
+          minLength: 11
+          maxLength: 11
+          example: '50120834693'
+        pan:
+          type: string
+          description: Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+          pattern: '^[0-9]{12,19}$'
+          minLength: 12
+          maxLength: 19
+          example: 000123456ID5IXX1234
+        emailAddress:
+          type: string
+          description: The email address associated with the customer. This field is optional only if the customer data is in FirstVision.
+          format: email
+          maxLength: 320
+          example: test@fiserv.com
+        mobilePhoneNumber:
+          $ref: '#/components/schemas/MobilePhoneNumber'
+        accountCountry:
+          type: string
+          description: 'The country associated with the account, represented by its ISO 3166-1 Alpha-2 country code. This field is optional only if the customer data is in FirstVision.'
+          pattern: '^[A-Z]{2, 2}$'
+          minLength: 2
+          maxLength: 2
+          example: US
+        issuerNonce:
+          type: string
+          description: A randomly generated alphanumeric value with a length of six characters. This field is designed for temporary or unique identifiers
+          pattern: '^[A-Z0-9]{6,6}$'
+          minLength: 6
+          maxLength: 6
+          example: '789123'
+        passthruFromIdiSdk:
+          type: string
+          description: This string will be supplied to issuer app or web by IDI SDK. Issuer app has to pass it through to issuer app server. Please refer to /components/schemas/PassthruFromIdiSdk for the underlined schema
+          pattern: '^[A-Za-z0-9+/\r\n]+={0,45120}$'
+        returnUri:
+          type: string
+          description: returnURI shall be encoded according to URL encoding scheme
+          maxLength: 2048
+          example: 'https://firstdata.1dc.com?state='
+        returnUriType:
+          type: string
+          enum:
+            - IOS
+            - ANDROID
+            - WEB
+          description: indicating the platform for which the response should be processed
+        issuerPanReferenceId:
+          type: string
+          maxLength: 64
+          example: 1273649K13848jL128743
+        billingAddress:
+          $ref: '#/components/schemas/BillingAddress'
+        tokenCardArtImageId:
+          type: string
+          description: 'By passing this value an Issuer with various plastic designs in the same BIN, ensures that her/his cardholders receive/see the same card art via the push provision UI experience and provisioned pay wallet, as the card art they see on their physical plastic for that PAN'
+          pattern: '^[A-Za-z0-9]{1,10}$'
+          minLength: 1
+          maxLength: 10
+      required:
+        - walletId
+        - pan
+        - issuerNonce
+        - passthruFromIdiSdk
+    MobilePhoneNumber:
+      type: object
+      properties:
+        countryDialInCode:
+          type: string
+          description: The international dialing code of the country associated with the mobile phone number. This field follows the E.164 standard and is used to identify the geographical location of the phone number. This field is optional only if the customer data is in FirstVision.
+          pattern: '^[0-9]{1,4}$'
+          minLength: 1
+          maxLength: 4
+          example: '011'
+        areaAndPhoneNumber:
+          type: string
+          description: 'The combination of area code and mobile phone number, following the E.164 standard. It represents the specific portion of the phone number that identifies a region or locality. This field is optional only if the customer data is in FirstVision.'
+          pattern: '^[0-9]{1,20}$'
+          minLength: 1
+          maxLength: 20
+          example: '4021231234'
+    BillingAddress:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: The address line 1 associated with the billing address of the customer. This field is optional only if the customer data is in FirstVision.
+          maxLength: 64
+          example: No. 71
+        line2:
+          type: string
+          description: The address line 2 associated with the billing address of the customer. This field is optional only if the customer data is in FirstVision.
+          maxLength: 64
+          example: Bill Street
+        city:
+          type: string
+          description: The city associated with the billing address of the customer. This field is optional only if the customer data is in FirstVision.
+          maxLength: 32
+          example: New Jersey
+        state:
+          type: string
+          description: The state associated with the billing address of the customer. This field is optional only if the customer data is in FirstVision.
+          maxLength: 3
+          example: DEL
+        country:
+          type: string
+          description: 'The country associated with the billing address of the customer, represented by its ISO 3166-1 Alpha-2 country code. This field is optional only if the customer data is in FirstVision.'
+          pattern: '^[A-Z]{2, 2}$'
+          minLength: 2
+          maxLength: 2
+          example: US
+        postalCode:
+          type: string
+          description: The postal code associated with the billing address of the customer. This field is optional only if the customer data is in FirstVision.
+          pattern: '[A-Z0-9a-z]+'
+          maxLength: 16
+          example: '916230'
+    PushProvisionResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Echoed from request
+          pattern: '^[0-9a-zA-Z]{32,256}$'
+          minLength: 32
+          maxLength: 256
+        passthruToIdiSdk:
+          type: string
+          description: This string has to be passed through by issuer mobile app server to issuer app to IDI SDK.
+          pattern: '^[A-Za-z0-9+/\r\n]+={0,4096}$'
+        statusCode:
+          type: string
+          enum:
+            - '0000'
+            - '1002'
+            - '1003'
+            - '1004'
+            - '1005'
+            - '1006'
+            - '1007'
+            - '1008'
+            - '1009'
+            - '1010'
+            - '1991'
+            - '1993'
+            - '1994'
+            - '1995'
+            - '1996'
+            - '1997'
+            - '1998'
+            - '1999'
+          description: |-
+            Success or failure code
+             - "0000" = Success
+             - "1002" = Invalid PAN
+             - "1003" = Ineligible BIN
+             - "1004" = Ineligible Device Wallets
+             - "1005" = PAN ineligible for Device Wallet
+             - "1006" = PAN ineligible for Merchants
+             - "1007" = Invalid passthruFromIdiSdk
+             - "1008" = Invalid Apple Wallet Certificate
+             - "1009" = Field Required
+             - "1010" = Issuer Card Art Registration incomplete
+             - "1991" = System Error
+             - "1993" = Unable to determine provision flow
+             - "1994" = PAN Ineligible at TSP
+             - "1995" = Unable to prepare encryptedPayload / Unable to prepare registrations / Unable to prepare encryptedPayload
+             - "1996" = Unable to create request to TSP / Unable to create request to Samsung / Unable to create request to Google
+             - "1997" = Unable to prepare passthruToIdiSdk
+             - "1998" = Failure in TSP response / Failure in Samsung response / Failure in Google response
+             - "1999" = Error in TSP response
+          pattern: '^[0-9]{4,4}$'
+        statusDescription:
+          type: string
+          description: Description of failure. Conditional - required if statusCode is not 0000
+          maxLength: 4096
+      required:
+        - correlationId
+        - statusCode
+    ErrorResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: Echoed from request
+          pattern: '^[0-9a-zA-Z]{32,256}$'
+          minLength: 32
+          maxLength: 256
+        statusCode:
+          type: string
+          enum:
+            - '1001'
+          description: |-
+            Failure code
+             "1001" = Invalid Request: Malformed JSON / Invalid Request: Invalid Payload / Invalid Request: Missing mandatory fields {field} / Invalid Request: Errors in {field:error}
+          pattern: '^[0-9]{4,4}$'
+        statusDescription:
+          type: string
+          description: Description of failure
+          maxLength: 4096
+      required:
+        - correlationId
+        - statusCode
