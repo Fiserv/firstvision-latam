@@ -2,6 +2,7 @@ openapi: 3.0.2
 info:
   version: '1.0'
   title: Tokens
+  summary: token
   description: API exposed by the issuer to receive an OTP. The issuer will manage the OTP delivery to the final user.
 servers:
   - url: '{issuer.enpoint}/otp/v1/'
@@ -11,6 +12,11 @@ servers:
 paths:
   /send-otp:
     post:
+      tags:
+      - OTP
+      x-proxy-name: Send OTP
+      x-group-name: OTP
+      x-child-product-name: Tokenization
       summary: Send OTP
       description: Endpoint exposed by the issuer to receive the OTP sent by Fiserv. The issuer will deliver the OTP to the cardholder.
       operationId: post-otp
@@ -41,7 +47,8 @@ paths:
               - AMEX
               - MEDS
               - VTIS
-
+            examples:
+              - AMEX
       requestBody:
         content:
           application/json:
@@ -63,10 +70,14 @@ paths:
                         - CARDHOLDER_STEPUP
                         - TRUSTED_LISTING_ENROLLMENT
                       description: "OTP reason. (VTIS only)\r\n\r\nValues:\r\n- PAYMENT\r\n- TOKEN_DEVICE_BINDING\r\n- CARDHOLDER_STEPUP\r\n- TRUSTED_LISTING_ENROLLMENT"
+                      examples:
+                        - PAYMENT
                     expirationDate:
                       type: string
                       description: OTP expiration date. Use ISO date time format.
                       pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ'
+                      examples:
+                        - '2016-06-23T09:07:21.205-07:00'
                     contactMethod:
                       type: object
                       properties:
@@ -76,9 +87,13 @@ paths:
                             - SMS
                             - EMAIL
                           description: "Contact method type selected to deliver OTP.\r\n\r\nValues:\r\n- SMS\r\n- EMAIL"
+                          examples:
+                            - SMS
                         value:
                           type: string
                           description: "Encrypted contact method value selected to deliver OTP. \r\n"
+                          examples:
+                            - OiJKV1QiLCJhbGciOiJIUzUxMi
                       required:
                         - type
                         - value
@@ -122,6 +137,11 @@ paths:
       x-proxy-name: Send OTP
   /token:
     post:
+      tags:
+      - OTP
+      x-proxy-name: Token Access
+      x-group-name: OTP
+      x-child-product-name: Tokenization
       summary: Token Access
       description: Endpoint exposed by the issuer to generate an access token. OAuth is required when establishing a connection with the issuer's endpoint via internet.
       operationId: Access Token
@@ -148,6 +168,8 @@ paths:
               - AMEX
               - MDES
               - VTIS
+            examples:
+              - VTIS
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -171,16 +193,24 @@ paths:
                   accessToken:
                     type: string
                     description: "Access token credential to access protected resources. \r\n"
+                    examples:
+                      - MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3
                   tokenType:
                     type: string
                     description: Token type.
                     default: Bearer
+                    examples:
+                      - Bearer
                   issuedAt:
                     type: string
                     description: "Indicates date when access token was issued.\r\n\r\nTime is expressed in milliseconds."
+                    examples:
+                      - '1708360445853'
                   expiresIn:
                     type: string
                     description: "Duration of time the access token is granted for.\r\n\r\nTime is expressed in seconds."
+                    examples:
+                      - '3600'
                 required:
                   - accessToken
                   - tokenType
