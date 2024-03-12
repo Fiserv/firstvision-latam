@@ -470,6 +470,52 @@ paths:
       responses:
         '200':
           description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
       servers:
         - url: 'http://localhost:3000'
       x-proxy-name: Account Life Cycle
