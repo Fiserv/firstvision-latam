@@ -43,16 +43,28 @@ paths:
               $ref: '#/components/schemas/ManualAuthorizationRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '422':
           description: "VPL7SAR03S - USER HAS NOT SIGNED ON, PLEASE SIGNON \n\nVPL7SAR06S\
             \ - CARD NUMBER MUST BE NUMERIC \n\nVPL7SAR07S - CARD TYPE MUST BE EITHER\
@@ -90,24 +102,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManualAuthorizationResponse'
-        '404':
-          description: Not Found
       x-proxy-name: Manual Authorization Update
       x-group-name: Transactions
   /transactions/v3/installmentTransactions/{installmentTransaction-Id}/terms:
@@ -162,20 +162,22 @@ paths:
               $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Request'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '422':
           description: "VPL5SZ501E - ORG IS NOT NUMERIC OR MUST BE BETWEEN 001 AND\
             \ 998 \n\nVPL5SZ502E - REQUESTED ACCT / CARD NUMBER IS NOT NUMERIC OR\
@@ -192,20 +194,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response'
-        '404':
-          description: Not Found
       x-proxy-name: Installment Billing Transaction Inquiry
       x-group-name: Transactions
   /transactions/v1/transactions:
@@ -252,10 +252,6 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsL8VBRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -305,24 +301,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionsDetailsL8VBResponse'
-        '404':
-          description: Not Found
       x-proxy-name: Transactions Payments Details
       x-group-name: Transactions
   /mx/transactions/v1/catCalculation:
@@ -367,6 +367,22 @@ paths:
               $ref: '#/components/schemas/CalculateCatL8V2Request'
         required: true
       responses:
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '422':
           description: "VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
             \ 001-998 \n\nVPL5SAA11S - ORG RECORD NOT FOUND \n\nVPL5SAA04S - LOGO\
@@ -378,34 +394,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '403':
           description: Forbidden
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculateCatL8V2Response'
-        '404':
-          description: Not Found
       x-proxy-name: CAT Calculation.
       x-group-name: Transactions
 components:
@@ -1505,14 +1505,17 @@ components:
         details:
           maxLength: 1
           minLength: 1
-          pattern: ^(C|R|S|M|B|P)$
+          pattern: ^(C|R|S|M|B|P| )$
           type: string
           description: 'The details field represents the transaction details flag.
-            (If this field is left blank, the default is B).
 
 
             Values:
 
+
+            * Space = Use both current and recent (Display the Pending/posted transaction);
+
+            * B = Use both current and recent (Display the Pending/posted transaction)
 
             * C = Current (Cycle to Date Transactions);
 
@@ -1521,8 +1524,6 @@ components:
             * S = Recent 1st Statement only
 
             * M = Monthly (Statement detail transactions);
-
-            * B = Use both current and recent (Display the Pending/posted transaction)
 
             * P = Posted transactions.
 
@@ -2212,7 +2213,7 @@ components:
         authorizationTime:
           $ref: '#/components/schemas/LocalTime'
         authorizationCode:
-          type: integer
+          type: string
           description: '* Max Length: 6
 
 
@@ -2229,8 +2230,7 @@ components:
             * Page: 02
 
             * Field: AUTH'
-          format: int32
-          example: 123456
+          example: '123456'
     TransactionsDetailsL8VBResponse.Transaction.Details.Card:
       type: object
       properties:
