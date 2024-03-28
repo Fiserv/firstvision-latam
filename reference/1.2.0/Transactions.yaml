@@ -43,26 +43,24 @@ paths:
               $ref: '#/components/schemas/ManualAuthorizationRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
-        '400':
-          description: Bad Request
+        '404':
+          description: Not Found
         '405':
           description: Method Not Allowed
         '422':
@@ -102,6 +100,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
@@ -162,22 +162,26 @@ paths:
               $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Request'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '404':
           description: Not Found
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '422':
           description: "VPL5SZ501E - ORG IS NOT NUMERIC OR MUST BE BETWEEN 001 AND\
             \ 998 \n\nVPL5SZ502E - REQUESTED ACCT / CARD NUMBER IS NOT NUMERIC OR\
@@ -194,12 +198,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
@@ -252,12 +252,24 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsL8VBRequest'
         required: true
       responses:
+        '400':
+          description: Bad Request
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
         '422':
           description: "VPL5STD05E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES\n\
             \nVPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
@@ -301,22 +313,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '400':
-          description: Bad Request
         '405':
           description: Method Not Allowed
+        '401':
+          description: Unauthorized
         '200':
           description: Success
           content:
@@ -324,89 +324,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/TransactionsDetailsL8VBResponse'
       x-proxy-name: Transactions Payments Details
-      x-group-name: Transactions
-  /mx/transactions/v1/catCalculation:
-    post:
-      tags:
-      - Transactions
-      summary: '`[IN DEVELOPMENT]`
-
-
-        The CAT calculation service calculates annual total cost of the credit in
-        real time.
-
-
-        VMX Service: M.CMS.CALCULATE.CAT.ADD, L8V2'
-      description: '`[IN DEVELOPMENT]`
-
-
-        The CAT calculation service calculates annual total cost of the credit in
-        real time.
-
-
-        VMX Service: M.CMS.CALCULATE.CAT.ADD, L8V2'
-      operationId: Calculate total annual cost to the credit limit.
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: 00970
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CalculateCatL8V2Request'
-        required: true
-      responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '422':
-          description: "VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
-            \ 001-998 \n\nVPL5SAA11S - ORG RECORD NOT FOUND \n\nVPL5SAA04S - LOGO\
-            \ NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SAA12S -\
-            \ LOGO RECORD NOT FOUND \n\nVPL5SAA18E - CREDIT LIMIT MUST BE NUMERIC\
-            \ \n\nVPLCSCAT1S - ERROR IN CAT CALCULATION \n\nVPLCSCATAS - CAT CALC\
-            \ FLAG IS INACTIVE AT LOGO LEVEL"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CalculateCatL8V2Response'
-      x-proxy-name: CAT Calculation.
       x-group-name: Transactions
 components:
   schemas:
@@ -1593,29 +1510,6 @@ components:
             * Screen: ARTD\n* Page: 02\n* Field: EFF DATE"
           format: date
           example: 2023-12-21
-    LocalTime:
-      maximum: 8
-      pattern: HH:MM:SS
-      type: object
-      properties:
-        hour:
-          type: integer
-          format: int32
-        minute:
-          type: integer
-          format: int32
-        second:
-          type: integer
-          format: int32
-        nano:
-          type: integer
-          format: int32
-      description: "Capture the authorization time. This should be populated from\
-        \ the clearing. The Auth time will be mentioned in the format HHMMSS. For\
-        \ VISA transaction time is not captured in settlement file.\n\nVisionPLUS:\n\
-        \nService Data: ATPT-MT-LMS-AUTH-TIME \nScreen: ARTD\nPage: 02\nField: AUTH\
-        \ TIME"
-      example: 52065
     TransactionsDetailsL8VBResponse:
       type: object
       properties:
@@ -2211,7 +2105,15 @@ components:
       type: object
       properties:
         authorizationTime:
-          $ref: '#/components/schemas/LocalTime'
+          maximum: 8
+          pattern: HH:MM:SS
+          type: string
+          description: "Capture the authorization time. This should be populated from\
+            \ the clearing. The Auth time will be mentioned in the format HHMMSS.\
+            \ For VISA transaction time is not captured in settlement file.\n\nVisionPLUS:\n\
+            \nService Data: ATPT-MT-LMS-AUTH-TIME \nScreen: ARTD\nPage: 02\nField:\
+            \ AUTH TIME"
+          example: 52065
         authorizationCode:
           type: string
           description: '* Max Length: 6
@@ -2775,198 +2677,5 @@ components:
             \ record for the selected criteria, when the More Indicator field is \u201C\
             Y\u201D.\n\nVisionPLUS Service Data: AZXTDO-NEXT-TOKEN"
           example: 123DEF456GHI789J1K0ABC
-    CalculateCatL8V2Request:
-      required:
-      - creditLimit
-      - logo
-      - organizationNumber
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: '* Min Length: 1
-
-            * Max Length: 3
-
-
-            The organizationNumber field is an attribute that holds the unique identification
-            number assigned to an organization within the API.
-
-
-            VisionPLUS:
-
-
-            * Service Data: AZXECI-ORG
-
-            * Screen: ARMF
-
-            * Page: 00
-
-            * Field: ORG'
-          format: int32
-          example: 738
-        logo:
-          type: integer
-          description: '* Min Length: 1
-
-            * Max Length: 3
-
-
-            The logo field stores the issuer logo code associated with a payment card.
-            It represents the unique identifier or code assigned to the logo of the
-            card issuer, allowing for accurate identification and association with
-            the issuing bank.
-
-
-            VisionPLUS:
-
-
-            * Service Data: AZXECI-LOGO
-
-            * Screen: ARMF
-
-            * Page: 00
-
-            * Field: LOGO'
-          format: int32
-          example: 400
-        creditLimit:
-          type: number
-          description: '* Min Length: 1
-
-            * Max Length: 17
-
-
-            The creditLimit field indicates the maximum allowed credit for an account.
-            It sets the upper limit for borrowing or charging to the account.
-
-
-            VisionPLUS Service Data: AZXECI-CRLIM'
-          example: 25625.97
-        processingControlId:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: "The processingControlId field represents the code that identifies\
-            \ the Processing Control Table\n\nVisionPLUS:\n\n* Service Data: AZXECI-PCT\
-            \ \n* Screen: ARMF\n* Page: 00\n* Field: PCT ID"
-          example: '67'
-      description: Calculate total annual cost request
-    CalculateCatL8V2Response:
-      type: object
-      properties:
-        rate:
-          $ref: '#/components/schemas/CalculateCatL8V2Response.Rate'
-        fee:
-          $ref: '#/components/schemas/CalculateCatL8V2Response.Fee'
-        totalAnnualCostValue:
-          type: number
-          description: '* Max length: 7
-
-
-            The totalAnnualCostValue field indicates the CAT (total annual cost to
-            the credit limit) value.
-
-
-            VisionPLUS Service Data: AZXECO-CAT-PRODUCT'
-          example: 6547.98
-    CalculateCatL8V2Response.Fee:
-      type: object
-      properties:
-        cardReplacementFee:
-          type: number
-          description: '* Max length: 17
-
-
-            The cardReplacementFee field represents the amount in monetary units and
-            subunits to assess for each card issued or reissued up to the number of
-            cards in the LIMIT field, inclusive.
-
-
-            VisionPLUS:
-
-
-            * Service Data: AZXECO-CARD-REPL-FEE
-
-            * Screen: ARVM
-
-            * Page: 07
-
-            * Field: RATE 1'
-          example: 234.87
-        annuity:
-          type: number
-          description: '* Max length: 17
-
-
-            Service charge fee rate
-
-
-            VisionPLUS Service Data: AZXECO-ANNUITY'
-          example: 365.9
-        collectionExpenses:
-          type: number
-          description: '* Max length: 17
-
-
-            The collectionExpenses field is a two-part field that indicates the late
-            fee amount, in monetary units and subunits, and the percentage of the
-            late payment assessed as a late fee.
-
-
-            VisionPLUS:
-
-
-            * Service Data: AZXECO-COLC-EXPENSE
-
-            * Screen: ARVM
-
-            * Page: 03
-
-            * Field: LATE FEE AMOUNT AND PERCENT 1'
-          example: 5542.98
-    CalculateCatL8V2Response.Rate:
-      type: object
-      properties:
-        floor:
-          type: number
-          description: '* Max length: 17
-
-
-            The floor field represents the minimum allowable interest rate for credit
-            plans.
-
-
-            VisionPLUS:
-
-
-            * Service Data: AZXECO-FLOOR-RATE
-
-            * Screen: ARMR
-
-            * Page: 02
-
-            * Field: FLOOR RATE 1'
-          example: 22748.98
-        inflation:
-          type: number
-          description: '* Max length: 17
-
-
-            The inflation field represents the value calculated based on the current
-            UDI (inversion unity) and previous UDI rate.
-
-
-            VisionPLUS:
-
-
-            * Service Data: AZXECO-VAR-RATE
-
-            * Screen: AZ6R
-
-            * Page: 01
-
-            * Field: INF RATE'
-          example: 65.98
 x-config:
   tryItOut: 'true'
