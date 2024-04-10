@@ -1,0 +1,264 @@
+openapi: 3.0.1
+x-stoplight:
+  id: jh8kd4hcb5e5c
+info:
+  version: '1.0'
+  title: Tokens
+  description: API exposed by the issuer to receive an OTP. The issuer will manage the OTP delivery to the final user.
+servers:
+  - url: '{issuer.enpoint}/otp/v1/'
+    variables:
+      issuer Enpoint:
+        default: ''
+paths:
+  /otp/v1/send-otp:
+    post:
+      summary: Send OTP
+      description: Endpoint exposed by the issuer to receive the OTP sent by Fiserv. The issuer will deliver the OTP to the cardholder.
+      operationId: post-otp
+      parameters:
+        - name: apikey
+          in: header
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          schema:
+            type: string
+        - name: x-request-id
+          in: header
+          description: The unique identifier for the API request.
+          required: true
+          schema:
+            type: string
+        - name: x-scheme
+          in: header
+          description: 'Allowed values: AMEX - MDES - VTIS'
+          required: true
+          schema:
+            type: string
+            enum:
+              - AMEX
+              - MEDS
+              - VTIS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                otp:
+                  type: object
+                  required:
+                    - value
+                    - expirationDate
+                  properties:
+                    value:
+                      type: string
+                      description: OTP value
+                      maxLength: 10
+                    reason:
+                      type: string
+                      enum:
+                        - PAYMENT
+                        - TOKEN_DEVICE_BINDING
+                        - CARDHOLDER_STEPUP
+                        - TRUSTED_LISTING_ENROLLMENT
+                      description: "OTP reason. (VTIS only)\r\n\r\nValues:\r\n- PAYMENT\r\n- TOKEN_DEVICE_BINDING\r\n- CARDHOLDER_STEPUP\r\n- TRUSTED_LISTING_ENROLLMENT"
+                    expirationDate:
+                      type: string
+                      description: OTP expiration date. Use ISO date time format.
+                      pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ'
+                    contactMethod:
+                      type: object
+                      required:
+                        - type
+                        - value
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - SMS
+                            - EMAIL
+                          description: "Contact method type selected to deliver OTP.\r\n\r\nValues:\r\n- SMS\r\n- EMAIL"
+                        value:
+                          type: string
+                          description: "Encrypted contact method value selected to deliver OTP. \r\n"
+            examples:
+              Example 1:
+                value:
+                  otp:
+                    value: dsds
+                    reason: PAYMENT
+                    expirationDate: '2016-06-23T09:07:21.205-07:00'
+                    contactMethod:
+                      type: SMS
+                      value: OiJKV1QiLCJhbGciOiJIUzUxMi
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/genericResponse'
+        '401':
+          description: Unauthorized
+          content: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseCode:
+                    type: string
+                    description: Error response code
+                    maxLength: 8
+                  responseDescription:
+                    type: string
+                    description: Error response description
+                    maxLength: 400
+                required:
+                  - responseCode
+                  - responseDescription
+        '503':
+          description: Service Unavailable
+      servers:
+        - url: '{issuer.enpoint}/otp/v1/'
+          variables:
+            issuer Enpoint:
+              default: ''
+      x-stoplight:
+        id: oq1mzvpks2877
+      x-child-product-name: Tokenization
+      x-group-name: OTP
+      x-proxy-name: Send OTP
+  /otp/v1/token:
+    post:
+      summary: Token Access
+      description: Endpoint exposed by the issuer to generate an access token. OAuth is required when establishing a connection with the issuer's endpoint via internet.
+      operationId: Access Token
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Basic Authorization base 64 encoded. Issuer will share user and password. '
+          required: true
+          schema:
+            type: string
+        - name: x-request-id
+          in: header
+          description: The unique identifier for the API request.
+          required: true
+          schema:
+            type: string
+        - name: x-scheme
+          in: header
+          description: 'Allowed values: AMEX - MDES - VTIS'
+          required: true
+          schema:
+            type: string
+            enum:
+              - AMEX
+              - MDES
+              - VTIS
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    description: "Access token credential to access protected resources. \r\n"
+                  tokenType:
+                    type: string
+                    description: Token type.
+                    default: Bearer
+                  issuedAt:
+                    type: string
+                    description: "Indicates date when access token was issued.\r\n\r\nTime is expressed in milliseconds."
+                  expiresIn:
+                    type: string
+                    description: "Duration of time the access token is granted for.\r\n\r\nTime is expressed in seconds."
+                required:
+                  - accessToken
+                  - tokenType
+                  - issuedAt
+                  - expiresIn
+                x-examples:
+                  Example 1:
+                    token_type: BearerToken
+                    issued_at: '1707415431079'
+                    client_id: EBbWJZbMAKWNJrLT0CKkbsJfRODLMWQ5
+                    access_token: SgIVCGcGuKbUYOysGk2rg953qY88
+                    expires_in: '1799'
+                    status: approved
+              examples:
+                Example 1:
+                  value:
+                    accessToken: MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3
+                    tokenType: Bearer
+                    issuedAt: '1708360445853'
+                    expiresIn: '3600'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseCode:
+                    type: string
+                    description: Error response code
+                    maxLength: 8
+                  responseDescription:
+                    type: string
+                    description: Error response description
+                    maxLength: 400
+                required:
+                  - responseCode
+                  - responseDescription
+        '503':
+          description: Service Unavailable
+      servers:
+        - url: '{issuer.enpoint}/otp/v1/'
+          variables:
+            issuer Enpoint:
+              default: ''
+      x-stoplight:
+        id: dba7q72p2o4z7
+      x-child-product-name: Tokenization
+      x-group-name: OTP
+      x-proxy-name: Token Access
+components:
+  responses:
+    genericResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              responseCode:
+                type: string
+                description: Error response code
+                maxLength: 8
+              responseDescription:
+                type: string
+                description: Error response description
+                maxLength: 400
+            required:
+              - responseCode
+              - responseDescription
+            x-examples:
+              Example 1:
+                responseCode: '001'
+                responseDescription: Internal Server Error
+  schemas: {}
