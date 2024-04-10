@@ -48,19 +48,11 @@ paths:
               $ref: '#/components/schemas/UpdateEmbosserRequestV3'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: "Unprocessable Entity\n\nVPL5SEUZ2S - SERVICE INPUT TO CARD\
             \ UPDATE SERVICE IS AN INCORRECT LENGTH \n\nVPL5SEU01E - ORGANIZATION\
             \ NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998  \n\nVPL5SEU02E\
@@ -96,10 +88,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '404':
           description: Not Found
         '405':
@@ -145,25 +139,11 @@ paths:
               $ref: '#/components/schemas/CardAssignmentRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '204':
-          description: Account Card Assignment Successful. No Content.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CardAssignmentResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5SPSZ6S - ORGANIZATION COULD NOT BE DETERMINED FOR INPUT
             CARD
 
@@ -241,12 +221,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '404':
           description: Not Found
+        '204':
+          description: Account Card Assignment Successful. No Content.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardAssignmentResponse'
         '405':
           description: Method Not Allowed
         '400':
@@ -294,13 +282,11 @@ paths:
               $ref: '#/components/schemas/TravelUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5STV02E - ORG NOT FOUND
 
 
@@ -361,10 +347,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -410,13 +392,11 @@ paths:
               $ref: '#/components/schemas/TransferUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: "VPL1S0100S-SERVICE INPUT FOR SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5S0004E-CARD NUMBER IS NOT NUMERIC \n\nVPL5S1005E-NO ORGANIZATION\
             \ RECORD ON FILE \n\nVPL5S0006S-REQUESTED ORG NUMBER IS NOT FOUND \n\n\
@@ -460,10 +440,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -509,23 +485,11 @@ paths:
               $ref: '#/components/schemas/TemporaryCreditLimitUpdRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '500':
           description: "VPL5SAAM4E - CREDIT LIMIT CAN NOT EXCEED RELATIONSHIP CREDIT\
             \ LIMIT \n\nVPL5SCL05E - CREDIT LIMIT - DOES NOT CONFORM TO CURRENCY NOD\
             \ \n\nVPL5SCL08I - CREDIT LIMIT UNCHANGED, UPDATE BYPASSED \n\nVPL5STC03E\
@@ -556,6 +520,12 @@ paths:
             \ \n\nVPL5STCZ2S - SERVICE INPUT TO TEMP CRLIMIT SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL5STCZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED\
             \ \n\nVPL5STCZ5S - REQUESTED ORGANIZATION NOT FOUND "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -607,7 +577,11 @@ paths:
               $ref: '#/components/schemas/CardStatusRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: "VPL5SCSZ2S - SERVICE INPUT TO ACCOUNT INQ SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL5SCSZ6S - REQUESTED ORGANIZATION NOT FOUND \n\nVPL5SCS02S\
             \ - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998 \n\
@@ -627,22 +601,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -689,6 +653,10 @@ paths:
               $ref: '#/components/schemas/SpendLimitsL8V3Request'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -701,10 +669,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -750,13 +714,11 @@ paths:
               $ref: '#/components/schemas/PinBlockUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5SRP03E - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
 
@@ -806,10 +768,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -855,7 +813,11 @@ paths:
               $ref: '#/components/schemas/PinChangeRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: 'VPL5SCP06S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 998
 
@@ -950,22 +912,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -1015,19 +967,11 @@ paths:
               $ref: '#/components/schemas/PinReassignmentRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
 
@@ -1103,10 +1047,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '404':
           description: Not Found
         '405':
@@ -1158,25 +1104,11 @@ paths:
               $ref: '#/components/schemas/EmbosserCardActionL8V2Request'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
-        '422':
+        '500':
           description: 'VPL5SPR04E - INVALID INPUT CARD ACTION - VALID VALUES ARE
             0 TO 7
 
@@ -1421,6 +1353,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
         '405':
           description: Method Not Allowed
         '400':
@@ -1470,50 +1410,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
           description: Method Not Allowed
         '400':
           description: Bad Request
-        '422':
-          description: "VPL5SPSZ2S - SERVICE INPUT TO PREPAID CARD ASGN SERVICE IS\
-            \ AN INCORRECT LENGTH \n\nVPL5SPSZ6S - ORGANIZATION COULD NOT BE DETERMINED\
-            \ FOR INPUT CARD \n\nVPL5SPSZ7S - ORGANIZATION COULD NOT BE DETERMINED\
-            \ FOR CUSTOMER ACCT \n\nVPL5SPSZ8S - INVALID ORGANIZATION NUMBER \n\n\
-            VPL5SPS02E - CUSTOMER ACCT NBR MUST BE NUMERIC AND > ZEROES \n\nVPL5SPS03E\
-            \ - CARD NBR MUST BE NUMERIC AND > ZEROES \n\nVPL5SPS04E - CARDHOLDER\
-            \ TYPE MUST BE 0 OR 1 \n\nVPL5SPS05S - LOGO COULD NOT BE DETERMINED FOR\
-            \ FOR INPUT CARD \n\nVPL5SPS06S - LOGO COULD NOT BE DETERMINED FOR CUSTOMER\
-            \ ACCT \n\nVPL5SPS07E - ORG & LOGO MUST BE SAME FOR NON-PERSONAL & CUSTOMER\
-            \ ACCT \n\nVPL5SPS09S - ORG RECORD NOT FOUND OR IN ADD PENDING STATUS\
-            \ \n\nVPL5SPS10S - LOGO RECORD NOT FOUND OR IN ADD PENDING STATUS \n\n\
-            VPL5SPS11E - LOGO MUST BE PREPAID LOGO \n\nVPL5SPS12S - EMBOSSER RECORD\
-            \ NOT FOUND OR ADD PENDING OR PURGED STATUS \n\nVPL5SPS13E - CARD MUST\
-            \ NOT BE ACTIVATED \n\nVPL5SPS15S - NON PERSONAL ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE\
-            \ STATUS \n\nVPL5SPS16E - NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD\
-            \ MUST BE GENERIC PPD \n\nVPL5SPS17E - CARD NUMBER DECRYPTED FROM PAN\
-            \ TOKEN IS SPACES/ZEROS \n\nVPL5SPS17S - CUSTOMER ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE\
-            \ STATUS \n\nVPL5SPS18E - CARD NUMBER SHOULD NOT BE SPACES \n\nVPL5SPS19E\
-            \ - ORG LEVEL PAN TOKEN SW INACTIVE \n\nVPL5SPS19S - CUST NBR ASSOCIATED\
-            \ WITH CUST ACCT NOT FOUND/ADD PENDNG/CLSD/PURG \n\nVPL5SPS20S - EXISTNG\
-            \ PRIMARY CARD MAPPED TO CUST ACCT IN AMAX, NOT FOUND IN AMED \n\nVPL5SPS21S\
-            \ - NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD NOT FOUND IN BS FILE\
-            \ \n\nVPL5SPS22S - CUSTOMER ACCT NOT FOUND IN BASE SEGMENT FILE "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
@@ -1557,27 +1469,11 @@ paths:
               $ref: '#/components/schemas/CreditLimitUpdateRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        '500':
           description: 'VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
 
@@ -1660,6 +1556,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -1701,29 +1607,11 @@ paths:
               $ref: '#/components/schemas/CardActivationRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
-        '422':
+        '500':
           description: "VPL5SEA01E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998 \n\nVPL5SEA01S - REQUESTED CARD/ACCOUNT NUMBER IS\
             \ NOT FOUND \n\nVPL5SEA02E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES\
@@ -1747,6 +1635,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '200':
           description: Success
           content:
@@ -1786,13 +1686,11 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequestV2'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: "VPL5SCIZ1S - SERVICE INPUT TO FS SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5SCIZ3S-FILE-TABLE USED BY THIS SERVICE IS MISSING \n\nVPL5SCI01E\
             \ - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998 \n\
@@ -1817,10 +1715,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -1873,6 +1767,10 @@ paths:
               $ref: '#/components/schemas/SecurityValuesDetailsV2Request'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -1885,10 +1783,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -1934,25 +1828,11 @@ paths:
               $ref: '#/components/schemas/EmbosserCardsDetailsRequestV1'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
-        '422':
+        '500':
           description: 'VPL5SEQ01E -  ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
 
@@ -2000,6 +1880,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
         '405':
           description: Method Not Allowed
         '400':
@@ -2054,109 +1942,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '422':
-          description: 'Unprocessable Entity
-
-
-            VPL5SIE03S - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000
-            AND 998
-
-
-            VPL5SIE04S - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-
-
-            VPL5SIE05S - CUSTOMER NUMBER IS INVALID
-
-
-            VPL5SIE07S - INVALID CARD TECHNOLOGY
-
-
-            VPL5SIE08S - EMBOSSER NAME CANNOT BE SPACES
-
-
-            VPL5SIE34E - POS SERVICE CODE FIELD IS INVALID
-
-
-            VPL5SIE35S - ACCOUNT CREATE VALID VALUES ARE ''Y'' OR ''N''
-
-
-            VPL5SIE36S - ACCOUNT NUMBER SHOULD BE SPACES WHEN ACCT CREATE IS ''Y''
-
-
-            VPL5SIE10S - CREDIT LIMIT MUST BE NUMERIC
-
-
-            VPL5SIE11S - BILLING CYCLE MUST BE NUMERIC
-
-
-            VPL5SIE12S - BRANCH OWNING NUMBER MUST BE NUMERIC
-
-
-            VPL5SIE37E - ADMIN BRCH FIELD VALUE MUST BE NUMERIC
-
-
-            VPL5SIE13S - REQUESTED CUSTMER NUMBER IS NOT FOUND
-
-
-            VPL5SIE14S - REQUESTED ORG NUMBER IS NOT FOUND
-
-
-            VPL5SIE15S - FILE-TABLE USED BY THIS SERVICE IS NOT FOUND
-
-
-            VPL5SIE17S - SYSTEM RECORD NOT FOUND
-
-
-            VPL5SIE18S - ORGANIZATION RECORD NOT FOUND
-
-
-            VPL5SIE20S - LOGO RECORD NOT FOUND ON FILE
-
-
-            VPL5SIE34E - POS SERVICE CODE FIELD IS INVALID
-
-
-            VPL5SIE19S - CUSTOMER NUMBER NOT FOUND ON FILE
-
-
-            VPL5SIE39S - ACCOUNT NUMBER NOT FOUND
-
-
-            VPL5SIE25S - PIN KEY TYPE/ZONE SPACES
-
-
-            VPL5SIE26S - CARD SECURITY VALUES COULD NOT BE GENERATED
-
-
-            VPL5SIE31S - ENC-FAILURE INVALID ORG
-
-
-            VPL5SIE32S - ENC-FAILURE INV LENGTH
-
-
-            VPL5SIE33S - ENC-FAILURE CALL FAILURE
-
-
-            VPL5SIE37E - ADMIN BRCH FIELD VALUE MUST BE NUMERIC
-
-
-            VPL5SIE38E - 1ST ISS BR FIELD VALUE MUST BE NUMERIC
-
-            '
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -2202,7 +1997,11 @@ paths:
               $ref: '#/components/schemas/StatementInquiryRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: "VPL5S0005E-ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES \n\
             \nVPL5S0006S-REQUESTED ORG NUMBER IS NOT FOUND \n\nVPL5S0008E-ORGANIZATION\
             \ NOT DETERMINED \n\nVPL5S0011S-CARD/ACCOUNT NUMBER IS NOT FOUND FOR ORG\
@@ -2222,22 +2021,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -2288,23 +2077,11 @@ paths:
               $ref: '#/components/schemas/StatementDateInquiryRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '500':
           description: " VPL5SSI15S -ACCOUNT NUMBER NOT FOUND \n\n VPL5SSI07E -CARD/ACCT\
             \ NUMBER IS NOT NUMERIC OR EQUAL SPACES \n\n VPL5SSI14S -FOREIGN ORGANIZATION\
             \ NUMBER NOT FOUND \n\n VPL5SSI08E -FOREIGN USE INDICATOR INVALID - MUST\
@@ -2314,6 +2091,12 @@ paths:
             \ CARD/ACCOUNT NUMBER IS NOT FOUND \n\n VPL5SSI10S -REQUESTED ORGANIZATION\
             \ NOT FOUND \n\n VPL5SSI02S -SERVICE INPUT TO STMT DATES SERVICE IS AN\
             \ INCORRECT LENGTH"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -2363,13 +2146,11 @@ paths:
               $ref: '#/components/schemas/PinValidateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5SVP03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
 
@@ -2460,10 +2241,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -2511,19 +2288,11 @@ paths:
               $ref: '#/components/schemas/InvalidPinAttemptsInquiryRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPZ5SPT03S - ORG IS NOT NUMERIC OR MUST BE BETWEEN 000 AND
             999
 
@@ -2553,10 +2322,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '404':
           description: Not Found
         '405':
@@ -2602,7 +2373,11 @@ paths:
               $ref: '#/components/schemas/DynamicValuesRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: 'VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
 
@@ -2687,22 +2462,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -2797,19 +2562,11 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5SQC01E - INVALID ORGANIZATION NUMBER
 
 
@@ -2842,10 +2599,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '404':
           description: Not Found
         '405':
@@ -2892,13 +2651,11 @@ paths:
               $ref: '#/components/schemas/MassCardIssueAddRequestL8V3'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: "VPL5SMC01E - INVALID ORGANIZATION NUMBER \n\nVPL5SMC04E -\
             \ INVALID LOGO NUMBER \n\nVPL5SMC06E - FUNCTION TYPE VALID VALUES ARE\
             \ A AND M \n\nVPL5SMC07E - STATUS VALID VALUES ARE 1 AND 9 \n\nVPL5SMC07S\
@@ -2951,10 +2708,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -3004,62 +2757,8 @@ paths:
               $ref: '#/components/schemas/SameDayEmbossingAddRequest'
         required: true
       responses:
-        '422':
-          description: 'VPL5SSP03S - CMS ORG IS INVALID
-
-
-            VPL5SSP04S - CMS LOGO IS INVALID
-
-
-            VPL5SSP05S - INVALID CARD NUMBER
-
-
-            VPL5SSP06E - CARD SEQ IS INVALID
-
-
-            VPL5SSP07E - VALID CARD ACTION FOR SDP ARE 1, 3 AND 6
-
-
-            VPL5SSP08E - VALID SDP PROCESS TYPE ARE 0 , 1 OR SPACES
-
-
-            VPL5SSP09E - CARD ACTION SHOULD BE NUMERIC
-
-
-            VPL5SSP15E - SDP REQUEST IS IN PENDING STATUS OR OVERRUN
-
-
-            VPL5SSP16E - SDP CROSS REFERENCE RECORD NOT FOUND
-
-
-            VPL5SSP10S - REQUESTED ORG LOGO NOT FOUND
-
-
-            VPL5SSP11S - REQUESTED LOGO NOT FOUND IN CMS
-
-
-            VPL5SSP14S - SDP NOT ACTIVE AT LOGO LEVEL
-
-
-            VPL5SSP30S - ORGANIZATION IS ADD PENDING
-
-
-            VPL5SSP34S - ORGANIZATION NUMBER NOT FOUND
-
-
-            VPL5SSP36S - REQUESTED ORG NUMBER IS NOT FOUND'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '500':
           description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
           content:
             application/json:
               schema:
@@ -3068,6 +2767,12 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '404':
           description: Not Found
         '405':
@@ -3113,6 +2818,10 @@ paths:
               $ref: '#/components/schemas/AddEmbosserL8VFRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -3125,10 +2834,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -3184,23 +2889,11 @@ paths:
               $ref: '#/components/schemas/CardPanInquiryL8V2Request'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '500':
           description: 'VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND
 
 
@@ -3242,6 +2935,12 @@ paths:
 
 
             '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
           content:
             application/json:
               schema:
@@ -3301,7 +3000,11 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V3Request'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: 'VPL5SAEZ8S - REQUESTED ORG NOT FOUND
 
             VPL5SAE01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
@@ -3330,22 +3033,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -3392,7 +3085,11 @@ paths:
               $ref: '#/components/schemas/CardDetailsRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
           description: "VPL5SEI03E - ORGANIZATION IS NOT NUMERIC OR VALUE MUST BE\
             \ BETWEEN 000 AND 999 \n\nVPL5SEI04E - CARD NUMBER IS NOT NUMERIC OR EQUAL\
             \ TO SPACES \n\nVPL5SEI05S - REQUESTED CARD NUMBER IS NOT FOUND \n\nVPL5SEI06S\
@@ -3404,22 +3101,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
@@ -3509,13 +3196,11 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5S0015E - REQUESTED FUNCTION TYPE IS NOT VALID
 
 
@@ -3543,10 +3228,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '404':
           description: Not Found
         '405':
