@@ -45,7 +45,15 @@ paths:
               $ref: '#/components/schemas/WalletStatusUpdateRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SWU01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
 
@@ -85,34 +93,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletStatusUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Wallet Status Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -148,23 +142,15 @@ paths:
               $ref: '#/components/schemas/WalletPriorityOrderUpdateRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '422':
+        '500':
           description: 'VPL5SWUZ2S - SERVICE INPUT TO ASSOC PARTIES SERVICE IS AN
             INCORRECT LENGTH
 
@@ -240,18 +226,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletPriorityOrderUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Multi Wallet Priority Order Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -285,34 +273,34 @@ paths:
               $ref: '#/components/schemas/VinculationReversalRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/VinculationReversalResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Reversal Vinculate
       x-group-name: Account
       x-child-product-name: Accounts
@@ -346,6 +334,10 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequestV2'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -354,64 +346,22 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: "VPL5SCU02S-SERVICE INPUT TO A/A SERVICE IS AN INCORRECT LENGTH\
-            \ \n\nVPL5SCU06S-ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999 \n\nVPL5SCU07S-ACCOUNT\
-            \ OR CARD NUMBER REQUIRED \n\nVPL5SCU08S-CUSTOMER NUMBER REQUIRED \n\n\
-            VPL5SCU09S-FOREIGN USE INDICATOR INVALID - MUST BE 0, 1 OR 2 \n\nVPL5SCU10S-FIELD\
-            \ IDENTIFIER INVALID - MUST BE 0 OR 1 \n\nVPL5SCU11S-ALTERNATE CUSTOMER\
-            \ INDICATOR INVALID MUST BE - A, B OR C \n\nVPL5SCU12S-ALTERNATE CUSTOMER\
-            \ EXPIRATION DATE MUST BE NUMERIC \n\nVPL5SCU14S-ACCOUNT ORG COULD NOT\
-            \ BE DETERMINED \n\nVPL5SCU15S-DETERMINED ACCT ORG DOES NOT MATCH WITH\
-            \ INPUT ORG \n\nVPL5SCU16S-ORGANIZATION NOT FOUND ON FILE \n\nVPL5SCU18S-CUSTOMER\
-            \ ORGANIZATION COULD NOT BE DETERMINED \n\nVPL5SCU19S-CUSTOMER NUMBER\
-            \ NOT VALID FOR ORG PROVIDED \n\nVPL5SCU20S-FOREIGN USE INDICATOR INVALID,\
-            \ ORG IS NOT DUAL CURRENCY ORG \n\nVPL5SCU21S-ORGANIZATION RECORD NOT\
-            \ FOUND ON FILE \n\nVPL5SCU22S-FOREIGN ORG NOT FOUND ON FILE \n\nVPL5SCU23S-INVALID\
-            \ FOREIGN USE FLAG, ORG IS NOT DUAL \n\nVPL5SCU24S-ORGANIZATION COULD\
-            \ NOT BE DETERMINED FOR THE ACCOUNT \n\nVPL5SCU25S-ORG DETERMINED DOES\
-            \ NOT MATCH THE LOCAL ACCT ORG \n\nVPL5SCU01E-ORGANIZATION RECORD NOT\
-            \ FOUND ON FILE \n\nVPL5SCU03E-INVALID ACCOUNT STATUS OR ACCOUNT NOT FOUND\
-            \ \n\nVPL5SCU04E-REQUEST TYPE DOES NOT MATCH WITH THE ACCT TYPE \n\nVPL5SCU05E-CUSTOMER\
-            \ NUMBER NOT VALID OR NOT ON FILE \n\nVPL5SCU06E-GENERIC CUSTOMER NOT\
-            \ ALLOWED FOR NON-GENERIC ACCT \n\nVPL5SCU07E-FOREIGN USE INDICATOR INVALID,\
-            \ DUAL ACCOUNT NOT FOUND \n\nVPL5SCU08E-CUSTOMER NUMBERS ARE NOT THE SAME\
-            \ ON BOTH ACCOUNTS \n\nVPL5SCU09E-ALTERNATE CUSTOMER NUMBERS ARE NOT SAME\
-            \ ON BOTH ACCOUNTS \n\nVPL5SCU10E-DUAL CUSTOMER NUMBER NOT VALID OR NOT\
-            \ ON FILE \n\nVPL5SCU12E-INPUT ORG DOES NOT MATCH WITH ACCOUNT ORG \n\n\
-            VPL5SCU13E-FOREIGN ACCOUNT NOT FOUND ON FILE \n\nVPL5SCU14E-REQUEST TYPE\
-            \ DOES NOT MATCH ACCT TYPE \n\nVPL5SCU15E-FOREIGN CUSTOMER RECORD NOT\
-            \ FOUND ON FILE \n\nVPL5SCU16E-GENERIC CUSTOMER NOT ALLOWED FOR NON-GENERIC\
-            \ FOREIGN ACCT \n\nVPL5SCU17E-ALTERNATE CUSTOMER EXPIRATION DATE MUST\
-            \ BE A FUTURE DATE \n\nVPL5SCU18E-INVALID ALTERNATE CUSTOMER EXPIRATION\
-            \ DATE \n\nVPL5SCU20E-CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS\
-            \ \n\nVPL5SCU21E-GLOBAL QUAL VALUE 1 OR 2, APPLICABLE ONLY FOR MEXICAN\
-            \ ORG \n\nVPL5SCU22E-GLOBAL QUAL SHOULD BE A TO Z OR 1 OR 2 \n\nVPL5SCU23E-ACCOUNT\
-            \ NUMBER SHOULD NOT BE SPACES \n\nVPL5SCU24E-ORG LEVEL PAN TOKEN SW INACTIVE "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateCustomerNumberResponseV2'
+        '404':
+          description: Not Found
       x-proxy-name: Customer Number Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -447,23 +397,15 @@ paths:
               $ref: '#/components/schemas/PurchaseAndCashAdvanceRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '422':
+        '500':
           description: 'Unprocessable Entity
 
 
@@ -495,18 +437,20 @@ paths:
             VPJ8SMA08S - MAX PAYMENT ALLOWD VALUE IS LESS THAN SERVICE INPUT TXN AMOUNT'
           content:
             application/json: {}
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PurchaseAndCashAdvanceResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Balance Update (Cash-in & Cash-out)
       x-group-name: Account
       x-child-product-name: Accounts
@@ -606,29 +550,15 @@ paths:
           type: string
         example: 00970
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: "VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998 \n\nVPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT\
             \ NUMERIC OR EQUAL SPACES \n\nVPL5SAI05E - INVALID FOREIGN USE IND SPECIFIED\
@@ -647,12 +577,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForDetailsL8viResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Information Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -689,29 +627,15 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsV2Request'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: "Unprocessable Entity \n\nError Code - Error Message \n\nVPL5SBB01S\
             \ - SERVICE COULD NOT OBTAIN STORAGE AREA                            \
             \ \n\nVPL5SBB02S - SERVICE INPUT TO ACCOUNT UPD SERVICE IS AN INCORRECT\
@@ -884,12 +808,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAccountDetailsV2Response'
+        '404':
+          description: Not Found
       x-proxy-name: Account Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -933,13 +865,15 @@ paths:
               $ref: '#/components/schemas/StatementInstallmentConfirmationRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: "VPL5SIS01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
             \ VALUES ARE 001-998 \n\nVPL5SIS02E - REQUESTED ACCT / CARD NUMBER IS\
             \ NOT NUMERIC OR EQUAL TO SPACES \n\nVPL5S1S03E - RATE VALUE IS INVALID\
@@ -969,28 +903,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementInstallmentConfirmationResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Statement Installment Options Simulation and Confirmation
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1034,7 +960,15 @@ paths:
               $ref: '#/components/schemas/LinkUnlinkAccountRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'Unprocessable Entity
 
 
@@ -1086,34 +1020,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LinkUnlinkAccountResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Link Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1149,102 +1069,22 @@ paths:
               $ref: '#/components/schemas/AccountForUserUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '422':
-          description: 'VPL5SBUZ1S - ORGANIZATION NOT DETERMINED
-
-            VPL5SBUZ5S - ORGANIZATION NUMBER NOT FOUND
-
-            VPL5SBU01E - USER-DATE1 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU02E - USER-DATE2 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU03E - USER-DATE3 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU04E - USER-DATE4 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU05E - USER-DATE5 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU06E - USER-DATE6 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU06S - ACCOUNT NUMBER OR CARD NUMBER MUST BE PROVIDED
-
-            VPL5SBU07E - USER-DATE7 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU07S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
-            001 AND 998
-
-            VPL5SBU08E - USER-DATE8 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU09E - USER-DATE9 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU10E - USER-DATE10 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU10S - FOREIGN ORGANIZATION NOT ON FILE
-
-            VPL5SBU11E - USER-DATE11 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU12E - USER-DATE12 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU12S - ACCOUNT NOT FOUND ON FILE
-
-            VPL5SBU13E - USER-DATE13 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU14E - USER-DATE14 MUST BE NUMERIC AND A VALID DATE
-
-            VPL5SBU15E - USER-AMT1 MUST BE NUMERIC
-
-            VPL5SBU16E - USER-AMT2 MUST BE NUMERIC
-
-            VPL5SBU17E - USER-AMT3 MUST BE NUMERIC
-
-            VPL5SBU18E - USER-AMT4 MUST BE NUMERIC
-
-            VPL5SBU19E - USER-AMT5 MUST BE NUMERIC
-
-            VPL5SBU20E - USER-AMT6 MUST BE NUMERIC
-
-            VPL5SBU21E - USER-AMT7 MUST BE NUMERIC
-
-            VPL5SBU22E - USER-AMT8 MUST BE NUMERIC
-
-            VPL5SBU23E - USER-AMT9 MUST BE NUMERIC
-
-            VPL5SBU24E - USER-AMT10 MUST BE NUMERIC
-
-            VPL5SBU25E - USER-AMT11 MUST BE NUMERIC
-
-            VPL5SBU26E - USER-AMT12 MUST BE NUMERIC
-
-            VPL5SBU27E - USER-AMT13 MUST BE NUMERIC
-
-            VPL5SBU28E - USER-AMT14 MUST BE NUMERIC
-
-            VPL5SBU29E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0
-            OR 1
-
-            VPL5SBU30E - ACCT EMBLM MUST BE NUMERIC'
           content:
             application/json:
               schema:
@@ -1255,6 +1095,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForUserUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account User Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1294,13 +1136,15 @@ paths:
               $ref: '#/components/schemas/UserDataUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5SUD03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
 
@@ -1464,28 +1308,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDataUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: User Codes Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1525,6 +1361,10 @@ paths:
               $ref: '#/components/schemas/TransferP2PRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -1533,406 +1373,22 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: 'VPL8SPP01E - ORGANIZATION VALUES ARE 000-998
-
-
-            VPL8SPPA1E - RECEIVER ORGANIZATION VALUES ARE 000-998
-
-
-            VPL8SPP01S - SENDER SERVICE COULD NOT OBTAIN STORAGE OUTPUT AREA
-
-
-            VPL8SPPA1S - RECEIVER SERVICE COULD NOT OBTAIN STORAGE OUTPUT AREA
-
-
-            VPL8SPP02E - ASM REP INVALID MUST BE GREATER THAN SPACES
-
-
-            VPL8SPP02S - SERVICE INPUT TO M/A SERVICE IS AN INCORRECT LENGTH
-
-
-            VPL8SPP03E - SENDER FOREIGN USE IND MUST BE 0 OR 1
-
-
-            VPL8SPPA3E - RECEIVER FOREIGN USE IND MUST BE 0 OR 1
-
-
-            VPL8SPP04E - SENDER ACCOUNT OR CARD NUMBER REQUIRED
-
-
-            VPL8SPPA4E - RECEIVER ACCOUNT OR CARD NUMBER REQUIRED
-
-
-            VPL8SPP05E - SENDER ACTION CODE IS REQUIRED
-
-
-            VPL8SPPA5E - RECEIVER -ACTION CODE IS REQUIRED
-
-
-            VPL8SPP07E - TRANSACTION AMOUNT MUST BE NUMERIC
-
-
-            VPL8SPP09S - PLAN SEQUENCE MUST BE NUMERIC
-
-
-            VPL8SPP10S - ASM NOT ACTIVE... SERVICE USAGE NOT ALLOWED
-
-
-            VPL8SPP11S - SENDER LETTER VALUE IS NOT APPLICABLE
-
-
-            VPL8SPPB1S - RECEIVER LETTER VALUE IS NOT APPLICABLE
-
-
-            VPL8SPP12S - SENDER ORGANIZATION NOT FOUND
-
-
-            VPL8SPPB2S - RECEIVER ORGANIZATION NOT FOUND
-
-
-            VPL8SPP13S - SENDER INVALID FOREIGN USE INDICATOR, DUAL ORG INACTIVE
-
-
-            VPL8SPPB3S - RECEIVER INVALID FOREIGN USE INDICATOR, DUAL ORG INACTIVE
-
-
-            VPL8SPP14S - SENDER INVALID FOREIGN USE INDICATOR, INPUT ORG DOES NOT
-            MATCH
-
-
-            VPL8SPPB4S - RECEIVER INVALID FOREIGN USE INDICATOR, INPUT ORG DOES NOT
-            MATCH
-
-
-            VPL8SPP15S - SENDER ACCOUNT OR CARD NOT FOUND
-
-
-            VPL8SPPB5S - RECEIVER ACCOUNT OR CARD NOT FOUND
-
-
-            VPL8SPP16E - EFFECTIVE DATE IS REQUIRED
-
-
-            VPL8SPP16S - SENDER LOGO RECORD NOT FOUND
-
-
-            VPL8SPPB6S - RECEIVER LOGO RECORD NOT FOUND
-
-
-            VPL8SPP17E - TRANSACTION AMOUNT IS REQUIRED
-
-
-            VPL8SPP17S - ASM ORG NOT FOUND
-
-
-            VPL8SPP18E - SENDER PLAN NUMBER IS REQUIRED
-
-
-            VPL8SPPB8E - RECEIVER PLAN NUMBER IS REQUIRED
-
-
-            VPL8SPP18S - REPRESENTATIVE NOT FOUND OR NOT ACTIVE
-
-
-            VPL8SPP19E - SENDER PLAN MISMATCH ACCT PREPAID PLAN
-
-
-            VPL8SPPB9E - RECEIVER PLAN MISMATCH ACCT PREPAID PLAN
-
-
-            VPL8SPP19S - ASM REP NOT ALLOWED TO ACCESS ACCOUNT ORG
-
-
-            VPL8SPP20E - SENDER PLAN NOT FOUND ON FILE
-
-
-            VPL8SPPC0E - RECEIVER PLAN NOT FOUND ON FILE
-
-
-            VPL8SPP20S - SENDER ASM ACTION CODE IS NOT ON FILE
-
-
-            VPL8SPPC0S - RECEIVER ASM ACTION CODE IS NOT ON FILE
-
-
-            VPL8SPP21E - SENDER PLAN SEQUENCE IS REQUIRED
-
-
-            VPL8SPPC1E - RECEIVER PLAN SEQUENCE IS REQUIRED
-
-
-            VPL8SPP22E - SENDER DEPT IS REQUIRED
-
-
-            VPL8SPPC2E - RECEIVER DEPT IS REQUIRED
-
-
-            VPL8SPP23E - SENDER AUTH CODE IS REQUIRED
-
-
-            VPL8SPPC3E - RECEIVER AUTH CODE IS REQUIRED
-
-
-            VPL8SPP24E - SENDER STORE NUMBER IS REQUIRED
-
-
-            VPL8SPPC4E - RECEIVER STORE NUMBER IS REQUIRED
-
-
-            VPL8SPP24S - INVALID ASM ACTION CODE... CMS TRAN CODE IS INVALID
-
-
-            VPL8SPP25E - SENDER SKU NUMBER IS REQUIRED
-
-
-            VPL8SPPC5E - RECEIVER SKU NUMBER IS REQUIRED
-
-
-            VPL8SPP25S - INVALID CMS TRAN CODE OR TRAN CODE NOT FOUND
-
-
-            VPL8SPP26E - SENDER SALES CLERK IS REQUIRED
-
-
-            VPL8SPPC6E - RECEIVER SALES CLERK IS REQUIRED
-
-
-            VPL8SPP26S - INVALID CMS TRAN CODE, TRAN CODE NOT MONETARY TYPE
-
-
-            VPL8SPP27E - SENDER CARD NUMBER IS REQUIRED
-
-
-            VPL8SPPC7E - RECEIVER CARD NUMBER IS REQUIRED
-
-
-            VPL8SPP27S - SENDER REP ACTIVITY MODEL NOT FOUND
-
-
-            VPL8SPPC7S - RECEIVER REP ACTIVITY MODEL NOT FOUND
-
-
-            VPL8SPP28E - SENDER CARD SEQUENCE IS REQUIRED
-
-
-            VPL8SPPC8E - RECEIVER CARD SEQUENCE IS REQUIRED
-
-
-            VPL8SPP28S - SENDER REP TALLY BY ORG MODEL NOT FOUND
-
-
-            VPL8SPPC8S - RECEIVER REP TALLY BY OR MODEL NOTFOUND
-
-
-            VPL8SPP29E - SENDER TICKET NUMBER IS REQUIRED
-
-
-            VPL8SPPC9E - RECEIVER TICKET NUMBER IS REQUIRED
-
-
-            VPL8SPP29S - MAXIMUM NUMBER OF TRANASACTIONS FOR THE REP REACHED
-
-
-            VPL8SPP30E - SENDER PURCHASE ORDER NUMBER IS REQUIRED
-
-
-            VPL8SPPD0E - RECEIVER PURCHASE ORDER NUMBER IS REQUIRED
-
-
-            VPL8SPP30S - SENDER INVALID TRANSACTION TYPE
-
-
-            VPL8SPPD0S - RECEIVER INVALID TRANSACTION TYPE
-
-
-            VPL8SPP31E - SENDER R/REFERENCE NUMBER IS REQUIRED
-
-
-            VPL8SPPD1E - RECEIVER R/REFERENCE NUMBER IS REQUIRED
-
-
-            VPL8SPP31S - MONETARY TRANS FILE ISSUE IN THE MEMO POST ROUTINE
-
-
-            VPL8SPP32E - SENDER INSURANCE PRODUCT IS REQUIRED
-
-
-            VPL8SPPD2E - RECEIVER NSURANCE PRODUCT IS REQUIRED
-
-
-            VPL8SPP32S - SYSTEM CONTROL FILE ISSUE IN THE MEMO POST ROUTINE
-
-
-            VPL8SPP33E - SENDER TRANSACTION NOT ALLOWED FOR PREPAID ACCOUNTS
-
-
-            VPL8SPPD3E - RECEIVER TRANSACTION NOT ALLOWED FOR PREPAID ACCOUNTS
-
-
-            VPL8SPP33S - BASE SEGMENT FILE ISSUE IN THE MEMO POST ROUTINE
-
-
-            VPL8SPP34E - SENDER TRANSACTION NOT VALID FOR ACCOUNT
-
-
-            VPL8SPPD4E - RECEIVER TRANSACTION NOT VALID FOR ACCOUNT
-
-
-            VPL8SPP34S - OUTSTANDING AUTH FILE ISSUE IN THE MEMO POST ROUTINE
-
-
-            VPL8SPP35S - LOG FILE ISSUE IN THE MEMO POST ROUTINE
-
-
-            VPL8SPP36S - APPLICATION ISSUE... TRY AGAIN LATER
-
-
-            VPL8SPP52E - SENDER INSURANCE PRODUCT NOT APPLICABLE FOR PREPAID ACCOUNTS
-
-
-            VPL8SPPF2E - RECEIVER INSURANCE PRODUCT NOT APPLICABLE FOR PREPAID ACCOUNTS
-
-
-            VPL8SPP53E - INVALID EFFECTIVE DATE
-
-
-            VPL8SPP54E - SENDER INVALID ACCT STATUS, USE TRANSFERRED TO ACCT
-
-
-            VPL8SPPF4E - RECEIVER INVALID ACCT STATUS, USE TRANSFERRED TO ACCT
-
-
-            VPL8SPP55E - SENDER PRIORITY MUST BE NUMERIC AND VALID VALUES ARE 0 -
-            3
-
-
-            VPL8SPPF5E - RECEIVER PRIORITY MUST BE NUMERIC AND VALID VALUES ARE 0
-            - 3
-
-
-            VPL8SPP56E - MANUAL REFERRAL OPTION INVALID. MUST BE ZERO, SPACES, LV
-            OR 1.
-
-
-            VPL8SPP57E - MANUAL REFERRAL ORG NUMBER MUST BE NUMERIC AND < 999
-
-
-            VPL8SPP58E - MANUAL REFERRAL REP ID WAS NOT SUPPLIED
-
-
-            VPL8SPP59E - SENDER NOT A MULTI WALLET ORG/LOGO
-
-
-            VPL8SPPF9E - RECEIVER NOT A MULTI WALLET ORG/LOGO
-
-
-            VPL8SPP59S - MANUAL REFERRAL ORG/REP NOT FOUND
-
-
-            VPL8SPP60S - MANUAL REFERRAL ORG/REP NOT ELIGIBLE FOR THIS REQUEST
-
-
-            VPL8SPP61S - SENDER NBR INSTL MUST BE NUMERIC
-
-
-            VPL8SPPG1S - RECEIVER NBR INSTL MUST BE NUMERIC
-
-
-            VPL8SPP62S - SENDER NBR INSTL MUST BE ZERO FOR NON-INSTALLMENT PLAN
-
-
-            VPL8SPPG2S - RECEIVER NBR INSTL MUST BE ZERO FOR NON-INSTALLMENT PLAN
-
-
-            VPL8SPP63S - SENDER NBR INSTL EXCEEDED CREDIT PLAN INSTL NBR
-
-
-            VPL8SPPG3S - RECEIVER NBR INSTL EXCEEDED CREDIT PLAN INSTL NBR
-
-
-            VPL8SPP64S - SENDER NBR INSTL > 0 ONLY FOR SALES TXN
-
-
-            VPL8SPPG4S - RECEIVER NBR INSTL > 0 ONLY FOR SALES TXN
-
-
-            VPL8SPP68E - SENDER REFERENCE NUMBER CANNOT BE SPACES
-
-
-            VPL8SPPG8E - RECEIVER REFERENCE NUMBER CANNOT BE SPACES
-
-
-            VPL8SPP69E - SENDER WALLET OTB INSUFF. FUND FROM OTHER WALLET DISABLE
-
-
-            VPL8SPPG9E - RECEIVER WALLET OTB INSUFF.FUND FROM OTHER WALLET DISABLE
-
-
-            VPL8SPP72S - ZMGR FILE NOT OPEN
-
-
-            VPL8SPP76E - ACCT NBR OF SENDER AND RECEIVER IS SAME
-
-
-            VPL8SPP77E - ACTION CODE OF SENDER AND RECEIVER IS SAME
-
-
-            VPL8SPP78E - SENDER ACTION CODE IS NOT DEBIT
-
-
-            VPL8SPPH8E - RECEIVER ACTION CODE IS NOT CREDIT
-
-
-            VPL8SPP71S - AMXP FILE NOT OPEN
-
-
-            VPL8SPP72E - SENDER RULE LEVEL RECORD NOT FOUND IN AMXP
-
-
-            VPL8SPP72E - RECEIVER RULE LEVEL RECORD NOT FOUND IN AMXP
-
-
-            VPL8SPP73E - SENDER DAILY LIMIT EXCEEDED
-
-
-            VPL8SPP74E - SENDER MONTHLY LIMIT EXCEEDED
-
-
-            VPL8SPP75E - SENDER BALANCE EXCEEDED
-
-
-            VPL8SPP73E - RECEIVER DAILY LIMIT EXCEEDED
-
-
-            VPL8SPP74E - RECEIVER MONTHLY LIMIT EXCEEDED
-
-
-            VPL8SPP75E - RECEIVER BALANCE EXCEEDED'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferP2PResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account to Account Funds Transfer
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1972,228 +1428,22 @@ paths:
               $ref: '#/components/schemas/TransferPromotionalProductRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '422':
-          description: 'VPJ5SPA03S - OLD ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
-            VALUES ARE 001-998
-
-
-            VPJ5SPA04S - OLD ORGANIZATION RECORD NOT ON FILE
-
-
-            VPJ5SPA05S - OLD ACCOUNT NUMBER MUST BE PROVIDED
-
-
-            VPJ5SPA06S - OLD ACCOUNT BEING TRANSFERRED
-
-
-            VPJ5SPA07S - THIRD PARTY ACCOUNT CANNOT BE TRANSFERRED
-
-
-            VPJ5SPA08S - NEW ACCOUNT NUMBER MUST BE PROVIDED
-
-
-            VPJ5SPA09S - NEW ACCOUNT NOT ON FILE
-
-
-            VPJ5SPA10S - NEW ACCOUNT MUST NOT HAVE TRANSACTIONS
-
-
-            VPJ5SPA11S - USER ACCT NUMBER VALUE DOES NOT MATCH OLD ACCT NUMBER
-
-
-            VPJ5SPA13S - OLD ORG AND NEW ORG MUST BE SAME
-
-
-            VPJ5SPA14S - PROMOTIONAL PRODUCT UPGRADE NOT ACTIVE
-
-
-            VPJ5SPA15S - ACCOUNT TRANSFER PROHIBITED - WALLET ONLY
-
-
-            VPJ5SPA16S - OLD ACCOUNT RECORD NOT ON FILE
-
-
-            VPJ5SPA17S - ACCOUNT ALREADY TRANSFERRED
-
-
-            VPJ5SPA18S - CANNOT TRANSFER PURGED ACCOUNT
-
-
-            VPJ5SPA19S - CANNOT TRANSFER CLOSED ACCOUNT
-
-
-            VPJ5SPA20S - CANNOT TRANSFER CHARGE-OFF ACCOUNT
-
-
-            VPJ5SPA21S - CANNOT TRANSFER NEW ACCOUNT
-
-
-            VPJ5SPA22S - CANNOT TRANSFER CONVERSION ACCOUNT
-
-
-            VPJ5SPA23S - CANNOT TRANSFER COMPANY ACCOUNTS
-
-
-            VPJ5SPA24S - CANNOT TRANSFER HCS ACCOUNT
-
-
-            VPJ5SPA25S - OLD ACCOUNT LOGO RECORD NOT FOUND
-
-
-            VPJ5SPA26S - OLD ACCOUNT LOGO RECORD INCOMPLETE
-
-
-            VPJ5SPA27S - CANNOT TRANSFER, PLAN TRANSFER IN PROGRESS
-
-
-            VPJ5SPA28S - CANNOT TRANSFER DELINQUENCY OUT OF BALANCE ACCOUNT
-
-
-            VPJ5SPA29S - CANNOT TRANSFER, FRAUD TXN TRANSFER IS PENDING
-
-
-            VPJ5SPA30S - TRANSFER ALREADY IN PROGRESS
-
-
-            VPJ5SPA31S - DUAL FROM ACCOUNT RECORD NOT ON FILE
-
-
-            VPJ5SPA32S - DUAL FROM ACCOUNT RECORD - ADD PENDING
-
-
-            VPJ5SPA33S - CANNOT TRANSFER PURGED FROM ACCOUNT - DUAL ORG
-
-
-            VPJ5SPA34S - CANNOT TRANSFER CLOSED FROM ACCOUNT - DUAL ORG
-
-
-            VPJ5SPA35S - CANNOT TRANSFER CHARGE-OFF FROM ACCOUNT - DUAL ORG
-
-
-            VPJ5SPA36S - FROM ACCOUNT ALREADY TRANSFERRED - DUAL ORG
-
-
-            VPJ5SPA37S - CANNOT TRANSFER NEW FROM ACCOUNT - DUAL ORG
-
-
-            VPJ5SPA38S - CANNOT TRANSFER CONVERSION FROM ACCOUNT - DUAL ORG
-
-
-            VPJ5SPA39S - CANNOT TRANSFER COMPANY FROM ACCOUNTS - DUAL ORG
-
-
-            VPJ5SPA40S - OLD LOGO AND NEW LOGO MUST BE DIFFERENT
-
-
-            VPJ5SPA41S - OLD LOGO AND NEW LOGO MUST USE THE SAME SCHEME VISA OR MASTERCARD
-
-
-            VPJ5SPA42S - OLD LOGO AND NEW LOGO MUST BE THE SAME EITHER OPEN ITEM OR
-            NOT
-
-
-            VPJ5SPA43S - OLD LOGO AND NEW LOGO MUST HAVE SAME DUAL CURRENCY VALUE
-
-
-            VPJ5SPA44S - OLD LOGO AND NEW LOGO MUST HAVE SAME BANK AUTH FLAG
-
-
-            VPJ5SPA45S - OLD LOGO AND NEW LOGO MUST EITHER ALLOW OR NOT ACH PROCESSING
-
-
-            VPJ5SPA46S - OLD LOGO AND NEW LOGO TYPE MUST BE BANKCARD
-
-
-            VPJ5SPA47S - LOGO QUARTERLY AFFILIATE CANNOT BE COMPANY CARD
-
-
-            VPJ5SPA48S - TRANSFER TO ACCOUNT NUMBER INVALID
-
-
-            VPJ5SPA49S - TRANSFER TO ACCT MUST BE DIFFERENT FROM THE TRANSFER FROM
-            ACCT
-
-
-            VPJ5SPA50S - NEW ACCOUNT MUST HAVE ZERO BALANCE
-
-
-            VPJ5SPA51S - NEW ACCOUNT LOGO RECORD NOT FOUND
-
-
-            VPJ5SPA52S - NEW ACCOUNT LOGO RECORD INCOMPLETE
-
-
-            VPJ5SPA53S - OLD AND NEW ACCOUNT MUST BE BANKCARD
-
-
-            VPJ5SPA54S - TRANSFER TO A LOGO WITH DIFFERENT CARD ASSOCIATIONS NOT ALLOWED
-
-
-            VPJ5SPA55S - ACCT CREDIT LIMIT GREATER THAN XFR TO LOGO CREDIT LIMIT CEILING
-
-
-            VPJ5SPA56S - TRANSFER TO A NON-ACH BILLING LOGO NOT ALLOWED
-
-
-            VPJ5SPA57S - COBRANDED FLAG ARE NOT SAME, TRANSFER NOT ALLOWED
-
-
-            VPJ5SPA58S - CANNOT TRANSFER ACCOUNT WITH PENDING CARD TECH CHANGE
-
-
-            VPJ5SPA59S - THIRD PARTY CARD GENERATE ISSUE
-
-
-            VPJ5SPA62S - INVALID NEW ACCOUNT STATUS - PURGED
-
-
-            VPJ5SPA63S - INVALID NEW ACCOUNT STATUS - CLOSED
-
-
-            VPJ5SPA64S - INVALID NEW ACCOUNT STATUS - CHARGE-OFF
-
-
-            VPJ5SPA65S - INVALID NEW ACCOUNT STATUS - CONVERSION ACCT
-
-
-            VPJ5SPA66S - INVALID NEW ACCOUNT STATUS - COMPANY ACCOUNTS
-
-
-            VPJ5SPA67S - INVALID NEW ACCOUNT STATUS - HCS ACCOUNT
-
-
-            VPJ5SPA68S - TRANSFER TO ACCOUNT ALREADY TRANSFERRED
-
-
-            VPJ5SPA69S - DELINQUENCY OUT OF BALANCE FOR NEW ACCOUNT
-
-
-            VPJ5SPAZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-
-
-            VPLVO2482S - NON-NUMERIC INPUT FIELD XFR AUTH DAYS'
           content:
             application/json:
               schema:
@@ -2204,6 +1454,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferPromotionalProductResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Transfer Promotional Product Upgrade
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2247,140 +1499,34 @@ paths:
               $ref: '#/components/schemas/SkipPaymentUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: 'VPL5SSK01E - ACCOUNT SKIP PMT FLAG MUST BE Z OR X
-
-
-            VPL5SSK02E - ACCOUNT CYCLE DUE MUST BE 1, LOGO SKIP PMT MUST BE ACTIVE
-
-
-            VPL5SSK02S - SERVICE INPUT TO S/K SERVICE IS AN INCORRECT LENGTH
-
-
-            VPL5SSK03E - ACCOUNT STATUS MUST BE ACTIVE
-
-
-            VPL5SSK04E - ACCOUNT NOT ELIGIBLE - BLOCK CODE EXCLUDED
-
-
-            VPL5SSK05E - ACCOUNT NOT ELIGIBLE - PENDING PAYMENTS
-
-
-            VPL5SSK06E - INVALID ACCOUNT/PLAN/REF NBR COMBINATION
-
-
-            VPL5SSK07E - ACCT CYCLE DUE MUST BE 0 OR 1, LOGO SKIP PMT MUST BE ACTIVE
-
-
-            VPL5SSK08E - NEXT SKIP INELIGIBLE - DD NOM PAYMENT IN EFFECT
-
-
-            VPL5SSK09E - POSTING INDICATOR SHOULD BE 1 OR 2
-
-
-            VPL5SSK10E - ACCT LEVEL SKIP PMT ACTIVE
-
-
-            VPL5SSK11E - SETTLEMENT QUOTE CRITERIA NOT MET
-
-
-            VPL5SSK12E - CYCLE DUE MUST BE EQUAL TO 1 OR PLAN DUE AMT MUST BE > 0
-
-
-            VPL5SSK13E - YTD PLAN SKIP PAYMENT LIMIT REACHED
-
-
-            VPL5SSK14E - LTD PLAN SKIP PAYMENT LIMIT REACHED
-
-
-            VPL5SSK15E - CRITERIA FOR ELAPSED MONTH NOT MET
-
-
-            VPL5SSK16E - CURRENT BALANCE CRITERIA NOT MET
-
-
-            VPL5SSK17E - MINIMUM MONTHS ON FILE CRITERIA NOT MET
-
-
-            VPL5SSK18E - REMAINING TERM CRITERIA NOT MET
-
-
-            VPL5SSK19E - VALID CREDIT PLAN NBR IS REQUIRED, WHEN SKIP PMT FLAG IS
-            2
-
-
-            VPL5SSK20E - VALID REFERENCE NBR IS REQUIRED, WHEN SKIP PMT FLAG IS 2
-
-
-            VPL5SSK21S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
-
-
-            VPL5SSK22E - FOREIGN USE INDICATOR 2 IS INVALID FOR PLAN SKIP
-
-
-            VPL5SSK23E - SKIP PAYMENT FLAG SHOULD BE 0 OR 1 OR 2
-
-
-            VPL5SSK25S - INPUT CARD/ACCT NUMBER IS NOT NUMERIC
-
-
-            VPL5SSK26S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
-
-
-            VPL5SSK27S - ACCOUNT NOT FOUND ON FILE
-
-
-            VPL5SSK28E - INVALID LOCAL/FOREIGN INDICATOR SPECIFIED
-
-
-            VPL5SSK29E - CREDIT PLAN IS NOT ACTIVE OR NOT FOUND
-
-
-            VPL5SSK30S - ORGANIZATION NOT DETERMINED
-
-
-            VPL5SSK33S - ORG RECORD NOT ON FILE
-
-
-            VPL5SSK34S - LOGO RECORD NOT ON FILE
-
-
-            VPL5SSK35S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-
-
-            VPL5SSK36E - FOREIGN USE IND IS INVALID, ACCOUNT IS NOT A DUAL ACCOUNT'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SkipPaymentUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Skip Payment Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2420,13 +1566,15 @@ paths:
               $ref: '#/components/schemas/SettlementQuoteRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5SAQ02S - ORGANIZATION NOT DETERMINED
 
 
@@ -2505,28 +1653,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SettlementQuoteResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Level Settlement Quote Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2562,47 +1702,22 @@ paths:
               $ref: '#/components/schemas/ChargeFeeTableOverrideUpdRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '422':
-          description: "VPL5S0029S \u2013 ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
-            \ BETWEEN 000 AND 998\n\nVPL5SSU01E \u2013 INVALID DUAL ACCT INDICATOR\n\
-            \nVPL5SSU02E \u2013 INPUT ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES\n\
-            \nVPL5SSU03S \u2013 INVALID FOREIGN FLAG\n\nVPL5SSU04E \u2013 SVC FEE\
-            \ TABLE MUST BE NUMERIC AND 001 THRU 998\n\nVPL5SSU05E \u2013 SVC START\
-            \ DATE IS NOT A VALID DATE\n\nVPL5SSU06E \u2013 SVC START DATE IS NOT\
-            \ NUMERIC\n\nVPL5S0006S \u2013 REQUESTED ORG NUMBER IS NOT FOUND\n\nVPL5SSU07E\
-            \ \u2013 SVC EXPIRE DATE IS NOT A VALID DATE\n\nVPL5SSU07S \u2013 ORG\
-            \ RECORD NOT FOUND\n\nVPL5SSU08E \u2013 SVC EXPIRE DATE IS NOT NUMERIC\n\
-            \nVPL5SSU09E \u2013 SVC EXPIRE DATE MUST BE GREATER THAN SVC START DATE\n\
-            \nVPL5SSU10E \u2013 NOT A FOREIGN ACCOUNT\n\nVPL5SSU10S \u2013 INVALID\
-            \ ORG\n\nVPL5SSU12S \u2013 DUAL CURRENCY ORG VALID VALUES ARE 001 THRU\
-            \ 998\n\nVPL5SSU13E \u2013 MISMATCHED GENERATED FOREIGN ORG\n\nVPL5SSU14S\
-            \ \u2013 ORG RECORD NOT FOUND FOR A DUAL CURRENCY ORG\n\nVPL5SSU15S \u2013\
-            \ FOREIGN ACCOUNT DUAL CURRENCY MISMATCH\n\nVPL5SSU16S \u2013 ORG RECORD\
-            \ NOT FOUND\n\nVPL5SSU17E \u2013 ACCOUNT NOT ON FILE\n\nVPL5SSU18E \u2013\
-            \ ACCOUNT NOT ON FILE\n\nVPL5SSU19E \u2013 SERVICE FEE TABLE OVERRIDE\
-            \ NOT ALLOWED FOR THIS LOGO\n\nVPL5SSU20S \u2013 ACCT NOT ON FILE"
           content:
             application/json:
               schema:
@@ -2613,6 +1728,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChargeFeeTableOverrideUpdResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Service Charge/Fee Table Override Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2652,25 +1769,15 @@ paths:
               $ref: '#/components/schemas/BillingCycleUpdateRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '404':
-          description: Not Found
-        '422':
+        '500':
           description: "VPL5SBY06E-ORG NUMBR MUST BE NUMERIC AND VALID VALUES ARE\
             \ 001-998 \n\nVPL5SBY07E-ORG NUMBER REQUIRED WHEN ACCOUNT NUMBER NOT PROVIDED\
             \ \n\nVPL5SBY08E-ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES \n\nVPL5SBY09E-ENTER\
@@ -2690,16 +1797,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BillingCycleUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Billing Cycle Update
       x-group-name: Relationship
       x-child-product-name: Accounts
@@ -2737,29 +1848,15 @@ paths:
               $ref: '#/components/schemas/AccountRelationshipUpdateRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: "VPL5SRA51S-ACCOUNT LOGO AND RELATIONSHIP LOGO ARE NOT SAME\
             \ \n\nVPL5SRA37S-ACCOUNT NUMBER MUST REQUIRED \n\nVPL5SRA36S-ACCOUNT ORG\
             \ MUST BE NUMERIC AND LESS THAN 999 \n\nVPL5SRA55S-CANNOT ADD A NON-CORPORATE\
@@ -2804,12 +1901,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountRelationshipUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Relationship Number Update
       x-group-name: Relationship
       x-child-product-name: Accounts
@@ -2845,15 +1950,15 @@ paths:
               $ref: '#/components/schemas/UpdateQualificationRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '422':
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SAAI6E - GQ FIELD MUST BE SPACE OR A-Z
 
 
@@ -2928,20 +2033,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateQualificationResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Qualification Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -2981,119 +2080,34 @@ paths:
               $ref: '#/components/schemas/ProductTransferRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '422':
-          description: "VPL5SFR02S-SERVICE INPUT TO FR SERVICE IS AN INCORRECT \n\n\
-            VPL5SFR05S-INVALID ACCOUNT \n\nVPL5SFR06S-INVALID ORG \n\nVPL5SFR07S-INVALID\
-            \ FUNCTION \n\nVPL5SFR08S-ORG IS NOT PRESENT OR ADD PENDING STATUS \n\n\
-            VPL5SFR09S-ACCOUNT TRANSFER PROHIBITED \n\nVPL5SFR0AS-COMB INST PRODUCT\
-            \ CAN NOT BE LINKED TO SELECTED LOGO \n\nVPL5SFR0BS-LOGO DOES NOT ALLOW\
-            \ ACCOUNT NUMBER GENERATION \n\nVPL5SFR0CS-MAXIMUM NUMBER OF 20 ATTEMPTS\
-            \ MADE ON BASE NUMBER \n\nVPL5SFR0DS-GENERATED ACCOUNT NUMBER > BASE ENDING\
-            \ NUMBER \n\nVPL5SFR0ES-SEED TABLE ERROR-EMBOSSER TRANSFER INCOMPLETE-NBR\
-            \ XFERED \n\nVPL5SFR0FS-INVALID CUSTOMER NUMBER \n\nVPL5SFR0KS-CMS IS\
-            \ NO-PROCESSING STATE. RE-TRY REQUEST IN SOME TIME \n\nVPL5SFR0LS-MULTI\
-            \ SCM XFR IS INACTIVE CROSS SCHEME TRANSFER NOT ALLOWED \n\nVPL5SFR0MS-CARD\
-            \ TYPE DOES NOT ALLOW ACROSS SCHEME TRANSFER \n\nVPL5SFR10S-INPUT ACCOUNT\
-            \ NOT PRESENT OR ADD PENDING STATUS \n\nVPL5SFR11S-CANNOT TRANSFER/COPY\
-            \ PURGED ACCOUNT \n\nVPL5SFR12S-CANNOT TRANSFER/COPY CLOSED \n\nVPL5SFR13S-CANNOT\
-            \ TRANSFER/COPY CHARGE-OFF ACCOUNT \n\nVPL5SFR14S-CANNOT TRANSFER/COPY\
-            \ NEW ACCOUNT \n\nVPL5SFR15S-CANNOT TRANSFER/COPY CONVERSION ACCOUNT \n\
-            \nVPL5SFR16S-CANNOT TRANSFER/COPY COMPANY ACCOUNTS \n\nVPL5SFR17S-PROD\
-            \ XFR NOT AVAILABLE IN AFTER HOURS FOR HCS CARDS \n\nVPL5SFR19S-ACCT XFR\
-            \ FOR THIRD PARTY LOGO NOT ALLOWED IN AFT HRS \n\nVPL5SFR21S-LOGO IS NOT\
-            \ PRESENT/ADD PEDNING STATUS \n\nVPL5SFR22S-PRODUCT TRANSFER NOT ALLOWED\
-            \ FOR BLOCKED ACCOUNT \n\nVPL5SFR23S-ACCOUNT ALREADY TRANSFERRED , ONLY\
-            \ REVERSAL ALLOWED \n\nVPL5SFR24S-CANNOT TRANSFER DELINQUENCY OUT OF BALANCE\
-            \ ACCOUNT \n\nVPL5SFR26S-ACCOUNT FOR DUAL ORG IS NOT PRESENT OR ADD PENDING\
-            \ STATUS \n\nVPL5SFR27S-CANNOT TRANSFER/COPY PURGED ACCOUNT - DUAL ORG\
-            \ \n\nVPL5SFR28S-CANNOT TRANSFER/COPY CLOSED ACCOUNT - DUAL ORG \n\nVPL5SFR29S-CANNOT\
-            \ TRANSFER/COPY CHARGE-OFF ACCOUNT - DUAL ORG \n\nVPL5SFR30S-CANNOT TRANSFER/COPY\
-            \ NEW ACCOUNT - DUAL ORG \n\nVPL5SFR31S-ACCOUNT ALREADY TRANSFERRED/COPIED\
-            \ - DUAL ORG \n\nVPL5SFR32S-CANNOT TRANSFER/COPY CONVERSION ACCOUNT -\
-            \ DUAL ORG \n\nVPL5SFR33S-REVERSAL CANNOT BE PROCESSED DURING END-OF-DAY\
-            \ \n\nVPL5SFR34S-TRANSFER AUTH DAYS MUST BE NUMERIC \n\nVPL5SFR35S-INVALID\
-            \ NEW ACCT \n\nVPL5SFR36S-INVALID NEW LOGO \n\nVPL5SFR37S-INVALID BILLING\
-            \ CYCLE \n\nVPL5SFR38S-INVALID BILLING CYCLE \n\nVPL5SFR39S-INVALID NEW\
-            \ CARD TECHNOLOGY \n\nVPL5SFR40S-SMART CARD NOT VALID WITH CARD SCHEME\
-            \ 2 \n\nVPL5SFR41S-XFR/COPY ACCOUNT MUST BE DIFFERENT FROM XFR/CPY FROM\
-            \ ACCT \n\nVPL5SFR43S-PCT ID IS NOT NEEDED SINCE THE FUNCTION IS NOT P\
-            \ \n\nVPL5SFR44S-PCT ID PROVIDED IS NOT DEFINED UNDER NEW LOGO \n\nVPL5SFR46S-NEW\
-            \ CREDIT LIMIT NOT ALLOWED FOR FUNCTION C OR R \n\nVPL5SFR47S-DEBIT CARD\
-            \ MUST TRANSFER TO ANOTHER DEBIT CARD LOGO \n\nVPL5SFR48S-PRODUCT TRANSFER\
-            \ MUST NOT CROSS ORGANIZATIONS \n\nVPL5SFR49S-PRODUCT TRANSFER MUST CROSS\
-            \ LOGOS \n\nVPL5SFR50S-PRODUCT XFR NEVER XFR TO DIFFERENT LOGO CARD TECH\
-            \ SCH2 \n\nVPL5SFR51S-CANNOT TRANSFER ACCOUNT WITH PENDING CARD TECH CHANGE\
-            \ \n\nVPL5SFR52S-TOO MANY EMBOSSERS FOR ACCOUNT''S NEW CARD TECHNOLOGY\
-            \ \n\nVPL5SFR53S-ACCOUNT TRANSFER NOT ALLOWED DUE TO PENDING CARD ACTION\
-            \ \n\nVPL5SFR54S-XFR/COPY TO ACCOUNT MUST NOT BE ON FILE FOR THIS ORG\
-            \ \n\nVPL5SFR55S-XFR TO ACCT NBR ALREADY ASSIGNED TO AN EMBOSSER FOR ORG\
-            \ \n\nVPL5SFR56S-XFR TO ACCT NBR ALREADY ASSIGNED TO A RELATION FOR ORG\
-            \ \n\nVPL5SFR57S-XFR/COPY TO ACCOUNT MUST NOT BE ON FILE FOR DUAL ORG\
-            \ \n\nVPL5SFR58S-XFR TO ACCT NBR ALREADY ASSIGNED TO AN EMBOSSER DUALORG\
-            \ \n\nVPL5SFR59S-XFR TO ACCT NBR ALREADY ASSIGNED TO A RELATION DUALORG\
-            \ \n\nVPL5SFR60S-CUSTOMER RECORD NOT ON FILE IN THIS ORG \n\nVPL5SFR61S-CUSTOMER\
-            \ RECORD MUST BE ACTIVE IN THIS ORIG \n\nVPL5SFR62S-CUSTOMER RECORD NOT\
-            \ ON FILE IN THE DUAL ORG \n\nVPL5SFR63S-CUSTOMER RECORD MUST BE ACTIVE\
-            \ IN THE DUAL ORG \n\nVPL5SFR64S-ORGANIZATION NOT DETERMINED \n\nVPL5SFR65S-DETERMINED\
-            \ ORGANIZATION NOT EQUAL TRANSFER/COPY FROM ORG \n\nVPL5SFR66S-DETERMINED\
-            \ LOGO NOT EQUAL XFR/COPY FROM LOGO BILLING ACCT \n\nVPL5SFR67S-XFR TO\
-            \ LOGO DOES NOT ALLOW SMART CARD - ACCT NOT XFRED \n\nVPL5SFR68S-NEW LOGO\
-            \ IS NOT PRESENT OR ADD PENDING STATUS \n\nVPL5SFR69S-TRANSFER/COPY TO\
-            \ AN OPEN ITEM LOGO NOT ALLOWED \n\nVPL5SFR70S-TRANSFER/COPY TO A NON-OPEN\
-            \ ITEM LOGO NOT ALLOWED \n\nVPL5SFR71S-TRANSFER/COPY TO A RETAIL LOGO\
-            \ NOT ALLOWED \n\nVPL5SFR72S-TRANSFER/COPY TO A BANKCARD LOGO NOT ALLOWED\
-            \ \n\nVPL5SFR73S-TRANSFER/COPY TO A DEBIT CARD LOGO NOT ALLOWED \n\nVPL5SFR74S-TRANSFER/COPY\
-            \ TO A REGULAR BANKCARD LOGO NOT ALLOWED \n\nVPL5SFR75S-XFR/CPY FROM NON\
-            \ DUAL TO DUAL IS NOT ALLOWED \n\nVPL5SFR76S-XFR/CPY FROM DUAL TO NON\
-            \ DUAL IS NOT ALLOWED \n\nVPL5SFR77S-XFR/CPY FROM NON PREPAID TO PREPAID\
-            \ IS NOT ALLOWED \n\nVPL5SFR78S-XFR/CPY FROM PREPAID TO NON PREPAID IS\
-            \ NOT ALLOWED \n\nVPL5SFR79S-XFR/CPY FROM PERSONAL TO NON PERSOANL IS\
-            \ NOT ALLOWED \n\nVPL5SFR80S-XFR/CPY FROM NON PERSONAL TO PERSONAL IS\
-            \ NOT ALLOWED \n\nVPL5SFR81S-XFR/CPY FROM DISPOSABLE TO RELOADABLE IS\
-            \ NOT ALLOWED \n\nVPL5SFR82S-XFR/CPY FROM RELOADABLE TO DISPOSLABLE IS\
-            \ NOT ALLOWED \n\nVPL5SFR83S-XFR OF AN AUTO RELAOD ACTIVE TO INACTIVE\
-            \ IS INVALID \n\nVPL5SFR84S-XFR OF A BANK AUTH ACTIVE TO INACTIVE IS INVALID\
-            \ \n\nVPL5SFR86S-XFR/CPY FROM PURCHASING CARD TO NON PURCHASING IS INVALID\
-            \ \n\nVPL5SFR87S-XFR/CPY FROM NON PURCHASING TO PURCHASING CARD IS INVALID\
-            \ \n\nVPL5SFR88S-XFR/CPY FROM CORPOORPORATE TO CORPORATE IS INVALID \n\
-            \nVPL5SFR89S-XFR/CPY FROM NON CORPORATE TO CORPORATE IS INVALID \n\nVPL5SFR91S-NEW\
-            \ ACCT CREDIT LIMIT IS > LOGO CREDIT LIMIT CEILING \n\nVPL5SFR92S-NEW\
-            \ ACCT CREDIT LIMIT IS < LOGO FLOOR LIMIT \n\nVPL5SFR93S-ACCOUNT CREDIT\
-            \ LIMIT IS > LOGO CREDIT LIMIT \n\nVPL5SFR94S-ACCOUNT DREDIT LIMIT IS\
-            \ < LOGO FLOOR LIMIT \n\nVPL5SFR95S-TRANSFER/COPY TO A NON-ACH BILLING\
-            \ LOGO NOT ALLOWED \n\nVPL5SFR97S-PRODUCT GRADUATION TERMINATED , LOGO\
-            \ NOT ELIGIBLE \n\nVPL5SFR99S-COBRANDED FLAG ARE NOT SAME, TRANSFER/COPY\
-            \ NOT ALLOW "
-          content:
-            application/json: {}
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductTransferResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Product Transfer Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3127,7 +2141,15 @@ paths:
               $ref: '#/components/schemas/PrepaidOverlimitUpdateRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SOL01E - INVALID ORG
 
 
@@ -3151,34 +2173,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PrepaidOverlimitUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Prepaid Over Limit Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3216,7 +2224,15 @@ paths:
               $ref: '#/components/schemas/PpdLoadLimitsUpdateRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SPL06S - INVALID ORG
 
 
@@ -3273,34 +2289,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PpdLoadLimitsUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Prepaid Load Limits Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3338,13 +2340,15 @@ paths:
               $ref: '#/components/schemas/PricingControlTableRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5SPC03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
 
@@ -3496,28 +2500,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PricingControlTableResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Pricing Control Table Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3557,52 +2553,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: 'VPL5SUL01E - NON-NUMERIC INPUT FIELD ORG
-
-
-            VPL5SUL01S - ORG RECORD NOT FOUND
-
-
-            VPL5SUL02E - LEVEL SHOULD NOT BE SPACES
-
-
-            VPL5SUL02S - RECORD IS ADD PENDING
-
-
-            VPL5SUL03E - DAILY LOAD LIMIT SHOULD BE LESS THAN MONTHLY LOAD LIMIT
-
-
-            VPL5SUL04E - NON-NUMERIC INPUT FIELD DLY_AMT_LOAD
-
-
-            VPL5SUL05E - MONTHLY LOAD LIMIT SHOULD BE GREATER THAN DAILY LOAD LIMIT'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateOrganizationRuleLevelsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Organization Rule Levels Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3639,42 +2611,22 @@ paths:
               $ref: '#/components/schemas/AddOrganizationRulesLevelsRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '422':
-          description: "VPL5SAL01E - NON-NUMERIC INPUT FIELD ORG \n\nVPL5SAL01S -\
-            \ ORG RECORD NOT FOUND \n\nVPL5SAL02E - LEVEL SHOULD NOT BE SPACES \n\n\
-            VPL5SAL03E - DAILY LOAD LIMIT SHOULD BE LESS THAN MONTHLY LOAD LIMIT \n\
-            \nVPL5SAL04E - NON-NUMERIC INPUT FIELD DLY_AMT_LOAD \n\nVPL5SAL05E - MONTHLY\
-            \ LOAD LIMIT SHOULD BE GREATER THAN DAILY LOAD LIMIT \n\nVPL5SAL06E -\
-            \ NON-NUMERIC INPUT FIELD MONTHLY_AMT_LOAD \n\nVPL5SAL07E - DAILY CASH\
-            \ LIMIT SHOULD BE LESS THAN MONTHLY CASH LIMIT \n\nVPL5SAL08E - NON-NUMERIC\
-            \ INPUT FIELD DLY_AMT_CASH \n\nVPL5SAL09E - MONTHLY CASH LIMIT SHOULD\
-            \ BE GREATER THAN DAILY CASH LIMIT \n\nVPL5SAL10E - NON-NUMERIC INPUT\
-            \ FIELD MONTHLY_AMT_CASH \n\nVPL5SAL11E - LTD BALANCE SHOULD BE GREATER\
-            \ THAN MONTHLY AMOUNT LOAD \n\nVPL5SAL12E - NON-NUMERIC INPUT FIELD LTD_BAL\
-            \ \n\nVPL5SAL13E - INVALID ORGANIZATION NUMBER \n\nVPL5SAL14E - VALID\
-            \ VALUES ARE 1 OR 2 \n\nVPL5SAL15E - RECORD ALREADY EXISTS "
           content:
             application/json:
               schema:
@@ -3685,6 +2637,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddOrganizationRulesLevelsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Organization Rule Levels Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3722,7 +2676,15 @@ paths:
               $ref: '#/components/schemas/ModifyInstallmentTermRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5S0005E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES
 
 
@@ -3779,34 +2741,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ModifyInstallmentTermResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Installment Terms Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3840,92 +2788,22 @@ paths:
               $ref: '#/components/schemas/AccountFeeWaiverMaintenanceRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '422':
-          description: "VPE5SWF03E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
-            \ VALUES ARE \n\nVPE5SWF04E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES\
-            \ \n\nVPE5SWF05E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE,\
-            \ 0 \n\nVPE5SWF06E - INVALID REQUEST TYPE VALID VALUES ARE 0, 1 OR 2 \n\
-            \nVPE5SWF11S - ACCOUNT IS NOT PREPAID AND UPDATE REQUEST IS FOR PREPAID\
-            \ \n\nVPE5SWF12S - LOGO RECORD NOT FOUND \n\nVPE5SWF13I - NO FIELDS UPDATED;\
-            \ ALL HAVE SAME VALUES \n\nVPE5SWF14E - INVALID WAIVE INTR CHG INDICATOR\
-            \ VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF15E - INVALID WAIVE LATE CHG INDICATOR\
-            \ VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF16E - INVALID WAIVE LATE NOTC\
-            \ INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF17E - INVALID WAIVE\
-            \ FEE CHG INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF18E - INVALID\
-            \ WAIVE LTR CHG INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF19E -\
-            \ INVALID WAIVE OVLM INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF20E\
-            \ - INVALID WAIVE OVLM NOTC INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\n\
-            VPE5SWF21E - INVALID WAIVE NSF FEE INDICATOR VALID VALUES ARE 0,1,2,3,4,5,6\
-            \ \n\nVPE5SWF22E - INVALID WAIVE SVC CHG INDICATOR VALID VALUES ARE 0,1,2,3,4,5,6\
-            \ \n\nVPE5SWF23E - INVALID WAIVE CASH ADV FEE INDICATOR VALIDVALUE ARE\
-            \ 0,1,2,3,4,5, \n\nVPE5SWF24E - INVALID WAIVE USER FEE 1 INDICATOR VALID\
-            \ VALUES ARE 0,1,4,5,6 \n\nVPE5SWF25E - INVALID WAIVE USER FEE 2 INDICATOR\
-            \ VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF26E - INVALID WAIVE USER FEE 3\
-            \ INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF27E - INVALID WAIVE\
-            \ USER FEE 4 INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF28E - INVALID\
-            \ WAIVE USER FEE 5 INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\nVPE5SWF29E\
-            \ - INVALID WAIVE USER FEE 6 INDICATOR VALID VALUES ARE 0,1,4,5,6 \n\n\
-            VPE5SWF30E - INVALID WAIVE CARD FEE INDICATOR VALID VALUES ARE 0,1,4,5,6\
-            \ \n\nVPE5SWF31E - INVALID WAIVE REFUND INDICATOR VALID VALUES ARE 0 OR\
-            \ 1 \n\nVPE5SWF32E - INVALID WAIVE REFUND INDICATOR VALID VALUES ARE 0\
-            \ OR 1 \n\nVPE5SWF33E - INVALID WAIVE STMT FEE INDICATOR VALID VALUES\
-            \ ARE 0 OR 1 \n\nVPE5SWF35E - INVAILD CYCLE SPEND FEE INDICATOR - VALID\
-            \ VALUES ARE 0 OR 1 \n\nVPE5SWF34E - INVALID WAIVE TXN FEE INDICATOR VALID\
-            \ VALUES ARE 0 OR 1 \n\nVPE5SWF36E - VALID VALUES ARE 00,01 TO 99 \n\n\
-            VPE5SWF37E - VALID VALUES ARE W, R AND SPACES \n\nVPE5SWF38E - FOREX FEE\
-            \ VALUE MUST BE 98 WHEN FOREX FEE WAIVE DATES ENTRD \n\nVPE5SWF39E - INVALID\
-            \ WAIVE SUPP MEM FEE INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF40E\
-            \ - INVALID WAIVE TAX CALC INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF41E\
-            \ - FOREX FEE WAIVE START DATE MUST BE A VALID DATE \n\nVPE5SWF42E - FOREX\
-            \ FEE WAIVE START DATE IS NOT NUMERIC \n\nVPE5SWF43E - FOREX FEE WAIVE\
-            \ EXPIR DATE MUST BE A VALID DATE \n\nVPE5SWF44E - FOREX FEE WAIVE EXPIR\
-            \ DATE IS NOT NUMERIC \n\nVPE5SWF45E - FOREX FEE WAIVE DATES MUST BE ENTRD\
-            \ WHEN FOREX FEE VALUE IS 98 \n\nVPE5SWF46E - FOREX FEE WAIVE START AND\
-            \ EXPIR DATE MUST BE >OR= TO CURRENT DATE \n\nVPE5SWF47E - FOREX FEE WAIVE\
-            \ EXPIR DATE MUST BE GREATER THAN START DATE \n\nVPE5SWF54E - VALID VALUES\
-            \ ARE 0 OR 1 FOR CROS WLT WAIVE XFR FEE \n\nVPE5SWF55E - VALID VALUES\
-            \ ARE 0 OR 1 FOR CROS WLT WAIVE XFR FEE \n\nVPE5SWF56S - WALLET TABLE\
-            \ RECORD NOT FOUND \n\nVPE5SWF57E - INVALID WAIVE INTR CHG INDICATOR VALID\
-            \ VALUES ARE 0 OR 1 \n\nVPE5SWF58E - INVALID WAIVE LATE CHG IND VALID\
-            \ VALUES ARE 0 OR 1 \n\nVPE5SWF59E - INVALID WAIVE LATE NOTC IND VALID\
-            \ VALUES ARE 0 OR 1 \n\nVPE5SWF60E - INVALID MEMBERSHIP FEE CHG IND VALID\
-            \ VALUES ARE 0 OR 1 OR 2 OR 3 \n\nVPE5SWF61E - INVALID WAIVE OVLM FEE\
-            \ IND VALID VALUES ARE 0 OR 1 \n\nVPE5SWF62E - INVALID WAIVE OVLM NOTC\
-            \ IND VALID VALUES ARE 0 OR 1 \n\nVPE5SWF63E - INVALID WAIVE SVC CHG IND\
-            \ VALID VALUES ARE 0 OR 1 OR 2 OR 3 \n\nVPE5SWF64E - INVALID WAIVE CASH\
-            \ ADV FEE IND VALID VALUES ARE 0 OR 1 OR 2 OR 3 \n\nVPE5SWF65E - INVALID\
-            \ WAIVE NSF FEE INDICATOR VALID VALUES ARE 0,1,2,3 \n\nVPE5SWF66E - INVALID\
-            \ WAIVE CARD FEE INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF67E - INVALID\
-            \ WAIVE LTR CHG INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF69E - INVALID\
-            \ WAIVE TAX CALC INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF70E - INVALID\
-            \ WAIVE USER FEE 1 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF71E -\
-            \ INVALID WAIVE USER FEE 2 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF72E\
-            \ - INVALID WAIVE USER FEE 3 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF73E\
-            \ - INVALID WAIVE USER FEE 4 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF74E\
-            \ - INVALID WAIVE USER FEE 5 INDICATOR VALID VALUES ARE 0 OR 1 \n\nVPE5SWF75E\
-            \ - INVALID WAIVE USER FEE 6 INDICATOR VALID VALUES ARE 0 OR 1 "
           content:
             application/json:
               schema:
@@ -3936,6 +2814,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountFeeWaiverMaintenanceResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Fee Waiver Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -3975,29 +2855,15 @@ paths:
               $ref: '#/components/schemas/EnrollmentUpdateRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: "VPE8SUA01E - ORGANIZATION MUST BE NUMERIC, VALID VALUES ARE\
             \ 001 - 998 \n\nVPE8SUA02S - ACCOUNT NUMBER MUST BE NUMERIC AND GREATER\
             \ THAN ZEROS \n\nVPE8SUA03S - OFFER ID MUST BE GREATER THAN SPACES \n\n\
@@ -4029,12 +2895,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EnrollmentUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Offer Enrollment Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4069,23 +2943,15 @@ paths:
               $ref: '#/components/schemas/OfferEnrollmentAddRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '422':
+        '500':
           description: "VPLBSAE01E - ORG MUST BE NUMERIC AND VALID VALUES ARE 001\
             \ TO 998 \n\nVPLBSAE02E - INPUT ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS\
             \ SPACES \n\nVPLBSAE03E - INVALID OFFER ID \n\nVPLBSAE04E - PRIORITY MUST\
@@ -4111,18 +2977,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OfferEnrollmentAddResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Offer Enrollment Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4158,263 +3026,34 @@ paths:
               $ref: '#/components/schemas/DirectDebitUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '422':
-          description: 'VPL5SDU02E - ACCOUNT OR CARD NUMBER REQUIRED
-
-
-            VPL5SDU03E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0
-            OR 1
-
-
-            VPL5SDU04S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
-
-
-            VPL5SDU06S - LOGO NOT SET UP FOR ACH PROCESSING
-
-
-            VPL5SDU07S - ORGANIZATION NUMBER NOT FOUND
-
-
-            VPL5SDU08S - FOREIGN ORGANIZATION NUMBER NOT FOUND
-
-
-            VPL5SDU09S - ACCOUNT NUMBER NOT FOUND
-
-
-            VPL5SDU10S - LOGO NUMBER NOT FOUND
-
-
-            VPL5SDU11E - DD PAYMENT REV COUNTER MUST BE NUMERIC AND VALID VALUES ARE
-            0-9
-
-
-            VPL5SDU12E - DD PMT REV COUNTER MUST BE LESS THEN THE PMT REV LIMIT ON
-            LOGO
-
-
-            VPL5SDU13E - DD INTERIM PAYMENTS MUST BE NUMERIC AND VALID VALUES ARE
-            0 AND 1
-
-
-            VPL5SDU14E - PAYMENT REMIT METHOD MUST BE NUMERIC AND VALID VALUES ARE
-            0-2
-
-
-            VPL5SDU15E - PAYMENT REMITTANCE METHOD SHOULD BE 0 WHEN BILLING LEVEL
-            0
-
-
-            VPL5SDU16E - DD DAILY FREQUENCY MUST BE NUMERIC AND VALID VALUES ARE 0-3
-
-
-            VPL5SDU17E - DD DAILY FREQ MUST BE ZERO WHEN LOGO DOES NOT ALLOW DAILY
-            FREQ
-
-
-            VPL5SDU18E - DD CREDIT BALANCE MUST BE NUMERIC AND VALID VALUES ARE 0
-            AND 1
-
-
-            VPL5SDU19E - DD R/T BANKID MUST BE NUMERIC > 0, WHEN DD PAYMENT 1, 2,
-            6 OR 7
-
-
-            VPL5SDU20E - DD PAYMENT EXPIRE DATE MUST BE ZERO OR HAVE VALID DATE FORMAT
-
-
-            VPL5SDU21E - DD PAYMENT EXPIRE DATE MUST BE ZERO OR >= NEXT PROCESSING
-            DATE
-
-
-            VPL5SDU22E - DD PAYMENT START DATE MUST BE ZERO OR HAVE VALID DATE FORMAT
-
-
-            VPL5SDU23E - DD PAYMENT START DATE MUST BE ZERO OR > NEXT PROCESSING DATE
-
-
-            VPL5SDU24E - DD PAYMENT START DATE MUST BE < DD PAYMENT EXPIRE DATE
-
-
-            VPL5SDU25E - DD ACCOUNT TYPE VALID VALUES ARE D OR S
-
-
-            VPL5SDU26E - DD ACCOUNT NUMBER MUST BE GREATER THAN ZERO
-
-
-            VPL5SDU27E - DD REQUEST DAY MUST BE NUMERIC AND VALID VALUES ARE 00-31
-
-
-            VPL5SDU28E - DD REQUEST DAY MUST BE ZERO WHEN LOGO DD PAYMENT FLAG IS
-            S OR D
-
-
-            VPL5SDU29E - DD REQUEST DAY MUST BE 01-31 WHEN LOGO DD PAYMENT FLAG IS
-            P OR R
-
-
-            VPL5SDU30E - DD PAYMENT MUST BE NUMERIC AND VALID VALUES ARE 0, 1, 2 OR
-            7
-
-
-            VPL5SDU32E - DD PAYMENT - DD PROCESSING NOT ALLOWED FOR THIS ACCOUNT
-
-
-            VPL5SDU33E - LOGO BILLING ACH FLAG IS Y, DD PAYMENT ALLOWED VALUES ARE
-            0,1,2,7
-
-
-            VPL5SDU34E - WHEN ACCOUNT BILLING LEVEL 0, DD PAYMENT MUST BE 0
-
-
-            VPL5SDU35E - DD PAY EXP DATE MUST BE 0 OR > NEXT PROC DATE TO REINSTATE
-            DD
-
-
-            VPL5SDU36E - DD PAY REV COUNTER MUST BE < LOGO PAY REV LIMIT TO REINSTATE
-            DD
-
-
-            VPL5SDU37E - DD NOM AMT PCT CODE MUST BE NUMERIC AND VALID VALUES ARE
-            0-3 OR 9
-
-
-            VPL5SDU38E - DD NOM AMT MUST BE NUMERIC
-
-
-            VPL5SDU39E - DD NOM PCT MUST BE NUMERIC
-
-
-            VPL5SDU40E - DD NOM AMT AND DD NOM PCT MUST BE = 0 WHEN DD NOM TYPE 0
-            OR 3
-
-
-            VPL5SDU41E - DD NOM AMT MUST BE > 0 WHEN DD NOM TYPE 1
-
-
-            VPL5SDU42E - DD NOM PCT MUST BE = 0 WHEN DD NOM TYPE 1
-
-
-            VPL5SDU43E - DD NOM PCT MUST BE > 0 WHEN DD NOM TYPE 2 OR 9
-
-
-            VPL5SDU44E - DD NOM AMT MUST BE = 0 WHEN DD NOM TYPE 2 OR 9
-
-
-            VPL5SDU45E - DD NOM PCT MUST BE < 100% AND NOT 0 WHEN DD NOM TYPE 2 OR
-            9
-
-
-            VPL5SDU46E - DD PYMT CHANGE DATE MUST BE ZERO OR HAVE VALID DATE FORMAT
-
-
-            VPL5SDU47E - DD PYMT CHANGE DATE MUST BE >= NEXT PROCESSING DATE
-
-
-            VPL5SDU48E - DD CHANGE DATE MUST BE 0 OR >= DD START DATE AND <= DD EXP
-            DATE
-
-
-            VPL5SDU49E - DD NOM TYPE MUST BE 1,2,3, TO CHNG DD PAYMENT TO 2 OR 7
-
-
-            VPL5SDU50E - DD ACCOUNT NUMBER NOT VALID
-
-
-            VPL5SDU51E - DD PROCESSING NOT ALLOWED WITH SWEEP PROCESSING
-
-
-            VPL5SDU52E - DD REQUEST DAY NOT ALLOWED WHEN DD DAILY FREQ IS 1, 2 OR
-            3
-
-
-            VPL5SDU53E - DD PAYMENT MUST BE 2 WHEN DD DAILY FREQ IS 1, 2 OR 3
-
-
-            VPL5SDU54E - DD PYMT CHANGE DATE MUST BE ZERO WHEN DD DAILY FREQ IS 1,
-            2 OR 3
-
-
-            VPL5SDU55E - DD PAYMENT MUST BE ZERO WHEN CHANGING DD DAILY FREQ TO ZERO
-
-
-            VPL5SDU56W - WARNING:DD PAYMENT ACH START DATE DEFAULTED TO NEXT VALID
-            DATE
-
-
-            VPL5SDU57W - WARNING: DD PAYMENT CHANGE DATE DEFAULTED TO NEXT VALID DATE
-
-
-            VPL5SDU58W - WARNING: DATE PAYMENT ACH EXPIRE DEFAULTED TO NEXT VALID
-            DATE
-
-
-            VPL5SDU60E - LOGO NOT SETUP TO PROCESS ON DEMAND IBAN
-
-
-            VPL5SDU61E - DD ON DEMAND IBAN IS REQUIRED
-
-
-            VPL5SDU62E - INVALID DD IBAN - MOD97 VALIDATION CHECK FAILED
-
-
-            VPL5SDU63E - PROJECTED DD AMOUNT SHOULD BE NUMERIC
-
-
-            VPL5SDU64E - PROJECTED DD AMT SHOULD BE LESS THAN OR EQUAL TO CURRENT
-            BALANCE
-
-
-            VPL5SDU65E - PROJECTED DD AMT SHOULD BE GREATER THAN OR EQUAL TO TOTAL
-            AMT DUE
-
-
-            VPL5SDU66E - VALID VALUES ARE 0 AND 1
-
-
-            VPL5SDU67E - PROJECTED DD IS MAINTAINABLE ONLY IF ACH OCCURRED IN LAST
-            CYCLE
-
-
-            VPL5SDU90E - DD R/T BANKID DOES NOT CONFORM TO ACH STANDARD FORMAT
-
-
-            VPL5SDU91E - DD PAYMENT EQUAL 1, 2, 6 OR 7, DD R/T / BANK ID MUST BE >
-            0
-
-
-            VPL5SDUZ4S - REQUESTED ORG NUMBER IS NOT FOUND'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DirectDebitUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Direct Debit Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4450,29 +3089,15 @@ paths:
               $ref: '#/components/schemas/CreditBureauUpdateRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SCR01E - ORGANIZATION NUMBER MUST BE NUMERIC
 
 
@@ -4509,12 +3134,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreditBureauUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Credit Bureau Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4557,60 +3190,34 @@ paths:
               $ref: '#/components/schemas/BlockCodesWarningRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: "VPL5SAB36S - INVALID FUNCTION CODE - VALID VALUES ARE A TO\
-            \ H AND SPACE \n\nVPL5SAB41S - INVALID WARNING CODE 2, VALID VALUES ARE\
-            \ 0-4, SPACE \n\nVPL5SAB42S - INVALID WARNING CODE 3, VALID VALUES ARE\
-            \ 0-2, SPACE \n\nVPL5SAB43S - INVALID WARNING CODE 4, VALID VALUES ARE\
-            \ 0-7, SPACE \n\nVPL5SAB44S - INVALID WARNING CODE 5, VALID VALUES ARE\
-            \ 0-7, SPACE \n\nVPL5SAB45S - INVALID WARNING CODE 6, VALID VALUES ARE\
-            \ 0-6, SPACE \n\nVPL5SAB46S - INVALID WARNING CODE 7, VALID VALUES ARE\
-            \ 1-9, A, SPACE \n\nVPL5SAB47S - IF FC A, VALID BLOCK CODES: BC-1 \u2018\
-            A\u2019-\u2019Z\u2019 & BC-2 \u2018A\u2019-\u2019Z\u2019 \n\nVPL5SAB48S\
-            \ - IF FC B, VALID BLOCK CODES: BC-1 \u2018A\u2019-\u2019Z\u2019 & BC-2\
-            \ SPACE/NO-INPUT \n\nVPL5SAB49S - IF FC C, VALID BLOCK CODES: BC-1 SPACE/NO-INPUT\
-            \ & BC-2 \u2018A\u2019 \n\nVPL5SAB50S - IF FC D, VALID BLOCK CODES: BC-1\
-            \ SPACE & BC-2 SPACE \n\nVPL5SAB51S - IF FC E, VALID BLOCK CODES: BC-1\
-            \ SPACE & BC-2 SPACE/NO-INPUT \n\nVPL5SAB52S - IF FC F, VALID BLOCK CODES:\
-            \ BC-1 SPACE/NO-INPUT & BC-2 SPACE \n\nVPL5SAB53S - IF FC G, VALID BLOCK\
-            \ CODES: BC-1 'A'-'Z' & BC-2 SPACE \n\nVPL5SAB54S - IF FC H, VALID BLOCK\
-            \ CODES: BC-1 SPACE & BC-2 'A'-'Z' \n\nVPL5SAB55S - IF FC SPACE, BC-1\
-            \ AND BC-2 MUST BE SPACES OR LOW-VALUES \n\nVPL5SAB56S - NO VALID ACTION:\
-            \ FC IS BLANK & NO VALID WARNING CODE PROVIDED \n\nVPL5SAB57S - BC-1 CANNOT\
-            \ BE REPLACED WITH ONE OF A LOWER PRIORITY \n\nVPL5SAB58S - BC-2 CANNOT\
-            \ BE REPLACED WITH ONE OF A LOWER PRIORITY"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCodesWarningResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Block Codes Warning Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4644,43 +3251,22 @@ paths:
               $ref: '#/components/schemas/AccountForBlockCodeUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '422':
-          description: "VPL5SAB02S-SERVICE INPUT TO AB SERVICE IS AN INCORRECT LENGTH\
-            \ \n\nVPL5SAB04S-FILE-TABLE USED BY THIS SERVICE IS MISSING \n\nVPL5SAB05S-CANNOT\
-            \ SET A BLOCK CODE ON A BILLING ACCOUNT \n\nVPL5SAB06S-ACCOUNT NUMBER\
-            \ OR CARD NUMBER MUST BE PROVIDED \n\nVPL5SAB07S-ORGANIZATION NUMBER MUST\
-            \ BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SAB08S-ORGANIZATION\
-            \ NOT DETERMINED \n\nVPL5SAB10S-ORGANIZATION NUMBER NOT FOUND \n\nVPL5SAB11S-LOGO\
-            \ NUMBER NOT FOUND \n\nVPL5SAB12S-CARD NUMBER NOT FOUND \n\nVPL5SAB13S-BLOCK\
-            \ CODE CANNOT BE REPLACED WITH ONE OF A LOWER PRIORITY \n\nVPL5SAB21E-INVALID\
-            \ FOREIGN USE IND SPECIFIED - VALID VALUES ARE 0-2 \n\nVPL5SAB22E-INVALID\
-            \ FUNCTION CODE - VALID VALUES ARE B OR U \n\nVPL5SAB23E-INVALID BLOCK\
-            \ CODE \n\nVPL5SAB24E-BLOCK CODE MUST EQUAL SPACE TO UNBLOCK ACCOUNT \n\
-            \nVPL5SAB25E-MUST SPECIFY ACCOUNT BLOCK CODE 1 OR 2 TO UNBLOCK ACCOUNT\
-            \ \n\nVPL5SAB26E-BLOCK CODE INDICATOR MUST BE NUMERIC AND EQUAL 0 1 OR\
-            \ 2 "
           content:
             application/json:
               schema:
@@ -4691,6 +3277,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForBlockCodeUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Block Code Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4734,49 +3322,34 @@ paths:
               $ref: '#/components/schemas/BankAccountUpdateRequest'
         required: true
       responses:
-        '422':
-          description: "VPL5SBA03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
-            \ BETWEEN 000 AND 998 \n\nVPL5SBA04E - REQUESTED CARD/ACCT NUMBER MUST\
-            \ BE GREATER THAN SPACES \n\nVPL5SBA05E - INVALID BANK ID \n\nVPL5SBA06E\
-            \ - INVALID BANK ACCT NUMBER \n\nVPL5SBA07E - MUST BE NUMERIC \n\nVPL5SBA08S\
-            \ - ACCOUNT NOT FOUND ON FILE \n\nVPL5SBA09S - LOGO RECORD NOT FOUND \n\
-            \nVPL5SBA10E - MUST BE NUMERIC AND VALUE 0, 1 OR 2 \n\nVPL5SBA11S - BANK\
-            \ AUTH FLAG NOT ACTIVE \n\nVPL5SBA12I - NO UPDATES ON BANK ACCOUNT RECORD\
-            \ \n\nVPL5SBA14S - INVALID BENEFICIARY NAME \n\nVPL5SBA15S - INVALID DOC\
-            \ TYPE \n\nVPL5SBA16S - INVALID BENEFICIARY ID \n\nVPL5SBA17S - INVALID\
-            \ NICK NAME "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BankAccountUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Bank Account Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4816,29 +3389,15 @@ paths:
               $ref: '#/components/schemas/BankBranchStoreUpdateRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SUP01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 000-998
 
@@ -4885,12 +3444,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BankBrenchStoreUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Pending Bank, Branch And Store Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -4930,7 +3497,15 @@ paths:
               $ref: '#/components/schemas/AuthorizationCriteriaRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SUC03E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
 
@@ -4987,34 +3562,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthorizationCriteriaResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Authorization Criteria Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5054,67 +3615,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: "VPL5SAS01I \u2013 FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL\
-            \ ORG ACCOUNT DATA\n\nVPL5SASZ4S \u2013 REQUESTED ORGANIZATION COULD NOT\
-            \ BE DETERMINED\n\nVPL5SASZ5S \u2013 REQUESTED ORGANIZATION NOT FOUND\n\
-            \nVPL5SAS03E \u2013 ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN\
-            \ 000-998\n\nVPL5SAS04S \u2013 REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC\
-            \ OR EQUAL SPACES\n\nVPL5SAS06E \u2013 ASSOC TYPE IS NUMERIC, VALID VALUE\
-            \ B/W 0-9, VALUE 4 IS NOT USED\n\nVPL5SAS07E \u2013 ASSOCIATE CUSTOMER\
-            \ NUMBER MUST NOT EQUAL SPACES OR ZEROS\n\nVPL5SAS08S \u2013 ASSOC CUSTOMER\
-            \ NUMBER NOT ON FILE\n\nVPL5SAS09S \u2013 APPLICATION IN NO-PROCESSING\
-            \ STATUS, RE-TRY IN A FEW MINUTES\n\nVPL5SAS10E \u2013 ACCOUNT ASSOCIATE\
-            \ REL TYPE MUST BE 0 - 4\n\nVPL5SAS11E \u2013 ACCOUNT ASSOCIATE EXP DATE\
-            \ MUST BE NUMERIC\n\nVPL5SAS12E \u2013 ACCOUNT ASSOCIATE EXP DATE NOT\
-            \ A VALID DATE\n\nVPL5SAS13E \u2013 ACCOUNT ASSOCIATE AMOUNT MUST BE NUMERIC\n\
-            \nVPL5SAS14E \u2013 ACCOUNT ASSOCIATE STATEMENT FLAG 1 MUST BE 0 - 2\n\
-            \nVPL5SAS15E \u2013 ACCOUNT ASSOCIATE LETTER TYPE 1 MUST BE 0 - 2\n\n\
-            VPL5SAS16E \u2013 ACCOUNT ASSOCIATE LETTER FEE 1 MUST BE 0 OR 1\n\nVPL5SAS17E\
-            \ \u2013 ACCOUNT ASSOCIATE STATEMENT FLAG 2 MUST BE 0 - 2\n\nVPL5SAS18E\
-            \ \u2013 ACCOUNT ASSOCIATE LETTER TYPE 2 MUST BE 0 - 2\n\nVPL5SAS19E \u2013\
-            \ ACCOUNT ASSOCIATE LETTER FEE 2 MUST BE 0 OR 1\n\nVPL5SAS20E \u2013 ACCOUNT\
-            \ ASSOCIATE STATEMENT FLAG 3 MUST BE 0 - 2\n\nVPL5SAS21E \u2013 ACCOUNT\
-            \ ASSOCIATE LETTER TYPE 3 MUST BE 0 - 2\n\nVPL5SAS22E \u2013 ACCOUNT ASSOCIATE\
-            \ LETTER FEE 3 MUST BE 0 OR 1\n\nVPL5SAS23E \u2013 ACCOUNT ASSOCIATE REL\
-            \ TYPE MUST EQUAL ZERO OR SPACES\n\nVPL5SAS24E \u2013 ASSOCIATE CUSTOMER\
-            \ NUMBER MUST EQUAL SPACES OR ZEROS\n\nVPL5SAS26S \u2013 ORGANIZATION\
-            \ RECORD NOT ON FILE\n\nVPL5SAS27S \u2013 DUAL ORG RECORD NOT FOUND\n\n\
-            VPL5SAS28S \u2013 LOGO RECORD NOT FOUND\n\nVPL5SAS29S \u2013 ACCOUNT NUMBER\
-            \ NOT FOUND\n\nVPL5SAS57E \u2013 ASSOCIATE TYPE CANNOT BE 5 WHEN SALES\
-            \ REP ORG = 0\n\nVPL5SAS59E \u2013 SALES REP CODE NOT ON FILE\n\nVPL5SAS60E\
-            \ \u2013 ASSOCIATE REL TYPE MUST BE 0 WHEN ASSOC TYPE = 5\n\nVPL5SAS61E\
-            \ \u2013 ASSOCIATE DATE MUST BE 0 WHEN ASSOC TYPE = 5\n\nVPL5SAS62E \u2013\
-            \ ASSOCIATE AMT MUST BE 0 WHEN ASSOC TYPE = 5\n\nVPL5SAS75E \u2013 ASSOCIATE\
-            \ STMT FLAG MUST BE 0 WHEN ASSOC TYPE = 5\n\nVPL5SAS76E \u2013 ASSOCIATE\
-            \ LTR FLAG MUST BE 0 WHEN ASSOC TYPE = 5\n\nVPL5SAS77E \u2013 ASSOCIATE\
-            \ LTR FEE MUST BE 0 WHEN ASSOC TYPE = 5"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AssociatedPartiesUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Associated Parties Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5148,13 +3670,15 @@ paths:
               $ref: '#/components/schemas/InstantCardAddL8V7Request'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: "VPL5SICAFE - REVERSAL IS NOT ALLOWED FOR PRIMARY CARD WHEN\
             \ ISSUE TYPE IS 'R' \n\nVPL5SICZ2S - SERVICE INPUT TO PLAN VIEWER SERVICE\
             \ IS AN INCORRECT LENGTH \n\nVPL5SIC03S - ORGANIZATION IS NOT NUMERIC\
@@ -5180,28 +3704,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstantCardAddL8V7Response'
+        '404':
+          description: Not Found
       x-proxy-name: Instant Card Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5239,23 +3755,15 @@ paths:
               $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '422':
+        '500':
           description: "VPL5SZ1Z1E - SERVICE COULD NOT OBTAIN STORAGE AREA \n\nVPL5SZ1Z2E\
             \ - SERVICE INPUT TO EPIC DRIVER SERVICE IS INCORRECT LENGTH \n\nVPL5SZ103E\
             \ - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998 \n\
@@ -5316,18 +3824,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBoardingDriverResponseL8V3'
+        '404':
+          description: Not Found
       x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5360,29 +3870,15 @@ paths:
               $ref: '#/components/schemas/FalconMonetaryInquiryRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
-        '422':
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: "Unprocessable Entity\nVPL5SRB47E - ORGANIZATION VALUE MUST\
             \ BE NUMBERIC AND VALID VALES ARE 000-999 \n\nVPL5SRB23S - SERVICE INPUT\
             \ TO M/A SERVICE IS AN INCORRECT LENGTH \n\nVPL5SRB24S - USER HAS NOT\
@@ -5425,12 +3921,20 @@ paths:
             \ - ERROR WHILE SENDING NON-MON DATA TO FALCON"
           content:
             application/json: {}
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FalconMonetaryInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Monetary Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5468,15 +3972,15 @@ paths:
               $ref: '#/components/schemas/AccountInsuranceProductAddRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '422':
+        '400':
+          description: Bad Request
+        '500':
           description: "VPL5SIN06E \u2013 INVALID ORG VALUE\n\nVPL5SIN07S \u2013 INVALID\
             \ ACCOUNT\n\nVPL5SIN08E \u2013 INVALID DUAL INDICATOR\n\nVPL5SIN09E \u2013\
             \ INVALID PRODUCT CODE\n\nVPL5SIN10E \u2013 INVALID STATUS CODE\n\nVPL5SIN11E\
@@ -5508,20 +4012,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInsuranceProductAddResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Insurance Product Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5559,41 +4057,35 @@ paths:
               $ref: '#/components/schemas/PreValidatedAmountRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '422':
+        '500':
           description: VPL5SGI01S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PreValidatedAmountResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Amount Against Rule Levels Validate
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5631,6 +4123,10 @@ paths:
               $ref: '#/components/schemas/BalanceDetailsRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -5639,39 +4135,22 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: "VPL1S0100S-SERVICE INPUT FOR SERVICE IS AN INCORRECT LENGTH\
-            \ \n\nVPL5S0006S-REQUESTED ORG NUMBER IS NOT FOUND \n\nVPL5S0007E-CARD/ACCT\
-            \ NUMBER IS NOT NUMERIC \n\nVPL5S0008E-ORGANIZATION NOT DETERMINED \n\n\
-            VPL5S0012S-ACCOUNT NOT FOUND ON FILE \n\nVPL5S0029S-ORG NUMBER MUST BE\
-            \ NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5S0056E-INVALID LOCAL/FOREIGN\
-            \ INDICATOR SPECIFIED \n\nVPL5S9002S-ACCOUNT NUMBER NOT FOUND ON FILE\
-            \ \n\nVPL5S9005S-FILE-TABLE RECORD NOT FOUND \n\nVPL5S9006S-ORG RECORD\
-            \ NOT ON FILE \n\nVPL5S9007S-LOGO RECORD NOT ON FILE "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BalanceDetailsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Balance Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -5705,23 +4184,15 @@ paths:
               $ref: '#/components/schemas/AccoundAddDataRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
-        '422':
+        '500':
           description: 'VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
             001-998
 
@@ -6333,18 +4804,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountAddDataResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6386,7 +4859,15 @@ paths:
               $ref: '#/components/schemas/AccountDemographicInqRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SEL06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
 
@@ -6423,34 +4904,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountDemographicInqResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Demographic Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6496,34 +4963,34 @@ paths:
               $ref: '#/components/schemas/StatementFlagUpdateRequest'
         required: true
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementFlagUpdateResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Statement Flag Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6578,7 +5045,15 @@ paths:
               $ref: '#/components/schemas/AccountInsuranceProductRequest'
         required: true
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SIN58S - THIRD PARTY CARD GENERATION ERROR
 
 
@@ -6684,40 +5159,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '204':
           description: No Content
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInsuranceProductResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Insurance Product Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6785,13 +5246,15 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: "VPL5SQY02S -SERVICE INPUT IS AN INCORRECT LENGTH \n\nVPL5SQY06S\
             \ -ORG IS INVALID \n\nVPL5SQY07S -ACCOUNT TABLE MUST BE NUMERIC AND GT\
             \ 0 \n\nVPL5SQY08S -ACCT PROD IS INVALID \n\nVPL5SQY09S -REQUESTED ORG\
@@ -6801,28 +5264,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountControlTableInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Control Table Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6871,6 +5326,10 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -6879,37 +5338,22 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '422':
-          description: "VPL5SUL01E - NON-NUMERIC INPUT FIELD ORG \n\nVPL5SUL01S -\
-            \ ORG RECORD NOT FOUND \n\nVPL5SUL02E - LEVEL SHOULD NOT BE SPACES \n\n\
-            VPL5SUL02S - RECORD IS ADD PENDING \n\nVPL5SUL03E - DAILY LOAD LIMIT SHOULD\
-            \ BE LESS THAN MONTHLY LOAD LIMIT \n\nVPL5SUL03S - RECORD NOT FOUND ON\
-            \ FILE \n\nVPL5SUL04E - NON-NUMERIC INPUT FIELD DLY_AMT_LOAD \n\nVPL5SUL05E\
-            \ - MONTHLY LOAD LIMIT SHOULD BE GREATER THAN DAILY LOAD LIMIT "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FindOrganizationRulesLevelsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Organization Rule Levels Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -6967,7 +5411,15 @@ paths:
           type: string
         example: 00970
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SRI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
 
@@ -7007,34 +5459,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RelationshipDetailsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Relationship Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7091,7 +5529,15 @@ paths:
           type: string
         example: 00970
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPL5SII01E - INVALID ORG FORMAT, VALID VALUES ARE SPACES,
             000 TO 998
 
@@ -7143,34 +5589,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetInsuranceProductResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Insurance Product Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7233,7 +5665,15 @@ paths:
           type: string
         example: 00970
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: "VPL5SAO19S - SERVICE INPUT TO ACCOUNT INQ SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL5SAO03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998 \n\nVPL5SAO04E - REQUESTED CARD/ACCT NUMBER IS NOT\
@@ -7249,34 +5689,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountOverviewResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Overview Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7327,6 +5753,10 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -7335,39 +5765,22 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: "VPL5SDB01S-ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES\
-            \ ARE 001-998 \n\nVPL5SDB02S-ORGANIZATION NOT ON FILE \n\nVPL5SDB03S-ORGANIZATION\
-            \ NUMBER REQUIRED FOR IBS SAVINGS/DDA ACCOUNT NUMBER \n\nVPL5SDB04S-ACCOUNT\
-            \ NUMBER OR CARD NUMBER MUST BE PROVIDED \n\nVPL5SDB05S-ACCOUNT NUMBER\
-            \ / CARD NUMBER NOT FOUND \n\nVPL5SDB10S-GETMAIN FAILED FOR DEBIT INQUIRY\
-            \ SERVICE \n\nVPL5SDB11S-SERVICE INPUT HAS AN INCORRECT LENGTH \n\nVPL5SDB16S-LOGO\
-            \ RECORD NOT ON FILE \n\nVPL5SDB17S-IBS CROSS REFERENCE NOT ACTIVE \n\n\
-            VPL5SDB18S-REQUESTED ORGANIZATION COULD NOT BE DETERMINED "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/IbsDebitInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: IBS Debit File Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7437,6 +5850,10 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Backend Error
           content:
@@ -7445,58 +5862,22 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '405':
           description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '422':
-          description: 'VPL5SDI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
-            VALUES ARE 001-998
-
-
-            VPL5SDI01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
-
-
-            VPL5SDI02E - ACCOUNT OR CARD NUMBER REQUIRED
-
-
-            VPL5SDI02S - ORGANIZATION NUMBER NOT FOUND
-
-
-            VPL5SDI03E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0
-            OR 1
-
-
-            VPL5SDI03S - FOREIGN ORGANIZATION NUMBER NOT FOUND
-
-
-            VPL5SDI06S - ACCOUNT NUMBER NOT FOUND
-
-
-            VPL5SDIZ4S - REQUESTED ORG NUMBER IS NOT FOUND
-
-
-            '
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreditAndDebitDetailsResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Direct Debit-Credit Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7580,48 +5961,34 @@ paths:
           type: string
         example: 00970
       responses:
-        '422':
-          description: "VPJ5SRR01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
-            \ VALUES ARE 001-998 \n\nVPJ5SRR01I - FOREIGN USE ORG UNAVAILABLE PROCESSED\
-            \ LOCAL ORG ACCOUNT DATA \n\nVPJ5SRR02E - ACCOUNT OR CARD NUMBER REQUIRED\
-            \ \n\nVPJ5SRR03S - ACCOUNT OR CARD NUMBER MUST BE ON FILE \n\nVPJ5SRR04S\
-            \ - ACCOUNT OR CARD NUMBER MUST BE VALID FOR ORG PROVIDED \n\nVPJ5SRR06E\
-            \ - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0 OR 1 \n\n\
-            VPJ5SRR07Z - ORGANIZATION NUMBER NOT FOUND \n\nVPJ5SRRZ2S - SERVICE INPUT\
-            \ TO ACCT TO REFI/REST SERVICE IS AN INCORRECT LENGTH \n\nVPJ5SRRZ6S -\
-            \ REQUESTED ORG NOT FOUND"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BalanceRefinanceRestructureResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Restructure and Refinance Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7674,13 +6041,15 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: "VPL5SIS01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
             \ VALUES ARE 001-998 \n\nVPL5SIS02E - REQUESTED ACCT / CARD NUMBER IS\
             \ NOT NUMERIC OR EQUAL TO SPACES \n\nVPL5S1S03E - RATE VALUE IS INVALID\
@@ -7715,28 +6084,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementInstallmentInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Statement Installment Options Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7795,57 +6156,34 @@ paths:
           type: string
         example: 00970
       responses:
-        '422':
-          description: 'VPL5SZ301E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
-            VALUES ARE 001-998
-
-
-            VPL5SZ302E - REQUESTED ACCT / CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
-
-
-            VPL5SZ511S - RECORD ORG NOT FOUND IN AMCR RECORD
-
-
-            VPL5SZ502S - ACCOUNT NUMBER NOT FOUND
-
-
-            VPL5SZ507S - RECORD SYSTEM NOT FOUND IN AMCR RECORD
-
-
-            VPL5SZ310S - SERVICE INPUT FOR SERVICE IS AN INCORRECT LENGTH
-
-
-            '
-          content:
-            application/json: {}
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdatedDebitBalancesInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Updated Debit Balances Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -7951,13 +6289,15 @@ paths:
           type: string
         example: 00970
       responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '422':
           description: 'VPL5S0009E - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
 
 
@@ -7991,28 +6331,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/RelationshipToAccountResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Numbers by Relationship Inquiry
       x-group-name: Relationship
       x-child-product-name: Accounts
@@ -8275,7 +6607,15 @@ paths:
           type: string
         example: 00970
       responses:
-        '422':
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '500':
           description: 'VPLBSDE02S - SERVICE INPUT HAS AN INCORRECT LENGTH
 
 
@@ -8344,34 +6684,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountEnrollInquiryResponse'
+        '404':
+          description: Not Found
       x-proxy-name: Account Enrollment Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
