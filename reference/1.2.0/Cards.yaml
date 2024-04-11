@@ -1,0 +1,494 @@
+openapi: 3.0.1
+info:
+  title: LATAM Issuing APIs
+  description: APIs to VMX Server
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licences/LICENSE-2.0
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+tags:
+- name: Card
+  description: Card
+paths:
+  /cards/v1/cards/massIssue:
+    get:
+      tags:
+      - Card
+      summary: |-
+        '[IN DEVELOPMENT]'
+
+        The Mass Card Issue Inquiry service retrieves records from the Mass Card Reissue.
+
+        VMX Service: M.CMS.MASS.CARD.ISSUE.INQ, L8V6
+      description: |-
+        '[IN DEVELOPMENT]'
+
+        The Mass Card Issue Inquiry service retrieves records from the Mass Card Reissue.
+
+        VMX Service: M.CMS.MASS.CARD.ISSUE.INQ, L8V6
+      operationId: Mass Card Issue Inquiry
+      parameters:
+      - name: organizationNumber
+        in: query
+        description: "* Min Length: 1\n* Max Length: 3\n\nIdentification number of\
+          \ the organization.\n\nVisionPLUS:\n\n* Service Data: AZXQCI-ORG \n* Screen,\
+          \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - ORGANIZATION"
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 998
+      - name: logo
+        in: query
+        description: "* Min Length: 1\n* Max Length: 3\n\nIdentification number of\
+          \ the logo.\n\nVisionPLUS:\n\n* Service Data: AZXQCI-LOGO \n* Screen, Page\
+          \ & Field: AZ5I01/AZ6I01/AZ7I01 - LOGO"
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 401
+      - name: cardPlasticType
+        in: query
+        description: "* Min Length: 1\n* Max Length: 2\n\nCard type code that indicates\
+          \ the type of plastic.\n\nVisionPLUS:\n\n* Service Data: AZXQCI-CARD-TYPE\
+          \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CARD TYPE"
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 10
+      - name: requestIdentifier
+        in: query
+        description: "* Max Length: 3\n\nRequest dentifier that allows the client\
+          \ to create more than one mass card\nissue for the same ORG/LOGO/CARD TYPE.\n\
+          \nVisionPLUS:\n\n* Service Data: AZXQCI-REQ-ID \n* Screen, Page & Field:\
+          \ AZ5I01/AZ6I01/AZ7I01 - REQ ID"
+        required: true
+        schema:
+          maxLength: 3
+          minLength: 1
+          type: string
+        example: 01C
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "422":
+          description: |-
+            VPL5SQC01E - INVALID ORGANIZATION NUMBER
+
+            VPL5SQC02E - NON-NUMERIC INPUT FIELD ORG
+
+            VPL5SQC03E - NON-NUMERIC INPUT FIELD LOGO
+
+            VPL5SQC04E - INVALID LOGO NUMBER
+
+            VPL5SQC05E - NON-NUMERIC INPUT FIELD CARD_TYPE
+
+            VPL5SQC06E - NON-ALPHANUMERIC INPUT FIELD REQ_ID
+
+            VPL5SQC01S - ORG RECORD NOT FOUND
+
+            VPL5SQC02S - LOGO RECORD NOT FOUND
+
+            VPL5SQC03S - REQUESTED RECORD IS PENDING ADD
+
+            VPL5SQC04S - REQUESTED RECORD NOT ON FILE
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "403":
+          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "400":
+          description: Bad Request
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6'
+      x-proxy-name: Mass Card Issue Inquiry
+      x-group-name: Card
+      x-child-product-name: Cards
+components:
+  schemas:
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    ItemResponseNullableString:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: |
+        * List size: 2
+
+        value
+        User-defined code or description.
+
+        VisionPLUS:
+
+        * Service Data: AZXQCO -USER-1 / AZXQCO -USER-2
+        * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - USER 1 / USER 2
+      example: Code Description 1
+    MassCardReissueDetailsResponseL8V6:
+      type: object
+      properties:
+        record:
+          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Record'
+        customerNumber:
+          type: string
+          description: |-
+            * Max Length: 19
+
+            Customer number that identifies the Customer Name/Address record associated
+            with mass card issue request.
+
+            VisionPLUS:
+
+            * Service Data: AZXQCO-CUST-NUMBER
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CUST NBR
+          example: "4513074002573466583"
+        customerEmblem:
+          type: integer
+          description: "* Max Length: 5\n\nCode that defines the cardholder’s affiliation\
+            \ or affinity group. The default is 0.\n\nVisionPLUS:\n\n* Service Data:\
+            \ AZXQCO-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBLEM "
+          format: int32
+          example: 1
+        account:
+          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Account'
+        card:
+          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Card'
+    MassCardReissueDetailsResponseL8V6.Account:
+      type: object
+      properties:
+        originBank:
+          type: integer
+          description: "* Max Length: 9\n\nBank number of the originating bank for\
+            \ the account.\n\nValues: 000000000–999999999.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXQCO-BANK-ORIGIN   \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - BANK ORIGIN "
+          format: int32
+          example: 1
+        branch:
+          type: integer
+          description: "* Max Length: 9\n\nBranch number of the originating bank for\
+            \ the account.\n\nValues: 000000000–999999999.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXQCO-BRANCH        \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - BRANCH"
+          format: int32
+          example: 123456789
+        relationshipCode:
+          type: string
+          description: "* Max Length: 1\n\nCode that indicates whether an Account\
+            \ Base Segment relationship account\nnumber exists for this Embossing\
+            \ Mass Card Issue request.\n\nValues:\n\n* S = Exists;\n* N = Does not\
+            \ exist (Default).\n\nVisionPLUS:\n\n* Service Data: AZXQCO-RELATION-AMBS\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - RELATION AMBS "
+          example: "N"
+        relationshipNumber:
+          type: string
+          description: "* Max Length: 19\n\nNumber that identifies the Relationship\
+            \ record to which this subordinate\naccount is assigned. This field is\
+            \ blank for accounts not in a relationship.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXQCO -REL-NBR \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - REL NUMBER"
+          example: "6014631947700000000"
+        processControlId:
+          type: string
+          description: "* Max Length: 3\n\nIdentification code of the Processing Control\
+            \ table assigned to the account.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-PCT-ID\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PCT ID "
+          example: C29
+        merchantRestrictCode:
+          type: integer
+          description: "* Max Length: 3\n\nCode that indicates the authorization merchant\
+            \ category code (MCC) restrict\ntable during authorization process.\n\n\
+            Values: 000–999\n\nVisionPLUS:\n\n* Service Data: AZXQCO-AUTH-RSTR-TBL\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - AUTH RSTR TBL"
+          format: int32
+          example: 178
+        creditLimit:
+          type: number
+          description: "* Max Length: 9\n\nTotal credit limit of the account.\n\n\
+            Values: 000000000–999999999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-CREDIT-LIMIT\
+            \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - TOT CR LMT"
+          example: 100000
+        globalQualification:
+          type: string
+          description: "* Max Length: 1\n\nGlobal qualification value assigned to\
+            \ an account.\n\nValues:\n\n* space;\n* 1;\n* 2;\n* A–Z.\nNote: This field\
+            \ can be updated to 1 and 2, only when the country code is MEX.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO-GLOBAL-QUAL \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - GLOBAL QUAL "
+          example: "1"
+        block:
+          type: array
+          description: |
+            * List size: 2
+
+            value
+            Two-part field that identifies the block codes assigned to the
+            account.
+
+            Values: A–Z and blank (or space).
+
+            VisionPLUS:
+
+            * Service Data: AZXQCO-BLOCK-CODE-1  / AZXQCO-BLOCK-CODE-2
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2
+          example: 1
+          items:
+            $ref: '#/components/schemas/ItemResponseNullableString'
+        user:
+          type: array
+          description: "* Items max length: 1\n* List size: 3\n\nThree-part field\
+            \ that indicates whether the user statement messages are active for the\
+            \ account.\n\nValues:\n\n* 0 = Do not print message on statements;\n*\
+            \ 1 = Print message on statements.\nThe '(*)' below assumes values from\
+            \ 1 to 3.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-MES-USER-CODE-(*) \n\
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - MSG USER CD "
+          example: 0
+          items:
+            $ref: '#/components/schemas/ItemResponseNullableString'
+        data:
+          type: array
+          description: |
+            * List size: 2
+
+            value
+            User-defined code or description.
+
+            VisionPLUS:
+
+            * Service Data: AZXQCO -USER-1 / AZXQCO -USER-2
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - USER 1 / USER 2
+          example: Code Description 1
+          items:
+            $ref: '#/components/schemas/ItemResponseNullableString'
+    MassCardReissueDetailsResponseL8V6.Card:
+      type: object
+      properties:
+        expirationDate:
+          type: string
+          description: "* Max Length: 6\n\nExpiration date of the card. The value\
+            \ in this field must be greater than today’s date. Format: DDMMYY\n\n\
+            VisionPLUS:\n\n* Service Data: AZXQCO-EXP-DATE \n* Screen, Page & Field:\
+            \ AZ5I01/AZ6I01/AZ7I01 - EXPIRY DT"
+          format: date
+          example: 2031-02-28
+        scheme:
+          type: integer
+          description: "* Max Length: 1\n\nCard numbering scheme that determines the\
+            \ card numbers that are assigned\nto Embosser records associated with\
+            \ the account.\n\nValues:\n\n* 0 = Standard, nonrelationship account in\
+            \ which the account number and \nall card numbers are the same (Default);\n\
+            * 1 = Relationship account in which the account number and all card \n\
+            numbers are the same;\n* 2 = Account number and all card numbers are the\
+            \ same; each card\nincludes a unique sequence number; valid only for accounts\
+            \ processed\nby a revolving/retail logo;\n* 3 = Account number and all\
+            \ card numbers are unique.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-SCHEME\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - SCHEME "
+          format: int32
+          example: 1
+        technology:
+          type: string
+          description: "* Max Length: 1\n\nFlag that identifies the current card technology\
+            \ used for this account.\n\nValues:\n\n* 0 = Magnetic-stripe card(s) are\
+            \ on issue;\n* 1 = Smart card(s) are on issue;\n* 2 = Magnetic-stripe\
+            \ contactless card(s) are on issue;\n* 3 = Smart contactless card(s) are\
+            \ on issue.\n\nVisionPLUS:\n\n* Service Data: AZXQCO -CARD-TECHNOLOGY\
+            \     \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CARD TECH"
+          example: "1"
+        plasticId:
+          type: string
+          description: "* Max Length: 10\n\nUser-defined code that identifies the\
+            \ plastic stock used to produce a card for\nan Embosser record.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO -PLASTIC-ID \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - PLASTIC ID"
+          example: "1"
+        isPrepaid:
+          type: boolean
+          description: "* Max Length: 1\n\nCode that indicates whether the cards are\
+            \ prepaid cards.\n\nValues:\n\n* 0 = Non-prepaid;\n* 1 = Prepaid.\n\n\
+            VisionPLUS:\n\n* Service Data: AZXQCO-PREPAID-CARD-FLAG \n* Screen, Page\
+            \ & Field: AZ5I01/AZ6I01/AZ7I01 - PREPAID CARD FLAG"
+          example: false
+        prepaidPlanNumber:
+          type: integer
+          description: "* Max Length: 5\n\nNumber of the prepaid credit plan.\n\n\
+            VisionPLUS:\n\n* Service Data: AZXQCO-PREPAID-PLAN-NBR \n* Screen, Page\
+            \ & Field: AZ5I01/AZ6I01/AZ7I01 - PREPAID PLAN NBR"
+          format: int32
+          example: 1
+        promotionCode:
+          type: string
+          description: "* Max Length: 4\n\nPromotion code associated with the mass\
+            \ card issue.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-PROMO-CODE    \
+            \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PROMO CD"
+          example: ABCD
+        posServiceCode:
+          type: string
+          description: "* Max Length: 3\n\nCode that indicates the type of point-of-sale\
+            \ service in effect for a card. The\ndefault is spaces.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO -POS-SERVICE-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - POS SVC COD"
+          example: "1"
+        embosserCode:
+          type: string
+          description: "* Max Length: 1\n\nBlock code to be updated on the Embosser\
+            \ records during mass issuance of\ncards.\n\nValues: A–Z and blank (or\
+            \ space).\n\nVisionPLUS:\n\n* Service Data: AZXQCO-EMBOSSER-CODE \n* Screen,\
+            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBOSS CODE"
+          example: E
+        embossingName:
+          type: string
+          description: "* Max Length: 26\n\nName to be embossed on the first embossing\
+            \ line of the card during mass\ncard issue. Enter the name exactly as\
+            \ it is to appear on the card.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-EMBOSSED-NAME-1\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMB N1"
+          example: NAME 1
+        additionalEmbossingName:
+          type: string
+          description: "* Max Length: 26\n\nAdditional name to be embossed on the\
+            \ second embossing line of the card.\nEnter the name exactly as it is\
+            \ to appear on the card. For example, this field\nmay contain the name\
+            \ of a business if the card is issued for a business\naccount.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO-EMBOSSED-NAME-2 \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - EMB N2"
+          example: NAME 2
+        creditLimit:
+          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.CreditLimit'
+        inventory:
+          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Inventory'
+    MassCardReissueDetailsResponseL8V6.CreditLimit:
+      type: object
+      properties:
+        authorization:
+          type: number
+          description: "* Max Length: 17\n\nCode that indicates the authorization\
+            \ credit limit assigned at the card\nlevel. The total of the credit limit\
+            \ on the account should not exceed the\nrelationship credit limit. If\
+            \ it exceeds, the account is not boarded and\nan error message is displayed.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXQCO-AUTH-CR-LM \n* Screen, Page &\
+            \ Field: AZ5I01/AZ6I01/AZ7I01 - AUTH CR LM"
+          example: 178287392723912.34
+        foreign:
+          type: number
+          description: "* Max Length: 13\n\nField that indicates the card credit limit\
+            \ in foreign currency (USD) for\nthe local card. This field accepts values\
+            \ only for local cards and is\ndisplay-only for foreign cards.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO-CR-LIM-FGN \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - CRLIM FGN"
+          example: 14892364989.36
+    MassCardReissueDetailsResponseL8V6.Inventory:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          description: "* Max Length: 5\n\nCurrent inventory quantity.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO-INVENTORY-QUANTITY \n* Screen, Page & Field:\
+            \ AZ5I01/AZ6I01/AZ7I01 - INVENTORY QTY"
+          format: int32
+          example: 1
+        control:
+          type: string
+          description: "* Max Length: 2\n\nCode that indicates whether the current\
+            \ inventory quantity is used\nwhen generating the requested number of\
+            \ cards.\n\nValues:\n\n* CI = Current inventory quantity is considered;\n\
+            * SO = Requested number of cards is considered;\n* NO = Requested generation\
+            \ is not considered.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-INVENTORY-CONTROL\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - INVENTORY CONTROL "
+          example: CI
+        issuedQuantity:
+          type: integer
+          description: "* Max Length: 4\n\nQuantity of cards to be issued.\n\nValues:\
+            \ 00000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-MIN-QUANTITY \n\
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE "
+          format: int32
+          example: 2
+        minimumIssuedQuantity:
+          type: integer
+          description: "* Max Length: 5\n\nMinimum quantity of cards to be issued.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXQCO-QUANTITY-TO-CREATE \n* Screen,\
+            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - MIN QUANTITY "
+          format: int32
+          example: 8
+    MassCardReissueDetailsResponseL8V6.Record:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: "* Max Length: 1\n\nCode that identifies the record status.\n\
+            Values:\n\n* 1 = Active;\n* 9 = Purge.\n\nVisionPLUS:\n\n* Service Data:\
+            \ AZXQCO-STATUS  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - STATUS"
+          format: int32
+          example: 1
+        addStatus:
+          type: integer
+          description: |-
+            * Max Length: 2
+
+            Add status to record.
+
+            Values:
+
+            * 99 = Add Complete;
+            * 00-98 = Add Pending.
+
+            VisionPLUS:
+
+            * Service Data: AZXQCO-ADD-STATUS
+          format: int32
+          example: 99
+        lastMaintenanceDate:
+          type: string
+          description: "Max length: 7\n\nDate Last Maintain (in ISO 8601).\n\nDate\
+            \ of last maintenance for this record. Format: CCYY-MM-DD\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO-DATE-LAST-MAINT \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - DATE LAST MAINT"
+          format: date
+          example: 2023-01-19
