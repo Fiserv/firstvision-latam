@@ -1,13 +1,14 @@
 openapi: 3.0.1
 info:
-  description: "This documentation describes the REST APIs provided by the FirstVision\u2122\
-    \ Cards Microservice, which provides functionality for the issuing, management\
-    \ and processing of credit cards, including bank, co-branded, private label, debit,\
-    \ commercial, and prepaid"
-  title: "FirstVision\u2122 Transaction Service - API Documentation"
-  version: '1.2'
+  title: LATAM Issuing APIs
+  description: APIs to VMX Server
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licences/LICENSE-2.0
+  version: "1.0"
 servers:
-- url: https://int.api.firstdata.com/latam-gfs-apis/portal
+- url: http://localhost:8080
+  description: Generated server url
 paths:
   /transactions/v1/manualAuthorizations:
     put:
@@ -23,19 +24,13 @@ paths:
         \nVMX Service: FAS.AUTH.REQ, R8V2\n"
       operationId: Manual Authorization Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
+        description: Client Identification.
         required: true
         schema:
           type: string
-        example: 00970
+        example: "00991"
       requestBody:
         content:
           application/json:
@@ -43,27 +38,15 @@ paths:
               $ref: '#/components/schemas/ManualAuthorizationRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "400":
+          description: Bad Request
+        "422":
           description: "VPL7SAR03S - USER HAS NOT SIGNED ON, PLEASE SIGNON \n\nVPL7SAR06S\
             \ - CARD NUMBER MUST BE NUMERIC \n\nVPL7SAR07S - CARD TYPE MUST BE EITHER\
             \ VISA OR MASTERCARD OR AMEX CARD \n\nVPL7SAR09S - STORE ORG MUST BE NUMERIC\
@@ -100,35 +83,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
+        "401":
           description: Unauthorized
-        '200':
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManualAuthorizationResponse'
+        "403":
+          description: Forbidden
       x-proxy-name: Manual Authorization Update
       x-group-name: Transactions
   /transactions/v3/installmentTransactions/{installmentTransaction-Id}/terms:
     post:
       tags:
       - Transactions
-      summary: '`[IN DEVELOPMENT]`
-
-
-        Inquiry installment terms on Installments Billing file.
-
-
-        VMX Service: M.CMS.INSTAL.TERMS.INQ, L8V3'
-      description: '`[IN DEVELOPMENT]`
-
+      summary: |-
+        `[IN DEVELOPMENT]`
 
         Inquiry installment terms on Installments Billing file.
 
+        VMX Service: M.CMS.INSTAL.TERMS.INQ, L8V3
+      description: |-
+        `[IN DEVELOPMENT]`
 
-        VMX Service: M.CMS.INSTAL.TERMS.INQ, L8V3'
-      operationId: "\u201CARTI04 - Detail of the installment billing transaction record."
+        Inquiry installment terms on Installments Billing file.
+
+        VMX Service: M.CMS.INSTAL.TERMS.INQ, L8V3
+      operationId: “ARTI04 - Detail of the installment billing transaction record.
       parameters:
       - name: installmentTransaction-Id
         in: path
@@ -142,19 +135,13 @@ paths:
           type: integer
           format: int32
         example: 978
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
+        description: Client Identification.
         required: true
         schema:
           type: string
-        example: 00970
+        example: "00991"
       requestBody:
         content:
           application/json:
@@ -162,89 +149,75 @@ paths:
               $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Request'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '422':
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "422":
           description: "VPL5SZ501E - ORG IS NOT NUMERIC OR MUST BE BETWEEN 001 AND\
             \ 998 \n\nVPL5SZ502E - REQUESTED ACCT / CARD NUMBER IS NOT NUMERIC OR\
             \ EQUAL TO SPACES \n\nVPL5SZ503E - RECORD NUMBER MUST BE NUMERIC AND VALID\
             \ VALUES ARE 001-998 \n\nVPL5SZ504E - SEL ACTION IS REQUIRED. VALID VALUE\
             \ 'T' \n\nVPL5SZ505E - NEXT INDEX FOR TABLE PAGINATION MUST BE NUMERIC\
             \ \n\nVPL5SZ507E - NEXT INDEX FOR TABLE PAGINATION > TOTAL INSTALLMENT\
-            \ RECORDS \n\n VPL5SZ506E - INVALID IVA FLAG IND. VALID VALUES ARE \u2018\
-            Y\u2019, \u2018N\u2019 OR SPACE \n\n VPL5SZ501S - REQUESTED ORGANIZATION\
-            \ NOT FOUND \n\n VPL5SZ502S - ACCOUNT NUMBER NOT FOUND \n\n VPL5SZ503S\
-            \ - INSTALLMENT RECORD NOT FOUND FOR ACCOUNT \n\n VPL5SZ506S - APPLICATION\
-            \ IN NO-PROCESSING STATUS, RETRY IN A FEW MINUTES \n\n "
+            \ RECORDS \n\n VPL5SZ506E - INVALID IVA FLAG IND. VALID VALUES ARE ‘Y’\
+            , ‘N’ OR SPACE \n\n VPL5SZ501S - REQUESTED ORGANIZATION NOT FOUND \n\n\
+            \ VPL5SZ502S - ACCOUNT NUMBER NOT FOUND \n\n VPL5SZ503S - INSTALLMENT\
+            \ RECORD NOT FOUND FOR ACCOUNT \n\n VPL5SZ506S - APPLICATION IN NO-PROCESSING\
+            \ STATUS, RETRY IN A FEW MINUTES \n\n "
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '200':
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response'
+        "403":
+          description: Forbidden
       x-proxy-name: Installment Billing Transaction Inquiry
       x-group-name: Transactions
   /transactions/v1/transactions:
     post:
       tags:
       - Transactions
-      summary: '`[IN DEVELOPMENT]`
+      summary: |-
+        `[IN DEVELOPMENT]`
 
+        Provides comprehensive transaction details for transactions occurring in the current billing cycle or for previously statemented transactions within a specified date range.
 
-        Provides comprehensive transaction details for transactions occurring in the
-        current billing cycle or for previously statemented transactions within a
-        specified date range.
+        VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, L8VB
+      description: |-
+        `[IN DEVELOPMENT]`
 
+        Provides comprehensive transaction details for transactions occurring in the current billing cycle or for previously statemented transactions within a specified date range.
 
-        VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, L8VB'
-      description: '`[IN DEVELOPMENT]`
-
-
-        Provides comprehensive transaction details for transactions occurring in the
-        current billing cycle or for previously statemented transactions within a
-        specified date range.
-
-
-        VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, L8VB'
+        VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, L8VB
       operationId: paymentsDetails
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
         required: true
         schema:
           type: string
-        example: 00970
       requestBody:
         content:
           application/json:
@@ -252,77 +225,127 @@ paths:
               $ref: '#/components/schemas/TransactionsDetailsL8VBRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '422':
-          description: "VPL5STD05E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES\n\
-            \nVPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
-            \ 000-998\n\nVPL5STD06E - FUNCTION TYPE VALID VALUES ARE SPACE, C, R,\
-            \ M , B , P OR S\n\nVPL5STD07E - NUMBER OF TRANSACTIONS CANNOT BE GREATER\
-            \ THAN 50\n\nVPL5STD98E - INVALID FORIEGN USE IND VALID VALUES ARE SPACE\
-            \ 0,1,2\n\nVPL5STD09E - NUMBER OF MONTHS IS REQUIRED WHEN REQUEST IS BY\
-            \ MONTH\n\nVPL5STD10E - TRANSACTION START DATE IS NOT A VALID DATE\n\n\
-            VPL5STD11E - TRANSACTION START DATE IS NOT NUMERIC\n\nVPL5STD12E - TRANSACTION\
-            \ START DATE IS NOT VALID WHEN REQUEST IS BY MONTH\n\nVPL5STD13E - TRANSACTION\
-            \ END DATE FORMAT IS NOT A VALID DATE\n\nVPL5STD14E - TRANSACTION END\
-            \ DATE IS NOT NUMERIC\n\nVPL5STD15E - TRANSACTION END DATE IS NOT VALID\
-            \ WHEN REQUEST IS BY MONTH\n\nVPL5STD16E - TRANSACTION END DATE MUST BE\
-            \ GREATER THAN TRANSACTION BEGIN DATE\n\nVPL5STD17E - STATEMENT OCCURENCE\
-            \ NUMBER IS NOT NUMERIC\n\nVPL5STD31E - START TOKEN SEQUENCE NUMBER MUST\
-            \ BE NUMERIC\n\nVPL5STD33E - STATEMENT DATE IS INVALID\n\nVPL5STD32E -\
-            \ START TOKEN STATEMENT DATE MUST BE NUMERIC\n\nVPL5STD34E - START TOKEN\
-            \ FILE TYPE IS INVALID. VALID VALUES ARE C S AND L\n\nVPL5STD40E - START\
-            \ ORG SHOULD BE PROVIDED-VALID VALUE 001-998\n\nVPL5STD26E - MINIMUM TRANSACTION\
-            \ AMOUNT MUST BE NUMERIC\n\nVPL5STD27E - MAXIMUM TRANSACTION AMOUNT MUST\
-            \ BE NUMERIC\n\nVPL5STD28E - MIN AND MAX TRANSACTION AMOUNTS MUST BE NUMERIC\n\
-            \nVPL5STD29E - MINIMUM AMOUNT CANNOT BE GREATER THAN MAXIMUM AMOUNT\n\n\
-            VPL5STD36E - INVALID TRANSACTION TYPE\n\nVPL5STDZ4S - REQUESTED ORGANIZATION\
-            \ COULD NOT BE DETERMINED\n\nVPL5STDZ5S - REQUESTED ORGANIZATION NOT FOUND\n\
-            \nVPL5STDZ2S - SERVICE INPUT TO TXN DTL SERVICE IS AN INCORRECT LENGTH\n\
-            \nVPL5STD43S - FUNCTION IS INVALID; CAN BE ONLY INITIAL,NEXT OR PREV\n\
-            \nVPL5STD44S - START TOKEN MUST BE SPACES FOR INITIAL FUNCTION\n\nVPL5STD45S\
-            \ - START TOKEN CANNOT BE SPACES FOR NEXT OR PREV\n\nVPL5STD20S - ORGANIZATION\
-            \ NUMBER NOT FOUND ON FILE\n\nVPL5STD21S - FOREIGN ORGANIZATION NUMBER\
-            \ IS NOT FOUND ON FILE\n\nVPL5STD41E - REQUEST TYPE BOTH NOT VALID FOR\
-            \ NON DUAL ORG\n\nVPL5STD42E - INVALID START ORG\n\nVPL5STD29E - MINIMUM\
-            \ AMOUNT CANNOT BE GREATER THAN MAXIMUM AMOUNT\n\nVPL5STD22S - ACCOUNT\
-            \ NOT FOUND ON FILE\n\nVPL5STD37S - SYSTEM RECORD NOT FOUND\n\nVPL5STD23S\
-            \ - NO TRANSACTIONS FOUND \u2013 STATEMENTS\n\nVPL5STD24S - NO TRANSACTIONS\
-            \ FOUND - STATEMENTS\n\nVPL5STD25I - FOREIGN USE ORG UNAVAILABLE PROCESSED\
-            \ LOCAL ORG ACCOUNT DATA\n\nVPL5STD01I - NO TRANSACTIONS FOUND FOR REQUEST\n\
-            \nVPL5STD97E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS\n\nVPL5STD96E\
-            \ - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS\n\nVPL5STD99E\
-            \ - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE"
+        "400":
+          description: Bad Request
+        "422":
+          description: |-
+            VPL5STD05E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
+
+            VPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
+
+            VPL5STD06E - FUNCTION TYPE VALID VALUES ARE SPACE, C, R, M , B , P OR S
+
+            VPL5STD07E - NUMBER OF TRANSACTIONS CANNOT BE GREATER THAN 50
+
+            VPL5STD98E - INVALID FORIEGN USE IND VALID VALUES ARE SPACE 0,1,2
+
+            VPL5STD09E - NUMBER OF MONTHS IS REQUIRED WHEN REQUEST IS BY MONTH
+
+            VPL5STD10E - TRANSACTION START DATE IS NOT A VALID DATE
+
+            VPL5STD11E - TRANSACTION START DATE IS NOT NUMERIC
+
+            VPL5STD12E - TRANSACTION START DATE IS NOT VALID WHEN REQUEST IS BY MONTH
+
+            VPL5STD13E - TRANSACTION END DATE FORMAT IS NOT A VALID DATE
+
+            VPL5STD14E - TRANSACTION END DATE IS NOT NUMERIC
+
+            VPL5STD15E - TRANSACTION END DATE IS NOT VALID WHEN REQUEST IS BY MONTH
+
+            VPL5STD16E - TRANSACTION END DATE MUST BE GREATER THAN TRANSACTION BEGIN DATE
+
+            VPL5STD17E - STATEMENT OCCURENCE NUMBER IS NOT NUMERIC
+
+            VPL5STD31E - START TOKEN SEQUENCE NUMBER MUST BE NUMERIC
+
+            VPL5STD33E - STATEMENT DATE IS INVALID
+
+            VPL5STD32E - START TOKEN STATEMENT DATE MUST BE NUMERIC
+
+            VPL5STD34E - START TOKEN FILE TYPE IS INVALID. VALID VALUES ARE C S AND L
+
+            VPL5STD40E - START ORG SHOULD BE PROVIDED-VALID VALUE 001-998
+
+            VPL5STD26E - MINIMUM TRANSACTION AMOUNT MUST BE NUMERIC
+
+            VPL5STD27E - MAXIMUM TRANSACTION AMOUNT MUST BE NUMERIC
+
+            VPL5STD28E - MIN AND MAX TRANSACTION AMOUNTS MUST BE NUMERIC
+
+            VPL5STD29E - MINIMUM AMOUNT CANNOT BE GREATER THAN MAXIMUM AMOUNT
+
+            VPL5STD36E - INVALID TRANSACTION TYPE
+
+            VPL5STDZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
+            VPL5STDZ5S - REQUESTED ORGANIZATION NOT FOUND
+
+            VPL5STDZ2S - SERVICE INPUT TO TXN DTL SERVICE IS AN INCORRECT LENGTH
+
+            VPL5STD43S - FUNCTION IS INVALID; CAN BE ONLY INITIAL,NEXT OR PREV
+
+            VPL5STD44S - START TOKEN MUST BE SPACES FOR INITIAL FUNCTION
+
+            VPL5STD45S - START TOKEN CANNOT BE SPACES FOR NEXT OR PREV
+
+            VPL5STD20S - ORGANIZATION NUMBER NOT FOUND ON FILE
+
+            VPL5STD21S - FOREIGN ORGANIZATION NUMBER IS NOT FOUND ON FILE
+
+            VPL5STD41E - REQUEST TYPE BOTH NOT VALID FOR NON DUAL ORG
+
+            VPL5STD42E - INVALID START ORG
+
+            VPL5STD29E - MINIMUM AMOUNT CANNOT BE GREATER THAN MAXIMUM AMOUNT
+
+            VPL5STD22S - ACCOUNT NOT FOUND ON FILE
+
+            VPL5STD37S - SYSTEM RECORD NOT FOUND
+
+            VPL5STD23S - NO TRANSACTIONS FOUND – STATEMENTS
+
+            VPL5STD24S - NO TRANSACTIONS FOUND - STATEMENTS
+
+            VPL5STD25I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
+
+            VPL5STD01I - NO TRANSACTIONS FOUND FOR REQUEST
+
+            VPL5STD97E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+
+            VPL5STD96E - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+
+            VPL5STD99E - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '401':
+        "401":
           description: Unauthorized
-        '200':
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "404":
+          description: Not Found
+        "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionsDetailsL8VBResponse'
+        "403":
+          description: Forbidden
       x-proxy-name: Transactions Payments Details
       x-group-name: Transactions
 components:
@@ -359,13 +382,10 @@ components:
           maxLength: 15
           minLength: 0
           type: string
-          description: 'The id field includes an identification code that serves to
-            uniquely identify the card acceptor in a transaction, especially when
-            the card acceptor differs from the acquiring institution involved in the
-            transaction.
+          description: |-
+            The id field includes an identification code that serves to uniquely identify the card acceptor in a transaction, especially when the card acceptor differs from the acquiring institution involved in the transaction.
 
-
-            VisionPLUS Service Data: OFXARI-CRD-ACCPT-ID'
+            VisionPLUS Service Data: OFXARI-CRD-ACCPT-ID
           example: 43910XXXXX37927
         terminal:
           $ref: '#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation.Terminal'
@@ -381,74 +401,65 @@ components:
           maxLength: 41
           minLength: 0
           type: string
-          description: 'The id field represents the Card Acceptor Terminal Identification,
-            a distinct code that uniquely identifies the terminal situated at the
-            card acceptor''s location.
+          description: |-
+            The id field represents the Card Acceptor Terminal Identification, a distinct code that uniquely identifies the terminal situated at the card acceptor's location.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ACCPT-TRM'
+            VisionPLUS Service Data: OFXARI-CARD-ACCPT-TRM
           example: G684AYXOPTMZZ3SVCUE5W2HKIP0G1GKS84DUA91A9
         mode:
           type: integer
-          description: '* Max Length: 4
+          description: |-
+            * Max Length: 4
 
+            The posMode field indicates the mode of operation for the point-of-sale (POS) terminal used in a transaction.
 
-            The posMode field indicates the mode of operation for the point-of-sale
-            (POS) terminal used in a transaction.
-
-
-            VisionPLUS Service Data: OFXARI-POS-MODE'
+            VisionPLUS Service Data: OFXARI-POS-MODE
           format: int32
           example: 2200
         owner:
           maxLength: 22
           minLength: 0
           type: string
-          description: 'The terminalOwner field designates the entity or individual
-            responsible for owning or operating the card acceptor terminal.
+          description: |-
+            The terminalOwner field designates the entity or individual responsible for owning or operating the card acceptor terminal.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 01-22.'
+            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 01-22.
           example: Pizzaria Delivery Ltda
         fieldLengthIndicator:
           maxLength: 3
           minLength: 1
           type: string
-          description: 'The fieldLengthIndicator is a numeric indicator that specifies
-            the length of data fields in the terminal information.
+          description: |-
+            The fieldLengthIndicator is a numeric indicator that specifies the length of data fields in the terminal information.
 
-
-            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 01-03.'
-          example: 019
+            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 01-03.
+          example: "019"
         ownerFinancialInstitutionId:
           maxLength: 4
           minLength: 1
           type: string
-          description: 'The ownerFinancialInstitutionId field represents the Financial
-            Institution Identification Number (FIID) of the terminal owner.
+          description: |-
+            The ownerFinancialInstitutionId field represents the Financial Institution Identification Number (FIID) of the terminal owner.
 
-
-            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 04-07.'
+            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 04-07.
           example: P812
         logicalNetwork:
           maxLength: 4
           minLength: 1
           type: string
-          description: 'The logicalNetwork field refers to the logical network associated
-            with the card acceptor terminal.
+          description: |-
+            The logicalNetwork field refers to the logical network associated with the card acceptor terminal.
 
-
-            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 08-11.'
+            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 08-11.
           example: VAPI
         additionalData:
           maxLength: 8
           minLength: 0
           type: string
-          description: 'The additionalData field encompasses supplementary information
-            relevant to the context or purpose.
+          description: |-
+            The additionalData field encompasses supplementary information relevant to the context or purpose.
 
-
-            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 12-19.'
+            VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 12-19.
           example: JH5JQGS1
         location:
           $ref: '#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation.Terminal.Location'
@@ -459,31 +470,28 @@ components:
           maxLength: 13
           minLength: 0
           type: string
-          description: 'The city field represents the city where the terminal is located
-            or associated with.
+          description: |-
+            The city field represents the city where the terminal is located or associated with.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 23-35.'
+            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 23-35.
           example: Itapevi
         state:
           maxLength: 3
           minLength: 0
           type: string
-          description: 'The state field indicates the state or region in which the
-            terminal is situated.
+          description: |-
+            The state field indicates the state or region in which the terminal is situated.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 36-38.'
+            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position: 36-38.
           example: SP
         country:
           maxLength: 2
           minLength: 0
           type: string
-          description: 'The country field signifies the country where the terminal
-            is located.
+          description: |-
+            The country field signifies the country where the terminal is located.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position = 39-40.'
+            VisionPLUS Service Data: OFXARI-CARD-ACCEPTOR-NAME. Position = 39-40.
           example: BR
     ManualAuthorizationRequest.CardInformation:
       required:
@@ -496,12 +504,10 @@ components:
           maxLength: 19
           minLength: 16
           type: string
-          description: 'The cardNumber field represents a unique identifier or token
-            associated with the card number or payment instrument, known as the FirstVision
-            PAN Token.
+          description: |-
+            The cardNumber field represents a unique identifier or token associated with the card number or payment instrument, known as the FirstVision PAN Token.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-NBR'
+            VisionPLUS Service Data: OFXARI-CARD-NBR
           example: 000123456ID5IXX1234
         expirationDate:
           $ref: '#/components/schemas/ManualAuthorizationRequest.CardInformation.ExpirationDate'
@@ -515,30 +521,24 @@ components:
       properties:
         month:
           type: integer
-          description: '* Min Length: 1
-
+          description: |-
+            * Min Length: 1
             * Max Length: 2
 
+            The month field corresponds to the month component of a card's expiration date, specifically represented by the two-digit format (MM).
 
-            The month field corresponds to the month component of a card''s expiration
-            date, specifically represented by the two-digit format (MM).
-
-
-            VisionPLUS Service Data: OFXARI-DATE-EXPIRE-MM'
+            VisionPLUS Service Data: OFXARI-DATE-EXPIRE-MM
           format: int32
           example: 12
         year:
           type: integer
-          description: '* Min Length: 1
-
+          description: |-
+            * Min Length: 1
             * Max Length: 2
 
+            The year field corresponds to the year component of a card's expiration date, represented by the two-digit format (YY).
 
-            The year field corresponds to the year component of a card''s expiration
-            date, represented by the two-digit format (YY).
-
-
-            VisionPLUS Service Data: OFXARI-DATE-EXPIRE-YY'
+            VisionPLUS Service Data: OFXARI-DATE-EXPIRE-YY
           format: int32
           example: 23
     ManualAuthorizationRequest.CardInformation.Security:
@@ -547,46 +547,34 @@ components:
         indicator:
           pattern: ^(0|1|2|9)$
           type: string
-          description: 'The indicator field indicates the status of the security code.
-            This field is crucial for indicating whether the security code (CVV/CVC/CSC)
-            linked to a card is present or absent, adding a crucial layer of insight
-            for secure card-based transactions. This field value must be 1 if code
-            given in input.
-
+          description: |-
+            The indicator field indicates the status of the security code. This field is crucial for indicating whether the security code (CVV/CVC/CSC) linked to a card is present or absent, adding a crucial layer of insight for secure card-based transactions. This field value must be 1 if code given in input.
 
             Values:
-
             * 0 = bypassed;
-
             * 1 = present;
-
             * 2 = illegible;
-
             * 9 = not-imprint.
 
-
-            VisionPLUS Service Data: OFXARI-SEC-PRES-IND'
-          example: '0'
+            VisionPLUS Service Data: OFXARI-SEC-PRES-IND
+          example: "0"
         code:
           maxLength: 16
           minLength: 0
           type: string
-          description: 'The code field holds the encrypted security code (CVV/CVC/CSC)
-            associated with a card. In the input, either the pin or code should be
-            present, but not both.
+          description: |-
+            The code field holds the encrypted security code (CVV/CVC/CSC) associated with a card. In the input, either the pin or code should be present, but not both.
 
-
-            VisionPLUS Service Data: OFXARI-SEC-CODE'
+            VisionPLUS Service Data: OFXARI-SEC-CODE
           example: NE09L3AS48ORJNBZ
         pin:
           maxLength: 16
           minLength: 0
           type: string
-          description: 'The pin field represents the code for the PIN block. In the
-            input, either the pin or code should be present, but not both.
+          description: |-
+            The pin field represents the code for the PIN block. In the input, either the pin or code should be present, but not both.
 
-
-            VisionPLUS Service Data: OFXARI-PIN-BLOCK'
+            VisionPLUS Service Data: OFXARI-PIN-BLOCK
           example: DRZWPZ8W01211DFJ
     ManualAuthorizationRequest.CardIssuerInformation:
       required:
@@ -599,55 +587,49 @@ components:
           maxLength: 3
           minLength: 1
           type: string
-          description: 'The fieldLengthIndicator is a numeric indicator that specifies
-            the length of data fields in the terminal information.
+          description: |-
+            The fieldLengthIndicator is a numeric indicator that specifies the length of data fields in the terminal information.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 01-03.'
-          example: 019
+            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 01-03.
+          example: "019"
         ownerFinancialInstitutionId:
           maxLength: 4
           minLength: 1
           type: string
-          description: 'The ownerFinancialInstitutionId field represents the Financial
-            Institution Identification Number (FIID) of the terminal owner.
+          description: |-
+            The ownerFinancialInstitutionId field represents the Financial Institution Identification Number (FIID) of the terminal owner.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 04-07.'
+            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 04-07.
           example: P812
         logicalNetwork:
           maxLength: 4
           minLength: 1
           type: string
-          description: 'The logicalNetwork field refers to the logical network associated
-            with the card acceptor terminal.
+          description: |-
+            The logicalNetwork field refers to the logical network associated with the card acceptor terminal.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 08-11.'
+            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 08-11.
           example: P812
         additionalData:
           maxLength: 11
           minLength: 0
           type: string
-          description: 'The additionalData field encompasses supplementary information
-            relevant to the context or purpose.
+          description: |-
+            The additionalData field encompasses supplementary information relevant to the context or purpose.
 
-
-            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 12-22.'
+            VisionPLUS Service Data: OFXARI-CARD-ISS-AUTH-DATA. Position: 12-22.
           example: JH5JQGS1
     ManualAuthorizationRequest.InstallmentsInformation:
       type: object
       properties:
         installmentsNumber:
           type: integer
-          description: '* Max Length: 2
+          description: |-
+            * Max Length: 2
 
+            The installmentsNumber field is mandatory only for installment transactions and indicates the total number of installments associated with the transaction.
 
-            The installmentsNumber field is mandatory only for installment transactions
-            and indicates the total number of installments associated with the transaction.
-
-
-            VisionPLUS Service Data: OFXARI-NUM-INSTL'
+            VisionPLUS Service Data: OFXARI-NUM-INSTL
           format: int32
           example: 12
         planType:
@@ -655,33 +637,25 @@ components:
           minLength: 0
           pattern: ^(20|21|22|26)$
           type: string
-          description: 'The planType field denotes the type of installment plan used
-            for the transaction.
-
+          description: |-
+            The planType field denotes the type of installment plan used for the transaction.
 
             Values:
-
             * 20 = issuer;
-
             * 21 = acquirer;
-
             * 22 = acquirer;
-
             * 26 = issuer.
 
-
-            VisionPLUS Service Data: OFXARI-NUM-INSTL-PLN-TYPE'
-          example: '26'
+            VisionPLUS Service Data: OFXARI-NUM-INSTL-PLN-TYPE
+          example: "26"
         planNumber:
           type: integer
-          description: '* Max Length: 5
+          description: |-
+            * Max Length: 5
 
+            The planNumber field refers to a unique identifier associated with a specific plan or program within the system.
 
-            The planNumber field refers to a unique identifier associated with a specific
-            plan or program within the system.
-
-
-            VisionPLUS Service Data: OFXARI-PLAN'
+            VisionPLUS Service Data: OFXARI-PLAN
           format: int32
           example: 69472
     ManualAuthorizationRequest.PaymentInformation:
@@ -696,70 +670,59 @@ components:
             \ \n\nValues:\n* N = Non-bill payment transaction;\n* Y = Bill payment\
             \ transaction;\n* I = Installment payment transaction.\n\nVisionPLUS Service\
             \ Data: OFXARI-BILL-PYMT-IND"
-          example: N
+          example: "N"
         isRecurring:
           type: boolean
-          description: 'The recurring field indicates whether a transaction is recurring.
-
+          description: |-
+            The recurring field indicates whether a transaction is recurring.
 
             Values:
-
             * false = non-recurring payment transaction;
-
             * true = recurring payment transaction.
 
-
-            VisionPLUS Service Data: OFXARI-RECUR-PYMT-IND'
+            VisionPLUS Service Data: OFXARI-RECUR-PYMT-IND
           example: false
     ManualAuthorizationRequest.RetailerInformation:
       type: object
       properties:
         organizationNumber:
           type: integer
-          description: '* Max Length: 3
+          description: |-
+            * Max Length: 3
 
+            The organizationNumber field is an attribute that holds the unique identification number assigned to an organization.
 
-            The organizationNumber field is an attribute that holds the unique identification
-            number assigned to an organization.
-
-
-            VisionPLUS Service Data: OFXARI-STORE-ORG'
+            VisionPLUS Service Data: OFXARI-STORE-ORG
           format: int32
           example: 991
         storeNumber:
           type: integer
-          description: '* Max Length: 9
+          description: |-
+            * Max Length: 9
 
+            The storeNumber field stores a unique identifier associated with a specific store.
 
-            The storeNumber field stores a unique identifier associated with a specific
-            store.
-
-
-            VisionPLUS Service Data: OFXARI-STORE-NBR'
+            VisionPLUS Service Data: OFXARI-STORE-NBR
           format: int32
           example: 211678016
         merchantCategoryCode:
           type: integer
-          description: '* Max Length: 4
+          description: |-
+            * Max Length: 4
 
+            The merchantCategoryCode field represents the classification code assigned to a merchant based on the nature of their business operations.
 
-            The merchantCategoryCode field represents the classification code assigned
-            to a merchant based on the nature of their business operations.
-
-
-            VisionPLUS Service Data: OFXARI-MERCH-CAT-CDE'
+            VisionPLUS Service Data: OFXARI-MERCH-CAT-CDE
           format: int32
           example: 8290
         acquiringInstitutionId:
           type: integer
-          description: '* Max Length: 11
+          description: |-
+            * Max Length: 11
 
+            The acquiringInstitutionCode field corresponds to the Identification Code of the acquiring institution.
 
-            The acquiringInstitutionCode field corresponds to the Identification Code
-            of the acquiring institution.
-
-
-            VisionPLUS Service Data: OFXARI-ACQ-ID'
+            VisionPLUS Service Data: OFXARI-ACQ-ID
           format: int64
           example: 57663358871
     ManualAuthorizationRequest.TransactionInformation:
@@ -776,66 +739,56 @@ components:
           maxLength: 12
           minLength: 1
           type: string
-          description: 'The referenceNumber field is a unique identifier assigned
-            by the message initiator to track a transaction consistently across all
-            messages during the transaction''s lifecycle. This number remains unchanged
-            for all messages throughout the life of a transaction.
+          description: |-
+            The referenceNumber field is a unique identifier assigned by the message initiator to track a transaction consistently across all messages during the transaction's lifecycle. This number remains unchanged for all messages throughout the life of a transaction.
 
-
-            VisionPLUS Service Data: OFXARI-REF-NUM'
-          example: '292717013062'
+            VisionPLUS Service Data: OFXARI-REF-NUM
+          example: "292717013062"
         amount:
           type: number
-          description: '* Max Length: 14
+          description: |-
+            * Max Length: 14
 
+            The amount field signifies the transaction's monetary value, serving as the basis for updating the Open To Buy (OTB) balance for the purpose of authorizing the transaction.
 
-            The amount field signifies the transaction''s monetary value, serving
-            as the basis for updating the Open To Buy (OTB) balance for the purpose
-            of authorizing the transaction.
-
-
-            VisionPLUS Service Data: OFXARI-AMT'
+            VisionPLUS Service Data: OFXARI-AMT
           example: 5969.99
         keyAssociation:
           maxLength: 3
           minLength: 1
           type: string
-          description: 'The keyAssociation field represents the association of cryptographic
-            keys used for secure transactions, ensuring data integrity and confidentiality.
+          description: |-
+            The keyAssociation field represents the association of cryptographic keys used for secure transactions, ensuring data integrity and confidentiality.
 
-
-            VisionPLUS Service Data: OFXARI-KEY-ASSOC'
+            VisionPLUS Service Data: OFXARI-KEY-ASSOC
           example: YVI
         codeType:
           maxLength: 2
           minLength: 1
           type: string
-          description: 'The codeType field denotes the type of transaction code used
-            for processing.
+          description: |-
+            The codeType field denotes the type of transaction code used for processing.
 
-
-            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 01-02.'
-          example: '13'
+            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 01-02.
+          example: "13"
         fromAccountType:
           maxLength: 2
           minLength: 1
           type: string
-          description: 'The fromAccountType field indicates the type of the source
-            account for a transaction.
+          description: |-
+            The fromAccountType field indicates the type of the source account for a transaction.
 
-
-            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 03-04.'
-          example: 08
+            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 03-04.
+          example: "08"
         toAccountType:
           maxLength: 2
           minLength: 1
           type: string
-          description: 'The toAccountType field indicates the type of the destination
-            account for a transaction.
+          description: |-
+            The toAccountType field indicates the type of the destination account for a transaction.
 
-
-            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 05-06.'
-          example: '21'
+            VisionPLUS Service Data: OFXARI-PROC-CODE. Position: 05-06.
+          example: "21"
     DResponse:
       type: object
       properties:
@@ -859,22 +812,17 @@ components:
       properties:
         cardType:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             The cardType field indicates the type or scheme of the card.
 
-
             Values:
-
             * V = Visa;
-
             * M = MasterCard;
-
             * A = American Express.
 
-
-            VisionPLUS Service Data: OFXARO-CARD-TYPE'
+            VisionPLUS Service Data: OFXARO-CARD-TYPE
           example: V
         reasonInformation:
           $ref: '#/components/schemas/ManualAuthorizationResponse.ReasonInformation'
@@ -887,122 +835,101 @@ components:
       properties:
         availableCreditLimit:
           type: number
-          description: '* Max Length: 17
+          description: |-
+            * Max Length: 17
 
+            The availableCreditLimit field indicates the available credit limit for transactions on the account.
 
-            The availableCreditLimit field indicates the available credit limit for
-            transactions on the account.
-
-
-            VisionPLUS Service Data: OFXARO-OPEN-TO-BUY'
+            VisionPLUS Service Data: OFXARO-OPEN-TO-BUY
           example: 23965.99
         currentBalance:
           type: number
-          description: '* Max Length: 17
+          description: |-
+            * Max Length: 17
 
+            The currentBalance field denotes the present balance associated with the account.
 
-            The currentBalance field denotes the present balance associated with the
-            account.
-
-
-            VisionPLUS Service Data: OFXARO-ACCT-CURR-BAL'
+            VisionPLUS Service Data: OFXARO-ACCT-CURR-BAL
           example: 265.99
         availableCashCredit:
           type: number
-          description: '* Max Length: 17
+          description: |-
+            * Max Length: 17
 
+            The availableCashCredit field indicates the available balance for cash withdrawals or credit transactions on the account.
 
-            The availableCashCredit field indicates the available balance for cash
-            withdrawals or credit transactions on the account.
-
-
-            VisionPLUS Service Data: OFXARO-CASH-AVAIL-CR'
+            VisionPLUS Service Data: OFXARO-CASH-AVAIL-CR
           example: 22115.99
     ManualAuthorizationResponse.ReasonInformation:
       type: object
       properties:
         code:
           type: string
-          description: '* Max Length: 3
+          description: |-
+            * Max Length: 3
 
+            The code field represents a code indicating the specific reason or cause behind an action or decision.
 
-            The code field represents a code indicating the specific reason or cause
-            behind an action or decision.
-
-
-            VisionPLUS Service Data: OFXARO-ACTION-REASON'
+            VisionPLUS Service Data: OFXARO-ACTION-REASON
           example: ABS
         description:
           type: string
-          description: '* Max Length: 25
+          description: |-
+            * Max Length: 25
 
+            The description field provides a textual explanation or elaboration of the associated reason code.
 
-            The description field provides a textual explanation or elaboration of
-            the associated reason code.
-
-
-            VisionPLUS Service Data: OFXARO-REASON-DESC'
+            VisionPLUS Service Data: OFXARO-REASON-DESC
           example: reason description
         actionCode:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             The actionCode field signifies the outcome of the action taken.
 
-
             Values:
-
             * A = Approved;
-
             * D = Declined.
 
-
-            VisionPLUS Service Data: OFXARO-ACTION'
+            VisionPLUS Service Data: OFXARO-ACTION
           example: A
     ManualAuthorizationResponse.Transaction:
       type: object
       properties:
         visaId:
           type: integer
-          description: '* Max Length: 15
+          description: |-
+            * Max Length: 15
 
+            The visaId field represents a unique identifier associated with a Visa transaction.
 
-            The visaId field represents a unique identifier associated with a Visa
-            transaction.
-
-
-            VisionPLUS Service Data: OFXARO-VISA-TRAN-ID'
+            VisionPLUS Service Data: OFXARO-VISA-TRAN-ID
           format: int64
           example: 164080332032372
         authorizationCode:
           type: string
-          description: '* Max Length: 6
+          description: |-
+            * Max Length: 6
 
+            The authorizationCode field contains a unique identifier assigned to a transaction by the authorization system to confirm the approval or validation of the transaction.
 
-            The authorizationCode field contains a unique identifier assigned to a
-            transaction by the authorization system to confirm the approval or validation
-            of the transaction.
-
-
-            VisionPLUS Service Data: OFXARO-AUTH-CODE'
-          example: '661420'
+            VisionPLUS Service Data: OFXARO-AUTH-CODE
+          example: "661420"
         date:
           type: string
-          description: 'The transactionDateTime field represents the date when the
-            transaction authorization was requested, in ISO 8601 format.
+          description: |-
+            The transactionDateTime field represents the date when the transaction authorization was requested, in ISO 8601 format.
 
-
-            VisionPLUS Service Data: OFXARO-TRAN-DATE'
+            VisionPLUS Service Data: OFXARO-TRAN-DATE
           example: 2020-12-21
         time:
           type: string
-          description: 'The time field represents the time when the transaction authorization
-            was requested, in ISO 8601 format.
+          description: |-
+            The time field represents the time when the transaction authorization was requested, in ISO 8601 format.
 
-
-            VisionPLUS Service Data: OFXARO-TRAN-TIME'
-          example: 43200
+            VisionPLUS Service Data: OFXARO-TRAN-TIME
+          example: 12:00:00
     InstallmentTermsInquiryL8V3Request:
       required:
       - organizationNumber
@@ -1025,7 +952,7 @@ components:
             \ an account.\nEither Account Number or Card Number must be present in\
             \ the request, but not both. \n\nVisionPLUS:\n\n* Service Data: AZXZ5I-ACCT-NBR\n\
             * Screen: ARTI\n* Page: 04\n* Field: ACCOUNT"
-          example: '4513074002952958903'
+          example: "4513074002952958903"
         cardNumber:
           maxLength: 19
           minLength: 19
@@ -1060,7 +987,7 @@ components:
             \ Agregado). \n\nValues: \n* Y = Tax calculated based on % Rate; \n* N\
             \ = Tax not calculated, it will be considered as ZERO. \n\nVisionPLUS\
             \ Service Data: AZXZ5I-IVA-FLAG"
-          example: Y
+          example: "Y"
       description: Installment Terms Inquiry Request
     InstallmentTermsInquiryL8V3Response:
       type: object
@@ -1085,19 +1012,15 @@ components:
           example: 6400.05
         purchaseDate:
           type: string
-          description: 'Purchase Date (CCYY-MM-DD format) in ISO 8601.
-
+          description: |-
+            Purchase Date (CCYY-MM-DD format) in ISO 8601.
 
             VisionPLUS:
 
-
             * Service Data: AZXZ5O-PURCH-DATE
-
             * Screen: ARTI
-
             * Page: 02
-
-            * Field: EFF DATE'
+            * Field: EFF DATE
           format: date
           example: 2023-01-31
         termsNumber:
@@ -1297,119 +1220,88 @@ components:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'The field accountNumber represents the account number on the
-            Account Base Segment record.
+          description: |-
+            The field accountNumber represents the account number on the Account Base Segment record.
 
-
-            One of these fields is required in Request (it''s not possible to send
-            both): accountNumber or cardNumber.
-
+            One of these fields is required in Request (it's not possible to send both): accountNumber or cardNumber.
 
             VisionPLUS:
 
-
             * Service Data: AZXTDI-ACCT
-
             * Screen: ARTD
-
             * Page: 00
-
-            * Field: ACCOUNT/RELATIONSHIP'
-          example: '5069786109434462322'
+            * Field: ACCOUNT/RELATIONSHIP
+          example: "5069786109434462322"
         cardNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'The cardNumber field represents a unique identifier or token
-            associated with the card number or payment instrument, known as the FirstVision
-            PAN Token. This token serves as a secure and anonymized representation
-            of the original card number, enabling safe and efficient payment processing.
+          description: |-
+            The cardNumber field represents a unique identifier or token associated with the card number or payment instrument, known as the FirstVision PAN Token. This token serves as a secure and anonymized representation of the original card number, enabling safe and efficient payment processing.
 
-
-            One of these fields is required in Request (it''s not possible to send
-            both): accountNumber or cardNumber.
-
+            One of these fields is required in Request (it's not possible to send both): accountNumber or cardNumber.
 
             VisionPLUS:
 
-
             * Service Data: AZXTDI-ACCT
-
             * Screen: ARTD
-
             * Page: 00
-
-            * Field: ACCOUNT/RELATIONSHIP'
+            * Field: ACCOUNT/RELATIONSHIP
           example: 000540208ID5IXX3865
         keyword:
           maxLength: 20
           minLength: 0
           type: string
-          description: 'The keyword field is used to search transaction description.
+          description: |-
+            The keyword field is used to search transaction description.
 
-
-            VisionPLUS Service Data: AZXTDI-KEYWORD'
+            VisionPLUS Service Data: AZXTDI-KEYWORD
           example: user's_keyword
         startToken:
           maxLength: 26
           minLength: 0
           type: string
-          description: 'The startToken field is the token generated for API to understand
-            the next set of transactions to be fetched.
+          description: |-
+            The startToken field is the token generated for API to understand the next set of transactions to be fetched.
 
-
-            VisionPLUS Service Data: AZXTDI-START-TOKEN'
+            VisionPLUS Service Data: AZXTDI-START-TOKEN
           example: 177100079202316ES000000013
         isMerchantInformationRequired:
           type: boolean
-          description: 'The isMerchantInformationRequired field indicates if the merchant
-            information is required or not.
-
+          description: |-
+            The isMerchantInformationRequired field indicates if the merchant information is required or not.
 
             Values:
 
-
             * false = Merchant information is not required;
-
             * true = Merchant information is required.
-
-            VisionPLUS Service Data: AZXTDI-MERCH-INFO-IND'
+            VisionPLUS Service Data: AZXTDI-MERCH-INFO-IND
           example: true
         isForeign:
           type: boolean
-          description: 'The isForeign field is provided in the input message so the
-            requesting source can specify whether the request applies to the, local
-            or foreign account when the account is in a dual currency, processing
-            organization. The default is to the local account.
-
+          description: |-
+            The isForeign field is provided in the input message so the requesting source can specify whether the request applies to the, local or foreign account when the account is in a dual currency, processing organization. The default is to the local account.
 
             Values:
 
-
             * false = Local account;
-
             * true = Foreign account.
-
-            VisionPLUS Service Data: AZXTDI-FOREIGN-USE'
+            VisionPLUS Service Data: AZXTDI-FOREIGN-USE
           example: false
         queryMoreTransactions:
           maxLength: 1
           minLength: 0
-          pattern: ^([NP])$
+          pattern: "^([NP])$"
           type: string
-          description: 'The field queryMoreTransactions is used when the field "startToken"
-            is filled to get more transactions.
-
+          description: |-
+            The field queryMoreTransactions is used when the field "startToken" is filled to get more transactions.
 
             Values:
 
-
             * N = Next transactions;
-
             * P = Previous transactions.
 
-
-            VisionPLUS Service Data: AZXTDI-FUNC-CODE'
+            VisionPLUS Service Data: AZXTDI-FUNC-CODE
           example: P
         transaction:
           $ref: '#/components/schemas/TransactionsDetailsL8VBRequest.Transaction'
@@ -1424,28 +1316,20 @@ components:
           minLength: 1
           pattern: ^(C|R|S|M|B|P| )$
           type: string
-          description: 'The details field represents the transaction details flag.
-
+          description: |-
+            The details field represents the transaction details flag.
 
             Values:
 
-
             * Space = Use both current and recent (Display the Pending/posted transaction);
-
             * B = Use both current and recent (Display the Pending/posted transaction)
-
             * C = Current (Cycle to Date Transactions);
-
             * R = Recent (Statement detail transactions);
-
             * S = Recent 1st Statement only
-
             * M = Monthly (Statement detail transactions);
-
             * P = Posted transactions.
 
-
-            VisionPLUS Service Data: AZXTDI-TXN-DETAIL'
+            VisionPLUS Service Data: AZXTDI-TXN-DETAIL
           example: C
         type:
           type: integer
@@ -1466,12 +1350,11 @@ components:
           maxLength: 2
           minLength: 0
           type: string
-          description: 'The monthsNumber field represents the transaction number of
-            months.
+          description: |-
+            The monthsNumber field represents the transaction number of months.
 
-
-            VisionPLUS Service Data: AZXTDI-TXN-NBR-MONTHS'
-          example: '12'
+            VisionPLUS Service Data: AZXTDI-TXN-NBR-MONTHS
+          example: "12"
         transactionDateRange:
           $ref: '#/components/schemas/TransactionsDetailsL8VBRequest.Transaction.TransactionDateRange'
         transactionAmountRange:
@@ -1481,33 +1364,61 @@ components:
       properties:
         from:
           type: number
-          description: "* Min Length: 0\n* Max Length: 17\n\nTransaction Amount Range.\
-            \ This Field Indicates The \u201CFrom\u201D Amount.\n\nVisionPLUS:\n\n\
-            * Service Data: AZXTDI-TXN-AMT-FROM\n* Screen: ARTD\n* Page: 02\n* Field:\
-            \ AMOUNT"
+          description: |-
+            * Min Length: 0
+            * Max Length: 17
+
+            Transaction Amount Range. This Field Indicates The “From” Amount.
+
+            VisionPLUS:
+
+            * Service Data: AZXTDI-TXN-AMT-FROM
+            * Screen: ARTD
+            * Page: 02
+            * Field: AMOUNT
           example: 928374.23
         to:
           type: number
-          description: "* Min Length: 0\n* Max Length: 17\n\nTransaction Amount Range.\
-            \ This Field Indicates The \u201CTo\u201D Amount.\n\nVisionPLUS:\n\n*\
-            \ Service Data: AZXTDI-TXN-AMT-THRU\n* Screen: ARTD\n* Page: 02\n* Field:\
-            \ AMOUNT"
+          description: |-
+            * Min Length: 0
+            * Max Length: 17
+
+            Transaction Amount Range. This Field Indicates The “To” Amount.
+
+            VisionPLUS:
+
+            * Service Data: AZXTDI-TXN-AMT-THRU
+            * Screen: ARTD
+            * Page: 02
+            * Field: AMOUNT
           example: 2837563923.91
     TransactionsDetailsL8VBRequest.Transaction.TransactionDateRange:
       type: object
       properties:
         from:
           type: string
-          description: "Transaction Date Range. This Field Indicates The \u201CFrom\u201D\
-            \ Date (in ISO 8601).\n\nVisionPLUS:\n\n* Service Data: AZXTDI-TXN-DATE-FROM\n\
-            * Screen: ARTD\n* Page: 02\n* Field: EFF DATE"
+          description: |-
+            Transaction Date Range. This Field Indicates The “From” Date (in ISO 8601).
+
+            VisionPLUS:
+
+            * Service Data: AZXTDI-TXN-DATE-FROM
+            * Screen: ARTD
+            * Page: 02
+            * Field: EFF DATE
           format: date
           example: 2023-06-21
         to:
           type: string
-          description: "Transaction Date Range. This Field Indicates The \u201CTo\u201D\
-            \ Date (in ISO 8601).\n\nVisionPLUS:\n\n* Service Data: AZXTDI-TXN-DATE-THRU\n\
-            * Screen: ARTD\n* Page: 02\n* Field: EFF DATE"
+          description: |-
+            Transaction Date Range. This Field Indicates The “To” Date (in ISO 8601).
+
+            VisionPLUS:
+
+            * Service Data: AZXTDI-TXN-DATE-THRU
+            * Screen: ARTD
+            * Page: 02
+            * Field: EFF DATE
           format: date
           example: 2023-12-21
     TransactionsDetailsL8VBResponse:
@@ -1515,104 +1426,73 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: '* Max Length: 3
+          description: |-
+            * Max Length: 3
 
-
-            The organizationNumber field is an attribute that holds the unique identification
-            number assigned to an organization within the API.
-
+            The organizationNumber field is an attribute that holds the unique identification number assigned to an organization within the API.
 
             VisionPLUS:
 
-
             * Service Data: AZXTDO-ACCT-ORG
-
             * Screen: ARMB
-
             * Page: 01
-
-            * Field: ORGANIZATION'
+            * Field: ORGANIZATION
           format: int32
           example: 998
         logo:
           type: integer
-          description: '* Max Length: 3
+          description: |-
+            * Max Length: 3
 
-
-            The logo field stores the issuer logo code associated with a payment card.
-            It represents the unique identifier or code assigned to the logo of the
-            card issuer, allowing for accurate identification and association with
-            the issuing bank.
-
+            The logo field stores the issuer logo code associated with a payment card. It represents the unique identifier or code assigned to the logo of the card issuer, allowing for accurate identification and association with the issuing bank.
 
             VisionPLUS:
 
-
             * Service Data: AZXTDO-ACCT-LOGO
-
             * Screen: ARMB
-
             * Page: 01
-
-            * Field: LOGO'
+            * Field: LOGO
           format: int32
           example: 501
         currencyCode:
           type: integer
-          description: '* Max Length: 3
+          description: |-
+            * Max Length: 3
 
-
-            ISO Standard Currency Code that identifies the unit of currency for this
-            organization.
-
+            ISO Standard Currency Code that identifies the unit of currency for this organization.
 
             VisionPLUS:
 
-
             * Service Data: AZXTDO-CURRENCY-CODE
-
             * Screen: ARMO
-
             * Page: 01
-
-            * Field: CURRENCY CODE/NOD'
+            * Field: CURRENCY CODE/NOD
           format: int32
           example: 123
         currencyDescription:
           type: string
-          description: '* Max Length: 28
-
+          description: |-
+            * Max Length: 28
 
             Currency description.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-CURRENCY-DESC
-
             * Screen: ARDC
-
             * Page: 01
-
-            * Field: SOURCE CURRENCY / DESTINATION CURRENCY'
+            * Field: SOURCE CURRENCY / DESTINATION CURRENCY
           example: currency description
         isForeign:
           type: boolean
-          description: 'The FOREIGN USE indicator is provided in the input message
-            so the requesting source can specify whether the request applies to the
-            local or foreign account when the account is in a dual currency processing
-            organization.
-
+          description: |-
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
 
             Values:
 
-
             * false = local account; (default)
-
             * true = foreign account.
-
-            VisionPLUS Service Data: AZXTDO-FOREIGN-USE'
+            VisionPLUS Service Data: AZXTDO-FOREIGN-USE
           example: false
           default: false
         transaction:
@@ -1624,7 +1504,7 @@ components:
           type: string
           description: "* Max Length: 2\n\nNumber of months to retrieve transaction\
             \ records \n\nVisionPLUS Service Data: AZXTDO-TXN-NBR-MONTHS"
-          example: '12'
+          example: "12"
         recordsNumber:
           type: integer
           description: "* Max Length: 3 \n\nNumber of transaction records \n\nVisionPLUS\
@@ -1633,17 +1513,14 @@ components:
           example: 123
         hasMoreTransactionsAvailable:
           type: boolean
-          description: 'Code that indicates if more records are on file.
-
+          description: |-
+            Code that indicates if more records are on file.
 
             Values:
 
-
             * false = No more records on file;
-
             * true = More records on file.
-
-            VisionPLUS Service Data: AZXTDO-MORE-IND'
+            VisionPLUS Service Data: AZXTDO-MORE-IND
           example: true
         details:
           type: array
@@ -1656,90 +1533,66 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Organization Number.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-ORG
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: ORGANIZATION'
+            * Field: ORGANIZATION
           format: int32
           example: 998
         logo:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Logo Number.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-LOGO
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: LOGO'
+            * Field: LOGO
           format: int32
           example: 998
         accountNumber:
           type: string
-          description: '* Max Length: 19
-
+          description: |-
+            * Max Length: 19
 
             Account number or card number.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-ACCT
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: ACCOUNT'
-          example: 0123456789123456789
+            * Field: ACCOUNT
+          example: "0123456789123456789"
         type:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
             Indicates whether a transaction is a debit, credit, or memo.
-
 
             Values:
 
-
             * D = debit;
-
             * C = credit;
-
             * M = memo.
-
 
             VisionPLUS:
 
-
             * Service Data: AZXTDO-TYPE
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: TXN'
+            * Field: TXN
           example: D
         categoryCode:
           type: integer
@@ -1763,90 +1616,68 @@ components:
           example: 605
         transactionType:
           type: string
-          description: '* Max Length: 7
-
+          description: |-
+            * Max Length: 7
 
             Type of the transaction.
 
-
-            VisionPLUS Service Data: AZXTDO-TXN-TYPE'
+            VisionPLUS Service Data: AZXTDO-TXN-TYPE
           example: TYPE
         statementDate:
           type: string
-          description: 'Statement date (in ISO 8601) of Transaction.
-
+          description: |-
+            Statement date (in ISO 8601) of Transaction.
 
             VisionPLUS:
 
-
             * Service Data: AZXTDO-TXN-STMT-DATE
-
             * Screen: ARSD
-
             * Page: 03
-
-            * Field: PLACE AN "X" BEFORE THE DATE OF THE STATEMENT YOU WISH TO VIEW'
+            * Field: PLACE AN "X" BEFORE THE DATE OF THE STATEMENT YOU WISH TO VIEW
           format: date
           example: 2023-10-29
         locationType:
           type: string
-          description: '* Max Length: 1
+          description: |-
+            * Max Length: 1
 
-
-            This field is to identify if the transaction is Internal, Local, Domestic
-            or International based on the transaction level qualifier flag.
-
+            This field is to identify if the transaction is Internal, Local, Domestic or International based on the transaction level qualifier flag.
 
             Values:
 
-
             * T = Internal;
-
             * L = Local;
-
             * D = Domestic;
-
             * I = International.
-
-            VisionPLUS Service Data: AZXTDO-TXN-TYPE-IND'
+            VisionPLUS Service Data: AZXTDO-TXN-TYPE-IND
           example: T
         insuranceProduct:
           type: string
-          description: '* Max Length: 2
-
+          description: |-
+            * Max Length: 2
 
             Insurance product.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-INS-PROD
-
             * Screen: ARTD
-
             * Page: 02a
-
-            * Field: INS='
+            * Field: INS=
           example: AB
         virtualIndicator:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Virtual Indicator.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-VIRTUAL-IND
-
             * Screen: AZME
-
             * Page: 21
-
-            * Field: DIGITAL CARD INDICATOR'
+            * Field: DIGITAL CARD INDICATOR
           example: s
         qualifierIndicator:
           type: string
@@ -1855,143 +1686,113 @@ components:
           example: A
         hasFeeAdjustment:
           type: boolean
-          description: 'Fee adjustment indicator.
-
+          description: |-
+            Fee adjustment indicator.
 
             Values:
 
-
             * false = No adjustment;
-
             * true = Adjustment.
-
-            VisionPLUS Service Data: AZXTDO-FEE-ADJ-IND'
+            VisionPLUS Service Data: AZXTDO-FEE-ADJ-IND
           example: false
         hasInterestAdjustment:
           type: boolean
-          description: 'Interest adjustment indicator.
-
+          description: |-
+            Interest adjustment indicator.
 
             Values:
 
-
             * false = No adjustment;
-
             * true = Adjustment.
-
-            VisionPLUS Service Data: AZXTDO-INT-ADJ-IND'
+            VisionPLUS Service Data: AZXTDO-INT-ADJ-IND
           example: false
         hasDispute:
           type: boolean
-          description: 'Dispute indicator.
-
+          description: |-
+            Dispute indicator.
 
             Values:
 
-
             * false = No dispute;
-
             * true = Dispute.
-
-            VisionPLUS Service Data: AZXTDO-DISPUTE-IND'
+            VisionPLUS Service Data: AZXTDO-DISPUTE-IND
           example: true
         isChargebackEligible:
           type: boolean
-          description: 'Charge back indicator.
-
+          description: |-
+            Charge back indicator.
 
             Values:
 
-
             * false = Transaction is not eligible for chargeback;
-
             * true = Transaction is eligible for chargeback.
-
-            VisionPLUS Service Data: AZXTDO-CHG-BK-IND'
+            VisionPLUS Service Data: AZXTDO-CHG-BK-IND
           example: true
         isCopyRequest:
           type: boolean
-          description: 'Copy request indicator.
-
+          description: |-
+            Copy request indicator.
 
             Values:
 
-
             * false = No copy request;
-
             * true = Copy request.
-
-            VisionPLUS Service Data: AZXTDO-RETR-REQ-IND'
+            VisionPLUS Service Data: AZXTDO-RETR-REQ-IND
           example: false
         isReversal:
           type: boolean
-          description: 'Reversal Indicator.
-
+          description: |-
+            Reversal Indicator.
 
             Values:
 
-
             * false = No reversal;
-
             * true = Reversal.
-
-            VisionPLUS Service Data: AZXTDO-REVERSAL-IND'
+            VisionPLUS Service Data: AZXTDO-REVERSAL-IND
           example: false
         isMisapplied:
           type: boolean
-          description: 'Misapplied indicator.
-
+          description: |-
+            Misapplied indicator.
 
             Values:
 
-
             * false = Not misapplied;
-
             * true = Misapplied.
-
-            VisionPLUS Service Data: AZXTDO-MIS-APPL-IND'
+            VisionPLUS Service Data: AZXTDO-MIS-APPL-IND
           example: true
         isIssuerClearingHouse:
           type: boolean
-          description: 'Issuer Clearing House Indicator.
-
+          description: |-
+            Issuer Clearing House Indicator.
 
             Values:
 
-
             * false = No Issuer Clearing House (ICH);
-
             * true = Issuer Clearing House (ICH).
-
-            VisionPLUS Service Data: AZXTDO-ICH-IND'
+            VisionPLUS Service Data: AZXTDO-ICH-IND
           example: true
         isDisputeAuxiliaryFile:
           type: boolean
-          description: 'Dispute auxiliary file indicator.
-
+          description: |-
+            Dispute auxiliary file indicator.
 
             Values:
 
-
             * false = No dispute auxiliary file;
-
             * true = Dispute auxiliary file.
-
-            VisionPLUS Service Data: AZXTDO-DISP-AUX-FILE-IND'
+            VisionPLUS Service Data: AZXTDO-DISP-AUX-FILE-IND
           example: true
         recurringTransaction:
           type: boolean
-          description: 'Stop/resume indicator.
-
+          description: |-
+            Stop/resume indicator.
 
             Values:
 
-
             * false = Stop a recurring transaction;
-
             * true = Resume a recurring transaction.
-
-            VisionPLUS Service Data: AZXTDO-STOP-RESUME-IND'
+            VisionPLUS Service Data: AZXTDO-STOP-RESUME-IND
           example: false
         visaId:
           type: integer
@@ -2000,69 +1801,53 @@ components:
           example: 123456789123456
         effectiveDate:
           type: string
-          description: 'Effective date (in ISO 8601).
-
+          description: |-
+            Effective date (in ISO 8601).
 
             VisionPLUS:
 
-
             * Service Data: AZXTDO-EFF-DATE
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: EFF DATE'
+            * Field: EFF DATE
           format: date
           example: 2023-04-19
         postDate:
           type: string
-          description: 'Posting date (in ISO 8601).
-
+          description: |-
+            Posting date (in ISO 8601).
 
             Posting date (in ISO 8601).
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-POST-DATE
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: POST DATE'
+            * Field: POST DATE
           format: date
           example: 2023-04-22
         batchDate:
           type: string
-          description: 'Batch date (in ISO 8601).
+          description: |-
+            Batch date (in ISO 8601).
 
-
-            VisionPLUS Service Data: AZXTDO-BATCH-DATE'
+            VisionPLUS Service Data: AZXTDO-BATCH-DATE
           format: date
           example: 2023-05-18
         totalEffectiveValue:
           type: number
-          description: ' Max Length: 13
+          description: |2-
+             Max Length: 13
 
-
-            This field is to capture the Total effective value (VET) of the international
-            transaction for Brazil only. Field will be populated if below conditions
-            are satisfied.
-
+            This field is to capture the Total effective value (VET) of the international transaction for Brazil only. Field will be populated if below conditions are satisfied.
 
             VisionPLUS:
 
-
             * Service Data: AZXTDO-TOT-EFF-VALUE
-
             * Screen: ARTD
-
             * Page: 02a
-
-            * Field: VET'
+            * Field: VET
           example: 23456973
         demandDepositAccountIndicator:
           type: string
@@ -2113,26 +1898,21 @@ components:
             \ For VISA transaction time is not captured in settlement file.\n\nVisionPLUS:\n\
             \nService Data: ATPT-MT-LMS-AUTH-TIME \nScreen: ARTD\nPage: 02\nField:\
             \ AUTH TIME"
-          example: 52065
+          example: 14:27:45
         authorizationCode:
           type: string
-          description: '* Max Length: 6
-
+          description: |-
+            * Max Length: 6
 
             Authorization code.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-AUTH-CODE
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: AUTH'
-          example: '123456'
+            * Field: AUTH
+          example: "123456"
     TransactionsDetailsL8VBResponse.Transaction.Details.Card:
       type: object
       properties:
@@ -2177,7 +1957,7 @@ components:
           type: string
           description: "* Max Length: 18 \n\nTransaction conversion rate.\n\nVisionPLUS\
             \ Service Data: AZXTDO-TXN-CONV-RATE-FORMATTED"
-          example: '125.0'
+          example: "125.0"
     TransactionsDetailsL8VBResponse.Transaction.Details.Fraud:
       type: object
       properties:
@@ -2190,31 +1970,25 @@ components:
           example: P
         transferIndicator:
           type: boolean
-          description: 'Fraud transfer indicator.
-
+          description: |-
+            Fraud transfer indicator.
 
             Values:
 
-
             * false = No fraud transfer;
-
             * true = Fraud transfer.
-
-            VisionPLUS Service Data: AZXTDO-FRAUD-XFR-IND'
+            VisionPLUS Service Data: AZXTDO-FRAUD-XFR-IND
           example: false
         fraudIndicator:
           type: boolean
-          description: 'Fraud indicator.
-
+          description: |-
+            Fraud indicator.
 
             Values:
 
-
             * false = No fraud;
-
             * true = Fraud.
-
-            VisionPLUS Service Data: AZXTDO-FRAUD-IND'
+            VisionPLUS Service Data: AZXTDO-FRAUD-IND
           example: false
     TransactionsDetailsL8VBResponse.Transaction.Details.Installment:
       type: object
@@ -2277,10 +2051,10 @@ components:
           example: 12
         openDate:
           type: string
-          description: 'Plan open date (in ISO 8601).
+          description: |-
+            Plan open date (in ISO 8601).
 
-
-            VisionPLUS Service Data: AZXTDO-PLAN-OPEN-DATE'
+            VisionPLUS Service Data: AZXTDO-PLAN-OPEN-DATE
           format: date
           example: 2022-10-29
     TransactionsDetailsL8VBResponse.Transaction.Details.Installment.Terms:
@@ -2311,7 +2085,7 @@ components:
           type: integer
           description: "* Max Length: 2 \n\nRemaining Terms.\n\nVisionPLUS:\n* Service\
             \ Data: AZXTDO-SP-REMAIN-TERMS\n* Screen: ARMA\n* Page: 21\n* Field: REMAINING\
-            \ INSTALMENTS \u2013 CURRENT"
+            \ INSTALMENTS – CURRENT"
           format: int32
           example: 11
     TransactionsDetailsL8VBResponse.Transaction.Details.Interchange:
@@ -2322,7 +2096,7 @@ components:
           description: "* Max Length: 23\n\nInterchange reference number.\n\nVisionPLUS:\
             \ \n* Service Data: AZXTDO-INTERCHG-REF\n* Screen: ARTD\n* Page: 02a\n\
             * Field: INTRCHG REF"
-          example: '68456546'
+          example: "68456546"
         fee:
           type: integer
           description: "* Max Length: 9 \n\nInterchange fee.\n\nVisionPLUS Service\
@@ -2333,22 +2107,17 @@ components:
       properties:
         points:
           type: number
-          description: '* Max Length: 9
-
+          description: |-
+            * Max Length: 9
 
             Points.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-PTS
-
             * Screen: ARTD
-
             * Page: 02a
-
-            * Field: PTS='
+            * Field: PTS=
           example: 123456789
         programNumber:
           type: string
@@ -2399,29 +2168,24 @@ components:
       properties:
         amount:
           type: number
-          description: '* Max Length: 17
-
+          description: |-
+            * Max Length: 17
 
             Original transaction amount.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-ORIG-TXN-AMOUNT
-
             * Screen: ARTD
-
             * Page: 02a
-
-            * Field: DESC='
+            * Field: DESC=
           example: 78
         formattedAmount:
           type: string
           description: "* Max Length: 13 \n\nOriginal transaction amount formatted.\n\
             \nVisionPLUS:\n\n* Service Data: AZXTDO-ORIG-TXN-AMT-FORMATTED\n* Screen:\
             \ ARTD\n* Page: 02a\n* Field: DESC="
-          example: '78.0'
+          example: "78.0"
         currency:
           type: string
           description: "* Max Length: 3 \n\nOriginal transaction currency.\n\nVisionPLUS:\n\
@@ -2553,61 +2317,46 @@ components:
           example: 12345
         code:
           type: integer
-          description: '* Max Length: 4
-
+          description: |-
+            * Max Length: 4
 
             Transaction code.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-TXN-CODE
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: TXN'
+            * Field: TXN
           format: int32
           example: 1234
         reference:
           type: string
-          description: '* Max Length: 23
-
+          description: |-
+            * Max Length: 23
 
             Transaction Reference.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-SP-TXN-REF
-
             * Screen: ARMA
-
             * Page: 21
-
-            * Field: REFERENCE'
+            * Field: REFERENCE
           example: 839FJJHS00
         channelId:
           type: string
-          description: '* Max Length: 2
-
+          description: |-
+            * Max Length: 2
 
             Channel Id.
 
-
             VisionPLUS:
 
-
             * Service Data: AZXTDO-CHANNEL-ID
-
             * Screen: ARTD
-
             * Page: 02
-
-            * Field: CHANNEL'
+            * Field: CHANNEL
           example: st
     TransactionsDetailsL8VBResponse.Transaction.Details.Terminal:
       type: object
@@ -2642,14 +2391,13 @@ components:
           example: 125
         formattedValue:
           type: string
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Formatted transaction amount in USD.
 
-
-            VisionPLUS Service Data: AZXTDO-USD-TXN-AMT-FORMATTED'
-          example: '125.0'
+            VisionPLUS Service Data: AZXTDO-USD-TXN-AMT-FORMATTED
+          example: "125.0"
     TransactionsDetailsL8VBResponse.Transaction.Details.USD.ConversionRate:
       type: object
       properties:
@@ -2662,7 +2410,7 @@ components:
           type: string
           description: "* Max Length: 18 \n\nUSD conversion rate formatted.\n\nVisionPLUS\
             \ Service Data: AZXTDO-USD-CONV-RATE-FORMATTED"
-          example: '12'
+          example: "12"
     TransactionsDetailsL8VBResponse.Transaction.Token:
       type: object
       properties:
@@ -2674,8 +2422,6 @@ components:
         next:
           type: string
           description: "* Max Length: 26 \n\nCode that indicates the next possible\
-            \ record for the selected criteria, when the More Indicator field is \u201C\
-            Y\u201D.\n\nVisionPLUS Service Data: AZXTDO-NEXT-TOKEN"
+            \ record for the selected criteria, when the More Indicator field is “\
+            Y”.\n\nVisionPLUS Service Data: AZXTDO-NEXT-TOKEN"
           example: 123DEF456GHI789J1K0ABC
-x-config:
-  tryItOut: 'true'
