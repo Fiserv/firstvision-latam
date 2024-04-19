@@ -1,4 +1,6 @@
 openapi: 3.0.0
+x-stoplight:
+  id: o9v73eib3k2mc
 info:
   version: '1.0'
   title: Webhook v4.0
@@ -47,177 +49,6 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                description:
-                  type: string
-                  description: |-
-                    Event message description.
-                    APPROVED / DECLINED - REASON with 25 bytes max.
-                    VMX: M_DESC
-                  maxLength: 20
-                  example: APPROVED
-                cardNumber:
-                  type: string
-                  description: |
-                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-                    VMX: M_LINE_6
-                  maxLength: 65
-                  example: '***************5669'
-                transaction:
-                  type: object
-                  description: Information related to event transaction
-                  properties:
-                    id:
-                      type: string
-                      description: |
-                        Position 1-2 bytes: DE3 Proc code
-                        Position 3-15 bytes: DE42 Merchant ID
-                        Pos 18 - 12 bytes: DE37 reference number
-                        Pos 30 - 4 bytes: Message type ID / MTI
-                        Pos 34 - 1 bytes: FAS request type ID A: Authorization, R - reversal
-                        Pos 35 - 6 bytes: Authorization Code
-                        Pos 41 - 14 bytes: DE6 Card holder billing amount
-                        Pos 55 - 01 byte : Field separator "/"
-                        Pos 56 - 02 bytes : Installment number.
-                        VMX: M_LINE_12
-                      maxLength: 65
-                      example: 01ABCDFGHIJK0000X0000000000010001AABC00100000000001.01/01
-                    additionInformation:
-                      type: string
-                      description: |-
-                        Pos 1 - 3 bytes : DE22 POS Entry mode
-                        Pos 4 - 1 byte : Ecommerce flag
-                        Pos 5 - 3 Acquirer country code 
-                        Pos - 8 - 13 bytes - Merchant City
-                        Pos 21 - 2 bytes : Merchant country
-                        Pos 23 - 10 bytes : DE55 Terminal verification results TVR
-                        Pos 33 - 16 bytes - DE55 ARQC
-                        Pos 49 - 6 bytes - DE55 CVM results
-                        Pos 55 - 1 byte : ARQC result
-                        Pos 56 - 1 byte - Terminal capability Ind
-                        Pos 57 - 5 bytes : DE18 MCC
-                        Pos 62 - 1 byte - Cardholder ID method
-                        Pos 63 - 1 byte - Draft Capture flag
-                        VMX: M_LINE_13
-                      maxLength: 65
-                      example: 00 0000 00000000000000
-                    acceptorName:
-                      type: string
-                      description: |
-                        Card Acceptor Name / Merchant name. ISO 8533 based on data element 43 (1–23 street address, –36 city, –38 state, 39–40 country).
-                        VMX: M_LINE_8
-                      maxLength: 65
-                      example: Acceptor
-                    reason:
-                      type: string
-                      description: |-
-                        Declination reason.
-                        Number between 001 to 800
-                        Blocked card SMS is 108.
-                        Authorization is 296.
-                        VMX: M_LINE_5
-                      maxLength: 65
-                      example: '294'
-                    feeAmount:
-                      type: string
-                      description: |
-                        Transaction fee amount. ISO 8533 based on data element 54 (Additional amounts)
-                        Pos 01 - 13 bytes
-                        VMX: M_LINE_15
-                      maxLength: 65
-                      example: '00000000010.00'
-                    amount:
-                      type: string
-                      description: |
-                        Transaction Amount in original currency. ISO 8533 based on data element 4 (Amount Transaction).
-                        VMX: M_LINE_7
-                      maxLength: 65
-                      example: '00000000010.00'
-                    cashbackAmount:
-                      type: string
-                      description: |
-                        Pos 01 - 12 bytes - DE 54 - Cashback amount
-
-                        VMX: M_LINE_14
-                      maxLength: 65
-                      example: '00000000010.00'
-                    currency:
-                      type: string
-                      description: |
-                        Transaction currency. ISO 8533 based on data element 49 (Currency code, transaction).
-                        VMX: M_LINE_11
-                      maxLength: 65
-                      example: MXN
-                    authorizationDate:
-                      type: string
-                      description: |
-                        Authorization Date. YYYYMMDD.
-                        VMX: M_LINE_9
-                      maxLength: 65
-                      example: '1202'
-                    authorizationTime:
-                      type: string
-                      description: |
-                        Authorization Time (hhmmss).
-                        VMX: M_LINE_10
-                      maxLength: 65
-                      example: '141638'
-                contact:
-                  type: array
-                  description: Specific information of the contact.
-                  items:
-                    type: object
-                    properties:
-                      contactType:
-                        type: string
-                        description: |-
-                          Specific information of the contact.
-
-                          Values:
-                          * PRINCIPAL_EMAIL = Contact of type EMAIL
-                          * PRINCIPAL_PHONE = Contact of type PHONE
-
-                          Vision Service Data:
-                          * PRINCIPAL_EMAIL: messageLine4
-                          * PRINCIPAL_PHONE: messageLine3
-                        example: PRINCIPAL_EMAIL
-                      value:
-                        type: string
-                        description: Contact Value according to the Contact Type.
-                        maxLength: 65
-                        example: mar*******@g****.com
-                metadata:
-                  type: array
-                  description: |-
-                    Add aditional customer information.
-                    In this array the following values can be send:
-                    User defined 1 - AMNA-USER-1
-                    User defined 2 - AMNA-USER-2
-                    User defined 3 - AMNA-USER-3
-                    User defined 4 - AMNA-USER-4
-                  items:
-                    type: object
-                    properties:
-                      key:
-                        type: string
-                        description: |-
-                          Message id
-                          VMX: 
-                          M_LINE_16
-                          M_LINE_17
-                          M_LINE_18
-                          M_LINE_19
-                          M_LINE_20
-                          M_LINE_21
-                        example: M_LINE_16
-                      value:
-                        type: string
-                        description: Message value
-                        example: Message value
-                encryptedData:
-                  type: string
-                  description: Encrypted sensitive informatiom in the payload
-                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
               x-examples:
                 example-1:
                   description: APPROVED
@@ -250,6 +81,196 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+              properties:
+                description:
+                  type: string
+                  description: |-
+                    Event message description.
+                    APPROVED / DECLINED - REASON with 25 bytes max.
+
+                    VMX: M_DESC
+                  maxLength: 20
+                  example: APPROVED
+                cardNumber:
+                  type: string
+                  description: |
+                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+                    VMX: M_LINE_6
+                  maxLength: 65
+                  example: '***************5669'
+                transaction:
+                  type: object
+                  description: Information related to event transaction.
+                  properties:
+                    id:
+                      type: string
+                      description: |
+                        Pos 1 - 2 bytes: DE3 Proc code
+                        Pos 3 - 15 bytes: DE42 Merchant ID
+                        Pos 18 - 12 bytes: DE37 reference number
+                        Pos 30 - 4 bytes: Message type ID / MTI
+                        Pos 34 - 1 bytes: FAS request type ID A: Authorization, R - reversal
+                        Pos 35 - 6 bytes: Authorization Code
+                        Pos 41 - 14 bytes: DE6 Card holder billing amount
+                        Pos 55 - 01 byte : Field separator "/"
+                        Pos 56 - 02 bytes : Installment number.
+
+                        VMX: M_LINE_12
+                      maxLength: 65
+                      example: 01ABCDFGHIJK0000X0000000000010001AABC00100000000001.01/01
+                    additionInformation:
+                      type: string
+                      description: |-
+                        Pos 1 - 3 bytes : DE22 POS Entry mode
+                        Pos 4 - 1 byte : Ecommerce flag
+                        Pos 5 - 3 Acquirer country code 
+                        Pos 8 - 13 bytes - Merchant City
+                        Pos 21 - 2 bytes : Merchant country
+                        Pos 23 - 10 bytes : DE55 Terminal verification results TVR
+                        Pos 33 - 16 bytes - DE55 ARQC
+                        Pos 49 - 6 bytes - DE55 CVM results
+                        Pos 55 - 1 byte : ARQC result
+                        Pos 56 - 1 byte - Terminal capability Ind
+                        Pos 57 - 5 bytes : DE18 MCC
+                        Pos 62 - 1 byte - Cardholder ID method
+                        Pos 63 - 1 byte - Draft Capture flag
+
+                        VMX: M_LINE_13
+                      maxLength: 65
+                      example: 00 0000 00000000000000
+                    acceptorName:
+                      type: string
+                      description: |
+                        Card Acceptor Name / Merchant name. ISO 8533 based on data element 43 (1–23 street address, –36 city, –38 state, 39–40 country).
+
+                        VMX: M_LINE_8
+                      maxLength: 65
+                      example: Acceptor
+                    reason:
+                      type: string
+                      description: |-
+                        Declination reason.
+                        Number between 001 to 800
+                        Blocked card SMS is 108.
+                        Authorization is 296.
+
+                        VMX: M_LINE_5
+                      maxLength: 65
+                      example: '294'
+                    feeAmount:
+                      type: string
+                      description: |
+                        Transaction fee amount. ISO 8533 based on data element 54 (Additional amounts)
+                        Pos 01 - 13 bytes
+
+                        VMX: M_LINE_15
+                      maxLength: 65
+                      example: '00000000010.00'
+                    amount:
+                      type: string
+                      description: |
+                        Transaction Amount in original currency. ISO 8533 based on data element 4 (Amount Transaction).
+
+                        VMX: M_LINE_7
+                      maxLength: 65
+                      example: '00000000010.00'
+                    cashbackAmount:
+                      type: string
+                      description: |
+                        Pos 01 - 12 bytes - DE 54 - Cashback amount
+
+                        VMX: M_LINE_14
+                      maxLength: 65
+                      example: '00000000010.00'
+                    currency:
+                      type: string
+                      description: |
+                        Transaction currency. ISO 8533 based on data element 49 (Currency code, transaction).
+
+                        VMX: M_LINE_11
+                      maxLength: 65
+                      example: MXN
+                    authorizationDate:
+                      type: string
+                      description: |
+                        Authorization Date. YYYYMMDD.
+
+                        VMX: M_LINE_9
+                      maxLength: 65
+                      example: '1202'
+                    authorizationTime:
+                      type: string
+                      description: |
+                        Authorization Time (hhmmss).
+
+                        VMX: M_LINE_10
+                      maxLength: 65
+                      example: '141638'
+                    authorizationRealTime:
+                      type: string
+                      x-stoplight:
+                        id: akxhtkobjt9mx
+                      description: "Real time authorization data\r\n\r\nPos 1 - 11 bytes- DE 7- Transmission date and time \r\nPos 12 - 17 bytes - DE 11- system trace audit number\r\nPos 18 - 22 bytes - DE 15 - settlement date\r\npos 23 - 25 bytes - DE 20 - PAN Country code\r\nPos 26 - 28 bytes - DE 23 - Apllication pan sequence number \r\nPos 29 - 39 bytes - DE 32 - Acquired Institution ID\r\nPos 40 - 50 bytes - DE 33 - Forwarded Institution ID\r\nPos 51 - 56 bytes - DE 38 - Authorization ID Response\r\nPos 57 - 64 bytes - DE 41 - Card Acceptor terminal id\r\n\r\nVMX: M_LINE_21"
+                      maxLength: 65
+                      example: '04/17-19:0500783604/17000000000001234560000000000000799012345678'
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          VMX: 
+                          - PRINCIPAL_EMAIL: M_LINE_4
+                          - PRINCIPAL_PHONE: M_LINE_3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        maxLength: 65
+                        example: mar*******@g****.com
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+
+                          VMX: 
+                          - M_LINE_16
+                          - M_LINE_17
+                          - M_LINE_18
+                          - M_LINE_19
+                          - M_LINE_20
+                        example: M_LINE_16
+                      value:
+                        type: string
+                        description: Message value.
+                        example: Message value
+                encryptedData:
+                  type: string
+                  description: Encrypted sensitive informatiom in the payload.
+                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
           description: OK
@@ -304,6 +325,8 @@ paths:
       x-proxy-name: Authorization
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+      x-stoplight:
+        id: qp3puc9c0x6r5
   /notifications/v3/accountLifeCycle:
     post:
       summary: Account Life Cycle
@@ -346,95 +369,6 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                description:
-                  type: string
-                  description: |-
-                    Event message description. 
-                    VMX: M_DESC 
-                  maxLength: 20
-                  example: APPROVED
-                transaction:
-                  type: object
-                  description: Information related to event transaction
-                  properties:
-                    eventDate:
-                      type: string
-                      description: |-
-                        Authorization Date (YYYYMMDD).
-                        VMX: M_LINE_9
-                      maxLength: 65
-                      example: '20220127'
-                    eventTime:
-                      type: string
-                      description: |-
-                        Authorization Time (hhmmss).
-                        VMX: M_LINE_10
-                      maxLength: 65
-                      example: '141638'
-                    statementInformation:
-                      type: string
-                      description: |-
-                        Last Statement Balance | Current Balance | Total Payment Due | Number Cycles due
-                        If the balance is CREDIT balance, you receive '-' sign. If not, the balance is positive, you receive "+"
-                        VMX: M_LINE_12
-                      example: '-00000003299.67|-00000003299.67|00000000032.99|1-00000003299.67|-00000003299.67|00000000032.99|1'
-                contact:
-                  type: array
-                  description: Specific information of the contact.
-                  items:
-                    type: object
-                    properties:
-                      contactType:
-                        type: string
-                        description: |-
-                          Specific information of the contact.
-
-                          Values:
-                          * PRINCIPAL_EMAIL = Contact of type EMAIL
-                          * PRINCIPAL_PHONE = Contact of type PHONE
-
-                          Vision Service Data:
-                          * PRINCIPAL_EMAIL: messageLine4
-                          * PRINCIPAL_PHONE: messageLine3
-                        example: PRINCIPAL_EMAIL
-                      value:
-                        type: string
-                        description: Contact Value according to the Contact Type.
-                        maxLength: 65
-                        example: mar*******@g****.com
-                metadata:
-                  type: array
-                  description: |-
-                    Add aditional customer information.
-                    In this array the following values can be send:
-                    User defined 1 - AMNA-USER-1
-                    User defined 2 - AMNA-USER-2
-                    User defined 3 - AMNA-USER-3
-                    User defined 4 - AMNA-USER-4
-                  items:
-                    type: object
-                    properties:
-                      key:
-                        type: string
-                        description: |-
-                          Message id
-                          VMX: 
-                          M_LINE_16
-                          M_LINE_17
-                          M_LINE_18
-                          M_LINE_19
-                          M_LINE_20
-                          M_LINE_21
-                        example: M_LINE_16
-                      value:
-                        type: string
-                        description: Message value
-                        example: Message value
-                encryptedData:
-                  type: string
-                  description: Encrypted sensitive informatiom in the payload
-                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
               x-examples:
                 example-1:
                   description: APPROVED
@@ -467,6 +401,101 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+              properties:
+                description:
+                  type: string
+                  description: |-
+                    Event message description. 
+
+                    VMX: M_DESC 
+                  maxLength: 20
+                  example: APPROVED
+                transaction:
+                  type: object
+                  description: Information related to event transaction.
+                  properties:
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+
+                        VMX: M_LINE_9
+                      maxLength: 65
+                      example: '20220127'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Authorization Time (hhmmss).
+
+                        VMX: M_LINE_10
+                      maxLength: 65
+                      example: '141638'
+                    statementInformation:
+                      type: string
+                      description: |-
+                        Last Statement Balance | Current Balance | Total Payment Due | Number Cycles due
+                        If the balance is CREDIT balance, you receive '-' sign. If not, the balance is positive, you receive "+"
+
+                        VMX: M_LINE_12
+                      example: '-00000003299.67|-00000003299.67|00000000032.99|1-00000003299.67|-00000003299.67|00000000032.99|1'
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          VMX: 
+                          - PRINCIPAL_EMAIL: M_LINE_4
+                          - PRINCIPAL_PHONE: M_LINE_3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        maxLength: 65
+                        example: mar*******@g****.com
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+
+                          VMX: 
+                          - M_LINE_16
+                          - M_LINE_17
+                          - M_LINE_18
+                          - M_LINE_19
+                          - M_LINE_20
+                          - M_LINE_21
+                        example: M_LINE_16
+                      value:
+                        type: string
+                        description: Message value.
+                        example: Message value
+                encryptedData:
+                  type: string
+                  description: Encrypted sensitive informatiom in the payload.
+                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
           description: OK
@@ -521,6 +550,8 @@ paths:
       x-proxy-name: Account Life Cycle
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+      x-stoplight:
+        id: 31vj04o0hgpdb
   /notifications/v3/accountManagement:
     post:
       summary: Account Management
@@ -566,88 +597,6 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                description:
-                  type: string
-                  description: |-
-                    Event message description. 
-                    VMX: M_DESC 
-                  maxLength: 20
-                  example: APPROVED
-                transaction:
-                  type: object
-                  description: Information related to event transaction
-                  properties:
-                    eventDate:
-                      type: string
-                      description: |-
-                        Authorization Date (YYYYMMDD).
-                        VMX: M_LINE_9
-                      maxLength: 65
-                      example: '20220127'
-                    eventTime:
-                      type: string
-                      description: |-
-                        Authorization Time (hhmmss).
-                        VMX: M_LINE_10
-                      maxLength: 65
-                      example: '141638'
-                contact:
-                  type: array
-                  description: Specific information of the contact.
-                  items:
-                    type: object
-                    properties:
-                      contactType:
-                        type: string
-                        description: |-
-                          Specific information of the contact.
-
-                          Values:
-                          * PRINCIPAL_EMAIL = Contact of type EMAIL
-                          * PRINCIPAL_PHONE = Contact of type PHONE
-
-                          Vision Service Data:
-                          * PRINCIPAL_EMAIL: messageLine4
-                          * PRINCIPAL_PHONE: messageLine3
-                        example: PRINCIPAL_EMAIL
-                      value:
-                        type: string
-                        description: Contact Value according to the Contact Type.
-                        maxLength: 65
-                        example: mar*******@g****.com
-                metadata:
-                  type: array
-                  description: |-
-                    Add aditional customer information.
-                    In this array the following values can be send:
-                    User defined 1 - AMNA-USER-1
-                    User defined 2 - AMNA-USER-2
-                    User defined 3 - AMNA-USER-3
-                    User defined 4 - AMNA-USER-4
-                  items:
-                    type: object
-                    properties:
-                      key:
-                        type: string
-                        description: |-
-                          Message id
-                          VMX: 
-                          M_LINE_16
-                          M_LINE_17
-                          M_LINE_18
-                          M_LINE_19
-                          M_LINE_20
-                          M_LINE_21
-                        example: M_LINE_16
-                      value:
-                        type: string
-                        description: Message value
-                        example: Message value
-                encryptedData:
-                  type: string
-                  description: Encrypted sensitive informatiom in the payload
-                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
               x-examples:
                 example-1:
                   description: APPROVED
@@ -680,6 +629,93 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+              properties:
+                description:
+                  type: string
+                  description: |-
+                    Event message description. 
+
+                    VMX: M_DESC 
+                  maxLength: 20
+                  example: APPROVED
+                transaction:
+                  type: object
+                  description: Information related to event transaction.
+                  properties:
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+
+                        VMX: M_LINE_9
+                      maxLength: 65
+                      example: '20220127'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Authorization Time (hhmmss).
+
+                        VMX: M_LINE_10
+                      maxLength: 65
+                      example: '141638'
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          VMX: 
+                          - PRINCIPAL_EMAIL: M_LINE_4
+                          - PRINCIPAL_PHONE: M_LINE_3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        maxLength: 65
+                        example: mar*******@g****.com
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+
+                          VMX: 
+                          - M_LINE_16
+                          - M_LINE_17
+                          - M_LINE_18
+                          - M_LINE_19
+                          - M_LINE_20
+                          - M_LINE_21
+                        example: M_LINE_16
+                      value:
+                        type: string
+                        description: Message value.
+                        example: Message value
+                encryptedData:
+                  type: string
+                  description: Encrypted sensitive informatiom in the payload.
+                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
           description: OK
@@ -734,6 +770,8 @@ paths:
       x-proxy-name: Account Management
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+      x-stoplight:
+        id: lym31d5zmo57c
   /notifications/v3/cardLifeCycle:
     post:
       summary: Card Life Cycle
@@ -776,112 +814,6 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                description:
-                  type: string
-                  description: |-
-                    Event message description.
-                    CARD BLOCKED / CARD UNBLOCKED 
-                    VMX: M_DESC
-                  maxLength: 20
-                  example: APPROVED
-                cardNumber:
-                  type: string
-                  description: |-
-                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-                    VMX: M_LINE_6
-                  maxLength: 65
-                  example: '***************5669'
-                transaction:
-                  type: object
-                  description: Information related to event transaction
-                  properties:
-                    isActivated:
-                      type: string
-                      description: |-
-                        Activation Flag.
-                        True - Y = needs activation
-                        False - N = Card Activated
-                        VMX: M_LINE_8
-                      maxLength: 65
-                      example: 'Y'
-                    blockReason:
-                      type: string
-                      description: |-
-                        Block code reason.
-                        VMX: M_LINE_7
-                      maxLength: 65
-                      example: TEST MERCHANT
-                    eventDate:
-                      type: string
-                      description: |-
-                        Authorization Date (YYYYMMDD).
-                        VMX: M_LINE_9
-                      maxLength: 65
-                      example: '1202'
-                    eventTime:
-                      type: string
-                      description: |-
-                        Authorization Time (hhmmss).
-                        VMX: M_LINE_10
-                      maxLength: 65
-                      example: '141638'
-                contact:
-                  type: array
-                  description: Specific information of the contact.
-                  items:
-                    type: object
-                    properties:
-                      contactType:
-                        type: string
-                        description: |-
-                          Specific information of the contact.
-
-                          Values:
-                          * PRINCIPAL_EMAIL = Contact of type EMAIL
-                          * PRINCIPAL_PHONE = Contact of type PHONE
-
-                          Vision Service Data:
-                          * PRINCIPAL_EMAIL: messageLine4
-                          * PRINCIPAL_PHONE: messageLine3
-                        example: PRINCIPAL_EMAIL
-                      value:
-                        type: string
-                        description: Contact Value according to the Contact Type.
-                        maxLength: 65
-                        example: mar*******@g****.com
-                metadata:
-                  type: array
-                  description: |-
-                    Add aditional customer information.
-                    In this array the following values can be send:
-                    User defined 1 - AMNA-USER-1
-                    User defined 2 - AMNA-USER-2
-                    User defined 3 - AMNA-USER-3
-                    User defined 4 - AMNA-USER-4
-                  items:
-                    type: object
-                    properties:
-                      key:
-                        type: string
-                        description: |-
-                          Message id
-                          VMX: 
-                          M_LINE_16
-                          M_LINE_17
-                          M_LINE_18
-                          M_LINE_19
-                          M_LINE_20
-                          M_LINE_21
-                        example: M_LINE_16
-                      value:
-                        type: string
-                        description: Message value
-                        example: Message value
-                encryptedData:
-                  type: string
-                  description: Encrypted sensitive informatiom in the payload
-                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
               x-examples:
                 example-1:
                   description: APPROVED
@@ -916,6 +848,120 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+              properties:
+                description:
+                  type: string
+                  description: |-
+                    Event message description.
+                    CARD BLOCKED / CARD UNBLOCKED 
+
+                    VMX: M_DESC
+                  maxLength: 20
+                  example: APPROVED
+                cardNumber:
+                  type: string
+                  description: |-
+                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+                    VMX: M_LINE_6
+                  maxLength: 65
+                  example: '***************5669'
+                transaction:
+                  type: object
+                  description: Information related to event transaction.
+                  properties:
+                    isActivated:
+                      type: string
+                      description: |-
+                        Activation Flag.
+                        True - Y = needs activation
+                        False - N = Card Activated
+
+                        VMX: M_LINE_8
+                      maxLength: 65
+                      example: 'Y'
+                    blockReason:
+                      type: string
+                      description: |-
+                        Block code reason.
+
+                        VMX: M_LINE_7
+                      maxLength: 65
+                      example: TEST MERCHANT
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+
+                        VMX: M_LINE_9
+                      maxLength: 65
+                      example: '1202'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Authorization Time (hhmmss).
+
+                        VMX: M_LINE_10
+                      maxLength: 65
+                      example: '141638'
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          VMX: 
+                          - PRINCIPAL_EMAIL: M_LINE_4
+                          - PRINCIPAL_PHONE: M_LINE_3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        maxLength: 65
+                        example: mar*******@g****.com
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+
+                          VMX: 
+                          - M_LINE_16
+                          - M_LINE_17
+                          - M_LINE_18
+                          - M_LINE_19
+                          - M_LINE_20
+                          - M_LINE_21
+                        example: M_LINE_16
+                      value:
+                        type: string
+                        description: Message value.
+                        example: Message value
+                encryptedData:
+                  type: string
+                  description: Encrypted sensitive informatiom in the payload.
+                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
           description: OK
@@ -970,6 +1016,8 @@ paths:
       x-proxy-name: Card Life Cycle
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+      x-stoplight:
+        id: tdn08sj0ffx56
   /notifications/v3/fraudAuthorization:
     post:
       summary: Fraud Authorization
@@ -1007,124 +1055,6 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                description:
-                  type: string
-                  description: |-
-                    Event message description.
-                    APPROVED / DECLINED - REASON with 25 bytes max.
-                    VMX: M_DESC
-                  maxLength: 20
-                  example: APPROVED
-                cardNumber:
-                  type: string
-                  description: |-
-                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-                    VMX: M_LINE_6
-                  maxLength: 65
-                  example: '***************5669'
-                transaction:
-                  type: object
-                  description: Information related to event transaction
-                  properties:
-                    acceptorName:
-                      type: string
-                      description: |-
-                        Card Acceptor Name / Merchant name. ISO 8533 based on data element 43 (1–23 street address, –36 city, –38 state, 39–40 country).
-                        VMX: M_LINE_8
-                      maxLength: 65
-                      example: Acceptor
-                    reason:
-                      type: string
-                      description: |-
-                        FAS authorization action reason
-                        VMX: M_LINE_5
-                      maxLength: 65
-                      example: '294'
-                    amount:
-                      type: string
-                      description: |-
-                        Transaction Amount in original currency. ISO 8533 based on data element 4 (Amount Transaction).
-                        VMX: M_LINE_7
-                      maxLength: 65
-                      example: '00000000010.00'
-                    currency:
-                      type: string
-                      description: |-
-                        Transaction currency. ISO 8533 based on data element 49 (Currency code, transaction).
-                        VMX: M_LINE_11
-                      maxLength: 65
-                      example: MXN
-                    eventDate:
-                      type: string
-                      description: |-
-                        Authorization Date (YYYYMMDD).
-                        VMX: M_LINE_9
-                      maxLength: 65
-                      example: '1202'
-                    eventTime:
-                      type: string
-                      description: |-
-                        Event Time (hhmmss).
-                        VMX: M_LINE_10
-                      maxLength: 65
-                      example: '141638'
-                contact:
-                  type: array
-                  description: Specific information of the contact.
-                  items:
-                    type: object
-                    properties:
-                      contactType:
-                        type: string
-                        description: |-
-                          Specific information of the contact.
-
-                          Values:
-                          * PRINCIPAL_EMAIL = Contact of type EMAIL
-                          * PRINCIPAL_PHONE = Contact of type PHONE
-
-                          Vision Service Data:
-                          * PRINCIPAL_EMAIL: messageLine4
-                          * PRINCIPAL_PHONE: messageLine3
-                        example: PRINCIPAL_EMAIL
-                      value:
-                        type: string
-                        description: Contact Value according to the Contact Type.
-                        maxLength: 65
-                        example: mar*******@g****.com
-                metadata:
-                  type: array
-                  description: |-
-                    Add aditional customer information.
-                    In this array the following values can be send:
-                    User defined 1 - AMNA-USER-1
-                    User defined 2 - AMNA-USER-2
-                    User defined 3 - AMNA-USER-3
-                    User defined 4 - AMNA-USER-4
-                  items:
-                    type: object
-                    properties:
-                      key:
-                        type: string
-                        description: |-
-                          Message id
-                          VMX: 
-                          M_LINE_16
-                          M_LINE_17
-                          M_LINE_18
-                          M_LINE_19
-                          M_LINE_20
-                          M_LINE_21
-                        example: M_LINE_16
-                      value:
-                        type: string
-                        description: Message value
-                        example: Message value
-                encryptedData:
-                  type: string
-                  description: Encrypted sensitive informatiom in the payload
-                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
               x-examples:
                 example-1:
                   description: APPROVED
@@ -1157,6 +1087,134 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+              properties:
+                description:
+                  type: string
+                  description: |-
+                    Event message description.
+                    APPROVED / DECLINED - REASON with 25 bytes max.
+
+                    VMX: M_DESC
+                  maxLength: 20
+                  example: APPROVED
+                cardNumber:
+                  type: string
+                  description: |-
+                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+                    VMX: M_LINE_6
+                  maxLength: 65
+                  example: '***************5669'
+                transaction:
+                  type: object
+                  description: Information related to event transaction.
+                  properties:
+                    acceptorName:
+                      type: string
+                      description: |-
+                        Card Acceptor Name / Merchant name. ISO 8533 based on data element 43 (1–23 street address, –36 city, –38 state, 39–40 country).
+
+                        VMX: M_LINE_8
+                      maxLength: 65
+                      example: Acceptor
+                    reason:
+                      type: string
+                      description: |-
+                        FAS authorization action reason.
+
+                        VMX: M_LINE_5
+                      maxLength: 65
+                      example: '294'
+                    amount:
+                      type: string
+                      description: |-
+                        Transaction Amount in original currency. ISO 8533 based on data element 4 (Amount Transaction).
+
+                        VMX: M_LINE_7
+                      maxLength: 65
+                      example: '00000000010.00'
+                    currency:
+                      type: string
+                      description: |-
+                        Transaction currency. ISO 8533 based on data element 49 (Currency code, transaction).
+
+                        VMX: M_LINE_11
+                      maxLength: 65
+                      example: MXN
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+
+                        VMX: M_LINE_9
+                      maxLength: 65
+                      example: '1202'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Event Time (hhmmss).
+
+                        VMX: M_LINE_10
+                      maxLength: 65
+                      example: '141638'
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          VMX: 
+                          - PRINCIPAL_EMAIL: M_LINE_4
+                          - PRINCIPAL_PHONE: M_LINE_3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        maxLength: 65
+                        example: mar*******@g****.com
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id
+
+                          VMX: 
+                          - M_LINE_16
+                          - M_LINE_17
+                          - M_LINE_18
+                          - M_LINE_19
+                          - M_LINE_20
+                          - M_LINE_21
+                        example: M_LINE_16
+                      value:
+                        type: string
+                        description: Message value.
+                        example: Message value
+                encryptedData:
+                  type: string
+                  description: Encrypted sensitive informatiom in the payload.
+                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
           description: OK
@@ -1211,6 +1269,8 @@ paths:
       x-proxy-name: Fraud Authorization
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+      x-stoplight:
+        id: 9bhfdggutq6ii
   /notifications/v3/fraudBlock:
     post:
       summary: Fraud Block
@@ -1248,110 +1308,6 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                description:
-                  type: string
-                  description: |-
-                    Event message description.
-                    APPROVED / DECLINED - REASON with 25 bytes max.
-                    VMX: M_DESC
-                  maxLength: 20
-                  example: APPROVED
-                cardNumber:
-                  type: string
-                  description: |-
-                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-                    VMX: M_LINE_6
-                  maxLength: 65
-                  example: '***************5669'
-                transaction:
-                  type: object
-                  description: Information related to event transaction
-                  properties:
-                    reason:
-                      type: string
-                      description: |-
-                        FAS authorization action reason.
-                        Blocked card SMS is 108.
-                        VMX: M_LINE_5
-                      maxLength: 65
-                      example: '294'
-                    eventDate:
-                      type: string
-                      description: |-
-                        Authorization Date (YYYYMMDD).
-                        VMX: M_LINE_9
-                      maxLength: 65
-                      example: '1202'
-                    eventTime:
-                      type: string
-                      description: |-
-                        Event Time. ISO 8533 based on data element 12 (hhmmss).
-                        VMX: M_LINE_10
-                      maxLength: 65
-                      example: '141638'
-                    blockReason:
-                      type: string
-                      description: |-
-                        Block code reason.
-                        VMX: M_LINE_7
-                      example: Reason
-                contact:
-                  type: array
-                  description: Specific information of the contact.
-                  items:
-                    type: object
-                    properties:
-                      contactType:
-                        type: string
-                        description: |-
-                          Specific information of the contact.
-
-                          Values:
-                          * PRINCIPAL_EMAIL = Contact of type EMAIL
-                          * PRINCIPAL_PHONE = Contact of type PHONE
-
-                          Vision Service Data:
-                          * PRINCIPAL_EMAIL: messageLine4
-                          * PRINCIPAL_PHONE: messageLine3
-                        example: PRINCIPAL_EMAIL
-                      value:
-                        type: string
-                        description: Contact Value according to the Contact Type.
-                        maxLength: 65
-                        example: mar*******@g****.com
-                metadata:
-                  type: array
-                  description: |-
-                    Add aditional customer information.
-                    In this array the following values can be send:
-                    User defined 1 - AMNA-USER-1
-                    User defined 2 - AMNA-USER-2
-                    User defined 3 - AMNA-USER-3
-                    User defined 4 - AMNA-USER-4
-                  items:
-                    type: object
-                    properties:
-                      key:
-                        type: string
-                        description: |-
-                          Message id
-                          VMX: 
-                          M_LINE_16
-                          M_LINE_17
-                          M_LINE_18
-                          M_LINE_19
-                          M_LINE_20
-                          M_LINE_21
-                        example: M_LINE_16
-                      value:
-                        type: string
-                        description: Message value
-                        example: Message value
-                encryptedData:
-                  type: string
-                  description: Encrypted sensitive informatiom in the payload
-                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
               x-examples:
                 example-1:
                   description: APPROVED
@@ -1384,6 +1340,118 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+              properties:
+                description:
+                  type: string
+                  description: |-
+                    Event message description.
+                    APPROVED / DECLINED - REASON with 25 bytes max.
+
+                    VMX: M_DESC
+                  maxLength: 20
+                  example: APPROVED
+                cardNumber:
+                  type: string
+                  description: |-
+                    Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+
+                    VMX: M_LINE_6
+                  maxLength: 65
+                  example: '***************5669'
+                transaction:
+                  type: object
+                  description: Information related to event transaction.
+                  properties:
+                    reason:
+                      type: string
+                      description: |-
+                        FAS authorization action reason.
+                        Blocked card SMS is 108.
+
+                        VMX: M_LINE_5
+                      maxLength: 65
+                      example: '294'
+                    eventDate:
+                      type: string
+                      description: |-
+                        Authorization Date (YYYYMMDD).
+
+                        VMX: M_LINE_9
+                      maxLength: 65
+                      example: '1202'
+                    eventTime:
+                      type: string
+                      description: |-
+                        Event Time. ISO 8533 based on data element 12 (hhmmss).
+
+                        VMX: M_LINE_10
+                      maxLength: 65
+                      example: '141638'
+                    blockReason:
+                      type: string
+                      description: |-
+                        Block code reason.
+
+                        VMX: M_LINE_7
+                      example: Reason
+                contact:
+                  type: array
+                  description: Specific information of the contact.
+                  items:
+                    type: object
+                    properties:
+                      contactType:
+                        type: string
+                        description: |-
+                          Specific information of the contact.
+
+                          Values:
+                          * PRINCIPAL_EMAIL = Contact of type EMAIL
+                          * PRINCIPAL_PHONE = Contact of type PHONE
+
+                          VMX: 
+                          - PRINCIPAL_EMAIL: M_LINE_4
+                          - PRINCIPAL_PHONE: M_LINE_3
+                        example: PRINCIPAL_EMAIL
+                      value:
+                        type: string
+                        description: Contact Value according to the Contact Type.
+                        maxLength: 65
+                        example: mar*******@g****.com
+                metadata:
+                  type: array
+                  description: |-
+                    Add aditional customer information.
+
+                    In this array the following values can be send:
+                    User defined 1 - AMNA-USER-1
+                    User defined 2 - AMNA-USER-2
+                    User defined 3 - AMNA-USER-3
+                    User defined 4 - AMNA-USER-4
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: |-
+                          Message id.
+
+                          VMX: 
+                          - M_LINE_16
+                          - M_LINE_17
+                          - M_LINE_18
+                          - M_LINE_19
+                          - M_LINE_20
+                          - M_LINE_21
+                        example: M_LINE_16
+                      value:
+                        type: string
+                        description: Message value.
+                        example: Message value
+                encryptedData:
+                  type: string
+                  description: Encrypted sensitive informatiom in the payload.
+                  example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
           description: OK
@@ -1438,3 +1506,5 @@ paths:
       x-proxy-name: Fraud Block
       x-group-name: First Vision Events
       x-child-product-name: Notifications
+      x-stoplight:
+        id: f16hwtdgninhz
