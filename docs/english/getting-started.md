@@ -52,8 +52,11 @@ You can see the different APIs available for the corresponding group, on the rig
 
 ### 5. Example of response fields
 
-“hasError” - boolean that indicates if there was any error during the execution
-“errors” - array that will be filled in case of errorque solo tendrá contenido en caso de error detallando el/los errores que sucedieron. Data contendrá la respuesta del endpoint en caso de éxito. Más que nada porque el “Response” del portal solo contiene la estructura data, y no es la estructura que nosotros retornamos.
+“hasError” - boolean that indicates if there was any error during the execution.
+
+“errors” - array that contain the error detail. Will be filled only in case of error.
+
+"data" - will contain the endpoint response in case of success.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824287-f11215ff-a306-4522-ad54-9c254e24dd5b.png)
 
