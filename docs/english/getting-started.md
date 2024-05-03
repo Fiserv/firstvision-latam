@@ -34,6 +34,7 @@ You can see the different APIs available for the corresponding group, on the rig
 
 ### 3. API Structure - On the page of any API resource, there is a division into segments, namely
 
+- Method
 - API description
 - Download API specification
 - Download Postman collection
@@ -43,7 +44,7 @@ You can see the different APIs available for the corresponding group, on the rig
 - Response code
 - Try out section
 
-![image](https://user-images.githubusercontent.com/111396588/223824217-3d03cb76-1bb1-4ea3-bde3-e40f939a64f8.png)
+<img width="765" alt="postman 3" src="https://github.com/Fiserv/firstvision-latam/assets/111396588/04ccefa1-eb1e-4f03-b143-36314496ce3b">
 
 ### 4. Example of body fields
 
