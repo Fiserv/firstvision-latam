@@ -44,6 +44,7 @@ type: tab
 | 404  | Not Found              | Can not find the requested resource.                                                          | Please check API list.                                                          |
 | 408  | Request Time Out       | The response to the request did not received till set period time.                            | Please try after some time.                                                     |
 | 415  | Unsupported Media Type | Not able to process the supplied media type, as indicated by the Content-Type request header. | Merchant to correct the data and resend.                                        |
+| 422  | Unprocessable Content      | Unable to process the contained instructions.                                             | Merchant should do the modifications and repeat the request.                                 |
 | 425  | Too Early              | The request was sent too early.                                                               | Merchant to wait for sometime and send request.                                 |
 | 429  | Too Many Requests      | Merchant had sent too many requests in a given amount of time.                                | Merchant to wait for sometime and send request.                                 |
 
@@ -56,6 +57,7 @@ type: tab
 | Code | Message               | Description                                                                         | Resolution                 |
 |------|-----------------------|-------------------------------------------------------------------------------------|----------------------------|
 | 500  | Internal Server Error | Encountered an unexpected condition which prevented it from fulfilling the request. | Report the error.          |
+| 502  | Bad Gateway           | The server received an invalid response from the upstream server.                   | Please try after sometime. |
 | 503  | Service Unavailable   | The application server is not ready to handle the request.                          | Please try after sometime. |
 | 504  | Gateway Timeout       | Not received response from upstream application.                                    | Please try after sometime. |
 

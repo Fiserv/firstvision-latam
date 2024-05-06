@@ -16,7 +16,7 @@ After these steps, you're ready to start test the Payments API.
 
 ### How to get an API Credential?
 
-![image](https://user-images.githubusercontent.com/111396588/223824102-ee737d0e-462a-44ef-b4aa-eb5d0d062f23.png)
+<img width="1917" alt="apikey1" src="https://github.com/Fiserv/firstvision-latam/assets/111396588/57282a38-45fe-4537-94d6-f7bd11a91cbd">
 
 ## Step 2: Explore our API
 
@@ -34,6 +34,7 @@ You can see the different APIs available for the corresponding group, on the rig
 
 ### 3. API Structure - On the page of any API resource, there is a division into segments, namely
 
+- Method
 - API description
 - Download API specification
 - Download Postman collection
@@ -43,13 +44,19 @@ You can see the different APIs available for the corresponding group, on the rig
 - Response code
 - Try out section
 
-![image](https://user-images.githubusercontent.com/111396588/223824217-3d03cb76-1bb1-4ea3-bde3-e40f939a64f8.png)
+<img width="765" alt="postman 3" src="https://github.com/Fiserv/firstvision-latam/assets/111396588/04ccefa1-eb1e-4f03-b143-36314496ce3b">
 
 ### 4. Example of body fields
 
 ![image](https://user-images.githubusercontent.com/111396588/223824246-d2174d9c-9d0a-4e1b-a287-2ba18d02514d.png)
 
 ### 5. Example of response fields
+
+“hasError” - boolean that indicates if there was any error during the execution.
+
+“errors” - array that contain the error detail. Will be filled only in case of error.
+
+"data" - will contain the endpoint response in case of success.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824287-f11215ff-a306-4522-ad54-9c254e24dd5b.png)
 
@@ -58,6 +65,8 @@ You can see the different APIs available for the corresponding group, on the rig
 ![image](https://user-images.githubusercontent.com/111396588/223824322-689bbbd6-c8b5-4d85-8f14-70fb6a7bf91e.png)
 
 ### 7. Example of try out section
+
+Is important to fill the headers before Try out.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824344-69875caf-2cae-4b95-bac5-1b8d715bef43.png)
 
