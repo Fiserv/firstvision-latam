@@ -35,7 +35,7 @@ Postman Collection will be share temporarily with each customer in accordance wi
 
 ![image](https://user-images.githubusercontent.com/111396588/223825130-b65824be-7525-4df5-80e5-bc9934e4dcd6.png)
 
-## Configure collection
+## Configure environment
 
 ### 6. Now create the variables like the next example with the credentials sent, in this step you can define which variables will be used throughout the use of the Collection, such as endpoint, port and others
 
