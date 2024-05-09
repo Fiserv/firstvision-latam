@@ -23,8 +23,12 @@ paths:
       parameters:
       - name: apikey
         in: header
-        description: API Key
-        required: true
+        description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
         schema:
           type: string
       requestBody:
