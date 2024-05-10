@@ -1,0 +1,375 @@
+openapi: 3.0.1
+x-stoplight:
+  id: dvuseoqrkp90j
+info:
+  title: Lifecycle
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'https://int.api.firstdata.com/ftgw/v1/'
+paths:
+  /ftgw/v1/tokenLifecycle:
+    post:
+      tags:
+      - Lifecycle
+      x-proxy-name: Token LifeCycle
+      x-child-product-name: Tokenization
+      x-group-name: Lifecycle
+      summary: Token Life Cycle
+      operationId: tokenLifeCycle
+      responses:
+        '200':
+          description: Success
+        '400':
+          $ref: '#/components/responses/genericResponse'
+        '422':
+          $ref: '#/components/responses/genericResponse'
+        '500':
+          $ref: '#/components/responses/genericResponse'
+      description: "This method is used by the Issuer to update the status of a specific virtual card. Allows the issuer to activate, resume, suspend, or delete the token.\r\n"
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-scheme
+          description: 'Allowed values: AMEX - MDES - VTIS'
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: apikey
+          description: 'Client-specific API Key issued during onboarding. '
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: HMAC authorization header
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: timestamp
+          description: Request timestamp
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-request-id
+          description: The unique identifier for the API request.
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tokenLifeCycleRequest'
+components:
+  schemas:
+    tokenLifeCycleRequest:
+      title: tokenLifeCycleRequest
+      x-stoplight:
+        id: cpmbi486375az
+      type: object
+      properties:
+        token:
+          type: object
+          x-stoplight:
+            id: kaakvvugguqtk
+          required:
+            - referenceId
+            - requestorId
+          properties:
+            referenceId:
+              type: string
+              x-stoplight:
+                id: or2ycc85gqxtd
+              example: UETSUC0000000su528sr8y69d9ca4eb1a4d53e3c90a11d9c
+              minLength: 1
+              maxLength: 64
+              description: The referenceId field represents the unique reference identifier for a token.
+            requestorId:
+              type: string
+              x-stoplight:
+                id: qk7vqudg002kk
+              example: FiservPortalTest
+              minLength: 1
+              maxLength: 64
+              description: "The requestorId field represents the unique ID assigned to the initiator of the token request.\r\n\r\n(For VTIS numbers only)."
+        operation:
+          type: object
+          x-stoplight:
+            id: 9w4hd58714h5s
+          required:
+            - type
+          properties:
+            type:
+              x-stoplight:
+                id: gpwjdze3jujua
+              description: "The type field represents the desired end state of the token specified by the tokenReferenceId field in the request.\r\n\r\nValues:\r\n\r\n- DELETE =  If the token should be permanently deleted. Similar to a suspended token, a deleted token cannot be used for transactions or /metadata endpoint calls. Unlike a suspended token, a deleted token cannot have its state changed;\r\n- SUSPEND = If the token should be in a suspended state. A suspended token cannot be used for transactions or /metadata endpoint calls;\r\n- RESUME = If the token should be in an active state. An active token can be used for transactions and /metadata endpoint calls;\r\n- CALL_CENTER_ACTIVATION = If the token its activated from callcenter (VTIS only);\r\n- UNBIND_DEVICE = If the token should be unbind from the device that has it binded (VTIS only);\r\n- APPROVE_DEVICE_BINDING = If the token binding should be approved. (VTIS only);\r\n- ACTIVATE = To activate a token for a digitization that has been approved and provisioned (MDES only)."
+              enum:
+                - DELETE
+                - SUSPEND
+                - RESUME
+                - UNBIND_DEVICE
+                - APPROVE_DEVICE_BINDING
+                - ACTIVATE
+                - CALL_CENTER_ACTIVATION
+              example: ACTIVATE
+            reason:
+              x-stoplight:
+                id: aqoufkvbtlxpe
+              description: "The reason field represents the reason for the operation\r\n\r\nValues:\r\n\r\n- A = Cardholder successfully authenticated with an activation method (activation code by text message, email, Issuer mobile application etc...) prior to activation; (Activation only)\r\n- C = Cardholder successfully authenticated with a customer service agent prior to activation;  (Activation only)\r\n- L = Cardholder confirmed token device lost;\r\n- S = Cardholder confirmed token device stolen; \r\n- T = Issuer or cardholder confirmed fraudulent token transactions;\r\n- AC = Account closed;\r\n- D = Issuer consumer deleted;\r\n- Z = Other."
+              enum:
+                - A
+                - C
+                - L
+                - S
+                - T
+                - D
+                - Z
+                - AC
+              example: A
+        device:
+          type: object
+          x-stoplight:
+            id: td3i1z02yk8ay
+          description: "Only valid for Device Binding operations.\r\n\r\n(VTIS Only)."
+          properties:
+            id:
+              type: string
+              x-stoplight:
+                id: 5r9ld5ejcnvp4
+              description: "The id field represents will be the Device ID as determined by the digital wallet provider.\r\n\r\n"
+              minLength: 0
+              maxLength: 48
+            reference:
+              type: string
+              x-stoplight:
+                id: tz5q3dbq6xkpm
+              minLength: 0
+              maxLength: 64
+              description: 'The reference field indicates the index number from Visa where the deviceID is stored. '
+        activationCode:
+          type: string
+          x-stoplight:
+            id: g9cpo49tvjkx3
+          minLength: 0
+          maxLength: 8
+          description: The activationCode field its equivalent of Auth Code. Required if operationType is CALL_CENTER_ACTIVATION. This parameter is merely used for audit purposes. There is no validation on Visa’s side and the value is not passed to DWP but saved into the audit log as proof that the activation request was approved by the issuer. (VTIS only)
+          example: ACT
+        audit:
+          type: object
+          x-stoplight:
+            id: jkmshv0eqgw5o
+          description: (MDES only)
+          properties:
+            userId:
+              type: string
+              x-stoplight:
+                id: n7pfie1ohnyoa
+              description: The userId  represents the User ID of the Customer Service Representative who triggered the API request.
+              minLength: 0
+              maxLength: 50
+            username:
+              type: string
+              x-stoplight:
+                id: q26f2zxicw7mr
+              maxLength: 200
+              minLength: 0
+              description: The username field represents the user name of the Customer Service Representative who triggered the API request.
+            organization:
+              type: string
+              x-stoplight:
+                id: v0xcrq66nanyw
+              description: The organization field represents the name of the Issuer or Processor to which the Customer Service Representative who triggered the API request belongs.
+              minLength: 0
+              maxLength: 200
+    panLifeCycleRequest:
+      title: panLifeCycleRequest
+      x-stoplight:
+        id: qbf4rx9zcs1ja
+      type: object
+      x-internal: false
+      required:
+        - operation
+        - accountInformation
+      properties:
+        operation:
+          type: object
+          x-stoplight:
+            id: jiu5ny9feo8l0
+          required:
+            - reason
+            - reasonCode
+            - type
+          properties:
+            reason:
+              type: string
+              example: Replacement due to lost card
+              minLength: 1
+              description: "Reason for the operation. The reason should be descriptive,\r\nsuch that if the issuer performs an action and the consumer calls\r\nCustomer Support, the support team should be able to read the\r\nreason, advise the consumer, and act accordingly. For example, if the\r\nPAN is replaced, the request reason might say “Replacement due to\r\nlost card”."
+              x-stoplight:
+                id: 7j3gq8s64jcgs
+              maxLength: 254
+            reasonCode:
+              example: ACCOUNT_UPDATE
+              description: "A reason code for the operation. If the reason code is\r\nACCOUNT_UPDATE or PORTFOLIO_CONVERSION (updating PAN only\r\nor PAN & Expiry date), the old PAN and replacement PAN cannot be\r\nthe same. If the reason code is EXP_DATE_UPDATE (expiry date\r\nupdate only), the old PAN and replacement PAN values must be the\r\nsame."
+              x-stoplight:
+                id: vj6v8afm0exye
+              enum:
+                - ACCOUNT_UPDATE
+                - ACCOUNT_CLOSED
+                - EXP_DATE_UPDATE
+                - CONTACT_CARDHOLDER
+                - PORTFOLIO_CONVERSION
+            type:
+              example: UPDATE
+              description: "Type of operation. It is one of the following values:\r\n- UPDATE\r\n- DELETE"
+              x-stoplight:
+                id: yx650iesgf174
+              enum:
+                - UPDATE
+                - DELETE
+        accountInformation:
+          $ref: '#/components/schemas/cardHolderInfo'
+          x-stoplight:
+            id: elmzjo4k80qy8
+        audit:
+          type: object
+          x-stoplight:
+            id: if13lpwo46lcw
+          description: Only required for Mastercard.
+          properties:
+            userId:
+              type: string
+              x-stoplight:
+                id: 73mvgkbjrppb5
+              description: User ID (as assigned by the Issuer/Processor) of the Customer Service Representative who triggered the API request.
+              example: A1435477
+              minLength: 4
+              maxLength: 50
+            username:
+              type: string
+              x-stoplight:
+                id: c7ucoa04hqy96
+              description: User Name of the Customer Service Representative who triggered the API request.
+              example: John Smith
+              minLength: 4
+              maxLength: 200
+            organization:
+              type: string
+              x-stoplight:
+                id: qkzi50abxktxk
+              description: Name of the Issuer or Processor to which the Customer Service Representative who triggered the API request belongs.
+              example: Solid Bank Inc
+              minLength: 4
+              maxLength: 200
+    cardHolderInfo:
+      title: cardHolderInfo
+      x-stoplight:
+        id: edwe55k30intf
+      type: object
+      required:
+        - currentPan
+        - newPan
+      properties:
+        currentPan:
+          type: object
+          x-stoplight:
+            id: ikiyp22ilvgfg
+          description: Current Primary account number (PAN)
+          required:
+            - accountNumber
+            - expirationDate
+          properties:
+            accountNumber:
+              type: string
+              x-stoplight:
+                id: 2vpenzq2fv48s
+              maxLength: 19
+              example: '172654826345827456'
+            expirationDate:
+              type: object
+              x-stoplight:
+                id: xlndict2tyahh
+              description: The expiration date of the payment instrument.
+              required:
+                - month
+                - year
+              properties:
+                month:
+                  type: string
+                  x-stoplight:
+                    id: lncojmtex16dc
+                  description: "The month upon which the payment instrument is set to\r\nexpire."
+                  maxLength: 2
+                  example: '02'
+                year:
+                  type: string
+                  x-stoplight:
+                    id: lov6nnm4mdh9y
+                  description: "The year upon which the payment instrument is set to\r\nexpire."
+                  maxLength: 4
+                  minLength: 4
+                  example: '2024'
+        newPan:
+          type: object
+          x-stoplight:
+            id: xi20xy2gilc2k
+          required:
+            - accountNumber
+            - expirationDate
+          properties:
+            accountNumber:
+              type: string
+              x-stoplight:
+                id: 9b78nwgog5of0
+              example: '172654826345827457'
+              maxLength: 19
+            expirationDate:
+              type: object
+              x-stoplight:
+                id: 8ayscubf2hk89
+              description: The expiration date of the payment instrument.
+              required:
+                - month
+                - year
+              properties:
+                month:
+                  type: string
+                  x-stoplight:
+                    id: hk0s32w8j4lf5
+                  description: "The month upon which the payment instrument is set to\r\nexpire."
+                  example: '12'
+                  maxLength: 2
+                year:
+                  type: string
+                  x-stoplight:
+                    id: 21fij0td178pm
+                  description: "The year upon which the payment instrument is set to\r\nexpire."
+                  example: '2028'
+                  maxLength: 4
+                  minLength: 4
+  responses:
+    genericResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                responseCode: '001'
+                responseDescription: Internal Server Error
+            required:
+              - responseCode
+              - responseDescription
+            properties:
+              responseCode:
+                type: string
+                maxLength: 8
+                description: Error response code
+              responseDescription:
+                type: string
+                maxLength: 400
+                description: Error response description
