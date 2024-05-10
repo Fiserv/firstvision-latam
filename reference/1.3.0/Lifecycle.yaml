@@ -1,4 +1,6 @@
 openapi: 3.0.1
+x-stoplight:
+  id: dvuseoqrkp90j
 info:
   title: Lifecycle
   version: '1.0'
@@ -10,7 +12,7 @@ paths:
     post:
       tags:
       - Lifecycle
-      x-proxy-name: test1
+      x-proxy-name: Token LifeCycle
       x-child-product-name: Tokenization
       x-group-name: Lifecycle
       summary: Token Life Cycle
@@ -61,56 +63,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/tokenLifeCycleRequest'
-  /ftgw/v1/panLifecycle:
-    post:
-      tags:
-      - Lifecycle
-      x-proxy-name: test2
-      x-child-product-name: Tokenization
-      x-group-name: Lifecycle
-      summary: Pan Lifecycle
-      responses:
-        '200':
-          description: OK
-        '400':
-          $ref: '#/components/responses/genericResponse'
-        '422':
-          $ref: '#/components/responses/genericResponse'
-        '500':
-          $ref: '#/components/responses/genericResponse'
-      operationId: panLifecycle
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/panLifeCycleRequest'
-      parameters:
-        - schema:
-            type: string
-          in: header
-          description: HMAC authorization header
-          name: Authorization
-        - schema:
-            type: string
-          in: header
-          description: Request timestamp
-          name: Timestamp
-        - schema:
-            type: string
-          in: header
-          description: Client-specific API Key issued during onboarding.
-          name: apikey
-        - schema:
-            type: string
-          in: header
-          description: The unique identifier for the API request.
-          name: x-request-id
-      description: This service enables the issuer to update PAN and PAN expiration date.
-    parameters: []
   /ftgw/v1/pan/retrieveTokens:
     post:
       tags:
       - Lifecycle
+      x-proxy-name: Tokens Inquiry By PAN
       x-child-product-name: Tokenization
       x-group-name: Lifecycle
       summary: Tokens Inquiry By PAN
@@ -188,6 +145,8 @@ paths:
         '500':
           $ref: '#/components/responses/genericResponse'
       operationId: tokensInquiryByPan
+      x-stoplight:
+        id: 33ye1s5gobw5d
       description: This service enables the issuer to retrieve a list of all tokens for a PAN
       requestBody:
         content:
@@ -289,6 +248,7 @@ paths:
     put:
       tags:
       - Lifecycle
+      x-proxy-name: Update Card Metadata
       x-child-product-name: Tokenization
       x-group-name: Lifecycle
       summary: Update Card Metadata
@@ -354,6 +314,8 @@ paths:
         '500':
           $ref: '#/components/responses/genericResponse'
       operationId: put-card-metadata
+      x-stoplight:
+        id: uh1fvvwrd8r12
       parameters:
         - schema:
             type: string
@@ -690,6 +652,8 @@ components:
   schemas:
     tokenLifeCycleRequest:
       title: tokenLifeCycleRequest
+      x-stoplight:
+        id: cpmbi486375az
       type: object
       properties:
         token:
@@ -807,6 +771,8 @@ components:
               maxLength: 200
     panLifeCycleRequest:
       title: panLifeCycleRequest
+      x-stoplight:
+        id: qbf4rx9zcs1ja
       type: object
       x-internal: false
       required:
