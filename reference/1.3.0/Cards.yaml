@@ -1,17 +1,20 @@
 openapi: 3.0.1
 info:
-  title: LATAM Issuing APIs
-  description: APIs to VMX Server
-  license:
-    name: Apache License Version 2.0
-    url: https://www.apache.org/licences/LICENSE-2.0
-  version: "1.0"
+  description: "This documentation describes the REST APIs provided by the FirstVision\u2122\
+    \ Cards Microservice, which provides functionality for the issuing, management\
+    \ and processing of credit cards, including bank, co-branded, private label, debit,\
+    \ commercial, and prepaid"
+  title: "FirstVision\u2122 Cards Issuing Service - API Documentation"
+  version: '1.2'
 servers:
-- url: http://localhost:8080
-  description: Generated server url
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
 tags:
 - name: Embosser
   description: Embosser
+- name: Statement
+  description: Statement
+- name: PIN
+  description: PIN
 - name: Card
   description: Card
 paths:
@@ -19,18 +22,20 @@ paths:
     get:
       tags:
       - Card
-      summary: |-
-        '[IN DEVELOPMENT]'
+      summary: '''[IN DEVELOPMENT]''
+
 
         The Mass Card Issue Inquiry service retrieves records from the Mass Card Reissue.
 
-        VMX Service: M.CMS.MASS.CARD.ISSUE.INQ, L8V6
-      description: |-
-        '[IN DEVELOPMENT]'
+
+        VMX Service: M.CMS.MASS.CARD.ISSUE.INQ, L8V6'
+      description: '''[IN DEVELOPMENT]''
+
 
         The Mass Card Issue Inquiry service retrieves records from the Mass Card Reissue.
 
-        VMX Service: M.CMS.MASS.CARD.ISSUE.INQ, L8V6
+
+        VMX Service: M.CMS.MASS.CARD.ISSUE.INQ, L8V6'
       operationId: Mass Card Issue Inquiry
       parameters:
       - name: organizationNumber
@@ -75,90 +80,120 @@ paths:
           minLength: 1
           type: string
         example: 01C
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "422":
-          description: |-
-            VPL5SQC01E - INVALID ORGANIZATION NUMBER
-
-            VPL5SQC02E - NON-NUMERIC INPUT FIELD ORG
-
-            VPL5SQC03E - NON-NUMERIC INPUT FIELD LOGO
-
-            VPL5SQC04E - INVALID LOGO NUMBER
-
-            VPL5SQC05E - NON-NUMERIC INPUT FIELD CARD_TYPE
-
-            VPL5SQC06E - NON-ALPHANUMERIC INPUT FIELD REQ_ID
-
-            VPL5SQC01S - ORG RECORD NOT FOUND
-
-            VPL5SQC02S - LOGO RECORD NOT FOUND
-
-            VPL5SQC03S - REQUESTED RECORD IS PENDING ADD
-
-            VPL5SQC04S - REQUESTED RECORD NOT ON FILE
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "500":
+        '405':
+          description: Method Not Allowed
+        '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "400":
+        '401':
+          description: Unauthorized
+        '422':
+          description: 'VPL5SQC01E - INVALID ORGANIZATION NUMBER
+
+
+            VPL5SQC02E - NON-NUMERIC INPUT FIELD ORG
+
+
+            VPL5SQC03E - NON-NUMERIC INPUT FIELD LOGO
+
+
+            VPL5SQC04E - INVALID LOGO NUMBER
+
+
+            VPL5SQC05E - NON-NUMERIC INPUT FIELD CARD_TYPE
+
+
+            VPL5SQC06E - NON-ALPHANUMERIC INPUT FIELD REQ_ID
+
+
+            VPL5SQC01S - ORG RECORD NOT FOUND
+
+
+            VPL5SQC02S - LOGO RECORD NOT FOUND
+
+
+            VPL5SQC03S - REQUESTED RECORD IS PENDING ADD
+
+
+            VPL5SQC04S - REQUESTED RECORD NOT ON FILE'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
           description: Bad Request
-        "300":
+        '404':
+          description: Not Found
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6'
-        "404":
-          description: Not Found
+        '403':
+          description: Forbidden
       x-proxy-name: Mass Card Issue Inquiry
       x-group-name: Card
       x-child-product-name: Cards
     put:
       tags:
       - Card
-      summary: |-
-        '[IN DEVELOPMENT]'
-
-        The Mass Card Issue Update service enables a user to update records in Mass Card Reissue.
-
-         VMX Service: M.CMS.MASS.CARD.ISSUE.UPD, L8V6
-      description: |-
-        '[IN DEVELOPMENT]'
-
-        The Mass Card Issue Update service enables a user to update records in Mass Card Reissue.
-
-         VMX Service: M.CMS.MASS.CARD.ISSUE.UPD, L8V6
+      summary: "'[IN DEVELOPMENT]'\n\nThe Mass Card Issue Update service enables a\
+        \ user to update records in Mass Card Reissue.\n\n VMX Service: M.CMS.MASS.CARD.ISSUE.UPD,\
+        \ L8V6"
+      description: "'[IN DEVELOPMENT]'\n\nThe Mass Card Issue Update service enables\
+        \ a user to update records in Mass Card Reissue.\n\n VMX Service: M.CMS.MASS.CARD.ISSUE.UPD,\
+        \ L8V6"
       operationId: Mass Card Issue Update
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -166,163 +201,224 @@ paths:
               $ref: '#/components/schemas/MassCardIssueAddRequestL8v6'
         required: true
       responses:
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "500":
+        '405':
+          description: Method Not Allowed
+        '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "422":
-          description: |-
-            VPL5SMC01E - INVALID ORGANIZATION NUMBER
+        '401':
+          description: Unauthorized
+        '422':
+          description: 'VPL5SMC01E - INVALID ORGANIZATION NUMBER
+
 
             VPL5SMC02E - NON-NUMERIC INPUT FIELD ORG
 
+
             VPL5SMC03E - NON-NUMERIC INPUT FIELD LOGO
+
 
             VPL5SMC04E - INVALID LOGO NUMBER
 
+
             VPL5SMC05E - NON-NUMERIC INPUT FIELD CARD_TYPE
+
 
             VPL5SMC06E - FUNCTION TYPE VALID VALUES ARE A AND M
 
+
             VPL5SMC07E - STATUS VALID VALUES ARE 1 AND 9
+
 
             VPL5SMC08E - NON-NUMERIC INPUT FIELD BANK_ORIGIN
 
+
             VPL5SMC09E - NON-NUMERIC INPUT FIELD BRANCH
+
 
             VPL5SMC10E - NON-NUMERIC INPUT FIELD CREDIT_LIMIT
 
+
             VPL5SMC11E - NON-NUMERIC INPUT FIELD MIN_QUANTITY
+
 
             VPL5SMC12E - NON-NUMERIC INPUT FIELD QUANTITY_TO_CREATE
 
+
             VPL5SMC13E - BLOCK CODE 1 VALUE MUST BE ALPHABETIC
+
 
             VPL5SMC14E - BLOCK CODE 2 VALUE MUST BE ALPHABETIC
 
+
             VPL5SMC15E - EMBOSSER CODE VALUE MUST BE ALPHABETIC
+
 
             VPL5SMC16E - VALID VALUES OF RELATION AMBS ARE ONLY S AND N
 
+
             VPL5SMC17E - VALID VALUES OF PREPAID FLAG VALUE MUST BE 0 AND 1
+
 
             VPL5SMC18E - NON-NUMERIC INPUT FIELD PREPAID_FLAG
 
+
             VPL5SMC19E - PROMO CODE VALUE MUST BE ALPHABETIC
+
 
             VPL5SMC20E - SCHEME VALID VALUES ARE 0, 1, 2 AND 3
 
+
             VPL5SMC21E - NON-NUMERIC INPUT FIELD SCHEME
+
 
             VPL5SMC22E - MSG USER CODE 1 VALUE MUST BE 0 OR 1
 
+
             VPL5SMC23E - NON-NUMERIC INPUT FIELD MES_USER_CODE_1
+
 
             VPL5SMC24E - MSG USER CODE 2 VALUE MUST BE 0 OR 1
 
+
             VPL5SMC25E - NON-NUMERIC INPUT FIELD MES_USER_CODE_2
+
 
             VPL5SMC26E - MSG USER CODE 3 VALUE MUST BE 0 OR 1
 
+
             VPL5SMC27E - NON-NUMERIC INPUT FIELD MES_USER_CODE_3
+
 
             VPL5SMC28E - CUST NO. VALUE MUST BE NON ZERO OR SPACES
 
+
             VPL5SMC29E - EXPIRATION DATE MUST BE GREATER THAN TODAYS PROCESSING DATE
+
 
             VPL5SMC30E - ENTER DATE IN DDMMYY FORMAT
 
+
             VPL5SMC31E - NON-NUMERIC INPUT FIELD EXP_DATE
+
 
             VPL5SMC32E - INVENTORY CONTROL VALID VALUES ARE CI,SO AND NO
 
+
             VPL5SMC33E - INVALID PREPAID PLAN
+
 
             VPL5SMC34E - PREPAID PLAN NOT ALLOWED FOR THIS LOGO
 
+
             VPL5SMC35E - NON-NUMERIC INPUT FIELD PREPAID_PLAN_NBR
+
 
             VPL5SMC36E - VALUES 1 AND 2 IN GLOBAL QUAL ARE ONLY FOR MEXICAN ORG
 
+
             VPL5SMC37E - VALID VALUES FOR GLOBAL QUAL ARE SPACES, A - Z & 1,2
+
 
             VPL5SMC38E - NON-NUMERIC INPUT FIELD EMBLEM
 
+
             VPL5SMC46E - ARL RECORD NOT FOUND
+
 
             VPL5SMC47E - AUTH CREDIT LIMIT NOT NUMERIC
 
+
             VPL5SMC48E - UPD NOT ALLOWED AUTH REST NOT ACTIVE
+
 
             VPL5SMC49E - AUTH REST TBL NOT NUMERIC
 
+
             VPL5SMC50E - UPD NOT ALLOWED CRLIM FGN ACTIVE
+
 
             VPL5SMC51E - UPD NOT ALLOWED CRLIM FGN NOT ACTIVE OR FGN CARD
 
+
             VPL5SMC52E - CARD FGN CRLIM IS NOT NUMERIC
+
 
             VPL5SMC53E - INVALID LOGO FOR GIVEN ACCOUNT
 
+
             VPL5SMC54E - QTY TO CREATE IS EXCEEDING THE 9998 LIMIT FOR THE ACCT
+
 
             VPL5SMC55E - QTY TO CREATE CAN NOT BE ZERO
 
+
             VPL5SMC56E - USER 4 FIELD IS NOT NUMERIC
 
-            VPL5SMC57E - IF QTY TO CREATE IS GREATER THAN 1 THEN CARD SCHEME MUST BE 3
+
+            VPL5SMC57E - IF QTY TO CREATE IS GREATER THAN 1 THEN CARD SCHEME MUST
+            BE 3
+
 
             VPL5SMC58E - INVALID VALUES IN NUMBER OF REQUESTS
 
+
             VPL5SMC59E - VALUE IN NBR OF RQSTS IS DIFF FROM NBR OF RQSTS ENTERED
+
 
             VPL5SMC60E - NUMBER OF REQUESTS IS NOT NUMERIC
 
+
             VPL5SMC61E - ACCOUNT NOT PRESENT ON FILE
+
 
             VPL5SMC62E - INVALID ACCOUNT STATUS
 
+
             VPL5SMC63E - NON-ALPHANUMERIC INPUT FIELD REQ_ID
+
 
             VPL5SMC01S - ORG RECORD NOT FOUND
 
+
             VPL5SMC02S - LOGO RECORD NOT FOUND
+
 
             VPL5SMC03S - LOGO NOT ELIGIBLE FOR ACCT NBR AUTOGENERATION
 
+
             VPL5SMC04S - RECORD ALREADY EXISTS ON FILE
+
 
             VPL5SMC05S - REQUESTED RECORD IS NOT FOUND OR PENDING ADD
 
-            VPL5SMC07S - NON-NUMERIC INPUT FIELD STATUS
+
+            VPL5SMC07S - NON-NUMERIC INPUT FIELD STATUS'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "400":
+        '400':
           description: Bad Request
-        "300":
+        '404':
+          description: Not Found
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardIssueAddResponseL8v6'
-        "404":
-          description: Not Found
+        '403':
+          description: Forbidden
       x-proxy-name: Mass Card Issue Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -330,19 +426,37 @@ paths:
     post:
       tags:
       - Embosser
-      summary: |-
-        ´[IN DEVELOPMENT]´
-        The GENERIC INSTANT EMBOSSING service will perform the issue process required for embossing. It will link to the HSM module to fetch the security details like PIN, CVV, CVV2, PVV etc. encrypt the information using the keys setup. VMX Service: M.CMS.GEN.INSTANT.EMB, L8V2
-      description: |-
-        ´[IN DEVELOPMENT]´
-        The GENERIC INSTANT EMBOSSING service will perform the issue process required for embossing. It will link to the HSM module to fetch the security details like PIN, CVV, CVV2, PVV etc. encrypt the information using the keys setup. VMX Service: M.CMS.GEN.INSTANT.EMB, L8V2
+      summary: "\xB4[IN DEVELOPMENT]\xB4\nThe GENERIC INSTANT EMBOSSING service will\
+        \ perform the issue process required for embossing. It will link to the HSM\
+        \ module to fetch the security details like PIN, CVV, CVV2, PVV etc. encrypt\
+        \ the information using the keys setup. VMX Service: M.CMS.GEN.INSTANT.EMB,\
+        \ L8V2"
+      description: "\xB4[IN DEVELOPMENT]\xB4\nThe GENERIC INSTANT EMBOSSING service\
+        \ will perform the issue process required for embossing. It will link to the\
+        \ HSM module to fetch the security details like PIN, CVV, CVV2, PVV etc. encrypt\
+        \ the information using the keys setup. VMX Service: M.CMS.GEN.INSTANT.EMB,\
+        \ L8V2"
       operationId: Generic Instant Embossing
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -350,107 +464,143 @@ paths:
               $ref: '#/components/schemas/GenericEmbosserL8V2Request'
         required: true
       responses:
-        "422":
-          description: |
-            Unprocessable Entity
-
-            VPL5SIE01E - SERVICE COULD NOT OBTAIN STORAGE AREA
-
-            VPL5SIE02E - SERVICE INPUT TO ACCT TO CARD NAV SERVICE IS AN INCORRECT LENGTH
-
-            VPL5SIE03E - USER HAS NOT SIGNED ON - PLEASE SIGNON
-
-            VPL5SIE04E - FILE-TABLE USED BY THIS SERVICE IS MISSING
-
-            VPL5SIE05E - APPLICATION IN NO-PROCESSING STATUS, RETRY IN A FEW MINUTES
-
-            VPL5SIE06E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-
-            VPL5SIE07E - ORGANIZATION NOT ON FILE OR IN PENDING STATUS
-
-            VPL5SIE08E - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-
-            VPL5SIE09E - LOGO NOT ON FILE OR IN PENDING STATUS
-
-            VPL5SIE10E - CARD NUMBER MUST BE PROVIDED
-
-            VPL5SIE11E - CARD SEQ NUMBER MUST BE NUMERIC AND NOT ZEROES OR 9999
-
-            VPL5SIE12E - CHIP SEQ NUMBER MUST BE NUMERIC AND NOT ZEROES OR 99
-
-            VPL5SIE13E - PIN ASSESS REQ MUST BE NUMERIC AND GREATER THAN ZEROES
-
-            VPL5SIE14E - KEY ASSOCIATION MUST BE GREATER THAN SPACES
-
-            VPL5SIE15E - INVALID ORG VALUE OR UNABLE TO FIND ORG USING ARGETOL
-
-            VPL5SIE16E - ERROR IN FILE SET DETEMINATION ERROR
-
-            VPL5SIE17E - FILE-TABLE USED BY THIS SERVICE IS MISSING
-
-            VPL5SIE18E - APPLICATION IN NO-PROCESSING STATUS
-
-            VPL5SIE19E - SYSTEM RECORD IS NOT FOUND
-
-            VPL5SIE20E - EMBOSSER RECORD NOT FOUND OR IN PENDING STATUS
-
-            VPL5SIE21E - ACCOUNT RECORD NOT FOUND OR IN PENDING STATUS
-
-            VPL5SIE22E - CUSTOMER RECORD NOT FOUND OR IN PENDING STATUS
-
-            VPL5SIE23E - SMART CARD EMBOSSER RECORD NOT FOUND OR IN PENDING STATUS
-
-            VPL5SIE24E - FOR INSTANT EMBOSSING CARD TYPE = '98' OR SOURCE = 'I'
-
-            VPL5SIE25E - FOR INSTANT EMBOSSING CARD ACTION SHOULD BE SET TO ZEROES
-
-            VPL5SIE26E - INSTANT EMBOSSING NOT ALLOWED FOR PURGED CARDS
-
-            VPL5SIE27E - INSTANT EMBOSSING NOT ALLOWED FOR FRAUD CARDS
-
-            VPL5SIE28E - EMBOSSER NAME SHOULD NOT BE SPACES OR LOW VALUES
-
-            VPL5SIE29E - SMART CARD EMBOOSER RECORD IS PURGED
-
-            VPL5SIE30E - SMART CARD EMBOSSER CHIP EXCEEDED
-
-            VPL5SIE31E - ACCT SHLD NOT BE CHGOFF PURGED CLOSED OR IN TRANSFER STATUS
-
-            VPL5SIE31S - ENC-FAILURE INVALID ORG
-
-            VPL5SIE32E - BLOCK CODE FOUND ON ACCOUNT OR CARD
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "500":
+        '405':
+          description: Method Not Allowed
+        '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "400":
+        '401':
+          description: Unauthorized
+        '422':
+          description: 'Unprocessable Entity
+
+
+            VPL5SIE01E - SERVICE COULD NOT OBTAIN STORAGE AREA
+
+
+            VPL5SIE02E - SERVICE INPUT TO ACCT TO CARD NAV SERVICE IS AN INCORRECT
+            LENGTH
+
+
+            VPL5SIE03E - USER HAS NOT SIGNED ON - PLEASE SIGNON
+
+
+            VPL5SIE04E - FILE-TABLE USED BY THIS SERVICE IS MISSING
+
+
+            VPL5SIE05E - APPLICATION IN NO-PROCESSING STATUS, RETRY IN A FEW MINUTES
+
+
+            VPL5SIE06E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
+            001-998
+
+
+            VPL5SIE07E - ORGANIZATION NOT ON FILE OR IN PENDING STATUS
+
+
+            VPL5SIE08E - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+
+
+            VPL5SIE09E - LOGO NOT ON FILE OR IN PENDING STATUS
+
+
+            VPL5SIE10E - CARD NUMBER MUST BE PROVIDED
+
+
+            VPL5SIE11E - CARD SEQ NUMBER MUST BE NUMERIC AND NOT ZEROES OR 9999
+
+
+            VPL5SIE12E - CHIP SEQ NUMBER MUST BE NUMERIC AND NOT ZEROES OR 99
+
+
+            VPL5SIE13E - PIN ASSESS REQ MUST BE NUMERIC AND GREATER THAN ZEROES
+
+
+            VPL5SIE14E - KEY ASSOCIATION MUST BE GREATER THAN SPACES
+
+
+            VPL5SIE15E - INVALID ORG VALUE OR UNABLE TO FIND ORG USING ARGETOL
+
+
+            VPL5SIE16E - ERROR IN FILE SET DETEMINATION ERROR
+
+
+            VPL5SIE17E - FILE-TABLE USED BY THIS SERVICE IS MISSING
+
+
+            VPL5SIE18E - APPLICATION IN NO-PROCESSING STATUS
+
+
+            VPL5SIE19E - SYSTEM RECORD IS NOT FOUND
+
+
+            VPL5SIE20E - EMBOSSER RECORD NOT FOUND OR IN PENDING STATUS
+
+
+            VPL5SIE21E - ACCOUNT RECORD NOT FOUND OR IN PENDING STATUS
+
+
+            VPL5SIE22E - CUSTOMER RECORD NOT FOUND OR IN PENDING STATUS
+
+
+            VPL5SIE23E - SMART CARD EMBOSSER RECORD NOT FOUND OR IN PENDING STATUS
+
+
+            VPL5SIE24E - FOR INSTANT EMBOSSING CARD TYPE = ''98'' OR SOURCE = ''I''
+
+
+            VPL5SIE25E - FOR INSTANT EMBOSSING CARD ACTION SHOULD BE SET TO ZEROES
+
+
+            VPL5SIE26E - INSTANT EMBOSSING NOT ALLOWED FOR PURGED CARDS
+
+
+            VPL5SIE27E - INSTANT EMBOSSING NOT ALLOWED FOR FRAUD CARDS
+
+
+            VPL5SIE28E - EMBOSSER NAME SHOULD NOT BE SPACES OR LOW VALUES
+
+
+            VPL5SIE29E - SMART CARD EMBOOSER RECORD IS PURGED
+
+
+            VPL5SIE30E - SMART CARD EMBOSSER CHIP EXCEEDED
+
+
+            VPL5SIE31E - ACCT SHLD NOT BE CHGOFF PURGED CLOSED OR IN TRANSFER STATUS
+
+
+            VPL5SIE31S - ENC-FAILURE INVALID ORG
+
+
+            VPL5SIE32E - BLOCK CODE FOUND ON ACCOUNT OR CARD
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
           description: Bad Request
-        "300":
+        '404':
+          description: Not Found
+        '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "200":
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GenericEmbosserL8V2Response'
-        "404":
-          description: Not Found
+        '403':
+          description: Forbidden
       x-proxy-name: Generic Instant Embossing
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -515,20 +665,24 @@ components:
           maxLength: 19
           minLength: 19
           type: string
-          description: |-
-            *Customer number that identifies the Customer Name/Address
+          description: '*Customer number that identifies the Customer Name/Address
+
             record associated with mass card issue request.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXMCI-CUST-NUMBER
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CUST NBR
-          example: "4759218604441630000"
+
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CUST NBR'
+          example: '4759218604441630000'
         customerEmblem:
           type: integer
-          description: "* Max Length: 5\n\nCode that defines the cardholder’s affiliation\
-            \ or affinity group.\nThe default is 0.\n\nVisionPLUS:\n\n* Service Data:\
-            \ AZXMCI-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBLEM"
+          description: "* Max Length: 5\n\nCode that defines the cardholder\u2019\
+            s affiliation or affinity group.\nThe default is 0.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXMCI-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - EMBLEM"
           format: int32
           example: 1
         account:
@@ -542,16 +696,16 @@ components:
         originBank:
           type: integer
           description: "* Max Length: 9\n\nBank number of the originating bank for\
-            \ the account.\n\nValues: 000000000–999999999.\n\nVisionPLUS:\n\n* Service\
-            \ Data: AZXMCI-BANK-ORIGIN   \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ the account.\n\nValues: 000000000\u2013999999999.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXMCI-BANK-ORIGIN   \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - BANK ORIGIN"
           format: int32
           example: 999999999
         branch:
           type: integer
           description: "* Max Length: 9\n\nBranch number of the originating bank for\
-            \ the account.\n\nValues: 000000000–999999999.\n\nVisionPLUS:\n\n* Service\
-            \ Data: AZXMCI-BRANCH        \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ the account.\n\nValues: 000000000\u2013999999999.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXMCI-BRANCH        \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - BRANCH"
           format: int32
           example: 999999999
@@ -562,8 +716,8 @@ components:
             \nValues:\n\n* S = Exists;\n* N = Does not exist (Default).\n\nVisionPLUS:\n\
             \n* Service Data: AZXMCI-RELATION-AMBS \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - RELATION AMBS "
-          example: "N"
-          default: "N"
+          example: N
+          default: N
         relationshipNumber:
           maxLength: 19
           minLength: 0
@@ -572,7 +726,7 @@ components:
             subordinate account is assigned.This field is blank for accounts\nnot\
             \ in a relationship.\n\nVisionPLUS:\n\n* Service Data: AZXMCI -REL-NBR\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - REL NUMBER"
-          example: "5732624283072829089"
+          example: '5732624283072829089'
         processControlId:
           maxLength: 3
           minLength: 0
@@ -580,61 +734,37 @@ components:
           description: "Identification code of the Processing Control table assigned\
             \ to\nthe account.\n\nVisionPLUS:\n\n* Service Data: AZXMCI-PCT-ID \n\
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PCT ID"
-          example: "462"
+          example: '462'
         merchantRestrictCode:
           type: integer
           description: "* Max Length: 3\nCode that indicates the authorization merchant\
             \ category code (MCC)\nrestrict table during authorization process.\n\n\
-            Values: 000–999\n\nVisionPLUS:\n\n* Service Data: AZXMCI-AUTH-RSTR-TBL\
+            Values: 000\u2013999\n\nVisionPLUS:\n\n* Service Data: AZXMCI-AUTH-RSTR-TBL\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - AUTH RSTR TBL"
           format: int32
           example: 999
         creditLimit:
           type: integer
           description: "* Max Length: 9\n\nTotal credit limit of the account.\n\n\
-            Values: 000000000–999999999.\n\nVisionPLUS:\n\n* Service Data: AZXMCI-CREDIT-LIMIT\
+            Values: 000000000\u2013999999999.\n\nVisionPLUS:\n\n* Service Data: AZXMCI-CREDIT-LIMIT\
             \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - TOT CR LMT "
           format: int32
           example: 999999999
         globalQualification:
           type: string
-          description: |-
-            Global qualification value assigned to an account.
-
-            Values:
-
-            * space;
-            * 1;
-            * 2;
-            * A–Z.
-            Note: This field can be updated to 1 and 2, only when the country code is MEX.
-
-            VisionPLUS:
-
-            * Service Data: AZXMCI-GLOBAL-QUAL
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - GLOBAL QUAL
-          example: "1"
+          description: "Global qualification value assigned to an account.\n\nValues:\n\
+            \n* space;\n* 1;\n* 2;\n* A\u2013Z.\nNote: This field can be updated to\
+            \ 1 and 2, only when the country code is MEX.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXMCI-GLOBAL-QUAL\n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - GLOBAL QUAL"
+          example: '1'
         block:
           type: array
-          description: |-
-            List size: 2
-
-            id :
-            Element position of the array.
-
-            Example: 1
-
-            value :
-            Two-part field that identifies the block codes assigned to the account.
-
-            Example: A
-
-            Values: A–Z and blank (or space).
-
-            VisionPLUS:
-
-            * Service Data: AZXMCI-BLOCK-CODE-1  / AZXMCI-BLOCK-CODE-2
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2
+          description: "List size: 2\n\nid :\nElement position of the array.\n\nExample:\
+            \ 1\n\nvalue :\nTwo-part field that identifies the block codes assigned\
+            \ to the account.\n\nExample: A\n\nValues: A\u2013Z and blank (or space).\n\
+            \nVisionPLUS:\n\n* Service Data: AZXMCI-BLOCK-CODE-1  / AZXMCI-BLOCK-CODE-2\n\
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2"
           items:
             $ref: '#/components/schemas/ItemRequestString'
         user:
@@ -662,8 +792,8 @@ components:
         expirationDate:
           type: string
           description: "* Max Length: 6\n\nExpiration date of the card.\nThe value\
-            \ in this field must be greater than today’s date. Format: DDMMYY\n\n\
-            VisionPLUS:\n\n* Service Data: AZXMCI-EXP-DATE \n* Screen, Page & Field:\
+            \ in this field must be greater than today\u2019s date. Format: DDMMYY\n\
+            \nVisionPLUS:\n\n* Service Data: AZXMCI-EXP-DATE \n* Screen, Page & Field:\
             \ AZ5I01/AZ6I01/AZ7I01 - EXPIRY DT "
           format: date
         scheme:
@@ -699,7 +829,7 @@ components:
             produce a card for an Embosser record.\n\nVisionPLUS:\n\n* Service Data:\
             \ AZXMCI -PLASTIC-ID \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 -\
             \ PLASTIC ID"
-          example: "4444555522"
+          example: '4444555522'
         isPrepaid:
           type: boolean
           description: "Code that indicates whether the cards are prepaid cards.\n\
@@ -721,7 +851,7 @@ components:
           description: "Promotion code associated with the mass card issue.\n\nVisionPLUS:\n\
             \n* Service Data: AZXMCI-PROMO-CODE      \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - PROMO CD"
-          example: "2211"
+          example: '2211'
         posServiceCode:
           maxLength: 3
           minLength: 0
@@ -730,15 +860,15 @@ components:
             for a card. The default is spaces.\n\nVisionPLUS:\n\n* Service Data: AZXMCI\
             \ -POS-SERVICE-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - POS\
             \ SVC COD"
-          example: "110"
+          example: '110'
         embosserCode:
           maxLength: 1
           minLength: 0
           type: string
           description: "Block code to be updated on the Embosser records during\n\
-            mass issuance of cards.\n\nValues: A–Z and blank (or space).\n\nVisionPLUS:\n\
-            \n* Service Data: AZXMCI-EMBOSSER-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - EMBOSS CODE "
+            mass issuance of cards.\n\nValues: A\u2013Z and blank (or space).\n\n\
+            VisionPLUS:\n\n* Service Data: AZXMCI-EMBOSSER-CODE \n* Screen, Page &\
+            \ Field: AZ5I01/AZ6I01/AZ7I01 - EMBOSS CODE "
           example: A
         embossingName:
           maxLength: 26
@@ -800,8 +930,8 @@ components:
         issuedQuantity:
           type: integer
           description: "* Max Length: 5\n\nQuantity of cards to be issued.\n\nValues:\
-            \ 00000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXMCI-MIN-QUANTITY \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE"
+            \ 00000\u201399999.\n\nVisionPLUS:\n\n* Service Data: AZXMCI-MIN-QUANTITY\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE"
           format: int32
           example: 99999
         minimumIssuedQuantity:
@@ -820,17 +950,21 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: |-
-            Function type record.
+          description: 'Function type record.
+
 
             Values:
 
+
             * M = Update record;
+
             * A = Add record.
+
 
             VisionPLUS:
 
-            * Service Data: AZXMCI-FUNCTION-TYPE
+
+            * Service Data: AZXMCI-FUNCTION-TYPE'
           example: M
         status:
           type: integer
@@ -873,72 +1007,81 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            * Max Length: 3
+          description: '* Max Length: 3
+
 
             Identification number of the organization.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXMCO-ORG
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - ORGANIZATION
+
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - ORGANIZATION'
           format: int32
           example: 998
         logo:
           type: integer
-          description: |-
-            * Max Length: 3
+          description: '* Max Length: 3
+
 
             Identification number of the logo.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXMCO-LOGO
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - LOGO
+
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - LOGO'
           format: int32
           example: 401
         cardPlasticType:
           type: integer
-          description: |-
-            * Max Length: 2
+          description: '* Max Length: 2
+
 
             Card type code that indicates the type of plastic.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXMCO-CARD-TYPE
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CARD TYPE
+
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CARD TYPE'
           format: int32
           example: 10
         requestIdentifier:
           type: string
-          description: |
-            Request identifier that allows the client to create more than one mass
-            card issue for the same ORG/LOGO/CARD TYPE.
-
-            VisionPLUS:
-
-             * Service Data: AZXMCO-REQ-ID
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - REQ ID
+          description: "Request identifier that allows the client to create more than\
+            \ one mass\ncard issue for the same ORG/LOGO/CARD TYPE.\n\nVisionPLUS:\n\
+            \n * Service Data: AZXMCO-REQ-ID\n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - REQ ID\n"
           example: 01C
         record:
           $ref: '#/components/schemas/MassCardIssueAddResponseL8v6.Record'
         customerNumber:
           type: string
-          description: |-
-            Customer number that identifies the Customer Name/Address
+          description: 'Customer number that identifies the Customer Name/Address
+
             record associated with mass card issue request.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXMCO-CUST-NUMBER
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CUST NBR
-          example: "4759218604441630000"
+
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CUST NBR'
+          example: '4759218604441630000'
         customerEmblem:
           type: integer
-          description: "* Max Length: 5\n\nCode that defines the cardholder’s affiliation\
-            \ or affinity group. The default is 0.\n\nVisionPLUS:\n\n* Service Data:\
-            \ AZXMCO-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBLEM "
+          description: "* Max Length: 5\n\nCode that defines the cardholder\u2019\
+            s affiliation or affinity group. The default is 0.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXMCO-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - EMBLEM "
           format: int32
           example: 58146
         account:
@@ -951,24 +1094,17 @@ components:
         originBank:
           type: integer
           description: "* Max Length: 9\n\nBank number of the originating bank for\
-            \ the account.\n\nValues: 000000000–999999999.\n\nVisionPLUS:\n\n* Service\
-            \ Data: AZXMCO-BANK-ORIGIN\n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ the account.\n\nValues: 000000000\u2013999999999.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXMCO-BANK-ORIGIN\n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - BANK ORIGIN "
           format: int32
           example: 999999999
         branch:
           type: integer
-          description: |-
-            * Max Length: 9
-
-            Branch number of the originating bank for the account.
-
-            Values: 000000000–999999999.
-
-            VisionPLUS:
-
-            * Service Data: AZXMCO-BRANCH
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BRANCH
+          description: "* Max Length: 9\n\nBranch number of the originating bank for\
+            \ the account.\n\nValues: 000000000\u2013999999999.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXMCO-BRANCH\n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - BRANCH"
           format: int32
           example: 999999999
         relationshipCode:
@@ -978,59 +1114,49 @@ components:
             \nValues:\n\n* S = Exists;\n* N = Does not exist (Default).\n\nVisionPLUS:\n\
             \n* Service Data: AZXMCO-RELATION-AMBS \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - RELATION AMBS "
-          example: "N"
+          example: N
         relationshipNumber:
           type: string
           description: "Number that identifies the Relationship record to which this\n\
             subordinate account is assigned. This field is blank for accounts\nnot\
             \ in a relationship.\n\nVisionPLUS:\n\n* Service Data: AZXMCO -REL-NBR\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - REL NUMBER"
-          example: "5732624283072829089"
+          example: '5732624283072829089'
         processControlId:
           type: string
           description: "Identification code of the Processing Control table assigned\
             \ to\nthe account.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-PCT-ID \n\
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PCT ID "
-          example: "462"
+          example: '462'
         merchantRestrictCode:
           type: integer
           description: "* Max Length: 3\n\nCode that indicates the authorization merchant\
             \ category code (MCC) restrict\ntable during authorization process.\n\n\
-            Values: 000–999\n\nVisionPLUS:\n\n* Service Data: AZXMCO-AUTH-RSTR-TBL\
+            Values: 000\u2013999\n\nVisionPLUS:\n\n* Service Data: AZXMCO-AUTH-RSTR-TBL\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - AUTH RSTR TBL"
           format: int32
           example: 999
         creditLimit:
           type: number
           description: "* Max Length: 9\n\nTotal credit limit of the account.\n\n\
-            Values: 000000000–999999999.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-CREDIT-LIMIT\
+            Values: 000000000\u2013999999999.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-CREDIT-LIMIT\
             \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - TOT CR LMT"
           example: 999999999
         globalQualification:
           type: string
           description: "Global qualification value assigned to an account.\n\nValues:\n\
-            \n* space;\n* 1;\n* 2;\n* A–Z.\nNote: This field can be updated to 1 and\
-            \ 2, only when the country code is MEX.\n\nVisionPLUS:\n\n* Service Data:\
-            \ AZXMCO-GLOBAL-QUAL \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 -\
-            \ GLOBAL QUAL "
-          example: "1"
+            \n* space;\n* 1;\n* 2;\n* A\u2013Z.\nNote: This field can be updated to\
+            \ 1 and 2, only when the country code is MEX.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXMCO-GLOBAL-QUAL \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - GLOBAL QUAL "
+          example: '1'
         block:
           type: array
-          description: |
-            * Items max length: 1
-
-            * List size: 2
-
-            Two-part field that identifies the block codes assigned to the account.
-
-            Values: A–Z and blank (or space).
-
-            Example:1
-
-            VisionPLUS:
-
-            * Service Data: AZXMCO-BLOCK-CODE-1  / AZXMCO-BLOCK-CODE-2
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2
+          description: "* Items max length: 1\n\n* List size: 2\n\nTwo-part field\
+            \ that identifies the block codes assigned to the account.\n\nValues:\
+            \ A\u2013Z and blank (or space).\n\nExample:1\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXMCO-BLOCK-CODE-1  / AZXMCO-BLOCK-CODE-2\n* Screen, Page & Field:\
+            \ AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2\n"
           items:
             $ref: '#/components/schemas/ItemResponseNullableString'
         user:
@@ -1057,10 +1183,10 @@ components:
         expirationDate:
           type: string
           description: "* Max Length: 6\n\nExpiration date of the card. The value\
-            \ in this field must be greater than today’s date. Format: DDMMYY\n\n\
-            VisionPLUS:\n\n* Service Data: AZXMCO-EXP-DATE \n* Screen, Page & Field:\
+            \ in this field must be greater than today\u2019s date. Format: DDMMYY\n\
+            \nVisionPLUS:\n\n* Service Data: AZXMCO-EXP-DATE \n* Screen, Page & Field:\
             \ AZ5I01/AZ6I01/AZ7I01 - EXPIRY DT"
-          example: "101224"
+          example: '101224'
         scheme:
           type: integer
           description: "* Max Length: 1\n\nCard numbering scheme that determines the\
@@ -1092,7 +1218,7 @@ components:
             produce a card for an Embosser record.\n\nVisionPLUS:\n\n* Service Data:\
             \ AZXMCO -PLASTIC-ID \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 -\
             \ PLASTIC ID"
-          example: "4444555522"
+          example: '4444555522'
         isPrepaid:
           type: boolean
           description: "Code that indicates whether the cards are prepaid cards.\n\
@@ -1112,20 +1238,20 @@ components:
           description: "Promotion code associated with the mass card issue.\n\nVisionPLUS:\n\
             \n* Service Data: AZXMCO-PROMO-CODE      \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - PROMO CD"
-          example: "2211"
+          example: '2211'
         posServiceCode:
           type: string
           description: "Code that indicates the type of point-of-sale service in effect\n\
             for a card. The default is spaces.\n\nVisionPLUS:\n\n* Service Data: AZXMCO\
             \ -POS-SERVICE-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - POS\
             \ SVC COD"
-          example: "110"
+          example: '110'
         embosserCode:
           type: string
           description: "Block code to be updated on the Embosser records during\n\
-            mass issuance of cards.\n\nValues: A–Z and blank (or space).\n\nVisionPLUS:\n\
-            \n* Service Data: AZXMCO-EMBOSSER-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - EMBOSS CODE"
+            mass issuance of cards.\n\nValues: A\u2013Z and blank (or space).\n\n\
+            VisionPLUS:\n\n* Service Data: AZXMCO-EMBOSSER-CODE \n* Screen, Page &\
+            \ Field: AZ5I01/AZ6I01/AZ7I01 - EMBOSS CODE"
           example: A
         embossingName:
           type: string
@@ -1189,8 +1315,8 @@ components:
         issuedQuantity:
           type: integer
           description: "* Max Length: 5\n\nQuantity of cards to be issued.\n\nValues:\
-            \ 00000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-MIN-QUANTITY \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE "
+            \ 00000\u201399999.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-MIN-QUANTITY\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE "
           format: int32
           example: 99999
         minimumIssuedQuantity:
@@ -1212,19 +1338,24 @@ components:
           example: 1
         addStatus:
           type: integer
-          description: |-
-            * Max Length: 2
+          description: '* Max Length: 2
+
 
             Add status to record.
 
+
             Values:
 
+
             * 99 = Add Complete;
+
             * 00-98 = Add Pending.
+
 
             VisionPLUS:
 
-            * Service Data: AZXMCO-ADD-STATUS
+
+            * Service Data: AZXMCO-ADD-STATUS'
           format: int32
           example: 99
         lastMaintenanceDate:
@@ -1242,71 +1373,88 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
+
 
             Identification number assigned to an organization
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEI-ORG
-            * Screen, Page & Field: ARQE02 - ORGANIZATION
+
+            * Screen, Page & Field: ARQE02 - ORGANIZATION'
           format: int32
           example: 998
         logo:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
+
 
             Identification number assigned to a product in that organization.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEI-LOGO
-            * Screen, Page & Field: ARQE02 - LOGO
+
+            * Screen, Page & Field: ARQE02 - LOGO'
           format: int32
           example: 400
         cardNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: |-
-            Unique card number issued to the customer.
+          description: 'Unique card number issued to the customer.
+
 
 
             VisionPLUS:
 
+
             * Service Data: AZXIEI-CARD-NBR
-            * Screen, Page & Field: ARQE02 - CARD NUMBER
-          example: "4759218604441630000"
+
+            * Screen, Page & Field: ARQE02 - CARD NUMBER'
+          example: '4759218604441630000'
         cardSequenceNumber:
           type: integer
-          description: |-
-            - Max length: 4
+          description: '- Max length: 4
 
-            Total count of physical cards are provided to the customer under same card number.
+
+            Total count of physical cards are provided to the customer under same
+            card number.
+
 
             Values: 0001- 9999.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEI-CARD-SEQ
-            * Screen, Page & Field: ARQE02 - RECORD NUMBER
+
+            * Screen, Page & Field: ARQE02 - RECORD NUMBER'
           format: int32
           example: 2233
         chipSequenceNumber:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             Total chip cards provided to the customer under same card number.
 
+
             Values: 01-99.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEI-CHIP-SEQ
-            * Screen, Page & Field: ARQE02 - CURRENT CHIP SEQ NBR
+
+            * Screen, Page & Field: ARQE02 - CURRENT CHIP SEQ NBR'
           format: int32
           example: 77
         card:
@@ -1325,56 +1473,69 @@ components:
       properties:
         isAssessmentRequired:
           type: boolean
-          description: |-
-            PIN Assessment Request determines if PIN must be validated or not for the card.
+          description: 'PIN Assessment Request determines if PIN must be validated
+            or not for the card.
+
 
             Values:
 
+
             * true = PIN Assessment required;
+
             * false = PIN Assessment not required;
+
 
             VisionPLUS:
 
-            * Service Data: AZXIEI-PIN-ASSESS-REQ
+
+            * Service Data: AZXIEI-PIN-ASSESS-REQ'
           example: false
         key:
           maxLength: 3
           minLength: 0
           type: string
-          description: |-
-            Client key details to generate the PIN required for the new boarded card.
+          description: 'Client key details to generate the PIN required for the new
+            boarded card.
+
 
             VisionPLUS:
 
-            * Service Data: AZXIEI-KEY-ASSOC
-          example: "325"
+
+            * Service Data: AZXIEI-KEY-ASSOC'
+          example: '325'
     GenericEmbosserL8V2Response:
       type: object
       properties:
         organizationNumber:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
+
 
             Identification number assigned to an organization
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-ORG
-            * Screen, Page & Field: ARQE02 - ORGANIZATION
+
+            * Screen, Page & Field: ARQE02 - ORGANIZATION'
           format: int32
           example: 998
         logo:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
+
 
             Identification number assigned to a product in that organization.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-LOGO
-            * Screen, Page & Field: ARQE02 - LOGO
+
+            * Screen, Page & Field: ARQE02 - LOGO'
           format: int32
           example: 400
         customer:
@@ -1383,255 +1544,297 @@ components:
           $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card'
         compensationCode:
           type: integer
-          description: |-
-            - Max length: 4
+          description: '- Max length: 4
+
 
             Compensation Banking Code linked to the entity as provided by the business.
 
+
             VisionPLUS:
 
-            * Service Data: AZXIEO-COMP-CODE
+
+            * Service Data: AZXIEO-COMP-CODE'
           format: int32
           example: 1023
         printerName:
           type: string
-          description: |-
-            Printer Name setup by Card Wizard as PCNAME as provided by the business.
+          description: 'Printer Name setup by Card Wizard as PCNAME as provided by
+            the business.
+
 
             VisionPLUS:
 
-            * Service Data: AZXIEO-PCNAME
+
+            * Service Data: AZXIEO-PCNAME'
           example: Printer
     GenericEmbosserL8V2Response.Card:
       type: object
       properties:
         cardNumber:
           type: string
-          description: |-
-            Unique card number issued to the customer. Encrypted field.
+          description: 'Unique card number issued to the customer. Encrypted field.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-CARD-NBR-ENC
-            * Screen, Page & Field: ARQE02 - CARD NUMBER
-          example: "4759218604441630000"
+
+            * Screen, Page & Field: ARQE02 - CARD NUMBER'
+          example: '4759218604441630000'
         binNumber:
           type: integer
-          description: |-
-            - Max length: 9
+          description: '- Max length: 9
+
 
             BIN (bank identification number) assigned by Visa or American Express.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-BIN-NBR
-            * Screen, Page & Field: ARQL01 - BIN/MBR ID/IIN
+
+            * Screen, Page & Field: ARQL01 - BIN/MBR ID/IIN'
           format: int64
           example: 887654432
         source:
           type: string
-          description: |-
-            Data source indicating the details
+          description: 'Data source indicating the details
+
 
             Values:
 
+
             * C = Smart Card;
+
             * M = Magstripe Card.
+
 
             VisionPLUS:
 
-            * Service Data: AZXIEO-DATA-SRC
+
+            * Service Data: AZXIEO-DATA-SRC'
           example: C
         productDetail:
           type: string
-          description: |-
-            Provides the details on how the card was generated.
+          description: 'Provides the details on how the card was generated.
+
 
             VisionPLUS:
 
-            * Service Data: AZXIEO-PROD-TYPE
+
+            * Service Data: AZXIEO-PROD-TYPE'
           example: Card Details
         cardSequenceNumber:
           type: integer
-          description: |-
-            - Max length: 4
+          description: '- Max length: 4
 
-            Total count of physical cards are provided to the customer under same card number.
+
+            Total count of physical cards are provided to the customer under same
+            card number.
+
 
             Values: 0001- 9999.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-CARD-SEQ
-            * Screen, Page & Field: ARQE02 - RECORD NUMBER
+
+            * Screen, Page & Field: ARQE02 - RECORD NUMBER'
           format: int32
           example: 1111
         chipSequenceNumber:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             Total chip cards provided to the customer under same card number.
 
+
             Values: 01- 99.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-CHIP-SEQ
-            * Screen, Page & Field: ARQE02 - CURRENT CHIP SEQ NBR
+
+            * Screen, Page & Field: ARQE02 - CURRENT CHIP SEQ NBR'
           format: int32
           example: 11
         companyIdentificationNumber:
           type: string
-          description: |-
-            Corporate identification number assigned to commercial card
+          description: 'Corporate identification number assigned to commercial card
+
             accounts.
+
 
             Encrypted field.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-NIT-NBR-ENC
-            * Screen, Page & Field: ARQB02 - CORP-ID-NUMBER
+
+            * Screen, Page & Field: ARQB02 - CORP-ID-NUMBER'
           example: 4759218604441630000A
         segmentNumber:
           type: string
-          description: |-
-            Segment Number to which the Card belongs as provided by business.
+          description: 'Segment Number to which the Card belongs as provided by business.
+
 
             VisionPLUS:
 
-            * Service Data: AZXIEO-SEG-TYPE
+
+            * Service Data: AZXIEO-SEG-TYPE'
           example: 12A
         deviceType:
           type: string
-          description: |-
-            Code that indicates the type of device (form factor) written to the track data on the card.
-            The values depend on the scheme.
-
-            Visa Values:
-
-            * 0 = Full-size standard card, noncontactless; (Default)
-            * 1 = Full-size contactless card;
-            * 2 = Standard mini card, noncontactless;
-            * 3 = Contactless mini card;
-            * 4 = Micro tag;
-            * 5 = Mobile device;
-            * 6–9 = Reserved.
-
-            MasterCard Values:
-
-            * Space = Default;
-            * 1 = Chip only with PIN;
-            * 2 = Chip only without PIN;
-            * 3 = Magnetic stripe only;
-            * 4 = PayPass only;
-            * A = Chip with PIN and magnetic stripe only;
-            * B = Chip with PIN and PayPass only;
-            * C = Chip with PIN and magnetic stripe and PayPass;
-            * D = Chip without PIN and with magnetic stripe;
-            * E = Chip without PIN and with PayPass;
-            * F = Chip without PIN and with magnetic;
-            * G = Magnetic stripe only with PIN.
-
-            VisionPLUS:
-
-            * Service Data: AZXIEO-DVC-IND
-            * Screen, Page & Field: ARQE03 - DVC
-          example: "2"
+          description: "Code that indicates the type of device (form factor) written\
+            \ to the track data on the card.\nThe values depend on the scheme.\n\n\
+            Visa Values:\n\n* 0 = Full-size standard card, noncontactless; (Default)\n\
+            * 1 = Full-size contactless card;\n* 2 = Standard mini card, noncontactless;\n\
+            * 3 = Contactless mini card;\n* 4 = Micro tag;\n* 5 = Mobile device;\n\
+            * 6\u20139 = Reserved.\n\nMasterCard Values:\n\n* Space = Default;\n*\
+            \ 1 = Chip only with PIN;\n* 2 = Chip only without PIN;\n* 3 = Magnetic\
+            \ stripe only;\n* 4 = PayPass only;\n* A = Chip with PIN and magnetic\
+            \ stripe only;\n* B = Chip with PIN and PayPass only;\n* C = Chip with\
+            \ PIN and magnetic stripe and PayPass;\n* D = Chip without PIN and with\
+            \ magnetic stripe;\n* E = Chip without PIN and with PayPass;\n* F = Chip\
+            \ without PIN and with magnetic;\n* G = Magnetic stripe only with PIN.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXIEO-DVC-IND\n* Screen, Page & Field:\
+            \ ARQE03 - DVC"
+          example: '2'
         plasticId:
           type: string
-          description: |-
-            Code that identifies the plastic stock used to produce a card for this Embosser record.
+          description: 'Code that identifies the plastic stock used to produce a card
+            for this Embosser record.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-PLASTIC-ID
-            * Screen, Page & Field: ARQE06 - PLASTIC ID
+
+            * Screen, Page & Field: ARQE06 - PLASTIC ID'
           example: 22113377A3
         posServiceCode:
           type: string
-          description: |-
-            Code that indicates the type of point-of-sale service in effect for cards in the logo.
+          description: 'Code that indicates the type of point-of-sale service in effect
+            for cards in the logo.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-POS-SVC-CODE
-            * Screen, Page & Field: AZQL24 - POS SERVICE CODE
+
+            * Screen, Page & Field: AZQL24 - POS SERVICE CODE'
           example: 11A
         embosserType:
           type: integer
-          description: |-
-            - Max Length: 2
+          description: '- Max Length: 2
+
 
             Field to identify if card was instant embossed.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-CARD-TYPE
-            * Screen, Page & Field: ARQL01 - TYPE OF ACCOUNT
+
+            * Screen, Page & Field: ARQL01 - TYPE OF ACCOUNT'
           format: int32
           example: 98
         embossingName:
           type: string
-          description: |-
-            Name to be embossed on the first embossing line of the card.
+          description: 'Name to be embossed on the first embossing line of the card.
+
             The name name has to be enter exactly as it appears on the card.
+
 
             Encrypted field.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-CARD-EMB-NAME-ENC
-            * Screen, Page & Field: ARQE02 - EMBOSSED NAME 1
+
+            * Screen, Page & Field: ARQE02 - EMBOSSED NAME 1'
           example: Embossing Name
         additionalEmbossingName:
           type: string
-          description: |-
-            Additional name to be embossed on the second embossing line of the card.
+          description: 'Additional name to be embossed on the second embossing line
+            of the card.
+
             The name name has to be enter exactly as it appears on the card.
-            For example, this field may contain the name of a business if the card is issued for a business account.
-            If the Embosser record is assigned to an account in a relationship, the relationship name is the default value that displays in this field.
+
+            For example, this field may contain the name of a business if the card
+            is issued for a business account.
+
+            If the Embosser record is assigned to an account in a relationship, the
+            relationship name is the default value that displays in this field.
+
 
             Encrypted field.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-CARD-EMB-NAME2-ENC
-            * Screen, Page & Field: ARQE02 - EMBOSSED NAME 2
+
+            * Screen, Page & Field: ARQE02 - EMBOSSED NAME 2'
           example: Additional Name
         securityValues:
           type: string
-          description: |-
-            Provides the encrypted values of the Card Expiry, CVV, CVC2, Chip CVC, PVV, ICSC, 3CSC, 4CS, 5CSC and Pin Offset etc.
+          description: 'Provides the encrypted values of the Card Expiry, CVV, CVC2,
+            Chip CVC, PVV, ICSC, 3CSC, 4CS, 5CSC and Pin Offset etc.
+
 
             VisionPLUS:
 
-            * Service Data: AZXIEO-SECURITY-VALUES-ENC
+
+            * Service Data: AZXIEO-SECURITY-VALUES-ENC'
           example: 113388A
         replacementEmbossingNumber:
           type: string
-          description: |-
-            Number of the Embosser record replacement associated with a fraud card transfer. This field displays a value only if the card was blocked and transferred using the Fraud Card Transfer.
-            Fraud card transfer associates a lost, stolen, or fraudulently used card with a special fraud account.
+          description: 'Number of the Embosser record replacement associated with
+            a fraud card transfer. This field displays a value only if the card was
+            blocked and transferred using the Fraud Card Transfer.
+
+            Fraud card transfer associates a lost, stolen, or fraudulently used card
+            with a special fraud account.
+
 
             Encrypted field.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-PREV-CARD-ENC
-            * Screen, Page & Field: ARQE02 - EMB REP
+
+            * Screen, Page & Field: ARQE02 - EMB REP'
           example: 2211337788A
         dcvv:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             DCVV key index.
 
+
             VisionPLUS:
 
-            * Service Data: AZXIEO-DCVV-KEY-INX
+
+            * Service Data: AZXIEO-DCVV-KEY-INX'
           format: int32
           example: 18
         branch:
@@ -1647,28 +1850,36 @@ components:
       properties:
         issue:
           type: integer
-          description: |-
-            - Max length: 9
+          description: '- Max length: 9
 
-            Branch number that identifies the card mailing location for the issue of new cards when the branch delivery option is used.
+
+            Branch number that identifies the card mailing location for the issue
+            of new cards when the branch delivery option is used.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-ISSUE-BRCH-TYPE
-            * Screen, Page & Field: ARQE03 - 1ST ISSUE BRANCH
+
+            * Screen, Page & Field: ARQE03 - 1ST ISSUE BRANCH'
           format: int64
           example: 789654321
         reissue:
           type: integer
-          description: |-
-            - Max length: 9
+          description: '- Max length: 9
 
-            Branch number that identifies the card mailing location for all reissued cards (all card actions except 1) when the branch delivery option is used.
+
+            Branch number that identifies the card mailing location for all reissued
+            cards (all card actions except 1) when the branch delivery option is used.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-REISSUE-BRCH-TYPE
-            * Screen, Page & Field: ARQE03 - REISSUE BRANCH
+
+            * Screen, Page & Field: ARQE03 - REISSUE BRANCH'
           format: int64
           example: 789654321
     GenericEmbosserL8V2Response.Card.MasterCard:
@@ -1676,115 +1887,157 @@ components:
       properties:
         version:
           type: string
-          description: |-
-            Smart card application version number (AVN) for MasterCard/MasterCard Europe.
+          description: 'Smart card application version number (AVN) for MasterCard/MasterCard
+            Europe.
+
 
             Values:
+
             * 021 = M/Chip 2.1 Lite;
+
             * 022 = M/Chip 2.1 Select;
+
             * 041 = M/Chip 4.0 Lite;
+
             * 042 = M/Chip 4.0 Select.
 
+
             VisionPLUS:
+
 
             * Service Data: AZXIEO-MC-VER
-            * Screen, Page & Field: ARQE13 - MASTERCARD VERSION
-          example: "021"
+
+            * Screen, Page & Field: ARQE13 - MASTERCARD VERSION'
+          example: '021'
         key:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
 
-            User-defined number that uniquely identifies the set of keys used for the card.
+
+            User-defined number that uniquely identifies the set of keys used for
+            the card.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-CRYPT-KEY-IDX
-            * Screen, Page & Field: ARQE13 - CRYPTOGRAM KEY INDEX
+
+            * Screen, Page & Field: ARQE13 - CRYPTOGRAM KEY INDEX'
           format: int32
           example: 11
         keyVersion:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             Version number of the cryptogram. Modification of this parameter is
+
             the responsibility of the user.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-CRYPT-KEY-VER
-            * Screen, Page & Field: ARQE13 - CRYPTOGRAM VERSION
+
+            * Screen, Page & Field: ARQE13 - CRYPTOGRAM VERSION'
           format: int32
           example: 20
         macKey:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
 
-            User-defined number that uniquely identifies the set of keys used for the generation and validation of a MAC UDK (Message Authentication Code Unique Derivation Key).
+
+            User-defined number that uniquely identifies the set of keys used for
+            the generation and validation of a MAC UDK (Message Authentication Code
+            Unique Derivation Key).
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-MAC-KEY-IDX
-            * Screen, Page & Field: ARQE13 - MAC KEY INDEX
+
+            * Screen, Page & Field: ARQE13 - MAC KEY INDEX'
           format: int32
           example: 21
         envKey:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             User-defined number that uniquely identifies the set of keys used for
+
             the generation and validation of an offline PIN UDK (Personal
+
             Identification Code Unique Derivation Key).
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-ENC-KEY-IDX
-            * Screen, Page & Field: ARQE13 - ENC KEY INDEX
+
+            * Screen, Page & Field: ARQE13 - ENC KEY INDEX'
           format: int32
           example: 22
         counter:
           type: integer
-          description: |-
-            - Max length: 5
+          description: '- Max length: 5
+
 
             Application transaction counter used to track the number of
+
             transactions that have been processed for the current card.
+
             This field is system-generated; you cannot change it
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-ATC
-            * Screen, Page & Field: ARQE13 - APP TXN COUNTER
+
+            * Screen, Page & Field: ARQE13 - APP TXN COUNTER'
           format: int32
           example: 355
         isOfflinePINSupported:
           type: boolean
-          description: |-
-            Flag that indicates whether the card supports offline PIN processing.
+          description: 'Flag that indicates whether the card supports offline PIN
+            processing.
+
 
             Values:
+
             * false = No, offline PIN is not supported; (Default)
+
             * true = Yes, offline PIN is supported.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-OFFL-PIN-SW
-            * Screen, Page & Field: ARQE13 - OFFLINE PIN
+
+            * Screen, Page & Field: ARQE13 - OFFLINE PIN'
           example: false
         nonDomesticControlFactor:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
 
-            Non-domestic control factor that adjusts the risk for non-domestic transactions so that such transactions will go online more frequently than domestic transactions.
+
+            Non-domestic control factor that adjusts the risk for non-domestic transactions
+            so that such transactions will go online more frequently than domestic
+            transactions.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-NDCF
-            * Screen, Page & Field: ARQE13 - NON-DOMESTIC CONTROL FACTOR
+
+            * Screen, Page & Field: ARQE13 - NON-DOMESTIC CONTROL FACTOR'
           format: int32
           example: 110
         offlineLimit:
@@ -1801,69 +2054,95 @@ components:
       properties:
         lowerCumulative:
           type: number
-          description: |-
-            - Max length: 12
+          description: '- Max length: 12
 
-            Lower cumulative offline transaction amount. This value is an issuer specified amount that indicates the maximum cumulative offline transaction amount allowed for the card before the transaction goes online.
+
+            Lower cumulative offline transaction amount. This value is an issuer specified
+            amount that indicates the maximum cumulative offline transaction amount
+            allowed for the card before the transaction goes online.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-LCOTA
-            * Screen, Page & Field: ARQE13 - LOWER CUMULATIVE OFFLINE TXN AMT
+
+            * Screen, Page & Field: ARQE13 - LOWER CUMULATIVE OFFLINE TXN AMT'
           example: 11
         upperCumulative:
           type: number
-          description: |-
-            - Max length: 12
+          description: '- Max length: 12
 
-            Upper cumulative offline transaction amount. This value is an issuer specified parameter that indicates the maximum cumulative offline transaction amount allowed for the card before the transaction must go online.
+
+            Upper cumulative offline transaction amount. This value is an issuer specified
+            parameter that indicates the maximum cumulative offline transaction amount
+            allowed for the card before the transaction must go online.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-UCOTA
-            * Screen, Page & Field: ARQE13 - UPPER CUMULATIVE OFFLINE TXN AMT
+
+            * Screen, Page & Field: ARQE13 - UPPER CUMULATIVE OFFLINE TXN AMT'
           example: 999999
         maximum:
           type: number
-          description: |-
-            - Max length: 12
+          description: '- Max length: 12
 
-            This value is an issuer specified parameter that indicates the maximum offline transaction amount. If this value is exceeded, the transaction will seek online authorization, subject to the correct card issuer action code setting.
+
+            This value is an issuer specified parameter that indicates the maximum
+            offline transaction amount. If this value is exceeded, the transaction
+            will seek online authorization, subject to the correct card issuer action
+            code setting.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-MOTA
-            * Screen, Page & Field: ARQE13 - MAXIMUM OFFLINE TXN AMT
+
+            * Screen, Page & Field: ARQE13 - MAXIMUM OFFLINE TXN AMT'
           example: 999999
     GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit.Contactless:
       type: object
       properties:
         lowerNumber:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
+
 
             Lower consecutive offline limit specified by the issuer for the
+
             maximum number of consecutive offline transactions allowed for a
+
             given smart card at a terminal with online capabilities.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-LCOL
-            * Screen, Page & Field: ARQE13 - LOWER CONS OFFLINE LIMIT
+
+            * Screen, Page & Field: ARQE13 - LOWER CONS OFFLINE LIMIT'
           format: int32
           example: 111
         upperNumber:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
 
-            Upper consecutive offline limit specified by the issuer for the maximum number of consecutive offline transactions that are allowed for a smart card before the transaction must go online.
+
+            Upper consecutive offline limit specified by the issuer for the maximum
+            number of consecutive offline transactions that are allowed for a smart
+            card before the transaction must go online.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-MC-UCOL
-            * Screen, Page & Field: ARQE13 - UPPER CONS OFFLINE LIMIT
+
+            * Screen, Page & Field: ARQE13 - UPPER CONS OFFLINE LIMIT'
           format: int32
           example: 999
     GenericEmbosserL8V2Response.Card.Pin:
@@ -1871,55 +2150,53 @@ components:
       properties:
         encrypted:
           type: string
-          description: |-
-            Encrypted PIN.
+          description: 'Encrypted PIN.
+
 
             VisionPLUS:
 
-            * Service Data: AZXIEO-ENCRYPT-PIN
+
+            * Service Data: AZXIEO-ENCRYPT-PIN'
           example: 113388A
         indexKey:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             PIN key index.
 
+
             VisionPLUS:
 
-            * Service Data: AZXIEO-PVV-KEY-IDX
+
+            * Service Data: AZXIEO-PVV-KEY-IDX'
           format: int32
           example: 19
         attempts:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             Number of offline PIN attempts that the cardholder is allowed when
+
             using the card in an offline environment at a POS device.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-PIN-TRY-LIM
-            * Screen, Page & Field: ARQE11 - PIN TRY LIMIT
+
+            * Screen, Page & Field: ARQE11 - PIN TRY LIMIT'
           format: int32
           example: 10
         mailDelay:
           type: integer
-          description: |-
-            - Max length: 2
-
-            Indicates the number of days to warehouse the PIN mailer before releasing it for printing.
-
-            Values:
-
-            - 00–98 = Number of days to warehouse the PIN mailer;
-            - 99 = Delete the PIN mailer from the warehouse.
-
-            VisionPLUS:
-
-            * Service Data: AZXIEO-PIN-MAIL-DELAY
-            * Screen, Page & Field: ARQE03 - PIN DELAY
+          description: "- Max length: 2\n\nIndicates the number of days to warehouse\
+            \ the PIN mailer before releasing it for printing.\n\nValues:\n\n- 00\u2013\
+            98 = Number of days to warehouse the PIN mailer;\n- 99 = Delete the PIN\
+            \ mailer from the warehouse.\n\nVisionPLUS:\n\n* Service Data: AZXIEO-PIN-MAIL-DELAY\n\
+            * Screen, Page & Field: ARQE03 - PIN DELAY"
           format: int32
           example: 99
     GenericEmbosserL8V2Response.Card.Visa:
@@ -1927,121 +2204,163 @@ components:
       properties:
         version:
           type: string
-          description: |-
-            Smart card application version number (AVN) for Visa.
+          description: 'Smart card application version number (AVN) for Visa.
+
 
             Values:
 
+
             * 132 = VIS 1.3.2;
+
             * 140 = VIS 1.4;
+
             * 150 = VIS 1.5.
 
+
             VisionPLUS:
+
 
             * Service Data: AZXIEO-VISA-VER
-            * Screen, Page & Field: ARQE12 - VISA VERSION
-          example: "132"
+
+            * Screen, Page & Field: ARQE12 - VISA VERSION'
+          example: '132'
         key:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
 
-            User-defined number that uniquely identifies the set of keys used for the card.
+
+            User-defined number that uniquely identifies the set of keys used for
+            the card.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-CRYPT-KEY-IDX
-            * Screen, Page & Field: ARQE12 - CRYPTOGRAM KEY INDEX
+
+            * Screen, Page & Field: ARQE12 - CRYPTOGRAM KEY INDEX'
           format: int32
           example: 20
         keyVersion:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             Version number of the cryptogram.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-CRYPT-KEY-VER
-            * Screen, Page & Field: ARQE12 - CRYPTOGRAM VERSION
+
+            * Screen, Page & Field: ARQE12 - CRYPTOGRAM VERSION'
           format: int32
           example: 10
         macKey:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
 
-            User-defined number that uniquely identifies the set of keys used for the generation and validation of a MAC UDK (Message Authentication Code Unique Derivation Key).
+
+            User-defined number that uniquely identifies the set of keys used for
+            the generation and validation of a MAC UDK (Message Authentication Code
+            Unique Derivation Key).
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-MAC-KEY-IDX
-            * Screen, Page & Field: ARQE12 - MAC KEY INDEX
+
+            * Screen, Page & Field: ARQE12 - MAC KEY INDEX'
           format: int32
           example: 11
         envKey:
           type: integer
-          description: |-
-            - Max length: 2
+          description: '- Max length: 2
+
 
             User-defined number that uniquely identifies the set of keys used for
-            the generation and validation of an offline PIN UDK (Personal Identification Code Unique Derivation Key).
+
+            the generation and validation of an offline PIN UDK (Personal Identification
+            Code Unique Derivation Key).
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-ENV-KEY-IDX
-            * Screen, Page & Field: ARQE12 - ENC KEY INDEX
+
+            * Screen, Page & Field: ARQE12 - ENC KEY INDEX'
           format: int32
           example: 22
         verificationMethod:
           type: integer
-          description: |-
-            - Max length: 1
+          description: '- Max length: 1
 
-            Preferred cardholder verification method for EMV and VIS-compliant chip cards.
+
+            Preferred cardholder verification method for EMV and VIS-compliant chip
+            cards.
+
 
             Values:
 
+
             * 1 = Online or offline PIN; (Default)
+
             * 2 = Signature;
+
             * 3 = Offline PIN and signature;
+
             * 4 = No cardholder verification method.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-PREF-CVM-SW
-            * Screen, Page & Field: ARQE12 - PREF CVM
+
+            * Screen, Page & Field: ARQE12 - PREF CVM'
           format: int32
           example: 1
         counter:
           type: integer
-          description: |-
-            - Max length: 5
+          description: '- Max length: 5
+
 
             Application transaction counter used to track the number of
+
             transactions that have been processed for the current card.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-ATC
-            * Screen, Page & Field: ARQE12 - APP TXN COUNTER
+
+            * Screen, Page & Field: ARQE12 - APP TXN COUNTER'
           format: int32
           example: 220
         isOfflinePINSupported:
           type: boolean
-          description: |-
-            Flag that indicates whether the card supports offline PIN processing.
+          description: 'Flag that indicates whether the card supports offline PIN
+            processing.
+
 
             Values:
 
+
             * false = No, offline PIN is not supported; (Default)
+
             * true = Yes, offline PIN is supported;
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-OFFL-PIN-SW
-            * Screen, Page & Field: ARQE12 - OFFLINE PIN
+
+            * Screen, Page & Field: ARQE12 - OFFLINE PIN'
           example: false
         currency:
           $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.Currency'
@@ -2052,31 +2371,29 @@ components:
       properties:
         conversionFactor:
           type: integer
-          description: |-
-            - Max length: 3
-
-            Decimal value used in a conversion algorithm to convert the currency
-            indicated by the next (SECONDARY APP CURRENCY CODE) field to the
-            card’s domestic application currency.
-
-            VisionPLUS:
-
-            * Service Data: AZXIEO-VISA-CCF
-            * Screen, Page & Field: ARQE12 - CURRENCY CONVERSION FACTOR
+          description: "- Max length: 3\n\nDecimal value used in a conversion algorithm\
+            \ to convert the currency\nindicated by the next (SECONDARY APP CURRENCY\
+            \ CODE) field to the\ncard\u2019s domestic application currency.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXIEO-VISA-CCF\n* Screen, Page & Field: ARQE12 - CURRENCY\
+            \ CONVERSION FACTOR"
           format: int32
           example: 568
         secondaryCurrencyCode:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
+
 
             Secondary currency to be converted to the designated currency in
+
             which the account is managed. Use ISO format.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-SACC
-            * Screen, Page & Field: ARQE12 - SECONDARY APP CURRENCY CODE
+
+            * Screen, Page & Field: ARQE12 - SECONDARY APP CURRENCY CODE'
           format: int32
           example: 890
     GenericEmbosserL8V2Response.Card.Visa.OfflineLimit:
@@ -2093,65 +2410,92 @@ components:
       properties:
         upperTotal:
           type: number
-          description: |-
-            - Max length: 13
+          description: '- Max length: 13
+
 
             Two-part field that displays the cumulative total transaction amount
+
             limit and the cumulative total transaction amount upper limit.
-            The first part of this field specifies the upper limit of the total amount of offline transactions in the designated currency allowed for this card before a transaction is forced to go online.
+
+            The first part of this field specifies the upper limit of the total amount
+            of offline transactions in the designated currency allowed for this card
+            before a transaction is forced to go online.
+
             The limit is in the designated currency for the card.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-TAC
-            * Screen, Page & Field: ARQE12 - TRANSACTION AMOUNT CURR/DUAL CURR
+
+            * Screen, Page & Field: ARQE12 - TRANSACTION AMOUNT CURR/DUAL CURR'
           example: 999999
         currencyTotal:
           type: number
-          description: |-
-            - Max length: 13
+          description: '- Max length: 13
+
 
             Two-part field that displays the cumulative total transaction amount
+
             limit and the cumulative total transaction amount upper limit.
+
             The second part of this field specifies the total amount of offline
+
             transactions in the designated currency or designated and secondary
+
             currency allowed for the EMV application before a transaction is
+
             declined and the online transaction cannot be performed.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-TADC
-            * Screen, Page & Field: ARQE12 - TRANSACTION AMOUNT CURR/DUAL CURR
+
+            * Screen, Page & Field: ARQE12 - TRANSACTION AMOUNT CURR/DUAL CURR'
           example: 565000
     GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.Contactless:
       type: object
       properties:
         lowerNumber:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
+
 
             Lower consecutive offline limit specified by the issuer for the
+
             maximum number of consecutive contactless offline transactions
+
             allowed for a given smart card at a terminal with online capabilities.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-LCOL
-            * Screen, Page & Field: ARQE12 - CONTACTLESS TXN LOWER LIMIT
+
+            * Screen, Page & Field: ARQE12 - CONTACTLESS TXN LOWER LIMIT'
           format: int32
           example: 111
         upperNumber:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
 
-            Upper consecutive offline limit specified by the issuer for the maximum number of consecutive contactless offline transactions that are allowed before the card requests contact chip or online processing for the transaction (and the transaction is declined if neither is supported).
+
+            Upper consecutive offline limit specified by the issuer for the maximum
+            number of consecutive contactless offline transactions that are allowed
+            before the card requests contact chip or online processing for the transaction
+            (and the transaction is declined if neither is supported).
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-UCOL
-            * Screen, Page & Field: ARQE12 - CONTACTLESS TXN UPPER LIMIT
+
+            * Screen, Page & Field: ARQE12 - CONTACTLESS TXN UPPER LIMIT'
           format: int32
           example: 999
     GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.International:
@@ -2159,29 +2503,31 @@ components:
       properties:
         currency:
           type: integer
-          description: |-
-            - Max length: 3
-
-            Consecutive transaction limit (international currency) that specifies the maximum number of offline international transactions allowed before an online authorization is required.
-            An international transaction s defined as one in which the card’s currency code is different from the terminal’s currency code.
-
-            VisionPLUS:
-
-            * Service Data: AZXIEO-VISA-COTC
-            * Screen, Page & Field: ARQE12 - CONSECUTIVE OFFLINE TXN-CURRENCY
+          description: "- Max length: 3\n\nConsecutive transaction limit (international\
+            \ currency) that specifies the maximum number of offline international\
+            \ transactions allowed before an online authorization is required.\nAn\
+            \ international transaction s defined as one in which the card\u2019s\
+            \ currency code is different from the terminal\u2019s currency code.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXIEO-VISA-COTC\n* Screen, Page & Field:\
+            \ ARQE12 - CONSECUTIVE OFFLINE TXN-CURRENCY"
           format: int32
           example: 314
         country:
           type: integer
-          description: |-
-            - Max length: 3
+          description: '- Max length: 3
 
-            Consecutive transaction limit (international country) that specifies the maximum number of offline international transactions (those not in the country of issue) allowed for this card before the transaction goes online.
+
+            Consecutive transaction limit (international country) that specifies the
+            maximum number of offline international transactions (those not in the
+            country of issue) allowed for this card before the transaction goes online.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-VISA-COTCTRY
-            * Screen, Page & Field: ARQE12 - CONSECUTIVE OFFLINE TXN-COUNTRY
+
+            * Screen, Page & Field: ARQE12 - CONSECUTIVE OFFLINE TXN-COUNTRY'
           format: int32
           example: 589
     GenericEmbosserL8V2Response.Customer:
@@ -2189,20 +2535,27 @@ components:
       properties:
         gender:
           type: integer
-          description: |-
-            - Max length: 1
+          description: '- Max length: 1
 
-            Code that indicates the customer's gender.
+
+            Code that indicates the customer''s gender.
+
 
             Values:
 
+
             * 0 = Unspecified; (Default)
+
             * 1 = Male;
+
             * 2 = Female.
 
+
             VisionPLUS:
+
             * Service Data: AZXIEO-USER-TYPE
-            * Screen, Page & Field: ARQE02 - GENDER
+
+            * Screen, Page & Field: ARQE02 - GENDER'
           format: int32
           example: 2
         identityDocuments:
@@ -2214,68 +2567,82 @@ components:
       properties:
         emblem:
           type: integer
-          description: |-
-            - Max length: 5
-
-            Field that defines the cardholder’s affiliation or affinity group.
-            The default is 00000.
-
-            VisionPLUS:
-
-            * Service Data: AZXIEO-EMBLEM
-            * Screen, Page & Field: ARQE02 - EMBLEM
+          description: "- Max length: 5\n\nField that defines the cardholder\u2019\
+            s affiliation or affinity group.\nThe default is 00000.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXIEO-EMBLEM\n* Screen, Page & Field: ARQE02 - EMBLEM"
           format: int32
           example: 44552
         isPrimary:
           type: boolean
-          description: |-
-            Code that indicates whether the cardholder is the primary cardholder or an additional cardholder associated with the account.
+          description: 'Code that indicates whether the cardholder is the primary
+            cardholder or an additional cardholder associated with the account.
+
 
             Values:
 
+
             * false = Additional cardholder;
+
             * true = Primary cardholder.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXIEO-EMB-TYPE
-            * Screen, Page & Field: ARQE02 - CARDHOLDER TYPE
+
+            * Screen, Page & Field: ARQE02 - CARDHOLDER TYPE'
           example: false
     GenericEmbosserL8V2Response.Customer.IdentityDocuments:
       type: object
       properties:
         identificationType:
           type: integer
-          description: |-
-            - Max length: 1
+          description: '- Max length: 1
 
-            Indicates whether the number is a Social Security number or another tax identification number.
+
+            Indicates whether the number is a Social Security number or another tax
+            identification number.
+
 
             Values:
+
             * 0 = Social Security number; (Default)
+
             * 1 = Tax identification number;
+
             * 2 = Other identification number.
 
+
             VisionPLUS:
+
             * Service Data: AZXIEO-IDENT-TYPE
-            * Screen, Page & Field: ARQN04 - IDENTIFICATION NUMBER
+
+            * Screen, Page & Field: ARQN04 - IDENTIFICATION NUMBER'
           format: int32
           example: 0
         identificationNumber:
           type: string
-          description: |-
-            Identification number (Social Security or tax number).
+          description: 'Identification number (Social Security or tax number).
 
-            If identificationType field is 0 (Social Security number), this field must be nine numeric characters only.
+
+            If identificationType field is 0 (Social Security number), this field
+            must be nine numeric characters only.
+
             If identificationType is is 1 (tax identification number) or 2 (other
+
             identification number), the second part can be up to 15 alphanumeric characters.
+
 
             Encrypted field.
 
+
             VisionPLUS:
 
+
             * Service Data: AZXIEO-IDENT-NBR-ENC
-            * Screen, Page & Field: ARQN04 - IDENTIFICATION NUMBER
+
+            * Screen, Page & Field: ARQN04 - IDENTIFICATION NUMBER'
           example: 222244445A
     MassCardReissueDetailsResponseL8V6:
       type: object
@@ -2284,22 +2651,27 @@ components:
           $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Record'
         customerNumber:
           type: string
-          description: |-
-            * Max Length: 19
+          description: '* Max Length: 19
+
 
             Customer number that identifies the Customer Name/Address record associated
+
             with mass card issue request.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXQCO-CUST-NUMBER
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CUST NBR
-          example: "4513074002573466583"
+
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CUST NBR'
+          example: '4513074002573466583'
         customerEmblem:
           type: integer
-          description: "* Max Length: 5\n\nCode that defines the cardholder’s affiliation\
-            \ or affinity group. The default is 0.\n\nVisionPLUS:\n\n* Service Data:\
-            \ AZXQCO-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBLEM "
+          description: "* Max Length: 5\n\nCode that defines the cardholder\u2019\
+            s affiliation or affinity group. The default is 0.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXQCO-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - EMBLEM "
           format: int32
           example: 1
         account:
@@ -2312,16 +2684,16 @@ components:
         originBank:
           type: integer
           description: "* Max Length: 9\n\nBank number of the originating bank for\
-            \ the account.\n\nValues: 000000000–999999999.\n\nVisionPLUS:\n\n* Service\
-            \ Data: AZXQCO-BANK-ORIGIN   \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ the account.\n\nValues: 000000000\u2013999999999.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXQCO-BANK-ORIGIN   \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - BANK ORIGIN "
           format: int32
           example: 1
         branch:
           type: integer
           description: "* Max Length: 9\n\nBranch number of the originating bank for\
-            \ the account.\n\nValues: 000000000–999999999.\n\nVisionPLUS:\n\n* Service\
-            \ Data: AZXQCO-BRANCH        \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ the account.\n\nValues: 000000000\u2013999999999.\n\nVisionPLUS:\n\n\
+            * Service Data: AZXQCO-BRANCH        \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - BRANCH"
           format: int32
           example: 123456789
@@ -2332,7 +2704,7 @@ components:
             \ Mass Card Issue request.\n\nValues:\n\n* S = Exists;\n* N = Does not\
             \ exist (Default).\n\nVisionPLUS:\n\n* Service Data: AZXQCO-RELATION-AMBS\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - RELATION AMBS "
-          example: "N"
+          example: N
         relationshipNumber:
           type: string
           description: "* Max Length: 19\n\nNumber that identifies the Relationship\
@@ -2340,7 +2712,7 @@ components:
             \ blank for accounts not in a relationship.\n\nVisionPLUS:\n\n* Service\
             \ Data: AZXQCO -REL-NBR \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - REL NUMBER"
-          example: "6014631947700000000"
+          example: '6014631947700000000'
         processControlId:
           type: string
           description: "* Max Length: 3\n\nIdentification code of the Processing Control\
@@ -2351,39 +2723,31 @@ components:
           type: integer
           description: "* Max Length: 3\n\nCode that indicates the authorization merchant\
             \ category code (MCC) restrict\ntable during authorization process.\n\n\
-            Values: 000–999\n\nVisionPLUS:\n\n* Service Data: AZXQCO-AUTH-RSTR-TBL\
+            Values: 000\u2013999\n\nVisionPLUS:\n\n* Service Data: AZXQCO-AUTH-RSTR-TBL\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - AUTH RSTR TBL"
           format: int32
           example: 178
         creditLimit:
           type: number
           description: "* Max Length: 9\n\nTotal credit limit of the account.\n\n\
-            Values: 000000000–999999999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-CREDIT-LIMIT\
+            Values: 000000000\u2013999999999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-CREDIT-LIMIT\
             \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - TOT CR LMT"
           example: 100000
         globalQualification:
           type: string
           description: "* Max Length: 1\n\nGlobal qualification value assigned to\
-            \ an account.\n\nValues:\n\n* space;\n* 1;\n* 2;\n* A–Z.\nNote: This field\
-            \ can be updated to 1 and 2, only when the country code is MEX.\n\nVisionPLUS:\n\
-            \n* Service Data: AZXQCO-GLOBAL-QUAL \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - GLOBAL QUAL "
-          example: "1"
+            \ an account.\n\nValues:\n\n* space;\n* 1;\n* 2;\n* A\u2013Z.\nNote: This\
+            \ field can be updated to 1 and 2, only when the country code is MEX.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXQCO-GLOBAL-QUAL \n* Screen, Page &\
+            \ Field: AZ5I01/AZ6I01/AZ7I01 - GLOBAL QUAL "
+          example: '1'
         block:
           type: array
-          description: |
-            * List size: 2
-
-            value
-            Two-part field that identifies the block codes assigned to the
-            account.
-
-            Values: A–Z and blank (or space).
-
-            VisionPLUS:
-
-            * Service Data: AZXQCO-BLOCK-CODE-1  / AZXQCO-BLOCK-CODE-2
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2
+          description: "* List size: 2\n\nvalue\nTwo-part field that identifies the\
+            \ block codes assigned to the\naccount.\n\nValues: A\u2013Z and blank\
+            \ (or space).\n\nVisionPLUS:\n\n* Service Data: AZXQCO-BLOCK-CODE-1  /\
+            \ AZXQCO-BLOCK-CODE-2\n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 -\
+            \ BLK CODE 1 / BLK CODE 2\n"
           example: 1
           items:
             $ref: '#/components/schemas/ItemResponseNullableString'
@@ -2400,16 +2764,22 @@ components:
             $ref: '#/components/schemas/ItemResponseNullableString'
         data:
           type: array
-          description: |
-            * List size: 2
+          description: '* List size: 2
+
 
             value
+
             User-defined code or description.
+
 
             VisionPLUS:
 
+
             * Service Data: AZXQCO -USER-1 / AZXQCO -USER-2
+
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - USER 1 / USER 2
+
+            '
           example: Code Description 1
           items:
             $ref: '#/components/schemas/ItemResponseNullableString'
@@ -2419,8 +2789,8 @@ components:
         expirationDate:
           type: string
           description: "* Max Length: 6\n\nExpiration date of the card. The value\
-            \ in this field must be greater than today’s date. Format: DDMMYY\n\n\
-            VisionPLUS:\n\n* Service Data: AZXQCO-EXP-DATE \n* Screen, Page & Field:\
+            \ in this field must be greater than today\u2019s date. Format: DDMMYY\n\
+            \nVisionPLUS:\n\n* Service Data: AZXQCO-EXP-DATE \n* Screen, Page & Field:\
             \ AZ5I01/AZ6I01/AZ7I01 - EXPIRY DT"
           format: date
           example: 2031-02-28
@@ -2446,14 +2816,14 @@ components:
             \ contactless card(s) are on issue;\n* 3 = Smart contactless card(s) are\
             \ on issue.\n\nVisionPLUS:\n\n* Service Data: AZXQCO -CARD-TECHNOLOGY\
             \     \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CARD TECH"
-          example: "1"
+          example: '1'
         plasticId:
           type: string
           description: "* Max Length: 10\n\nUser-defined code that identifies the\
             \ plastic stock used to produce a card for\nan Embosser record.\n\nVisionPLUS:\n\
             \n* Service Data: AZXQCO -PLASTIC-ID \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - PLASTIC ID"
-          example: "1"
+          example: '1'
         isPrepaid:
           type: boolean
           description: "* Max Length: 1\n\nCode that indicates whether the cards are\
@@ -2480,13 +2850,13 @@ components:
             \ service in effect for a card. The\ndefault is spaces.\n\nVisionPLUS:\n\
             \n* Service Data: AZXQCO -POS-SERVICE-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - POS SVC COD"
-          example: "1"
+          example: '1'
         embosserCode:
           type: string
           description: "* Max Length: 1\n\nBlock code to be updated on the Embosser\
-            \ records during mass issuance of\ncards.\n\nValues: A–Z and blank (or\
-            \ space).\n\nVisionPLUS:\n\n* Service Data: AZXQCO-EMBOSSER-CODE \n* Screen,\
-            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBOSS CODE"
+            \ records during mass issuance of\ncards.\n\nValues: A\u2013Z and blank\
+            \ (or space).\n\nVisionPLUS:\n\n* Service Data: AZXQCO-EMBOSSER-CODE \n\
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBOSS CODE"
           example: E
         embossingName:
           type: string
@@ -2550,8 +2920,8 @@ components:
         issuedQuantity:
           type: integer
           description: "* Max Length: 4\n\nQuantity of cards to be issued.\n\nValues:\
-            \ 00000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-MIN-QUANTITY \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE "
+            \ 00000\u201399999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-MIN-QUANTITY\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE "
           format: int32
           example: 2
         minimumIssuedQuantity:
@@ -2573,19 +2943,24 @@ components:
           example: 1
         addStatus:
           type: integer
-          description: |-
-            * Max Length: 2
+          description: '* Max Length: 2
+
 
             Add status to record.
 
+
             Values:
 
+
             * 99 = Add Complete;
+
             * 00-98 = Add Pending.
+
 
             VisionPLUS:
 
-            * Service Data: AZXQCO-ADD-STATUS
+
+            * Service Data: AZXQCO-ADD-STATUS'
           format: int32
           example: 99
         lastMaintenanceDate:
@@ -2596,3 +2971,5 @@ components:
             \ - DATE LAST MAINT"
           format: date
           example: 2023-01-19
+x-config:
+  tryItOut: 'true'
