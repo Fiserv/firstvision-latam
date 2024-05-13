@@ -16,7 +16,8 @@ After these steps, you're ready to start test the Payments API.
 
 ### How to get an API Credential?
 
-<img width="1917" alt="apikey1" src="https://github.com/Fiserv/firstvision-latam/assets/111396588/57282a38-45fe-4537-94d6-f7bd11a91cbd">
+![image](https://github.com/Fiserv/firstvision-latam/assets/111396588/607b1a2c-2675-4269-8f21-89e38a39ec87)
+
 
 ## Step 2: Explore our API
 
