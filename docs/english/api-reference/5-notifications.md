@@ -12,6 +12,9 @@ For Webhook implementation, Fiserv provides the standards and API design for the
 
 ![image](https://user-images.githubusercontent.com/111396588/209873236-86eb54b6-f214-4f8f-9652-51c03ad8d604.png)
 
+If the authentication type is OAuth, the client is required to expose an API to obtain the authorization token.
+If the authentication is not OAuth, the authentication can be through api key or basic authorization.
+
 ## Sensitive information
 
 All the payloads can contain the field encryptedData but it will be used depending on the Client needs, if the client needs Sensitive Data in Plain Text, Webhook payloads will sent this field with all the Sensitive Data in an encrypted format and then Clients will be able de decrypt it and get text plain data.
