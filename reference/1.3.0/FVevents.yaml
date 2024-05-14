@@ -1,6 +1,4 @@
 openapi: 3.0.0
-x-stoplight:
-  id: o9v73eib3k2mc
 info:
   version: '1.0'
   title: Webhook v4.0
@@ -18,6 +16,16 @@ paths:
       description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n1 - Authorization event"
       operationId: authorization
       parameters:
+        - name: apikey
+          in: header
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          schema:
+            type: string
         - name: organizationNumber
           in: header
           description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
@@ -49,38 +57,6 @@ paths:
           application/json:
             schema:
               type: object
-              x-examples:
-                example-1:
-                  description: APPROVED
-                  cardnumber: 000540208ID5IXX3865
-                  contact:
-                    - contactType: PRINCIPAL_EMAIL
-                      value: mail@domain.com
-                  transaction:
-                    id: 00 0000 00000000000000
-                    additionalInformation: 00 0000 00000000000000
-                    acceptorName: HSBC
-                    reason: '294'
-                    amount: '00000000010.00'
-                    additionalAmount: '00000000010.00'
-                    currency: MXN
-                    authorizationDate: '20220127'
-                    authorizationTime: '141638'
-                  metadata:
-                    - key: '15'
-                      value: ''
-                    - key: '16'
-                      value: ''
-                    - key: '17'
-                      value: ''
-                    - key: '18'
-                      value: ''
-                    - key: '19'
-                      value: ''
-                    - key: '20'
-                      value: ''
-                    - key: '21'
-                      value: ''
               properties:
                 description:
                   type: string
@@ -209,8 +185,6 @@ paths:
                       example: '141638'
                     authorizationRealTime:
                       type: string
-                      x-stoplight:
-                        id: akxhtkobjt9mx
                       description: "Real time authorization data\r\n\r\nPos 1 - 11 bytes- DE 7- Transmission date and time \r\nPos 12 - 17 bytes - DE 11- system trace audit number\r\nPos 18 - 22 bytes - DE 15 - settlement date\r\npos 23 - 25 bytes - DE 20 - PAN Country code\r\nPos 26 - 28 bytes - DE 23 - Apllication pan sequence number \r\nPos 29 - 39 bytes - DE 32 - Acquired Institution ID\r\nPos 40 - 50 bytes - DE 33 - Forwarded Institution ID\r\nPos 51 - 56 bytes - DE 38 - Authorization ID Response\r\nPos 57 - 64 bytes - DE 41 - Card Acceptor terminal id\r\n\r\nVMX: M_LINE_21"
                       maxLength: 65
                       example: '04/17-19:0500783604/17000000000001234560000000000000799012345678'
@@ -271,104 +245,6 @@ paths:
                   type: string
                   description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: BAD REQUEST
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Error Title.
-                    example: Bad Request
-                  code:
-                    type: string
-                    description: Error Code.
-                    example: '400'
-                  description:
-                    type: string
-                    description: Error Description in detail.
-                    example: Field <customerName> can not be a number.
-        '401':
-          description: UNAUTHORIZED
-        '403':
-          description: FORBIDDEN
-        '404':
-          description: NOT FOUND
-        '405':
-          description: METHOD NOT ALLOWED
-        '500':
-          description: BACKEND INTERNAL ERROR
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Error Title.
-                    example: Database Error
-                  code:
-                    type: string
-                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
-                    example: BANK1500
-                  description:
-                    type: string
-                    description: Error Description in detail.
-                    example: Stage Database is not available.
-      servers:
-        - url: 'http://localhost:3000'
-      x-proxy-name: Authorization
-      x-group-name: First Vision Events
-      x-child-product-name: Notifications
-      x-stoplight:
-        id: qp3puc9c0x6r5
-  /notifications/v3/accountLifeCycle:
-    post:
-      summary: Account Life Cycle
-      description: |-
-        Note: This API must be implemented and published by the Client following this standard specification.
-
-        2 - Payment Due Date Event
-        3 - Account Cycle Event
-      operationId: paymentCycle
-      parameters:
-        - name: organizationNumber
-          in: header
-          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
-          schema:
-            type: integer
-        - name: accountNumber
-          in: header
-          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
-          schema:
-            type: string
-        - name: customerNumber
-          in: header
-          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
-          schema:
-            type: string
-        - name: channelType
-          in: header
-          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
-          schema:
-            type: string
-            enum:
-              - email
-              - sms
-              - both
-              - print
-            example: both
-      requestBody:
-        description: ''
-        content:
-          application/json:
-            schema:
-              type: object
               x-examples:
                 example-1:
                   description: APPROVED
@@ -401,6 +277,131 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
+      servers:
+        - url: 'http://localhost:3000'
+      x-proxy-name: Authorization
+      x-group-name: First Vision Events
+      x-child-product-name: Notifications
+  /notifications/v3/accountLifeCycle:
+    post:
+      summary: Account Life Cycle
+      description: |-
+        Note: This API must be implemented and published by the Client following this standard specification.
+
+        2 - Payment Due Date Event
+        3 - Account Cycle Event
+      operationId: paymentCycle
+      parameters:
+        - name: apikey
+          in: header
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          schema:
+            type: string
+        - name: organizationNumber
+          in: header
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+          schema:
+            type: integer
+        - name: accountNumber
+          in: header
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          schema:
+            type: string
+        - name: customerNumber
+          in: header
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+          schema:
+            type: string
+        - name: channelType
+          in: header
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+          schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: object
               properties:
                 description:
                   type: string
@@ -496,107 +497,6 @@ paths:
                   type: string
                   description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: BAD REQUEST
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Error Title.
-                    example: Bad Request
-                  code:
-                    type: string
-                    description: Error Code.
-                    example: '400'
-                  description:
-                    type: string
-                    description: Error Description in detail.
-                    example: Field <customerName> can not be a number.
-        '401':
-          description: UNAUTHORIZED
-        '403':
-          description: FORBIDDEN
-        '404':
-          description: NOT FOUND
-        '405':
-          description: METHOD NOT ALLOWED
-        '500':
-          description: BACKEND INTERNAL ERROR
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Error Title.
-                    example: Database Error
-                  code:
-                    type: string
-                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
-                    example: BANK1500
-                  description:
-                    type: string
-                    description: Error Description in detail.
-                    example: Stage Database is not available.
-      servers:
-        - url: 'http://localhost:3000'
-      x-proxy-name: Account Life Cycle
-      x-group-name: First Vision Events
-      x-child-product-name: Notifications
-      x-stoplight:
-        id: 31vj04o0hgpdb
-  /notifications/v3/accountManagement:
-    post:
-      summary: Account Management
-      description: |-
-        Note: This API must be implemented and published by the Client following this standard specification.
-
-        4 - Available Credit Event
-        5 - Payment Posted Event
-        6 - Change of Address
-        10 - Payment Due Date Change
-        11 - Credit Limit Change
-      operationId: cardManagement
-      parameters:
-        - name: organizationNumber
-          in: header
-          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
-          schema:
-            type: integer
-        - name: accountNumber
-          in: header
-          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
-          schema:
-            type: string
-        - name: customerNumber
-          in: header
-          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
-          schema:
-            type: string
-        - name: channelType
-          in: header
-          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
-          schema:
-            type: string
-            enum:
-              - email
-              - sms
-              - both
-              - print
-            example: both
-      requestBody:
-        description: ''
-        content:
-          application/json:
-            schema:
-              type: object
               x-examples:
                 example-1:
                   description: APPROVED
@@ -629,6 +529,134 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
+      servers:
+        - url: 'http://localhost:3000'
+      x-proxy-name: Account Life Cycle
+      x-group-name: First Vision Events
+      x-child-product-name: Notifications
+  /notifications/v3/accountManagement:
+    post:
+      summary: Account Management
+      description: |-
+        Note: This API must be implemented and published by the Client following this standard specification.
+
+        4 - Available Credit Event
+        5 - Payment Posted Event
+        6 - Change of Address
+        10 - Payment Due Date Change
+        11 - Credit Limit Change
+      operationId: cardManagement
+      parameters:
+        - name: apikey
+          in: header
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          schema:
+            type: string
+        - name: organizationNumber
+          in: header
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+          schema:
+            type: integer
+        - name: accountNumber
+          in: header
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          schema:
+            type: string
+        - name: customerNumber
+          in: header
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+          schema:
+            type: string
+        - name: channelType
+          in: header
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH email – Send information to customer by email. sms  – Send information to customer by SMS. both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+          schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: object
               properties:
                 description:
                   type: string
@@ -716,6 +744,38 @@ paths:
                   type: string
                   description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
       responses:
         '200':
           description: OK
@@ -746,6 +806,25 @@ paths:
           description: NOT FOUND
         '405':
           description: METHOD NOT ALLOWED
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
         '500':
           description: BACKEND INTERNAL ERROR
           content:
@@ -770,8 +849,6 @@ paths:
       x-proxy-name: Account Management
       x-group-name: First Vision Events
       x-child-product-name: Notifications
-      x-stoplight:
-        id: lym31d5zmo57c
   /notifications/v3/cardLifeCycle:
     post:
       summary: Card Life Cycle
@@ -783,6 +860,16 @@ paths:
         9 - Card Action/Embossing
       operationId: cardLifeCycle
       parameters:
+        - name: apikey
+          in: header
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          schema:
+            type: string
         - name: organizationNumber
           in: header
           description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
@@ -814,40 +901,6 @@ paths:
           application/json:
             schema:
               type: object
-              x-examples:
-                example-1:
-                  description: APPROVED
-                  customerData: ''
-                  customerId: ''
-                  cardnumber: 000540208ID5IXX3865
-                  contact:
-                    - contactType: PRINCIPAL_EMAIL
-                      value: mail@domain.com
-                  transaction:
-                    id: 00 0000 00000000000000
-                    additionalInformation: 00 0000 00000000000000
-                    acceptorName: HSBC
-                    reason: '294'
-                    amount: '00000000010.00'
-                    additionalAmount: '00000000010.00'
-                    currency: MXN
-                    authorizationDate: '20220127'
-                    authorizationTime: '141638'
-                  metadata:
-                    - key: '15'
-                      value: ''
-                    - key: '16'
-                      value: ''
-                    - key: '17'
-                      value: ''
-                    - key: '18'
-                      value: ''
-                    - key: '19'
-                      value: ''
-                    - key: '20'
-                      value: ''
-                    - key: '21'
-                      value: ''
               properties:
                 description:
                   type: string
@@ -962,6 +1015,40 @@ paths:
                   type: string
                   description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  customerData: ''
+                  customerId: ''
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
       responses:
         '200':
           description: OK
@@ -992,6 +1079,25 @@ paths:
           description: NOT FOUND
         '405':
           description: METHOD NOT ALLOWED
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
         '500':
           description: BACKEND INTERNAL ERROR
           content:
@@ -1016,14 +1122,22 @@ paths:
       x-proxy-name: Card Life Cycle
       x-group-name: First Vision Events
       x-child-product-name: Notifications
-      x-stoplight:
-        id: tdn08sj0ffx56
   /notifications/v3/fraudAuthorization:
     post:
       summary: Fraud Authorization
       description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n12a - Fraud Authorization Event"
       operationId: fraudAuthorization
       parameters:
+        - name: apikey
+          in: header
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          schema:
+            type: string
         - name: organizationNumber
           in: header
           description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
@@ -1055,38 +1169,6 @@ paths:
           application/json:
             schema:
               type: object
-              x-examples:
-                example-1:
-                  description: APPROVED
-                  cardnumber: 000540208ID5IXX3865
-                  contact:
-                    - contactType: PRINCIPAL_EMAIL
-                      value: mail@domain.com
-                  transaction:
-                    id: 00 0000 00000000000000
-                    additionalInformation: 00 0000 00000000000000
-                    acceptorName: HSBC
-                    reason: '294'
-                    amount: '00000000010.00'
-                    additionalAmount: '00000000010.00'
-                    currency: MXN
-                    authorizationDate: '20220127'
-                    authorizationTime: '141638'
-                  metadata:
-                    - key: '15'
-                      value: ''
-                    - key: '16'
-                      value: ''
-                    - key: '17'
-                      value: ''
-                    - key: '18'
-                      value: ''
-                    - key: '19'
-                      value: ''
-                    - key: '20'
-                      value: ''
-                    - key: '21'
-                      value: ''
               properties:
                 description:
                   type: string
@@ -1215,99 +1297,6 @@ paths:
                   type: string
                   description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: BAD REQUEST
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Error Title.
-                    example: Bad Request
-                  code:
-                    type: string
-                    description: Error Code.
-                    example: '400'
-                  description:
-                    type: string
-                    description: Error Description in detail.
-                    example: Field <customerName> can not be a number.
-        '401':
-          description: UNAUTHORIZED
-        '403':
-          description: FORBIDDEN
-        '404':
-          description: NOT FOUND
-        '405':
-          description: METHOD NOT ALLOWED
-        '500':
-          description: BACKEND INTERNAL ERROR
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: Error Title.
-                    example: Database Error
-                  code:
-                    type: string
-                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
-                    example: BANK1500
-                  description:
-                    type: string
-                    description: Error Description in detail.
-                    example: Stage Database is not available.
-      servers:
-        - url: 'http://localhost:3000'
-      x-proxy-name: Fraud Authorization
-      x-group-name: First Vision Events
-      x-child-product-name: Notifications
-      x-stoplight:
-        id: 9bhfdggutq6ii
-  /notifications/v3/fraudBlock:
-    post:
-      summary: Fraud Block
-      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n12b - Fraud Block Code Update"
-      operationId: fraudBlock
-      parameters:
-        - name: organizationNumber
-          in: header
-          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
-          schema:
-            type: integer
-        - name: accountNumber
-          in: header
-          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
-          schema:
-            type: string
-        - name: customerNumber
-          in: header
-          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
-          schema:
-            type: string
-        - name: channelType
-          in: header
-          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
-          schema:
-            type: string
-            enum:
-              - email
-              - sms
-              - both
-              - print
-            example: both
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
               x-examples:
                 example-1:
                   description: APPROVED
@@ -1340,6 +1329,126 @@ paths:
                       value: ''
                     - key: '21'
                       value: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BAD REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '401':
+          description: UNAUTHORIZED
+        '403':
+          description: FORBIDDEN
+        '404':
+          description: NOT FOUND
+        '405':
+          description: METHOD NOT ALLOWED
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '500':
+          description: BACKEND INTERNAL ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Database Error
+                  code:
+                    type: string
+                    description: 'Error Code. It can be the 500 generic HTTP code or, preferably, a custom code.'
+                    example: BANK1500
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Stage Database is not available.
+      servers:
+        - url: 'http://localhost:3000'
+      x-proxy-name: Fraud Authorization
+      x-group-name: First Vision Events
+      x-child-product-name: Notifications
+  /notifications/v3/fraudBlock:
+    post:
+      summary: Fraud Block
+      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n12b - Fraud Block Code Update"
+      operationId: fraudBlock
+      parameters:
+        - name: apikey
+          in: header
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          schema:
+            type: string
+        - name: organizationNumber
+          in: header
+          description: 'Organization Number. VMX: M_ORG Max length: 3. Example: 950'
+          schema:
+            type: integer
+        - name: accountNumber
+          in: header
+          description: 'Account Number: Number of Customer’s account. Must be numeric and greater than zero. VMX: M_ACCT Max length: 19. Example: 0004513070406598974'
+          schema:
+            type: string
+        - name: customerNumber
+          in: header
+          description: 'Customer number that identifies the Customer Name/Address record to which this account is assigned. VMX: M_CUST_NBR Max length: 19. Example: 90004513070406598974'
+          schema:
+            type: string
+        - name: channelType
+          in: header
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+          schema:
+            type: string
+            enum:
+              - email
+              - sms
+              - both
+              - print
+            example: both
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
               properties:
                 description:
                   type: string
@@ -1452,6 +1561,38 @@ paths:
                   type: string
                   description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
+              x-examples:
+                example-1:
+                  description: APPROVED
+                  cardnumber: 000540208ID5IXX3865
+                  contact:
+                    - contactType: PRINCIPAL_EMAIL
+                      value: mail@domain.com
+                  transaction:
+                    id: 00 0000 00000000000000
+                    additionalInformation: 00 0000 00000000000000
+                    acceptorName: HSBC
+                    reason: '294'
+                    amount: '00000000010.00'
+                    additionalAmount: '00000000010.00'
+                    currency: MXN
+                    authorizationDate: '20220127'
+                    authorizationTime: '141638'
+                  metadata:
+                    - key: '15'
+                      value: ''
+                    - key: '16'
+                      value: ''
+                    - key: '17'
+                      value: ''
+                    - key: '18'
+                      value: ''
+                    - key: '19'
+                      value: ''
+                    - key: '20'
+                      value: ''
+                    - key: '21'
+                      value: ''
       responses:
         '200':
           description: OK
@@ -1482,6 +1623,25 @@ paths:
           description: NOT FOUND
         '405':
           description: METHOD NOT ALLOWED
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
         '500':
           description: BACKEND INTERNAL ERROR
           content:
@@ -1506,5 +1666,115 @@ paths:
       x-proxy-name: Fraud Block
       x-group-name: First Vision Events
       x-child-product-name: Notifications
-      x-stoplight:
-        id: f16hwtdgninhz
+  /notifications/v3/token:
+    post:
+      summary: Token Access
+      description: Endpoint exposed by the issuer to generate an access token. OAuth is required when establishing a connection with the issuer's endpoint via internet.
+      operationId: AccessToken
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Basic Authorization base 64 encoded. Issuer will share user and password. '
+          required: true
+          schema:
+            type: string
+        - name: x-request-id
+          in: header
+          description: The unique identifier for the API request.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    description: "Access token credential to access protected resources. \r\n"
+                    example: MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3
+                  tokenType:
+                    type: string
+                    description: Token type.
+                    default: Bearer
+                    example: Bearer
+                  issuedAt:
+                    type: string
+                    description: "Indicates date when access token was issued.\r\n\r\nTime is expressed in milliseconds."
+                    example: '1708360445853'
+                  expiresIn:
+                    type: string
+                    description: "Duration of time the access token is granted for.\r\n\r\nTime is expressed in seconds."
+                    example: '3600'
+                required:
+                  - accessToken
+                  - tokenType
+                  - issuedAt
+                  - expiresIn
+                x-examples:
+                  Example 1:
+                    token_type: BearerToken
+                    issued_at: '1707415431079'
+                    client_id: EBbWJZbMAKWNJrLT0CKkbsJfRODLMWQ5
+                    access_token: SgIVCGcGuKbUYOysGk2rg953qY88
+                    expires_in: '1799'
+                    status: approved
+              examples:
+                Example 1:
+                  value:
+                    accessToken: MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3
+                    tokenType: Bearer
+                    issuedAt: '1708360445853'
+                    expiresIn: '3600'
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error Title.
+                    example: Bad Request
+                  code:
+                    type: string
+                    description: Error Code.
+                    example: '400'
+                  description:
+                    type: string
+                    description: Error Description in detail.
+                    example: Field <customerName> can not be a number.
+        '503':
+          description: Service Unavailable
+      servers:
+        - url: 'http://localhost:3000'
+      x-proxy-name: Token Access
+      x-group-name: Authorization
+      x-child-product-name: Notifications
