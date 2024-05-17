@@ -81,18 +81,26 @@ paths:
         schema:
           type: string
       responses:
-        "401":
-          description: Unauthorized
-        "405":
-          description: Method Not Allowed
-        "400":
-          description: Bad Request
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
         "422":
           description: |-
             VPL5SQC01E - INVALID ORGANIZATION NUMBER
@@ -118,22 +126,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6'
-        "403":
-          description: Forbidden
       x-proxy-name: Mass Card Issue Inquiry
       x-group-name: Card
       x-child-product-name: Cards
@@ -166,18 +166,22 @@ paths:
               $ref: '#/components/schemas/MassCardIssueAddRequestL8v6'
         required: true
       responses:
-        "401":
-          description: Unauthorized
-        "405":
-          description: Method Not Allowed
-        "400":
-          description: Bad Request
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
         "422":
           description: |-
             VPL5SMC01E - INVALID ORGANIZATION NUMBER
@@ -307,24 +311,112 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "404":
           description: Not Found
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardIssueAddResponseL8v6'
-        "403":
-          description: Forbidden
       x-proxy-name: Mass Card Issue Update
       x-group-name: Card
+      x-child-product-name: Cards
+  /cards/v1/pan/encryption:
+    post:
+      tags:
+      - Embosser
+      summary: |-
+        ´[IN DEVELOPMENT]´
+        Provides account and other card details such as encrypted card number. VMX Service: M.CMS.ENCR.CARD.PAN.INQ, L8V2
+      description: |-
+        ´[IN DEVELOPMENT]´
+        Provides account and other card details such as encrypted card number. VMX Service: M.CMS.ENCR.CARD.PAN.INQ, L8V2
+      operationId: PAN Encryption
+      parameters:
+      - name: X-ClientID
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PanEncryptionL8V2Request'
+        required: true
+      responses:
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
+        "400":
+          description: Bad Request
+        "422":
+          description: |
+            Unprocessable Entity
+
+            VPL5SXP01E - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-999
+
+            VPL5SXP02E - INPUT CARD NUMBER IS NOT NUMERIC
+
+            VPL5SXP03E - CARD SEQUENCE NUMBER IS NOT NUMERIC
+
+            VPL5SXP04E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+
+            VPL5SXP05E - FUNCTION TYPE MUST BE 'A' WHEN ACCOUNT NUMBER IS PROVIDED
+
+            VPL5SXP06E - INVALID FUNCTION TYPE
+
+            VPL5SXP07E - INVALID INPUT ENCRYPTED NUMBER
+
+            VPL5SXP08E - INVALID INPUT PAN TOKEN NUMBER
+
+            VPL5SXPZ4S - REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND
+
+            VPL5SXPZ5S - ORG RECORD NOT FOUND
+
+            VPL5SXPZ8S - ORG RECORD NOT FOUND
+
+            VPL5SXPZ9S - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+
+            VPL5SXP10S - EMBOSSER RECORD NOT FOUND
+
+            VPL5SXP11S - ACCOUNT NUMBER NOT FOUND
+
+            VPL5SXP13S - BLOCK CODE FOUND ON ACCOUNT OR CARD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PanEncryptionL8V2Response'
+      x-proxy-name: PAN Encryption
+      x-group-name: Embosser
       x-child-product-name: Cards
   /cards/v1/embosser/generic:
     post:
@@ -350,10 +442,26 @@ paths:
               $ref: '#/components/schemas/GenericEmbosserL8V2Request'
         required: true
       responses:
-        "401":
-          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
         "422":
           description: |
             Unprocessable Entity
@@ -429,28 +537,12 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         "400":
           description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GenericEmbosserL8V2Response'
-        "403":
-          description: Forbidden
       x-proxy-name: Generic Instant Embossing
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1234,6 +1326,249 @@ components:
             \n* Service Data: AZXMCO-DATE-LAST-MAINT \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - DATE LAST MAINT"
           format: date
+    PanEncryptionL8V2Request:
+      required:
+      - functionType
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          maxLength: 3
+          minLength: 1
+          type: string
+          description: |-
+            Organization Number.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPI-ORG
+            * Screen, Page & Field: ARQE02 ORGANIZATION
+          example: "998"
+        functionType:
+          pattern: "^(P|C|E){1}$"
+          type: string
+          description: |-
+            Function type record.
+
+            Values:
+
+            P = PAN Token;
+            C = Card Number (Default);
+            E = Card Number Encrypted.
+            VisionPLUS:
+
+            * Service Data: AZXXPI-FUNCTION-TYPE
+          example: C
+        card:
+          $ref: '#/components/schemas/PanEncryptionL8V2Request.Card'
+      description: PAN Encryption Request
+    PanEncryptionL8V2Request.Card:
+      type: object
+      properties:
+        cardNumberEncrypted:
+          maxLength: 32
+          minLength: 12
+          type: string
+          description: |-
+            Encrypted Card Number.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPI-CARD-PAN
+          example: 00001234XXXXX56789
+        sequenceNumber:
+          type: integer
+          description: |-
+            - Max length: 4
+            Total count of physical cards are provided to the customer under same card number.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPI-CARD-SEQ
+            * Screen, Page & Field: ARQE02 - ORGANIZATION
+          format: int32
+          example: 1111
+    PanEncryptionL8V2Response:
+      type: object
+      properties:
+        organizationNumber:
+          type: string
+          description: |-
+            Organization Number.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-ORG
+            * Screen, Page & Field: ARQE 02 ORGANIZATION
+          example: "998"
+        customerNumber:
+          type: string
+          description: |-
+            Customer number that identifies the Customer Name/Address record to which this account is assigned. A valid customer name and address must be on file for this account.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-CUST-NBR
+            * Screen, Page & Field: ARQB 01 CUSTOMER NBR
+          example: "50697861094344623"
+        account:
+          $ref: '#/components/schemas/PanEncryptionL8V2Response.Account'
+        card:
+          $ref: '#/components/schemas/PanEncryptionL8V2Response.Card'
+    PanEncryptionL8V2Response.Account:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          description: |-
+            Identification number of record to which posts transactions that are received for this Embosser record.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-ACCT-NBR
+            * Screen, Page & Field: ARQE 02 POST TO ACCOUNT NUMBER
+          example: "50697861094344623"
+        accountNumberReference:
+          type: string
+          description: |-
+            Additional reference to identify the account number. In México is known as Clabe number.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-CLABE-NUMBER
+            * Screen, Page & Field: AZMB01 ID OUR NBR
+        panNumber:
+          type: string
+          description: |-
+            PAN token values can represent Card Number, Pan Token number or Encrypted Card Number.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-PAN-TOKEN
+            * Screen, Page & Field: ARQE 09 PAN
+          example: 000123456ABCDFG1234
+        checking:
+          $ref: '#/components/schemas/PanEncryptionL8V2Response.Account.Checking'
+        savings:
+          $ref: '#/components/schemas/PanEncryptionL8V2Response.Account.Savings'
+    PanEncryptionL8V2Response.Account.Checking:
+      type: object
+      properties:
+        routingNumber:
+          type: integer
+          description: |-
+            - Max length: 10
+            Dual-use field that accepts a nine-digit routing/transit number (ACH format) or a ten-digit bank ID (non-ACH format) to identify the financial institution to receive direct debit transactions for the account.
+
+            Format:
+
+            * ACH format = 0 + nine-digit routing/transit number;
+            * Non-ACH format = ten-digit bank ID.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-IBS-DDA-RTNG-NBR
+            * Screen, Page & Field: ARQB 09 DDA R/T
+          format: int64
+          example: 15267483
+        accountNumber:
+          type: string
+          description: |-
+            Demand deposit account (DDA) number associated with direct debit processing.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-IBS-DDA-ACCT-NBR
+            * Screen, Page & Field: ARQB 09 DDA ACCOUNT
+          example: "50697861094344600"
+    PanEncryptionL8V2Response.Account.Savings:
+      type: object
+      properties:
+        routingNumber:
+          type: integer
+          description: |-
+            - Max length: 10
+            Dual-use field that accepts a nine-digit routing/transit number (ACH format) or a ten-digit bank ID (non-ACH format) to identify the financial institution to receive direct debit transactions for the account.
+
+            Format:
+            * ACH format = 0 + nine-digit routing/transit number;
+            * Non-ACH format = ten-digit bank ID.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-IBS-SAV-RTNG-NBR
+            * Screen, Page & Field: ARQB 09 SAV R/T
+          format: int64
+          example: 15267483
+        accountNumber:
+          type: string
+          description: |-
+            Savings account number associated with direct debit processing.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-IBS-SAV-ACCT-NBR
+            * Screen, Page & Field: ARQB 09 SAVINGS ACCOUNT
+          example: "50697861094344600"
+    PanEncryptionL8V2Response.Card:
+      type: object
+      properties:
+        cardNumberEncrypted:
+          type: string
+          description: |-
+            Encrypted Card Number/ Pan Token Number .
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-ENCRYPT-PAN
+            * Screen, Page & Field: Not a screen field
+          example: A1B2C3D4E5F6G7H8I9J3D4E5F6G7H8I9
+        sequenceNumber:
+          type: integer
+          description: |-
+            - Max length: 4
+            Identification number assigned to an Embosser record to distinguish between multiple cards issued with the same card number.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-SEQ
+            * Screen, Page & Field: ARQE 11 CARD SEQUENCE NUMBER
+          format: int32
+          example: 1122
+        expirationDate:
+          type: integer
+          description: |-
+            - Max length: 4
+            Date on which the card expires. A new expiration date can be entered prior to issuing the first card for the Embosser record.
+
+            Format: MMYY
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-EXPIRY-DATE
+            * Screen, Page & Field: ARQE 02 EXPIRATION DAT
+          format: int32
+          example: 1012
+        embossingName:
+          type: string
+          description: |-
+            Name to be embossed on the first embossing line of the card. Enter the name exactly as it is to appear on the card.
+
+            VisionPLUS:
+
+            * Service Data: AZXXPO-EMBOSSED-NAME1
+            * Screen, Page & Field: ARQE 02 EMBOSSED NAME 1
+          example: Embossing Name
+        additionalEmbossingName:
+          type: string
+          description: |-
+            Additional name to be embossed on the second embossing line of the card. Enter the name exactly as it is to appear on the card. For example, this field may contain the name of a business if the card is issued for a business account. If the Embosser record is assigned to an account in a relationship, the relationship name is the default value that displays in this field.
+
+            VisionPLUS:
+
+            Service Data: AZXXPO-EMBOSSED-NAME2
+            Screen, Page & Field: ARQE 02 EMBOSSED NAME 2
+          example: Additional Name
     GenericEmbosserL8V2Request:
       required:
       - cardNumber
