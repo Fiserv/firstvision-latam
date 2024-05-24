@@ -37,22 +37,17 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '422':
           description: "Unprocessable Entity\n\nVPL5SBB14S - ORGANIZATION NUMBER MUST\
             \ BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5SBB01E - STATE OF RESIDENCE\
             \ CONTAINS INVALID CHARACTERS \n\nVPL5SBB02E - STATE OF ISSUANCE CONTAINS\
@@ -91,8 +86,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -131,16 +136,27 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
-        '405':
-          description: Method Not Allowed
-        '500':
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '422':
           description: 'VPL5SCU06S - ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999
 
 
@@ -260,14 +276,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -309,23 +319,28 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '404':
+          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -366,23 +381,28 @@ paths:
               $ref: '#/components/schemas/FlTransferP2PRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '404':
+          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -424,9 +444,27 @@ paths:
               $ref: '#/components/schemas/AccountBalanceFlRequest'
         required: true
       responses:
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '400':
           description: Bad Request
-        '500':
+        '422':
           description: 'VPL8SMAA1S - CASE NUMBER MUST BE NUMERIC
 
 
@@ -818,21 +856,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '405':
           description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
@@ -840,6 +865,132 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountBalanceFlResponse'
       x-proxy-name: Cash-in & Cash-out With Fraud Prevention
+      x-group-name: Account
+      x-child-product-name: Accounts
+  /account/v2/accountBoardingDriver:
+    post:
+      tags:
+      - Account
+      summary: 'Creates a card, account and customer in a single request.
+
+
+        VMX Service: M.CMS.CUST.ACCT.CRD.DRV, L8V3'
+      description: 'Creates a card, account and customer in a single request.
+
+
+        VMX Service: M.CMS.CUST.ACCT.CRD.DRV, L8V3'
+      operationId: Account Boarding Driver Request
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3'
+        required: true
+      responses:
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '422':
+          description: "VPL5SZ1Z1E - SERVICE COULD NOT OBTAIN STORAGE AREA \n\nVPL5SZ1Z2E\
+            \ - SERVICE INPUT TO EPIC DRIVER SERVICE IS INCORRECT LENGTH \n\nVPL5SZ103E\
+            \ - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998 \n\
+            \nVPL5SZ104E - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998\
+            \ \n\nVPL5SZ105E - CUSTOMER CREATE FLAG SHOULD BE Y OR N \n\nVPL5SZ106E\
+            \ - WHEN CUSTOMER CREATE FLAG IS N CUST NBR IS REQUIRED \n\nVPL5SZ107E\
+            \ - ACCOUNT CREATE FLAG SHOULD BE Y OR N \n\nVPL5SZ108E - WHEN ACCOUNT\
+            \ CREATE FLAG IS Y ACCT NBR NOT REQUIRED \n\nVPL5SZ109E - WHEN ACCOUNT\
+            \ CREATE FLAG IS N ACCT NBR IS REQUIRED \n\nVPL5SZ110E - WHEN ACCOUNT\
+            \ CREATE FLAG IS Y CREDIT LIMIT IS REQUIRED \n\nVPL5SZ111E - WHEN ACCOUNT\
+            \ CREATE FLAG IS Y BILLING CYCLE IS REQUIRED \n\nVPL5SZ112E - WHEN ACCOUNT\
+            \ CREATE FLAG IS Y OWNING BRANCH NBR IS REQUIRED \n\nVPL5SZ113E - ADMIN\
+            \ BRANCH IS NOT NUMERIC \n\nVPL5SZ114E - FIRST ISS BRANCH IS NOT NUMERIC\
+            \ \n\nVPL5SZ115E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS DDA RTNG\
+            \ NBR REQUIRED \n\nVPL5SZ116E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT\
+            \ IS DDA ACCT NBR REQUIRED \n\nVPL5SZ117E - WHEN ACCT CREATE FLAG IS Y\
+            \ AND DFLT ACCT IS SAV RTNG NBR REQUIRED \n\nVPL5SZ118E - WHEN ACCT CREATE\
+            \ FLAG IS Y AND DFLT ACCT IS SAV ACCT NBR REQUIRED \n\nVPL5SZ119E - CARD\
+            \ CREATE FLAG (1) SHOULD BE Y OR N \n\nVPL5SZ120E - CARD TECHNOLOGY (1)\
+            \ SHOULD BE 0 OR 1 OR 2 OR 3 \n\nVPL5SZ121E - WHEN CARD CREATE FLAG (1)\
+            \ IS Y EMBOSSER NAME (1) IS REQUIRED \n\nVPL5SZ122E - POS SERVICE CODE\
+            \ (1) SHOULD BE VALID \n\nVPL5SZ123E - POS SERVICE CODE (1) SHOULD BE\
+            \ NUMERIC \n\nVPL5SZ123E - POS SERVICE CODE (1) SHOULD BE NUMERIC \n\n\
+            VPL5SZ124E - DIG CARD IND (1) SHOULD BE 0 OR 1 \n\nVPL5SZ125E - CARD CREATE\
+            \ FLAG (2) SHOULD BE Y OR N \n\nVPL5SZ126E - CARD TECHNOLOGY (2) SHOULD\
+            \ BE 0 OR 1 OR 2 OR 3 \n\nVPL5SZ127E - WHEN CARD CREATE FLAG (2) IS Y\
+            \ EMBOSSER NAME (2) IS REQUIRED \n\nVPL5SZ128E - POS SERVICE CODE (2)\
+            \ SHOULD BE VALID \n\nVPL5SZ129E - POS SERVICE CODE (2) SHOULD BE NUMERIC\
+            \ \n\nVPL5SZ130E - DIG CARD IND (2) SHOULD BE 0 OR 1 \n\nVPL5SZ131E -\
+            \ ERROR IN FILE SET DETERMINATION ERROR \n\nVPL5SZ132E - FILE-TABLE USED\
+            \ BY THIS SERVICE IS MISSING \n\nVPL5SZ133E - APPLICATION IN NO-PROCESSING\
+            \ STATUS \n\nVPL5SZ134S - SYSTEM RECORD IS NOT FOUND \n\nVPL5SZ135S -\
+            \ ORGANIZATION NOT ON FILE OR IN PENDING STATUS \n\nVPL5SZ136S - LOGO\
+            \ NOT ON FILE OR IN PENDING STATUS \n\nVPL5SZ137E - POS SERVICE CODE (1)\
+            \ MUST BE VALID FOR MASTERCARD AFFILIATE \n\nVPL5SZ138E - POS SERVICE\
+            \ CODE (1) MUST BE VALID FOR VISA AFFILIATE \n\nVPL5SZ139E - POS SERVICE\
+            \ CODE (1) MUST BE VALID FOR AFFILIATE \n\nVPL5SZ140E - POS SERVICE CODE\
+            \ (2) MUST BE VALID FOR MASTERCARD AFFILIATE \n\nVPL5SZ141E - POS SERVICE\
+            \ CODE (2) MUST BE VALID FOR VISA AFFILIATE \n\nVPL5SZ142E - POS SERVICE\
+            \ CODE (2) MUST BE VALID FOR AFFILIATE \n\nVPL5SZ143S - INITIALIZE CALL\
+            \ TO VCM SERVICE FAILED DURING CUST CREATE \n\nVPL5SZ144S - NO RESPONSE\
+            \ FOR VCM SERVICE WITH NULL VALUES IN CUST CREATE \n\nVPL5SZ145E - CUSTOMER\
+            \ RECORD NOT FOUND OR IN PENDING STATUS \n\nVPL5SZ146S - INITIALIZE CALL\
+            \ TO VCM SERVICE FAILED DURING ACCT CREATE \n\nVPL5SZ147S - NO RESPONSE\
+            \ FOR VCM SERVICE WITH NULL VALUES IN ACCT CREATE \n\nVPL5SZ148E - ACCOUNT\
+            \ RECORD NOT FOUND OR IN PENDING STATUS \n\nVPL5SZ149S - INITIALIZE CALL\
+            \ TO VCM SERVICE FAILED DURING CARD CREATE \n\nVPL5SZ150S - NO RESPONSE\
+            \ FOR VCM SERVICE WITH NULL VALUES IN CARD CREATE \n\nVPL5SZ151S - LOGO\
+            \ LEVEL ETK TYPE/ZONE FIELDS SHLD HAVE KMS ACTIVE \n\nVPL5SZ152S - SRM/HSM\
+            \ CALL FAILED \n\nVPL5SZ153S - SRM/HSM FATAL ERROR \n\nVPL5SZ154S - PROBLEM\
+            \ ENCRYPTING SOURCE \n\nVPL5SZ155S - PROBLEM ENCRYPTING SOURCE \n\nVPL5SZ156S\
+            \ - PROBLEM ENCRYPTING SOURCE \n\nVPL5SZ157S - INITIALIZE CALL TO VCM\
+            \ SERVICE FAILED \n\nVPL5SZ158S - NO RESPONSE FOR VCM SERVICE WITH NULL\
+            \ VALUES \n\nVPL5SZ159E - ACCT ALREADY PRESENT FOR GIVEN DDA ACCT \n\n\
+            VPL5SZ160E - ACCT ALREADY PRESENT FOR GIVEN SAV ACCT \n\nVPL5SZ161E -\
+            \ NO VALID ACCT PRESENT FOR GIVEN CUSTOMER ACCT.\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBoardingDriverResponseL8V3'
+      x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
   /account/details-L8VG:
@@ -878,22 +1029,29 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
-        '405':
-          description: Method Not Allowed
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
+        '422':
           description: "VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\n\nVPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT\
             \ NUMERIC OR EQUAL SPACES\n\nVPL5SAI05E - INVALID FOREIGN USE IND SPECIFIED\
@@ -910,8 +1068,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
@@ -955,23 +1111,28 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V2Request'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
+        '404':
+          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
@@ -979,217 +1140,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsL8V2Response'
       x-proxy-name: Account To Card Inquiry
-      x-group-name: Account
-      x-child-product-name: Accounts
-  /account/account-boarding-driver:
-    post:
-      tags:
-      - Account
-      summary: 'Creates a card, account and customer in a single request. (VMX Service:
-        M.CMS.CUST.ACCT.CRD.DRV, L8V1)'
-      description: "Creates a card, account and customer in a single request. \nVMX\
-        \ Service: M.CMS.CUST.ACCT.CRD.DRV, L8V1"
-      operationId: Account Boarding Driver Request
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: 00970
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountBoardingDriverRequest'
-        required: true
-      responses:
-        '400':
-          description: Bad Request
-        
-        '403':
-          description: Forbidden
-        '500':
-          description: 'VPL5SZ103E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
-            VALUES ARE 001-998
-
-
-            VPL5SZ104E - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-
-
-            VPL5SZ105E - CUSTOMER CREATE FLAG SHOULD BE Y OR N
-
-
-            VPL5SZ106E - WHEN CUSTOMER CREATE FLAG IS N CUST NBR IS REQUIRED
-
-
-            VPL5SZ107E - ACCOUNT CREATE FLAG SHOULD BE Y OR N
-
-
-            VPL5SZ108E - WHEN ACCOUNT CREATE FLAG IS Y ACCT NBR NOT REQUIRED
-
-
-            VPL5SZ109E - WHEN ACCOUNT CREATE FLAG IS N ACCT NBR IS REQUIRED
-
-
-            VPL5SZ110E - WHEN ACCOUNT CREATE FLAG IS Y CREDIT LIMIT IS REQUIRED
-
-
-            VPL5SZ111E - WHEN ACCOUNT CREATE FLAG IS Y BILLING CYCLE IS REQUIRED
-
-
-            VPL5SZ112E - WHEN ACCOUNT CREATE FLAG IS Y OWNING BRANCH NBR IS REQUIRED
-
-
-            VPL5SZ115E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS DDA RTNG NBR
-            REQUIRED
-
-
-            VPL5SZ116E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS DDA ACCT NBR
-            REQUIRED
-
-
-            VPL5SZ117E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS SAV RTNG NBR
-            REQUIRED
-
-
-            VPL5SZ118E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS SAV ACCT NBR
-            REQUIRED
-
-
-            VPL5SZ119E - CARD CREATE FLAG (1) SHOULD BE Y OR N
-
-
-            VPL5SZ120E - CARD TECHNOLOGY (1) SHOULD BE 0 OR 1 OR 2 OR 3
-
-
-            VPL5SZ121E - WHEN CARD CREATE FLAG (1) IS Y EMBOSSER NAME (1) IS REQUIRED
-
-
-            VPL5SZ122E - POS SERVICE CODE (1) SHOULD BE VALID
-
-
-            VPL5SZ123E - POS SERVICE CODE (1) SHOULD BE NUMERIC
-
-
-            VPL5SZ123E - POS SERVICE CODE (1) SHOULD BE NUMERIC
-
-
-            VPL5SZ124E - DIG CARD IND (1) SHOULD BE 0 OR 1
-
-
-            VPL5SZ125E - CARD CREATE FLAG (2) SHOULD BE Y OR N
-
-
-            VPL5SZ126E - CARD TECHNOLOGY (2) SHOULD BE 0 OR 1 OR 2 OR 3
-
-
-            VPL5SZ127E - WHEN CARD CREATE FLAG (2) IS Y EMBOSSER NAME (2) IS REQUIRED
-
-
-            VPL5SZ128E - POS SERVICE CODE (2) SHOULD BE VALID
-
-
-            VPL5SZ129E - POS SERVICE CODE (2) SHOULD BE NUMERIC
-
-
-            VPL5SZ130E - DIG CARD IND (2) SHOULD BE 0 OR 1
-
-
-            VPL5SZ135S - ORGANIZATION NOT ON FILE OR IN PENDING STATUS
-
-
-            VPL5SZ136S - LOGO NOT ON FILE OR IN PENDING STATUS
-
-
-            VPL5SZ137E - POS SERVICE CODE (1) MUST BE VALID FOR MASTERCARD AFFILIATE
-
-
-            VPL5SZ138E - POS SERVICE CODE (1) MUST BE VALID FOR VISA AFFILIATE
-
-
-            VPL5SZ139E - POS SERVICE CODE (1) MUST BE VALID FOR AFFILIATE
-
-
-            VPL5SZ140E - POS SERVICE CODE (2) MUST BE VALID FOR MASTERCARD AFFILIATE
-
-
-            VPL5SZ141E - POS SERVICE CODE (2) MUST BE VALID FOR VISA AFFILIATE
-
-
-            VPL5SZ142E - POS SERVICE CODE (2) MUST BE VALID FOR AFFILIATE
-
-
-            VPL5SZ143S - INITIALIZE CALL TO VCM SERVICE FAILED DURING CUST CREATE
-
-
-            VPL5SZ144S - NO REPONSE FOR VCM SERVICE WITH NULL VALUES IN CUST CREATE
-
-
-            VPL5SZ145E - CUSTOMER RECORD NOT FOUND OR IN PENDING STATUS
-
-
-            VPL5SZ146S - INITIALIZE CALL TO VCM SERVICE FAILED DURING ACCT CREATE
-
-
-            VPL5SZ147S - NO REPONSE FOR VCM SERVICE WITH NULL VALUES IN ACCT CREATE
-
-
-            VPL5SZ148E - ACCOUNT RECORD NOT FOUND OR IN PENDING STATUS
-
-
-            VPL5SZ149S - INITIALIZE CALL TO VCM SERVICE FAILED DURING CARD CREATE
-
-
-            VPL5SZ150S - NO REPONSE FOR VCM SERVICE WITH NULL VALUES IN CARD CREATE
-
-
-            VPL5SZ151S - LOGO LEVEL ETK TYPE/ZONE FIELDS SHLD HAVE KMS ACTIVE
-
-
-            VPL5SZ157S - INITIALIZE CALL TO VCM SERVICE FAILED
-
-
-            VPL5SZ158S - NO REPONSE FOR VCM SERVICE WITH NULL VALUES
-
-
-            VPL5SZ159E - ACCT ALREADY PRESENT FOR GIVEN DDA ACCT
-
-
-            VPL5SZ160E - ACCT ALREADY PRESENT FOR GIVEN SAV ACCT
-
-
-            VPL5SZ161E - NO VALID ACCT PRSENT FOR GIVEN CUSTMER ACCT'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountBoardingDriverResponse'
-      x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
   /account/:
@@ -1223,16 +1173,29 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
         '405':
           description: Method Not Allowed
-        '500':
+        '422':
           description: 'VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
             001-998
 
@@ -2506,14 +2469,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '200':
           description: Success
           content:
@@ -4761,7 +4716,7 @@ components:
           maxLength: 5
           minLength: 0
           type: string
-          description: 'OXXO region identifier.
+          description: 'Customer region identifier.
 
 
             VisionPLUS Service Data: AZXMAI-REGION-IDENTIFIER'
@@ -4770,7 +4725,7 @@ components:
           maxLength: 5
           minLength: 0
           type: string
-          description: 'OXXO store identifier.
+          description: 'Customer store identifier.
 
 
             VisionPLUS Service Data: AZXMAI-STORE-IDENTIFIER
@@ -5521,6 +5476,1746 @@ components:
             VisionPLUS Service Data: AZXMAO-CURRENCY-NOD'
           format: int32
           example: 2
+    AccountBoardingDriverRequestL8V3:
+      required:
+      - logo
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 3
+
+
+            Identification number of the organization associated with the account.
+
+
+            VisionPLUS Service Data: AZXD1I-ORG'
+          format: int32
+          example: 800
+        logo:
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 3
+
+
+            Logo number.
+
+
+            VisionPLUS Service Data: AZXD1I-LOGO'
+          format: int32
+          example: 100
+        customerData:
+          $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3.CustomerData'
+        accountData:
+          $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3.AccountData'
+        embosserData:
+          $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3.EmbosserData'
+      description: Account boarding driver Service
+    AccountBoardingDriverRequestL8V3.AccountData:
+      required:
+      - creditLimitAmount
+      - isAccountCreationRequired
+      - shortName
+      type: object
+      properties:
+        isAccountCreationRequired:
+          pattern: ^(Y|N)$
+          type: string
+          description: "* Min Length: 1\n* Max Length: 1\n\nAccount creation required\
+            \ or not.\n\nValues:\n* Y = Create account;\n* N = Don\u2019t create account.\n\
+            \n  Note: If values is N account should be provided\n\nVisionPLUS Service\
+            \ Data: AZXD1I-ACCT-CREATE"
+          example: N
+        accountNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: 'Account number.
+
+
+            Required when field ''isAccountCreationRequired'' field is ''N'':
+
+            * If field ''accountCreation required'' is provided as N then ''accountNumber''
+            should be provided;
+
+            * If fields ''organizationNumber'' and ''logo'' not provided then ''accountNumber''
+            should be provided;
+
+            * And Value should not be present already.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-ACCT'
+          example: '50697861094344623'
+        relationshipNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: 'Relationship number.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-REL-NBR'
+          example: '57326242830728290'
+        creditLimitAmount:
+          type: number
+          description: '* Min Length: 1
+
+            * Max Length: 17
+
+
+            Credit limit amount. Format with no commas or decimals
+
+
+            VisionPLUS Service Data: AZXD1I-BS-CREDIT-LIMIT'
+          example: 300
+        billingCycle:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 2
+
+
+            Billing cycle.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-BILLING-CYCLE'
+          format: int32
+          example: 30
+        owningBranchNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            Owning branch number.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-OWNING-BRANCH-NBR'
+          format: int32
+          example: 999999999
+        administrationBranch:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            Administration branch number.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-ADMIN-BRANCH'
+          format: int32
+          example: 999999999
+        firstIssuanceBranch:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            First issuance branch number.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-FIRST-ISS-BRANCH'
+          format: int32
+          example: 999999999
+        shortName:
+          maxLength: 20
+          minLength: 1
+          type: string
+          description: 'Short name.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-SHORT-NAME'
+          example: '999999999'
+        billingAccountIndicator:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 1
+
+
+            Billing account type.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-BILLING-ACCT-IND'
+          format: int32
+          example: 0
+        alternateCustomerIndicator:
+          pattern: ^(\s|A|B|C)$
+          type: string
+          description: '* Max Length: 1
+
+
+            Alternate customer.
+
+
+            Values:
+
+            * Space = No action; disregard alternate customer;
+
+            * A = Alternate customer active; send statements to alternate address
+            until expiration date;
+
+            * B = Alternate customer active; send statements to both addresses until
+            expiration date;
+
+            * C = Relationship customer active; send statement to alternate address.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-ALT-CUST-NBR-FLAG'
+          example: A
+        alternateCustomerNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: 'Alternate customer number.
+
+
+            When expiry date is greater than zero, thi field cannot be zero
+
+
+            VisionPLUS Service Data: AZXD1I-BS-ALT-CUST-NBR'
+          example: '49884274787255246'
+        alternateCustomerStartDate:
+          pattern: YYYY-MM-DD
+          type: string
+          description: 'Effective date of the alternate customer address (in ISO 8601).
+
+
+            Should be a valid date and not be less than next processing date.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-DATE-ALT-CUST-STRT'
+          format: date
+          example: 2023-01-18
+        alternateCustomerExpiryDate:
+          pattern: YYYY-MM-DD
+          type: string
+          description: 'Expiration date of the alternate customer address (in ISO
+            8601).
+
+
+            Should be a valid date and not be less than start date.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-DATE-ALT-CUST-EXPR'
+          format: date
+          example: 2023-01-20
+        paymentAchRoutingNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 10
+
+
+            PMT ACH (Payment Archive Number) routing number.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-PMT-ACH-RT-NBR'
+          format: int64
+          example: 6740880056
+        paymentAchDebitType:
+          pattern: ^(D|S)$
+          type: string
+          description: '* Min Length: 1
+
+            * Max Length: 1
+
+
+            Payment ACH (Automated Clearing House network) DB type.
+
+
+            Values:
+
+            * D = Demand deposit account (checking);
+
+            * S = Savings account.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-PMT-ACH-DB-TYPE'
+          example: D
+        paymentAchDbNumber:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: 'Payment DC ACH DB number.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-PMT-ACH-DB-NBR'
+          example: '69299344544137784'
+        paymentAchIndicator:
+          maximum: 7
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 1
+
+
+            Payment ACH flag.
+
+
+            Values:
+
+            * 0 = No ACH;
+
+            * 1 = ACH active;
+
+            * 2 = ACH customer-nominated;
+
+            * 3 = ACH customer-nominated;
+
+            * 4 = ACH customer-nominated;
+
+            * 5 = ACH customer-nominated;
+
+            * 6 = ACH customer-nominated;
+
+            * 7 = ACH customer-nominated.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-PMT-ACH-FLAG'
+          format: int32
+          example: 0
+        nominatedAchAmtPctIndicator:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 1
+
+
+            DD customer-nominated type payment.
+
+
+            Values:
+
+            * 0 = Not used;
+
+            * 1 = Fixed payment amount;
+
+            * 2 = Percentage of account (cycle-ending) balance;
+
+            * 3 = Full account (cycle-ending) balance;
+
+            * 9 = Percentage of account (cycle-ending minus overlimit amount) balance.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-NOM-ACH-AMTPCT-FL'
+          format: int32
+          example: 2
+        userCode7:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: 'User code 7.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-USER-CODE-7'
+          example: DF
+        sourceCode:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: 'Source code.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-SOURCE-CODE'
+          example: Source code
+        applicationUser1:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: 'User application data 1.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-APPL-USER-1'
+          example: Application Data 1
+        applicationUser2:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: 'User application data 2.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-APPL-USER-2'
+          example: Application Data 2
+        applicationUser3:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: 'User application data 3.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-APPL-USER-3'
+          example: Application Data 3
+        miscellaneousUser1:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 'Miscellaneous user 1.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-MISC-USER-1'
+          example: '1'
+        miscellaneousUser2:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: 'Miscellaneous user 2.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-MISC-USER-2'
+          example: '2'
+        miscellaneousUser3:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: 'Miscellaneous user 3.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-MISC-USER-3'
+          example: '3'
+        miscellaneousUser4:
+          maxLength: 11
+          minLength: 0
+          type: string
+          description: 'Miscellaneous user 4.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-MISC-USER-4'
+          example: '4'
+        affiliateEmbosser:
+          type: integer
+          description: "* Min Length: 0\n* Max Length: 5\n\nIdentification of the\
+            \ cardholder\u2019s affiliation or affinity group.\n\nVisionPLUS Service\
+            \ Data: AZXD1I-BS-AFFL-EMBLM"
+          format: int32
+          example: 85632
+        serviceFeeTable:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 3
+
+
+            ID of the PCT override tables.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-SVC-FEE-TABLE'
+          format: int32
+          example: 999
+        serviceFeeStartDate:
+          pattern: YYYY-MM-DD
+          type: string
+          description: 'Start date of the override (in ISO 8601).
+
+
+            If PRICING CTRL field is populated, the start date must be equal to or
+            greater than the org next processing date.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-SVC-FEE-START-DATE'
+          format: date
+          example: 2023-01-22
+        serviceFeeExpiryDate:
+          pattern: YYYY-MM-DD
+          type: string
+          description: 'Expiration date of the override (in ISO 8601).
+
+
+            If PRICING CTRL field is populated, the expiration date must be greater
+            than the start date.
+
+
+            Expiration date must not be > 0 when START DATE is not > 0.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-SVC-FEE-EXPIR-DATE'
+          format: date
+          example: 2023-01-26
+        ddaRoutingNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            DDA routing number.
+
+
+            If the checking account number field is populated, the checking routing
+            number is required.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-DDA-RTNG-NBR'
+          format: int32
+          example: 950084292
+        ddaAccountNumber:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: 'DDA account number.
+
+
+            If the checking routing number is populated, the checking account number
+            is required.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-DDA-ACCT-NBR'
+          example: '54853388673902208'
+        savingsRoutingNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 7
+
+
+            Savings routing number.
+
+
+            If the savings account number field is populated, the savings routing
+            number is required.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-SAV-RTNG-NBR'
+          format: int32
+          example: 8092162
+        savingsAccountNumber:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: 'Savings account number.
+
+
+            If the savings routing number field is populated, the savings account
+            number is required.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-SAV-ACCT-NBR'
+          example: '59550475827159292'
+        customerSelectDueDay:
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 2
+
+
+            Customer Select Due Day.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-CUST-SEL-DUE-DAY'
+          format: int32
+          example: 15
+        stateOfResidence:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: 'Identification code of the Processing Control Table assigned
+            to the account.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-STATE-OF-RESIDENCE'
+          example: DF
+        stateOfIssue:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: 'Code that identifies the state, province, or country in which
+            the account was or is going to be issued.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-STATE-OF-ISSUE'
+          example: DF
+        statementSendingMethod:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: 'Statement Sending Method.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-STATEMENT-FLAG'
+          example: '0'
+        smsStatementIndicator:
+          maxLength: 2
+          minLength: 0
+          type: string
+          description: 'Statement Sending Method.
+
+
+            VisionPLUS Service Data: AZXD1I-BS-USER-CODE1'
+          example: '0'
+      description: Account Data
+    AccountBoardingDriverRequestL8V3.CustomerData:
+      required:
+      - isCustomerCreationRequired
+      type: object
+      properties:
+        isCustomerCreationRequired:
+          pattern: ^(Y|N)$
+          type: string
+          description: "* Min Length: 1\n* Max Length: 1\n\nCustomer creation required\
+            \ or not.\n\nValues:\n* Y = Create customer;\n* N = Don\u2019t create\
+            \ customer.\n\nNote: If value is N customer should be provided.\n\nVisionPLUS\
+            \ Service Data: AZXD1I-CUST-CREATE"
+          example: N
+        customerNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: 'Customer Number
+
+
+            Must be provided when field ''isCustomerCreationRequired'' field is set
+            to ''N''
+
+
+            VisionPLUS Service Data: AZXD1I-CUST-NBR'
+          example: 0976500000000000021
+        makerComakerIndicator:
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 1
+
+
+            Maker/Comaker indicator
+
+
+            Values:
+
+            * 1 = Maker;
+
+            * 2 = Comaker.
+
+
+            Must be provided when ''isCustomerCreationRequired'' field is Y.
+
+
+            VisionPLUS Service Data: AZXD1I-NA-COMAKER-IND'
+          format: int32
+          example: 1
+        makerData:
+          $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3.CustomerData.MakerData'
+        comakerData:
+          $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3.CustomerData.ComakerData'
+      description: Customer Data
+    AccountBoardingDriverRequestL8V3.CustomerData.ComakerData:
+      type: object
+      properties:
+        comakerMaritalStatus:
+          type: integer
+          description: "* Min Length 0\n* Max Length 1\n\nComaker\u2019s marital status.\n\
+            \nValues:\n* 0 = Not used;\n* 1 = Married and living at same address;\n\
+            * 2 = Married and living at different addresses;\n* 3 = Not married and\
+            \ living at same address;\n* 4 = Not married and living at different addresses.\n\
+            \nVisionPLUS Service Data: AZXD1I-C-MARITAL-STATUS"
+          format: int32
+          example: 3
+        comakerNameLine1:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s name line 1.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-LINE-1"
+          example: Deodoro da Fonseca
+        comakerNameTypeIndicator1:
+          type: integer
+          description: "* Min Length: 1\n* Max Length 1\n\nComaker\u2019s name type\
+            \ 1.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-TYPE-IND-1"
+          format: int32
+          example: 1
+        comakerNameLine2:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s name line 2.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-LINE-2"
+          example: Floriano Peixoto
+        comakerNameTypeIndicator2:
+          type: integer
+          description: "* Min Length 0\n* Max Length 1\n\nComaker\u2019s name type\
+            \ 2.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-TYPE-IND-2"
+          format: int32
+          example: 1
+        comakerNameLine3:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s name line 3.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-LINE-3"
+          example: Prudente de Morais
+        comakerNameTypeIndicator3:
+          type: integer
+          description: "* Min Length 0\n* Max Length: 1\n\nComaker\u2019s name type\
+            \ 3.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-TYPE-IND-3"
+          format: int32
+          example: 1
+        comakerHouseNumber:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s house number.\n\nVisionPLUS Service Data: AZXD1I-C-HOUSE-NBR"
+          example: '1000'
+        comakerHouseName:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s house name.\n\nVisionPLUS Service Data: AZXD1I-C-HOUSE-NAME"
+          example: Eixo Monumental
+        comakerAddress1:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s address 1.\n\nVisionPLUS Service Data: AZXD1I-C-ADDR-1"
+          example: Central
+        comakerAddress2:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s address 2.\n\nVisionPLUS Service Data: AZXD1I-C-ADDR-2"
+          example: "Pra\xE7a dos Tr\xEAs Poderes"
+        comakerAddress3:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s address 3.\n\nVisionPLUS Service Data: AZXD1I-C-ADDR-3"
+          example: "Pal\xE1cio do Planalto"
+        comakerAddress4:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s address 4.\n\nVisionPLUS Service Data: AZXD1I-C-ADDR-4"
+          example: Sala 40
+        comakerCity:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s city.\n\nVisionPLUS Service Data: AZXD1I-C-CITY"
+          example: "Bras\xEDlia"
+        comakerState:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s state.\n\nVisionPLUS Service Data: AZXD1I-C-ST-PR"
+          example: DF
+        comakerPostalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s Postal code.\n\nVisionPLUS Service Data: AZXD1I-C-PSTL-CD"
+          example: '70100000'
+        comakerCountryCode:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s Country Code.\n\nVisionPLUS Service Data: AZXD1I-C-CNTRY-CD"
+          example: BRA
+        comakerOwnRentResidenceIndicator:
+          type: integer
+          description: "* Min Length: 1\n* Max Length: 1\n\nComaker\u2019s own/rent\
+            \ residence indicator.\n\nValues:\n* 0 = Unknown;\n* 1 = Owns or is buying\
+            \ residence;\n* 2 = Rents or leases residence;\n* 3 = Lives at someone\
+            \ else\u2019s residence.\n\nVisionPLUS Service Data: AZXD1I-C-OWN-RENT-RESID-FLAG"
+          format: int32
+          example: 0
+        comakerGenderCode:
+          type: integer
+          description: "* Min Length: 1\n* Max Length: 1\n\nComaker\u2019s Gender\
+            \ code.\n\nVisionPLUS Service Data: AZXD1I-C-GENDER-CODE"
+          format: int32
+          example: 1
+        comakerHomePhone:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s home phone.\n\nVisionPLUS Service Data: AZXD1I-C-HOME-PHONE"
+          example: '6135986629'
+        comakerMobilePhone:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s mobile phone.\n\nVisionPLUS Service Data: AZXD1I-C-MOBILE-PHONE"
+          example: '61968463845'
+        comakerDateOfBirth:
+          pattern: YYYY-MM-DD
+          type: string
+          description: "Comaker\u2019s date of birth (in ISO 8601).\n\nVisionPLUS\
+            \ Service Data: AZXD1I-C-DOB"
+          format: date
+          example: 2023-01-15
+        comakerIdentificationIndicator:
+          type: integer
+          description: "* Min Length: 1\n* Max Length: 1\n\nComaker\u2019s identification\
+            \ number indicator.\n\nValues:\n* 0 = Social Security number;\n* 1 = Tax\
+            \ ID;\n* 2 = Other ID.\n\nVisionPLUS Service Data: AZXD1I-C-SSAN-FLAG"
+          format: int32
+          example: 2
+        comakerIdentificationNumber:
+          maxLength: 25
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s identification number.\n\nVisionPLUS Service\
+            \ Data: AZXD1I-C-SSAN"
+          example: '5483992714430499036965476'
+        comakerEmail:
+          maxLength: 60
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s e-mail.\n\nVisionPLUS Service Data: AZXD1I-C-EMAIL"
+          example: comaker@email.com
+        comakerUser4:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: 'Comaker User defined-4 (Special Needs).
+
+
+            VisionPLUS Service Data: AZXD1I-C-USER-4'
+          example: '0'
+        comakerUser14:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s User 14 (Identification Document RG).\n\nVisionPLUS\
+            \ Service Data: AZXD1I-C-USER14"
+          example: '385328935'
+        comakerUser3:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: 'User defined-3.
+
+
+            VisionPLUS Service Data: AZXD1I-M-USER-3'
+          example: N
+        comakerUser10:
+          pattern: YYYY-MM-DD
+          type: string
+          description: 'User defined-10 (in ISO 8601).
+
+
+            VisionPLUS Service Data: AZXD1I-M-USER-10'
+          format: date
+          example: 2023-01-16
+        comakerUser12:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 'User defined-12 (Father''s name).
+
+
+            VisionPLUS Service Data: AZXD1I-C-USER-12'
+          example: Manuel
+        comakerUser13:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 'User defined-13 (Father''s surname).
+
+
+            VisionPLUS Service Data: AZXD1I-C-USER-13'
+          example: Mendes da Fonseca
+        isComakerForeign:
+          type: boolean
+          description: 'Foreign Indicator.
+
+
+            Values:
+
+            * true  = Foreign;
+
+            * false = Local.
+
+
+            Note: If Foreign indicator is not being used, the value is Unknown.
+
+
+            VisionPLUS Service Data: AZXD1I-C-FOREIGN-IND'
+          example: false
+        comakerNationalDrivingLicense:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s Driving License Number.\n\nVisionPLUS Service\
+            \ Data: AZXD1I-C-CUST-DL-NBR"
+          example: '94133445155'
+        comakerRelativeName:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Comaker\u2019s Relative Name (Mother\u2019s Name).\n\nVisionPLUS\
+            \ Service Data: AZXD1I-C-RELATIVE-NAME"
+          example: Rosa Maria Paulina de Barros Cavalcanti
+      description: Comaker Data
+    AccountBoardingDriverRequestL8V3.CustomerData.MakerData:
+      type: object
+      properties:
+        makerMaritalStatus:
+          type: integer
+          description: "* Min Length: 1\n* Max Length: 1\n\nMaker\u2019s marital status.\n\
+            \nValues:\n* 0 = Not used;\n* 1 = Married and living at same address;\n\
+            * 2 = Married and living at different addresses;\n* 3 = Not married and\
+            \ living at same address;\n* 4 = Not married and living at different addresses.\n\
+            \nVisionPLUS Service Data: AZXD1I-M-MARITAL-STATUS"
+          format: int32
+          example: 0
+        makerNameLine1:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s name line 1\n\nVisionPLUS Service Data: AZXD1I-M-NAME-LINE-1"
+          example: Sophia Souza Cavalcanti
+        makerNameTypeIndicator1:
+          type: integer
+          description: "* Min Length: 1\n* Max Length: 1\n\nMaker\u2019s name line\
+            \ 1.\n\nVisionPLUS Service Data: AZXD1I-M-NAME-TYPE-IND-1"
+          format: int32
+          example: 0
+        makerNameLine2:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s name line 2\n\nVisionPLUS Service Data: AZXD1I-M-NAME-LINE-2"
+          example: Arthur Souza Dias
+        makerNameTypeIndicator2:
+          type: integer
+          description: "* Min Length: 1\n* Max Length: 1\n\nMaker\u2019s name type\
+            \ 2.\n\nVisionPLUS Service Data: AZXD1I-M-NAME-TYPE-IND-2"
+          format: int32
+          example: 0
+        makerNameLine3:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s name line 3.\n\nVisionPLUS Service Data: AZXD1I-M-NAME-LINE-3"
+          example: Mateus Rocha Costa
+        makerNameTypeIndicator3:
+          type: integer
+          description: "* Min Length: 1\n* Max Length: 1\n\nMaker\u2019s name type\
+            \ 3.\n\nVisionPLUS Service Data: AZXD1I-M-NAME-TYPE-IND-3"
+          format: int32
+          example: 0
+        makerHouseNumber:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Maker\u2019s house number.\n\nVisionPLUS Service Data: AZXD1I-M-HOUSE-NBR"
+          example: '1000'
+        makerHouseName:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s house name.\n\nVisionPLUS Service Data: AZXD1I-M-HOUSE-NAME"
+          example: "Atl\xE2ntica"
+        makerAddress1:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s address 1.\n\nVisionPLUS Service Data: AZXD1I-M-ADDR-1"
+          example: "Avenida Atl\xE2ntica, 1892"
+        makerAddress2:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s address 2.\n\nVisionPLUS Service Data: AZXD1I-M-ADDR-2"
+          example: Hilton 40
+        makerAddress3:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s address 3.\n\nVisionPLUS Service Data: AZXD1I-M-ADDR-3"
+          example: Apto 40
+        makerAddress4:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s address 4.\n\nVisionPLUS Service Data: AZXD1I-M-ADDR-4"
+          example: Copacabana
+        makerCity:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: "Maker\u2019s city.\n\nVisionPLUS Service Data: AZXD1I-M-CITY"
+          example: Rio de Janeiro
+        makerState:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: "Maker\u2019s state.\n\nVisionPLUS Service Data: AZXD1I-M-ST-PR"
+          example: RJ
+        makerPostalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: "Maker\u2019s postal code.\n\nVisionPLUS Service Data: AZXD1I-M-PSTL-CD"
+          example: '22010000'
+        makerCountryCode:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: "Maker\u2019s Country Code.\n\nVisionPLUS Service Data: AZXD1I-M-CNTRY-CD"
+          example: BRA
+        makerOwnRentResidenceIndicator:
+          maximum: 3
+          type: integer
+          description: "* Min Length: 0\n* Max Length: 1\n\nMaker\u2019s own/rent\
+            \ residence flag.\n\nValues:\n* 0 = Unknown;\n* 1 = Owns or is buying\
+            \ residence;\n* 2 = Rents or leases residence;\n* 3 = Lives at someone\
+            \ else\u2019s residence.\n\nVisionPLUS Service Data: AZXD1I-M-OWN-RENT-RESID-FLAG"
+          format: int32
+          example: 0
+        makerGenderCode:
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 1
+
+
+            Gender code.
+
+
+            VisionPLUS Service Data: AZXD1I-M-GENDER-CODE'
+          format: int32
+          example: 1
+        makerHomePhone:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Maker\u2019s home phone.\n\nVisionPLUS Service Data: AZXD1I-M-MOBILE-PHONE"
+          example: 02145011862
+        makerMobilePhone:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Maker\u2019s mobile phone.\n\nVisionPLUS Service Data: AZXD1I-M-MOBILE-PHONE"
+          example: '21983251975'
+        makerDateOfBirth:
+          pattern: YYYY-MM-DD
+          type: string
+          description: "Maker\u2019s date of birth (in ISO 8601).\n\nVisionPLUS Service\
+            \ Data: AZXD1I-M-DOB"
+          format: date
+          example: 2000-12-31
+        makerIdentificationIndicator:
+          type: integer
+          description: "* Min Length: 0\n* Max Length: 1\n\nMaker\u2019s identification\
+            \ number flag.\n\nValues:\n* 0 = Social Security number;\n* 1 = Tax ID;\n\
+            * 2 = Other ID.\n\nVisionPLUS Service Data: AZXD1I-M-SSAN-FLAG"
+          format: int32
+          example: 0
+        makerIdentificationNumber:
+          maxLength: 25
+          minLength: 0
+          type: string
+          description: "Maker\u2019s identification number.\n\nVisionPLUS Service\
+            \ Data: AZXD1I-M-SSAN"
+          example: '71369183321'
+        makerEmail:
+          maxLength: 60
+          minLength: 0
+          type: string
+          description: "Maker\u2019s e-mail.\n\nVisionPLUS Service Data: AZXD1I-M-EMAIL"
+          example: rochacosta@domain.com
+        makerUser4:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: 'User defined-4 (Special Needs).
+
+
+            VisionPLUS Service Data: AZXD1I-M-USER-4'
+          example: '0'
+        makerUser14:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Maker\u2019s User 14 (Identification Document).\n\nVisionPLUS\
+            \ Service Data: AZXD1I-M-USER14"
+          example: '408233286'
+        makerUser3:
+          maxLength: 7
+          minLength: 0
+          type: string
+          description: 'User defined-3 (Dispatching Agency).
+
+
+            VisionPLUS Service Data: AZXD1I-M-USER-3'
+          example: '6526140'
+        makerUser10:
+          pattern: YYYY-MM-DD
+          type: string
+          description: 'User defined-10 (Dispatch Date (in ISO 8601)).
+
+
+            VisionPLUS Service Data: AZXD1I-M-USER-10'
+          format: date
+          example: 2023-01-14
+        makerUser12:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 'User defined-12 (Father''s name).
+
+
+            VisionPLUS Service Data: AZXD1I-M-USER-12'
+          example: Mateus
+        makerUser13:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 'User defined-13 (Father''s surname).
+
+
+            VisionPLUS Service Data: AZXD1I-M-USER-13'
+          example: Rocha
+        isMakerForeign:
+          type: boolean
+          description: 'Foreign Indicator.
+
+
+            Values:
+
+            * true  = Foreign;
+
+            * false = Local.
+
+
+            Note: If Foreign indicator is not being used, the value is Unknown.
+
+
+            VisionPLUS Service Data: AZXD1I-M-FOREIGN-IND'
+          example: false
+        makerNationalDrivingLicense:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "Maker\u2019s Driving License Number.\n\nVisionPLUS Service\
+            \ Data: AZXD1I-M-CUST-DL-NBR"
+          example: '47238765002'
+        makerRelativeName:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: "Maker\u2019s Relative Name (Mother\u2019s Name).\n\nVisionPLUS\
+            \ Service Data: AZXD1I-M-RELATIVE-NAME"
+          example: Nicole Costa
+      description: Maker Data
+    AccountBoardingDriverRequestL8V3.EmbosserData:
+      type: object
+      properties:
+        embosserDataList:
+          type: array
+          description: 'Embosser data table
+
+
+            Embosser data occurs 2 times
+
+
+            VisionPLUS Service Data: AZXD1I-ED-TABLE'
+          items:
+            $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3.EmbosserData.EmbosserDataTable'
+      description: Embosser Data
+    AccountBoardingDriverRequestL8V3.EmbosserData.EmbosserDataTable:
+      required:
+      - digitalCardIndicator
+      - embosserName1
+      - isCardCreationRequired
+      type: object
+      properties:
+        isCardCreationRequired:
+          pattern: ^(Y|N)$
+          type: string
+          description: "* Min Length: 1\n* Max Length: 1\n\nCard number creation required\
+            \ or not.\n\n Values:\n* Y = Create card number;\n* N = Don\u2019t create\
+            \ card number.\n\nNote: If values is N customer should be provided.\n\n\
+            VisionPLUS Service Data: AZXD1I-ED-CARD-CREATE"
+          example: Y
+        digitalCardIndicator:
+          pattern: ^(1|0)$
+          type: string
+          description: '* Min Length: 1
+
+            * Max Length: 1
+
+
+            Digital card creation required or not.
+
+
+            Values:
+
+            * 0 = Plastic;
+
+            * 1 = Digital.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-DIG-CARD-IND'
+          example: '0'
+        cardTechnology:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 1
+
+
+            Card technology.
+
+
+            Values:
+
+            * 0 = Magnetic stripe cards;
+
+            * 1 = Smart cards.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-CARD-TECHNOLOGY'
+          format: int32
+          example: 0
+        embosserName1:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: 'Embossed Name 1.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-EMBOSSER-NAME'
+          example: Carolina Ribeiro Castro
+        embosserName2:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: 'Embossed Name 2.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-EMBOSSER-NAME-2'
+          example: Alice Rocha Cunha
+        posServiceCode:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 3
+
+
+            Pos service code.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-POS-SERVICE-CODE'
+          format: int32
+          example: 201
+        embosserCustomerNumber:
+          maxLength: 19
+          minLength: 0
+          type: string
+          description: 'Embosser customer number.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-CUSTOMER-NBR'
+          example: '5779962506423378231'
+        embosserUser2:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: 'User-defined 2.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-USER-2'
+          example: User Defined 2
+        embosserReissueDeliveryOption:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 3
+
+
+            Reissue delivery option.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-REISS-DELV-OPTION'
+          format: int32
+          example: 999
+        embosserIssueDeliveryOption:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 3
+
+
+            Delivery option.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-ISSUE-DELIV-OPTION'
+          format: int32
+          example: 999
+        cardActionReason:
+          maxLength: 1
+          minLength: 0
+          type: string
+          description: 'Card action reason code.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-CARD-ACTION-REASON'
+          example: '0'
+        pinSuppression:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 1
+
+
+            PIN SUPPRESSION Request.
+
+
+            Values:
+
+            * 0 = Allow PINs;
+
+            * 1 = Suppress PIN generation.
+
+
+            VisionPLUS Service Data: AZXD1I-ED- PIN-SUPPRESSION'
+          format: int32
+          example: 1
+        cardAddress1:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: 'Card owner address 1.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-ADDR-1'
+          example: "Rua Doutor C\xEDcero de Alencar, 1418"
+        cardAddress2:
+          maxLength: 40
+          minLength: 0
+          type: string
+          description: 'Card owner address 2.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-ADDR-2'
+          example: Central
+        cardCity:
+          maxLength: 30
+          minLength: 0
+          type: string
+          description: 'Card city.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-CITY'
+          example: "S\xE3o Paulo"
+        cardState:
+          maxLength: 3
+          minLength: 0
+          type: string
+          description: 'Card owner state.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-STATE'
+          example: SP
+        cardPostalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          description: 'Card owner postal code.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-PSTL-CD'
+          example: 05186005
+        administrationBranchNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            Administration branch number.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-ADMIN-BRANCH'
+          format: int32
+          example: 585765020
+        firstIssuanceBranchNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            First issuance branch number.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-FIRST-ISS-BRANCH'
+          format: int32
+          example: 363792763
+        maximumAuthorizationFrequency:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 1
+
+
+            Maximum authorization frequency.
+
+
+            Values:
+
+            * 0 = Not used;
+
+            * 1 = Daily;
+
+            * 2 = Cycle-to-date;
+
+            * 3 = Year-to-date.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-ATM-OTC-RTL-F-X'
+          format: int32
+          example: 1
+        authorizationAtmCashAmount:
+          type: number
+          description: '* Min Length: 0
+
+            * Max Length: 17
+
+
+            ATM cash amount.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-ATM-CASH-AMT'
+          example: 8281199981
+        authorizationAtmCashNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            ATM cash number.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-ATM-CASH-NBR'
+          format: int32
+          example: 230388762
+        authorizationAtmCashSingleTransaction:
+          type: number
+          description: '* Min Length: 0
+
+            * Max Length: 17
+
+
+            ATM cash transaction limit.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-ATM-CASH-SNG-TN'
+          example: 6139071474
+        authorizationOtcCashAmount:
+          type: number
+          description: '* Min Length: 0
+
+            * Max Length: 17
+
+
+            OTC cash amount.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-OTC-CASH-AMT'
+          example: 1000
+        authorizationOtcCashNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            OTC cash number.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-OTC-CASH-NBR'
+          format: int32
+          example: 893188885
+        authorizationOtcCashSingleTransaction:
+          type: number
+          description: '* Min Length: 0
+
+            * Max Length: 17
+
+
+            OTC transaction limit.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-OTC-CASH-SNG-TN'
+          example: 9056315570
+        authorizationRetailAmount:
+          type: number
+          description: '* Min Length: 0
+
+            * Max Length: 17
+
+
+            Retail amount.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-RTL-AMT'
+          example: 2000
+        authorizationRetailNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            Retail number.
+
+
+            VisionPLUS Service Data: AAZXD1I-ED-AUTH-RTL-NBR'
+          format: int32
+          example: 220550726
+        authorizationRetailSingleTransaction:
+          type: number
+          description: '* Min Length: 0
+
+            * Max Length: 17
+
+
+            Retail transaction limit.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-RTL-SNGL-TXN'
+          example: 5891920073
+        authorizationInternetAmount:
+          type: number
+          description: '* Min Length: 0
+
+            * Max Length: 17
+
+
+            Internet purchase amount.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-INTRNT-AMT'
+          example: 3000
+        authorizationInternetNumber:
+          type: integer
+          description: '* Min Length: 0
+
+            * Max Length: 9
+
+
+            Internet purchase number.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-INTRNT-NBR'
+          format: int32
+          example: 551389980
+        authorizationInternetSingleTransaction:
+          type: number
+          description: '* Min Length: 0
+
+            * Max Length: 13
+
+
+            Internet purchase single transaction limit.
+
+
+            VisionPLUS Service Data: AZXD1I-ED-AUTH-INTRNT-SNGL-TXN'
+          example: 4406948979232
+        partnerLogo:
+          maxLength: 20
+          minLength: 0
+          type: string
+          description: "User 1 (Partner\u2019s Logo).\n\nVisionPLUS Service Data:\
+            \ AZXD1I-ED-USER-1"
+          example: "Partner\u2019s Logo"
+      description: 'Embosser data table
+
+
+        Embosser data occurs 2 times
+
+
+        VisionPLUS Service Data: AZXD1I-ED-TABLE'
+    AccountBoardingDriverResponseL8V3:
+      type: object
+      properties:
+        customerData:
+          $ref: '#/components/schemas/AccountBoardingDriverResponseL8V3.CustomerData'
+        accountData:
+          $ref: '#/components/schemas/AccountBoardingDriverResponseL8V3.AccountData'
+        cardData:
+          $ref: '#/components/schemas/AccountBoardingDriverResponseL8V3.CardData'
+    AccountBoardingDriverResponseL8V3.AccountData:
+      type: object
+      properties:
+        accountOrganization:
+          type: integer
+          description: '* Max Length: 3
+
+
+            Account Organization.
+
+
+            VisionPLUS Service Data: AZXD1O-ACCT-ORG'
+          format: int32
+          example: 999
+        accountNumber:
+          type: string
+          description: '* Max Length: 19
+
+
+            Account Number.
+
+
+            VisionPLUS Service Data: AZXD1O-ACCT-NBR'
+          example: '7600010732545213551'
+    AccountBoardingDriverResponseL8V3.CardData:
+      type: object
+      properties:
+        cardsCount:
+          type: integer
+          description: '* Max Length: 1
+
+
+            Card number of instant card.
+
+
+            VisionPLUS Service Data: AZXD1O-NBR-OF-CARDS'
+          format: int32
+          example: 0
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountBoardingDriverResponseL8V3.CardData.CardDataX'
+    AccountBoardingDriverResponseL8V3.CardData.CardDataX:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: '* Max Length: 19
+
+
+            Card number of instant card.
+
+
+            VisionPLUS Service Data: AZXD1O-CARD-NBR'
+          example: 000540208ID5IXX3865
+        cardSequenceNumber:
+          type: integer
+          description: '* Max Length: 4
+
+
+            Card sequence number.
+
+
+            VisionPLUS Service Data: AZXD1O-CARD-SEQ'
+          format: int32
+          example: 1234
+        chipSequenceNumber:
+          type: integer
+          description: '* Max Length: 2
+
+
+            Chip sequence number.
+
+
+            VisionPLUS Service Data: AZXD1O-CHIP-SEQ'
+          format: int32
+          example: 32
+        digitalCardIndicator:
+          type: string
+          description: '* Max Length: 1
+
+
+            Digital card indicator.
+
+
+            VisionPLUS Service Data: AZXD1O-DIG-CARD-IND'
+          example: '0'
+        encTracks:
+          type: array
+          description: 'Length: (160, 80)
+
+
+            Track data (This is will be sent only for digital cards).
+
+
+            VisionPLUS Service Data: (AZXD1O-TRACK1-ENC, AZXD1O-TRACK2-ENC)'
+          items:
+            $ref: '#/components/schemas/ItemResponseNullableString'
+        embosserBlockData:
+          type: string
+          description: '* Max Length: 176
+
+
+            Embosser block data (This is will be sent only for digital cards).
+
+
+            VisionPLUS Service Data: AZXD1O-EMB-DATA-BLOCK'
+          example: '0'
+        cardExpiryDate:
+          type: string
+          description: 'Card expiry date (in ISO 8601).
+
+
+            VisionPLUS Service Data: AZXD1O-CARD-EXP-DTE'
+          format: date
+          example: 2029-12-21
+        embossedName1:
+          type: string
+          description: '* Max Length: 40
+
+
+            Embossed name 1.
+
+
+            VisionPLUS Service Data: AZXD1O-EMBOSSER-NAME-1'
+          example: Embossed Name 1
+        embossedName2:
+          type: string
+          description: '* Max Length: 40
+
+
+            Embossed name 2.
+
+
+            VisionPLUS Service Data: AZXD1O-EMBOSSER-NAME-2'
+          example: Embossed Name 2
+      description: (2 Occurrences)
+    AccountBoardingDriverResponseL8V3.CustomerData:
+      type: object
+      properties:
+        customerOrganization:
+          type: integer
+          description: '* Max Length: 3
+
+
+            Customer Organization.
+
+
+            VisionPLUS Service Data: AZXD1O-CUST-ORG'
+          format: int32
+          example: 999
+        customerNumber:
+          type: string
+          description: '* Max Length: 19
+
+
+            Customer Number.
+
+
+            VisionPLUS Service Data: AZXD1O-CUST-NBR'
+          example: '4513074002573466583'
+    ItemResponseNullableString:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: 'Length: (160, 80)
+
+
+        Track data (This is will be sent only for digital cards).
+
+
+        VisionPLUS Service Data: (AZXD1O-TRACK1-ENC, AZXD1O-TRACK2-ENC)'
     AccountForDetailsL8vgRequest:
       required:
       - accountNumber
@@ -9066,1101 +10761,6 @@ components:
             VisionPLUS Service Data: AZXAEO-TYPE-OF-CARD'
           format: int32
           example: 12
-    AccountBoardingDriverRequest:
-      required:
-      - logo
-      - organizationNumber
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nOrganization Number.\n\
-            \nVisionPLUS Service Data: AZXD1I-ORG"
-          format: int32
-          example: 998
-        logo:
-          type: integer
-          description: "* Min Length: 1 \n* Max Length: 3 \n\nLogo.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-LOGO"
-          format: int32
-          example: 998
-        baseCustomerData:
-          $ref: '#/components/schemas/AccountBoardingDriverRequest.BaseCustomerData'
-        baseAccountData:
-          $ref: '#/components/schemas/AccountBoardingDriverRequest.BaseAccountData'
-        edEmbosserData:
-          $ref: '#/components/schemas/AccountBoardingDriverRequest.EdEmbosserData'
-      description: Account boarding driver Service
-    AccountBoardingDriverRequest.BaseAccountData:
-      required:
-      - accountCreate
-      - baseBillingCycle
-      - baseCreditLimit
-      - baseOwningBranchNumber
-      - baseSavingsAccountNumber
-      - baseSavingsRoutingNumber
-      - baseShortName
-      type: object
-      properties:
-        accountCreate:
-          pattern: ^(Y|N)$
-          type: string
-          description: "* Min Length: 1 \n* Max Length: 1 \n\nAccount Create.\n\n\
-            Values:\n* Y = Yes;\n* N = No.\n\nVisionPLUS Service Data: AZXD1I-ACCT-CREATE"
-          example: Y
-        baseAccount:
-          maxLength: 19
-          minLength: 0
-          type: string
-          description: 'Base Account
-
-            If ACCT CREATE is provided as N then BS ACCT should be provided
-
-            If ORG and LOGO not provided then account number should be provided
-
-            And Value should not be present already.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-ACCT'
-          example: 000001234XXXXX56789
-        baseRelationshipNumber:
-          maxLength: 19
-          minLength: 0
-          type: string
-          description: '* Relationship number + 1. For non-prepaid accounts(AMBS-PREPAID-FLAG
-            = 0) this field is required if the account is + in an HCS org(COMMERCIAL
-            CARD on ARMO10 must equal 2.
-
-            2. Relationship record must be defined before adding an account to a relationship.
-
-            3. Relationship processing is not active for org
-
-            4. HCS commercial org and relationship number not provided.
-
-            .
-
-
-            VisionPLUS Service Data: AZXD1I-BS-REL-NBR'
-          example: '1'
-        baseCreditLimit:
-          type: integer
-          description: "* Max Length: 18 \n\nCredit Limit\n1. Credit limit must be\
-            \ numeric\n2. If a non-prepaid account.\n\nVisionPLUS Service Data: AZXD1I-BS-CREDIT-LIMIT"
-          format: int64
-          example: 10000000000000000
-        baseBillingCycle:
-          type: integer
-          description: "* Min Length: 1 \n* Max Length: 2 \n\nBilling Cycle\n1. Valid\
-            \ values between zeros and 31.\n2. If the DUE DATE field on ARML14 equals\
-            \ zeros or 99.\n\nVisionPLUS Service Data: AZXD1I-BS-BILLING-CYCLE"
-          format: int32
-          example: 10
-        baseOwningBranchNumber:
-          type: integer
-          description: "* Max Length: 9 \n\nOwning Branch Number.\n\nVisionPLUS Service\
-            \ Data: AZXD1I-BS-OWNING-BRANCH-NBR"
-          format: int32
-          example: 99999999
-        baseShortName:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: 'Short Name.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-SHORT-NAME'
-          example: Short Name
-        baseBillingAccountIndicator:
-          type: integer
-          description: "* Max Length: 1 \n\nBilling Account Indicator.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-BS-BILLING-ACCT-IND"
-          format: int32
-          example: 1
-        baseAlternateCustomerNumberFlag:
-          pattern: ^(A|B|C| )$
-          type: string
-          description: "* Max Length: 1 \n\nAlternate Customer Number Flag.\n\nValues:\
-            \ \n* Space = No action. Disregard alternate customer;\n* A = Alternate\
-            \ customer active. Send statements to alternate address until expiration\
-            \ date;\n* B = Alternate customer active. Send statements to both addresses\
-            \ until expiration date;\n* C = Relationship customer active. Send statements\
-            \ to alternate address.\n\nVisionPLUS Service Data: AZXD1I-BS-ALT-CUST-NBR-FLAG"
-          example: A
-        baseAlternateCustomerNumber:
-          maxLength: 19
-          minLength: 0
-          type: string
-          description: 'Alternate Customer Number
-
-
-            VisionPLUS Service Data: AZXD1I-BS-ALT-CUST-NBR'
-          example: 111110000XXXXX56789
-        baseDateAlternateCustomerStart:
-          type: string
-          description: 'Date Alternate Customer Start (in ISO 8601).
-
-            1. Valid date.
-
-            2. Date should not be less than next processing date.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-DATE-ALT-CUST-STRT'
-          format: date
-          example: 2023-10-04
-        baseDateAlternateCustomerExpiry:
-          type: string
-          description: 'Date Alternate Customer Expiry (in ISO 8601).
-
-            1. Valid date.
-
-            2. Date should not be less than start date.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-DATE-ALT-CUST-EXPR'
-          format: date
-          example: 2023-10-04
-        basePaymentAchRoutingNumber:
-          type: integer
-          description: "* Max Length: 11 \n\nPayment Ach Routing Number.\n1. For non-prepaid\
-            \ accounts(AMBS-PREPAID-FLAG = 0), field must be numeric.\n2. If the DD/DC\
-            \ INDICATOR on ARMS02 equals 0, the first position of the DC R/T/BANK\
-            \ ID must equal 0 followed by a nine-numeric digit value.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-BS-PMT-ACH-RT-NBR"
-          format: int64
-          example: 1
-        basePaymentAchDebitType:
-          pattern: ^(D|S)$
-          type: string
-          description: '* Max Length: 1
-
-
-            Payment Ach Debit Type.
-
-            1. For non-prepaid accounts.
-
-
-            Values:
-
-            * D;
-
-            * S.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-PMT-ACH-DB-TYPE'
-          example: D
-        basePaymentAchDbNumber:
-          maxLength: 17
-          minLength: 0
-          type: string
-          description: 'Ach Account Number.
-
-            For prepaid accounts.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-PMT-ACH-DB-NBR'
-          example: 00001234YYYYY1234
-        basePaymentAchFlag:
-          type: integer
-          description: "* Max Length: 1 \n\nPayment ACH flag.\n\nValues:\n* 0 = No\
-            \ ACH;\n* 1 = ACH active;\n* 2, 7 = ACH customer-nominated.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-BS-PMT-ACH-FLAG"
-          format: int32
-          example: 1
-        baseNominatedAchAmtPctFlag:
-          type: integer
-          description: "* Max Length: 58 \n\nDD customer-nominated type payment.\n\
-            \nValues:\n* 0 = Not used;\n* 1 = Fixed payment amount;\n* 2 = Percentage\
-            \ of account (cycle-ending) balance;\n* 3 = Full account (cycle-ending)\
-            \ balance;\n* 9 = Percentage of account (cycle-ending minus overlimit\
-            \ amount) balance.\n\nVisionPLUS Service Data: AZXD1I-BS-NOM-ACH-AMTPCT-FL"
-          format: int32
-          example: 1
-        baseUserCode7:
-          maxLength: 2
-          minLength: 0
-          type: string
-          description: 'User Code 7.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-USER-CODE-7'
-          example: '10'
-        baseSourceCode:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: 'Source Code.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-SOURCE-CODE'
-          example: Source code
-        baseApplicationUser1:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: 'Application User 1.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-APPL-USER-1'
-          example: Application data 1
-        baseApplicationUser2:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: 'Application User 2.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-APPL-USER-2'
-          example: Application data 2
-        baseApplicationUser3:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: 'Application User 3.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-APPL-USER-3'
-          example: Application data 3
-        baseMiscellaneousUser1:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: 'Miscellaneous User 1.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-MISC-USER-1'
-          example: Miscellaneous 1
-        baseMiscellaneousUser3:
-          maxLength: 11
-          minLength: 0
-          type: string
-          description: 'Miscellaneous User 3.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-MISC-USER-3'
-          example: Miscellaneous
-        baseMiscellaneousUser4:
-          maxLength: 11
-          minLength: 0
-          type: string
-          description: 'Miscellaneous User 4.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-MISC-USER-4'
-          example: Miscellaneous
-        baseAffiliateEmbosser:
-          type: integer
-          description: "* Max Length: 5 \n\nAffiliate Embosser.\nIdentification of\
-            \ the cardholder\u2019s affiliation or affinity group.\n\nVisionPLUS Service\
-            \ Data: AZXD1I-BS-AFFL-EMBLM"
-          format: int32
-          example: 11111
-        baseMiscellaneousUser2:
-          maxLength: 1
-          minLength: 0
-          type: string
-          description: 'Miscellaneous User 2.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-MISC-USER-2'
-          example: '1'
-        baseServiceFeeTable:
-          type: integer
-          description: "* Max Length: 3 \n\nService Fee Table\n1. Validate that the\
-            \ PCT table exists.\n2. This field can have a valid value of spaces.\n\
-            \nVisionPLUS Service Data: AZXD1I-BS-SVC-FEE-TABLE"
-          format: int32
-          example: 1
-        baseServiceFeeStartDate:
-          type: string
-          description: 'Service Fee Start Date (in ISO 8601).
-
-            1. Field must be numeric.
-
-            3. If PRICING CTRL field is populated, the start date must be equal to
-            or greater + than the org next processing date.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-SVC-FEE-START-DATE'
-          format: date
-          example: 2023-10-04
-        baseServiceFeeExpiryDate:
-          type: string
-          description: 'Service Fee Table Expiry Date (in ISO 8601).
-
-            1. Field must be numeric.
-
-            2. Field must be a valid Julian date.
-
-            3. If PRICING CTRL field is populated, the expiration date must be greater
-            than the start date.
-
-            4. Expiration date must not be > 0 when START DATE is not > 0.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-SVC-FEE-EXPIR-DATE'
-          format: date
-          example: 2023-10-04
-        baseDdaRoutingNumber:
-          type: integer
-          description: "* Max Length: 9 \n\nDDA routing number.\n1. Field must be\
-            \ numeric.\n2. If the checking account number field is populated.\n\n\
-            VisionPLUS Service Data: AZXD1I-BS-DDA-RTNG-NBR"
-          format: int32
-          example: 99999999
-        baseDdaAccountNumber:
-          maxLength: 17
-          minLength: 0
-          type: string
-          description: 'DDA account number
-
-            1. If the checking routing number is populated, the checking account number
-            is required.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-DDA-ACCT-NBR'
-          example: 10000001XXXX1234
-        baseSavingsRoutingNumber:
-          type: integer
-          description: "* Max Length: 7 \n\nSavings routing number.\n1. Field must\
-            \ be numeric.\n2. If the savings account number field is populated.\n\n\
-            VisionPLUS Service Data: AZXD1I-BS-SAV-RTNG-NBR"
-          format: int32
-          example: 1
-        baseSavingsAccountNumber:
-          maxLength: 17
-          minLength: 0
-          type: string
-          description: 'Savings account number.
-
-            1. If the savings routing number field is populated.
-
-
-            VisionPLUS Service Data: AZXD1I-BS-SAV-ACCT-NBR'
-          example: '1'
-      description: Base Account Data
-    AccountBoardingDriverRequest.BaseCustomerData:
-      required:
-      - customerCreate
-      - naComakerIndicator
-      type: object
-      properties:
-        customerCreate:
-          pattern: ^(Y|N)$
-          type: string
-          description: "* Min Length: 1 \n* Max Length: 1 \n\nCustomer creation required\
-            \ or not.\n\nValues:\n* Y = Yes;\n* N = No.\n\nVisionPLUS Service Data:\
-            \ AZXD1I-CUST-CREATE"
-          example: Y
-        customerNumber:
-          maxLength: 19
-          minLength: 0
-          type: string
-          description: 'Customer Number.
-
-            Required when CUSTOMER CREATE field is N.
-
-
-            VisionPLUS Service Data: AZXD1I-CUST-NBR'
-          example: 000001234XXXXX56789
-        naComakerIndicator:
-          type: integer
-          description: "* Min Length: 1 \n* Max Length: 1 \n\nCo-owner Indicator \n\
-            not equal to 1 or 2\nRequired when 'customerCreate' field is Y.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-NA-COMAKER-IND"
-          format: int32
-          example: 2
-        makerData:
-          $ref: '#/components/schemas/AccountBoardingDriverRequest.BaseCustomerData.MakerData'
-        comakerData:
-          $ref: '#/components/schemas/AccountBoardingDriverRequest.BaseCustomerData.ComakerData'
-      description: Base Customer Data
-    AccountBoardingDriverRequest.BaseCustomerData.ComakerData:
-      type: object
-      properties:
-        comakerMaritalStatus:
-          type: integer
-          description: "* Max Length: 1 \n\nComaker\u2019s marital status.\nMarital\
-            \ status is not Valid or values not in range of 0 through 4.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-C-MARITAL-STATUS"
-          format: int32
-          example: 1
-        comakerNameLine1:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s name line 1.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-LINE-1"
-          example: Name line 1
-        comakerNameTypeInd1:
-          type: integer
-          description: "* Max Length: 1 \n\nComaker\u2019s name type 1.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-C-NAME-TYPE-IND-1"
-          format: int32
-          example: 1
-        comakerNameLine2:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s name line 2.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-LINE-2"
-          example: Name line 2
-        comakerNameTypeInd2:
-          type: integer
-          description: "* Max Length: 1 \n\nComaker\u2019s name type 2.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-C-NAME-TYPE-IND-2"
-          format: int32
-          example: 2
-        comakerNameLine3:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s name line 3.\n\nVisionPLUS Service Data: AZXD1I-C-NAME-LINE-3"
-          example: Name line 3
-        comakerNameTypeInd3:
-          type: integer
-          description: "* Max Length: 1 \n\nComaker\u2019s name type 3.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-C-NAME-TYPE-IND-3"
-          format: int32
-          example: 3
-        comakerHouseNumber:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s house number.\n\nVisionPLUS Service Data: AZXD1I-C-HOUSE-NBR"
-          example: '40'
-        comakerHouseName:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s house name.\n\nVisionPLUS Service Data: AZXD1I-C-HOUSE-NAME"
-          example: House name
-        comakerAddress1:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s address 1.\n\nVisionPLUS Service Data: AZXD1I-C-ADDR-1"
-          example: Brookfield
-        comakerAddress2:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s address 2.\n\nVisionPLUS Service Data: AZXD1I-C-ADDR-2"
-          example: 255 Fiserv Dr.
-        comakerAddress3:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s address 3.\n\nVisionPLUS Service Data: AZXD1I-C-ADDR-3"
-          example: Address 3
-        comakerAddress4:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s address 4.\n\nVisionPLUS Service Data: AZXD1I-C-ADDR-4"
-          example: Address 4
-        comakerCity:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s city.\n\nVisionPLUS Service Data: AZXD1I-C-CITY"
-          example: Wisconsin
-        comakerState:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s state.\n\nVisionPLUS Service Data: AZXD1I-C-ST-PR"
-          example: WI
-        comakerPostalCode:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s postal code.\n\nVisionPLUS Service Data: AZXD1I-C-PSTL-CD"
-          example: '53045'
-        comakerCountryCode:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s country code.\n\nVisionPLUS Service Data: "
-          example: USA
-        comakerOwnRentResidenceFlag:
-          type: integer
-          description: "* Max Length: 1 \n\nComaker\u2019s own/rent residence flag.\n\
-            \nValues:\n* 0 = Unknown;\n* 1 = Owns or is buying residence;\n* 2 = Rents\
-            \ or leases residence;\n* 3 = Lives at someone else\u2019s residence.\n\
-            \nVisionPLUS Service Data: AZXD1I-C-OWN-RENT-RESID-FLAG"
-          format: int32
-          example: 1
-        comakerGenderCode:
-          type: integer
-          description: "* Max Length: 1 \n\nComaker\u2019s Gender code.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-C-GENDER-CODE"
-          format: int32
-          example: 1
-        comakerHomePhone:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s home phone.\n\nVisionPLUS Service Data: AZXD1I-C-HOME-PHONE"
-          example: +1 111 222 333
-        comakerMobilePhone:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s mobile phone.\n\nVisionPLUS Service Data: AZXD1I-C-MOBILE-PHONE"
-          example: +1 333 444 555
-        comakerDateOfBird:
-          type: string
-          description: "Comaker\u2019s date of birth. (in ISO 8601)\n\nVisionPLUS\
-            \ Service Data: AZXD1I-C-DOB"
-          format: date
-          example: 2023-10-04
-        comakerSsanFlag:
-          type: integer
-          description: "* Max Length: 1 \n\nComaker\u2019s identification number flag.\n\
-            \nValues:\n* 0 = Social Security number;\n* 1 = Tax ID;\n* 2 = Other ID\n\
-            .\n\nVisionPLUS Service Data: AZXD1I-C-SSAN-FLAG"
-          format: int32
-          example: 1
-        comakerSsan:
-          maxLength: 25
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s identification number.\n\nVisionPLUS Service\
-            \ Data: AZXD1I-C-SSAN"
-          example: BBBBBBBBBBBBBBBBBBBBBB
-        comakerEmail:
-          maxLength: 60
-          minLength: 0
-          type: string
-          description: "Comaker\u2019s e-mail.\n\nVisionPLUS Service Data: AZXD1I-C-EMAIL"
-          example: email_example@yahoo.com
-      description: Comaker Data
-    AccountBoardingDriverRequest.BaseCustomerData.MakerData:
-      required:
-      - makerEmail
-      - makerMobilePhone
-      - makerNameLine1
-      - makerNameTypeInd3
-      type: object
-      properties:
-        makerMaritalStatus:
-          type: integer
-          description: "* Max Length: 1 \n\nMaker\u2019s marital status.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-M-MARITAL-STATUS"
-          format: int32
-          example: 1
-        makerNameLine1:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Maker\u2019s name line 1.\n\nVisionPLUS Service Data: AZXD1I-M-NAME-LINE-1"
-          example: Name Line Example 1
-        makerNameTypeInd1:
-          type: integer
-          description: "* Max Length: 1 \n\nMaker\u2019s name type 1.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-M-NAME-TYPE-IND-1"
-          format: int32
-          example: 1
-        makerNameLine2:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Maker\u2019s name line 2.\n\nVisionPLUS Service Data: AZXD1I-M-NAME-LINE-2"
-          example: Name Line Example 2
-        makerNameTypeInd2:
-          type: integer
-          description: "* Max Length: 1 \n\nMaker\u2019s name type 2.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-M-NAME-TYPE-IND-2"
-          format: int32
-          example: 1
-        makerNameLine3:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Maker\u2019s name line 3.\n\nVisionPLUS Service Data: AZXD1I-M-NAME-LINE-3"
-          example: Name Line Example 3
-        makerNameTypeInd3:
-          type: integer
-          description: "* Min Length: 1 \n* Max Length: 1 \n\nMaker\u2019s name type\
-            \ 3.\n\nVisionPLUS Service Data: AZXD1I-M-NAME-TYPE-IND-3"
-          format: int32
-          example: 1
-        makerHouseNumber:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: "Maker\u2019s house number.\n\nVisionPLUS Service Data: AZXD1I-M-HOUSE-NBR"
-          example: '40'
-        makerHouseName:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Maker\u2019s house name.\n\nVisionPLUS Service Data: AZXD1I-M-HOUSE-NAME"
-          example: House Name Example
-        makerAddress1:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Maker\u2019s address 1.\n\nVisionPLUS Service Data: AZXD1I-M-ADDR-1"
-          example: Address 1
-        makerAddress2:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Maker\u2019s address 2.\n\nVisionPLUS Service Data: AZXD1I-M-ADDR-2"
-          example: Addres 2
-        makerAddress3:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Maker\u2019s address 3.\n\nVisionPLUS Service Data: AZXD1I-M-ADDR-3"
-          example: Addres 3
-        makerAddress4:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: "Maker\u2019s address 4.\n\nVisionPLUS Service Data: AZXD1I-M-ADDR-4"
-          example: Addres 4
-        makerCity:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: "Maker\u2019s city.\n\nVisionPLUS Service Data: AZXD1I-M-CITY"
-          example: Winsconsin
-        makerState:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: "Maker\u2019s state.\n\nVisionPLUS Service Data: AZXD1I-M-ST-PR"
-          example: WI
-        makerPostalCode:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: "Maker\u2019s postal code.\n\nVisionPLUS Service Data: AZXD1I-M-PSTL-CD"
-          example: '53045'
-        makerCountryCode:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: "Maker\u2019s country code.\n\nVisionPLUS Service Data: "
-          example: USA
-        makerOwnRentResidenceFlag:
-          type: integer
-          description: "* Max Length: 1 \n\nMaker\u2019s own/rent residence flag.\
-            \ \n\nValues:\n* 0 = Unknown;\n* 1 = Owns or is buying residence;\n* 2\
-            \ = Rents or leases residence;\n* 3 = Lives at someone else's residence;\n\
-            \nVisionPLUS Service Data: AZXD1I-M-OWN-RENT-RESID-FLAG"
-          format: int32
-          example: 1
-        makerGenderCode:
-          type: integer
-          description: "* Max Length: 1 \n\nMaker\u2019s Gender code.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-M-GENDER-CODE"
-          format: int32
-          example: 1
-        makerHomePhone:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: "Maker\u2019s home phone.\n\nVisionPLUS Service Data: AZXD1I-M-HOME-PHONE"
-          example: +1 111 222 333
-        makerMobilePhone:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: "* Maker\u2019s mobile phone required = true.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-M-MOBILE-PHONE"
-          example: +1 444 555 666
-        makerDateOfBirth:
-          type: string
-          description: "Maker\u2019s date of birth (in ISO 8601).\n\nVisionPLUS Service\
-            \ Data: AZXD1I-M-DOB"
-          format: date
-          example: 2023-10-04
-        makerSsanFlag:
-          type: integer
-          description: "* Max Length: 1 \n\nMaker\u2019s identification number flag.\n\
-            \nValues:\n* 0 = Social Security number;\n* 1 = Tax ID;\n* 2 = Other ID.\n\
-            \nVisionPLUS Service Data: AZXD1I-M-SSAN-FLAG"
-          format: int32
-          example: 1
-        makerSsan:
-          maxLength: 25
-          minLength: 0
-          type: string
-          description: "Maker\u2019s identification number.\n\nVisionPLUS Service\
-            \ Data: AZXD1I-M-SSAN"
-          example: AAAAAAAAAAAAAAAAAAAAAAA
-        makerEmail:
-          maxLength: 60
-          minLength: 0
-          type: string
-          description: "* Maker\u2019s e-mail required = true.\n\nVisionPLUS Service\
-            \ Data: AZXD1I-M-EMAIL"
-          example: email_example@yahoo.com
-        makerUser4:
-          maxLength: 17
-          minLength: 0
-          type: string
-          description: 'Maker user 4.
-
-
-            VisionPLUS Service Data: AZXD1I-M-USER-4'
-          example: User name 4
-      description: Maker Data
-    AccountBoardingDriverRequest.EdEmbosserData:
-      type: object
-      properties:
-        edTableList:
-          type: array
-          description: Embosser Table
-          items:
-            $ref: '#/components/schemas/AccountBoardingDriverRequest.EdEmbosserData.EdTable'
-      description: Ed Embosser Data
-    AccountBoardingDriverRequest.EdEmbosserData.EdTable:
-      required:
-      - edAdministrationBranch
-      - edCardCreate
-      - edDigitalCardIndicator
-      - edEmbosserName
-      type: object
-      properties:
-        edCardCreate:
-          pattern: ^(Y|N)$
-          type: string
-          description: "* Min Length: 1 \n* Max Length: 1 \n\nCard Create.\n\nValues:\n\
-            * Y = Yes;\n* N = No.\n\nVisionPLUS Service Data: AZXD1I-ED-CARD-CREATE"
-          example: Y
-        edDigitalCardIndicator:
-          pattern: ^(1|0)$
-          type: string
-          description: "* Min Length: 1 \n* Max Length: 1 \n\nDigital card indicator.\n\
-            \nValues:\n* 1;\n* 0.\n\nVisionPLUS Service Data: AZXD1I-ED-DIG-CARD-IND"
-          example: '1'
-        edCardTechnology:
-          type: integer
-          description: "* Max Length: 1 \n\nCard Technology.\n\nValues:\n* 0 = Magnetic\
-            \ stripe cards;\n* 1 = Smart cards.\n\nVisionPLUS Service Data: AZXD1I-ED-CARD-TECHNOLOGY"
-          format: int32
-          example: 1
-        edEmbosserName:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: 'Embosser Name.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-EMBOSSER-NAME'
-          example: Embosser Name 1
-        edEmbosserName2:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: 'Embosser Name 2.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-EMBOSSER-NAME-2'
-          example: Embosser Name 2
-        edPosServiceCode:
-          type: integer
-          description: "* Max Length: 3 \n\nPos Service Code.\n\nVisionPLUS Service\
-            \ Data: AZXD1I-ED-POS-SERVICE-CODE"
-          format: int32
-          example: 100
-        edCustomerNumber:
-          maxLength: 19
-          minLength: 0
-          type: string
-          description: 'Customer Number.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-CUSTOMER-NBR'
-          example: 000001234XXXXX56789
-        edUser2:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: 'Embosser User 2.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-USER-2'
-          example: Embosser user 2
-        edReissueDeliveryOption:
-          type: integer
-          description: "* Max Length: 3 \n\nEmbosser Reissue Delivery Option.\n\n\
-            VisionPLUS Service Data: AZXD1I-ED-REISS-DELV-OPTION"
-          format: int32
-          example: 111
-        edIssueDeliveryOption:
-          type: integer
-          description: "* Max Length: 3 \n\nEmbosser Issue Delivery Option.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-ISSUE-DELIV-OPTION"
-          format: int32
-          example: 111
-        edCardActionReason:
-          maxLength: 1
-          minLength: 0
-          type: string
-          description: 'Card Action Reason.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-CARD-ACTIONREASON'
-          example: '1'
-        edPinSuppression:
-          type: integer
-          description: "* Max Length: 1 \n\nPIN suppression.\nValues:\n* 0 = Allow\
-            \ PINs;\n* 1 = Suppress PIN generation.\n\nVisionPLUS Service Data: AZXD1I-ED-PIN-SUPPRESSION"
-          format: int32
-          example: 1
-        edAddress1:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: 'Card address 1.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-ADDR-1'
-          example: Address 1
-        edAddress2:
-          maxLength: 40
-          minLength: 0
-          type: string
-          description: 'Card address 2.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-ADDR-2'
-          example: Address 2
-        edCity:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: 'Card City.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-CITY'
-          example: Wisconsin
-        edState:
-          maxLength: 3
-          minLength: 0
-          type: string
-          description: 'Card State.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-STATE'
-          example: Wi
-        edPostalCode:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: 'Postal Code.
-
-
-            VisionPLUS Service Data: AZXD1I-ED-PSTL-CD'
-          example: '53045'
-        edAdministrationBranch:
-          type: integer
-          description: "* Min Length: 9 \n* Max Length: 9 \n\nAdministration Branch.\n\
-            \nVisionPLUS Service Data: AZXD1I-ED-ADMIN-BRANCH"
-          format: int32
-          example: 1234567890
-        edFirstIssuanceBranch:
-          type: integer
-          description: "* Max Length: 9 \n\nFirst Issuance Branch.\n\nVisionPLUS Service\
-            \ Data: AZXD1I-ED-FIRST-ISS-BRANCH"
-          format: int32
-          example: 123456789
-        edAuthorizationAtmOtcRetailFrequency:
-          type: integer
-          description: "* Max Length: 1 \n\nAuthorization ATM OTC Retail Frequency.\n\
-            Maximum authorization frequency.\n\nValues:\n* 0 = Not used;\n* 1 = Daily;\n\
-            * 2 = Cycle.\n\nVisionPLUS Service Data: AZXD1I-ED-AUTH-ATM-OTC-RTL-FX"
-          format: int32
-          example: 1
-        edAuthorizationAtmCashAmount:
-          type: integer
-          description: "* Max Length: 18 \n\nAuthorization Atm Cash Amount.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-AUTH-ATM-CASH-AMT"
-          format: int64
-          example: 123456790
-        edAuthorizationAtmCashNumber:
-          type: integer
-          description: "* Max Length: 9 \n\nAuthorization Atm Cash Number.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-AUTH-ATM-CASH-NBR"
-          format: int32
-          example: 123456789
-        edAuthorizationAtmCashSingleTransaction:
-          type: integer
-          description: "* Max Length: 18 \n\nAuthorization Atm Cash Single Transaction.\n\
-            \nVisionPLUS Service Data: AZXD1I-ED-AUTH-ATM-CASH-SNGTN"
-          format: int64
-          example: 123456789
-        edAuthorizationOtcCashAmount:
-          type: integer
-          description: "* Max Length: 18 \n\nAuthorization Otc Cash Amount.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-AUTH-OTC-CASH-AMT"
-          format: int64
-          example: 123456789
-        edAuthorizationOtcCashNumber:
-          type: integer
-          description: "* Max Length: 9 \n\nAuthorization Otc Cash Number.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-AUTH-OTC-CASH-NBR"
-          format: int32
-          example: 123456789
-        edAuthorizationOtcCashSingleTransaction:
-          type: integer
-          description: "* Max Length: 18 \n\nAuthorization Otc Cash Single Transaction.\n\
-            \nVisionPLUS Service Data: AZXD1I-ED-AUTH-OTC-CASH-SNGTN"
-          format: int64
-          example: 123456789
-        edAuthorizationRetailAmount:
-          type: integer
-          description: "* Max Length: 18 \n\nAuthorization Retail Amount.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-AUTH-RTL-AMT"
-          format: int64
-          example: 123456789
-        edAuthorizationRetailNumber:
-          type: integer
-          description: "* Max Length: 9 \n\nAuthorization Retail Number.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-AUTH-RTL-NBR"
-          format: int32
-          example: 123456789
-        edAuthorizationRetailSingleTransaction:
-          type: integer
-          description: "* Max Length: 18 \n\nAuthorization Retail Single Transaction.\n\
-            \nVisionPLUS Service Data: AZXD1I-ED-AUTH-RTL-SNGL-TXN"
-          format: int64
-          example: 123456789
-        edAuthorizationInternetAmount:
-          type: integer
-          description: "* Max Length: 14 \n\nAuthorization Internet Amount.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-AUTH-INTRNT-AMT"
-          format: int64
-          example: 123456789
-        edAuthorizationInternetNumber:
-          type: integer
-          description: "* Max Length: 9 \n\nAuthorization Internet Number.\n\nVisionPLUS\
-            \ Service Data: AZXD1I-ED-AUTH-INTRNT-NBR"
-          format: int32
-          example: 123456789
-        edAuthorizationInternetSingleTransaction:
-          type: integer
-          description: "* Max Length: 14 \n\nAuthorization Internet Single Transaction.\n\
-            \nVisionPLUS Service Data: AZXD1I-ED-AUTH-INTRNT-SNGLTXN"
-          format: int64
-          example: 123456789
-      description: Embosser Table
-    AccountBoardingDriverResponse:
-      type: object
-      properties:
-        customerData:
-          $ref: '#/components/schemas/AccountBoardingDriverResponse.CustomerData'
-        accountData:
-          $ref: '#/components/schemas/AccountBoardingDriverResponse.AccountData'
-        cardDataGroup:
-          $ref: '#/components/schemas/AccountBoardingDriverResponse.CardDataGroup'
-    AccountBoardingDriverResponse.AccountData:
-      type: object
-      properties:
-        accountOrg:
-          type: integer
-          description: "* Max Length: 3 \n\nAccount organization \n\nVisionPlus Service\
-            \ Data: AZXD1O-ACCT-ORG"
-          format: int32
-          example: 998
-        logo:
-          type: integer
-          description: "* Max Length: 3 \n\nLogo \n\nVisionPlus Service Data: AZXD1O-LOGO"
-          format: int32
-          example: 998
-        accountNumber:
-          type: string
-          description: "* Max Length: 19 \n\nAccount number \n\nVisionPlus Service\
-            \ Data: AZXD1O-ACCT-NBR"
-          example: 000001234XXXXX56789
-    AccountBoardingDriverResponse.CardData:
-      type: object
-      properties:
-        sequence:
-          type: integer
-          format: int32
-        cardNumber:
-          type: string
-          description: "* Max Length: 19 \n\nUnique identifier or token associated\
-            \ with the card number or payment instrument (FirstVision PAN Token).\n\
-            \nVisionPlus Service Data: AZXD1O-CARD-NBR"
-          example: 000001234XXXXX56789
-        cardSequence:
-          type: integer
-          description: "* Max Length: 4 \n\nCard sequence number \n\nVisionPlus Service\
-            \ Data: AZXD1O-CARD-SEQ"
-          format: int32
-          example: 1111
-        chipSequence:
-          type: integer
-          description: "* Max Length: 2 \n\nChip sequence number \n\nVisionPlus Service\
-            \ Data: AZXD1O-CHIP-SEQ"
-          format: int32
-          example: 10
-        cardTypeIndicator:
-          type: string
-          description: "* Max Length: 1 \n\nDigital card indicator \n\nVisionPlus\
-            \ Service Data: AZXD1O-DIG-CARD-IND"
-          example: '0'
-        track1Enc:
-          type: string
-          description: "* Max Length: 160 \n\nTrack 1.0 data (This is sent only for\
-            \ digital cards) \n\nVisionPlus Service Data: AZXD1O-TRACK1-ENC"
-          example: '000000000000000000000'
-        track2Enc:
-          type: string
-          description: "* Max Length: 80 \n\nTrack 2.0 data (This is sent only for\
-            \ digital cards) \n\nVisionPlus Service Data: AZXD1O-TRACK2-ENC"
-          example: '000000000000000000000'
-        embosserDataBlock:
-          type: string
-          description: "* Max Length: 176 \n\nEmbosser block data (This is sent only\
-            \ for digital cards) \n\nVisionPlus Service Data: AZXD1O-EMB-DATA-BLOCK"
-        cardExpiryDate:
-          type: string
-          description: "* Max Length: 10 \n\nCard expiry date \n\nVisionPlus Service\
-            \ Data: AZXD1O-CARD-EXP-DTE"
-          example: '20260827'
-        embosserName1:
-          type: string
-          description: "* Max Length: 40 \n\nEmbossed name 1.0 \n\nVisionPlus Service\
-            \ Data: AZXD1O-EMBOSSER-NAME-1"
-          example: Embosser Name Example
-        embosserName2:
-          type: string
-          description: "* Max Length: 40 \n\nEmbossed name 2.0 \n\nVisionPlus Service\
-            \ Data: AZXD1O-EMBOSSER-NAME-2"
-          example: Embosser Name Example
-    AccountBoardingDriverResponse.CardDataGroup:
-      type: object
-      properties:
-        numberOfCards:
-          type: integer
-          description: "* Max Length: 1 \n\nNumber of cards \n\nVisionPlus Service\
-            \ Data: AZXD1O-NBR-OF-CARDS"
-          format: int32
-          example: 1
-        cardDataList:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountBoardingDriverResponse.CardData'
-    AccountBoardingDriverResponse.CustomerData:
-      type: object
-      properties:
-        customerOrg:
-          type: integer
-          description: "* Max Length: 3 \n\nCustomer organization \n\nVisionPlus Service\
-            \ Data: AZXD1O-CUST-ORG"
-          format: int32
-          example: 998
-        customerNumber:
-          type: string
-          description: "* Max Length: 19 \n\nCustomer number \n\nVisionPlus Service\
-            \ Data: AZXD1O-CUST-NBR"
-          example: 000001234XXXXX56789
     AccountAddDetailsRequest:
       type: object
       properties:
