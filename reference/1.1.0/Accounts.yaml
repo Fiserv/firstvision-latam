@@ -23,18 +23,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -49,12 +37,14 @@ paths:
               $ref: '#/components/schemas/UpdateAccountDetailsRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
         '422':
@@ -102,20 +92,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateAccountDetailsResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Account Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -128,18 +116,6 @@ paths:
         \ L8V1"
       operationId: Customer Address Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: apikey
         in: header
         description: API Key
@@ -160,14 +136,26 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerNumberRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SCU06S - ACCOUNT ORG MUST BE NUMERIC AND LESS THAN 999
 
@@ -288,26 +276,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateCustomerNumberResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Customer Address Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -329,18 +305,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -355,12 +319,14 @@ paths:
               $ref: '#/components/schemas/ModifyAccountBalanceRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
         '300':
@@ -369,20 +335,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ModifyAccountBalanceResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Cash-in & Cash-out Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -403,18 +367,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -429,12 +381,14 @@ paths:
               $ref: '#/components/schemas/FlTransferP2PRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
         '300':
@@ -443,20 +397,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FlTransferP2PResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Account to Account Funds Transfer
       x-group-name: Account
       x-child-product-name: Accounts
@@ -478,18 +430,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -504,12 +444,14 @@ paths:
               $ref: '#/components/schemas/AccountBalanceFlRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
         '300':
@@ -518,12 +460,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL8SMAA1S - CASE NUMBER MUST BE NUMERIC
 
@@ -916,14 +856,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBalanceFlResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Cash-in & Cash-out With Fraud Prevention
       x-group-name: Account
       x-child-product-name: Accounts
@@ -947,18 +887,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -973,12 +901,14 @@ paths:
               $ref: '#/components/schemas/AccountBoardingDriverRequestL8V3'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
         '300':
@@ -987,12 +917,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SZ1Z1E - SERVICE COULD NOT OBTAIN STORAGE AREA \n\nVPL5SZ1Z2E\
             \ - SERVICE INPUT TO EPIC DRIVER SERVICE IS INCORRECT LENGTH \n\nVPL5SZ103E\
@@ -1054,14 +982,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBoardingDriverResponseL8V3'
-        '401':
-          description: Unauthorized
       x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1087,18 +1015,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1113,12 +1029,28 @@ paths:
               $ref: '#/components/schemas/AccountForDetailsL8vgRequest'
         required: true
       responses:
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
         '400':
           description: Bad Request
         '405':
           description: Method Not Allowed
-        '403':
-          description: Forbidden
         '422':
           description: "VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\n\nVPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT\
@@ -1136,28 +1068,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForDetailsL8vgResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Account Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1181,18 +1097,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1207,12 +1111,14 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V2Request'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
         '300':
@@ -1221,20 +1127,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsL8V2Response'
-        '401':
-          description: Unauthorized
       x-proxy-name: Account To Card Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
@@ -1255,18 +1159,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1281,12 +1173,14 @@ paths:
               $ref: '#/components/schemas/AccountAddDetailsRequest'
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '403':
-          description: Forbidden
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '404':
           description: Not Found
         '300':
@@ -1295,12 +1189,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '400':
+          description: Bad Request
+        '405':
+          description: Method Not Allowed
         '422':
           description: 'VPL5SAA02S - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE
             001-998
@@ -2581,8 +2475,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountAddDetailsResponse'
-        '401':
-          description: Unauthorized
       x-proxy-name: Account Add
       x-group-name: Account
       x-child-product-name: Accounts
@@ -11506,8 +11398,3 @@ components:
           example: 000001234XXXXX56789
 x-config:
   tryItOut: 'true'
-tags:
-- description: Embosser
-  name: Embosser
-- description: Card
-  name: Card
