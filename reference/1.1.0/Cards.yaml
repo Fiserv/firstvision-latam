@@ -14,6 +14,89 @@ tags:
 - description: Card
   name: Card
 paths:
+  /cards/pin/security-codes:
+    post:
+      tags:
+      - PIN
+      summary: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
+        \ number. \n\nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+      description: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
+        \ number. \n\nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
+      operationId: Security Values Inquiry
+      parameters:
+      - name: apikey
+        in: header
+        description: API Key
+        required: true
+        schema:
+          type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityCodeDetailsRequest'
+        required: true
+      responses:
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '422':
+          description: 'VPL5SPA01S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
+            VALUES ARE 001-998
+
+
+            VPL5SPA02S - ORGANIZATION NOT ON FILE
+
+
+            VPL5SPA03S - ACCOUNT NUMBER OR CARD NUMBER MUST BE PROVIDED
+
+
+            VPL5SPA04S - NEW PIN BLOCK SHOULD BE PROVIDED
+
+
+            VPL5SPA05S - CHANNEL SHOULD BE PROVIDED
+
+
+            VPL5SPA06S - KEY ASSOCIATION SHOULD BE PROVIDED'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityCodeDetailsResponse'
+      x-proxy-name: Security Values Inquiry
+      x-group-name: PIN
+      x-child-product-name: Cards
   /cards/embosser/details:
     post:
       tags:
@@ -43,18 +126,26 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequest'
         required: true
       responses:
+        '404':
+          description: Not Found
         '401':
           description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
+        '400':
+          description: Bad Request
         '300':
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
         '403':
           description: Forbidden
         '200':
@@ -63,8 +154,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponse'
-        '405':
-          description: Method Not Allowed
       x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -97,18 +186,21 @@ paths:
               $ref: '#/components/schemas/AddEmbosserRequest'
         required: true
       responses:
-        
+        '404':
+          description: Not Found
         '401':
           description: Unauthorized
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '405':
+          description: Method Not Allowed
         '400':
           description: Bad Request
-        '500':
+        '422':
           description: 'VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
             BETWEEN 000 AND 998
 
@@ -188,8 +280,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '403':
           description: Forbidden
         '200':
@@ -198,13 +294,145 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddEmbosserResponse'
-        '405':
-          description: Method Not Allowed
       x-proxy-name: Embosser Add
       x-group-name: Embosser
       x-child-product-name: Cards
 components:
   schemas:
+    SecurityCodeDetailsRequest:
+      required:
+      - cardNumber
+      - channel
+      - keyAssociation
+      - organizationNumber
+      type: object
+      properties:
+        organizationNumber:
+          type: integer
+          description: '* Min Length: 1
+
+            * Max Length: 3
+
+
+            Organization Number.
+
+
+            VisionPLUS Service Data: ARXSVI-ORG'
+          format: int32
+          example: 999
+        cardNumber:
+          maxLength: 19
+          minLength: 19
+          type: string
+          description: 'Unique identifier or token associated with the card number
+            or payment instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: ARXSVI-CARD-NBR'
+          example: 090157278ID5IXX8613
+        channel:
+          maxLength: 1
+          minLength: 1
+          type: string
+          description: 'Insurance status code.
+
+
+            Values:
+
+            * Space = Not used;
+
+            * I = IVR;
+
+            * A = ATM;
+
+            * W = Web.
+
+
+            VisionPLUS Service Data: ARXSVI-CHANNEL'
+          example: W
+        keyAssociation:
+          maxLength: 3
+          minLength: 1
+          type: string
+          description: 'Key Association. "I" + "the key association defined for the
+            customer during the implementation to the field keyAssociation."
+
+
+            VisionPLUS Service Data: ARXSVI-KEY-ASSOC'
+          example: IYY
+      description: Security Code Details Request
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    SecurityCodeDetailsResponse:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: '* Max Length: 19
+
+
+            Unique identifier or token associated with the card number or payment
+            instrument (FirstVision PAN Token).
+
+
+            VisionPLUS Service Data: ARXSVO-ACCT-NBR'
+          example: 090157278ID5IXX8613
+        ud1ec:
+          type: string
+          description: '* Max Length: 16
+
+
+            Encrypted CVV OR CVC OR 3CSC value.
+
+
+            VisionPLUS Service Data: ARXSVO-UD1-ENCRYPT'
+          example: 840B12345A690FBCA
+        ud2ec:
+          type: string
+          description: '* Max Length: 16
+
+
+            Encrypted CVV2 OR CVC2 OR 4CSC value.
+
+
+            VisionPLUS Service Data: ARXSVO-UD2-ENCRYPT'
+          example: 840B12345A690FBCA
+        ud3ec:
+          type: string
+          description: '* Max Length: 16
+
+
+            Encrypted iCVV OR iCVC OR iCSC value.
+
+
+            VisionPLUS Service Data: ARXSVO-UD3-ENCRYPT'
+          example: 840B12345A690FBCA
+        pinEncrypt:
+          type: string
+          description: '* Max Length: 16
+
+
+            Encrypted pin block.
+
+
+            VisionPLUS Service Data: ARXSVO-PIN-ENCRYPT'
+          example: 840B12345A690FBCA
     EmbosserDetailsRequest:
       required:
       - cardNumber
@@ -245,24 +473,6 @@ components:
             Foreign Use.'
           example: '998'
       description: Card Embosser Block Request
-    DResponse:
-      type: object
-      properties:
-        hasError:
-          type: boolean
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        data:
-          type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
     EmbosserDetailsResponse:
       type: object
       properties:
