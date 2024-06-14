@@ -136,6 +136,17 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 | [Statement Lists Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/loyalty/&branch=main&version=1.2.0)                                       | M.LMS.TRANSACTION.INQ          | R8V1    | /loyalty/                                 | POST   |
 | [Statement Summary Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=get&path=/loyalty/statementSummary/%7baccountNumber%7d&branch=main&version=1.2.0)  | M.LMS.STMT.SUMMARY.INQ         | R8V1    | /loyalty/statementSummary/{accountNumber} | GET    |
 
+### Notifications
+| Name                                                                                                                                                            | Service | Version | API endpoint                         | Method | Portal Version |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- | ------------------------------------ | ------ | -------------- |
+| [Token Access](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/token&branch=main&version=1.2.0)                     |         |         | /notifications/v3/token              | POST   | 1.2.0          |
+| [Account Life Cycle](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/accountLifeCycle&branch=main&version=1.2.0)    |         |         | /notifications/v3/accountLifeCycle   | POST   | 1.2.0          |
+| [Account Management](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/accountManagement&branch=main&version=1.2.0)   |         |         | /notifications/v3/accountManagement  | POST   | 1.2.0          |
+| [Authorization](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/authorization&branch=main&version=1.2.0)            |         |         | /notifications/v3/authorization      | POST   | 1.2.0          |
+| [Card Life Cycle](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/cardLifeCycle&branch=main&version=1.2.0)          |         |         | /notifications/v3/cardLifeCycle      | POST   | 1.2.0          |
+| [Fraud Authorization](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/fraudAuthorization&branch=main&version=1.2.0) |         |         | /notifications/v3/fraudAuthorization | POST   | 1.2.0          |
+| [Fraud Block](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/fraudBlock&branch=main&version=1.2.0)                 |         |         | /notifications/v3/fraudBlock         | POST   | 1.2.0          |
+
 
 ### Tokenization
 
