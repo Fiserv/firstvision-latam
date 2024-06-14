@@ -1,4 +1,3 @@
-![image](https://github.com/Fiserv/firstvision-latam/assets/139910463/cd6519b0-eff8-483c-b6e2-ecf9d1f60845)---
 tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processing, Payments]
 ---
 
