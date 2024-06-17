@@ -16,7 +16,7 @@ After these steps, you're ready to start test the Payments API.
 
 ### How to get an API Credential?
 
-![image](https://github.com/Fiserv/firstvision-latam/assets/111396588/607b1a2c-2675-4269-8f21-89e38a39ec87)
+![image](https://user-images.githubusercontent.com/111396588/223824102-ee737d0e-462a-44ef-b4aa-eb5d0d062f23.png)
 
 
 ## Step 2: Explore our API
@@ -75,7 +75,7 @@ Is important to fill the headers before Try out.
 
 ## See Also
 
-- [Messages List](?path=docs/english/getting-started/messages-list.md)
+- [Service List](?path=docs/english/getting-started/messages-list.md)
 - [Postman Tutorial](?path=docs/english/getting-started/postman.md)
 - [Structure](?path=docs/english/getting-started/structure.md)
 - [Terminology](?path=docs/english/getting-started/terminology.md)
