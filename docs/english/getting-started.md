@@ -75,7 +75,7 @@ Is important to fill the headers before Try out.
 
 ## See Also
 
-- [Messages List](?path=docs/english/getting-started/messages-list.md)
+- [Service List](?path=docs/english/getting-started/messages-list.md)
 - [Postman Tutorial](?path=docs/english/getting-started/postman.md)
 - [Structure](?path=docs/english/getting-started/structure.md)
 - [Terminology](?path=docs/english/getting-started/terminology.md)
