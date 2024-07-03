@@ -15,7 +15,7 @@ paths:
   /notifications/v3/authorization:
     post:
       summary: Authorization
-      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n1 - Authorization event"
+      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n**Event 1 - Authorization**\r\n\r\nNotifies of authorizations carried out. Configuration options include:\r\n1. Only approved authorizations,\r\n2. Only denied authorizations,\r\n3. Both approved and denied authorizations.\r\n\r\nA minimum authorization value threshold may also be set to trigger notifications."
       operationId: authorization
       parameters:
         - name: apikey
@@ -362,8 +362,12 @@ paths:
       description: |-
         Note: This API must be implemented and published by the Client following this standard specification.
 
-        2 - Payment Due Date Event
-        3 - Account Cycle Event
+        **Event 2 - Payment Due Date**
+        Notifies the due date of the next invoice “x” days in advance (x is a configurable number of days).
+
+        **Event 3 - Account Cycle**
+
+        Notifies the date of the account cycle.
       operationId: paymentCycle
       parameters:
         - name: apikey
@@ -616,11 +620,25 @@ paths:
       description: |-
         Note: This API must be implemented and published by the Client following this standard specification.
 
-        4 - Available Credit Event
-        5 - Payment Posted Event
-        6 - Change of Address
-        10 - Payment Due Date Change
-        11 - Credit Limit Change
+        **Event 4 - Available Credit**
+
+        Notifies the available credit limit each time it is updated.
+
+        **Event 5 - Payment Posted**
+
+        Notifies when a payment transaction is posted to the account.
+
+        **Event 6 - Change of Address**
+
+        Notifies when there is a change in any address field.
+
+        **Event 10 - Payment Due Date Change**
+
+        Notifies of any changes to the invoice due date.
+
+        **Event 11 - Credit Limit Change**
+
+        Notifies of any changes to the credit limit, whether an increase or a decrease.
       operationId: cardManagement
       parameters:
         - name: apikey
@@ -865,9 +883,22 @@ paths:
       description: |-
         Note: This API must be implemented and published by the Client following this standard specification.
 
-        7 - Card Blocked Message
-        8 - Activation Message
-        9 - Card Action/Embossing
+        **Event 7 - Card Blocking (declined/Pick up authorization actions only)**
+
+        Configuration options include:
+        1. Only account blocking,
+        2. Only card blocking,
+        3. Both account and card blocking.
+
+        This event is only triggered when an authorization is denied due to account and/or card blocking.
+
+        **Event 8 - Card Activation**
+
+        Notifies when a physical card is activated. This does not apply to digital cards as they are created in an activated state.
+
+        **Event 9 - Card Embossing**
+
+        Notifies when a card is embossed.
       operationId: cardLifeCycle
       parameters:
         - name: apikey
@@ -1139,7 +1170,7 @@ paths:
   /notifications/v3/fraudAuthorization:
     post:
       summary: Fraud Authorization
-      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n12a - Fraud Authorization Event"
+      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n**Event 12a - Fraud Authorization **\r\nNotifies based on Falcon rules during authorization"
       operationId: fraudAuthorization
       parameters:
         - name: apikey
@@ -1421,7 +1452,7 @@ paths:
   /notifications/v3/fraudBlock:
     post:
       summary: Fraud Block
-      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n12b - Fraud Block Code Update"
+      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n**Event 12b - Fraud Block Code Update**\r\nNotifies based on Falcon rules during card level blocks."
       operationId: fraudBlock
       parameters:
         - name: apikey
