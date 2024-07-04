@@ -37,7 +37,7 @@ paths:
       parameters:
         - name: eventType
           in: query
-          description: "Event type.\r\n\nPosible Values: \r\n\n* TOKEN_STATUS_UPDATED \r\n\n* TOKEN_STATUS_UPDATED"
+          description: "Event type.\r\n\nPosible Values: \r\n\n* TOKEN_CREATED \r\n\n* TOKEN_STATUS_UPDATED"
           required: true
           schema:
             type: string
@@ -56,6 +56,8 @@ paths:
         - name: tokenReferenceID
           in: path
           description: |2-
+
+
 
 
 
@@ -80,7 +82,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
           content:
@@ -157,7 +159,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
           content:
@@ -212,6 +214,8 @@ paths:
 
 
 
+
+
              Unique ID for the token associated with the PAN. This ID can
             be used in lieu of a token for subsequent calls, such as life cycle events
           required: true
@@ -240,7 +244,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
           content:
@@ -302,7 +306,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
           content:
@@ -369,7 +373,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
@@ -433,7 +437,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
         '403':
@@ -492,7 +496,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
           content:
@@ -547,6 +551,8 @@ components:
           minLength: 0
           type: string
           description: |2
+
+
 
 
 
@@ -990,6 +996,8 @@ components:
 
 
 
+
+
              Name of the account-holder and name of cardholder matched.It is one of the following values:
             * Y— Indicates the two names match.
             * N— Indicates the two names do not match.
@@ -1154,6 +1162,8 @@ components:
     TokenCreateNotificationRequest:
       type: object
       description: Token Create Notification
+      x-stoplight:
+        id: 8tkjulmol0c1q
       required:
         - messageReasonCode
         - dateTimeOfEvent
@@ -1178,8 +1188,11 @@ components:
             corresponds to the ISO message reason codes when applicable. Required only for token create
 
             When the request is for Token Create Notification:
+
             - TOKEN_CREATED.
+
             When the request is for Token Notification:
+
             - TOKEN_DEACTIVATED
             - TOKEN_SUSPEND
             - TOKEN_RESUME
@@ -1187,7 +1200,9 @@ components:
             - MOBILE_BANK_APP_ACTIVATION
             - OTP_VERIFICATION_RESULT
             - TOKEN_DEVICE_BINDING_RESULT
+
             When the request is for Token Notification (changed) but the values are reserved for future use:
+
             - DEVICE_PROVISIONING_RESULT
             - LUK_REPLENISHMENT
             - DEVICE_PROVISIONING_REPERSONALIZATION_RESULT
@@ -1381,8 +1396,6 @@ components:
             provided by token service providers.
         tokenCreateNotificationRequestDecrypted:
           $ref: '#/components/schemas/TokenNotificationPayload'
-      x-stoplight:
-        id: 8tkjulmol0c1q
     TokenInformation:
       type: object
       properties:
@@ -1484,6 +1497,8 @@ components:
         originalTokenRequestorID:
           type: integer
           description: |2-
+
+
 
 
 
@@ -1999,6 +2014,8 @@ components:
         encryptedData:
           type: string
           description: |2-
+
+
 
 
 
