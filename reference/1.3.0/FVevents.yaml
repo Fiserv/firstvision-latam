@@ -15,7 +15,7 @@ paths:
   /notifications/v3/authorization:
     post:
       summary: Authorization
-      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n**Event 1 - Authorization**\r\n\r\nNotifies of authorizations carried out. Configuration options include:\r\n1. Only approved authorizations,\r\n2. Only denied authorizations,\r\n3. Both approved and denied authorizations.\r\n\r\nA minimum authorization value threshold may also be set to trigger notifications."
+      description: "Event 1 - Authorization: Notifies of authorizations carried out. Configuration options include:\r\n1. Only approved authorizations,\r\n2. Only denied authorizations,\r\n3. Both approved and denied authorizations.\r\n\r\nA minimum authorization value threshold may also be set to trigger notifications.\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
       operationId: authorization
       parameters:
         - name: apikey
@@ -360,14 +360,11 @@ paths:
     post:
       summary: Account Life Cycle
       description: |-
+        Event 2 - Payment Due Date: Notifies the due date of the next invoice “x” days in advance (x is a configurable number of days).
+
+        Event 3 - Account Cycle: Notifies the date of the account cycle.
+
         Note: This API must be implemented and published by the Client following this standard specification.
-
-        **Event 2 - Payment Due Date**
-        Notifies the due date of the next invoice “x” days in advance (x is a configurable number of days).
-
-        **Event 3 - Account Cycle**
-
-        Notifies the date of the account cycle.
       operationId: paymentCycle
       parameters:
         - name: apikey
@@ -618,27 +615,17 @@ paths:
     post:
       summary: Account Management
       description: |-
+        Event 4 - Available Credit: Notifies the available credit limit each time it is updated.
+
+        Event 5 - Payment Posted: Notifies when a payment transaction is posted to the account.
+
+        Event 6 - Change of Address: Notifies when there is a change in any address field.
+
+        Event 10 - Payment Due Date Change: Notifies of any changes to the invoice due date.
+
+        Event 11 - Credit Limit Change: Notifies of any changes to the credit limit, whether an increase or a decrease.
+
         Note: This API must be implemented and published by the Client following this standard specification.
-
-        **Event 4 - Available Credit**
-
-        Notifies the available credit limit each time it is updated.
-
-        **Event 5 - Payment Posted**
-
-        Notifies when a payment transaction is posted to the account.
-
-        **Event 6 - Change of Address**
-
-        Notifies when there is a change in any address field.
-
-        **Event 10 - Payment Due Date Change**
-
-        Notifies of any changes to the invoice due date.
-
-        **Event 11 - Credit Limit Change**
-
-        Notifies of any changes to the credit limit, whether an increase or a decrease.
       operationId: cardManagement
       parameters:
         - name: apikey
@@ -881,9 +868,7 @@ paths:
     post:
       summary: Card Life Cycle
       description: |-
-        Note: This API must be implemented and published by the Client following this standard specification.
-
-        **Event 7 - Card Blocking (declined/Pick up authorization actions only)**
+        Event 7 - Card Blocking (declined/Pick up authorization actions only): 
 
         Configuration options include:
         1. Only account blocking,
@@ -892,13 +877,11 @@ paths:
 
         This event is only triggered when an authorization is denied due to account and/or card blocking.
 
-        **Event 8 - Card Activation**
+        Event 8 - Card Activation: Notifies when a physical card is activated. This does not apply to digital cards as they are created in an activated state.
 
-        Notifies when a physical card is activated. This does not apply to digital cards as they are created in an activated state.
+        Event 9 - Card Embossing: Notifies when a card is embossed.
 
-        **Event 9 - Card Embossing**
-
-        Notifies when a card is embossed.
+        Note: This API must be implemented and published by the Client following this standard specification.
       operationId: cardLifeCycle
       parameters:
         - name: apikey
@@ -1170,7 +1153,7 @@ paths:
   /notifications/v3/fraudAuthorization:
     post:
       summary: Fraud Authorization
-      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n**Event 12a - Fraud Authorization **\r\nNotifies based on Falcon rules during authorization"
+      description: "Event 12a - Fraud Authorization: Notifies based on Falcon rules during authorization\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
       operationId: fraudAuthorization
       parameters:
         - name: apikey
@@ -1452,7 +1435,7 @@ paths:
   /notifications/v3/fraudBlock:
     post:
       summary: Fraud Block
-      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n**Event 12b - Fraud Block Code Update**\r\nNotifies based on Falcon rules during card level blocks."
+      description: "Event 12b - Fraud Block Code Update: Notifies based on Falcon rules during card level blocks.\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
       operationId: fraudBlock
       parameters:
         - name: apikey
