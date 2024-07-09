@@ -1,17 +1,20 @@
 openapi: 3.0.1
-x-stoplight:
-  id: dvuseoqrkp90j
 info:
   title: Lifecycle
   version: '1.0'
   description: ''
 servers:
   - url: 'https://int.api.firstdata.com/ftgw/v1/'
+tags:
+- name: Lifecycle
+  description: Lifecycle
 paths:
   /ftgw/v1/tokenLifecycle:
     post:
+      tags:
+      - Lifecycle
       summary: Token Life Cycle
-      operationId: tokenLifeCycle
+      operationId: Token LifeCycle
       responses:
         '200':
           description: Success
@@ -21,11 +24,6 @@ paths:
           $ref: '#/components/responses/genericResponse'
         '500':
           $ref: '#/components/responses/genericResponse'
-      x-stoplight:
-        id: 8k2wnbtij8vrn
-      x-proxy-name: Token Life Cycle
-      x-child-product-name: Tokenization
-      x-group-name: Lifecycle
       description: "This method is used by the Issuer to update the status of a specific virtual card. Allows the issuer to activate, resume, suspend, or delete the token.\r\n"
       parameters:
         - schema:
@@ -33,15 +31,6 @@ paths:
           in: header
           name: x-scheme
           description: 'Allowed values: AMEX - MDES - VTIS'
-          required: true
-        - schema:
-            type: string
-            example: '00970'
-            minLength: 5
-            maxLength: 5
-          in: header
-          name: X-ClientID
-          description: Client Identification
           required: true
         - schema:
             type: string
@@ -72,13 +61,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/tokenLifeCycleRequest'
-    parameters: []
+      x-proxy-name: Token LifeCycle
+      x-group-name: Lifecycle
+      x-child-product-name: Tokenization
   /ftgw/v1/token:
     post:
-      x-proxy-name: Token Inquiry
+      tags:
+      - Lifecycle
       summary: Token Inquiry
-      x-child-product-name: Tokenization
-      x-group-name: Lifecycle
       responses:
         '200':
           description: OK
@@ -89,138 +79,84 @@ paths:
                 properties:
                   token:
                     type: object
-                    x-stoplight:
-                      id: yrganrz0o0qka
                     properties:
                       referenceId:
                         type: string
-                        x-stoplight:
-                          id: 77y1ytgb24dla
                         description: The referenceId field represents the unique reference identifier for a token.
                       requestorId:
                         type: string
-                        x-stoplight:
-                          id: 28exoxe2ta8sh
                         description: The requestorId field represents the unique ID assigned to the initiator of the token request.
                       suffix:
                         type: string
-                        x-stoplight:
-                          id: innmsppyicdf2
                         description: The suffix field represents the last 4 digits of token in a 4 character string. (MDES Only.)
                       type:
                         type: string
-                        x-stoplight:
-                          id: 00kl1izdgmn0s
                         description: The type field represents the type of the token.
                       status:
                         type: string
-                        x-stoplight:
-                          id: 3x2qmk4mh6s43
                         description: The status field represents the actual status of the token.
                       expirationDate:
                         type: object
-                        x-stoplight:
-                          id: df4zx773xqkzp
                         properties:
                           month:
                             type: string
-                            x-stoplight:
-                              id: le88f8t0dtqnz
                             description: The month field represents month upon which the payment instrument is set to expire.
                           year:
                             type: string
-                            x-stoplight:
-                              id: a2s13vcl834n0
                             description: The year field represents year upon which the payment instrument is set to expire.
                       activationDateTime:
                         type: string
-                        x-stoplight:
-                          id: 765od2cghsgqi
                         description: The activatedDateTime field represents the date and time that the token was activated (in ISO 8601).
                       assurance:
                         type: string
-                        x-stoplight:
-                          id: tqygaxnmm12n1
                         description: "The assurance field indicates the level of Identification and Verification performed to validate the Cardholder and the Cardholder's account at the time the Token was issued.\r\n\r\nMDES Values: \r\n- 0 = Not authenticated; \r\n- non-zero = Authenticated.\r\n\r\nVTIS Values: \r\n- 00 = ID&V Not Performed;\r\n- 10 = Card Issuer Account Verification;\r\n- 11 = Card Issuer Interactive Cardholder Verification - 1 Factor;\r\n- 12 = Card Issuer Interactive Cardholder Verification - 2 Factor;\r\n- 13 = Card Issuer Risk Oriented Non-Interactive Cardholder Authentication;\r\n- 14 = Card Issuer Asserted Authentication.\r\n"
                   pan:
                     type: object
-                    x-stoplight:
-                      id: k094f8ghmw4pk
                     properties:
                       referenceId:
                         type: string
-                        x-stoplight:
-                          id: k8idqckkyin1u
                         description: The referenceId field represents the unique ID for the PAN.
                       suffix:
                         type: string
-                        x-stoplight:
-                          id: a5093p4rnunxn
                         description: The suffix field shows the last four digits of the current PAN.
                       source:
                         type: string
-                        x-stoplight:
-                          id: gl0z0xtnd4zur
                         description: The source field indicates the source of the account information.
                       expirationDate:
                         type: object
-                        x-stoplight:
-                          id: yvxqaaj57ypa5
                         properties:
                           month:
                             type: string
-                            x-stoplight:
-                              id: 0o4uigw99alfx
                             description: The month field represents month upon which the payment instrument is set to expire.
                           year:
                             type: string
-                            x-stoplight:
-                              id: rarc83rdcqgnc
                             description: The year field represents year upon which the payment instrument is set to expire.
                   deviceBinding:
                     type: array
-                    x-stoplight:
-                      id: otqm4r8vg0ic7
                     description: (VTIS Only).
                     items:
-                      x-stoplight:
-                        id: r8gd9zd7ygz9e
                       type: object
                       properties:
                         id:
                           type: string
-                          x-stoplight:
-                            id: nfp9nia43zgmd
                           description: "The id field represents the index number from Visa where the deviceID is stored.\r\n"
                         index:
                           type: string
-                          x-stoplight:
-                            id: anfjkvk3flxbd
                           description: "The index field, for Secure Element (SE) wallet providers, is the SE ID in hex binary characters transformed to a 48-character string.\r\n\r\nFor Host Card Emulation (HCE) wallet providers, this field is the Device ID as determined by the digital wallet provider (DWP)."
                   device:
                     type: object
-                    x-stoplight:
-                      id: es4fei8y3sh55
                     properties:
                       id:
                         type: string
-                        x-stoplight:
-                          id: bs1thlujs6ryg
                         description: The id field represents the serial number of the device provisioned with the token.
                       name:
                         type: string
-                        x-stoplight:
-                          id: j2a8evraooitj
                         description: The name field represents the nickname of the device provisioned with the token.
                       type:
                         type: string
-                        x-stoplight:
-                          id: x5lvmvf1kdd7o
                         description: The type field represents the Device type.
                   walletAccountId:
                     type: string
-                    x-stoplight:
-                      id: pahutxxkuxesg
                     description: The source field represents the consumer ID identifying the wallet account-holder entity.
         '400':
           $ref: '#/components/responses/genericResponse'
@@ -228,9 +164,7 @@ paths:
           $ref: '#/components/responses/genericResponse'
         '500':
           $ref: '#/components/responses/genericResponse'
-      operationId: token-inquiry
-      x-stoplight:
-        id: 6lz939vumh2hw
+      operationId: Token Inquiry
       description: This service enables the issuer to retrieve token details for a particular token
       parameters:
         - schema:
@@ -238,15 +172,6 @@ paths:
           in: header
           name: x-scheme
           description: 'Allowed values: AMEX - MDES - VTIS'
-          required: true
-        - schema:
-            type: string
-            example: '00970'
-            minLength: 5
-            maxLength: 5
-          in: header
-          name: X-ClientID
-          description: Client Identification
           required: true
         - schema:
             type: string
@@ -327,13 +252,14 @@ paths:
                       minLength: 0
                       maxLength: 200
                       description: The organization field represents the name of the Issuer or Processor to which the Customer Service Representative who triggered the API request belongs.
-    parameters: []
+      x-proxy-name: Token Inquiry
+      x-group-name: Lifecycle
+      x-child-product-name: Tokenization
   /ftgw/v1/panLifecycle:
     post:
+      tags:
+      - Lifecycle
       summary: Pan Lifecycle
-      x-proxy-name: Pan Lifecycle
-      x-child-product-name: Tokenization
-      x-group-name: Lifecycle
       responses:
         '200':
           description: OK
@@ -343,7 +269,7 @@ paths:
           $ref: '#/components/responses/genericResponse'
         '500':
           $ref: '#/components/responses/genericResponse'
-      operationId: panLifecycle
+      operationId: Pan Lifecycle
       x-stoplight:
         id: bli3gyolmgp8e
       requestBody:
@@ -357,15 +283,6 @@ paths:
           in: header
           description: HMAC authorization header
           name: Authorization
-        - schema:
-            type: string
-            example: '00970'
-            minLength: 5
-            maxLength: 5
-          in: header
-          name: X-ClientID
-          description: Client Identification
-          required: true
         - schema:
             type: string
           in: header
@@ -382,13 +299,14 @@ paths:
           description: The unique identifier for the API request.
           name: x-request-id
       description: This service enables the issuer to update PAN and PAN expiration date.
-    parameters: []
+      x-proxy-name: Pan Lifecycle
+      x-group-name: Lifecycle
+      x-child-product-name: Tokenization
   /ftgw/v1/pan/retrieveTokens:
     post:
+      tags:
+      - Lifecycle
       summary: Tokens Inquiry By PAN
-      x-proxy-name: Tokens Inquiry By PAN
-      x-child-product-name: Tokenization
-      x-group-name: Lifecycle
       responses:
         '200':
           description: OK
@@ -462,7 +380,7 @@ paths:
           $ref: '#/components/responses/genericResponse'
         '500':
           $ref: '#/components/responses/genericResponse'
-      operationId: tokensInquiryByPan
+      operationId: Tokens Inquiry By PAN
       x-stoplight:
         id: 33ye1s5gobw5d
       description: This service enables the issuer to retrieve a list of all tokens for a PAN
@@ -539,15 +457,6 @@ paths:
           required: true
         - schema:
             type: string
-            example: '00970'
-            minLength: 5
-            maxLength: 5
-          in: header
-          name: X-ClientID
-          description: Client Identification
-          required: true
-        - schema:
-            type: string
           in: header
           name: apikey
           description: Client-specific API Key issued during onboarding.
@@ -570,13 +479,14 @@ paths:
           name: x-request-id
           description: The unique identifier for the API request.
           required: true
-    parameters: []
+      x-proxy-name: Tokens Inquiry By PAN
+      x-group-name: Lifecycle
+      x-child-product-name: Tokenization
   /ftgw/v1/card/metadata:
     put:
+      tags:
+      - Lifecycle
       summary: Update Card Metadata
-      x-proxy-name: Update Card Metadata
-      x-child-product-name: Tokenization
-      x-group-name: Lifecycle
       responses:
         '200':
           description: OK
@@ -638,7 +548,7 @@ paths:
           $ref: '#/components/responses/genericResponse'
         '500':
           $ref: '#/components/responses/genericResponse'
-      operationId: put-card-metadata
+      operationId: Update Card Metadata
       x-stoplight:
         id: uh1fvvwrd8r12
       parameters:
@@ -647,15 +557,6 @@ paths:
           in: header
           name: Authorization
           description: HMAC authorization header
-          required: true
-        - schema:
-            type: string
-            example: '00970'
-            minLength: 5
-            maxLength: 5
-          in: header
-          name: X-ClientID
-          description: Client Identification
           required: true
         - schema:
             type: string
@@ -981,7 +882,9 @@ paths:
                               description: The application field represents an array of associated app identifiers.
                               minLength: 0
                               maxLength: 128
-    parameters: []
+      x-child-product-name: Tokenization
+      x-group-name: Lifecycle
+      x-proxy-name: Update Card Metadata
 components:
   schemas:
     tokenLifeCycleRequest:
