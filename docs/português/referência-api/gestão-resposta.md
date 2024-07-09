@@ -41,6 +41,7 @@ type: tab
 | 404    | Não Foi Encontrado                | Não pode encontrar o recurso solicitado.                                                                         | Consulte o list de API.                                                                     |
 | 408    | Expiração do Tempo de Solicitação | Nenhuma resposta à solicitação foi recebida dentro do prazo estabelecido.                                        | Por favor, tente novamente mais tarde.                                                      |
 | 415    | Tipo de Mídia Não Permitido       | Não conseguiu processar o tipo de mídia fornecido, conforme indicado pelo cabeçalho da solicitação Content-Type. | O lojista deve corrigir os dados e reenviar.                                                |
+| 422    | Conteúdo não processável          | Não foi possível processar as instruções contidas.                                                               |O comerciante deve fazer as modificações e repetir a solicitação.                            |
 | 425    | Muito Cedo                        | A solicitação foi enviada muito cedo.                                                                            | O lojista deve aguardar algum tempo e enviar a solicitação.                                 |
 | 429    | Muitos Pedidos                    | O comerciante enviou muitas solicitações em um determinado período de tempo.                                     | O lojista deve aguardar algum tempo e enviar a solicitação.                                 |
 
@@ -53,6 +54,7 @@ type: tab
 | Código | Mensagem                 | Descrição                                                                   | Resolução                    |
 |--------|--------------------------|---------------------------------------------------------------------------- |------------------------------|
 | 500    | Erro do Servidor Interno | O encontrou uma condição inesperada que o impediu de atender à solicitação. | Informe o erro.              |
+| 502    | Gateway ruim             | O servidor recebeu uma resposta inválida do servidor upstream.              | Tente depois de algum tempo. |
 | 503    | Serviço Não Disponível   | O servidor de aplicativos não está pronto para lidar com a solicitação.     | Tente depois de algum tempo. |
 | 504    | Tempo Limite do Gateway  | O não teve resposta do aplicativo.                                          | Tente depois de algum tempo. |
 

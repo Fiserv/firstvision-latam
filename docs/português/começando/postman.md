@@ -35,7 +35,7 @@ A Coleção do Carteiro será compartilhada temporariamente com cada cliente de 
 
 ![image](https://user-images.githubusercontent.com/111396588/223825130-b65824be-7525-4df5-80e5-bc9934e4dcd6.png)
 
-## Configurar a coleção
+## Configurar a ambiente
 
 ### 6. Agora você precisará criar as variáveis como no exemplo abaixo com as credenciais enviadas, nesta etapa você pode definir quais variáveis serão utilizadas durante o uso da coleção, como endpoint, porta e outras
 
