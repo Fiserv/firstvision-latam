@@ -35,7 +35,7 @@ La colección Postman se compartirá temporalmente con cada cliente de acuerdo c
 
 ![image](https://user-images.githubusercontent.com/111396588/223825130-b65824be-7525-4df5-80e5-bc9934e4dcd6.png)
 
-## Configurar la Colección
+## Configurar el ambiente
 
 ### 6. Ahora deberá crear las variables como el siguiente ejemplo con las credenciales enviadas. En este paso puede definir cuáles variables se utilizarán durante el uso de la colección, como punto final, puerto y otros
 
