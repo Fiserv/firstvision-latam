@@ -1,4 +1,6 @@
 openapi: 3.0.1
+x-stoplight:
+  id: 0fgk4rn20cs64
 info:
   title: Lifecycle
   version: '1.0'
@@ -6,13 +8,13 @@ info:
 servers:
   - url: 'https://int.api.firstdata.com/ftgw/v1/'
 tags:
-- name: Lifecycle
-  description: Lifecycle
+  - name: Lifecycle
+    description: Lifecycle
 paths:
   /ftgw/v1/tokenLifecycle:
     post:
       tags:
-      - Lifecycle
+        - Lifecycle
       summary: Token Life Cycle
       operationId: Token LifeCycle
       responses:
@@ -26,12 +28,6 @@ paths:
           $ref: '#/components/responses/genericResponse'
       description: "This method is used by the Issuer to update the status of a specific virtual card. Allows the issuer to activate, resume, suspend, or delete the token.\r\n"
       parameters:
-        - schema:
-            type: string
-          in: header
-          name: x-scheme
-          description: 'Allowed values: AMEX - MDES - VTIS'
-          required: true
         - schema:
             type: string
           in: header
@@ -52,10 +48,25 @@ paths:
           required: true
         - schema:
             type: string
+            example: '00970'
+            minLength: 5
+            maxLength: 5
           in: header
+          name: X-ClientID
+          description: Client Identification
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-scheme
+          description: 'Allowed values: AMEX - MDES - VTIS'
+          required: true
+        - schema:
+            type: string
+          in: header
+          required: true
           name: x-request-id
           description: The unique identifier for the API request.
-          required: true
       requestBody:
         content:
           application/json:
@@ -64,10 +75,12 @@ paths:
       x-proxy-name: Token LifeCycle
       x-group-name: Lifecycle
       x-child-product-name: Tokenization
+      x-stoplight:
+        id: qympnnvw7qi9t
   /ftgw/v1/token:
     post:
       tags:
-      - Lifecycle
+        - Lifecycle
       summary: Token Inquiry
       responses:
         '200':
@@ -170,12 +183,6 @@ paths:
         - schema:
             type: string
           in: header
-          name: x-scheme
-          description: 'Allowed values: AMEX - MDES - VTIS'
-          required: true
-        - schema:
-            type: string
-          in: header
           name: apikey
           description: 'Client-specific API Key issued during onboarding. '
           required: true
@@ -190,6 +197,21 @@ paths:
           in: header
           name: timestamp
           description: Request timestamp
+          required: true
+        - schema:
+            type: string
+            example: '00970'
+            minLength: 5
+            maxLength: 5
+          in: header
+          name: X-ClientID
+          description: Client Identification
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-scheme
+          description: 'Allowed values: AMEX - MDES - VTIS'
           required: true
         - schema:
             type: string
@@ -255,10 +277,12 @@ paths:
       x-proxy-name: Token Inquiry
       x-group-name: Lifecycle
       x-child-product-name: Tokenization
+      x-stoplight:
+        id: wllfv3fl8d0kp
   /ftgw/v1/panLifecycle:
     post:
       tags:
-      - Lifecycle
+        - Lifecycle
       summary: Pan Lifecycle
       responses:
         '200':
@@ -271,7 +295,7 @@ paths:
           $ref: '#/components/responses/genericResponse'
       operationId: Pan Lifecycle
       x-stoplight:
-        id: bli3gyolmgp8e
+        id: bvd2900535k6t
       requestBody:
         content:
           application/json:
@@ -281,23 +305,42 @@ paths:
         - schema:
             type: string
           in: header
-          description: HMAC authorization header
-          name: Authorization
-        - schema:
-            type: string
-          in: header
-          description: Request timestamp
-          name: Timestamp
-        - schema:
-            type: string
-          in: header
-          description: Client-specific API Key issued during onboarding.
           name: apikey
+          description: 'Client-specific API Key issued during onboarding. '
+          required: true
         - schema:
             type: string
           in: header
-          description: The unique identifier for the API request.
+          name: Authorization
+          description: HMAC authorization header
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: timestamp
+          description: Request timestamp
+          required: true
+        - schema:
+            type: string
+            example: '00970'
+            minLength: 5
+            maxLength: 5
+          in: header
+          name: X-ClientID
+          description: Client Identification
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-scheme
+          description: 'Allowed values: AMEX - MDES - VTIS'
+          required: true
+        - schema:
+            type: string
+          in: header
+          required: true
           name: x-request-id
+          description: The unique identifier for the API request.
       description: This service enables the issuer to update PAN and PAN expiration date.
       x-proxy-name: Pan Lifecycle
       x-group-name: Lifecycle
@@ -305,7 +348,7 @@ paths:
   /ftgw/v1/pan/retrieveTokens:
     post:
       tags:
-      - Lifecycle
+        - Lifecycle
       summary: Tokens Inquiry By PAN
       responses:
         '200':
@@ -382,7 +425,7 @@ paths:
           $ref: '#/components/responses/genericResponse'
       operationId: Tokens Inquiry By PAN
       x-stoplight:
-        id: 33ye1s5gobw5d
+        id: 14yx9e59614yq
       description: This service enables the issuer to retrieve a list of all tokens for a PAN
       requestBody:
         content:
@@ -452,14 +495,8 @@ paths:
         - schema:
             type: string
           in: header
-          name: x-scheme
-          description: 'Allowed values: MDES - VTIS'
-          required: true
-        - schema:
-            type: string
-          in: header
           name: apikey
-          description: Client-specific API Key issued during onboarding.
+          description: 'Client-specific API Key issued during onboarding. '
           required: true
         - schema:
             type: string
@@ -475,17 +512,32 @@ paths:
           required: true
         - schema:
             type: string
+            example: '00970'
+            minLength: 5
+            maxLength: 5
           in: header
+          name: X-ClientID
+          description: Client Identification
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: x-scheme
+          description: 'Allowed values: AMEX - MDES - VTIS'
+          required: true
+        - schema:
+            type: string
+          in: header
+          required: true
           name: x-request-id
           description: The unique identifier for the API request.
-          required: true
       x-proxy-name: Tokens Inquiry By PAN
       x-group-name: Lifecycle
       x-child-product-name: Tokenization
   /ftgw/v1/card/metadata:
     put:
       tags:
-      - Lifecycle
+        - Lifecycle
       summary: Update Card Metadata
       responses:
         '200':
@@ -550,8 +602,14 @@ paths:
           $ref: '#/components/responses/genericResponse'
       operationId: Update Card Metadata
       x-stoplight:
-        id: uh1fvvwrd8r12
+        id: 4b5y3szauo2nr
       parameters:
+        - schema:
+            type: string
+          in: header
+          name: apikey
+          description: 'Client-specific API Key issued during onboarding. '
+          required: true
         - schema:
             type: string
           in: header
@@ -561,27 +619,30 @@ paths:
         - schema:
             type: string
           in: header
+          name: timestamp
+          description: Request timestamp
           required: true
-          name: apikey
-          description: Client-specific API key issued during onboarding by Fiserv
+        - schema:
+            type: string
+            example: '00970'
+            minLength: 5
+            maxLength: 5
+          in: header
+          name: X-ClientID
+          description: Client Identification
+          required: true
         - schema:
             type: string
           in: header
+          name: x-scheme
+          description: 'Allowed values: AMEX - MDES - VTIS'
           required: true
-          name: timestamp
-          description: Request timestamp
         - schema:
             type: string
           in: header
           required: true
           name: x-request-id
-          description: The unique identifier for the API request
-        - schema:
-            type: string
-          in: header
-          required: true
-          name: x-scheme
-          description: 'Allowed values: VTIS'
+          description: The unique identifier for the API request.
       description: VTIS Only.
       requestBody:
         content:
@@ -890,7 +951,7 @@ components:
     tokenLifeCycleRequest:
       title: tokenLifeCycleRequest
       x-stoplight:
-        id: cpmbi486375az
+        id: vlrcxrqgofrxh
       type: object
       properties:
         token:
@@ -1009,7 +1070,7 @@ components:
     panLifeCycleRequest:
       title: panLifeCycleRequest
       x-stoplight:
-        id: qbf4rx9zcs1ja
+        id: j4808uottuhc3
       type: object
       x-internal: false
       required:
@@ -1089,7 +1150,7 @@ components:
     cardHolderInfo:
       title: cardHolderInfo
       x-stoplight:
-        id: edwe55k30intf
+        id: fwadmgg8c52ye
       type: object
       required:
         - currentPan
