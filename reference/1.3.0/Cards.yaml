@@ -48,14 +48,16 @@ paths:
               $ref: '#/components/schemas/UpdateEmbosserRequestV3'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
           content:
             application/json:
               schema:
@@ -96,14 +98,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -112,6 +106,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateEmbosserResponseV3'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -145,24 +145,28 @@ paths:
               $ref: '#/components/schemas/CardAssignmentRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '204':
           description: Account Card Assignment Successful. No Content.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardAssignmentResponse'
-        '300':
-          description: Redirection
+        '500':
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SPSZ6S - ORGANIZATION COULD NOT BE DETERMINED FOR INPUT
             CARD
@@ -241,22 +245,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardAssignmentResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account Card Assignment
       x-group-name: Card
       x-child-product-name: Cards
@@ -294,12 +294,22 @@ paths:
               $ref: '#/components/schemas/TravelUpdateRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5STV02E - ORG NOT FOUND
 
@@ -355,28 +365,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TravelUpdateResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Travel Indicator Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -410,6 +410,14 @@ paths:
               $ref: '#/components/schemas/TransferUpdateRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -417,8 +425,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DResponse'
         '422':
-          description: "VPL1S0100S-SERVICE INPUT FOR SERVICE IS AN INCORRECT LENGTH\
-            \ \n\nVPL5S0004E-CARD NUMBER IS NOT NUMERIC \n\nVPL5S1005E-NO ORGANIZATION\
+          description: "VPL5S0004E-CARD NUMBER IS NOT NUMERIC \n\nVPL5S1005E-NO ORGANIZATION\
             \ RECORD ON FILE \n\nVPL5S0006S-REQUESTED ORG NUMBER IS NOT FOUND \n\n\
             VPL5S1020E-FUNCTION MUST BE T, R OR C \n\nVPL5S1021E-NO REVERSAL ACCOUNT\
             \ NUMBER ENTERED \n\nVPL5S1022E-TRANSFER TO ACCOUNT NUMBER INVALID \n\n\
@@ -436,14 +443,14 @@ paths:
             \ OF 20 ATTEMPTS MADE ON BASE NUMBER \n\nVPL5S1038E-GENERATED ACCOUNT\
             \ NUMBER GREATER THAN BASE ENDING NUMBER \n\nVPL5S1039E-REVERSAL ACCOUNT\
             \ NOT ON FILE \n\nVPL5S1040E-INVALID CHECK DIGIT \n\nVPL5S1041E-REVERSAL\
-            \ CANNOT BE PROCESSED DURING END-OF-DAY \n\nVPL5S1042E-SEED TABLE ERROR-EMBOSSER\
-            \ TRANSFER INCOMPLETE \n\nVPL5S1043E-VALID VALUES FOR XFR REPLACEMENT\
-            \ INDICATOR ARE: 0/1 \n\nVPL5S1044E-INVALID CUSTOMER NUMBER \n\nVPL5S1045E-TRANSFER\
-            \ FROM AND TRANSFER TO ACCOUNTS MUST BE IN THE SAME LOGO \n\nVPL5S1046E-TRANSFER\
-            \ TO ACCT HAS A BALANCE AND IS NOT A FRAUD STATUS ACCT \n\nVPL5S1061E-TRANSFER\
-            \ TO FRAUD ACCOUNT MUST BE ON FILE WHEN ENTERED- DUAL ORG \n\nVPL5S1062E-TXN\
-            \ FROM AND TXN TO ACCTS MUST BE IN THE SAME LOGO - DUAL ORG \n\nVPL5S1063E-TRANSFER\
-            \ TO ACCOUNT HAS A BALANCE AND NOT A FRAUD ACCT - DUAL ORG \n\nVPL5S1064E-CUSTOMER\
+            \ CANNOT BE PROCESSED DURING END-OF-DAY \n\nVPL5S1043E-VALID VALUES FOR\
+            \ XFR REPLACEMENT INDICATOR ARE: 0/1 \n\nVPL5S1044E-INVALID CUSTOMER NUMBER\
+            \ \n\nVPL5S1045E-TRANSFER FROM AND TRANSFER TO ACCOUNTS MUST BE IN THE\
+            \ SAME LOGO \n\nVPL5S1046E-TRANSFER TO ACCT HAS A BALANCE AND IS NOT A\
+            \ FRAUD STATUS ACCT \n\nVPL5S1061E-TRANSFER TO FRAUD ACCOUNT MUST BE ON\
+            \ FILE WHEN ENTERED- DUAL ORG \n\nVPL5S1062E-TXN FROM AND TXN TO ACCTS\
+            \ MUST BE IN THE SAME LOGO - DUAL ORG \n\nVPL5S1063E-TRANSFER TO ACCOUNT\
+            \ HAS A BALANCE AND NOT A FRAUD ACCT - DUAL ORG \n\nVPL5S1064E-CUSTOMER\
             \ REC ALREADY ON FILE - DUAL ORG \n\nVPL5S1065E-CUSTOMER REC NOT ON FILE\
             \ - DUAL ORG \n\nVPL5S1066E-CUSTOMER REC MUST BE ACTIVE - DUAL ORG \n\n\
             VPL5S1069E-NO EMBOSSER REC ON FILE FOR THE DUAL ORG \n\nVPL5S1071E-ORG\
@@ -454,20 +461,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -476,6 +469,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransferUpdateResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Transfer Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -509,22 +508,22 @@ paths:
               $ref: '#/components/schemas/TemporaryCreditLimitUpdRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SAAM4E - CREDIT LIMIT CAN NOT EXCEED RELATIONSHIP CREDIT\
             \ LIMIT \n\nVPL5SCL05E - CREDIT LIMIT - DOES NOT CONFORM TO CURRENCY NOD\
@@ -560,18 +559,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemporaryCreditLimitUpdResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Temporary Credit Limit Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -607,6 +606,22 @@ paths:
               $ref: '#/components/schemas/CardStatusRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SCSZ2S - SERVICE INPUT TO ACCOUNT INQ SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL5SCSZ6S - REQUESTED ORGANIZATION NOT FOUND \n\nVPL5SCS02S\
@@ -627,34 +642,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardStatusResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Status Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -689,26 +688,20 @@ paths:
               $ref: '#/components/schemas/SpendLimitsL8V3Request'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -717,6 +710,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpendLimitsL8V3Response'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Spending Limits Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -750,6 +749,14 @@ paths:
               $ref: '#/components/schemas/PinBlockUpdateRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -800,20 +807,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -822,6 +815,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinBlockUpdateResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: PIN Block/Unblock
       x-group-name: PIN
       x-child-product-name: Cards
@@ -855,6 +854,20 @@ paths:
               $ref: '#/components/schemas/PinChangeRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '422':
           description: 'VPL5SCP06S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 998
@@ -950,26 +963,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -978,6 +971,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinChangeResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: PIN Change
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1015,18 +1014,6 @@ paths:
               $ref: '#/components/schemas/PinReassignmentRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '422':
           description: 'VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
@@ -1103,14 +1090,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
         '405':
           description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '200':
@@ -1119,6 +1112,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinReassignmentResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: PIN Reassign
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1158,24 +1157,20 @@ paths:
               $ref: '#/components/schemas/EmbosserCardActionL8V2Request'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
         '422':
           description: 'VPL5SPR04E - INVALID INPUT CARD ACTION - VALID VALUES ARE
             0 TO 7
@@ -1421,8 +1416,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -1431,6 +1424,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserCardActionL8V2Response'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Action Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1464,62 +1463,61 @@ paths:
               $ref: '#/components/schemas/CardDetailsForEmbosserBlockRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
+        '422':
+          description: "VPL5SPSZ6S - ORGANIZATION COULD NOT BE DETERMINED FOR INPUT\
+            \ CARD \n\nVPL5SPSZ7S - ORGANIZATION COULD NOT BE DETERMINED FOR CUSTOMER\
+            \ ACCT \n\nVPL5SPSZ8S - INVALID ORGANIZATION NUMBER \n\nVPL5SPS02E - CUSTOMER\
+            \ ACCT NBR MUST BE NUMERIC AND > ZEROES \n\nVPL5SPS03E - CARD NBR MUST\
+            \ BE NUMERIC AND > ZEROES \n\nVPL5SPS04E - CARDHOLDER TYPE MUST BE 0 OR\
+            \ 1 \n\nVPL5SPS05S - LOGO COULD NOT BE DETERMINED FOR FOR INPUT CARD \n\
+            \nVPL5SPS06S - LOGO COULD NOT BE DETERMINED FOR CUSTOMER ACCT \n\nVPL5SPS07E\
+            \ - ORG & LOGO MUST BE SAME FOR NON-PERSONAL & CUSTOMER ACCT \n\nVPL5SPS09S\
+            \ - ORG RECORD NOT FOUND OR IN ADD PENDING STATUS \n\nVPL5SPS10S - LOGO\
+            \ RECORD NOT FOUND OR IN ADD PENDING STATUS \n\nVPL5SPS11E - LOGO MUST\
+            \ BE PREPAID LOGO \n\nVPL5SPS12S - EMBOSSER RECORD NOT FOUND OR ADD PENDING\
+            \ OR PURGED STATUS \n\nVPL5SPS13E - CARD MUST NOT BE ACTIVATED \n\nVPL5SPS15S\
+            \ - NON PERSONAL ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE STATUS \n\nVPL5SPS16E\
+            \ - NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD MUST BE GENERIC PPD \n\
+            \nVPL5SPS17E - CARD NUMBER DECRYPTED FROM PAN TOKEN IS SPACES/ZEROS \n\
+            \nVPL5SPS17S - CUSTOMER ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE STATUS\
+            \ \n\nVPL5SPS18E - CARD NUMBER SHOULD NOT BE SPACES \n\nVPL5SPS19E - ORG\
+            \ LEVEL PAN TOKEN SW INACTIVE \n\nVPL5SPS19S - CUST NBR ASSOCIATED WITH\
+            \ CUST ACCT NOT FOUND/ADD PENDNG/CLSD/PURG \n\nVPL5SPS20S - EXISTNG PRIMARY\
+            \ CARD MAPPED TO CUST ACCT IN AMAX, NOT FOUND IN AMED \n\nVPL5SPS21S -\
+            \ NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD NOT FOUND IN BS FILE \n\
+            \nVPL5SPS22S - CUSTOMER ACCT NOT FOUND IN BASE SEGMENT FILE "
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
-        '422':
-          description: "VPL5SPSZ2S - SERVICE INPUT TO PREPAID CARD ASGN SERVICE IS\
-            \ AN INCORRECT LENGTH \n\nVPL5SPSZ6S - ORGANIZATION COULD NOT BE DETERMINED\
-            \ FOR INPUT CARD \n\nVPL5SPSZ7S - ORGANIZATION COULD NOT BE DETERMINED\
-            \ FOR CUSTOMER ACCT \n\nVPL5SPSZ8S - INVALID ORGANIZATION NUMBER \n\n\
-            VPL5SPS02E - CUSTOMER ACCT NBR MUST BE NUMERIC AND > ZEROES \n\nVPL5SPS03E\
-            \ - CARD NBR MUST BE NUMERIC AND > ZEROES \n\nVPL5SPS04E - CARDHOLDER\
-            \ TYPE MUST BE 0 OR 1 \n\nVPL5SPS05S - LOGO COULD NOT BE DETERMINED FOR\
-            \ FOR INPUT CARD \n\nVPL5SPS06S - LOGO COULD NOT BE DETERMINED FOR CUSTOMER\
-            \ ACCT \n\nVPL5SPS07E - ORG & LOGO MUST BE SAME FOR NON-PERSONAL & CUSTOMER\
-            \ ACCT \n\nVPL5SPS09S - ORG RECORD NOT FOUND OR IN ADD PENDING STATUS\
-            \ \n\nVPL5SPS10S - LOGO RECORD NOT FOUND OR IN ADD PENDING STATUS \n\n\
-            VPL5SPS11E - LOGO MUST BE PREPAID LOGO \n\nVPL5SPS12S - EMBOSSER RECORD\
-            \ NOT FOUND OR ADD PENDING OR PURGED STATUS \n\nVPL5SPS13E - CARD MUST\
-            \ NOT BE ACTIVATED \n\nVPL5SPS15S - NON PERSONAL ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE\
-            \ STATUS \n\nVPL5SPS16E - NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD\
-            \ MUST BE GENERIC PPD \n\nVPL5SPS17E - CARD NUMBER DECRYPTED FROM PAN\
-            \ TOKEN IS SPACES/ZEROS \n\nVPL5SPS17S - CUSTOMER ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE\
-            \ STATUS \n\nVPL5SPS18E - CARD NUMBER SHOULD NOT BE SPACES \n\nVPL5SPS19E\
-            \ - ORG LEVEL PAN TOKEN SW INACTIVE \n\nVPL5SPS19S - CUST NBR ASSOCIATED\
-            \ WITH CUST ACCT NOT FOUND/ADD PENDNG/CLSD/PURG \n\nVPL5SPS20S - EXISTNG\
-            \ PRIMARY CARD MAPPED TO CUST ACCT IN AMAX, NOT FOUND IN AMED \n\nVPL5SPS21S\
-            \ - NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD NOT FOUND IN BS FILE\
-            \ \n\nVPL5SPS22S - CUSTOMER ACCT NOT FOUND IN BASE SEGMENT FILE "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardsDetailsForEmbosserBlockResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Block Code Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1557,24 +1555,8 @@ paths:
               $ref: '#/components/schemas/CreditLimitUpdateRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '403':
           description: Forbidden
-        '404':
-          description: Not Found
         '405':
           description: Method Not Allowed
         '422':
@@ -1660,6 +1642,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '200':
@@ -1668,6 +1660,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreditLimitUpdateResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Credit Limit Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -1701,28 +1699,20 @@ paths:
               $ref: '#/components/schemas/CardActivationRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
         '422':
           description: "VPL5SEA01E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998 \n\nVPL5SEA01S - REQUESTED CARD/ACCOUNT NUMBER IS\
@@ -1738,21 +1728,25 @@ paths:
             \ ACCOUNT NUMBER IS PROVIDED \n\nVPL5SEA11S - FOREIGN CARD NUMBER NOT\
             \ FOUND \n\nVPL5SEA12S - FOREIGN ACCOUNT NUMBER NOT FOUND \n\nVPL5SEA13S\
             \ - FOREIGN CARD CROSS REFERENCE NOT FOUND \n\nVPL5SEA14S - FOREIGN CARD\
-            \ NUMBER NOT FOUND \n\nVPL5SEAZ2S - SERVICE INPUT TO CARD ACTIVATED SERVICE\
-            \ IS AN INCORRECT LENGTH \n\nVPL5SEAZ5S - INVALID ORG \n\nVPL5SEAZ7S -\
-            \ ORGANIZATION FILE UNAVAILABLE \n\nVPL5SEAZ8S - CARD FILE UNAVAILABLE\
-            \ \n\nVPL5SEAZ9S - ACCOUNT FILE UNAVAILABLE \n\nVPL5SEAZAS - ACCOUNT/CARD\
-            \ CROSS REFERENCE FILE UNAVAILABLE \n\n"
+            \ NUMBER NOT FOUND \n\nVPL5SEAZ5S - INVALID ORG \n\n"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardActivationResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Activation
       x-group-name: Card
       x-child-product-name: Cards
@@ -1786,12 +1780,22 @@ paths:
               $ref: '#/components/schemas/EmbosserDetailsRequestV2'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: "VPL5SCIZ1S - SERVICE INPUT TO FS SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5SCIZ3S-FILE-TABLE USED BY THIS SERVICE IS MISSING \n\nVPL5SCI01E\
@@ -1811,28 +1815,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmbosserDetailsResponseV2'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -1873,26 +1867,20 @@ paths:
               $ref: '#/components/schemas/SecurityValuesDetailsV2Request'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -1901,6 +1889,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SecurityValuesDetailsV2Response'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Security Values Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1934,24 +1928,22 @@ paths:
               $ref: '#/components/schemas/EmbosserCardsDetailsRequestV1'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SEQ01E -  ORGANIZATION NUMBER MUST BE NUMERIC AND VALID
             VALUES ARE 001-998
@@ -2000,16 +1992,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OutputArea'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser List Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2048,6 +2042,14 @@ paths:
               $ref: '#/components/schemas/InstantEmbossingRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -2147,20 +2149,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -2169,6 +2157,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InstantEmbossingResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Generation
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2202,6 +2196,12 @@ paths:
               $ref: '#/components/schemas/StatementInquiryRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
         '422':
           description: "VPL5S0005E-ACCOUNT NUMBER IS NOT NUMERIC OR EQUAL SPACES \n\
             \nVPL5S0006S-REQUESTED ORG NUMBER IS NOT FOUND \n\nVPL5S0008E-ORGANIZATION\
@@ -2215,33 +2215,20 @@ paths:
             \ \n\nVPL5S0068E-STATEMENT OCCURENCE NUMBER IS GREATER THAN STATEMENTS\
             \ ON FILE \n\nVPL5S0069E-STATEMENT OCCURENCE NUMBER NOT ON FILE \n\nVPL5S0070E-STATEMENT\
             \ DETAIL DATE IS INVALID WHEN REQUEST IS BY MONTH \n\nVPL5S0071E-STATEMENT\
-            \ OCCURENCE NUMBER IS INVALID WHEN REQUEST IS BY DATE \n\nVPL5S0100S-SERVICE\
-            \ INPUT TO SD SERVICE IS AN INCORRECT LENGTH \n\nVPL5S9007S-LOGO RECORD\
-            \ NOT ON FILE "
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
+            \ OCCURENCE NUMBER IS INVALID WHEN REQUEST IS BY DATE \n\nVPL5S9007S-LOGO\
+            \ RECORD NOT ON FILE "
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '200':
@@ -2250,6 +2237,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementInquiryResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Statement Inquiry
       x-group-name: Statement
       x-child-product-name: Cards
@@ -2288,22 +2281,10 @@ paths:
               $ref: '#/components/schemas/StatementDateInquiryRequest'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '403':
           description: Forbidden
+        '405':
+          description: Method Not Allowed
         '422':
           description: " VPL5SSI15S -ACCOUNT NUMBER NOT FOUND \n\n VPL5SSI07E -CARD/ACCT\
             \ NUMBER IS NOT NUMERIC OR EQUAL SPACES \n\n VPL5SSI14S -FOREIGN ORGANIZATION\
@@ -2320,8 +2301,14 @@ paths:
                 $ref: '#/components/schemas/DResponse'
         '404':
           description: Not Found
-        '405':
-          description: Method Not Allowed
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '200':
@@ -2330,6 +2317,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementDateInquiryResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Statement Details By Date Inquiry
       x-group-name: Statement
       x-child-product-name: Cards
@@ -2363,12 +2356,22 @@ paths:
               $ref: '#/components/schemas/PinValidateRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '400':
+          description: Bad Request
         '422':
           description: 'VPL5SVP03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
@@ -2454,28 +2457,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
-        '400':
-          description: Bad Request
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PinValidateResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: PIN Validate
       x-group-name: PIN
       x-child-product-name: Cards
@@ -2511,14 +2504,16 @@ paths:
               $ref: '#/components/schemas/InvalidPinAttemptsInquiryRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
           content:
             application/json:
               schema:
@@ -2553,14 +2548,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -2569,6 +2556,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidPintAttemptsInquiryResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Invalid Attempts Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -2602,6 +2595,20 @@ paths:
               $ref: '#/components/schemas/DynamicValuesRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '422':
           description: 'VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN
             000 AND 999
@@ -2687,26 +2694,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -2715,6 +2702,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DynamicValuesResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Dynamic Values Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -2797,14 +2790,16 @@ paths:
           type: string
         example: 00970
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
           content:
             application/json:
               schema:
@@ -2842,14 +2837,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -2858,6 +2845,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V3'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Mass Card Reissue Inquiry
       x-group-name: Card
       x-child-product-name: Cards
@@ -2892,6 +2885,14 @@ paths:
               $ref: '#/components/schemas/MassCardIssueAddRequestL8V3'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -2945,20 +2946,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -2967,6 +2954,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MassCardIssueAddResponseL8V3'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Mass Card Issue Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -3004,6 +2997,12 @@ paths:
               $ref: '#/components/schemas/SameDayEmbossingAddRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
         '422':
           description: 'VPL5SSP03S - CMS ORG IS INVALID
 
@@ -3052,26 +3051,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -3080,6 +3067,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SameDayEmbossingAddResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Same Day Plastic Add/Update
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -3113,26 +3106,20 @@ paths:
               $ref: '#/components/schemas/AddEmbosserL8VFRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -3141,6 +3128,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddEmbosserL8VFResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Add
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -3184,22 +3177,12 @@ paths:
               $ref: '#/components/schemas/CardPanInquiryL8V2Request'
         required: true
       responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
         '403':
           description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
         '422':
           description: 'VPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND
 
@@ -3246,10 +3229,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '400':
           description: Bad Request
         '200':
@@ -3258,6 +3245,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardPanInquiryL8V2Response'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card Or PAN Token Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -3301,6 +3294,14 @@ paths:
               $ref: '#/components/schemas/AccountForCardDetailsL8V3Request'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '422':
           description: 'VPL5SAEZ8S - REQUESTED ORG NOT FOUND
 
@@ -3336,20 +3337,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -3358,6 +3345,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountForCardDetailsL8V3Response'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Account To Card Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -3392,6 +3385,20 @@ paths:
               $ref: '#/components/schemas/CardDetailsRequest'
         required: true
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '500':
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
         '422':
           description: "VPL5SEI03E - ORGANIZATION IS NOT NUMERIC OR VALUE MUST BE\
             \ BETWEEN 000 AND 999 \n\nVPL5SEI04E - CARD NUMBER IS NOT NUMERIC OR EQUAL\
@@ -3404,26 +3411,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -3432,6 +3419,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CardsDetailsResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Card and Account Details Inquiry
       x-group-name: Card
       x-child-product-name: Cards
@@ -3509,6 +3502,14 @@ paths:
           type: string
         example: 00970
       responses:
+        '403':
+          description: Forbidden
+        '405':
+          description: Method Not Allowed
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
         '500':
           description: Backend Error
           content:
@@ -3537,20 +3538,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DResponse'
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '405':
-          description: Method Not Allowed
         '400':
           description: Bad Request
         '200':
@@ -3559,6 +3546,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NavigationalServiceResponse'
+        '300':
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DResponse'
       x-proxy-name: Embosser Navigational Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -11134,6 +11127,7 @@ components:
         id:
           type: integer
           format: int32
+          example: 1
         value:
           type: string
       description: '* Items max length: 30
@@ -12050,11 +12044,11 @@ components:
 
             VisionPLUS Service Data: ARXSDO-STATEMENT-NBRMONTHS'
           example: '01'
-        cashAvailable:
-          type: number
         cashCreditLimit:
           type: number
         debitAmount:
+          type: number
+        cashAvailable:
           type: number
     StatementInquiryResponse.CurrencyData:
       type: object
@@ -12774,9 +12768,9 @@ components:
 
             VisionPLUS Service Data: ARXGDO-DCVV2'
           example: 73063B98B08E8AAA
-        dcvv2ExpiryMinutes:
-          type: string
         dcvv2GenerationTime:
+          type: string
+        dcvv2ExpiryMinutes:
           type: string
     MassCardIssueAddRequestL8V3:
       required:
