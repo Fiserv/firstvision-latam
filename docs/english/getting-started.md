@@ -18,6 +18,7 @@ After these steps, you're ready to start test the Payments API.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824102-ee737d0e-462a-44ef-b4aa-eb5d0d062f23.png)
 
+
 ## Step 2: Explore our API
 
 This section deals with how to access the request execution page in an HTTP client, if you already have the API credentials available, follow the steps below to understand the structure and how each part works.
@@ -34,6 +35,7 @@ You can see the different APIs available for the corresponding group, on the rig
 
 ### 3. API Structure - On the page of any API resource, there is a division into segments, namely
 
+- Method
 - API description
 - Download API specification
 - Download Postman collection
@@ -51,6 +53,12 @@ You can see the different APIs available for the corresponding group, on the rig
 
 ### 5. Example of response fields
 
+“hasError” - boolean that indicates if there was any error during the execution.
+
+“errors” - array that contain the error detail. Will be filled only in case of error.
+
+"data" - will contain the endpoint response in case of success.
+
 ![image](https://user-images.githubusercontent.com/111396588/223824287-f11215ff-a306-4522-ad54-9c254e24dd5b.png)
 
 ### 6. Example of code errors
@@ -59,13 +67,15 @@ You can see the different APIs available for the corresponding group, on the rig
 
 ### 7. Example of try out section
 
+Is important to fill the headers before Try out.
+
 ![image](https://user-images.githubusercontent.com/111396588/223824344-69875caf-2cae-4b95-bac5-1b8d715bef43.png)
 
 ---
 
 ## See Also
 
-- [Messages List](?path=docs/english/getting-started/messages-list.md)
+- [Service List](?path=docs/english/getting-started/messages-list.md)
 - [Postman Tutorial](?path=docs/english/getting-started/postman.md)
 - [Structure](?path=docs/english/getting-started/structure.md)
 - [Terminology](?path=docs/english/getting-started/terminology.md)

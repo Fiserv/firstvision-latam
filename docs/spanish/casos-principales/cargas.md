@@ -26,7 +26,7 @@ El uso de esta API le permite cargar dinero a un producto de Débito, Crédito, 
 
 A través de los parámetros indicados es posible identificar la cuenta, tarjeta del producto desde la cual se está realizando el retiro de dinero (débito) y definir la cuenta y tarjeta a la cual se realizará el abono, también se requiere que, como parte de los parámetros de la API, se agregue la ubicación geográfica (latitud y longitud) de la fuente (remitente) que está cargando dinero. También se requiere el número de tarjeta del que se recibe el dinero (beneficiario) como parte de los parámetros requeridos por la API.
 
-**PUT** `/account/FL-balance`
+**PUT** `/account/v2/balance`
       
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 

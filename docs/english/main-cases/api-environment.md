@@ -14,7 +14,7 @@ The FirstVision testing environment for allows have different scenarios for Visa
 
 Each of these validation scenarios have been created for the regions of Colombia, Panama, Mexico, Argentina, Uruguay and Brazil, allowing customers in each of these regions to have a more real and accurate vision of how their products will work once that these are implemented in the productive environment.
 
-With the use of a key known as API-KEY, which can be requested by the customer, each API's can be addressed to test the franchise, product and region that is desired.
+With the use of a key known as apikey, which can be requested by the customer, each API's can be addressed to test the franchise, product and region that is desired.
 
 ## Diagram
 

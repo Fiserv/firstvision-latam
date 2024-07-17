@@ -26,7 +26,7 @@ The use of this API allows you to load money to a Debit, Credit, Prepaid and Wal
 
 Through the indicated parameters, it is possible to identify the account, product card from which the withdrawal of money (debit) is being made and define the account and card to which the credit will be made, it is also required as part of the API parameters, add the geographic location (latitude and longitude) of the source (sender) that is loading money. The card number from which you receive the money (receiver) is required as part of the parameters required by the API.
 
-**PUT** `/account/FL-balance`
+**PUT** `/account/v2/balance`
       
 The description of each API field can be found within the specifications defined in the portal.
 

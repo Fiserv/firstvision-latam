@@ -4,6 +4,26 @@ tags: [Casos Principales, Gestión de Tarjetas, Tarjetas, Embozador, PAN Token, 
 
 # Gestión de Tarjetas
 
+## Actualizar de la Acción de la Tarjeta 
+
+Use esta API para actualizar la bandera de acción utilizada para volver a grabar (reemitir) un número de tarjeta específico.
+
+Esta API le permite al usuario solicitar la reemisión de una tarjeta por algún motivo como pérdida/robo, daño, expiración de la tarjeta, reemplazo de emergencia, etc.
+
+**PUT** `/cards/embosser/cardAction-L8V2`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
+## Actualizar Tarjetas Masivas 
+
+Esta API permite al usuario agregar o actualizar una solicitud para grabar nuevas tarjetas de forma masiva. Estas tarjetas pueden ser de crédito, débito o prepago. La cantidad de tarjetas que serán embozadas es un parámetro solicitado por la API.
+
+Las tarjetas embozadas no tendrán un nombre de embozador, pero el número de tarjeta, la fecha de expiración y los valores de seguridad de la tarjeta serán parte de ellos.
+
+**POST** `/cards/mass-card-issue-L8V3`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
 ## Agregar Registro de Tarjetas 
 
 La API permite crear información de tarjeta utilizada para grabar una tarjeta o plástico nuevos en relieve. Esta información de la tarjeta debe tener relación con un número de cuenta creado a través de API **Account Add** y este número de cuenta debe estar relacionado con un número de cliente creado a través de API **Customer Add**.
@@ -13,6 +33,28 @@ Esta API permite agregar información de la tarjeta como la fecha de vencimiento
 El número de tarjeta se calcula de forma aleatoria por la aplicación, y este número no se generará de nuevo (duplicado).
 
 **POST** `/cards/embosser/l8vf`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
+## Consultar de Valores de Seguridad 
+
+Esta API le permite al usuario obtener los valores de seguridad de la tarjeta (CVV, CVV2, ICVV, número PIN) ya grabados en relieve para un número de tarjeta específico.
+
+Los valores de seguridad proporcionados por la API se cifrarán mediante una clave de seguridad de 32 bytes, por lo que el usuario debe utilizar la misma clave de seguridad y el algoritmo 3Des para descifrar los valores de seguridad.
+
+**POST** `/cards/v1/pin/codes`
+
+La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
+## Consultar Número de Intentos de PIN No Válidos 
+
+Esta API permite al tarjetahabiente obtener el número de intentos de PIN no válidos.
+
+Como parte de los parámetros de seguridad, se configura el número de intentos de PIN no válidos para evitar que se pueda calcular el número de PIN para propuestas de fraude. Cuando se alcanza este parámetro, el número PIN se bloquea y se debe calcular un nuevo número PIN.
+
+Los intentos de PIN no válidos pueden ocurrir por muchas razones. La razón más popular es cuando el tarjetahabiente comete un error al ingresar el número de PIN en el cajero automático.
+
+**POST** `/cards/pin/invalid-attempts`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
@@ -30,47 +72,7 @@ Utilice esta API para obtener el token PAN calculado para un número de tarjeta.
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Agregar o Actualizar Tarjetas Masivas 
-
-Esta API permite al usuario agregar o actualizar una solicitud para grabar nuevas tarjetas de forma masiva. Estas tarjetas pueden ser de crédito, débito o prepago. La cantidad de tarjetas que serán embozadas es un parámetro solicitado por la API.
-
-Las tarjetas embozadas no tendrán un nombre de embozador, pero el número de tarjeta, la fecha de expiración y los valores de seguridad de la tarjeta serán parte de ellos.
-
-**POST** `/cards/mass-card-issue-L8V3`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
-## Actualización de la Acción de la Tarjeta 
-
-Use esta API para actualizar la bandera de acción utilizada para volver a grabar (reemitir) un número de tarjeta específico.
-
-Esta API le permite al usuario solicitar la reemisión de una tarjeta por algún motivo como pérdida/robo, daño, expiración de la tarjeta, reemplazo de emergencia, etc.
-
-**PUT** `/cards/embosser/cardAction-L8V2`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
-## Tarjeta Instantánea 
-
-Esta API le permite al usuario solicitar la creación de cuenta y tarjeta de forma instantánea. La información de la tarjeta estará lista para ser utilizada para compras.
-
-La información del cliente debe ser creada por medio de la API **Customer Add** antes de llamar a la API de tarjeta instantánea.
-
-**POST** `/account/v2/instantCard`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
-## Consulta de Valores de Seguridad 
-
-Esta API le permite al usuario obtener los valores de seguridad de la tarjeta (CVV, CVV2, ICVV, número PIN) ya grabados en relieve para un número de tarjeta específico.
-
-Los valores de seguridad proporcionados por la API se cifrarán mediante una clave de seguridad de 32 bytes, por lo que el usuario debe utilizar la misma clave de seguridad y el algoritmo 3Des para descifrar los valores de seguridad.
-
-**POST** `/cards/pin/security-codes`
-
-La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
-
-## Consultar Valores CVV2/CVC2/4CSC Dinámicos
+## Consultar Valores Dinámicos
 
 Use esta API para calcular y consultar un nuevo CVV2 para compras con tarjeta no presente.
 
@@ -80,19 +82,17 @@ Actualmente, cuando la tarjeta se graba en relieve a través de API **Card Embos
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Consultar Número de Intentos de PIN No Válidos 
+## Crear Tarjeta Instantánea 
 
-Esta API permite al tarjetahabiente obtener el número de intentos de PIN no válidos.
+Esta API le permite al usuario solicitar la creación de cuenta y tarjeta de forma instantánea. La información de la tarjeta estará lista para ser utilizada para compras.
 
-Como parte de los parámetros de seguridad, se configura el número de intentos de PIN no válidos para evitar que se pueda calcular el número de PIN para propuestas de fraude. Cuando se alcanza este parámetro, el número PIN se bloquea y se debe calcular un nuevo número PIN.
+La información del cliente debe ser creada por medio de la API **Customer Add** antes de llamar a la API de tarjeta instantánea.
 
-Los intentos de PIN no válidos pueden ocurrir por muchas razones. La razón más popular es cuando el tarjetahabiente comete un error al ingresar el número de PIN en el cajero automático.
-
-**POST** `/cards/pin/invalid-attempts`
+**POST** `/account/v2/instantCard`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
 
-## Validación PIN
+## Validar PIN
 
 Use esta API para confirmar que el PIN generado sea correcto.
 
@@ -101,6 +101,7 @@ Esta API requiere el PIN Block y el número de tarjeta y no el PIN en claro.
 **POST** `/cards/pin/validation`
 
 La descripción de cada campo de la API se encuentra dentro de las especificaciones definidas en el portal.
+
 
 ---
 
