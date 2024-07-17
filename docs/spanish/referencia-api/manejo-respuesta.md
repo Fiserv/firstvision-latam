@@ -44,6 +44,7 @@ type: tab
 | 404    | Not Found              | No se puede encontrar el recurso solicitado.                                                                       | Revise el listado de APIs.                                                                  |
 | 408    | Request Time Out       | No se recibió una respuesta a la solicitud durante el período de tiempo establecido.                               | Por favor intente más tarde.                                                                |
 | 415    | Unsupported Media Type | No se pudo procesar el tipo de medio proporcionado, tal como se indica en el encabezado de solicitud Content-Type. | El comercio debe corregir los datos y volver a enviar.                                      |
+| 422    | Unprocessable Content  | No se pueden procesar las instrucciones contenidas.                                                                | El comerciante deberá hacer las modificaciones y repetir la solicitud.                      |
 | 425    | Too Early              | La solicitud se envió demasiado pronto.                                                                            | El comercio debe esperar un tiempo y enviar la solicitud.                                   |
 | 429    | Too Many Requests      | El comercio envío demasiadas solicitudes en un período de tiempo determinado.                                      | El comercio debe esperar un tiempo y enviar la solicitud.                                   |
 <!--
@@ -55,6 +56,7 @@ type: tab
 | Código | Mensaje               | Descripción                                                                   | Resolución                       |
 |--------|-----------------------|-------------------------------------------------------------------------------|----------------------------------|
 | 500    | Internal Server Error | Se encontró una condición inesperada que le impidió cumplir con la solicitud. | Informe el error.                |
+| 502    | Bad Gateway           | El servidor recibió una respuesta no válida del servidor ascendente.          | Intente después de algún tiempo. |
 | 503    | Service Unavailable   | El servidor de aplicaciones no está listo para manejar la solicitud.          | Intente después de algún tiempo. |
 | 504    | Gateway Timeout       | No se recibió respuesta de la aplicación.                                     | Intente después de algún tiempo. |
 
