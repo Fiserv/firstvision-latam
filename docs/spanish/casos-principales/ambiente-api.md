@@ -14,7 +14,7 @@ El ambiente de prueba de FirstVision permite tener diferentes escenarios para pr
 
 Cada uno de estos escenarios de validación fueron creados para las regiones de Colombia, Panamá, México, Argentina, Uruguay y Brasil, lo que les permite a los clientes de cada una de estas regiones tener una visión más real y precisa de cómo funcionarán sus productos una vez que se hayan implementado en el ambiente de Producción.
 
-Con el uso de una clave conocida como API-KEY, la cual puede ser solicitada por el Cliente, cada API's puede ser direccionada para probar la franquicia, el producto y la región que se desee.
+Con el uso de una clave conocida como apikey, la cual puede ser solicitada por el Cliente, cada API's puede ser direccionada para probar la franquicia, el producto y la región que se desee.
 
 ## Diagrama
 
