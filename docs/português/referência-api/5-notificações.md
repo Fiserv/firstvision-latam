@@ -12,6 +12,13 @@ Para a implementação do Webhook, a Fiserv fornece os padrões e o design da AP
 
 ![image](https://user-images.githubusercontent.com/111396588/209873236-86eb54b6-f214-4f8f-9652-51c03ad8d604.png)
 
+Se o tipo de autenticação for OAuth, o cliente deverá expor uma API para obter o token de autorização.
+Se a autenticação não for OAuth, a autenticação poderá ser por meio de chave API ou autorização básica.
+
+## Informação sensível
+
+Todos os payloads podem conter o campocryptedData mas ele será usado dependendo da necessidade do Cliente, se o cliente precisar de Dados Sensíveis em Texto Simples, os payloads do Webhook enviarão este campo com todos os Dados Sensíveis em um formato criptografado e então os Clientes poderão descriptografe-o e obtenha dados simples de texto.
+
 ## Webhooks Events
 
 ### Authorization
@@ -22,7 +29,7 @@ Request example:
 {
   "contact": [
     {
-      "value": "mail@domain.com",
+      "value": "per*******@m*********.com",
       "contactType": "PRINCIPAL_EMAIL"
     }
   ],
@@ -32,7 +39,7 @@ Request example:
       "value": "00"
     }
   ],
-  "cardNumber": "000540208ID5IXX3865",
+  "cardNumber": "***************5669",
   "description": "APPROVED",
   "transaction": {
     "id": "01765999999998 2013572895880110A00000000000000000000 /12 00",
@@ -59,7 +66,7 @@ Request example:
 {
   "contact": [
     {
-      "value": "mail@domain.com",
+      "value": "per*******@m*********.com",
       "contactType": "PRINCIPAL_EMAIL"
     }
   ],
@@ -87,7 +94,7 @@ Request example:
 {
   "contact": [
     {
-      "value": "mail@domain.com",
+      "value": "per*******@m*********.com",
       "contactType": "PRINCIPAL_EMAIL"
     }
   ],
@@ -115,7 +122,7 @@ Request example:
 {
   "contact": [
     {
-      "value": "mail@domain.com",
+      "value": "per*******@m*********.com",
       "contactType": "PRINCIPAL_EMAIL"
     }
   ],
@@ -125,7 +132,7 @@ Request example:
       "value": "00"
     }
   ],
-  "cardNumber": "000540208ID5IXX3865",
+  "cardNumber": "***************5669",
   "description": "APPROVED",
   "transaction": {
     "eventDate": "20221202",
@@ -144,7 +151,7 @@ Request example:
 {
   "contact": [
     {
-      "value": "mail@domain.com",
+      "value": "per*******@m*********.com",
       "contactType": "PRINCIPAL_EMAIL"
     }
   ],
@@ -154,7 +161,7 @@ Request example:
       "value": "00"
     }
   ],
-  "cardNumber": "000540208ID5IXX3865",
+  "cardNumber": "***************5669",
   "description": "APPROVED",
   "transaction": {
     "amount": "00000000010.00",
@@ -175,7 +182,7 @@ Request example:
 {
   "contact": [
     {
-      "value": "mail@domain.com",
+      "value": "per*******@m*********.com",
       "contactType": "PRINCIPAL_EMAIL"
     }
   ],
@@ -185,7 +192,7 @@ Request example:
       "value": "00"
     }
   ],
-  "cardNumber": "000540208ID5IXX3865",
+  "cardNumber": "***************5669",
   "description": "APPROVED",
   "transaction": {
     "reason": "294",
