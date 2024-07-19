@@ -211,5 +211,6 @@ Request example:
 - [API Request](?path=docs/english/api-reference/api-request.md)
 - [Error Handling](?path=docs/english/api-reference/response-handling.md)
 - [Error Response](?path=docs/english/api-reference/error-response.md)
+- [Message Level Encryption](?path=docs/spanish/referencia-api/encryption.md)
 
 ---
