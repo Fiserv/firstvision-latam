@@ -30,7 +30,7 @@ Fiserv will receive the public key shared by the issuer and will send a KID (Key
 
 The issuer will used the KID shared by Fiserv to identify the corresponding private key. 
 
-![1-](https://github.com/user-attachments/assets/3b12377e-4fb7-4b42-9928-9875ec89ccc5)
+![1-jp](https://github.com/user-attachments/assets/9f0fedc7-2a66-44b4-a6ac-57bb9fe684d0)
 
 The KID will be sent by Fiserv in the encrypted message, the issuer will use this KID to retrieve the corresponding private key. 
 
