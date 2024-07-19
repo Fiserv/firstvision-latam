@@ -64,6 +64,7 @@ type: tab
 
 ## Veja também
 
+- [Criptografia ao Nível de Mensagem](?path=docs/português/referência-api/criptografia.md)
 - [Glossário API](?path=docs/português/referência-api/glossário-api.md)
 - [Resposta de Erro](?path=docs/português/referência-api/resposta-erro.md)
 - [Solicitação de API](?path=docs/português/referência-api/solicitação-api.md)
