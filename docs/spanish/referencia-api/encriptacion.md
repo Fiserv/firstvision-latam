@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/8859dfdc-4a78-40f1-a536-66fc7fe94f11)# Encriptación a Nivel de Mensaje
+# Encriptación a Nivel de Mensaje
 
 La información sensible será encriptada utilizando JSON Web Encryption (JWE). La encriptación JSON Web representa el contenido encriptado utilizando estructuras de datos basadas en JavaScript Object Notation (JSON). Para obtener especificaciones completas, consulte la especificación de [JWE specification](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-encryption-40).
 
