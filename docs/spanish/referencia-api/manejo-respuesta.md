@@ -66,10 +66,10 @@ type: tab
 
 ## Ver también
 
+- [Encriptación a Nivel de Mensaje](?path=docs/spanish/referencia-api/encriptacion.md)
 - [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
 - [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
 - [Solicitud de API](?path=docs/spanish/referencia-api/solicitud-api.md)
 - [Webhook](?path=docs/spanish/referencia-api/4-notificaciones.md)
-
 
 ---

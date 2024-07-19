@@ -75,7 +75,8 @@ Exemplo de uma resposta de carga (400: Bad Request)
 
 ## Veja também
 
-- [Gestão de resposta ](?path=docs/português/referência-api/gestão-resposta.md)
+- [Criptografia ao Nível de Mensagem](?path=docs/português/referência-api/criptografia.md)
+- [Gestão de Resposta ](?path=docs/português/referência-api/gestão-resposta.md)
 - [Glossário API](?path=docs/português/referência-api/glossário-api.md)
 - [Solicitação de API](?path=docs/português/referência-api/solicitação-api.md)
 - [Webhook](?path=docs/português/referência-api/5-notificações.md)
