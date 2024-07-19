@@ -1,4 +1,4 @@
-# Encriptación a Nivel de Mensaje
+![image](https://github.com/user-attachments/assets/8859dfdc-4a78-40f1-a536-66fc7fe94f11)# Encriptación a Nivel de Mensaje
 
 La información sensible será encriptada utilizando JSON Web Encryption (JWE). La encriptación JSON Web representa el contenido encriptado utilizando estructuras de datos basadas en JavaScript Object Notation (JSON). Para obtener especificaciones completas, consulte la especificación de [JWE specification](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-encryption-40).
 
@@ -43,3 +43,15 @@ Durante una ventana de mantenimiento programada, Fiserv marcará el nuevo KID co
 ### Ejemplo de Código de Desencriptación
 
 Durante el proyecto de implementación, Fiserv compartirá con el emisor el código de ejemplo para la desencriptación.
+
+---
+
+## Ver también
+
+- [Glosario API](?path=docs/spanish/referencia-api/glosario-api.md)
+- [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
+- [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
+- [Solicitud de API](?path=docs/spanish/referencia-api/solicitud-api.md)
+- [Solicitud de API](?path=docs/spanish/referencia-api/solicitud-api.md)
+
+---
