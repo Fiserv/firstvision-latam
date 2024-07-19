@@ -43,3 +43,15 @@ Durante una ventana de mantenimiento programada, Fiserv marcará el nuevo KID co
 ### Ejemplo de Código de Desencriptación
 
 Durante el proyecto de implementación, Fiserv compartirá con el emisor el código de ejemplo para la desencriptación.
+
+---
+
+## Veja também
+
+- [Gestão de Resposta ](?path=docs/português/referência-api/gestão-resposta.md)
+- [Glossário API](?path=docs/português/referência-api/glossário-api.md)
+- [Resposta de Erro](?path=docs/português/referência-api/resposta-erro.md)
+- [Solicitação de API](?path=docs/português/referência-api/solicitação-api.md)
+- [Webhook](?path=docs/português/referência-api/5-notificações.md)
+
+---
