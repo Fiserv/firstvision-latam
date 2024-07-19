@@ -1,4 +1,4 @@
-## Encriptación a Nivel de Mensaje
+# Encriptación a Nivel de Mensaje
 
 La información sensible será encriptada utilizando JSON Web Encryption (JWE). La encriptación JSON Web representa el contenido encriptado utilizando estructuras de datos basadas en JavaScript Object Notation (JSON). Para obtener especificaciones completas, consulte la especificación de [JWE specification](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-encryption-40).
 
@@ -40,6 +40,6 @@ El emisor compartirá una nueva clave pública con Fiserv, quien enviará el KID
 
 Durante una ventana de mantenimiento programada, Fiserv marcará el nuevo KID como activo. El emisor recibirá el nuevo KID y recuperará la clave privada correspondiente para la desencriptación. El objetivo principal de utilizar un KID es optimizar el proceso de rotación de claves.
 
-### Código de Desencriptación de Ejemplo
+### Ejemplo de Código de Desencriptación
 
 Durante el proyecto de implementación, Fiserv compartirá con el emisor el código de ejemplo para la desencriptación.
