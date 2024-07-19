@@ -30,13 +30,14 @@ Fiserv will receive the public key shared by the issuer and will send a KID (Key
 
 The issuer will used the KID shared by Fiserv to identify the corresponding private key. 
 
-![image](https://github.com/user-attachments/assets/69ba85c2-c203-4040-b4c9-14cbeb8d0c5a)
+![1-](https://github.com/user-attachments/assets/3b12377e-4fb7-4b42-9928-9875ec89ccc5)
 
 The KID will be sent by Fiserv in the encrypted message, the issuer will use this KID to retrieve the corresponding private key. 
 
 ### Example JWE Structure Including the KID:
 
-![image](https://github.com/user-attachments/assets/6d371ec9-e3fc-4c54-8e99-2f15c51f7c60)
+![2-](https://github.com/user-attachments/assets/e14009b1-ef60-4499-ae28-fbb0ff4ed13f)
+
 
 ## Key Rotation Process
 
