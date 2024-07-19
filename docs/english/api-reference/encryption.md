@@ -1,6 +1,6 @@
 # Message Level Encryption 
 
-Sensitive information will be encrypted using JSON Web Encryption (JWE). JSON Web Encryption represents encrypted content using JavaScript Object Notation (JSON)-based data structures. For complete specifications, please refer to the JWE specification. 
+Sensitive information will be encrypted using JSON Web Encryption (JWE). JSON Web Encryption represents encrypted content using JavaScript Object Notation (JSON)-based data structures. For complete specifications, please refer to the [JWE specification](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-encryption-40). 
 
 To confirm if the APIs you intend to use support JWE encryption, please contact our client services team. 
 
