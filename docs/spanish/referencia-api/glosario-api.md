@@ -131,6 +131,7 @@ type: tab
 
 ## Ver también
 
+- [Encriptación a Nivel de Mensaje](?path=docs/spanish/referencia-api/encriptacion.md)
 - [Manejo de Respuesta](?path=docs/spanish/referencia-api/manejo-respuesta.md)
 - [Respuesta de Error](?path=docs/spanish/referencia-api/respuesta-error.md)
 - [Solicitud de API](?path=docs/spanish/referencia-api/solicitud-api.md)
