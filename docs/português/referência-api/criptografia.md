@@ -48,9 +48,9 @@ Durante o projeto de implementação, a Fiserv compartilhará com o emissor o c�
 
 ## Veja também
 
+- [Access Token](?path=docs/português/referência-api/accessToken.md)
 - [Gestão de Resposta ](?path=docs/português/referência-api/gestão-resposta.md)
 - [Glossário API](?path=docs/português/referência-api/glossário-api.md)
-- [Resposta de Erro](?path=docs/português/referência-api/resposta-erro.md)
 - [Solicitação de API](?path=docs/português/referência-api/solicitação-api.md)
 - [Webhook](?path=docs/português/referência-api/5-notificações.md)
 

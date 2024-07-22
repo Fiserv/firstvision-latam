@@ -64,9 +64,9 @@ type: tab
 
 ## Veja também
 
+- [Access Token](?path=docs/português/referência-api/accessToken.md)
 - [Criptografia ao Nível de Mensagem](?path=docs/português/referência-api/criptografia.md)
 - [Glossário API](?path=docs/português/referência-api/glossário-api.md)
-- [Resposta de Erro](?path=docs/português/referência-api/resposta-erro.md)
 - [Solicitação de API](?path=docs/português/referência-api/solicitação-api.md)
 - [Webhook](?path=docs/português/referência-api/5-notificações.md)
 
