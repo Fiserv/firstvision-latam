@@ -36,7 +36,7 @@ The KID will be sent by Fiserv in the encrypted message, the issuer will use thi
 
 ### Example JWE Structure Including the KID:
 
-![1-](../../../assets/images/1-.png)
+![2-](../../../assets/images/2-.png)
 
 ## Key Rotation Process
 
