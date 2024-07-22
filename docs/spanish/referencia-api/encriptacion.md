@@ -29,9 +29,6 @@ Fiserv recibirá la clave pública compartida por el emisor y enviará un KID (I
 El emisor utilizará el KID compartido por Fiserv para identificar la clave privada correspondiente.
 
 ![image](https://github.com/user-attachments/assets/69ba85c2-c203-4040-b4c9-14cbeb8d0c5a)
- 
-According to the engineer I consulted with, it seems like the filepath works on Github but we don't parse and convert custom HTML elements within the md when displaying it on our UI. Sorry for the confusion
- 
 
 ### Ejemplo de Estructura JWE que incluye el KID:
 
