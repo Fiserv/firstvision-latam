@@ -1,4 +1,4 @@
-# Criptografia ao Nível de Mensagem
+![image](https://github.com/user-attachments/assets/b803d96d-6012-4bad-8460-bafe9d82d7e0)# Criptografia ao Nível de Mensagem
 
 Informações sensíveis serão criptografadas usando JSON Web Encryption (JWE). A criptografia JSON Web representa o conteúdo criptografado usando estruturas de dados baseadas em JavaScript Object Notation (JSON). Para especificações completas, consulte a [especificação JWE](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-encryption-40).
 
@@ -48,9 +48,9 @@ Durante o projeto de implementação, a Fiserv compartilhará com o emissor o c�
 
 ## Veja também
 
+- [Access Token](?path=docs/português/referência-api/accessToken.md)
 - [Gestão de Resposta ](?path=docs/português/referência-api/gestão-resposta.md)
 - [Glossário API](?path=docs/português/referência-api/glossário-api.md)
-- [Resposta de Erro](?path=docs/português/referência-api/resposta-erro.md)
 - [Solicitação de API](?path=docs/português/referência-api/solicitação-api.md)
 - [Webhook](?path=docs/português/referência-api/5-notificações.md)
 
