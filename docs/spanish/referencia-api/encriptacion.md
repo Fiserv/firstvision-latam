@@ -32,7 +32,7 @@ El emisor utilizará el KID compartido por Fiserv para identificar la clave priv
 
 ### Ejemplo de Estructura JWE que incluye el KID:
 
-![2-](../../../assets/images/1-.png)
+![2-](../../../assets/images/2-.png)
 
 ## Proceso de Rotación de Claves
 
