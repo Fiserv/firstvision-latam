@@ -36,7 +36,7 @@ The KID will be sent by Fiserv in the encrypted message, the issuer will use thi
 
 ### Example JWE Structure Including the KID:
 
-![test]: <https://raw.githubusercontent.com/Fiserv/firstvision-latam/develop/assets/images/1-.png>
+[test]: <https://raw.githubusercontent.com/Fiserv/firstvision-latam/develop/assets/images/1-.png>
 
 ## Key Rotation Process
 
