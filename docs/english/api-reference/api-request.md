@@ -88,7 +88,7 @@ titles: Request Body Example
 - [Access Token](?path=docs/english/api-reference/accessToken.md)
 - [API Glossary](?path=docs/english/api-reference/api-glossary.md)
 - [Error Handling](?path=docs/english/api-reference/response-handling.md)
-- [Message Level Encryption](?path=docs/spanish/referencia-api/encryption.md)
+- [Message Level Encryption](?path=docs/english/api-reference/encryption.md)
 - [Webhook](?path=docs/english/api-reference/5-notifications.md)
 
 ---
