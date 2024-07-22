@@ -207,7 +207,7 @@ Request example:
 
 ## Veja também
 
-- [Access Token](?path=docs/spanish/referencia-api/accessToken.md)
+- [Access Token](?path=docs/português/referência-api/accessToken.md)
 - [Criptografia ao Nível de Mensagem](?path=docs/português/referência-api/criptografia.md)
 - [Gestão de Resposta ](?path=docs/português/referência-api/gestão-resposta.md)
 - [Glossário API](?path=docs/português/referência-api/glossário-api.md)
