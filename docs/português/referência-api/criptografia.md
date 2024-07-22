@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b803d96d-6012-4bad-8460-bafe9d82d7e0)# Criptografia ao Nível de Mensagem
+# Criptografia ao Nível de Mensagem
 
 Informações sensíveis serão criptografadas usando JSON Web Encryption (JWE). A criptografia JSON Web representa o conteúdo criptografado usando estruturas de dados baseadas em JavaScript Object Notation (JSON). Para especificações completas, consulte a [especificação JWE](https://datatracker.ietf.org/doc/html/draft-ietf-jose-json-web-encryption-40).
 
