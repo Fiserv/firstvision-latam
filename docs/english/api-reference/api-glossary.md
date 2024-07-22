@@ -129,7 +129,7 @@ titles: General Terms, Acronyms , Account Types, Legacy Service Name
 - [Access Token](?path=docs/english/api-reference/accessToken.md)
 - [API Request](?path=docs/english/api-reference/api-request.md)
 - [Error Handling](?path=docs/english/api-reference/response-handling.md)
-- [Message Level Encryption](?path=docs/spanish/referencia-api/encryption.md)
+- [Message Level Encryption](?path=docs/english/api-reference/encryption.md)
 - [Webhook](?path=docs/english/api-reference/5-notifications.md)
 
 ---
