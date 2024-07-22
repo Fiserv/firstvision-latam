@@ -28,14 +28,14 @@ Fiserv recibirá la clave pública compartida por el emisor y enviará un KID (I
 
 El emisor utilizará el KID compartido por Fiserv para identificar la clave privada correspondiente.
 
-![<img src="1-.png"/>](/assets/images/1-.png)
+![image](https://github.com/user-attachments/assets/69ba85c2-c203-4040-b4c9-14cbeb8d0c5a)
  
 According to the engineer I consulted with, it seems like the filepath works on Github but we don't parse and convert custom HTML elements within the md when displaying it on our UI. Sorry for the confusion
  
 
 ### Ejemplo de Estructura JWE que incluye el KID:
 
-![2-](../../../assets/images/2-.png)
+![image](https://github.com/user-attachments/assets/6d371ec9-e3fc-4c54-8e99-2f15c51f7c60)
 
 ## Proceso de Rotación de Claves
 
