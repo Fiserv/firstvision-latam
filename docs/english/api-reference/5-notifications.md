@@ -207,10 +207,10 @@ Request example:
 
 ## See Also
 
+- [Access Token](?path=docs/english/api-reference/accessToken.md)
 - [API Glossary](?path=docs/english/api-reference/api-glossary.md)
 - [API Request](?path=docs/english/api-reference/api-request.md)
 - [Error Handling](?path=docs/english/api-reference/response-handling.md)
-- [Error Response](?path=docs/english/api-reference/error-response.md)
-- [Message Level Encryption](?path=docs/spanish/referencia-api/encryption.md)
+- [Message Level Encryption](?path=docs/english/api-reference/encryption.md)
 
 ---
