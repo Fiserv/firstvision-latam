@@ -165,7 +165,7 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 | [Pan Lifecycle](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/ftgw/v1/panLifecycle&branch=main&version=1.2.0)                                                                                      |                              |         | /ftgw/v1/panLifecycle                                                               | POST   |
 | [Tokens Inquiry By PAN](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/ftgw/v1/pan/retrieveTokens&branch=main&version=1.2.0)                                                                        |                              |         | /ftgw/v1/pan/retrieveTokens                                                         | POST   |
 | [Update Card Metadata](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/ftgw/v1/card/metadata&branch=main&version=1.2.0)                                                                               |                              |         | /ftgw/v1/card/metadata                                                              | PUT    |
-| [Send OTP](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/otp/v1/send-otp&branch=main&version=1.2.0)                                                                                                |                              |         | /otp/v1/send-otp                                                                    | POST   |
+| [Send OTP](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/otp/v1/sendOtp&branch=main&version=1.2.0)                                                                                                |                              |         | /otp/v1/sendOtp                                                                    | POST   |
 | [Token Access](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/otp/v1/token&branch=main&version=1.2.0)                                                                                               |                              |         | /otp/v1/token                                                                       | POST   |
 
 ### Transactions
@@ -217,13 +217,10 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 
 | Nombre de Endpoint                                    | Servicio           | Version  | API endpoint                     | Método |
 |------------------------------------------|-------------------------|---------|----------------------------------|--------|
-| [Account Add](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/account/&branch=main&version=1.1.0)                                             | M.CMS.ACCOUNT.ADD       | R8V8    | /account/                         | POST   |
 | [Account Boarding Driver Request](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/account/v2/accountBoardingDriver&branch=main&version=1.1.0) | M.CMS.CUST.ACCT.CRD.DRV | L8V3    | /account/v2/accountBoardingDriver | POST   |
-| [Account Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/account/details-L8VG&branch=main&version=1.1.0)                             | M.CMS.ACCOUNT.INQ       | L8VG    | /account/details-L8VG             | POST   |
 | [Account to Account Funds Transfer](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/account/FL-transferP2P&branch=main&version=1.1.0)          | M.ASM.MONETARYPTP.ACT   | L8V2    | /account/FL-transferP2P           | PUT    |
 | [Account To Card Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/account/card-L8V2&branch=main&version=1.1.0)                        | M.CMS.ACCT.TO.CARD.INQ  | L8V2    | /account/card-L8V2                | POST   |
 | [Account Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/account/details&branch=main&version=1.1.0)                                    | M.CMS.ACCTMNT.UPD       | L8V1    | /account/details                  | PUT    |
-| [Cash-in & Cash-out Request](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/account/balance&branch=main&version=1.1.0)                        | M.ASM.MONETARY.ACT      | L8V2    | /account/balance                  | PUT    |
 | [Cash-in & Cash-out With Fraud Prevention](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/account/FL-balance&branch=main&version=1.1.0)       | M.ASM.MONETARY.ACT      | L8V4    | /account/FL-balance               | PUT    |
 | [Customer Address Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/account/customer&branch=main&version=1.1.0)                          | M.CMS.ACCTCUSTNBR.UPD   | L8V1    | /account/customer                 | PUT    |
 
@@ -234,7 +231,6 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 |------------------|--------------------|---------|-------------------------|--------|
 | [Embosser Add](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/&branch=main&version=1.1.0)            | M.CMS.EMBOSSER.ADD | L8V8    | /cards/embosser/        | POST   |
 | [Embosser Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/details&branch=main&version=1.1.0) | M.CMS.EMBOSSER.INQ | L8V6    | /cards/embosser/details | POST   |
-| [Security Values Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/pin/security-codes&branch=main&version=1.1.0) | M.CMS.SEC.VALUES.INQ | R8V1    | /cards/pin/security-codes | POST   |
 
 
 ### Customers
@@ -242,7 +238,6 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 | Nombre de Endpoint                 | Servicio               | Version  | API endpoint              | Método |
 |-----------------------|-----------------------|---------|---------------------------|--------|
 | [Cards Details Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/customer/details-l8v4&branch=main&version=1.1.0)  | M.CMS.CUSTCHANNEL.INQ | L8V4    | /customer/details-l8v4    | POST   |
-| [Customer Add](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/customer/&branch=main&version=1.1.0)                       | M.CMS.CUSTOMER.ADD    | R8V4    | /customer/                | POST   |
 | [Demographic Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/customer/demographicData&branch=main&version=1.1.0) | M.CMS.DEMOGRAPHIC.INQ | R8V4    | /customer/demographicData | POST   |
 
 ### Notifications
