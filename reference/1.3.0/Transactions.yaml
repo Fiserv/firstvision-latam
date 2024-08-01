@@ -1,14 +1,13 @@
 openapi: 3.0.1
 info:
-  title: LATAM Issuing APIs
-  description: APIs to VMX Server
-  license:
-    name: Apache License Version 2.0
-    url: https://www.apache.org/licences/LICENSE-2.0
-  version: "1.0"
+  title: "FirstVision\u2122 Transaction Service - API Documentation"
+  description: "This documentation describes the REST APIs provided by the FirstVision\u2122\
+    \ Cards Microservice, which provides functionality for the issuing, management\
+    \ and processing of credit cards, including bank, co-branded, private label, debit,\
+    \ commercial, and prepaid"
+  version: '1.2'
 servers:
-- url: http://localhost:8080
-  description: Generated server url
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
 paths:
   /transactions/v1/manualAuthorizations:
     put:
@@ -24,24 +23,42 @@ paths:
         \nVMX Service: FAS.AUTH.REQ, R8V2\n"
       operationId: Manual Authorization Update
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
-        description: Client Identification.
+        description: API Key
         required: true
         schema:
           type: string
-        example: "00991"
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ManualAuthorizationRequest'
+              $ref: "#/components/schemas/ManualAuthorizationRequest"
         required: true
       responses:
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
-        "405":
-          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "422":
           description: "VPL7SAR03S - USER HAS NOT SIGNED ON, PLEASE SIGNON \n\nVPL7SAR06S\
             \ - CARD NUMBER MUST BE NUMERIC \n\nVPL7SAR07S - CARD TYPE MUST BE EITHER\
@@ -78,31 +95,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ManualAuthorizationResponse'
+                $ref: "#/components/schemas/ManualAuthorizationResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
       x-proxy-name: Manual Authorization Update
       x-group-name: Transactions
   /transactions/v3/installmentTransactions/{installmentTransaction-Id}/terms:
@@ -135,20 +140,44 @@ paths:
           type: integer
           format: int32
         example: 978
-      - name: X-ClientID
+      - name: apikey
         in: header
-        description: Client Identification.
+        description: API Key
         required: true
         schema:
           type: string
-        example: "00991"
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Request'
+              $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Request"
         required: true
       responses:
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "422":
           description: "VPL5SZ501E - ORG IS NOT NUMERIC OR MUST BE BETWEEN 001 AND\
             \ 998 \n\nVPL5SZ502E - REQUESTED ACCT / CARD NUMBER IS NOT NUMERIC OR\
@@ -164,35 +193,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "405":
-          description: Method Not Allowed
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+                $ref: "#/components/schemas/DResponse"
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response'
+                $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Response"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
       x-proxy-name: Installment Billing Transaction Inquiry
       x-group-name: Transactions
   /transactions/v1/transactions:
@@ -213,32 +224,42 @@ paths:
         VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, L8VB
       operationId: paymentsDetails
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TransactionsDetailsL8VBRequest'
+              $ref: "#/components/schemas/TransactionsDetailsL8VBRequest"
         required: true
       responses:
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
-        "405":
-          description: Method Not Allowed
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
+                $ref: "#/components/schemas/DResponse"
         "422":
           description: |-
             VPL5STD05E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
@@ -331,21 +352,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        "400":
-          description: Bad Request
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionsDetailsL8VBResponse'
+                $ref: "#/components/schemas/TransactionsDetailsL8VBResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
       x-proxy-name: Transactions Payments Details
       x-group-name: Transactions
 components:
@@ -359,19 +378,19 @@ components:
       type: object
       properties:
         retailerInformation:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.RetailerInformation'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.RetailerInformation"
         cardInformation:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.CardInformation'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.CardInformation"
         cardIssuerInformation:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.CardIssuerInformation'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.CardIssuerInformation"
         cardAcceptorInformation:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation"
         paymentInformation:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.PaymentInformation'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.PaymentInformation"
         installmentsInformation:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.InstallmentsInformation'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.InstallmentsInformation"
         transactionInformation:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.TransactionInformation'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.TransactionInformation"
       description: Manual Authorization Request
     ManualAuthorizationRequest.CardAcceptorInformation:
       required:
@@ -388,7 +407,7 @@ components:
             VisionPLUS Service Data: OFXARI-CRD-ACCPT-ID
           example: 43910XXXXX37927
         terminal:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation.Terminal'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation.Terminal"
     ManualAuthorizationRequest.CardAcceptorInformation.Terminal:
       required:
       - fieldLengthIndicator
@@ -462,7 +481,7 @@ components:
             VisionPLUS Service Data: OFXARI-TERM-DATA. Position: 12-19.
           example: JH5JQGS1
         location:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation.Terminal.Location'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.CardAcceptorInformation.Terminal.Location"
     ManualAuthorizationRequest.CardAcceptorInformation.Terminal.Location:
       type: object
       properties:
@@ -510,9 +529,9 @@ components:
             VisionPLUS Service Data: OFXARI-CARD-NBR
           example: 000123456ID5IXX1234
         expirationDate:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.CardInformation.ExpirationDate'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.CardInformation.ExpirationDate"
         security:
-          $ref: '#/components/schemas/ManualAuthorizationRequest.CardInformation.Security'
+          $ref: "#/components/schemas/ManualAuthorizationRequest.CardInformation.Security"
     ManualAuthorizationRequest.CardInformation.ExpirationDate:
       required:
       - month
@@ -797,7 +816,7 @@ components:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
         data:
           type: object
     Error:
@@ -825,11 +844,11 @@ components:
             VisionPLUS Service Data: OFXARO-CARD-TYPE
           example: V
         reasonInformation:
-          $ref: '#/components/schemas/ManualAuthorizationResponse.ReasonInformation'
+          $ref: "#/components/schemas/ManualAuthorizationResponse.ReasonInformation"
         transaction:
-          $ref: '#/components/schemas/ManualAuthorizationResponse.Transaction'
+          $ref: "#/components/schemas/ManualAuthorizationResponse.Transaction"
         balance:
-          $ref: '#/components/schemas/ManualAuthorizationResponse.Balance'
+          $ref: "#/components/schemas/ManualAuthorizationResponse.Balance"
     ManualAuthorizationResponse.Balance:
       type: object
       properties:
@@ -1050,11 +1069,11 @@ components:
           type: array
           description: Occurs 50 times
           items:
-            $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms'
+            $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms"
         installmentDiscount:
-          $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.InstallmentDiscount'
+          $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Response.InstallmentDiscount"
         pagination:
-          $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.Pagination'
+          $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Response.Pagination"
     InstallmentTermsInquiryL8V3Response.InstallmentDiscount:
       type: object
       properties:
@@ -1128,9 +1147,9 @@ components:
           format: date
           example: 2022-04-18
         indicator:
-          $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Indicator'
+          $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Indicator"
         amount:
-          $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Amount'
+          $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Amount"
       description: Occurs 50 times
     InstallmentTermsInquiryL8V3Response.Terms.Amount:
       type: object
@@ -1154,7 +1173,7 @@ components:
             \ AMT"
           example: 89.31
         fee:
-          $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Amount.Fee'
+          $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Amount.Fee"
     InstallmentTermsInquiryL8V3Response.Terms.Amount.Fee:
       type: object
       properties:
@@ -1171,7 +1190,7 @@ components:
             \ INST FEE AMT"
           example: 20.15
         iva:
-          $ref: '#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Amount.Fee.Iva'
+          $ref: "#/components/schemas/InstallmentTermsInquiryL8V3Response.Terms.Amount.Fee.Iva"
     InstallmentTermsInquiryL8V3Response.Terms.Amount.Fee.Iva:
       type: object
       properties:
@@ -1304,7 +1323,7 @@ components:
             VisionPLUS Service Data: AZXTDI-FUNC-CODE
           example: P
         transaction:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBRequest.Transaction'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBRequest.Transaction"
       description: Transactions Details Request
     TransactionsDetailsL8VBRequest.Transaction:
       required:
@@ -1356,9 +1375,9 @@ components:
             VisionPLUS Service Data: AZXTDI-TXN-NBR-MONTHS
           example: "12"
         transactionDateRange:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBRequest.Transaction.TransactionDateRange'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBRequest.Transaction.TransactionDateRange"
         transactionAmountRange:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBRequest.Transaction.TransactionAmountRange'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBRequest.Transaction.TransactionAmountRange"
     TransactionsDetailsL8VBRequest.Transaction.TransactionAmountRange:
       type: object
       properties:
@@ -1496,7 +1515,7 @@ components:
           example: false
           default: false
         transaction:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction"
     TransactionsDetailsL8VBResponse.Transaction:
       type: object
       properties:
@@ -1525,9 +1544,9 @@ components:
         details:
           type: array
           items:
-            $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details'
+            $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details"
         token:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Token'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Token"
     TransactionsDetailsL8VBResponse.Transaction.Details:
       type: object
       properties:
@@ -1857,33 +1876,33 @@ components:
             * Screen: ARTD\n* Page: 02a\n* Field: D/S="
           example: D
         record:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Record'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Record"
         loyalty:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Loyalty'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Loyalty"
         terminal:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Terminal'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Terminal"
         authorization:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Authorization'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Authorization"
         fraud:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Fraud'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Fraud"
         original:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Original'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Original"
         conversionRate:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.ConversionRate'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.ConversionRate"
         usd:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.USD'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.USD"
         interchange:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Interchange'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Interchange"
         principal:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Principal'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Principal"
         purchase:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Purchase'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Purchase"
         card:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Card'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Card"
         installment:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Installment'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Installment"
         merchant:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Merchant'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Merchant"
     TransactionsDetailsL8VBResponse.Transaction.Details.Authorization:
       required:
       - authorizationTime
@@ -2025,9 +2044,9 @@ components:
           format: int32
           example: 18
         terms:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Installment.Terms'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Installment.Terms"
         plan:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Installment.Plan'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Installment.Plan"
     TransactionsDetailsL8VBResponse.Transaction.Details.Installment.Plan:
       type: object
       properties:
@@ -2280,7 +2299,7 @@ components:
             \ Data: AZXTDO-DESCRIPTION\n* Screen: ARTD\n* Page: 02a\n* Field: DESC="
           example: 0A1B2C3 D4E5F 6G
         payment:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Purchase.Payment'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.Purchase.Payment"
     TransactionsDetailsL8VBResponse.Transaction.Details.Purchase.Payment:
       type: object
       properties:
@@ -2378,9 +2397,9 @@ components:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.USD.Amount'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.USD.Amount"
         conversionRate:
-          $ref: '#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.USD.ConversionRate'
+          $ref: "#/components/schemas/TransactionsDetailsL8VBResponse.Transaction.Details.USD.ConversionRate"
     TransactionsDetailsL8VBResponse.Transaction.Details.USD.Amount:
       type: object
       properties:
@@ -2425,3 +2444,5 @@ components:
             \ record for the selected criteria, when the More Indicator field is “\
             Y”.\n\nVisionPLUS Service Data: AZXTDO-NEXT-TOKEN"
           example: 123DEF456GHI789J1K0ABC
+x-config:
+  tryItOut: 'true'
