@@ -8,15 +8,17 @@ Para confirmar si las API que desea utilizar admiten encriptación JWE, comuníq
 
 Los emisores generarán un par de claves RSA Pública/Privada utilizando cualquier herramienta de Criptografía y SSL/TLS compatible con OpenSSL.
 
-### Ejemplos de Comandos usando OpenSSL:
+### Ejemplos de Comandos usando OpenSSL
 
-1. Generar una clave privada RSA, de tamaño 2048, y guardarla en un archivo llamado key.pem:
-   ```
+- Generar una clave privada RSA, de tamaño 2048, y guardarla en un archivo llamado key.pem:
+
+   ```openssl
    openssl genrsa -out key.pem 2048
    ```
 
-2. Extraer la clave pública y guardarla en un archivo llamado public.pem:
-   ```
+- Extraer la clave pública y guardarla en un archivo llamado public.pem:
+
+   ```openssl
    openssl rsa -in key.pem -outform PEM -pubout -out public.pem
    ```
 
@@ -30,7 +32,7 @@ El emisor utilizará el KID compartido por Fiserv para identificar la clave priv
 
 ![image](https://github.com/user-attachments/assets/69ba85c2-c203-4040-b4c9-14cbeb8d0c5a)
 
-### Ejemplo de Estructura JWE que incluye el KID:
+### Ejemplo de Estructura JWE que incluye el KID
 
 ![image](https://github.com/user-attachments/assets/6d371ec9-e3fc-4c54-8e99-2f15c51f7c60)
 
@@ -56,4 +58,3 @@ Durante el proyecto de implementación, Fiserv compartirá con el emisor el cód
 - [Webhook](?path=docs/spanish/referencia-api/4-notificaciones.md)
 
 ---
-
