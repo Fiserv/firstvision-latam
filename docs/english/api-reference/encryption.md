@@ -10,13 +10,13 @@ Issuers will generate an RSA Public/Private Key Pair using any Cryptography & SS
 
 ### Example Commands using OpenSSL
 
-1. Generate an RSA private key, of size 2048, and output it to a file named key.pem:
+- Generate an RSA private key, of size 2048, and output it to a file named key.pem:
 
 ```openssl
 openssl genrsa -out key.pem 2048
 ```
 
-2. Extract the public key and output it to a file named public.pem: 
+- Extract the public key and output it to a file named public.pem: 
 
 ```openssl
 openssl rsa -in key.pem -outform PEM -pubout -out public.pem
