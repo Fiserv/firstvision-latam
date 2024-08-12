@@ -1,9 +1,11 @@
 tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processing, Payments]
 ---
 
-# Service List
+Service List
+==
 
-## Version 1.2.0
+Version 1.2.0
+-
 
 ### Account 
 | Name                                                                                                                                                                                                                  | Service                        | Version | API endpoint                                                                                                                                                       | Method |
