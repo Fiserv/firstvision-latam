@@ -1,14 +1,13 @@
 openapi: 3.0.1
 info:
-  title: LATAM Issuing APIs
-  description: APIs to VMX Server
-  license:
-    name: Apache License Version 2.0
-    url: https://www.apache.org/licences/LICENSE-2.0
-  version: "1.0"
+  description: "This documentation describes the REST APIs provided by the FirstVision\u2122\
+    \ Cards Microservice, which provides functionality for the issuing, management\
+    \ and processing of credit cards, including bank, co-branded, private label, debit,\
+    \ commercial, and prepaid"
+  title: "FirstVision\u2122 Cards Issuing Service - API Documentation"
+  version: '1.2'
 servers:
-- url: http://localhost:8080
-  description: Generated server url
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
 tags:
 - name: Embosser
   description: Embosser
@@ -75,32 +74,22 @@ paths:
           minLength: 1
           type: string
         example: 01C
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
         "422":
           description: |-
             VPL5SQC01E - INVALID ORGANIZATION NUMBER
@@ -125,15 +114,33 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
+                $ref: "#/components/schemas/DResponse"
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "400":
           description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6'
+                $ref: "#/components/schemas/MassCardReissueDetailsResponseL8V6"
       x-proxy-name: Mass Card Issue Inquiry
       x-group-name: Card
       x-child-product-name: Cards
@@ -154,24 +161,26 @@ paths:
          VMX Service: M.CMS.MASS.CARD.ISSUE.UPD, L8V6
       operationId: Mass Card Issue Update
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MassCardIssueAddRequestL8v6'
+              $ref: "#/components/schemas/MassCardIssueAddRequestL8v6"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
         "405":
           description: Method Not Allowed
         "500":
@@ -179,9 +188,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
+                $ref: "#/components/schemas/DResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
         "422":
           description: |-
             VPL5SMC01E - INVALID ORGANIZATION NUMBER
@@ -310,19 +325,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        "404":
-          description: Not Found
+                $ref: "#/components/schemas/DResponse"
         "403":
           description: Forbidden
-        "400":
-          description: Bad Request
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MassCardIssueAddResponseL8v6'
+                $ref: "#/components/schemas/MassCardIssueAddResponseL8v6"
       x-proxy-name: Mass Card Issue Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -338,40 +353,26 @@ paths:
         Provides account and other card details such as encrypted card number. VMX Service: M.CMS.ENCR.CARD.PAN.INQ, L8V2
       operationId: PAN Encryption
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PanEncryptionL8V2Request'
+              $ref: "#/components/schemas/PanEncryptionL8V2Request"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
-        "400":
-          description: Bad Request
         "422":
           description: |
             Unprocessable Entity
@@ -408,13 +409,35 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PanEncryptionL8V2Response'
+                $ref: "#/components/schemas/PanEncryptionL8V2Response"
       x-proxy-name: PAN Encryption
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -430,38 +453,26 @@ paths:
         The GENERIC INSTANT EMBOSSING service will perform the issue process required for embossing. It will link to the HSM module to fetch the security details like PIN, CVV, CVV2, PVV etc. encrypt the information using the keys setup. VMX Service: M.CMS.GEN.INSTANT.EMB, L8V2
       operationId: Generic Instant Embossing
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GenericEmbosserL8V2Request'
+              $ref: "#/components/schemas/GenericEmbosserL8V2Request"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "405":
-          description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        "401":
-          description: Unauthorized
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
         "422":
           description: |
             Unprocessable Entity
@@ -534,15 +545,35 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "400":
           description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericEmbosserL8V2Response'
+                $ref: "#/components/schemas/GenericEmbosserL8V2Response"
       x-proxy-name: Generic Instant Embossing
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -554,6 +585,7 @@ components:
         id:
           type: integer
           format: int32
+          example: 1
         value:
           type: string
       description: "List size: 2\n\nid :\nElement position of the array.\n\nExample:\
@@ -594,21 +626,21 @@ components:
           example: 10
         requestIdentifier:
           maxLength: 3
-          minLength: 0
+          minLength: 1
           type: string
-          description: "Request dentifier that allows the client to create more than\
+          description: "Request identifier that allows the client to create more than\
             \ one mass\ncard issue for the same ORG/LOGO/CARD TYPE.\n\nVisionPLUS:\n\
             \n* Service Data: AZXMCI-REQ-ID \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - REQ ID"
           example: 01C
         record:
-          $ref: '#/components/schemas/MassCardIssueAddRequestL8v6.Record'
+          $ref: "#/components/schemas/MassCardIssueAddRequestL8v6.Record"
         customerNumber:
           maxLength: 19
-          minLength: 19
+          minLength: 0
           type: string
           description: |-
-            *Customer number that identifies the Customer Name/Address
+            * Customer number that identifies the Customer Name/Address
             record associated with mass card issue request.
 
             VisionPLUS:
@@ -622,11 +654,11 @@ components:
             \ or affinity group.\nThe default is 0.\n\nVisionPLUS:\n\n* Service Data:\
             \ AZXMCI-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBLEM"
           format: int32
-          example: 1
+          example: 58146
         account:
-          $ref: '#/components/schemas/MassCardIssueAddRequestL8v6.Account'
+          $ref: "#/components/schemas/MassCardIssueAddRequestL8v6.Account"
         card:
-          $ref: '#/components/schemas/MassCardIssueAddRequestL8v6.Card'
+          $ref: "#/components/schemas/MassCardIssueAddRequestL8v6.Card"
       description: Mass Card Issue Add Request
     MassCardIssueAddRequestL8v6.Account:
       type: object
@@ -648,12 +680,13 @@ components:
           format: int32
           example: 999999999
         relationshipCode:
+          pattern: ^(S|N)$
           type: string
           description: "Code that indicates whether an Account Base Segment\nrelationship\
             \ account number exists for this Embossing Mass\nCard Issue request.\n\
-            \nValues:\n\n* S = Exists;\n* N = Does not exist (Default).\n\nVisionPLUS:\n\
+            \nValues:\n\n* S = Exists.\n* N = Does not exist (Default).\n\nVisionPLUS:\n\
             \n* Service Data: AZXMCI-RELATION-AMBS \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - RELATION AMBS "
+            \ - RELATION AMBS"
           example: "N"
           default: "N"
         relationshipNumber:
@@ -685,19 +718,20 @@ components:
           type: integer
           description: "* Max Length: 9\n\nTotal credit limit of the account.\n\n\
             Values: 000000000–999999999.\n\nVisionPLUS:\n\n* Service Data: AZXMCI-CREDIT-LIMIT\
-            \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - TOT CR LMT "
+            \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - TOT CR LMT"
           format: int32
           example: 999999999
         globalQualification:
+          pattern: "^(\\s|1|2|[A-Z])$"
           type: string
           description: |-
             Global qualification value assigned to an account.
 
             Values:
 
-            * space;
-            * 1;
-            * 2;
+            * space.
+            * 1.
+            * 2.
             * A–Z.
             Note: This field can be updated to 1 and 2, only when the country code is MEX.
 
@@ -728,7 +762,7 @@ components:
             * Service Data: AZXMCI-BLOCK-CODE-1  / AZXMCI-BLOCK-CODE-2
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2
           items:
-            $ref: '#/components/schemas/ItemRequestString'
+            $ref: "#/components/schemas/ItemRequestString"
         user:
           type: array
           description: "List size: 3\n\nid :\nElement position of the array.\n\nExample:\
@@ -739,7 +773,7 @@ components:
             \ Service Data: AZXMCI-MES-USER-CODE-(*) \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - MSG USER CD\n"
           items:
-            $ref: '#/components/schemas/ItemRequestString'
+            $ref: "#/components/schemas/ItemRequestString"
         data:
           type: array
           description: "List size: 2\n\nid :\nElement position of the array.\n\nExample:\
@@ -747,7 +781,7 @@ components:
             \ 1 \n\nVisionPLUS:\n\n* Service Data: AZXMCI -USER-1 / AZXMCI -USER-2\n\
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - USER 1 / USER 2\n"
           items:
-            $ref: '#/components/schemas/ItemRequestString'
+            $ref: "#/components/schemas/ItemRequestString"
     MassCardIssueAddRequestL8v6.Card:
       type: object
       properties:
@@ -756,7 +790,7 @@ components:
           description: "* Max Length: 6\n\nExpiration date of the card.\nThe value\
             \ in this field must be greater than today’s date. Format: DDMMYY\n\n\
             VisionPLUS:\n\n* Service Data: AZXMCI-EXP-DATE \n* Screen, Page & Field:\
-            \ AZ5I01/AZ6I01/AZ7I01 - EXPIRY DT "
+            \ AZ5I01/AZ6I01/AZ7I01 - EXPIRY DT"
           format: date
         scheme:
           type: integer
@@ -775,14 +809,23 @@ components:
           default: 0
         technology:
           type: integer
-          description: "Flag that identifies the current card technology used for\
-            \ this\naccount.\n\nValues:\n\n* 0 = Magnetic-stripe card(s) are on issue;\n\
-            * 1 = Smart card(s) are on issue;\n* 2 = Magnetic-stripe contactless card(s)\
-            \ are on issue;\n* 3 = Smart contactless card(s) are on issue.\n\nVisionPLUS:\n\
-            \n* Service Data: AZXMCI -CARD-TECHNOLOGY     \n* Screen, Page & Field:\
-            \ AZ5I01/AZ6I01/AZ7I01 - CARD TECH"
+          description: |-
+            Flag that identifies the current card technology used for this
+            account.
+
+            Values:
+
+            * 0 = Magnetic-stripe card(s) are on issue;
+            * 1 = Smart card(s) are on issue;
+            * 2 = Magnetic-stripe contactless card(s) are on issue;
+            * 3 = Smart contactless card(s) are on issue.
+
+            VisionPLUS:
+
+            * Service Data: AZXMCI -CARD-TECHNOLOGY
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CARD TECH
           format: int32
-          example: 1
+          example: 0
         plasticId:
           maxLength: 10
           minLength: 0
@@ -810,9 +853,13 @@ components:
           maxLength: 4
           minLength: 0
           type: string
-          description: "Promotion code associated with the mass card issue.\n\nVisionPLUS:\n\
-            \n* Service Data: AZXMCI-PROMO-CODE      \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - PROMO CD"
+          description: |-
+            Promotion code associated with the mass card issue.
+
+            VisionPLUS:
+
+            * Service Data: AZXMCI-PROMO-CODE
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PROMO CD
           example: "2211"
         posServiceCode:
           maxLength: 3
@@ -824,13 +871,12 @@ components:
             \ SVC COD"
           example: "110"
         embosserCode:
-          maxLength: 1
-          minLength: 0
+          pattern: "^(\\s|[A-Z]|)$"
           type: string
           description: "Block code to be updated on the Embosser records during\n\
             mass issuance of cards.\n\nValues: A–Z and blank (or space).\n\nVisionPLUS:\n\
             \n* Service Data: AZXMCI-EMBOSSER-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - EMBOSS CODE "
+            \ - EMBOSS CODE"
           example: A
         embossingName:
           maxLength: 26
@@ -853,9 +899,9 @@ components:
             \ - EMB N2"
           example: Additional Name
         creditLimit:
-          $ref: '#/components/schemas/MassCardIssueAddRequestL8v6.Card.CreditLimit'
+          $ref: "#/components/schemas/MassCardIssueAddRequestL8v6.Card.CreditLimit"
         inventory:
-          $ref: '#/components/schemas/MassCardIssueAddRequestL8v6.Card.Inventory'
+          $ref: "#/components/schemas/MassCardIssueAddRequestL8v6.Card.Inventory"
     MassCardIssueAddRequestL8v6.Card.CreditLimit:
       type: object
       properties:
@@ -887,20 +933,20 @@ components:
             \n* CI = Current inventory quantity is considered;\n* SO = Requested number\
             \ of cards is considered;\n* NO = Requested generation is not considered.\n\
             \nVisionPLUS:\n\n* Service Data: AZXMCI-INVENTORY-CONTROL \n* Screen,\
-            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - INVENTORY CONTROL "
+            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - INVENTORY CONTROL"
           example: CI
         issuedQuantity:
           type: integer
           description: "* Max Length: 5\n\nQuantity of cards to be issued.\n\nValues:\
-            \ 00000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXMCI-MIN-QUANTITY \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE"
+            \ 0000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXMCI-QUANTITY-TO-CREATE\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE"
           format: int32
           example: 99999
         minimumIssuedQuantity:
           type: integer
           description: "* Max Length: 4\n\nMinimum quantity of cards to be issued.\n\
-            \nVisionPLUS:\n\n* Service Data: AZXMCI-QUANTITY-TO-CREATE \n* Screen,\
-            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - MIN QUANTITY"
+            \nVisionPLUS:\n\n* Service Data: AZXMCI-MIN-QUANTITY \n* Screen, Page\
+            \ & Field: AZ5I01/AZ6I01/AZ7I01 - MIN QUANTITY"
           format: int32
           example: 1101
     MassCardIssueAddRequestL8v6.Record:
@@ -909,15 +955,14 @@ components:
       type: object
       properties:
         functionType:
-          maxLength: 1
-          minLength: 0
+          pattern: ^(M|A)$
           type: string
           description: |-
             Function type record.
 
             Values:
 
-            * M = Update record;
+            * M = Update record.
             * A = Add record.
 
             VisionPLUS:
@@ -927,7 +972,7 @@ components:
         status:
           type: integer
           description: "* Max Length: 1\n\nCode that identifies the record status.\n\
-            \nValues:\n\n* 1 = Active;\n* 9 = Purge.\n\nVisionPLUS:\n\n* Service Data:\
+            \nValues:\n\n* 1 = Active.\n* 9 = Purge.\n\nVisionPLUS:\n\n* Service Data:\
             \ AZXMCI-STATUS  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - STATUS"
           format: int32
           example: 1
@@ -939,7 +984,7 @@ components:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
         data:
           type: object
     Error:
@@ -949,6 +994,22 @@ components:
           type: string
         description:
           type: string
+    ItemResponseNullableInteger:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      description: "* Max length: 1\n\nList size: 3\n\nThree-part field that indicates\
+        \ whether the user statement messages are active for the account.\n\nValues:\n\
+        \n* 0 = Do not print message on statements;\n* 1 = Print message on statements.\n\
+        \nExample: 0\n\nThe '(*)' below assumes values from 1 to 3.\n\nVisionPLUS:\n\
+        \n* Service Data: AZXMCO-MES-USER-CODE-(*) \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+        \ - MSG USER CD"
+      example:
+        key: "1"
+        value: "0"
     ItemResponseNullableString:
       type: object
       properties:
@@ -1014,7 +1075,7 @@ components:
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - REQ ID
           example: 01C
         record:
-          $ref: '#/components/schemas/MassCardIssueAddResponseL8v6.Record'
+          $ref: "#/components/schemas/MassCardIssueAddResponseL8v6.Record"
         customerNumber:
           type: string
           description: |-
@@ -1030,22 +1091,29 @@ components:
           type: integer
           description: "* Max Length: 5\n\nCode that defines the cardholder’s affiliation\
             \ or affinity group. The default is 0.\n\nVisionPLUS:\n\n* Service Data:\
-            \ AZXMCO-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBLEM "
+            \ AZXMCO-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBLEM"
           format: int32
           example: 58146
         account:
-          $ref: '#/components/schemas/MassCardIssueAddResponseL8v6.Account'
+          $ref: "#/components/schemas/MassCardIssueAddResponseL8v6.Account"
         card:
-          $ref: '#/components/schemas/MassCardIssueAddResponseL8v6.Card'
+          $ref: "#/components/schemas/MassCardIssueAddResponseL8v6.Card"
     MassCardIssueAddResponseL8v6.Account:
       type: object
       properties:
         originBank:
           type: integer
-          description: "* Max Length: 9\n\nBank number of the originating bank for\
-            \ the account.\n\nValues: 000000000–999999999.\n\nVisionPLUS:\n\n* Service\
-            \ Data: AZXMCO-BANK-ORIGIN\n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - BANK ORIGIN "
+          description: |-
+            * Max Length: 9
+
+            Bank number of the originating bank for the account.
+
+            Values: 000000000–999999999.
+
+            VisionPLUS:
+
+            * Service Data: AZXMCO-BANK-ORIGIN
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BANK ORIGIN
           format: int32
           example: 999999999
         branch:
@@ -1069,7 +1137,7 @@ components:
             \ account number exists for this Embossing Mass\nCard Issue request.\n\
             \nValues:\n\n* S = Exists;\n* N = Does not exist (Default).\n\nVisionPLUS:\n\
             \n* Service Data: AZXMCO-RELATION-AMBS \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - RELATION AMBS "
+            \ - RELATION AMBS"
           example: "N"
         relationshipNumber:
           type: string
@@ -1082,7 +1150,7 @@ components:
           type: string
           description: "Identification code of the Processing Control table assigned\
             \ to\nthe account.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-PCT-ID \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PCT ID "
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PCT ID"
           example: "462"
         merchantRestrictCode:
           type: integer
@@ -1104,7 +1172,7 @@ components:
             \n* space;\n* 1;\n* 2;\n* A–Z.\nNote: This field can be updated to 1 and\
             \ 2, only when the country code is MEX.\n\nVisionPLUS:\n\n* Service Data:\
             \ AZXMCO-GLOBAL-QUAL \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 -\
-            \ GLOBAL QUAL "
+            \ GLOBAL QUAL"
           example: "1"
         block:
           type: array
@@ -1124,7 +1192,7 @@ components:
             * Service Data: AZXMCO-BLOCK-CODE-1  / AZXMCO-BLOCK-CODE-2
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2
           items:
-            $ref: '#/components/schemas/ItemResponseNullableString'
+            $ref: "#/components/schemas/ItemResponseNullableString"
         user:
           type: array
           description: "* Max length: 1\n\nList size: 3\n\nThree-part field that indicates\
@@ -1132,9 +1200,12 @@ components:
             Values:\n\n* 0 = Do not print message on statements;\n* 1 = Print message\
             \ on statements.\n\nExample: 0\n\nThe '(*)' below assumes values from\
             \ 1 to 3.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-MES-USER-CODE-(*) \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - MSG USER CD \n"
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - MSG USER CD"
+          example:
+            key: "1"
+            value: "0"
           items:
-            $ref: '#/components/schemas/ItemResponseNullableString'
+            $ref: "#/components/schemas/ItemResponseNullableInteger"
         data:
           type: array
           description: "* Max length: 1\n\n* List size: 2\n\nUser-defined code or\
@@ -1142,7 +1213,7 @@ components:
             \ Data: AZXMCO -USER-1 / AZXMCO -USER-2\n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - USER 1 / USER 2\n"
           items:
-            $ref: '#/components/schemas/ItemResponseNullableString'
+            $ref: "#/components/schemas/ItemResponseNullableString"
     MassCardIssueAddResponseL8v6.Card:
       type: object
       properties:
@@ -1164,18 +1235,27 @@ components:
             \ same; each card\nincludes a unique sequence number; valid only for accounts\
             \ processed\nby a revolving/retail logo;\n* 3 = Account number and all\
             \ card numbers are unique.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-SCHEME\
-            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - SCHEME "
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - SCHEME"
           format: int32
           example: 0
           default: 0
         technology:
           type: integer
-          description: "Flag that identifies the current card technology used for\
-            \ this\naccount.\n\nValues:\n\n* 0 = Magnetic-stripe card(s) are on issue;\n\
-            * 1 = Smart card(s) are on issue;\n* 2 = Magnetic-stripe contactless card(s)\
-            \ are on issue;\n* 3 = Smart contactless card(s) are on issue.\n\nVisionPLUS:\n\
-            \n* Service Data: AZXMCO -CARD-TECHNOLOGY     \n* Screen, Page & Field:\
-            \ AZ5I01/AZ6I01/AZ7I01 - CARD TECH"
+          description: |-
+            Flag that identifies the current card technology used for this
+            account.
+
+            Values:
+
+            * 0 = Magnetic-stripe card(s) are on issue;
+            * 1 = Smart card(s) are on issue;
+            * 2 = Magnetic-stripe contactless card(s) are on issue;
+            * 3 = Smart contactless card(s) are on issue.
+
+            VisionPLUS:
+
+            * Service Data: AZXMCO -CARD-TECHNOLOGY
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CARD TECH
           format: int32
           example: 0
         plasticId:
@@ -1236,9 +1316,9 @@ components:
             \ - EMB N2"
           example: Additional Name
         creditLimit:
-          $ref: '#/components/schemas/MassCardIssueAddResponseL8v6.Card.CreditLimit'
+          $ref: "#/components/schemas/MassCardIssueAddResponseL8v6.Card.CreditLimit"
         inventory:
-          $ref: '#/components/schemas/MassCardIssueAddResponseL8v6.Card.Inventory'
+          $ref: "#/components/schemas/MassCardIssueAddResponseL8v6.Card.Inventory"
     MassCardIssueAddResponseL8v6.Card.CreditLimit:
       type: object
       properties:
@@ -1276,20 +1356,20 @@ components:
             \n* CI = Current inventory quantity is considered;\n* SO = Requested number\
             \ of cards is considered;\n* NO = Requested generation is not considered.\n\
             \nVisionPLUS:\n\n* Service Data: AZXMCO-INVENTORY-CONTROL \n* Screen,\
-            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - INVENTORY CONTROL "
+            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - INVENTORY CONTROL"
           example: CI
         issuedQuantity:
           type: integer
-          description: "* Max Length: 5\n\nQuantity of cards to be issued.\n\nValues:\
-            \ 00000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-MIN-QUANTITY \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE "
+          description: "* Max Length: 5\n\nMinimum quantity of cards to be issued.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXMCO-QUANTITY-TO-CREATE \n* Screen,\
+            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE"
           format: int32
           example: 99999
         minimumIssuedQuantity:
           type: integer
-          description: "* Max Length: 4\n\nMinimum quantity of cards to be issued.\n\
-            \nVisionPLUS:\n\n* Service Data: AZXMCO-QUANTITY-TO-CREATE \n* Screen,\
-            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - MIN QUANTITY "
+          description: "* Max Length: 4\n\nQuantity of cards to be issued.\n\nValues:\
+            \ 0000–9999.\n\nVisionPLUS:\n\n* Service Data: AZXMCO-MIN-QUANTITY \n\
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - MIN QUANTITY"
           format: int32
           example: 1101
     MassCardIssueAddResponseL8v6.Record:
@@ -1360,7 +1440,7 @@ components:
             * Service Data: AZXXPI-FUNCTION-TYPE
           example: C
         card:
-          $ref: '#/components/schemas/PanEncryptionL8V2Request.Card'
+          $ref: "#/components/schemas/PanEncryptionL8V2Request.Card"
       description: PAN Encryption Request
     PanEncryptionL8V2Request.Card:
       type: object
@@ -1412,9 +1492,9 @@ components:
             * Screen, Page & Field: ARQB 01 CUSTOMER NBR
           example: "50697861094344623"
         account:
-          $ref: '#/components/schemas/PanEncryptionL8V2Response.Account'
+          $ref: "#/components/schemas/PanEncryptionL8V2Response.Account"
         card:
-          $ref: '#/components/schemas/PanEncryptionL8V2Response.Card'
+          $ref: "#/components/schemas/PanEncryptionL8V2Response.Card"
     PanEncryptionL8V2Response.Account:
       type: object
       properties:
@@ -1448,9 +1528,9 @@ components:
             * Screen, Page & Field: ARQE 09 PAN
           example: 000123456ABCDFG1234
         checking:
-          $ref: '#/components/schemas/PanEncryptionL8V2Response.Account.Checking'
+          $ref: "#/components/schemas/PanEncryptionL8V2Response.Account.Checking"
         savings:
-          $ref: '#/components/schemas/PanEncryptionL8V2Response.Account.Savings'
+          $ref: "#/components/schemas/PanEncryptionL8V2Response.Account.Savings"
     PanEncryptionL8V2Response.Account.Checking:
       type: object
       properties:
@@ -1572,7 +1652,6 @@ components:
     GenericEmbosserL8V2Request:
       required:
       - cardNumber
-      - cardSequenceNumber
       type: object
       properties:
         organizationNumber:
@@ -1614,6 +1693,8 @@ components:
             * Service Data: AZXIEI-CARD-NBR
             * Screen, Page & Field: ARQE02 - CARD NUMBER
           example: "4759218604441630000"
+        card:
+          $ref: "#/components/schemas/GenericEmbosserL8V2Request.Card"
         cardSequenceNumber:
           type: integer
           description: |-
@@ -1644,14 +1725,12 @@ components:
             * Screen, Page & Field: ARQE02 - CURRENT CHIP SEQ NBR
           format: int32
           example: 77
-        card:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Request.Card'
       description: Card Embosser Generic Request
     GenericEmbosserL8V2Request.Card:
       type: object
       properties:
         pin:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Request.Card.PIN'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Request.Card.PIN"
     GenericEmbosserL8V2Request.Card.PIN:
       required:
       - isAssessmentRequired
@@ -1713,9 +1792,9 @@ components:
           format: int32
           example: 400
         customer:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Customer'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Customer"
         card:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card"
         compensationCode:
           type: integer
           description: |-
@@ -1970,13 +2049,13 @@ components:
           format: int32
           example: 18
         branch:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Branch'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.Branch"
         pin:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Pin'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.Pin"
         visa:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Visa'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.Visa"
         masterCard:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.MasterCard'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.MasterCard"
     GenericEmbosserL8V2Response.Card.Branch:
       type: object
       properties:
@@ -2123,14 +2202,14 @@ components:
           format: int32
           example: 110
         offlineLimit:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit"
     GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit:
       type: object
       properties:
         contactless:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit.Contactless'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit.Contactless"
         amount:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit.Amount'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit.Amount"
     GenericEmbosserL8V2Response.Card.MasterCard.OfflineLimit.Amount:
       type: object
       properties:
@@ -2379,9 +2458,9 @@ components:
             * Screen, Page & Field: ARQE12 - OFFLINE PIN
           example: false
         currency:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.Currency'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.Currency"
         offlineLimit:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.OfflineLimit'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.OfflineLimit"
     GenericEmbosserL8V2Response.Card.Visa.Currency:
       type: object
       properties:
@@ -2418,11 +2497,11 @@ components:
       type: object
       properties:
         contactless:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.Contactless'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.Contactless"
         international:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.International'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.International"
         amount:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.Amount'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.Amount"
     GenericEmbosserL8V2Response.Card.Visa.OfflineLimit.Amount:
       type: object
       properties:
@@ -2541,9 +2620,9 @@ components:
           format: int32
           example: 2
         identityDocuments:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Customer.IdentityDocuments'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Customer.IdentityDocuments"
         cardholder:
-          $ref: '#/components/schemas/GenericEmbosserL8V2Response.Customer.Cardholder'
+          $ref: "#/components/schemas/GenericEmbosserL8V2Response.Customer.Cardholder"
     GenericEmbosserL8V2Response.Customer.Cardholder:
       type: object
       properties:
@@ -2616,11 +2695,10 @@ components:
       type: object
       properties:
         record:
-          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Record'
+          $ref: "#/components/schemas/MassCardReissueDetailsResponseL8V6.Record"
         customerNumber:
           type: string
-          description: |-
-            * Max Length: 19
+          description: |2-
 
             Customer number that identifies the Customer Name/Address record associated
             with mass card issue request.
@@ -2629,18 +2707,18 @@ components:
 
             * Service Data: AZXQCO-CUST-NUMBER
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CUST NBR
-          example: "4513074002573466583"
+          example: "4759218604441630000"
         customerEmblem:
           type: integer
           description: "* Max Length: 5\n\nCode that defines the cardholder’s affiliation\
             \ or affinity group. The default is 0.\n\nVisionPLUS:\n\n* Service Data:\
             \ AZXQCO-EMBLEM \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBLEM "
           format: int32
-          example: 1
+          example: 58146
         account:
-          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Account'
+          $ref: "#/components/schemas/MassCardReissueDetailsResponseL8V6.Account"
         card:
-          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Card'
+          $ref: "#/components/schemas/MassCardReissueDetailsResponseL8V6.Card"
     MassCardReissueDetailsResponseL8V6.Account:
       type: object
       properties:
@@ -2651,7 +2729,7 @@ components:
             \ Data: AZXQCO-BANK-ORIGIN   \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - BANK ORIGIN "
           format: int32
-          example: 1
+          example: 999999999
         branch:
           type: integer
           description: "* Max Length: 9\n\nBranch number of the originating bank for\
@@ -2659,50 +2737,49 @@ components:
             \ Data: AZXQCO-BRANCH        \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - BRANCH"
           format: int32
-          example: 123456789
+          example: 999999999
         relationshipCode:
           type: string
-          description: "* Max Length: 1\n\nCode that indicates whether an Account\
-            \ Base Segment relationship account\nnumber exists for this Embossing\
-            \ Mass Card Issue request.\n\nValues:\n\n* S = Exists;\n* N = Does not\
-            \ exist (Default).\n\nVisionPLUS:\n\n* Service Data: AZXQCO-RELATION-AMBS\
-            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - RELATION AMBS "
+          description: "\nCode that indicates whether an Account Base Segment relationship\
+            \ account number exists for\nthis Embossing Mass Card Issue request.\n\
+            \nValues:\n\n* S = Exists;\n* N = Does not exist (Default).\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO-RELATION-AMBS \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - RELATION AMBS "
           example: "N"
         relationshipNumber:
           type: string
-          description: "* Max Length: 19\n\nNumber that identifies the Relationship\
-            \ record to which this subordinate\naccount is assigned. This field is\
-            \ blank for accounts not in a relationship.\n\nVisionPLUS:\n\n* Service\
-            \ Data: AZXQCO -REL-NBR \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - REL NUMBER"
-          example: "6014631947700000000"
+          description: "\nNumber that identifies the Relationship record to which\
+            \ this subordinate account is assigned.\nThis field is blank for accounts\
+            \ not in a relationship.\n\nVisionPLUS:\n\n* Service Data: AZXQCO -REL-NBR\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - REL NUMBER"
+          example: "5732624283072829089"
         processControlId:
           type: string
-          description: "* Max Length: 3\n\nIdentification code of the Processing Control\
-            \ table assigned to the account.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-PCT-ID\
-            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PCT ID "
-          example: C29
+          description: "\nIdentification code of the Processing Control table assigned\
+            \ to the account.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-PCT-ID \n*\
+            \ Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PCT ID "
+          example: "462"
         merchantRestrictCode:
           type: integer
           description: "* Max Length: 3\n\nCode that indicates the authorization merchant\
-            \ category code (MCC) restrict\ntable during authorization process.\n\n\
+            \ category code (MCC) restrict table during\nauthorization process.\n\n\
             Values: 000–999\n\nVisionPLUS:\n\n* Service Data: AZXQCO-AUTH-RSTR-TBL\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - AUTH RSTR TBL"
           format: int32
-          example: 178
+          example: 999
         creditLimit:
           type: number
           description: "* Max Length: 9\n\nTotal credit limit of the account.\n\n\
             Values: 000000000–999999999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-CREDIT-LIMIT\
             \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - TOT CR LMT"
-          example: 100000
+          example: 999999999
         globalQualification:
           type: string
-          description: "* Max Length: 1\n\nGlobal qualification value assigned to\
-            \ an account.\n\nValues:\n\n* space;\n* 1;\n* 2;\n* A–Z.\nNote: This field\
-            \ can be updated to 1 and 2, only when the country code is MEX.\n\nVisionPLUS:\n\
-            \n* Service Data: AZXQCO-GLOBAL-QUAL \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - GLOBAL QUAL "
+          description: "\nGlobal qualification value assigned to an account.\n\nValues:\n\
+            \n* space;\n* 1;\n* 2;\n* A–Z.\nNote: This field can be updated to 1 and\
+            \ 2, only when the country code is MEX.\n\nVisionPLUS:\n\n* Service Data:\
+            \ AZXQCO-GLOBAL-QUAL \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 -\
+            \ GLOBAL QUAL "
           example: "1"
         block:
           type: array
@@ -2719,20 +2796,24 @@ components:
 
             * Service Data: AZXQCO-BLOCK-CODE-1  / AZXQCO-BLOCK-CODE-2
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - BLK CODE 1 / BLK CODE 2
-          example: 1
+          example:
+            key: "1"
+            value: A
           items:
-            $ref: '#/components/schemas/ItemResponseNullableString'
+            $ref: "#/components/schemas/ItemResponseNullableString"
         user:
           type: array
           description: "* Items max length: 1\n* List size: 3\n\nThree-part field\
             \ that indicates whether the user statement messages are active for the\
             \ account.\n\nValues:\n\n* 0 = Do not print message on statements;\n*\
-            \ 1 = Print message on statements.\nThe '(*)' below assumes values from\
+            \ 1 = Print message on statements.\n\nThe '(*)' below assumes values from\
             \ 1 to 3.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-MES-USER-CODE-(*) \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - MSG USER CD "
-          example: 0
+            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - MSG USER CD"
+          example:
+            key: "1"
+            value: "0"
           items:
-            $ref: '#/components/schemas/ItemResponseNullableString'
+            $ref: "#/components/schemas/ItemResponseNullableInteger"
         data:
           type: array
           description: |
@@ -2745,9 +2826,11 @@ components:
 
             * Service Data: AZXQCO -USER-1 / AZXQCO -USER-2
             * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - USER 1 / USER 2
-          example: Code Description 1
+          example:
+            key: "1"
+            value: Code Description 1
           items:
-            $ref: '#/components/schemas/ItemResponseNullableString'
+            $ref: "#/components/schemas/ItemResponseNullableString"
     MassCardReissueDetailsResponseL8V6.Card:
       type: object
       properties:
@@ -2762,7 +2845,7 @@ components:
         scheme:
           type: integer
           description: "* Max Length: 1\n\nCard numbering scheme that determines the\
-            \ card numbers that are assigned\nto Embosser records associated with\
+            \ card numbers that are assigned to Embosser\nrecords associated with\
             \ the account.\n\nValues:\n\n* 0 = Standard, nonrelationship account in\
             \ which the account number and \nall card numbers are the same (Default);\n\
             * 1 = Relationship account in which the account number and all card \n\
@@ -2772,94 +2855,95 @@ components:
             \ card numbers are unique.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-SCHEME\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - SCHEME "
           format: int32
-          example: 1
+          example: 0
         technology:
-          type: string
-          description: "* Max Length: 1\n\nFlag that identifies the current card technology\
-            \ used for this account.\n\nValues:\n\n* 0 = Magnetic-stripe card(s) are\
-            \ on issue;\n* 1 = Smart card(s) are on issue;\n* 2 = Magnetic-stripe\
-            \ contactless card(s) are on issue;\n* 3 = Smart contactless card(s) are\
-            \ on issue.\n\nVisionPLUS:\n\n* Service Data: AZXQCO -CARD-TECHNOLOGY\
-            \     \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - CARD TECH"
-          example: "1"
+          type: integer
+          description: "\nFlag that identifies the current card technology used for\
+            \ this account.\n\nValues:\n\n* 0 = Magnetic-stripe card(s) are on issue;\n\
+            * 1 = Smart card(s) are on issue;\n* 2 = Magnetic-stripe contactless card(s)\
+            \ are on issue;\n* 3 = Smart contactless card(s) are on issue.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO -CARD-TECHNOLOGY     \n* Screen, Page & Field:\
+            \ AZ5I01/AZ6I01/AZ7I01 - CARD TECH"
+          format: int32
+          example: 0
         plasticId:
           type: string
-          description: "* Max Length: 10\n\nUser-defined code that identifies the\
-            \ plastic stock used to produce a card for\nan Embosser record.\n\nVisionPLUS:\n\
-            \n* Service Data: AZXQCO -PLASTIC-ID \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+          description: "\nUser-defined code that identifies the plastic stock used\
+            \ to produce a card for an Embosser\nrecord.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXQCO -PLASTIC-ID \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - PLASTIC ID"
-          example: "1"
+          example: "4444555522"
         isPrepaid:
           type: boolean
-          description: "* Max Length: 1\n\nCode that indicates whether the cards are\
-            \ prepaid cards.\n\nValues:\n\n* 0 = Non-prepaid;\n* 1 = Prepaid.\n\n\
-            VisionPLUS:\n\n* Service Data: AZXQCO-PREPAID-CARD-FLAG \n* Screen, Page\
-            \ & Field: AZ5I01/AZ6I01/AZ7I01 - PREPAID CARD FLAG"
-          example: false
+          description: "\nCode that indicates whether the cards are prepaid cards.\n\
+            \nValues:\n\n* false = Non-prepaid;\n* true = Prepaid.\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO-PREPAID-CARD-FLAG \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - PREPAID CARD FLAG"
+          example: true
         prepaidPlanNumber:
           type: integer
           description: "* Max Length: 5\n\nNumber of the prepaid credit plan.\n\n\
             VisionPLUS:\n\n* Service Data: AZXQCO-PREPAID-PLAN-NBR \n* Screen, Page\
             \ & Field: AZ5I01/AZ6I01/AZ7I01 - PREPAID PLAN NBR"
           format: int32
-          example: 1
+          example: 58146
         promotionCode:
           type: string
-          description: "* Max Length: 4\n\nPromotion code associated with the mass\
-            \ card issue.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-PROMO-CODE    \
-            \  \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - PROMO CD"
-          example: ABCD
+          description: "\nPromotion code associated with the mass card issue.\n\n\
+            VisionPLUS:\n\n* Service Data: AZXQCO-PROMO-CODE      \n* Screen, Page\
+            \ & Field: AZ5I01/AZ6I01/AZ7I01 - PROMO CD"
+          example: "2211"
         posServiceCode:
           type: string
-          description: "* Max Length: 3\n\nCode that indicates the type of point-of-sale\
-            \ service in effect for a card. The\ndefault is spaces.\n\nVisionPLUS:\n\
-            \n* Service Data: AZXQCO -POS-SERVICE-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+          description: "\nCode that indicates the type of point-of-sale service in\
+            \ effect for a card. The default is spaces.\n\nVisionPLUS:\n\n* Service\
+            \ Data: AZXQCO -POS-SERVICE-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - POS SVC COD"
-          example: "1"
+          example: "110"
         embosserCode:
           type: string
-          description: "* Max Length: 1\n\nBlock code to be updated on the Embosser\
-            \ records during mass issuance of\ncards.\n\nValues: A–Z and blank (or\
-            \ space).\n\nVisionPLUS:\n\n* Service Data: AZXQCO-EMBOSSER-CODE \n* Screen,\
-            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMBOSS CODE"
-          example: E
+          description: "\nBlock code to be updated on the Embosser records during\
+            \ mass issuance of\ncards.\n\nValues: A–Z and blank (or space).\n\nVisionPLUS:\n\
+            \n* Service Data: AZXQCO-EMBOSSER-CODE \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+            \ - EMBOSS CODE"
+          example: A
         embossingName:
           type: string
-          description: "* Max Length: 26\n\nName to be embossed on the first embossing\
-            \ line of the card during mass\ncard issue. Enter the name exactly as\
-            \ it is to appear on the card.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-EMBOSSED-NAME-1\
+          description: "\nName to be embossed on the first embossing line of the card\
+            \ during mass card issue. Enter the \nname exactly as it is to appear\
+            \ on the card.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-EMBOSSED-NAME-1\
             \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - EMB N1"
-          example: NAME 1
+          example: Embossed Name
         additionalEmbossingName:
           type: string
-          description: "* Max Length: 26\n\nAdditional name to be embossed on the\
-            \ second embossing line of the card.\nEnter the name exactly as it is\
-            \ to appear on the card. For example, this field\nmay contain the name\
-            \ of a business if the card is issued for a business\naccount.\n\nVisionPLUS:\n\
-            \n* Service Data: AZXQCO-EMBOSSED-NAME-2 \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
+          description: "\nAdditional name to be embossed on the second embossing line\
+            \ of the card.Enter the name \nexactly as it is to appear on the card.\
+            \ For example, this field may contain the name of a \nbusiness if the\
+            \ card is issued for a business account.\n\nVisionPLUS:\n\n* Service Data:\
+            \ AZXQCO-EMBOSSED-NAME-2 \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - EMB N2"
-          example: NAME 2
+          example: Additional Name
         creditLimit:
-          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.CreditLimit'
+          $ref: "#/components/schemas/MassCardReissueDetailsResponseL8V6.CreditLimit"
         inventory:
-          $ref: '#/components/schemas/MassCardReissueDetailsResponseL8V6.Inventory'
+          $ref: "#/components/schemas/MassCardReissueDetailsResponseL8V6.Inventory"
     MassCardReissueDetailsResponseL8V6.CreditLimit:
       type: object
       properties:
         authorization:
           type: number
           description: "* Max Length: 17\n\nCode that indicates the authorization\
-            \ credit limit assigned at the card\nlevel. The total of the credit limit\
-            \ on the account should not exceed the\nrelationship credit limit. If\
-            \ it exceeds, the account is not boarded and\nan error message is displayed.\n\
+            \ credit limit assigned at the card level. The total of \nthe credit limit\
+            \ on the account should not exceed the relationship credit limit. If it\
+            \ \nexceeds, the account is not boarded and an error message is displayed.\n\
             \nVisionPLUS:\n\n* Service Data: AZXQCO-AUTH-CR-LM \n* Screen, Page &\
             \ Field: AZ5I01/AZ6I01/AZ7I01 - AUTH CR LM"
           example: 178287392723912.34
         foreign:
           type: number
           description: "* Max Length: 13\n\nField that indicates the card credit limit\
-            \ in foreign currency (USD) for\nthe local card. This field accepts values\
-            \ only for local cards and is\ndisplay-only for foreign cards.\n\nVisionPLUS:\n\
+            \ in foreign currency (USD) for the local card. This\nfield accepts values\
+            \ only for local cards and is display-only for foreign cards.\n\nVisionPLUS:\n\
             \n* Service Data: AZXQCO-CR-LIM-FGN \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
             \ - CRLIM FGN"
           example: 14892364989.36
@@ -2872,30 +2956,30 @@ components:
             \n* Service Data: AZXQCO-INVENTORY-QUANTITY \n* Screen, Page & Field:\
             \ AZ5I01/AZ6I01/AZ7I01 - INVENTORY QTY"
           format: int32
-          example: 1
+          example: 11201
         control:
           type: string
-          description: "* Max Length: 2\n\nCode that indicates whether the current\
-            \ inventory quantity is used\nwhen generating the requested number of\
-            \ cards.\n\nValues:\n\n* CI = Current inventory quantity is considered;\n\
-            * SO = Requested number of cards is considered;\n* NO = Requested generation\
-            \ is not considered.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-INVENTORY-CONTROL\
-            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - INVENTORY CONTROL "
+          description: "\nCode that indicates whether the current inventory quantity\
+            \ is used when generating the\nrequested number of cards.\n\nValues:\n\
+            \n* CI = Current inventory quantity is considered;\n* SO = Requested number\
+            \ of cards is considered;\n* NO = Requested generation is not considered.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXQCO-INVENTORY-CONTROL \n* Screen,\
+            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - INVENTORY CONTROL "
           example: CI
         issuedQuantity:
           type: integer
-          description: "* Max Length: 4\n\nQuantity of cards to be issued.\n\nValues:\
-            \ 00000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-MIN-QUANTITY \n\
-            * Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE "
+          description: "* Max Length: 5\n\nQuantity of cards to be issued.\n\nValues:\
+            \ 00000–99999.\n\nVisionPLUS:\n\n* Service Data: AZXQCO-QUANTITY-TO-CREATE\
+            \ \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01 - QUANTITY TO CREATE "
           format: int32
-          example: 2
+          example: 99999
         minimumIssuedQuantity:
           type: integer
-          description: "* Max Length: 5\n\nMinimum quantity of cards to be issued.\n\
-            \nVisionPLUS:\n\n* Service Data: AZXQCO-QUANTITY-TO-CREATE \n* Screen,\
-            \ Page & Field: AZ5I01/AZ6I01/AZ7I01 - MIN QUANTITY "
+          description: "* Max Length: 4\n\nMinimum quantity of cards to be issued.\n\
+            \nVisionPLUS:\n\n* Service Data: AZXQCO-MIN-QUANTITY \n* Screen, Page\
+            \ & Field: AZ5I01/AZ6I01/AZ7I01 - MIN QUANTITY "
           format: int32
-          example: 8
+          example: 1101
     MassCardReissueDetailsResponseL8V6.Record:
       type: object
       properties:
@@ -2925,9 +3009,10 @@ components:
           example: 99
         lastMaintenanceDate:
           type: string
-          description: "Max length: 7\n\nDate Last Maintain (in ISO 8601).\n\nDate\
-            \ of last maintenance for this record. Format: CCYY-MM-DD\n\nVisionPLUS:\n\
-            \n* Service Data: AZXQCO-DATE-LAST-MAINT \n* Screen, Page & Field: AZ5I01/AZ6I01/AZ7I01\
-            \ - DATE LAST MAINT"
+          description: "\nDate of last maintenance for this record. Format: CCYY-MM-DD\n\
+            \nVisionPLUS:\n\n* Service Data: AZXQCO-DATE-LAST-MAINT \n* Screen, Page\
+            \ & Field: AZ5I01/AZ6I01/AZ7I01 - DATE LAST MAINT"
           format: date
-          example: 2023-01-19
+          example: 2023-01-20
+x-config:
+  tryItOut: 'true'
