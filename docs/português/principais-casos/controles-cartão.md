@@ -109,6 +109,7 @@ Os valores solicitados por esta API são número do cartão, canal, organizaçã
 **PUT** `/cards/pin/status`
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
+
 ---
 
 ## Veja também
