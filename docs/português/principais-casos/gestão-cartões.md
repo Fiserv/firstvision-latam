@@ -57,6 +57,7 @@ Os valores de segurança fornecidos pela API serão criptografados usando uma ch
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
 ## Consultar Valores Dinâmicos
+
 Esta API permite calcular e consultar um novo CVV2 para compras com cartão ausente.
 
 Atualmente, quando o cartão é gravado via API **Card Embosser**, o código CVV2 estático é calculado e impresso no painel de assinatura no verso do cartão. A nova funcionalidade do Dynamic CVV2 permite que o titular do cartão chame esta API para gerar e calcular um novo CVV2 antes de fazer uma compra não presente. Portanto, quando a API é ativada, o CVV2 estático é desativado e cada vez que o portador do cartão desejar fazer uma nova compra sem o cartão presente, o novo CVV2 deve ser calculado usando esta API.
@@ -66,6 +67,7 @@ Atualmente, quando o cartão é gravado via API **Card Embosser**, o código CVV
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
 ## Validação de PIN
+
 Esta API confirme se o PIN gerado está correto.
 
 Esta API requer o PIN Block e o número do cartão e não o PIN claro.
