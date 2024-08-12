@@ -32,7 +32,7 @@ O emissor utilizará o KID compartilhado pela Fiserv para identificar a chave pr
 
 ![image](https://github.com/user-attachments/assets/69ba85c2-c203-4040-b4c9-14cbeb8d0c5a)
 
-### Estrutura Exemplo JWE Incluindo o KID:
+### Estrutura Exemplo JWE Incluindo o KID
 
 ![image](https://github.com/user-attachments/assets/6d371ec9-e3fc-4c54-8e99-2f15c51f7c60)
 
