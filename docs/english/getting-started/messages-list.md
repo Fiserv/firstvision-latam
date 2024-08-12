@@ -70,6 +70,7 @@ tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processi
 | [User Codes Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/account/userData&branch=main&version=1.2.0)                                                                             | M.CMS.ACCT.USER.DATA.UPD       | R8V1    | /account/userData                                                                                                                                                  | PUT    |
 
 ### Cards
+
 | Name                                                                                                                                                                              | Service                      | Version | API endpoint                                                                                                                   | Method |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ | ------ |
 | [Account Card Assignment](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/v1/cards/account&branch=main&version=1.2.0)                             | M.CMS.PREPAIDACCT.ASSIGN.UPD | L8V1    | /cards/v1/cards/account                                                                                                        | PUT    |
@@ -105,6 +106,7 @@ tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processi
 | [Travel Indicator Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/travel&branch=main&version=1.2.0)                                       | M.CMS.TRAVELIND.UPD          | L8V1    | /cards/travel                                                                                                                  | PUT    |
 
 ### Customer
+
 | Name                                                                                                                                                                                    | Service                 | Version | API endpoint                                    | Method |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | ------- | ----------------------------------------------- | ------ |
 | [Account Number Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/customer/accountNumber&branch=main&version=1.2.0)                                   | M.CMS.CUST.TO.ACCT.INQ  | R8V3    | /customer/accountNumber                         | POST   |
@@ -138,6 +140,7 @@ tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processi
 | [Statement Summary Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=get&path=/loyalty/statementSummary/%7baccountNumber%7d&branch=main&version=1.2.0)  | M.LMS.STMT.SUMMARY.INQ         | R8V1    | /loyalty/statementSummary/{accountNumber} | GET    |
 
 ### Notifications
+
 | Name                                                                                                                                                            | API endpoint                         | Method |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------ |
 | [Token Access](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/token&branch=main&version=1.2.0)                     | /notifications/v3/token              | POST   |
@@ -222,6 +225,7 @@ tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processi
 | [Customer Address Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/account/customer&branch=main&version=1.1.0)                          | M.CMS.ACCTCUSTNBR.UPD   | L8V1    | /account/customer                 | PUT    |
 
 ### Cards
+
 | Name                                                                                                                                                     | Service              | Version | API endpoint              | Method |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------- | ------------------------- | ------ |
 | [Embosser Add](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/&branch=main&version=1.1.0)                     | M.CMS.EMBOSSER.ADD   | L8V8    | /cards/embosser/          | POST   |
@@ -235,6 +239,7 @@ tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processi
 |[Cards Details Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/customer/details-l8v4&branch=main&version=1.1.0)|M.CMS.CUSTCHANNEL.INQ|L8V4|/customer/details-l8v4|POST|
 
 ### Notifications
+
 | Name                                                                                                                                     | Service | Version | API endpoint         | Method |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- | -------------------- | ------ |
 | [Notification](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/v2/pushNotification&branch=main&version=1.1.0) |         |         | /v2/pushNotification | POST   |
@@ -289,6 +294,7 @@ tags: [Getting Started, VMX, Services List, First Vision, Issuing, Card Processi
 |[Outstanding Authorizations Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/transactions/outstanding-authorizations-L8V3/details&branch=main&version=1.0.0)|M.FAS.OUTSTANDING.AUTH.INQ|L8V3|/transactions/outstanding-authorizations-L8V3/details|POST|
 
 ---
+
 ## Preview
 
 | Domain       | Name                                                                                                                                                                                                                               | Service                        | Version | API endpoint                                                               | Method |
