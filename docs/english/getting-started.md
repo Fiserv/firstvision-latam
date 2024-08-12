@@ -10,7 +10,7 @@ After these steps, you're ready to start test the Payments API.
 
 ## Step 1: Get your API Key
 
-1. Provide the bank’s or financial institution’s name, user/users full name and e-mail address and submit to latamAPIs@fiserv.com and your assigned Account Manager or Commercial representative. If you are new user please share your name and e-mail address to latamAPIs@fiserv.com and we will contact you. 
+1. Provide the bank’s or financial institution’s name, user/users full name and e-mail address and submit to <latamAPIs@fiserv.com> and your assigned Account Manager or Commercial representative. If you are new user please share your name and e-mail address to <latamAPIs@fiserv.com> and we will contact you. 
 
 2. Expect a confirmation e-mail from Fiserv’s assigned Account Manager or Client Partner with the assigned credentials.
 
