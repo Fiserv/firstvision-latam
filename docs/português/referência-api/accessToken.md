@@ -82,6 +82,7 @@ END IF
 ```
 
 ### Exemplo de Resposta
+
 ```json
 {   
     "token_type": "BearerToken",
