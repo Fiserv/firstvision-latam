@@ -8,15 +8,17 @@ Para confirmar se as APIs que pretende utilizar suportam a criptografia JWE, ent
 
 Os emissores gerarão um Par de Chaves Públicas/Privadas RSA usando qualquer ferramenta de Criptografia e SSL/TLS compatível com OpenSSL.
 
-### Exemplos de Comandos usando o OpenSSL:
+### Exemplos de Comandos usando o OpenSSL
 
-1. Gerar uma chave privada RSA, de tamanho 2048, e salvá-la em um arquivo chamado key.pem:
-   ```
+- Gerar uma chave privada RSA, de tamanho 2048, e salvá-la em um arquivo chamado key.pem:
+
+  ```openssl
    openssl genrsa -out key.pem 2048
    ```
 
-2. Extrair a chave pública e salvá-la em um arquivo chamado public.pem:
-   ```
+- Extrair a chave pública e salvá-la em um arquivo chamado public.pem:
+
+   ```openssl
    openssl rsa -in key.pem -outform PEM -pubout -out public.pem
    ```
 
