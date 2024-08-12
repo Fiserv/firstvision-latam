@@ -10,7 +10,7 @@ Após essas etapas, você estará pronto para começar a testar a API de pagamen
 
 ## Passo 1: Obtenha sua chave de API
 
-1. Envie o nome do banco ou instituição financeira, o nome completo do usuário ou usuários e um endereço de e-mail para latamAPIs@fiserv.com e seu gerente de contas ou representante comercial designado
+1. Envie o nome do banco ou instituição financeira, o nome completo do usuário ou usuários e um endereço de e-mail para <latamAPIs@fiserv.com> e seu gerente de contas ou representante comercial designado
 
 2. Aguarde um e-mail de confirmação do gerente de contas Fiserv ou de seu cliente parceiro com as credenciais atribuídas.
 
