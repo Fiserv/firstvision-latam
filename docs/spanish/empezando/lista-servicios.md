@@ -7,6 +7,7 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 ## Version 1.2.0
 
 ### Account 
+
 | Nombre de Endpoint                                                                                                                                                                                                                  | Servicio                        | Version | API endpoint                                             | Método |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
 | [Account Add](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/account/add-L8V3&branch=main&version=1.2.0)                                                                                  | M.CMS.ACCOUNT.ADD              | L8V3    | /account/add-L8V3                                                                                                                                                  | POST   |
@@ -84,10 +85,10 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 | [Dynamic Values Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/pin/dynamic-values&branch=main&version=1.2.0)                                   | M.CMS.GENERATE.DCVV2         | R8V1        | /cards/pin/dynamic-values                       | POST       |
 | [Embosser Add](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/l8vf&branch=main&version=1.2.0)                                                  | M.CMS.EMBOSSER.ADD           | L8VF        | /cards/embosser/l8vf                            | POST       |
 | [Embosser Block Code Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/embosser/block&branch=main&version=1.2.0)                                    | M.CMS.EMB.BLKCD.UPD          | R8V1        | /cards/embosser/block                           | PUT        |
-| [Embosser Generation<br>](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/v1/embosser/instantGeneration&branch=main&version=1.2.0)<br>                   | M.CMS.INSTANT.EMB.GEN        | R8V5        | /cards/v1/embosser/instantGeneration            | POST       |
+| [Embosser Generation](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/v1/embosser/instantGeneration&branch=main&version=1.2.0)                   | M.CMS.INSTANT.EMB.GEN        | R8V5        | /cards/v1/embosser/instantGeneration            | POST       |
 | [Embosser Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/v2/embosser/details&branch=main&version=1.2.0)                                        | M.CMS.EMBOSSER.INQ           | L8VE        | /cards/v2/embosser/details                      | POST       |
 | [Embosser List Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/v1/embosser/search&branch=main&version=1.2.0)                                    | M.CMS.EMB.LIST.INQ           | L8V1        | /cards/v1/embosser/search                       | POST       |
-| [Embosser Navigational Inquiry<br>](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=get&path=/cards/embosser/%7bcardNumber%7d/navigational&branch=main&version=1.2.0)<br> | M.CMS.EMB.NAV.SVC            | R8V1        | /cards/embosser/{cardNumber}/navigational       | GET        |
+| [Embosser Navigational Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=get&path=/cards/embosser/%7bcardNumber%7d/navigational&branch=main&version=1.2.0) | M.CMS.EMB.NAV.SVC            | R8V1        | /cards/embosser/{cardNumber}/navigational       | GET        |
 | [Embosser Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/v3/embosser&branch=main&version=1.2.0)                                                  | M.CMS.EMBOSSER.UPD           | L8V6        | /cards/v3/embosser                              | PUT        |
 | [Invalid Attempts Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/pin/invalid-attempts&branch=main&version=1.2.0)                               | M.CMS.INV.PINTRIES.CTR.INQ   | L8V1        | /cards/pin/invalid-attempts                     | POST       |
 | [Mass Card Issue Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/mass-card-issue-L8V3&branch=main&version=1.2.0)                                 | M.CMS.MASS.CARD.ISSUE.UPD    | L8V3        | /cards/mass-card-issue-L8V3                     | POST       |
@@ -96,13 +97,14 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 | [PIN Change](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/pin/pin-change&branch=main&version=1.2.0)                                                    | M.CMS.PIN.CHANGE             | R8V2        | /cards/pin/pin-change | PUT        |
 | [PIN Reassign](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/pin/&branch=main&version=1.2.0)                                                            | M.CMS.PIN.REASSIGNMENT       | R8V1        | /cards/pin/                                     | PUT        |
 | [PIN Validate](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/pin/validation&branch=main&version=1.2.0)                                                 | M.CMS.PIN.VALIDATE           | R8V1        | /cards/pin/validation                           | POST       |
-| [Same Day Plastic Add/Update<br>](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/sameDay&branch=main&version=1.2.0)<br>                        | M.CMS.SAMEDAYPLASTIC.UPD     | R8V1        | /cards/embosser/sameDay                         | POST       |
+| [Same Day Plastic Add/Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/sameDay&branch=main&version=1.2.0)                        | M.CMS.SAMEDAYPLASTIC.UPD     | R8V1        | /cards/embosser/sameDay                         | POST       |
 | [Security Values Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/v1/pin/codes&branch=main&version=1.2.0)                                        | M.CMS.SEC.VALUES.INQ         | R8V2        | /cards/v1/pin/codes                             | POST       |
 | [Spending Limits Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/spend-limits-L8V3&branch=main&version=1.2.0)                                     | M.CMS.CARDSPENDLIMITS.UPD    | L8V3        | /cards/spend-limits-L8V3                        | PUT        |
 | [Statement Details By Date Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/statement-detail/date&branch=main&version=1.2.0)                     | M.CMS.STATEMENTDATE.INQ      | R8V2        | /cards/statement-detail/date                    | POST       |
 | [Statement Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/statement-detail&branch=main&version=1.2.0)                                          | M.CMS.STATEMENT.INQ          | R8V3        | /cards/statement-detail                         | POST       |
 | [Temporary Credit Limit Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/temporary-credit-limit&branch=main&version=1.2.0)                         | M.CMS.TEMP.CREDITLIMIT.UPD   | R8V1        | /cards/temporary-credit-limit                   | PUT        |
 | [Travel Indicator Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/travel&branch=main&version=1.2.0)                                               | M.CMS.TRAVELIND.UPD          | L8V1        | /cards/travel                                   | PUT        |
+
 ### Customer
 
 | Nombre de Endpoint                                                                                                                                                                                    | Servicio                 | Version | API endpoint                                    | Método |
@@ -138,6 +140,7 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 
 
 ### Notifications
+
 | Nombre de endpoint                                                                                                                                                            | API endpoint                         | Metodo |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------ |
 | [Token Access](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/token&branch=main&version=1.2.0)                     | /notifications/v3/token              | POST   |
@@ -241,6 +244,7 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 | [Demographic Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/customer/demographicData&branch=main&version=1.1.0) | M.CMS.DEMOGRAPHIC.INQ | R8V4    | /customer/demographicData | POST   |
 
 ### Notifications
+
 | Name                                                                                                                                     | Service | Version | API endpoint         | Method |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- | -------------------- | ------ |
 | [Notification](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/v2/pushNotification&branch=main&version=1.1.0) |         |         | /v2/pushNotification | POST   |
