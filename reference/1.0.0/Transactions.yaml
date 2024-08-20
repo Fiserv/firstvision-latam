@@ -1,8 +1,10 @@
 openapi: 3.0.1
 info:
-  title: "FirstVision\u2122 Transactions Service - API Documentation"
+  title: "FirstVision\u2122 Transaction Service - API Documentation"
   description: "This documentation describes the REST APIs provided by the FirstVision\u2122\
-    \ Transactions Microservice for Ual\xE1."
+    \ Cards Microservice, which provides functionality for the issuing, management\
+    \ and processing of credit cards, including bank, co-branded, private label, debit,\
+    \ commercial, and prepaid"
   version: '1.2'
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
@@ -11,16 +13,11 @@ paths:
     post:
       tags:
       - Transactions
-      summary: 'Fetches data of both old and new transactions(including today''s)
-        which are settled to an account.
-
-
-        VMX Service: M.FAS.OUTSTANDING.AUTH.INQ, L8V3'
-      description: 'Fetches data of both old and new transactions(including today''s)
-        which are settled to an account.
-
-
-        VMX Service: M.FAS.OUTSTANDING.AUTH.INQ, L8V3'
+      summary: "Fetches data of both old and new transactions(including today's) which\
+        \ are settled to an account. \nVMX Service: M.FAS.OUTSTANDING.AUTH.INQ, L8V3"
+      description: "Fetches data of both old and new transactions(including today's)\
+        \ which are settled to an account. \nVMX Service: M.FAS.OUTSTANDING.AUTH.INQ,\
+        \ L8V3"
       operationId: outstandingAuthorizationL8V3
       parameters:
       - name: apikey
@@ -40,11 +37,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Request'
+              $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Request"
         required: true
       responses:
-        
-        '500':
+        "403":
+          description: Forbidden
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "422":
           description: "VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\n\nVPL5SOA07E - ACCOUNT NUMBER IS INVALID\n\nVPL5SOA08E\
             \ - START TOKEN EFFECTIVE DATE REQUIRED WHEN FUNCTION IS NEXT/PREV\n\n\
@@ -55,52 +65,38 @@ paths:
             \ CODE IS INVALID\n\nVPL5SOA15S - REQUESTED ORGANIZATION COULD NOT BE\
             \ DETERMINED\n\nVPL5SOA16S - REQUESTED ORGANIZATION NOT FOUND\n\nVPL5SOA19S\
             \ - ORGANIZATION NOT FOUND ON FILE\n\nVPL5SOA20I - FOREIGN USE ORG UNAVAILABLE\
-            \ PROCESSED LOCAL ORG ACCOUNT DATA\n\nVPL5SOA20I - FOREIGN USE ORG UNAVAILABLE\
             \ PROCESSED LOCAL ORG ACCOUNT DATA\n\nVPL5SOA21S - FOREIGN ORGANIZATION\
             \ NOT FOUND ON FILE \n\nVPL5SOA22S - ACCOUNT NUMBER NOT FOUND\n\nVPL5SOA24S\
-            \ - LOGO NOT FOUND ON FILE"
+            \ - LOGO NOT FOUND ON FILE\n\nVPL7SOA50I - NO AUTHS RETURNED FOR THIS\
+            \ ACCT"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        '401':
-          description: Unauthorized
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '403':
-          description: Forbidden
-        '300':
-          description: Redirection
+                $ref: "#/components/schemas/DResponse"
+        "500":
+          description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        '200':
+                $ref: "#/components/schemas/DResponse"
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response'
-        '405':
-          description: Method Not Allowed
+                $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Response"
+        "400":
+          description: Bad Request
       x-proxy-name: Outstanding Authorizations Inquiry
       x-group-name: Transactions
   /transactions/details:
     post:
       tags:
       - Transactions
-      summary: 'Provides transaction detail information for the current billing cycle
-        or statement transactions within a date range.
-
-
-        VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, R8V6'
-      description: 'Provides transaction detail information for the current billing
-        cycle or statement transactions within a date range.
-
-
-        VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, R8V6'
+      summary: "Transaction details. VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, R8V6"
+      description: "Provides transaction detail information for the current billing\
+        \ cycle or statement transactions within a date range. \nVMX Service: M.CMS.TRANSACTIONDETAIL.INQ,\
+        \ R8V6"
       operationId: Transactions Details Inquiry
       parameters:
       - name: apikey
@@ -116,151 +112,83 @@ paths:
         schema:
           type: string
         example: 00970
+
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TransactionsDetailsRequest'
+              $ref: "#/components/schemas/TransactionsDetailsRequest"
         required: true
       responses:
-        
-        '401':
-          description: Unauthorized
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '403':
+        "403":
           description: Forbidden
-        '300':
+        "405":
+          description: Method Not Allowed
+        "300":
           description: Redirection
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        '500':
-          description: 'VPL5STD01I - NO TRANSACTIONS FOUND FOR REQUEST
-
-
-            VPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE
-            000-998
-
-
+                $ref: "#/components/schemas/DResponse"
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "422":
+          description: |
+            VPL5STD01I - NO TRANSACTIONS FOUND FOR REQUEST
+            VPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
             VPL5STD05E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
-
-
             VPL5STD06E - FUNCTION TYPE VALID VALUES ARE SPACE, C, R, M OR B
-
-
             VPL5STD07E - NUMBER OF TRANSACTIONS CANNOT BE GREATER THAN 50
-
-
-            VPL5STD08E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0
-            OR 1
-
-
+            VPL5STD08E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0 OR 1
             VPL5STD09E - NUMBER OF MONTHS IS REQUIRED WHEN REQUEST IS BY MONTH
-
-
             VPL5STD10E - TRANSACTION START DATE IS NOT A VALID DATE
-
-
             VPL5STD11E - TRANSACTION START DATE IS NOT NUMERIC
-
-
             VPL5STD12E - TRANSACTION START DATE IS NOT VALID WHEN REQUEST IS BY MONTH
-
-
             VPL5STD13E - TRANSACTION END DATE FORMAT IS NOT A VALID DATE
-
-
             VPL5STD14E - TRANSACTION END DATE IS NOT NUMERIC
-
-
             VPL5STD15E - TRANSACTION END DATE IS NOT VALID WHEN REQUEST IS BY MONTH
-
-
-            VPL5STD16E - TRANSACTION END DATE MUST BE GREATER THAN TRANSACTION BEGIN
-            DATE
-
-
+            VPL5STD16E - TRANSACTION END DATE MUST BE GREATER THAN TRANSACTION BEGIN DATE
             VPL5STD17E - STATEMENT OCCURRENCE NUMBER IS NOT NUMERIC
-
-
             VPL5STD20S - ORGANIZATION NUMBER NOT FOUND ON FILE
-
-
             VPL5STD21S - FOREIGN ORGANIZATION NUMBER IS NOT FOUND ON FILE
-
-
             VPL5STD22S - ACCOUNT NOT FOUND ON FILE
-
-
             VPL5STD23I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
-
-
             VPL5STD23S - NO TRANSACTIONS FOUND - STATEMENTS
-
-
             VPL5STD24S - NO TRANSACTIONS FOUND - STATEMENTS
-
-
             VPL5STD25I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
-
-
             VPL5STD26E - MINIMUM TRANSACTION AMOUNT MUST BE NUMERIC
-
-
             VPL5STD27E - MAXIMUM TRANSACTION AMOUNT MUST BE NUMERIC
-
-
             VPL5STD28E - MIN AND MAX TRANSACTION AMOUNTS MUST BE NUMERIC
-
-
             VPL5STD29E - MINIMUM AMOUNT CANNOT BE GREATER THAN MAXIMUM AMOUNT
-
-
             VPL5STD30E - FUNCTION CODE MUST BE EQUAL TO SPACE, N OR P
-
-
             VPL5STD31E - START TOKEN SEQUENCE NUMBER MUST BE NUMERIC
-
-
             VPL5STD32E - START TOKEN STATEMENT DATE MUST BE NUMERIC
-
-
             VPL5STD33E - STATEMENT DATE IS INVALID
-
-
-            VPL5STD34E - START TOKEN FILE TYPE IS INVALID. VALID VALUES ARE C S AND
-            L
-
-
+            VPL5STD34E - START TOKEN FILE TYPE IS INVALID. VALID VALUES ARE C S AND L
             VPL5STD35E - CURRENCY CODE NOT ON FILE
-
-
             VPL5STD36E - INVALID TRANSACTION TYPE
-
-
             VPL5STDZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-
-
             VPL5STDZ5S - REQUESTED ORGANIZATION NOT FOUND
-
-
-            '
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        '200':
+                $ref: "#/components/schemas/DResponse"
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionsDetailsResponse'
-        '405':
-          description: Method Not Allowed
+                $ref: "#/components/schemas/TransactionsDetailsResponse"
+        "400":
+          description: Bad Request
       x-proxy-name: Transactions Details Inquiry
       x-group-name: Transactions
 components:
@@ -270,44 +198,41 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Organization Number.
 
-
-            VisionPLUS Service Data: OZXOAI-ORG'
+            VisionPLUS Service Data: OZXOAI-ORG
           format: int32
           example: 998
         effectiveAuthorizationDate:
           type: string
-          description: 'Effective Authorization Date (in ISO 8601).
-
+          description: |-
+            Effective Authorization Date (in ISO 8601).
             Required for navigating results.
 
-
-            VisionPLUS Service Data: OZXOAI-EFF-DATE'
+            VisionPLUS Service Data: OZXOAI-EFF-DATE
           format: date
           example: 2023-06-26
         effectiveAuthorizationTime:
           type: integer
-          description: '* Max Length: 6
-
+          description: |-
+            * Max Length: 6
 
             Effective Authorization Time. Required for navigating results.
 
-
-            VisionPLUS Service Data: OZXOAI-TIME'
+            VisionPLUS Service Data: OZXOAI-TIME
           format: int32
           example: 112233
         accountNumber:
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Account Number.
+          description: |-
+            Account Number.
 
-
-            VisionPLUS Service Data: OZXOAI-ACCT'
+            VisionPLUS Service Data: OZXOAI-ACCT
           example: 000123456XXXXX12345
         foreignUseIndicator:
           maximum: 1
@@ -315,150 +240,123 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Foreign Use Indicator.
-
+          description: |-
+            Foreign Use Indicator.
 
             Values:
-
             * 0 = Local account;
-
             * 1 = Foreign account.
 
-
-            VisionPLUS Service Data: OZXOAI-FOREIGN-USE'
-          example: '0'
+            VisionPLUS Service Data: OZXOAI-FOREIGN-USE
+          example: "0"
         functionCode:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Function code for navigating results.
 
-
             Values:
-
             * N = Next query;
-
             * P = Previous query.
 
-
-            VisionPLUS Service Data: OZXOAI-SVC-FUNC-CODE'
+            VisionPLUS Service Data: OZXOAI-SVC-FUNC-CODE
           example: P
         filter:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Filter for results.
-
-
             Values:
-
             * Space = All authorizations;
-
             * Low value = All authorizations;
-
             * A = Approved authorizations;
-
             * D = Declined authorizations.
 
-
-            VisionPLUS Service Data: OZXOAI-ACTION-FILTER'
+            VisionPLUS Service Data: OZXOAI-ACTION-FILTER
           example: A
         numberOfAuthorizationsRequested:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Number of authorizations requested.
-
             Values 1 through 100.
-
             The initial value is 100.
 
-
-            VisionPLUS Service Data: OZXOAI-NBR-OF-RECS-REQ'
+            VisionPLUS Service Data: OZXOAI-NBR-OF-RECS-REQ
           format: int32
           example: 100
         authorizationNumber:
           type: string
-          description: '* Max Length: 6
-
+          description: |-
+            * Max Length: 6
 
             Authorization number.
 
-
-            VisionPLUS Service Data: OZXOAI-AUTH-NBR'
-          example: '111111'
+            VisionPLUS Service Data: OZXOAI-AUTH-NBR
+          example: "111111"
         logRecordTypeOfTheTransaction:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Log Record Type Of The Transaction.
 
-
             Values:
-
             * 4 = Local account transaction;
-
             * 5 = Dual account transaction;
-
             * 6 = Non-dual account transaction.
 
-
-            VisionPLUS Service Data: OZXOAI-TXN-REC-TYPE'
+            VisionPLUS Service Data: OZXOAI-TXN-REC-TYPE
           format: int32
           example: 6
         extentOfTheLogFile:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Extent Of The Log File.
 
-
-            VisionPLUS Service Data: OZXOAI-ACCOUNT-LOG-EXT'
+            VisionPLUS Service Data: OZXOAI-ACCOUNT-LOG-EXT
           format: int32
           example: 0
         relativeByteAddress:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Relative By Address.
 
-
-            VisionPLUS Service Data: OZXOAI-ACCOUNT-RBA'
+            VisionPLUS Service Data: OZXOAI-ACCOUNT-RBA
           format: int32
           example: 1
         authorizationDateFrom:
           type: string
-          description: 'Authorization From Date (in ISO 8601).
+          description: |-
+            Authorization From Date (in ISO 8601).
 
-
-            VisionPLUS Service Data: OZXOAI-AUTH-FROM-DATE'
+            VisionPLUS Service Data: OZXOAI-AUTH-FROM-DATE
           format: date
           example: 2023-06-26
         authorizationDateTo:
           type: string
-          description: 'Authorization To Date (in ISO 8601).
+          description: |-
+            Authorization To Date (in ISO 8601).
 
-
-            VisionPLUS Service Data: OZXOAI-AUTH-TO-DATE'
+            VisionPLUS Service Data: OZXOAI-AUTH-TO-DATE
           format: date
           example: 2023-06-26
         cardNumber:
           type: string
-          description: '* Max Length: 19
-
+          description: |-
+            * Max Length: 19
 
             Unique identifier or token associated with the card number or payment,
-
             instrument (FirstVision PAN Token).
 
-
-            VisionPLUS Service Data: OZXOAI-CARD-NBR'
+            VisionPLUS Service Data: OZXOAI-CARD-NBR
           example: 000123456XXXXX12345
       description: Outstanding Authorizations Request
     DResponse:
@@ -469,7 +367,7 @@ components:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
         data:
           type: object
     Error:
@@ -484,131 +382,119 @@ components:
       properties:
         xfrFromCurrency:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             XFR from currency.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-XFR-FROM-CURR'
+            VisionPLUS Service Data: OZXOAO-MWP-XFR-FROM-CURR
           format: int32
           example: 100
         xfrFromAmount:
-          type: integer
-          description: ' Max Length: 13
-
+          type: number
+          description: |2-
+             Max Length: 13
 
             XFR from amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-XFR-FROM-AMT'
-          format: int32
+            VisionPLUS Service Data: OZXOAO-MWP-XFR-FROM-AMT
           example: 1000000000000
         xfrToAmount:
           type: number
-          description: ' Max Length: 13
-
+          description: |2-
+             Max Length: 13
 
             XFR to amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-XFR-TO-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-XFR-TO-AMT
           example: 1000000000000
         xfrFeeAmount:
           type: number
-          description: ' Max Length: 9
-
+          description: |2-
+             Max Length: 9
 
             XFR fee amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-XFR-FEE-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-XFR-FEE-AMT
           example: 100000000
     OutstandingAuthorizationFasL8V3Response:
       type: object
       properties:
         currencyNumberOfDecimals:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Currency number of decimals form AMCR Org level.
 
-
-            VisionPLUS Service Data: OZXOAO-O-CURR-NOD'
+            VisionPLUS Service Data: OZXOAO-O-CURR-NOD
           format: int32
           example: 100
         currencyCode:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Organization currency number AMCR Org level.
 
-
-            VisionPLUS Service Data: OZXOAO-O-CURR-NBR'
+            VisionPLUS Service Data: OZXOAO-O-CURR-NBR
           format: int32
           example: 200
         foreignUseIndicator:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Foreign use indicator.
 
-
-            VisionPLUS Service Data: OZXOAO-FOREIGN-USE'
-          example: '0'
+            VisionPLUS Service Data: OZXOAO-FOREIGN-USE
+          example: "0"
         organizationNumber:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Account organization.
 
-
-            VisionPLUS Service Data: OZXOAO-ORG'
+            VisionPLUS Service Data: OZXOAO-ORG
           format: int32
           example: 998
         accountNumber:
           type: string
-          description: '* Max Length: 19
-
+          description: |-
+            * Max Length: 19
 
             Account number.
 
-
-            VisionPLUS Service Data: OZXOAO-ACCT'
+            VisionPLUS Service Data: OZXOAO-ACCT
           example: 000012345XXXXX12345
         nextToken:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response.NextToken'
+          $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Response.NextToken"
         prevToken:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response.PrevToken'
+          $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Response.PrevToken"
         more:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             More data indicator.
 
-
-            VisionPLUS Service Data: OZXOAO-MORE-DATA-FLAG'
+            VisionPLUS Service Data: OZXOAO-MORE-DATA-FLAG
           example: A
         numberOfAuthorizationsReturned:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Number of items returned by the service.
 
-
-            VisionPLUS Service Data: OZXOAO-NBR-RETURNED-ITEMS'
+            VisionPLUS Service Data: OZXOAO-NBR-RETURNED-ITEMS
           format: int32
           example: 111
         authorizationsData:
           type: array
           items:
-            $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response.AuthorizationData'
+            $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Response.AuthorizationData"
     OutstandingAuthorizationFasL8V3Response.AuthorizationData:
       type: object
       properties:
@@ -618,761 +504,735 @@ components:
           format: int32
         effectiveDate:
           type: string
-          description: 'Authorization effective date (in ISO 8601).
+          description: |-
+            Authorization effective date (in ISO 8601).
 
-
-            VisionPLUS Service Data: OZXOAO-EFF-DATE'
+            VisionPLUS Service Data: OZXOAO-EFF-DATE
           format: date
           example: 2023-08-18
         time:
           type: string
-          description: '* Max Length: 8
-
+          description: |-
+            * Max Length: 8
 
             Authorization time.
 
-
-            VisionPLUS Service Data: OZXOAO-TIME'
-          example: '01111111'
+            VisionPLUS Service Data: OZXOAO-TIME
+          example: "01111111"
         requestType:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Authorization request type.
 
-
-            VisionPLUS Service Data: OZXOAO-REQUEST-TYPE'
+            VisionPLUS Service Data: OZXOAO-REQUEST-TYPE
           example: F
         action:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Action taken by the operator if an override action was possible or,
-
             the action as chosen by the system.
 
-
-            VisionPLUS Service Data: OZXOAO-ACTION'
+            VisionPLUS Service Data: OZXOAO-ACTION
           example: A
         actionReason:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Action reason.
 
-
-            VisionPLUS Service Data: OZXOAO-ACTION-REASON'
+            VisionPLUS Service Data: OZXOAO-ACTION-REASON
           format: int32
           example: 111
         postingDate:
           type: string
-          description: 'Date the authorization was actually posted (in ISo 8601).
+          description: |-
+            Date the authorization was actually posted (in ISo 8601).
 
-
-            VisionPLUS Service Data: OZXOAO-POSTING-DATE'
+            VisionPLUS Service Data: OZXOAO-POSTING-DATE
           format: date
           example: 2023-08-18
         creditPlan:
           type: integer
-          description: '* Max Length: 5
-
+          description: |-
+            * Max Length: 5
 
             Credit plan of the authorization.
 
-
-            VisionPLUS Service Data: OZXOAO-CREDIT-PLAN'
+            VisionPLUS Service Data: OZXOAO-CREDIT-PLAN
           format: int32
           example: 11111
         authorizationAmount:
           type: string
-          description: '* Max Length: 17
-
+          description: |-
+            * Max Length: 17
 
             Authorization amount.
 
-
-            VisionPLUS Service Data: OZXOAO-AUTH-AMOUNT'
-          example: '01000000000000000'
+            VisionPLUS Service Data: OZXOAO-AUTH-AMOUNT
+          example: "01000000000000000"
         authorizationCode:
           type: string
-          description: '* Max Length: 6
-
+          description: |-
+            * Max Length: 6
 
             Authorization code.
 
-
-            VisionPLUS Service Data: OZXOAO-AUTHORIZATION-CODE'
+            VisionPLUS Service Data: OZXOAO-AUTHORIZATION-CODE
           example: AAAAAA
         authorizationType:
           type: string
-          description: '* Max Length: 1
+          description: |-
+            * Max Length: 1
 
+            Authorization type. Indicates whether the authorization is for cash or retail.
 
-            Authorization type. Indicates whether the authorization is for cash or
-            retail.
-
-
-            VisionPLUS Service Data: OZXOAO-AUTH-TYPE'
+            VisionPLUS Service Data: OZXOAO-AUTH-TYPE
           example: A
         cardNumber:
           type: string
-          description: '* Max Length: 19
+          description: |-
+            * Max Length: 19
 
-
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
-
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
             Card number of the authorization.
+            For Financial Institutions without PAN Token enabled, the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).
 
-
-            VisionPLUS Service Data: OZXOAO-CARD-NBR'
+            VisionPLUS Service Data: OZXOAO-CARD-NBR
           example: 000012345XXXX12345
         cardSequence:
           type: integer
-          description: '* Max Length: 4
-
+          description: |-
+            * Max Length: 4
 
             Card sequence of the authorization.
 
-
-            VisionPLUS Service Data: OZXOAO-CARD-SEQ'
+            VisionPLUS Service Data: OZXOAO-CARD-SEQ
           format: int32
           example: 1111
         merchantCategoryCode:
           type: integer
-          description: "* Max Length: 5\n\nMerchant standard industry code (aka \u2018\
-            SIC code\u2019). Indicates the type of merchant \nthat is acquiring the\
-            \ transaction.\n\nVisionPLUS Service Data: OZXOAO-MERCH-CAT-CD"
+          description: "* Max Length: 5\n\nMerchant standard industry code (aka ‘\
+            SIC code’). Indicates the type of merchant \nthat is acquiring the transaction.\n\
+            \nVisionPLUS Service Data: OZXOAO-MERCH-CAT-CD"
           format: int32
           example: 11111
         merchantCategoryCodeDescription:
           type: string
-          description: '* Max Length: 28
-
+          description: |-
+            * Max Length: 28
 
             Category description.
 
-
-            VisionPLUS Service Data: OZXOAO-CATEGORY-DESC'
+            VisionPLUS Service Data: OZXOAO-CATEGORY-DESC
           example: AAAAAAAAAAAAAAAAAAAAAAAAAAAA
         transactionRecordType:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Indicates the type of authorization.
 
-
-            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE'
+            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE
           format: int32
           example: 1
         logExtent:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Log file extent.
 
-
-            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXT'
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXT
           format: int32
           example: 1
         relativeByteAddress:
           type: integer
-          description: '* Max Length: 9
-
+          description: |-
+            * Max Length: 9
 
             Relative byte address of the log record that corresponds to this activity.
 
-
-            VisionPLUS Service Data: OZXOAO-RBA'
+            VisionPLUS Service Data: OZXOAO-RBA
           format: int32
           example: 111111111
         reasonDescription:
           type: string
-          description: '* Max Length: 10
-
+          description: |-
+            * Max Length: 10
 
             Reserved for future use.
 
-
-            VisionPLUS Service Data: OZXOAO-REASON-DESC'
+            VisionPLUS Service Data: OZXOAO-REASON-DESC
           example: Reserved
         cardAcceptorNameAndLocation:
           type: string
-          description: '* Max Length: 41
-
+          description: |-
+            * Max Length: 41
 
             Name and location of card acceptor.
 
-
-            VisionPLUS Service Data: OZXOAO-CRD-ACCPT-NAME-LOC'
+            VisionPLUS Service Data: OZXOAO-CRD-ACCPT-NAME-LOC
           example: Username and location field 1
         transactionDescription:
           type: string
-          description: '* Max Length: 41
-
+          description: |-
+            * Max Length: 41
 
             Category description.
 
-
-            VisionPLUS Service Data: OZXOAO-TRANSACTION-DESC'
+            VisionPLUS Service Data: OZXOAO-TRANSACTION-DESC
           example: Category Description
         transactionEntryMode:
           type: integer
-          description: '* Max Length: 2
-
+          description: |-
+            * Max Length: 2
 
             POS entry mode.
 
-
-            VisionPLUS Service Data: OZXOAO-PAN-ENTRY-MODE'
+            VisionPLUS Service Data: OZXOAO-PAN-ENTRY-MODE
           format: int32
           example: 10
         transactionEntryModeDescription:
           type: string
-          description: '* Max Length: 20
-
+          description: |-
+            * Max Length: 20
 
             PAN entry description.
 
-
-            VisionPLUS Service Data: OFXOAO-PAN-ENTRYDESCRIPTION'
+            VisionPLUS Service Data: OFXOAO-PAN-ENTRYDESCRIPTION
           example: Pan Description
         merchantNumber:
           type: string
-          description: '* Max Length: 8
-
+          description: |-
+            * Max Length: 8
 
             Merchant Number.
 
-
-            VisionPLUS Service Data: OZXOAO-MER-CODE'
-          example: '01111111'
+            VisionPLUS Service Data: OZXOAO-MER-CODE
+          example: "01111111"
         authorizationResponseCode:
           type: string
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Authorization Response Code. Card Type.
 
-
-            VisionPLUS Service Data: OZXOAO-B039-RESP-CODE'
+            VisionPLUS Service Data: OZXOAO-B039-RESP-CODE
           example: AAA
         creditAvailable:
           type: string
-          description: '* Max Length: 17
-
+          description: |-
+            * Max Length: 17
 
             Available credit.
 
-
-            VisionPLUS Service Data: OZXOAO-AVAIL-CREDIT'
+            VisionPLUS Service Data: OZXOAO-AVAIL-CREDIT
           example: 1.0E13
         creditAvailableForCashAdvances:
           type: string
-          description: '* Max Length: 17
-
+          description: |-
+            * Max Length: 17
 
             Available credit for cash advances.
 
-
-            VisionPLUS Service Data: OZXOAO-CASH-AVAIL-CREDIT'
+            VisionPLUS Service Data: OZXOAO-CASH-AVAIL-CREDIT
           example: 1.0E13
         accountCurrencyCode:
           type: string
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Currency code.
 
-
-            VisionPLUS Service Data: OZXOAO-CURR-CODE'
-          example: '100'
+            VisionPLUS Service Data: OZXOAO-CURR-CODE
+          example: "100"
         stateOrCountry:
           type: string
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Card accept state or country.
 
-
-            VisionPLUS Service Data: OZXOAO-CRD-ACCPT-ST-CTRY'
+            VisionPLUS Service Data: OZXOAO-CRD-ACCPT-ST-CTRY
           example: AAA
         transactionSourceTerminal:
           type: string
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Transaction source terminal.
 
-
-            VisionPLUS Service Data: OZXOAO-TRANS-SOURCE'
+            VisionPLUS Service Data: OZXOAO-TRANS-SOURCE
           example: A
         merchantCode:
           type: string
-          description: '* Max Length: 10
-
+          description: |-
+            * Max Length: 10
 
             Merchant code.
 
-
-            VisionPLUS Service Data: OZXOAO-MERCH-CODE'
+            VisionPLUS Service Data: OZXOAO-MERCH-CODE
           example: AAAAAAAA
+        inputSource:
+          type: string
+          description: |-
+            * Max Length: 1
+
+            Input Source.
+
+            VisionPLUS Service Data: OZXOAO-INPUT-SOURCE
+          example: A
         processingCode:
           type: integer
-          description: '* Max Length: 6
-
+          description: |-
+            * Max Length: 6
 
             Processing code.
 
-
-            VisionPLUS Service Data: OZXOAO-B003-PROC-CODE'
+            VisionPLUS Service Data: OZXOAO-B003-PROC-CODE
           format: int32
           example: 100000
         transactionAmount:
           type: string
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Transaction amount.
 
-
-            VisionPLUS Service Data: OZXOAO-B004-TXN-AMT'
-          example: '1000000000000'
+            VisionPLUS Service Data: OZXOAO-B004-TXN-AMT
+          example: "1000000000000"
         settlementAmount:
           type: string
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Settlement billing amount.
 
-
-            VisionPLUS Service Data: OZXOAO-B005-ST-BLNG-AMT'
-          example: '1000000000000'
+            VisionPLUS Service Data: OZXOAO-B005-ST-BLNG-AMT
+          example: "1000000000000"
         cardholderBillingAmount:
           type: string
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Card holder billing amount
 
-
-            VisionPLUS Service Data: OZXOAO-B006-CH-BLNG-AMT'
-          example: '1000000000000'
+            VisionPLUS Service Data: OZXOAO-B006-CH-BLNG-AMT
+          example: "1000000000000"
         systemAuditTraceNumber:
           type: string
-          description: '* Max Length: 7
-
+          description: |-
+            * Max Length: 7
 
             System audit trace number.
 
-
-            VisionPLUS Service Data: OZXOAO-MC-B011-SYS-AUDT-TRCE'
-          example: '1111111'
+            VisionPLUS Service Data: OZXOAO-MC-B011-SYS-AUDT-TRCE
+          example: "1111111"
         localTimeOfTheTransaction:
           type: string
-          description: '* Max Length: 8
-
+          description: |-
+            * Max Length: 8
 
             Transaction local time.
 
-
-            VisionPLUS Service Data: OZXOAO-AUTH-B012-LCL-TXN-TM'
-          example: '00001000'
+            VisionPLUS Service Data: OZXOAO-AUTH-B012-LCL-TXN-TM
+          example: "00001000"
         localDateOfTheTransaction:
           type: string
-          description: 'Transaction local date (in ISO 8601).
+          description: |-
+            Transaction local date (in ISO 8601).
 
-
-            VisionPLUS Service Data: OZXOAO-B013-LCL-TXN-DT'
+            VisionPLUS Service Data: OZXOAO-B013-LCL-TXN-DT
           format: date
           example: 2023-06-12
         retrievalReferenceNumber:
           type: number
-          description: '* Max Length: 12
-
+          description: |-
+            * Max Length: 12
 
             Retrieval reference number.
 
-
-            VisionPLUS Service Data: OZXOAO-REF-NBR'
+            VisionPLUS Service Data: OZXOAO-REF-NBR
           format: double
           example: 100000000000
         transactionCurrencyCode:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Transaction currency code.
 
-
-            VisionPLUS Service Data: OZXOAO-B049-CURR-CODE'
+            VisionPLUS Service Data: OZXOAO-B049-CURR-CODE
           format: int32
           example: 100
         settlementCurrencyCode:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Settlement currency code.
 
-
-            VisionPLUS Service Data: OZXOAO-B050-STL-CURR-CODE'
+            VisionPLUS Service Data: OZXOAO-B050-STL-CURR-CODE
           format: int32
           example: 100
         billingCurrencyCode:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Billing currency code.
 
-
-            VisionPLUS Service Data: OZXOAO-B051-CHB-CURR-CODE'
+            VisionPLUS Service Data: OZXOAO-B051-CHB-CURR-CODE
           format: int32
           example: 100
         terminalNetworkName:
           type: string
-          description: '* Max Length: 16
-
+          description: |-
+            * Max Length: 16
 
             Terminal network name.
 
-
-            VisionPLUS Service Data: OZXOAO-B24-B060-D-POS'
+            VisionPLUS Service Data: OZXOAO-B24-B060-D-POS
           example: Terminal name
         offeredDownPayment:
           type: number
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Offered down payment.
 
-
-            VisionPLUS Service Data: OZXOAO-OFFERED-DOWN-PMT'
+            VisionPLUS Service Data: OZXOAO-OFFERED-DOWN-PMT
           example: 1000000000000
         walletFeeAmount:
           type: string
-          description: '* Max Length: 9
-
+          description: |-
+            * Max Length: 9
 
             Wallet fee amount.
 
-
-            VisionPLUS Service Data: OZXOAO-WALLET-FEE-AMT'
-          example: '010000000'
+            VisionPLUS Service Data: OZXOAO-WALLET-FEE-AMT
+          example: "010000000"
         embosserName:
           type: string
-          description: '* Max Length: 26
-
+          description: |-
+            * Max Length: 26
 
             Embosser name.
 
-
-            VisionPLUS Service Data: OZXOAO-EMBOSSED-NAME'
+            VisionPLUS Service Data: OZXOAO-EMBOSSED-NAME
           example: User Name
         cashBackAmount:
           type: string
-          description: '* Max Length: 9
-
+          description: |-
+            * Max Length: 9
 
             Cash back amount.
 
-
-            VisionPLUS Service Data: OZXOAO-CASH-BACK-AMT'
-          example: '010000000'
+            VisionPLUS Service Data: OZXOAO-CASH-BACK-AMT
+          example: "010000000"
         exchangeRate:
           type: number
-          description: '* Max Length: 9
-
+          description: |-
+            * Max Length: 9
 
             Exchange rate.
 
-
-            VisionPLUS Service Data: OZXOAO-EXCHANGE-RATE'
+            VisionPLUS Service Data: OZXOAO-EXCHANGE-RATE
           example: 100000000
         exchangeRateNode:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Exchange rate node.
 
-
-            VisionPLUS Service Data: OZXOAO-RATE-NOD'
+            VisionPLUS Service Data: OZXOAO-RATE-NOD
           format: int32
           example: 1
         remainingDays:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Remaining days.
 
-
-            VisionPLUS Service Data: OZXOAO-REMAINING-DAYS'
+            VisionPLUS Service Data: OZXOAO-REMAINING-DAYS
           format: int32
           example: 100
         cardAcceptorName:
           type: string
-          description: '* Max Length: 41
-
+          description: |-
+            * Max Length: 41
 
             Card acceptor name.
 
-
-            VisionPLUS Service Data: OZXOAO-CRD-ACCPT-NAME'
+            VisionPLUS Service Data: OZXOAO-CRD-ACCPT-NAME
           example: Card acceptor name
         merchantPhone:
           type: string
-          description: '* Max Length: 20
-
+          description: |-
+            * Max Length: 20
 
             Merchant phone.
 
-
-            VisionPLUS Service Data: OZXOAO-MERCHANT-PHONE'
+            VisionPLUS Service Data: OZXOAO-MERCHANT-PHONE
           example: +1 111 222 333
         countryCode:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Merchant country code.
 
-
-            VisionPLUS Service Data: OZXOAO-MERCHANT-COUNTRY-CODE'
+            VisionPLUS Service Data: OZXOAO-MERCHANT-COUNTRY-CODE
           format: int32
           example: 111
-        multiWalletPrepaid:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3Response.MultiWalletPrepaid'
-    OutstandingAuthorizationFasL8V3Response.MultiWalletPrepaid:
-      type: object
-      properties:
         currencyId:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             Authorization wallet currency ID.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-AUTH-WLT-CURR-ID'
+            VisionPLUS Service Data: OZXOAO-MWP-AUTH-WLT-CURR-ID
           format: int32
           example: 100
         authWalletAmount:
           type: number
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Authorization wallet amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-AUTH-WLT-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-AUTH-WLT-AMT
           example: 1000000000000
         baseCurrencyAmount:
           type: number
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Base currency amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-BASE-CURR-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-BASE-CURR-AMT
           example: 1000000000000
         authWalletMarkupAmount:
           type: number
-          description: '* Max Length: 9
-
+          description: |-
+            * Max Length: 9
 
             Authorization wallet markup amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-AUTH-WLT-MRKUP-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-AUTH-WLT-MRKUP-AMT
           example: 100000000
         conversionFeeAmount:
           type: number
-          description: '* Max Length: 9
-
+          description: |-
+            * Max Length: 9
 
             Conversion fee amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-CNVRSN-FEE-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-CNVRSN-FEE-AMT
           example: 100000000
         crossWalletXfrFlag:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Cross wallet XRF flag.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-CROSS-WLT-XFR-FLAG'
+            VisionPLUS Service Data: OZXOAO-MWP-CROSS-WLT-XFR-FLAG
           format: int32
           example: 1
         walletPrstFlag:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Wallet prst flag.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-WLT-PRST-FLAG'
+            VisionPLUS Service Data: OZXOAO-MWP-WLT-PRST-FLAG
           format: int32
           example: 1
         walletToDwltConversionRate:
           type: integer
-          description: '* Max Length: 1
-
+          description: |-
+            * Max Length: 1
 
             Wallet to dwlt conversion rate.
 
-
-            VisionPLUS Service Data: OZXOAO-WLT-TO-DWLT-CONV-RATE'
+            VisionPLUS Service Data: OZXOAO-WLT-TO-DWLT-CONV-RATE
           format: int32
           example: 1
         xfrToCurrency:
           type: integer
-          description: '* Max Length: 3
-
+          description: |-
+            * Max Length: 3
 
             XFR to currency.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-XFR-TO-CURR'
+            VisionPLUS Service Data: OZXOAO-MWP-XFR-TO-CURR
           format: int32
           example: 100
         fundXfrFld:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasL8V3.ResponseFundXfrFld'
+          $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3.ResponseFundXfrFld"
         atmWdrlFeeAmount:
           type: number
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             ATM wdrl fee amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-ATM-WDRL-FEE-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-ATM-WDRL-FEE-AMT
           example: 1000000000000
         crosBrdrFeeAmount:
           type: number
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Cros brdr fee amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-CROS-BRDR-FEE-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-CROS-BRDR-FEE-AMT
           example: 1000000000000
         ccaFeeAmount:
           type: number
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             Cca fee amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-CCA-FEE-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-CCA-FEE-AMT
           example: 1000000000000
         ivaTaxAmount:
           type: number
-          description: '* Max Length: 13
-
+          description: |-
+            * Max Length: 13
 
             IVA tax amount.
 
-
-            VisionPLUS Service Data: OZXOAO-MWP-IVA-TAX-AMT'
+            VisionPLUS Service Data: OZXOAO-MWP-IVA-TAX-AMT
           example: 1000000000000
     OutstandingAuthorizationFasL8V3Response.NextToken:
       type: object
       properties:
         effectiveDate:
           type: string
-          description: "Token \u2013 next authorization date (in Iso 8601).\n\nVisionPLUS\
-            \ Service Data: OZXOAO-EFF-DATE-NEXT"
+          description: |-
+            Token – next authorization date (in Iso 8601).
+
+            VisionPLUS Service Data: OZXOAO-EFF-DATE-NEXT
           format: date
           example: 2023-08-18
         time:
           type: string
-          description: "* Max Length: 8\n\nToken \u2013 next authorization time.\n\
-            \nVisionPLUS Service Data: OZXOAO-TIME-NEXT"
-          example: '00001111'
+          description: |-
+            * Max Length: 8
+
+            Token – next authorization time.
+
+            VisionPLUS Service Data: OZXOAO-TIME-NEXT
+          example: "00001111"
         logRecordTypeOfTheTransaction:
           type: integer
-          description: "* Max Length: 1\n\nToken \u2013 next transaction type.\n\n\
-            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE-NEXT"
+          description: |-
+            * Max Length: 1
+
+            Token – next transaction type.
+
+            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE-NEXT
           format: int32
           example: 0
         extentOfTheLogFile:
           type: integer
-          description: "* Max Length: 1\n\nToken \u2013 next account log.\n\nVisionPLUS\
-            \ Service Data: OZXOAO-ACCOUNT-LOG-EXTNEXT"
+          description: |-
+            * Max Length: 1
+
+            Token – next account log.
+
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXTNEXT
           format: int32
           example: 1
         relativeByteAddress:
           type: integer
-          description: "* Max Length: 9\n\nToken \u2013 next account RBA.\n\nVisionPLUS\
-            \ Service Data: OZXOAO-ACCOUNT-RBA-NEXT"
+          description: |-
+            * Max Length: 9
+
+            Token – next account RBA.
+
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-RBA-NEXT
           format: int32
           example: 111111111
         cardNumberNext:
           type: string
-          description: "* Max Length: 19\n\nToken \u2013 Card number next.\n\nVisionPLUS\
-            \ Service Data: OZXOAO-CARD-NBR-NEXT"
+          description: |-
+            * Max Length: 19
+
+            Token – Card number next.
+
+            VisionPLUS Service Data: OZXOAO-CARD-NBR-NEXT
           example: 000012345XXXXX12345
     OutstandingAuthorizationFasL8V3Response.PrevToken:
       type: object
       properties:
         effectiveDate:
           type: string
-          description: "Token \u2013 previous authorization date (in ISO 8601).\n\n\
-            VisionPLUS Service Data: OZXOAO-EFF-DATE-PREV"
+          description: |-
+            Token – previous authorization date (in ISO 8601).
+
+            VisionPLUS Service Data: OZXOAO-EFF-DATE-PREV
           format: date
           example: 2023-08-18
         time:
           type: string
-          description: "* Max Length: 8\n\nToken \u2013 previous authorization time.\n\
-            \nVisionPLUS Service Data: OZXOAO-TIME-PREV"
-          example: '00001111'
+          description: |-
+            * Max Length: 8
+
+            Token – previous authorization time.
+
+            VisionPLUS Service Data: OZXOAO-TIME-PREV
+          example: "00001111"
         logRecordTypeOfTheTransaction:
           type: integer
-          description: "* Max Length: 1\n\nToken \u2013 previous transaction type.\n\
-            \nVisionPLUS Service Data: OZXOAO-TXN-REC-TYPE-PREV"
+          description: |-
+            * Max Length: 1
+
+            Token – previous transaction type.
+
+            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE-PREV
           format: int32
           example: 1
         extentOfTheLogFile:
           type: integer
-          description: "* Max Length: 1\n\nToken \u2013 previous account log.\n\n\
-            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXTPREV"
+          description: |-
+            * Max Length: 1
+
+            Token – previous account log.
+
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXTPREV
           format: int32
           example: 1
         relativeByteAddress:
           type: integer
-          description: '* Max Length: 9
-
+          description: |-
+            * Max Length: 9
 
             Token - previous account RBA.
 
-
-            VisionPLUS Service Data: OZXOAO-ACCOUNT-RBA-PREV'
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-RBA-PREV
           format: int32
           example: 11111111
         cardNumberPrev:
           type: string
-          description: '* Max Length: 19
-
+          description: |-
+            * Max Length: 19
 
             Token - previous card number.
 
-
-            VisionPLUS Service Data: OZXOAO-CARD-NBR-PREV'
+            VisionPLUS Service Data: OZXOAO-CARD-NBR-PREV
           example: 000012345XXXXX12345
     TransactionsDetailsRequest:
       required:
@@ -1381,64 +1241,51 @@ components:
       type: object
       properties:
         organizationNumber:
+          maximum: 999
+          minimum: 1
           type: integer
-          description: '* Max Length: 3
-
-
+          description: |-
+            Length: 3
             Organization Number.
-
-
-            VisionPLUS Service Data: ARXTDI-ORG'
+            VisionPLUS Service Data: ARXTDI-ORG
           format: int32
           example: 807
         accountNumber:
+          maximum: 19
+          minimum: 19
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Account Number or Card Number On Either The Embosser Record
-            Or The Account Base Segment Record.
-
-
+          description: |
+            Length: 19
+            Account Number or Card Number On Either The Embosser Record Or The Account Base Segment Record.
             VisionPLUS Service Data: ARXTDI-ACCT
-
-
-            '
-          example: '4513074002573466583'
+          example: "4513074002573466583"
         functionCode:
+          maximum: 1
+          minimum: 0
           type: string
-          description: '* Max Length: 1
-
-
+          description: |-
+            Length: 1
             Transaction detail flag
-
-
-            Values:
-
-            * C = Current;
-
-            * R = Recent;
-
-            * M = Monthly;
-
-            * B = Use both current and recent.
-
-
+            The values are:
+            C = Current
+            R = Recent
+            M = Monthly
+            B = Use both current and recent
             If this field is left blank, the default is B.
-
-
-            VisionPLUS Service Data: ARXTDI-TXN-DETAIL'
+            VisionPLUS Service Data: ARXTDI-TXN-DETAIL
           example: B
         transactionDateRange:
-          $ref: '#/components/schemas/TransactionsDetailsRequest.TransactionDateRange'
+          $ref: "#/components/schemas/TransactionsDetailsRequest.TransactionDateRange"
         numberOfTransactions:
+          maximum: 50
+          minimum: 1
           type: integer
-          description: '* Max Length: 2
-
-
+          description: |-
+            Length: 2
             Number Of Transactions. The Maximum Number Is 50.
-
-
-            VisionPLUS Service Data: ARXTDI-NUMBER-TXNS'
+            VisionPLUS Service Data: ARXTDI-NUMBER-TXNS
           format: int32
           example: 10
         foreignUserIndicator:
@@ -1447,1034 +1294,703 @@ components:
           maxLength: 1
           minLength: 0
           type: string
-          description: 'Foreign use indicator.
-
-
-            Values:
-
-            * Space = Local account;
-
-            * low values = Local account;
-
-            * 0 = Local account;
-
-            * 1 = Foreign account.
-
-
-            VisionPLUS Service Data: ARXTDI-FOREIGN-USE'
-          example: '0'
+          description: |-
+            Length: 1
+            Foreign use indicator.
+            The values are:
+            * Zero, space, low values = Local account
+            * 1 = Foreign account
+            VisionPLUS Service Data: ARXTDI-FOREIGN-USE
+          example: "0"
         startItem:
-          $ref: '#/components/schemas/TransactionsDetailsRequest.SItem'
+          $ref: "#/components/schemas/TransactionsDetailsRequest.SItem"
         transactionNumberMonths:
+          maximum: 12
+          minimum: 1
           maxLength: 2
           minLength: 2
           type: string
-          description: 'Transaction Number Month
-
-
-            VisionPLUS Service Data: ARXTDI-TXN-NBR-MONTHS'
+          description: "Length: 2 \nTransaction Number Month\nVisionPLUS Service Data:\
+            \ ARXTDI-TXN-NBR-MONTHS"
         transactionAmountRange:
-          $ref: '#/components/schemas/TransactionsDetailsRequest.TransactionAmountRange'
+          $ref: "#/components/schemas/TransactionsDetailsRequest.TransactionAmountRange"
         keyword:
+          maximum: 20
+          minimum: 1
           type: string
-          description: '* Max Length: 20
-
-
+          description: |-
+            Length: 20
             Keyword.
-
-
-            VisionPLUS Service Data: ARXTDI-KEYWORD'
+            VisionPLUS Service Data: ARXTDI-KEYWORD
         transactionType:
+          maximum: 1
+          minimum: 0
           type: integer
-          description: '* Max Length: 1
-
-
+          description: |-
+            Length: 1
             Transaction Type.
-
-
-            Values:
-
-            * 0 = All;
-
-            * 1 = Interest and fee;
-
-            * 2 = Payment;
-
-            * 3 = Dispute;
-
-            * 4 = Warehouse;
-
-            * 5 = Interest only;
-
-            * 6 = Fee only;
-
-            * 7 = Card only.
-
-
-            VisionPLUS Service Data: ARXTDI-TXN-TYPE'
+            The values are:
+            * Zero = All
+            * 1 = Interest and fee
+            * 2 = Payment
+            * 3 = Dispute
+            * 4 = Warehouse
+            * 5 = Interest only
+            * 6 = Fee only
+            * 7 = Card only
+            VisionPLUS Service Data: ARXTDI-TXN-TYPE
           format: int32
         merchantInformationIndicator:
+          maximum: 1
+          minimum: 0
           type: string
-          description: '* Max Length: 1
-
-
+          description: |-
+            Length: 1
             Merchant information indicator.
-
-
-            Values:
-
-            * 0 = Merchant information is not required;
-
-            * 1 = Merchant information is required.
-
-
-            VisionPLUS Service Data: ARXTDI-MERCH-INFO-IND'
+            The values are:
+            0 = Merchant information is not required
+            1 = Merchant information is required
+            VisionPLUS Service Data: ARXTDI-MERCH-INFO-IND
       description: Transactions Details Request
     TransactionsDetailsRequest.SItem:
       type: object
       properties:
         sequenceNumber:
           type: integer
-          description: "* Max Length: 5\n\nField Populated From A Previous Service\
-            \ Request\u2014For Internal Use Only\n\nVisionPLUS Service Data: ARXTDI-START-SEQ-NBR"
+          description: |-
+            Length: 5
+            Field Populated From A Previous Service Request—For Internal Use Only
+            VisionPLUS Service Data: ARXTDI-START-SEQ-NBR
           format: int32
           example: 7
         statementDate:
           type: string
-          description: "Field Populated From A Previous Service Request If More Transactions\
-            \ Are Required\u2014For Internal Use Only (in ISO 8601)\n\nVisionPLUS\
-            \ Service Data: ARXTDI-START-STMT-DATE"
+          description: |-
+            Field Populated From A Previous Service Request If More Transactions Are Required—For Internal Use Only
+            VisionPLUS Service Data: ARXTDI-START-STMT-DATE
           format: date
         type:
           type: string
-          description: '* Max Length: 1
-
-
+          description: |-
+            Length: 1
             Start type.
-
-
-            Values:
-
-            * C = Current statement;
-
-            * L = Large statement file;
-
-            * S = Small statement file.
-
-
-            VisionPLUS Service Data: ARXTDI-START-FILE-TYPE'
+            The values are:
+            C = Current statement
+            L = Large statement file
+            S = Small statement file
+            VisionPLUS Service Data: ARXTDI-START-FILE-TYPE
           example: C
     TransactionsDetailsRequest.TransactionAmountRange:
       type: object
       properties:
         from:
+          maximum: 99999999999999999
+          minimum: 0
           type: number
-          description: "* Max Length: 17\n\nTransaction amount range. This field indicates\
-            \ the \u201Cfrom\u201D amount.\n\nVisionPLUS Service Data: ARXTDI-TXN-AMT-FROM"
+          description: |-
+            Length: 17
+            Transaction amount range. This field indicates the “from” amount.VisionPLUS Service Data: ARXTDI-TXN-AMT-FROM
           example: 0
         to:
+          maximum: 99999999999999999
+          minimum: 0
           type: number
-          description: "* Max Length: 17\n\nTransaction amount range. This field indicates\
-            \ the \u201Cto\u201D amount\n\nVisionPLUS Service Data: ARXTDI-TXN-AMT-THRU"
+          description: |-
+            Length: 17
+            Transaction amount range. This field indicates the “to” amountVisionPLUS Service Data: ARXTDI-TXN-AMT-THRU
           example: 100000
     TransactionsDetailsRequest.TransactionDateRange:
       type: object
       properties:
         from:
           type: string
-          description: "Transaction date range. This field indicates the \u201Cfrom\u201D\
-            \ date (in ISO 8601).\n\nVisionPLUS Service Data: ARXTDI-TXN-DATE-FROM"
+          description: |-
+            Transaction date range. This field indicates the “from” date.
+            VisionPLUS Service Data: ARXTDI-TXN-DATE-FROM
           format: date
         to:
           type: string
-          description: "Transaction date range. This field indicates the \u201Cto\u201D\
-            \ date (in ISO 8601).\n\nVisionPLUS Service Data: ARXTDI-TXN-DATE-THRU"
+          description: |-
+            Transaction date range. This field indicates the “to” date.
+            VisionPLUS Service Data: ARXTDI-TXN-DATE-THRU
           format: date
     TransactionDetailsResponse.CurrencyData:
       type: object
       properties:
         code:
           type: integer
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Currency code.
-
-
-            VisionPLUS Service Data: ARXPQO-CURR-NBR'
+            VisionPLUS Service Data: ARXPQO-CURR-NBR
           format: int32
         numberOfDecimal:
           type: integer
-          description: '* Max Length: 1
-
-
+          description: |-
+            Length: 1
             Number of decimal.
-
-
-            VisionPLUS Service Data: ARXPQO-CURR-NOD'
+            VisionPLUS Service Data: ARXPQO-CURR-NOD
           format: int32
     TransactionsDetailsResponse:
       type: object
       properties:
         currencyData:
-          $ref: '#/components/schemas/TransactionDetailsResponse.CurrencyData'
+          $ref: "#/components/schemas/TransactionDetailsResponse.CurrencyData"
         organizationNumber:
           type: integer
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Organization Number
-
-
-            VisionPLUS Service Data: ARXTDO-ACCT-ORG'
+            VisionPLUS Service Data: ARXTDO-ACCT-ORG
           format: int32
         logo:
           type: integer
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Logo.
-
-
-            VisionPLUS Service Data: ARXTDO-ACCT-LOGO'
+            VisionPLUS Service Data: ARXTDO-ACCT-LOGO
           format: int32
         foreignUseIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Foreign use indicator.
-
-
-            Values:
-
-            * Space = Local account;
-
-            * low values = Local account;
-
-            * 0 = Local account;
-
-            * 1 = Foreign account.
-
-
-            VisionPLUS Service Data: ARXTDO-FOREIGN-USE'
+            The values are:
+            * Zero, space, low values = Local account
+            * 1 = Foreign account
+            VisionPLUS Service Data: ARXTDO-FOREIGN-USE
         numberOfMonths:
           type: string
-          description: '* Max Length: 2
-
-
+          description: |-
+            Length: 2
             Number of months to retrieve transaction records.
-
-
-            VisionPLUS Service Data: ARXTDO-TXN-NBR-MONTHS'
+            VisionPLUS Service Data: ARXTDO-TXN-NBR-MONTHS
         numberOfTransactionRecords:
           type: integer
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Number Of Transaction Records.
-
-
-            VisionPLUS Service Data: ARXTDO-NBR-RETURNED-ITEMS'
+            VisionPLUS Service Data: ARXTDO-NBR-RETURNED-ITEMS
           format: int32
         transactionData:
           type: array
           items:
-            $ref: '#/components/schemas/TransactionsDetailsResponse.TransactionDetails'
+            $ref: "#/components/schemas/TransactionsDetailsResponse.TransactionDetails"
         more:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Code that indicates if more records are on file.
-
-
-            Values:
-
-            * N = No more records on file;
-
-            * Y = More records on file.
-
-
-            VisionPLUS Service Data: ARXTDO-MORE-IND'
+            The values are:
+            * N = No more records on file
+            * Y = More records on file
+            VisionPLUS Service Data: ARXTDO-MORE-IND
           enum:
-          - N,Y
+          - "N,Y"
         startItem:
-          $ref: '#/components/schemas/TransactionsDetailsResponse.SItem'
+          $ref: "#/components/schemas/TransactionsDetailsResponse.SItem"
     TransactionsDetailsResponse.SItem:
       type: object
       properties:
         sequenceNumber:
           type: integer
-          description: '* Max Length: 5
-
-
+          description: |-
+            Length: 5
             Sequence.
-
-
-            VisionPLUS Service Data: ARXTDI-START-SEQ-NBR'
+            VisionPLUS Service Data: ARXTDI-START-SEQ-NBR
           format: int32
         statementDate:
           type: string
-          description: '* Max Length : 7
-
-
+          description: |-
+            Length : 7
             Statement date.
-
-
-            VisionPLUS Service Data: ARXTDI-START-STMT-DATE'
+            VisionPLUS Service Data: ARXTDI-START-STMT-DATE
           format: date
         type:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Start file type.
-
-
-            Values:
-
-            * C = Current statement;
-
-            * L = Large statement file;
-
-            * S = Small statement file.
-
-
-            VisionPLUS Service Data: ARXTDI-START-FILE-TYPE'
+            The values are:
+            * C = Current statement
+            * L = Large statement file
+            * S = Small statement file
+            VisionPLUS Service Data: ARXTDI-START-FILE-TYPE
     TransactionsDetailsResponse.TransactionDetails:
       type: object
       properties:
         sequence:
           type: integer
-          description: '* Max Length : 5
-
-
+          description: |-
+            Length : 5
             sequence
-
-
-            ARXTDO-START-SEQ-NBR'
+            ARXTDO-START-SEQ-NBR
           format: int32
         accountOrganizationNumber:
           type: integer
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Account Organization Number.
-
-
-            VisionPLUS Service Data: ARXTDO-ORG'
+            VisionPLUS Service Data: ARXTDO-ORG
           format: int32
         accountLogo:
           type: integer
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Account Logo.
-
-
-            VisionPLUS Service Data: ARXTDO-LOGO'
+            VisionPLUS Service Data: ARXTDO-LOGO
           format: int32
         accountNumber:
           type: string
-          description: '* Max Length : 19
-
-
+          description: |-
+            Length : 19
             Account Number.
-
-
-            VisionPLUS Service Data: ARXTDO-ACCT'
+            VisionPLUS Service Data: ARXTDO-ACCT
         recordNumber:
           type: integer
-          description: '* Max Length : 5
-
-
+          description: |-
+            Length : 5
             Record Number.
-
-
-            VisionPLUS Service Data: ARXTDO-REC-NBR'
+            VisionPLUS Service Data: ARXTDO-REC-NBR
           format: int32
         cardNumber:
           type: string
-          description: '* Max Length : 19
-
-
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
-
-
-            VisionPLUS Service Data: ARXTDO-CARD-NBR'
+          description: |-
+            Length : 19
+            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            For Financial Institutions without PAN Token enabled, the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).
+            VisionPLUS Service Data: ARXTDO-CARD-NBR
           example: 000540208ID5IXX3865
         cardSequence:
           type: integer
-          description: '* Max Length : 5
-
-
+          description: |-
+            Length : 5
             Card Sequence.
-
-
-            VisionPLUS Service Data: ARXTDO-CARD-SEQ'
+            VisionPLUS Service Data: ARXTDO-CARD-SEQ
           format: int32
         cardBlockCode:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Card Block Code.
-
-
-            VisionPLUS Service Data: ARXTDO-CARD-BLK-CODE'
+            VisionPLUS Service Data: ARXTDO-CARD-BLK-CODE
         cardAcceptorId:
           type: string
-          description: '* Max Length : 16
-
-
+          description: |-
+            Length : 16
             Card Acceptor ID.
-
-
-            VisionPLUS Service Data: ARXTDO-CARD-ACCEPTOR-ID'
+            VisionPLUS Service Data: ARXTDO-CARD-ACCEPTOR-ID
         effectiveDate:
           type: string
-          description: 'Effective Date (in ISO 8601).
-
-
-            VisionPLUS Service Data: ARXTDO-EFF-DATE'
+          description: |-
+            Effective Date.
+            VisionPLUS Service Data: ARXTDO-EFF-DATE
           format: date
         postDate:
           type: string
-          description: 'Post Date (in ISO 8601).
-
-
-            VisionPLUS Service Data: ARXTDO-POST-DATE'
+          description: |-
+            Post Date.
+            VisionPLUS Service Data: ARXTDO-POST-DATE
           format: date
         type:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Type.
-
-
-            VisionPLUS Service Data: ARXTDO-TYPE'
+            VisionPLUS Service Data: ARXTDO-TYPE
         transactionCode:
           type: integer
-          description: '* Max Length : 4
-
-
+          description: |-
+            Length : 4
             Transaction Code.
-
-
-            VisionPLUS Service Data: ARXTDO-TXN-CODE'
+            VisionPLUS Service Data: ARXTDO-TXN-CODE
           format: int32
         batchDate:
           type: string
-          description: 'Batch Date.
-
-
-            VisionPLUS Service Data: ARXTDO-BATCH-DATE'
+          description: |-
+            Batch Date.
+            VisionPLUS Service Data: ARXTDO-BATCH-DATE
           format: date
         amount:
           type: number
-          description: '* Max Length : 17
-
-
+          description: |-
+            Length : 17
             Amount.
-
-
-            VisionPLUS Service Data: ARXTDO-AMT'
+            VisionPLUS Service Data: ARXTDO-AMT
         relationshipPaymentAmount:
           type: number
-          description: '* Max Length : 17
-
-
+          description: |-
+            Length : 17
             Relationship Payment Amount.
-
-
-            VisionPLUS Service Data: ARXTDO-REL-PMT-AMT'
+            VisionPLUS Service Data: ARXTDO-REL-PMT-AMT
         originalPaymentAmount:
           type: number
-          description: '* Max Length : 17
-
-
+          description: |-
+            Length : 17
             Original Payment Amount.
-
-
-            VisionPLUS Service Data: ARXTDO-ORIG-PMT-AMT'
+            VisionPLUS Service Data: ARXTDO-ORIG-PMT-AMT
         unitPrice:
           type: number
-          description: '* Max Length : 17
-
-
+          description: |-
+            Length : 17
             Unit Price.
-
-
-            VisionPLUS Service Data: ARXTDO-UNIT-PRICE'
+            VisionPLUS Service Data: ARXTDO-UNIT-PRICE
         quantity:
           type: integer
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Quantity.
-
-
-            VisionPLUS Service Data: ARXTDO-QUANTITY'
+            VisionPLUS Service Data: ARXTDO-QUANTITY
           format: int32
         authorizationCode:
           type: string
-          description: '* Max Length : 6
-
-
+          description: |-
+            Length : 6
             Authorization Code.
-
-
-            VisionPLUS Service Data: ARXTDO-AUTH-CODE'
+            VisionPLUS Service Data: ARXTDO-AUTH-CODE
         planNumber:
           type: integer
-          description: '* Max Length : 5
-
-
+          description: |-
+            Length : 5
             Plan Number.
-
-
-            VisionPLUS Service Data: ARXTDO-PLAN'
+            VisionPLUS Service Data: ARXTDO-PLAN
           format: int32
         planSequenceNumber:
           type: integer
-          description: '* Max Length : 2
-
-
+          description: |-
+            Length : 2
             Plan Sequence Number.
-
-
-            VisionPLUS Service Data: ARXTDO-PLAN-SEQ'
+            VisionPLUS Service Data: ARXTDO-PLAN-SEQ
           format: int32
         planOpenDate:
           type: string
-          description: 'Plan Open Date (in ISO 8601).
-
-
-            VisionPLUS Service Data: ARXTDO-PLAN-OPEN-DATE'
+          description: |-
+            Plan Open Date.
+            VisionPLUS Service Data: ARXTDO-PLAN-OPEN-DATE
           format: date
         salesClerk:
           type: string
-          description: '* Max Length : 12
-
-
+          description: |-
+            Length : 12
             Sales clerk
-
-
-            VisionPLUS Service Data: ARXTDO-SALESPERSON'
+            VisionPLUS Service Data: ARXTDO-SALESPERSON
         ticketNumber:
           type: string
-          description: '* Max Length : 15
-
-
+          description: |-
+            Length : 15
             Ticket Number.
-
-
-            VisionPLUS Service Data: ARXTDO-TICKET-NBR'
+            VisionPLUS Service Data: ARXTDO-TICKET-NBR
         purchaseOrder:
           type: string
-          description: '* Max Length : 16
-
-
+          description: |-
+            Length : 16
             Purchase Order.
-
-
-            VisionPLUS Service Data: ARXTDO-PURCHASE-ORDER'
+            VisionPLUS Service Data: ARXTDO-PURCHASE-ORDER
         paymentReferenceNumber:
           type: number
-          description: '* Max Length : 15
-
-
+          description: |-
+            Length : 15
             Payment Reference Number.
-
-
-            VisionPLUS Service Data: ARXTDO-PMT-REFERENCE-NBR'
+            VisionPLUS Service Data: ARXTDO-PMT-REFERENCE-NBR
         itemNumber:
           type: number
-          description: '* Max Length : 5
-
-
+          description: |-
+            Length : 5
             Item Number.
-
-
-            VisionPLUS Service Data: ARXTDO-ITEM-NBR'
+            VisionPLUS Service Data: ARXTDO-ITEM-NBR
         referenceNumber:
           type: string
-          description: '* Max Length: 23
-
-
+          description: |-
+            Length: 23
             Reference Number.
-
-
-            VisionPLUS Service Data: ARXTDO-REFERENCE-NBR'
+            VisionPLUS Service Data: ARXTDO-REFERENCE-NBR
         description:
           type: string
-          description: '* Max Length : 40
-
-
+          description: |-
+            Length : 40
             Description
-
-
-            VisionPLUS Service Data: ARXTDO-DESCRIPTION'
+            VisionPLUS Service Data: ARXTDO-DESCRIPTION
         points:
           type: number
-          description: '* Max Length : 9
-
-
+          description: |-
+            Length : 9
             Points.
-
-
-            VisionPLUS Service Data: ARXTDO-PTS'
+            VisionPLUS Service Data: ARXTDO-PTS
         programNumber:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Program Number.
-
-
-            VisionPLUS Service Data: ARXTDO-PGM-NBR'
+            VisionPLUS Service Data: ARXTDO-PGM-NBR
         categoryCode:
           type: integer
-          description: '* Max Length : 5
-
-
+          description: |-
+            Length : 5
             Category Code.
-
-
-            VisionPLUS Service Data: ARXTDO-CATEGORY-CODE'
+            VisionPLUS Service Data: ARXTDO-CATEGORY-CODE
           format: int32
         skuNumber:
           type: integer
-          description: '* Max Length : 9
-
-
+          description: |-
+            Length : 9
             SKU Number.
-
-
-            VisionPLUS Service Data: ARXTDO-SKU-NBR'
+            VisionPLUS Service Data: ARXTDO-SKU-NBR
           format: int32
         department:
           type: string
-          description: '* Max Length : 4
-
-
+          description: |-
+            Length : 4
             Department
-
-
-            VisionPLUS Service Data: ARXTDO-DEPT'
+            VisionPLUS Service Data: ARXTDO-DEPT
         source:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Source.
-
-
-            VisionPLUS Service Data: ARXTDO-SOURCE'
+            VisionPLUS Service Data: ARXTDO-SOURCE
         visaTransactionId:
           type: integer
-          description: '* Max Length : 15
-
-
+          description: |-
+            Length : 15
             Visa Transaction ID.
-
-
-            VisionPLUS Service Data: ARXTDO-VISA-TRAN-ID'
+            VisionPLUS Service Data: ARXTDO-VISA-TRAN-ID
         interchangeFee:
           type: number
-          description: '* Max Length : 9
-
-
+          description: |-
+            Length : 9
             Interchange Fee.
-
-
-            VisionPLUS Service Data: ARXTDO-INTERCHG-FEE'
+            VisionPLUS Service Data: ARXTDO-INTERCHG-FEE
         qualificationIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Qualification Indicator.
-
-
             The value is C (Domestic other non-MasterCard processed)
-
-
-            VisionPLUS Service Data: ARXTDO-QUAL-IND'
+            VisionPLUS Service Data: ARXTDO-QUAL-IND
         merchantCountryCode:
           type: string
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Merchant Country Code.
-
-
-            VisionPLUS Service Data: ARXTDO-MERCH-COUNTRY-CODE'
+            VisionPLUS Service Data: ARXTDO-MERCH-COUNTRY-CODE
         insuranceProduct:
           type: string
-          description: '* Max Length : 2
-
-
+          description: |-
+            Length : 2
             Insurance Product.
-
-
-            VisionPLUS Service Data: ARXTDO-INS-PROD'
+            VisionPLUS Service Data: ARXTDO-INS-PROD
         ddaAccountIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             DDA Account Indicator.
-
-
             This field displays only for debit card transactions.
-
-
-            Debit card functionality must be active (DEBIT ACTIVE is set to 1 on ARMS02
-            and ARMO04 for a debit card logo and TYPE OF ACCOUNT is set to D on ARML01).
-
-
-            VisionPLUS Service Data: ARXTDO-DDA-SAV-IND'
+            Debit card functionality must be active (DEBIT ACTIVE is set to 1 on ARMS02 and ARMO04 for a debit card logo and TYPE OF ACCOUNT is set to D on ARML01).
+            VisionPLUS Service Data: ARXTDO-DDA-SAV-IND
         transferredFraudTransactionStatus:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Flag that indicates the status of the transferred fraud transaction.
-
-
-            Values:
-
-            * P = Transfer pending;
-
-            * T = Transferred out;
-
-            * X = Transferred in;
-
-            * Space = Not applicable.
-
-
-            VisionPLUS Service Data: ARXTDO-TRAN-STATUS'
+            The values are:
+            * P = Transfer pending
+            * T = Transferred out
+            * X = Transferred in
+            * Space = Not applicable
+            VisionPLUS Service Data: ARXTDO-TRAN-STATUS
         posEntryMode:
           type: string
-          description: '* Max Length : 2
-
-
+          description: |-
+            Length : 2
             Pos Entry Mode.
-
-
-            VisionPLUS Service Data: ARXTDO-POS-ENTRY-MODE'
+            VisionPLUS Service Data: ARXTDO-POS-ENTRY-MODE
         originalTransactionAmount:
           type: number
-          description: '* Max Length : 17
-
-
+          description: |-
+            Length : 17
             Original Transaction Amount.
-
-
-            VisionPLUS Service Data: ARXTDO-ORIG-TXN-AMOUNT'
+            VisionPLUS Service Data: ARXTDO-ORIG-TXN-AMOUNT
         originalTransactionAmountFormatted:
           type: string
-          description: '* Max Length : 13
-
-
+          description: |-
+            Length : 13
             Original Transaction Amount Formatted.
-
-
-            VisionPLUS Service Data: ARXTDO-ORIG-TXN-AMT-FORMATTED'
+            VisionPLUS Service Data: ARXTDO-ORIG-TXN-AMT-FORMATTED
         originalTransactionCurrency:
           type: string
-          description: '* Max Length : 13
-
-
+          description: |-
+            Length : 13
             Original Transaction Currency.
-
-
-            VisionPLUS Service Data: ARXTDO-ORIG-TXN-CURR'
+            VisionPLUS Service Data: ARXTDO-ORIG-TXN-CURR
         originalTransactionCurrencyDescription:
           type: string
-          description: '* Max Length : 28
-
-
+          description: |-
+            Length : 28
             Original Transaction Currency Description.
-
-
-            VisionPLUS Service Data: ARXTDO-ORIG-TXN-CURR-DESC'
+            VisionPLUS Service Data: ARXTDO-ORIG-TXN-CURR-DESC
         transactionConversionRate:
           type: number
-          description: '* Max Length : 17
-
-
+          description: |-
+            Length : 17
             Transaction Conversion Rate.
-
-
-            VisionPLUS Service Data: ARXTDO-TXN-CONV-RATE'
+            VisionPLUS Service Data: ARXTDO-TXN-CONV-RATE
           format: double
         transactionConversionRateFormatted:
           type: string
-          description: '* Max Length : 18
-
-
+          description: |-
+            Length : 18
             Transaction Conversion Rate Formatted.
-
-
-            VisionPLUS Service Data: ARXTDO-TXN-CONV-RATE-FORMATTED'
+            VisionPLUS Service Data: ARXTDO-TXN-CONV-RATE-FORMATTED
         merchantCity:
           type: string
-          description: '* Max Length : 21
-
-
+          description: |-
+            Length : 21
             Merchant City.
-
-
-            VisionPLUS Service Data: ARXTDO-MERCH-CITY'
+            VisionPLUS Service Data: ARXTDO-MERCH-CITY
         merchantState:
           type: string
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Merchant State.
-
-
-            VisionPLUS Service Data: ARXTDO-MERCH-STATE'
+            VisionPLUS Service Data: ARXTDO-MERCH-STATE
         merchantPostalCode:
           type: string
-          description: '* Max Length : 10
-
-
+          description: |-
+            Length : 10
             Merchant Postal Code.
-
-
-            VisionPLUS Service Data: ARXTDO-MERCH-POSTAL-CD'
+            VisionPLUS Service Data: ARXTDO-MERCH-POSTAL-CD
         merchantPhoneNumber:
           type: string
-          description: '* Max Length : 21
-
-
+          description: |-
+            Length : 21
             Merchant Phone Number.
-
-
-            VisionPLUS Service Data: ARXTDO-MERCH-PHONE'
+            VisionPLUS Service Data: ARXTDO-MERCH-PHONE
         categoryDescription:
           type: string
-          description: '* Max Length : 28
-
-
+          description: |-
+            Length : 28
             Category Description.
-
-
-            VisionPLUS Service Data: ARXTDO-CATEGORY-DESC'
+            VisionPLUS Service Data: ARXTDO-CATEGORY-DESC
         feeAdjustmentIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Fee Adjustment Indicator.
-
-
-            Values:
-
-            * N = No adjustment;
-
-            * Y = Adjustment.
-
-
-            VisionPLUS Service Data: ARXTDO-FEE-ADJ-IND'
+            The values are:
+            * N = No adjustment
+            * Y = Adjustment
+            VisionPLUS Service Data: ARXTDO-FEE-ADJ-IND
         interestAdjustmentIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Interest Adjustment Indicator.
-
-
-            Values:
-
-            * N = No adjustment;
-
-            * Y = Adjustment.
-
-
-            VisionPLUS Service Data: ARXTDO-INT-ADJ-IND'
+            The values are:
+            * N = No adjustment
+            * Y = Adjustment
+            VisionPLUS Service Data: ARXTDO-INT-ADJ-IND
         chargebackIndicator:
           type: string
-          description: '* Max Length : 1
-
-
-            Values:
-
-            * N = Transaction is not eligible for chargeback;
-
-            * Y = Transaction is eligible for chargeback.
-
-
-            VisionPLUS Service Data: ARXTDO-CHG-BK-IND'
+          description: |-
+            Length : 1
+            The values are:
+            * N = Transaction is not eligible for chargeback
+            * Y = Transaction is eligible for chargeback
+            VisionPLUS Service Data: ARXTDO-CHG-BK-IND
         disputeIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Dispute Indicator.
-
-
-            Values:
-
-            * N = No dispute;
-
-            * Y = Dispute.
-
-
-            VisionPLUS Service Data: ARXTDO-DISPUTE-IND'
+            The values are:
+            * N = No dispute
+            * Y = Dispute
+            VisionPLUS Service Data: ARXTDO-DISPUTE-IND
         fraudIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Fraud Indicator.
-
-
-            Values:
-
-            * N = No fraud;
-
-            * Y = Fraud.
-
-
-            VisionPLUS Service Data: ARXTDO-FRAUD-IND'
+            The values are:
+            * N = No fraud
+            * Y = Fraud
+            VisionPLUS Service Data: ARXTDO-FRAUD-IND
         copyRequestIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Copy Request Indicator.
-
-
-            Values:
-
-            * N = No copy request;
-
-            * Y = Copy request.
-
-
-            VisionPLUS Service Data: ARXTDO-RETR-REQ-IND'
+            The values are:
+            * N = No copy request
+            * Y = Copy request
+            VisionPLUS Service Data: ARXTDO-RETR-REQ-IND
         reversalIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Reversal Indicator.
-
-
-            Values:
-
-            * N = No reversal;
-
-            * Y = Reversal.
-
-
-            VisionPLUS Service Data: ARXTDO-REVERSAL-IND'
+            The values are:
+            * N = No reversal
+            * Y = Reversal
+            VisionPLUS Service Data: ARXTDO-REVERSAL-IND
         misappliedIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Misapplied Indicator.
-
-
-            Values:
-
-            * N = Not misapplied;
-
-            * Y = Misapplied.
-
-
-            VisionPLUS Service Data: ARXTDO-MIS-APPL-IND'
+            The values are:
+            * N = Not misapplied
+            * Y = Misapplied
+            VisionPLUS Service Data: ARXTDO-MIS-APPL-IND
         ichIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Ich Indicator.
-
-
-            Values:
-
-            N = No ICH;
-
-            Y = ICH.
-
-
-            VisionPLUS Service Data: ARXTDO-ICH-IND'
+            The values are:
+            N = No ICH
+            Y = ICH
+            VisionPLUS Service Data: ARXTDO-ICH-IND
         disputeAuxiliaryFileIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Dipute Auxiliary File Indicator.
-
-
-            Values:
-
-            * N = No dispute auxiliary file;
-
-            * Y = Dispute auxiliary file.
-
-
-            VisionPLUS Service Data: ARXTDO-DISP-AUX-FILE-IND'
+            The values are:
+            * N = No dispute auxiliary file
+            * Y = Dispute auxiliary file
+            VisionPLUS Service Data: ARXTDO-DISP-AUX-FILE-IND
         stopOrResumeIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Stop Or Resume Indicator.
-
-
-            Values:
-
-            * N = Stop a recurring transaction;
-
-            * Y = Resume a recurring transaction.
-
-
-            VisionPLUS Service Data: ARXTDO-STOP-RESUME-IND'
+            The values are:
+            * N = Stop a recurring transaction
+            * Y = Resume a recurring transaction
+            VisionPLUS Service Data: ARXTDO-STOP-RESUME-IND
         fraudTransferIndicator:
           type: string
-          description: '* Max Length : 1
-
-
+          description: |-
+            Length : 1
             Fraud Transfer Indicator.
-
-
-            Values:
-
-            * N = No fraud transfer;
-
-            * Y = Fraud transfer.
-
-
-            VisionPLUS Service Data: ARXTDO-FRAUD-XFR-IND'
+            The values are:
+            * N = No fraud transfer
+            * Y = Fraud transfer
+            VisionPLUS Service Data: ARXTDO-FRAUD-XFR-IND
         storeNumber:
           type: integer
-          description: '* Max Length : 9
-
-
+          description: |-
+            Length : 9
             Store Number.
-
-
-            VisionPLUS Service Data: ARXTDO-STORE-NBR'
+            VisionPLUS Service Data: ARXTDO-STORE-NBR
           format: int32
         logicModuleNumber:
           type: integer
-          description: '* Max Length : 3
-
-
+          description: |-
+            Length : 3
             Logic Module Number.
-
-
-            VisionPLUS Service Data: ARXTDO-LOGIC-MODULE'
+            VisionPLUS Service Data: ARXTDO-LOGIC-MODULE
           format: int32
 x-config:
   tryItOut: 'true'

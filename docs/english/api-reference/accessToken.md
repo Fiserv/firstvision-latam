@@ -40,6 +40,7 @@ When setting up this authorization type in Postman, it will automatically genera
 ![4](https://github.com/user-attachments/assets/ec573822-5aeb-44e1-9788-db0a6cba4b85)
 
 ### Sample Request
+
 ```bash
 curl --location 'https://{{endpoint}}/{{product}}/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -81,6 +82,7 @@ END IF
 ```
 
 ### Sample Response
+
 ```json
 {   
     "token_type": "BearerToken",

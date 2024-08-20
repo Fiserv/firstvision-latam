@@ -34,11 +34,12 @@ Al configurar este tipo de autorización en Postman, automáticamente generará 
 
 **apikey:** El mismo Apikey utilizado como nombre de usuario mencionado en la sección de autorización.
 
-**Authorization:** Generado automáticamente por Postman con el "tipo de autorización" anterior. 
+**Authorization:** Generado automáticamente por Postman con el "tipo de autorización" anterior.
 
 ![4](https://github.com/user-attachments/assets/ec573822-5aeb-44e1-9788-db0a6cba4b85)
 
 ### Ejemplo de Solicitud
+
 ```bash
 curl --location 'https://{{endpoint}}/{{product}}/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \

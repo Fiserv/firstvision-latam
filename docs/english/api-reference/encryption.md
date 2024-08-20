@@ -8,17 +8,17 @@ To confirm if the APIs you intend to use support JWE encryption, please contact 
 
 Issuers will generate an RSA Public/Private Key Pair using any Cryptography & SSL/TLS Toolkit compatible with OpenSSL. 
 
-### Example Commands using OpenSSL:
+### Example Commands using OpenSSL
 
-1. Generate an RSA private key, of size 2048, and output it to a file named key.pem:
+- Generate an RSA private key, of size 2048, and output it to a file named key.pem:
 
-```
+```openssl
 openssl genrsa -out key.pem 2048
 ```
 
-2. Extract the public key and output it to a file named public.pem: 
+- Extract the public key and output it to a file named public.pem: 
 
-```
+```openssl
 openssl rsa -in key.pem -outform PEM -pubout -out public.pem
 ```
 
@@ -34,7 +34,7 @@ The issuer will used the KID shared by Fiserv to identify the corresponding priv
 
 The KID will be sent by Fiserv in the encrypted message, the issuer will use this KID to retrieve the corresponding private key. 
 
-### Example JWE Structure Including the KID:
+### Example JWE Structure Including the KID
 
 ![image](https://github.com/user-attachments/assets/6d371ec9-e3fc-4c54-8e99-2f15c51f7c60)
 
