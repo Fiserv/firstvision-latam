@@ -6,6 +6,7 @@ tags: [Começando, VMX, Lista de Serviços, First Vision, Processamento de Cart�
 ## Versão 1.2.0
 
 ### Account 
+
 | Nome do Endpoint                                                                                                                                                                                                                  | Serviço                        | Versão | API endpoint                                             | Método |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
 | [Account Add](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/account/add-L8V3&branch=main&version=1.2.0)                                                                                  | M.CMS.ACCOUNT.ADD              | L8V3    | /account/add-L8V3                                                                                                                                                  | POST   |
@@ -140,6 +141,7 @@ tags: [Começando, VMX, Lista de Serviços, First Vision, Processamento de Cart�
 
 
 ### Notifications
+
 | Nome                                                                                                                                                            | API endpoint                         | Metodo |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------ |
 | [Token Access](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/notifications/v3/token&branch=main&version=1.2.0)                     | /notifications/v3/token              | POST   |
@@ -243,6 +245,7 @@ tags: [Começando, VMX, Lista de Serviços, First Vision, Processamento de Cart�
 |[Cards Details Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/customer/details-l8v4&branch=main&version=1.1.0)|M.CMS.CUSTCHANNEL.INQ|L8V4|/customer/details-l8v4|POST|
 
 ### Notifications
+
 | Name                                                                                                                                     | Service | Version | API endpoint         | Method |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- | -------------------- | ------ |
 | [Notification](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/v2/pushNotification&branch=main&version=1.1.0) |         |         | /v2/pushNotification | POST   |
