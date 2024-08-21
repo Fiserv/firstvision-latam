@@ -13,8 +13,8 @@ paths:
     post:
       tags:
       - Transactions
-      summary: 'Outstanding Authorizations Inquiry. VMX Service: M.FAS.OUTSTANDING.AUTH.INQ,
-        L8V2'
+      summary: "Outstanding Authorizations. VMX Service: M.FAS.OUTSTANDING.AUTH.INQ,\
+        \ L8V2"
       description: "Fetches data of both old and new transactions(including today's)\
         \ which are settled to an account. \nVMX Service: M.FAS.OUTSTANDING.AUTH.INQ,\
         \ L8V2"
@@ -33,36 +33,43 @@ paths:
         schema:
           type: string
         example: 00970
+
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OutstandingAuthorizationFasRequest'
+              $ref: "#/components/schemas/OutstandingAuthorizationFasRequest"
         required: true
       responses:
-        '401':
-          description: Unauthorize
-        '400':
+        "400":
           description: Bad Request
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '300':
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "300":
           description: Redirection
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        '405':
+                $ref: "#/components/schemas/DResponse"
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "405":
           description: Method Not Allowed
-        '200':
+        "403":
+          description: Forbidden
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OutstandingAuthorizationFasResponse'
-      x-proxy-name: Outstanding Authorizations Inquiry
+                $ref: "#/components/schemas/OutstandingAuthorizationFasResponse"
+      x-proxy-name: Outstanding Authorizations
       x-group-name: Transactions
 components:
   schemas:
@@ -70,147 +77,105 @@ components:
       type: object
       properties:
         organizationNumber:
+          maximum: 999
+          minimum: 1
           type: integer
-          description: '* Max Length: 3
-
-
-            Organization Number.
-
-
-            VisionPLUS Service Data: OZXOAI-ORG'
+          description: |-
+            Length: 3
+            Organization Number
           format: int32
           example: 807
         effectiveAuthorizationDate:
           type: string
-          description: 'Effective Authorization Date (in ISO 8601).
-
-
+          description: |
+            Length: 8
+            Effective Authorization Date
             VisionPLUS Service Data: OZXOAI-EFF-DATE
-
-            '
           format: date
-          example: 2023-12-30
         effectiveAuthorizationTime:
           type: integer
-          description: '* Max Length: 6
-
-
-            Effective Authorization Time.
-
-
-            VisionPLUS Service Data: OZXOAI-TIME'
+          description: |-
+            Length: 6
+            Effective Authorization Time
+            VisionPLUS Service Data: OZXOAI-TIME
           format: int32
           example: 112233
         accountNumber:
+          maximum: 19
+          minimum: 19
           maxLength: 19
           minLength: 19
           type: string
-          description: 'Account Number.
-
-
-            VisionPLUS Service Data: OZXOAI-ACCT'
-          example: '4513074002573466583'
+          description: |-
+            Length: 19
+            Account Number
+            VisionPLUS Service Data: OZXOAI-ACCT
+          example: "4513074002573466583"
         foreignUseIndicator:
+          maximum: 1
+          minimum: 0
           maxLength: 1
           minLength: 0
           type: string
-          description: 'The FOREIGN USE indicator is provided in the input message
-            so the requesting source can specify whether the request applies to the
-            local or foreign account when the account is in a dual currency processing
-            organization.
-
-
+          description: |-
+            Length: 1
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
             The default is to the local account.
-
-
-            Values:
-
-            * Space = Local account;
-
-            * Low Values = Local account;
-
-            * 0 = Local account;
-
-            * 1 = Foreign account.
-
-
-            VisionPLUS Service Data: OZXOAI-FOREIGN-USE'
-          example: '1'
+            The values are:
+            * Zero, space, low values = Local account
+            * 1 = Foreign account
+            VisionPLUS Service Data: OZXOAI-FOREIGN-USE
+          example: "0"
         functionCode:
           type: string
-          description: '* Max Length: 1
-
-
-            Function code for navigating results.
-
-
-            VisionPLUS Service Data: OZXOAI-SVC-FUNC-CODE'
-          example: '1'
+          description: |-
+            Length: 1
+            Function code for navigating results
+            VisionPLUS Service Data: OZXOAI-SVC-FUNC-CODE
         filter:
           type: string
-          description: '* Max Length: 1
-
-
+          description: |-
+            Length: 1
             Filter for results.
-
-
-            Values:
-
-            * Space = All authorizations;
-
-            * Low Values = All authorizations;
-
-            * A = Approved authorizations;
-
-            * D = Declined authorizations.
-
-
-            VisionPLUS Service Data: OZXOAI-ACTION-FILTER'
+            The values are:
+            * Space or low value = All authorizations
+            * A = Approved authorizations
+            * D = Declined authorizations
+            VisionPLUS Service Data: OZXOAI-ACTION-FILTER
           example: A
         numberOfAuthorizationsRequested:
           type: integer
-          description: 'Number of authorizations requested. The values are 1 through
-            100.
-
-
-            The initial value is 100.
-
-
-            VisionPLUS Service Data: OZXOAI-NBR-OF-RECS-REQ'
+          description: "Number of authorizations requested. The values are 1 through\
+            \ 100. \nThe initial value is 100\nVisionPLUS Service Data: OZXOAI-NBR-OF-RECS-REQ"
           format: int32
           example: 100
         authorizationDateRange:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasRequest.AuthorizationDateRange'
+          $ref: "#/components/schemas/OutstandingAuthorizationFasRequest.AuthorizationDateRange"
         authorizationNumber:
           type: string
-          description: '* Max Length: 6
-
-
-            Authorization number.
-
-
-            VisionPLUS Service Data: OZXOAI-AUTH-NBR'
-          example: '123'
+          description: |-
+            Length: 6
+            Authorization number
+            VisionPLUS Service Data: OZXOAI-AUTH-NBR
+          example: "123"
       description: Outstanding Authorizations Request
     OutstandingAuthorizationFasRequest.AuthorizationDateRange:
       type: object
       properties:
         from:
           type: string
-          description: 'Starting authorization date (in ISO 8601) range.
-
-
-            VisionPLUS Service Data: OZXOAI-AUTH-FROM-DATE'
+          description: |-
+            Length: 8
+            Starting authorization date range.
+            VisionPLUS Service Data: OZXOAI-AUTH-FROM-DATE
           format: date
-          example: 2022-01-16
         to:
           type: string
-          description: 'Ending authorization date (in ISO 8601) range.
-
-
-            VisionPLUS Service Data: OZXOAI-AUTH-TO-DATE'
+          description: |-
+            Length: 8
+            Ending authorization date range
+            VisionPLUS Service Data: OZXOAI-AUTH-TO-DATE
           format: date
-          example: 2023-10-17
     DResponse:
       type: object
       properties:
@@ -219,7 +184,7 @@ components:
         errors:
           type: array
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
         data:
           type: object
     Error:
@@ -234,73 +199,61 @@ components:
       properties:
         currencyNumberOfDecimals:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Currency Number Of Decimals
-
-            VisionPLUS Service Data: OZXOAO-O-CURR-NOD'
+            VisionPLUS Service Data: OZXOAO-O-CURR-NOD
           format: int32
         currencyCode:
           type: integer
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Currency Code
-
-            VisionPLUS Service Data: OZXOAO-O-CURR-NBR'
+            VisionPLUS Service Data: OZXOAO-O-CURR-NBR
           format: int32
         foreignUseIndicator:
           type: string
-          description: 'Length: 1
-
-            The FOREIGN USE indicator is provided in the input message so the requesting
-            source can specify whether the request applies to the local or foreign
-            account when the account is in a dual currency processing organization.
-
-            VisionPLUS Service Data: OZXOAO-FOREIGN-USE'
+          description: |-
+            Length: 1
+            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization.
+            VisionPLUS Service Data: OZXOAO-FOREIGN-USE
         organizationNumber:
           type: integer
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Organization Number.
-
-            VisionPLUS Service Data: OZXOAO-ORG'
+            VisionPLUS Service Data: OZXOAO-ORG
           format: int32
         accountNumber:
           type: string
-          description: 'Length: 19
-
+          description: |-
+            Length: 19
             Account number
-
-            VisionPLUS Service Data: OZXOAO-ACCT'
+            VisionPLUS Service Data: OZXOAO-ACCT
         nextToken:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasResponse.NextToken'
+          $ref: "#/components/schemas/OutstandingAuthorizationFasResponse.NextToken"
         prevToken:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasResponse.PrevToken'
+          $ref: "#/components/schemas/OutstandingAuthorizationFasResponse.PrevToken"
         more:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Flag indicating that more data can be obtained.
-
             The values are:
-
             * N = No
-
             * Y = Yes
-
-            VisionPLUS Service Data: OZXOAO-MORE-DATA-FLAG'
+            VisionPLUS Service Data: OZXOAO-MORE-DATA-FLAG
         numberOfAuthorizationsReturned:
           type: integer
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Number Of Authorizations Returned.
-
-            VisionPLUS Service Data: OZXOAO-NBR-RETURNED-ITEMS'
+            VisionPLUS Service Data: OZXOAO-NBR-RETURNED-ITEMS
           format: int32
         authorizationsData:
           type: array
           items:
-            $ref: '#/components/schemas/OutstandingAuthorizationFasResponse.AuthorizationData'
+            $ref: "#/components/schemas/OutstandingAuthorizationFasResponse.AuthorizationData"
     OutstandingAuthorizationFasResponse.AuthorizationData:
       type: object
       properties:
@@ -310,9 +263,9 @@ components:
           format: int32
         effectiveDate:
           type: string
-          description: 'Length: 8
-
-            Effective date'
+          description: |-
+            Length: 8
+            Effective date
           format: date
         time:
           type: string
@@ -325,15 +278,15 @@ components:
           description: Action
         actionReason:
           type: integer
-          description: 'Length: 6
-
-            Action reason'
+          description: |-
+            Length: 6
+            Action reason
           format: int32
         postingDate:
           type: string
-          description: 'Length: 8
-
-            Posting date'
+          description: |-
+            Length: 8
+            Posting date
           format: date
         creditPlan:
           type: integer
@@ -351,7 +304,8 @@ components:
           description: Authorization type
         cardNumber:
           type: string
-          description: Number
+          description: "Number \nFor Financial Institutions without PAN Token enabled,\
+            \ the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).\n"
         cardSequence:
           type: integer
           description: Card sequence
@@ -464,7 +418,7 @@ components:
           type: number
           description: Wallet fee amount
         multiWalletPrepaid:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasResponse.MultiWalletPrepaid'
+          $ref: "#/components/schemas/OutstandingAuthorizationFasResponse.MultiWalletPrepaid"
     OutstandingAuthorizationFasResponse.FundXfrFld:
       type: object
       properties:
@@ -518,7 +472,7 @@ components:
           description: Xfr to currency
           format: int32
         fundXfrFld:
-          $ref: '#/components/schemas/OutstandingAuthorizationFasResponse.FundXfrFld'
+          $ref: "#/components/schemas/OutstandingAuthorizationFasResponse.FundXfrFld"
         atmWdrlFeeAmount:
           type: number
           description: Atm wdrl fee amount
@@ -536,84 +490,74 @@ components:
       properties:
         effectiveDate:
           type: string
-          description: 'Length: 7
-
+          description: |-
+            Length: 7
             Field to identify the next set of records.
-
-            VisionPLUS Service Data: OZXOAO-EFF-DATE-NEXT'
+            VisionPLUS Service Data: OZXOAO-EFF-DATE-NEXT
           format: date
         time:
           type: string
-          description: 'Length: 7
-
+          description: |-
+            Length: 7
             Field to identify the next set of records.
-
-            VisionPLUS Service Data: OZXOAO-TIME-NEXT'
+            VisionPLUS Service Data: OZXOAO-TIME-NEXT
         logRecordTypeOfTheTransaction:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Field to identify the next set of records
-
-            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE'
+            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE
           format: int32
         extentOfTheLogFile:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Field to identify the next set of records.
-
-            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXT-NEXT'
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXT-NEXT
           format: int32
         relativeByteAddress:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             Field to identify the next set of records.
-
-            VisionPLUS Service Data: OZXOAO-ACCOUNT-RBA-NEXT'
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-RBA-NEXT
           format: int32
     OutstandingAuthorizationFasResponse.PrevToken:
       type: object
       properties:
         effectiveDate:
           type: string
-          description: 'Length: 7
-
+          description: |-
+            Length: 7
             Field to identify the previous set of records
-
-            VisionPLUS Service Data: OZXOAO-EFF-DATE-PREV'
+            VisionPLUS Service Data: OZXOAO-EFF-DATE-PREV
           format: date
         time:
           type: string
-          description: 'Length: 7
-
+          description: |-
+            Length: 7
             Field to identify the next set of records.
-
-            VisionPLUS Service Data: OZXOAO-TIME-NEXT'
+            VisionPLUS Service Data: OZXOAO-TIME-NEXT
         logRecordTypeOfTheTransaction:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Field to identify the previous set of records.
-
-            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE-PREV'
+            VisionPLUS Service Data: OZXOAO-TXN-REC-TYPE-PREV
           format: int32
         extentOfTheLogFile:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Field to identify the previous set of records.
-
-            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXT-PREV'
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-LOG-EXT-PREV
           format: int32
         relativeByteAddress:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             Field to identify the previous set of records.
-
-            VisionPLUS Service Data: OZXOAO-ACCOUNT-RBA-NEXT'
+            VisionPLUS Service Data: OZXOAO-ACCOUNT-RBA-NEXT
           format: int32
 x-config:
   tryItOut: 'true'
