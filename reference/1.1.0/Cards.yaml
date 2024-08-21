@@ -9,80 +9,18 @@ info:
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 tags:
-- description: Embosser
-  name: Embosser
-- description: Card
-  name: Card
+- name: Embosser
+  description: Embosser
 paths:
-  /cards/pin/security-codes:
-    post:
-      tags:
-      - PIN
-      summary: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
-        \ number. \n\nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
-      description: "Provides security values CVV, CVV2, iCVV and PIN block for a card\
-        \ number. \n\nVMX Service: M.CMS.SEC.VALUES.INQ, R8V1"
-      operationId: Security Values Inquiry
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: 00970
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SecurityCodeDetailsRequest'
-        required: true
-      responses:
-        '500':
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SecurityCodeDetailsResponse'
-      x-proxy-name: Security Values Inquiry
-      x-group-name: PIN
-      x-child-product-name: Cards
   /cards/embosser/details:
     post:
       tags:
       - Embosser
-      summary: 'Data from the Embosser record. VMX Service: M.CMS.EMBOSSER.INQ, L8V6'
-      description: "Provides The Embosser Data From The Embosser Record (AMED) As\
-        \ Displayed Online On The ARME Screens. \nVMX Service: M.CMS.EMBOSSER.INQ,\
-        \ L8V6"
+      summary: |-
+        Provides the embosser data from the embosser record.
+         VMX Service: M.CMS.EMBOSSER.INQ, L8V6
+      description: "Provides the embosser data from the embosser record. \nVMX Service:\
+        \ M.CMS.EMBOSSER.INQ, L8V6"
       operationId: embosserDetails
       parameters:
       - name: apikey
@@ -98,41 +36,42 @@ paths:
         schema:
           type: string
         example: 00970
+
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EmbosserDetailsRequest'
+              $ref: "#/components/schemas/EmbosserDetailsRequest"
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '401':
+        "401":
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '500':
+        "500":
           description: Backend Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        '200':
+                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmbosserDetailsResponse'
+                $ref: "#/components/schemas/EmbosserDetailsResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "404":
+          description: Not Found
       x-proxy-name: Data from the Embosser record
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -140,7 +79,7 @@ paths:
     post:
       tags:
       - Embosser
-      summary: 'Add Card Record. VMX Service: M.CMS.EMBOSSER.ADD, L8V8'
+      summary: "Add Card Record. VMX Service: M.CMS.EMBOSSER.ADD, L8V8"
       description: "Adds a Card or Plastic record to an Account. \nVMX Service: M.CMS.EMBOSSER.ADD,\
         \ L8V8"
       operationId: addEmbosserL8V8
@@ -158,232 +97,72 @@ paths:
         schema:
           type: string
         example: 00970
+
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddEmbosserRequest'
+              $ref: "#/components/schemas/AddEmbosserRequest"
         required: true
       responses:
-        '400':
-          description: Bad Request
-        '405':
-          description: Method Not Allowed
-        '401':
+        "401":
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '300':
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DResponse'
-        '404':
-          description: Not Found
-        '500':
-          description: 'VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE
-            BETWEEN 000 AND 998
-
+        "500":
+          description: |
+            VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
             VPL5SCL04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
-
             VPL5SCL05E - CREDIT LIMIT - DOES NOT CONFORM TO CURRENCY NOD
-
             VPL5SCL06E - CREDIT LIMIT MUST BE NUMERIC
-
-            VPL5SCL07E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0
-            OR 1
-
+            VPL5SCL07E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0 OR 1
             VPL5SCL08I - CREDIT LIMIT UNCHANGED, UPDATE BYPASSED
-
             VPL5SCL10S - ORGANIZATION NOT FOUND ON FILE
-
             VPL5SCL11S - FOREIGN ORGANIZATION NOT FOUND ON FILE
-
             VPL5SCL12S - ACCOUNT NOT FOUND ON FILE
-
             VPL5SCL13S - RELATIONSHIP ACCOUNT NOT FOUND ON FILE
-
             VPL5SCL14S - LOGO NOT FOUND ON FILE
-
             VPL5SCL15E - CREDIT LIMIT INVALID FOR PREPAID/DEBIT ACCOUNT TYPES
-
             VPL5SCL16E - CREDIT LIMIT INVALID FOR RELATIONSHIP SUB-ACCOUNT
-
             VPL5SCL17E - CREDIT LIMIT CAN NOT EXCEED LOGO CREDIT LIMIT
-
             VPL5SCL19E - CREDIT LIMIT EXCEEDS SECURED AMOUNT
-
             VPL5SCL20E - CREDIT LIMIT CAN NOT EXCEED COMPANY NODE CREDIT AVAILABLE
-
             VPL5SCL21E - CREDIT LIMIT CAN NOT EXCEED PARENT NODE CREDIT AVAILABLE
-
             VPL5SCL23I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
-
             VPL5SCL24E - CREDIT LIMIT SHOULD BE ZERO FOR FOREIGN ACCOUNT
-
             VPL5SCL25E - CREDIT LIMIT CANNOT BE LESS THAN ACCT FLOOR LIMIT
-
             VPL5SCL40E - DELQ AMT EXCEEDED FOR CREDIT LIMIT INCREASE
-
             VPL5SCL41E - DELQ LVL EXCEEDED FOR CREDIT LIMIT INCREASE
-
             VPL5SCL42E - ACCT BLOCKED FOR CREDIT LIMIT INCREASE
-
             VPL5SCLZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-
             VPL5SCLZ5S - REQUESTED ORGANIZATION NOT FOUND
-
-            '
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DResponse'
-        '200':
+                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "403":
+          description: Forbidden
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AddEmbosserResponse'
+                $ref: "#/components/schemas/AddEmbosserResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "404":
+          description: Not Found
       x-proxy-name: Add Card Record
       x-group-name: Embosser
       x-child-product-name: Cards
 components:
   schemas:
-    SecurityCodeDetailsRequest:
-      required:
-      - cardNumber
-      - channel
-      - keyAssociation
-      - organizationNumber
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: '* Min Length: 1
-
-            * Max Length: 3
-
-
-            Organization Number.
-
-
-            VisionPLUS Service Data: ARXSVI-ORG'
-          format: int32
-          example: 999
-        cardNumber:
-          maxLength: 19
-          minLength: 19
-          type: string
-          description: 'Unique identifier or token associated with the card number
-            or payment instrument (FirstVision PAN Token).
-
-
-            VisionPLUS Service Data: ARXSVI-CARD-NBR'
-          example: 090157278ID5IXX8613
-        channel:
-          maxLength: 1
-          minLength: 1
-          type: string
-          description: 'Insurance status code.
-
-
-            Values:
-
-            * Space = Not used;
-
-            * I = IVR;
-
-            * A = ATM;
-
-            * W = Web.
-
-
-            VisionPLUS Service Data: ARXSVI-CHANNEL'
-          example: W
-        keyAssociation:
-          maxLength: 3
-          minLength: 1
-          type: string
-          description: 'Key Association. "I" + "the key association defined for the
-            customer during the implementation to the field keyAssociation."
-
-
-            VisionPLUS Service Data: ARXSVI-KEY-ASSOC'
-          example: IYY
-      description: Security Code Details Request
-    DResponse:
-      type: object
-      properties:
-        hasError:
-          type: boolean
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-        data:
-          type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-    SecurityCodeDetailsResponse:
-      type: object
-      properties:
-        cardNumber:
-          type: string
-          description: '* Max Length: 19
-
-
-            Unique identifier or token associated with the card number or payment
-            instrument (FirstVision PAN Token).
-
-
-            VisionPLUS Service Data: ARXSVO-ACCT-NBR'
-          example: 090157278ID5IXX8613
-        ud1ec:
-          type: string
-          description: '* Max Length: 16
-
-
-            Encrypted CVV OR CVC OR 3CSC value.
-
-
-            VisionPLUS Service Data: ARXSVO-UD1-ENCRYPT'
-          example: 840B12345A690FBCA
-        ud2ec:
-          type: string
-          description: '* Max Length: 16
-
-
-            Encrypted CVV2 OR CVC2 OR 4CSC value.
-
-
-            VisionPLUS Service Data: ARXSVO-UD2-ENCRYPT'
-          example: 840B12345A690FBCA
-        ud3ec:
-          type: string
-          description: '* Max Length: 16
-
-
-            Encrypted iCVV OR iCVC OR iCSC value.
-
-
-            VisionPLUS Service Data: ARXSVO-UD3-ENCRYPT'
-          example: 840B12345A690FBCA
-        pinEncrypt:
-          type: string
-          description: '* Max Length: 16
-
-
-            Encrypted pin block.
-
-
-            VisionPLUS Service Data: ARXSVO-PIN-ENCRYPT'
-          example: 840B12345A690FBCA
     EmbosserDetailsRequest:
       required:
       - cardNumber
@@ -404,9 +183,9 @@ components:
           minLength: 12
           type: string
           description: Card Number
-          example: 0004513070406598974
+          example: "0004513070406598974"
           enum:
-          - range[12,19]
+          - "range[12,19]"
         cardSequence:
           type: integer
           description: Card sequence
@@ -415,8 +194,26 @@ components:
         foreignUse:
           type: string
           description: Card sequence
-          example: '1'
+          example: "1"
       description: Card Embosser Block Request
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/Error"
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
     EmbosserDetailsResponse:
       type: object
       properties:
@@ -431,6 +228,9 @@ components:
           format: int32
         cardNumber:
           type: string
+          description: |+
+            For Financial Institutions without PAN Token enabled, the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).
+
         cardSequence:
           type: integer
           format: int32
@@ -586,15 +386,15 @@ components:
           type: integer
           format: int32
         authorizationData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.AuthorizationData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.AuthorizationData"
         internetPurchaseData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.InternetPurchaseData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.InternetPurchaseData"
         identificationNumberAuthorization:
           type: string
         identificationNumberSpendingLimitsTable:
           type: string
         userData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.UserData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.UserData"
         numberCurrentlyDisplayedEmbosserRecord:
           type: string
         adminNumberBranch:
@@ -607,27 +407,27 @@ components:
           type: integer
           format: int32
         cardInformationData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.CardInformationData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.CardInformationData"
         useAutomatedTellerMachineCashNumberData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.UseAutomatedTellerMachineCashNumberData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.UseAutomatedTellerMachineCashNumberData"
         useAutomatedTellerMachineCashAmountData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.UseAutomatedTellerMachineCashAmountData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.UseAutomatedTellerMachineCashAmountData"
         useOverTheCounterCashNumberData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.UseOverTheCounterCashNumberData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.UseOverTheCounterCashNumberData"
         useOverTheCounterCashAmountData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.UseOverTheCounterCashAmountData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.UseOverTheCounterCashAmountData"
         retailNumberData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.RetailNumberData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.RetailNumberData"
         retailAmountData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.RetailAmountData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.RetailAmountData"
         internetPurchaseNumberData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.InternetPurchaseNumberData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.InternetPurchaseNumberData"
         internetPurchaseAmountData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.InternetPurchaseAmountData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.InternetPurchaseAmountData"
         prepaidLimits:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.PrepaidLimits'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.PrepaidLimits"
         spendingLimitsData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.SpendingLimitsData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.SpendingLimitsData"
         cardDelayDays:
           type: integer
           format: int32
@@ -684,7 +484,7 @@ components:
         cardVerifyByVisaStatus:
           type: string
         customUserData:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.CustomUserData'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.CustomUserData"
     EmbosserDetailsResponse.AuthorizationData:
       type: object
       properties:
@@ -712,7 +512,7 @@ components:
         codeIdentificationNumberSpendingLimits:
           type: string
         assignedSpendLimits:
-          $ref: '#/components/schemas/EmbosserDetailsResponse.CardInformationData.AssignedSpendLimits'
+          $ref: "#/components/schemas/EmbosserDetailsResponse.CardInformationData.AssignedSpendLimits"
     EmbosserDetailsResponse.CardInformationData.AssignedSpendLimits:
       type: object
       properties:
@@ -1005,671 +805,570 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Organization Number.
-
-            VisionPLUS Service Data: AZXAPI-ORG'
+            VisionPLUS Service Data: AZXAPI-ORG
           format: int32
           example: 807
           enum:
           - null
         postToAccount:
           type: string
-          description: 'Length: 19
-
+          description: |-
+            Length: 19
             Post-to account.
-
-            VisionPLUS Service Data: AZXAPI-POST-TO-ACCT'
-          example: '4513074002573466583'
+            VisionPLUS Service Data: AZXAPI-POST-TO-ACCT
+          example: "4513074002573466583"
         cardNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: 'Length: 19
-
+          description: |-
+            Length: 19
             Card Number.
-
-            VisionPLUS Service Data: AZXAPI-CARD-NBR'
-          example: 0004513070406598974
+            VisionPLUS Service Data: AZXAPI-CARD-NBR
+          example: "0004513070406598974"
           enum:
-          - range[1,19]
+          - "range[1,19]"
         cardSequence:
           type: integer
-          description: 'Length: 4
-
+          description: |-
+            Length: 4
             Card Sequence number.
-
-            VisionPLUS Service Data: AZXAPI-CARD-SEQ'
+            VisionPLUS Service Data: AZXAPI-CARD-SEQ
           format: int32
           example: 1
         cardAction:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Card Action.
-
-            VisionPLUS Service Data: AZXAPI-CARD-ACTION'
+            VisionPLUS Service Data: AZXAPI-CARD-ACTION
           format: int32
           example: 1
         numberOfCardsRequested:
           type: integer
-          description: 'Length: 2
-
+          description: |-
+            Length: 2
             Number Of Cards Requested.
-
-            VisionPLUS Service Data: AZXAPI-NBR-RQTD'
+            VisionPLUS Service Data: AZXAPI-NBR-RQTD
           format: int32
           example: 1
         typeOfCard:
           type: integer
-          description: 'Length: 2
-
+          description: |-
+            Length: 2
             Type Of Card.
-
-            VisionPLUS Service Data: AZXAPI-TYPE-OF-CARD'
+            VisionPLUS Service Data: AZXAPI-TYPE-OF-CARD
           format: int32
         requestedCardType:
           type: integer
-          description: 'Length: 2
-
+          description: |-
+            Length: 2
             Requested Card Type.
-
-            VisionPLUS Service Data: AZXAPI-RQTD-CARD-TYPE'
+            VisionPLUS Service Data: AZXAPI-RQTD-CARD-TYPE
           format: int32
         typeCardMailer:
           type: integer
-          description: 'Length: 2
-
+          description: |-
+            Length: 2
             Type Card Mailer.
-
-            VisionPLUS Service Data: AZXAPI-TYPE-CARD-MAILER'
+            VisionPLUS Service Data: AZXAPI-TYPE-CARD-MAILER
           format: int32
         plasticId:
           type: string
-          description: 'Length: 10
-
+          description: |-
+            Length: 10
             Plastic ID.
-
-            VisionPLUS Service Data: AZXAPI-PLASTIC-ID'
-          example: ''
+            VisionPLUS Service Data: AZXAPI-PLASTIC-ID
+          example: ""
         name1TypeIndicator:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Name 1 Type Indicator.
-
-            VisionPLUS Service Data: AZXAPI-NAME1-TYPE-IND'
+            VisionPLUS Service Data: AZXAPI-NAME1-TYPE-IND
           format: int32
           example: 0
         name2TypeIndicator:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Name 2 Type Indicator.
-
-            VisionPLUS Service Data: AZXAPI-NAME2-TYPE-IND'
+            VisionPLUS Service Data: AZXAPI-NAME2-TYPE-IND
           format: int32
         embossedName1:
           type: string
-          description: 'Length: 26
-
+          description: |-
+            Length: 26
             Embossed Name 1.
-
-            VisionPLUS Service Data: AZXAPI-EMBOSSED-NAME-1'
+            VisionPLUS Service Data: AZXAPI-EMBOSSED-NAME-1
           example: HELLO
         embossedName2:
           type: string
-          description: 'Length: 26
-
+          description: |-
+            Length: 26
             Embossed Name 2.
-
-            VisionPLUS Service Data: AZXAPI-EMBOSSED-NAME-2'
+            VisionPLUS Service Data: AZXAPI-EMBOSSED-NAME-2
           example: KIT-KAT WALLER
         securedCodeActivate:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Secured Code Activate.
-
-            VisionPLUS Service Data: AZXAPI-SECURECODE-ACTIVATE'
+            VisionPLUS Service Data: AZXAPI-SECURECODE-ACTIVATE
           format: int32
           example: 0
         visaPlusIndicator:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Visa PLUS Indicator.
-
-            VisionPLUS Service Data: AZXAPI-SECURECODE-ACTIVATE'
+            VisionPLUS Service Data: AZXAPI-SECURECODE-ACTIVATE
           format: int32
           example: 0
         pinMailerDelayDays:
           type: integer
-          description: 'Length: 2
-
+          description: |-
+            Length: 2
             PIN Mailer Delay Days.
-
-            VisionPLUS Service Data: AZXAPI-PIN-DELAY-DAYS'
+            VisionPLUS Service Data: AZXAPI-PIN-DELAY-DAYS
           format: int32
           example: 0
         expirationDate:
           type: string
-          description: 'Length: 8
-
+          description: |-
+            Length: 8
             Expiration Date
-
-            VisionPLUS Service Data: AZXAPI-DATE-EXPIRE'
+            VisionPLUS Service Data: AZXAPI-DATE-EXPIRE
           format: date
         customerNumber:
           maxLength: 19
           minLength: 0
           type: string
-          description: 'Length: 19
-
+          description: |-
+            Length: 19
             Customer Number.
-
-            VisionPLUS Service Data: AZXAPI-CUSTOMER-NBR'
-          example: '4513074002573466583'
+            VisionPLUS Service Data: AZXAPI-CUSTOMER-NBR
+          example: "4513074002573466583"
           enum:
-          - range[-infinity,19
+          - "range[-infinity,19"
         name1:
           type: string
-          description: 'Length: 40
-
+          description: |-
+            Length: 40
             Name 1.
-
-            VisionPLUS Service Data: AZXAPI-EMBR-NAME-1'
+            VisionPLUS Service Data: AZXAPI-EMBR-NAME-1
           example: RUN DMC
         name2:
           type: string
-          description: 'Length: 40
-
+          description: |-
+            Length: 40
             Name 2.
-
-            VisionPLUS Service Data: AZXAPI-EMBR-NAME-2'
+            VisionPLUS Service Data: AZXAPI-EMBR-NAME-2
           example: RICK ROSS
         pinOffset:
           type: integer
-          description: 'Length: 7
-
+          description: |-
+            Length: 7
             PIN Offset.
-
-            VisionPLUS Service Data: AZXAPI-PIN-OFFSET'
+            VisionPLUS Service Data: AZXAPI-PIN-OFFSET
           format: int32
           example: 0
         posServiceCode:
           type: integer
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             POS Service Code.
-
-            VisionPLUS Service Data: AZXAPI-POS-SERVICE-CODE'
+            VisionPLUS Service Data: AZXAPI-POS-SERVICE-CODE
           format: int32
           example: 101
         cardholderFlag:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Cardholder Flag.
-
-            VisionPLUS Service Data: AZXAPI-CARDHOLDER-FLAG'
-          example: '0'
+            VisionPLUS Service Data: AZXAPI-CARDHOLDER-FLAG
+          example: "0"
         addressLine1:
           type: string
-          description: 'Length: 40
-
+          description: |-
+            Length: 40
             Address Line 1.
-
-            VisionPLUS Service Data: AZXAPI-ADDR-LINE-1'
+            VisionPLUS Service Data: AZXAPI-ADDR-LINE-1
           example: PORT OF MIAMI
         addressLine2:
           type: string
-          description: 'Length: 40
-
+          description: |-
+            Length: 40
             Address Line 2.
-
-            VisionPLUS Service Data: AZXAPI-ADDR-LINE-2'
+            VisionPLUS Service Data: AZXAPI-ADDR-LINE-2
           example: 117 E PARKWAY AVE
         city:
           type: string
-          description: 'Length: 30
-
+          description: |-
+            Length: 30
             City.
-
-            VisionPLUS Service Data: AZXAPI-CITY'
+            VisionPLUS Service Data: AZXAPI-CITY
           example: MIAMI
         stateOrProvince:
           type: string
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             State/Province.
-
-            VisionPLUS Service Data: AZXAPI-ST-PR'
+            VisionPLUS Service Data: AZXAPI-ST-PR
           example: FL
         postalCode:
           type: string
-          description: 'Length: 10
-
+          description: |-
+            Length: 10
             Postal Code.
-
-            VisionPLUS Service Data: AZXAPI-PSTL-CD'
-          example: '38585'
+            VisionPLUS Service Data: AZXAPI-PSTL-CD
+          example: "38585"
         languageCode:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Language Code.
-
-            VisionPLUS Service Data: AZXAPI-LANG-CODE'
+            VisionPLUS Service Data: AZXAPI-LANG-CODE
           example: ENG
         visaMiniIndicator:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Visa Mini Indicator.
-
-            VisionPLUS Service Data: AZXAPI-VISA-MINI-IND'
+            VisionPLUS Service Data: AZXAPI-VISA-MINI-IND
           format: int32
           example: 0
         pinSuppression:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             PIN suppression.
-
             The values are :
-
             * 0 = Allow PINs
-
             * 1 = Suppress PIN generation
-
-            VisionPLUS Service Data: AZXAPI-PIN-SUPPRESSION'
+            VisionPLUS Service Data: AZXAPI-PIN-SUPPRESSION
           format: int32
           example: 0
         blockCode:
           type: string
-          description: "Length: 1\nBlock Code.\nThe values are space and A\u2013Z.\n\
-            VisionPLUS Service Data: AZXAPI-BLOCK-CODE"
+          description: |-
+            Length: 1
+            Block Code.
+            The values are space and A–Z.
+            VisionPLUS Service Data: AZXAPI-BLOCK-CODE
         currentCardActivation:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Current card activation.
-
             The values are :
-
             N = No card activation is required or has already occurred.
-
             Y = Card activation needs to occur.
-
-            VisionPLUS Service Data: AZXAPI-CURR-CRD-ACTN'
+            VisionPLUS Service Data: AZXAPI-CURR-CRD-ACTN
         maximumAuthorizationFrequency:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Maximum authorization frequency.
-
             The values are :
-
             * 0 = Not used
-
             * 1 = Daily
-
             * 2 = Cycle-to-date
-
             * 3 = Year-to-date
-
-            VisionPLUS Service Data: AZXAPI-AUTH-ATM-OTC-RTL-FREQ'
+            VisionPLUS Service Data: AZXAPI-AUTH-ATM-OTC-RTL-FREQ
           format: int32
           example: 0
         atmCashNumber:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             ATM (Automated Teller Machine) Cash number.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-ATM-CASH-NBR'
+            VisionPLUS Service Data: AZXAPI-AUTH-ATM-CASH-NBR
           format: int32
           example: 0
         atmCashAmount:
           type: number
-          description: 'Length: 17
-
+          description: |-
+            Length: 17
             ATM (Automated Teller Machine) Cash Amount.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-ATM-CASH-AMT'
+            VisionPLUS Service Data: AZXAPI-AUTH-ATM-CASH-AMT
           example: 0
         atmCashSingleTransactionLimit:
           type: number
-          description: 'Length: 17
-
+          description: |-
+            Length: 17
             ATM(Automated Teller Machine) Cash Transaction limit.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-ATM-CASH-SNGLTXN'
+            VisionPLUS Service Data: AZXAPI-AUTH-ATM-CASH-SNGLTXN
           example: 0
         overTheCounterCashNumber:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             Over The Counter Cash number.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-OTC-CASH-NBR'
+            VisionPLUS Service Data: AZXAPI-AUTH-OTC-CASH-NBR
           format: int32
           example: 0
         overTheCounterCashAmount:
           type: number
-          description: 'Length: 17
-
+          description: |-
+            Length: 17
             Over The Counter Cash amount.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-OTC-CASH-AMT'
+            VisionPLUS Service Data: AZXAPI-AUTH-OTC-CASH-AMT
           example: 0
         overTheCounterCashSingleTransactionLimit:
           type: number
-          description: 'Length: 17
-
+          description: |-
+            Length: 17
             Over The Counter Transaction Limit.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-OTC-CASH-SNGLTXN'
+            VisionPLUS Service Data: AZXAPI-AUTH-OTC-CASH-SNGLTXN
           example: 0
         retailPurchaseNumber:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             Retail Number.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-RTL-NBR'
+            VisionPLUS Service Data: AZXAPI-AUTH-RTL-NBR
           format: int32
           example: 0
         retailPurchaseAmt:
           type: number
-          description: 'Length: 17
-
+          description: |-
+            Length: 17
             Retail Amount.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-RTL-AMT'
+            VisionPLUS Service Data: AZXAPI-AUTH-RTL-AMT
           example: 0
         retailPurchaseSingleTransactionLimit:
           type: number
-          description: 'Length: 17
-
+          description: |-
+            Length: 17
             Retail Transaction Limit.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-RTL-SNGL-TXNt'
+            VisionPLUS Service Data: AZXAPI-AUTH-RTL-SNGL-TXNt
           example: 0
         internetPurchaseAmount:
           type: number
-          description: 'Length: 13
-
+          description: |-
+            Length: 13
             Internet Purchase Amount.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-INTRNT-AMT'
+            VisionPLUS Service Data: AZXAPI-AUTH-INTRNT-AMT
           example: 0
         internetPurchaseNumber:
           type: number
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             Internet Purchase Number.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-INTRNT-NBR'
+            VisionPLUS Service Data: AZXAPI-AUTH-INTRNT-NBR
           example: 0
         internetPurchaseSingleTransactionLimit:
           type: number
-          description: 'Length: 13
-
+          description: |-
+            Length: 13
             Internet Purchase Single Transaction Limit.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-INTRNT-SNGL-TXN'
+            VisionPLUS Service Data: AZXAPI-AUTH-INTRNT-SNGL-TXN
           example: 0
         user1:
           type: string
-          description: 'Length: 20
-
+          description: |-
+            Length: 20
             User-defined 1.
-
-            VisionPLUS Service Data: AZXAPI-USER-1'
-          example: '1'
+            VisionPLUS Service Data: AZXAPI-USER-1
+          example: "1"
         user2:
           type: string
           description: "\tstring\nexample: 2\nLength: 20\nUser-defined 2.\nVisionPLUS\
             \ Service Data: AZXAPI-USER-2"
-          example: '2'
+          example: "2"
         user3:
           type: string
-          description: 'Length: 19
-
+          description: |-
+            Length: 19
             User-defined 3.
-
-            VisionPLUS Service Data: AZXAPI-USER-3'
-          example: '3'
+            VisionPLUS Service Data: AZXAPI-USER-3
+          example: "3"
         user4:
           type: integer
-          description: 'Length: 4
-
+          description: |-
+            Length: 4
             User-defined 4.
-
-            VisionPLUS Service Data: AZXAPI-USER-4'
+            VisionPLUS Service Data: AZXAPI-USER-4
           format: int32
           example: 4
         user5:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             User-defined 5.
-
-            VisionPLUS Service Data: AZXAPI-USER-5'
-          example: '5'
+            VisionPLUS Service Data: AZXAPI-USER-5
+          example: "5"
         user6:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             User-defined 6.
-
-            VisionPLUS Service Data: AZXAPI-USER-6'
-          example: '6'
+            VisionPLUS Service Data: AZXAPI-USER-6
+          example: "6"
         user7:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             User-defined 7.
-
-            VisionPLUS Service Data: AZXAPI-USER-7'
-          example: '7'
+            VisionPLUS Service Data: AZXAPI-USER-7
+          example: "7"
         user8:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             User-defined 8.
-
-            VisionPLUS Service Data: AZXAPI-USER-8'
-          example: '8'
+            VisionPLUS Service Data: AZXAPI-USER-8
+          example: "8"
         userDate1:
           type: string
-          description: 'Length: 8
-
+          description: |-
+            Length: 8
             User-defined Date 1.
-
-            VisionPLUS Service Data: AZXAPI-USER-DATE-1'
+            VisionPLUS Service Data: AZXAPI-USER-DATE-1
           format: date
         userDate2:
           type: string
-          description: 'Length: 8
-
+          description: |-
+            Length: 8
             User-defined Date 2.
-
-            VisionPLUS Service Data: AZXAPI-USER-DATE-2'
+            VisionPLUS Service Data: AZXAPI-USER-DATE-2
           format: date
         branchNumber:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             Branch Number.
-
-            VisionPLUS Service Data: AZXAPI-ADMIN-BRANCH'
+            VisionPLUS Service Data: AZXAPI-ADMIN-BRANCH
           format: int32
           example: 0
         reissueDeliveryOption:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Reissue delivery option. The values are:
-
             * 0 = Regular mail
-
             * 1 = First class mail
-
             * 2 = Registered mail
-
             * 3 = Internal delivery mail
-
             * 4 = User-defined.
-
-            VisionPLUS Service Data: AZXAPI-REISSUE-DELIV-OPTION'
+            VisionPLUS Service Data: AZXAPI-REISSUE-DELIV-OPTION
           format: int32
           example: 0
         nextCardExpirationDate:
           type: string
-          description: 'Length: 8
-
+          description: |-
+            Length: 8
             Next Card Expiration Date.
-
-            VisionPLUS Service Data: AZXAPI-DATE-NEXT-EXPR'
+            VisionPLUS Service Data: AZXAPI-DATE-NEXT-EXPR
           format: date
         firstIssueBranch:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             First Issue Branch.
-
-            VisionPLUS Service Data: AZXAPI-FIRST-ISS-BRANCH'
+            VisionPLUS Service Data: AZXAPI-FIRST-ISS-BRANCH
           format: int32
           example: 0
         deliveryOption:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Delivery Option.
-
             The values are :
-
             * 0 = Regular mail
-
             * 1 = First class mail
-
             * 2 = Registered mail
-
             * 3 = Internal delivery mail
-
             * 4 = User-defined
-
-            VisionPLUS Service Data: AZXAPI-REISSUE-DELIV-OPTION'
+            VisionPLUS Service Data: AZXAPI-REISSUE-DELIV-OPTION
           format: int32
           example: 0
         authorizationCriteriaTableNumber:
           type: string
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Authorization Criteria Table Number.
-
-            VisionPLUS Service Data: AZXAPI-AUTH-CRITERIA-TBL'
+            VisionPLUS Service Data: AZXAPI-AUTH-CRITERIA-TBL
         cardDelayDays:
           type: integer
-          description: 'Length: 2
-
+          description: |-
+            Length: 2
             Card Delay Days.
-
-            VisionPLUS Service Data: AZXAPI-CARD-DELAY-DAYS'
+            VisionPLUS Service Data: AZXAPI-CARD-DELAY-DAYS
           format: int32
           example: 0
         authorizationSpendingLimitTable:
           type: string
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Authorization Spending Limit Table.
-
-            VisionPLUS Service Data: AZXAPI-SPND-LIMIT-TBL'
+            VisionPLUS Service Data: AZXAPI-SPND-LIMIT-TBL
         assignedSpendingLimits:
-          $ref: '#/components/schemas/AddEmbosserRequest.AssignedSpendingLimits'
+          $ref: "#/components/schemas/AddEmbosserRequest.AssignedSpendingLimits"
         programId:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             Program ID.
-
-            VisionPLUS Service Data: AZXAPI-PROGRAM-ID'
+            VisionPLUS Service Data: AZXAPI-PROGRAM-ID
           format: int32
         deviceIndicator:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Device Indicator.
-
             The values for Visa are 0-4
-
             The values for MasterCard are 1-4, A-G, or space
-
-            VisionPLUS Service Data: AZXAPI-DVC-IND'
+            VisionPLUS Service Data: AZXAPI-DVC-IND
           example: C
         processType:
           type: integer
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Process type.
-
             The values are:
-
             * 0 = Same day processing is not required
-
             * 1 = Same day processing is required
-
-            VisionPLUS Service Data: AZXAPI-SDP-PROCESS-TYPE'
+            VisionPLUS Service Data: AZXAPI-SDP-PROCESS-TYPE
           format: int32
           example: 0
         cardholderAffiliationGroupId:
           type: integer
-          description: 'Length: 5
-
-            Identification Of The Cardholder''s Affiliation Or Affinity Group.
-
-            VisionPLUS Service Data: AZXAPI-EMBLM-ID'
+          description: |-
+            Length: 5
+            Identification Of The Cardholder's Affiliation Or Affinity Group.
+            VisionPLUS Service Data: AZXAPI-EMBLM-ID
           format: int32
           example: 12348
         cardActionReasonCode:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Card Action Reason Code.
-
-            Only the values, A,B,C,D,E,F,G,K,V, and spaces are validated when the
-            field EMB CLIENT on AZMO23 is set to C.
-
-            VisionPLUS Service Data: AZXAPI-CARD-ACTION-REASON'
+            Only the values, A,B,C,D,E,F,G,K,V, and spaces are validated when the field EMB CLIENT on AZMO23 is set to C.
+            VisionPLUS Service Data: AZXAPI-CARD-ACTION-REASON
         enrollmentStatusVBV:
           type: string
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Enrollment status of the card in Verified by Visa.
-
             The values are :
-
             * Space = No enrollment (Default)
-
             * C = Cancel enrollment
-
             * N = New enrollment
-
             * U = Update enrollment
-
-            VisionPLUS Service Data: AZXAPI-VBV-STATUS'
-          example: N
+            VisionPLUS Service Data: AZXAPI-VBV-STATUS
+          example: "N"
         vbvPassword:
           type: string
-          description: 'Length: 40
-
+          description: |-
+            Length: 40
             Vbv Password Or Greeting message.
-
-            VisionPLUS Service Data: AZXAPI-VBV-PAM'
+            VisionPLUS Service Data: AZXAPI-VBV-PAM
           example: BANDEBOGOT
       description: Add Embosser Request
     AddEmbosserRequest.AssignedSpendingLimits:
@@ -1677,27 +1376,24 @@ components:
       properties:
         maximumSpendingLimit:
           type: number
-          description: 'Length: 17
-
+          description: |-
+            Length: 17
             Maximum Spending Limit.
-
-            VisionPLUS Service Data: AZXAPI-SPND-LIMIT'
+            VisionPLUS Service Data: AZXAPI-SPND-LIMIT
           example: 0
         spendingTransaction:
           type: number
-          description: 'Length: 1
-
+          description: |-
+            Length: 1
             Spending Frequency.
-
-            VisionPLUS Service Data: AZXAPI-SPND-FREQ'
+            VisionPLUS Service Data: AZXAPI-SPND-FREQ
           example: 0
         spendingFrequency:
           type: integer
-          description: 'Length: 9
-
+          description: |-
+            Length: 9
             Spending Transaction.
-
-            VisionPLUS Service Data: AZXAPI-SPND-TRANS'
+            VisionPLUS Service Data: AZXAPI-SPND-TRANS
           format: int32
           example: 0
       description: Assigned spending limits details
@@ -1706,58 +1402,52 @@ components:
       properties:
         organizationNumber:
           type: integer
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Organization Number.
-
-            VisionPLUS Service Data: AZXAPO-ORG'
+            VisionPLUS Service Data: AZXAPO-ORG
           format: int32
         organizationAssociatedToForeignAccount:
           type: integer
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Organization Associated To Foreign Account.
-
-            VisionPLUS Service Data: AZXAPO-FOREIGN-ORG'
+            VisionPLUS Service Data: AZXAPO-FOREIGN-ORG
           format: int32
         logo:
           type: integer
-          description: 'Length: 3
-
+          description: |-
+            Length: 3
             Logo
-
-            VisionPLUS Service Data: AZXAPO-LOGO'
+            VisionPLUS Service Data: AZXAPO-LOGO
           format: int32
         accountNumber:
           type: string
-          description: 'Length: 19
-
-            Identification number of the account associated with the Credit Plan Segment
-            records that you want to modify or view.
-
-            VisionPLUS Service Data: AZXAPO-ACCT'
+          description: |-
+            Length: 19
+            Identification number of the account associated with the Credit Plan Segment records that you want to modify or view.
+            VisionPLUS Service Data: AZXAPO-ACCT
         cardNumber:
           type: string
-          description: 'Length: 19
-
+          description: |-
+            Length: 19
             Card Number.
+            For Financial Institutions without PAN Token enabled, the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).
 
-            VisionPLUS Service Data: AZXAPO-CARD-NBR'
+            VisionPLUS Service Data: AZXAPO-CARD-NBR
         cardSequence:
           type: integer
-          description: 'Length: 4
-
+          description: |-
+            Length: 4
             Card Sequence.
-
-            VisionPLUS Service Data: AZXAPO-CARD-SEQ'
+            VisionPLUS Service Data: AZXAPO-CARD-SEQ
           format: int32
         currentChipSequenceNumber:
           type: integer
-          description: 'Length: 2
-
+          description: |-
+            Length: 2
             Current Chip Sequence Number.
-
-            VisionPLUS Service Data: AZXAPO-CURR-CHIP-SEQ'
+            VisionPLUS Service Data: AZXAPO-CURR-CHIP-SEQ
           format: int32
 x-config:
   tryItOut: 'true'
