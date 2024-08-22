@@ -1,14 +1,13 @@
 openapi: 3.0.1
 info:
-  title: LATAM Issuing APIs
-  description: APIs to VMX Server
-  license:
-    name: Apache License Version 2.0
-    url: https://www.apache.org/licences/LICENSE-2.0
-  version: "1.0"
+  title: "FirstVision\u2122 Transaction Service - API Documentation"
+  description: "This documentation describes the REST APIs provided by the FirstVision\u2122\
+    \ Cards Microservice, which provides functionality for the issuing, management\
+    \ and processing of credit cards, including bank, co-branded, private label, debit,\
+    \ commercial, and prepaid"
+  version: '1.2'
 servers:
-- url: http://localhost:8080
-  description: Generated server url
+- url: https://int.api.firstdata.com/latam-gfs-apis/portal
 paths:
   /transactions/v1/installmentTransactions/{installmentTransaction-Id}/termsIdAnticipation/simulation:
     put:
@@ -46,20 +45,18 @@ paths:
               $ref: "#/components/schemas/IndividualInstallmentAnticipationRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -68,6 +65,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/IndividualInstallmentAnticipationResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -125,20 +124,18 @@ paths:
               $ref: "#/components/schemas/InstallmentBasedAnticipationRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -147,6 +144,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InstallmentBasedAnticipationResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -199,20 +198,18 @@ paths:
               $ref: "#/components/schemas/AmountAnticipationNoPaymentRequiredRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -221,6 +218,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AmountAnticipationNoPaymentRequiredResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -287,20 +286,18 @@ paths:
               $ref: "#/components/schemas/InstallmentTermsUpdateRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -309,6 +306,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InstallmentTermsUpdateResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -359,20 +358,18 @@ paths:
               $ref: "#/components/schemas/AmountBasedAnticipationRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -381,6 +378,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AmountBasedAnticipationResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -403,11 +402,19 @@ paths:
         VMX Service: M.CMS.QUOTE.PROJ.UPD, L8V1
       operationId: Quote Projections Update
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -415,22 +422,16 @@ paths:
               $ref: "#/components/schemas/QuoteProjectionUpdateRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: |-
             VPL5SVV01S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
@@ -482,12 +483,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/QuoteProjectionUpdateResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -508,11 +515,19 @@ paths:
         \ R8V1"
       operationId: Promotional Rate Expiration Disclosure Update
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -520,18 +535,8 @@ paths:
               $ref: "#/components/schemas/PromoRateUpdateRequest"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SDS01E – ORG NOT FOUND IN AMCR
@@ -557,8 +562,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -567,6 +580,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PromoRateUpdateResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -589,11 +604,19 @@ paths:
         VMX Service: M.CMS.INST.TRAN.CONV, R8V1
       operationId: transactionConversion
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -601,22 +624,6 @@ paths:
               $ref: "#/components/schemas/TransactionConversionRequest"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: "VPL5STIZ5S-INVALID ORG \n\nVPL5STIZ7S-INVALID LOGO \n\nVPL5STI01S-ORGANIZATION\
             \ NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998 \n\nVPL5STI02S-ORGANIZATION\
@@ -663,12 +670,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/TransactionConversionResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -691,11 +714,19 @@ paths:
         VMX Service: M.SSC.EXCHANGE.RATE.UPD, L8V1
       operationId: Exchange Rate Update
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -703,20 +734,18 @@ paths:
               $ref: "#/components/schemas/ExchangeRateRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -725,6 +754,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExchangeRateResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -812,26 +843,32 @@ paths:
           type: integer
           format: int32
         example: 12
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "422":
@@ -873,6 +910,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CurrencyRateInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -891,11 +930,19 @@ paths:
         \ L8V1"
       operationId: currencyRateTableUpdate
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -903,18 +950,10 @@ paths:
               $ref: "#/components/schemas/CurrencyRateTableUpdateRequest"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: "VPL1SEM01S - INVALID ORG \n\nVPL1SEM02S - USER NOT AUTHORIZED\
             \ FOR ORG \n\nVPL1SEM05S - FILE TABLE VALUE IS ZERO \n\nVPL1SEM06S - FILE\
@@ -934,8 +973,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -944,6 +989,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CurrencyRateTableUpdateResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -965,11 +1012,19 @@ paths:
         VMX Service: M.SSC.EXCH.RATE.ADD, L8V1
       operationId: currencyRateDefinitionAdd
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -977,22 +1032,6 @@ paths:
               $ref: "#/components/schemas/CurrencyRateDefinitionRequest"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: "VPL1SEA01S - INVALID ORG \n\nVPL1SEA03S - USER NOT AUTHORIZED\
             \ FOR ORG \n\nVPL1SEA05S - FILE TABLE VALUE IS ZERO \n\nVPL1SEA06S - FILE\
@@ -1012,12 +1051,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/CurrencyRateDefinitionResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1037,11 +1092,19 @@ paths:
         \ R8V1"
       operationId: Currency Rate Table Update
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -1049,18 +1112,16 @@ paths:
               $ref: "#/components/schemas/CurrencyRateTableRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "422":
           description: "VPL5SMR05E - ORG NUMBER MUST BE NUMERIC AND VALID VALUES ARE\
             \ 001-998 \n\nVPL5SMR06E - SOURCE CURRENCY CODE MUST BE NUMERIC \n\nVPL5SMR07E\
@@ -1071,8 +1132,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -1081,6 +1142,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CurrencyRateTableResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1103,11 +1166,19 @@ paths:
         VMX Service: M.CMS.TRANSACTIONDETAIL.INQ, L8V7
       operationId: detailsList
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -1115,6 +1186,10 @@ paths:
               $ref: "#/components/schemas/TransactionsDetailsL8V7Request"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
@@ -1161,14 +1236,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -1177,6 +1246,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TransactionsDetailsL8V7Response"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1199,11 +1270,19 @@ paths:
         VMX Service: M.CMS.PLAN.STTLMNT.QUOTE.UPD, R8V1
       operationId: Loan Payoff Quote Generate
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -1211,18 +1290,10 @@ paths:
               $ref: "#/components/schemas/PlanSettlementQuoteUpdateRequest"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: "VPL5SPQZ2S - SERVICE INPUT FOR SERVICE IS AN INCORRECT LENGTH\
             \ \n\nVPL5SPQZ4S - COULD NOT DETERMINE ASSOCIATED ORG \n\nVPL5SPQZ5S -\
@@ -1264,8 +1335,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -1274,6 +1351,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PlanSettlementQuoteUpdateResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1293,11 +1372,19 @@ paths:
         \ L8V3"
       operationId: outstandingAuthorizationL8V3
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -1305,18 +1392,10 @@ paths:
               $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Request"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: "VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
             \ BETWEEN 000 AND 998\n\nVPL5SOA07E - ACCOUNT NUMBER IS INVALID\n\nVPL5SOA08E\
@@ -1336,8 +1415,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -1346,6 +1431,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Response"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1368,11 +1455,19 @@ paths:
         VMX Service: M.ASM.NOTES.HISTORY.INQ, R8V3
       operationId: notesInquiryResponseR8V3
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -1380,18 +1475,16 @@ paths:
               $ref: "#/components/schemas/NotesHistoryInquiryRequestR8V3"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "422":
           description: "VPL8SNH02S - SERVICE INPUT TO A/A SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL8SNH06S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
@@ -1415,8 +1508,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -1425,6 +1518,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/NotesHistoryInquiryResponseR8V3"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1442,11 +1537,19 @@ paths:
         VMX Service: M.ASM.NONMON.ACT, R8V5"
       operationId: Memo Information Add
       parameters:
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       requestBody:
         content:
           application/json:
@@ -1454,12 +1557,10 @@ paths:
               $ref: "#/components/schemas/NonMonetaryActionCodeRequest"
         required: true
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "422":
           description: |-
             VPL8SNA06S - ORGANIZATION MUST BE NUMERIC AND VALID VALUES ARE 001-998
@@ -1535,14 +1636,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -1551,6 +1652,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/NonMonetaryActionCodeResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1587,20 +1690,18 @@ paths:
               $ref: "#/components/schemas/CalculateCatL8V2Request"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "422":
@@ -1620,6 +1721,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CalculateCatL8V2Response"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1666,20 +1769,18 @@ paths:
               $ref: "#/components/schemas/EarlyReleaseDiscountRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -1688,6 +1789,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EarlyReleaseDiscountResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1765,24 +1868,24 @@ paths:
           minLength: 0
           type: string
         example: A1
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: "VPL5SIQ02S - SERVICE INPUT IS AN INCORRECT LENGTH \n\nVPL5SIQ06S\
             \ - ORG IS INVALID \n\nVPL5SIQ07S - INSURANCE TABLE MUST BE NUMERIC AND\
@@ -1793,8 +1896,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -1803,6 +1912,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InsuranceTableInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -1876,24 +1987,22 @@ paths:
         schema:
           type: string
         example: 20
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SVQ06S - ORG IS INVALID
@@ -1911,8 +2020,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -1921,6 +2038,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FeeTableInformationResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2027,20 +2146,18 @@ paths:
           default: 1
         example: 1
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -2049,6 +2166,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InstallmentDataInquiryL8V2Response"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2169,22 +2288,6 @@ paths:
           type: string
         example: "Y"
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "200":
           description: Success
           content:
@@ -2193,6 +2296,22 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/InstallmentTermsInquiryL8V2Response"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2272,20 +2391,18 @@ paths:
           type: string
         example: 00000WEBUSER
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -2294,6 +2411,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InstallmentDetailInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2391,20 +2510,18 @@ paths:
           format: int32
         example: 51
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -2413,6 +2530,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InstallmentSummaryInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2457,26 +2576,32 @@ paths:
 
             VisionPLUS Service Data: ARXQPI-LOGO
         example: 400
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -2485,6 +2610,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PrepaidLogoInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2548,28 +2675,20 @@ paths:
         schema:
           type: string
         example: 1
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: "VPL5SQF02S - SERVICE INPUT IS AN INCORRECT LENGTH \n\nVPL5SQF06S\
             \ - ORG IS INVALID \n\nVPL5SQF07S - PCT TABLE MUST BE NUMERIC AND GT 0\
@@ -2580,12 +2699,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PctTableInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2651,18 +2786,24 @@ paths:
           minimum: 0
           type: string
         example: 0
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "422":
           description: "VPL5SOA02S - SERVICE INPUT TO ACCOUNT INQ SERVICE IS AN INCORRECT\
             \ LENGTH \n\nVPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
@@ -2682,14 +2823,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -2698,6 +2839,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OutstandingAuthorizationCmsResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2734,24 +2877,22 @@ paths:
           type: integer
           format: int32
         example: 998
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "400":
           description: Bad Request
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
             VPL5SQO06S - ORG IS INVALID
@@ -2761,8 +2902,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -2771,6 +2920,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OrganizationInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2831,24 +2982,30 @@ paths:
 
             VisionPLUS Service Data: OSXQOI-OFFER-CONTEXT
         example: "01"
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "422":
           description: "VPLBSMO03E - INVALID ORG NUMBER \n\nVPLBSMO04E - INVALID OFFER\
             \ ID \n\nVPLBSMO05E - VALID VALUE IS 01 \n\nVPLBSMO10E - TRAN RULE SET\
@@ -2893,8 +3050,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "403":
-          description: Forbidden
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "200":
@@ -2903,6 +3060,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OfferInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2915,9 +3074,10 @@ paths:
     get:
       tags:
       - Transactions
-      summary: "Offer Inquiry. VMX Service: M.OMS.OFFERDEFLIST.INQ, R8V1"
-      description: "Offer Inquiry and details. \nVMX Service: M.OMS.OFFERDEFLIST.INQ,\
-        \ R8V1"
+      summary: "Provide a comprehensive list of offerings with the ability to inquire\
+        \ for additional details. VMX Service: M.OMS.OFFERDEFLIST.INQ, R8V1"
+      description: "Provide a comprehensive list of offerings with the ability to\
+        \ inquire for additional details. \nVMX Service: M.OMS.OFFERDEFLIST.INQ, R8V1"
       operationId: offerListInquiry
       parameters:
       - name: organizationNumber
@@ -2945,26 +3105,32 @@ paths:
         schema:
           type: string
         example: "01"
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -2973,6 +3139,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OfferListInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -2986,11 +3154,11 @@ paths:
       tags:
       - Transactions
       summary: |-
-        Prepaid MCC Criteria Table inquiry Inquiry and details.
+        Prepaid Merchant Category Code Criteria Table inquiry and details.
 
         VMX Service: M.CMS.MCCT.TBL.INQ, R8V1
       description: |-
-        Prepaid MCC Criteria Table inquiry Inquiry and details.
+        Prepaid Merchant Category Code Criteria Table inquiry and details.
 
         VMX Service: M.CMS.MCCT.TBL.INQ, R8V1
       operationId: Prepaid MCC Criteria Table Inquiry
@@ -3048,28 +3216,20 @@ paths:
         schema:
           type: string
         example: 1
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: |-
             VPL5SXQ06S - ORG IS INVALID
@@ -3082,12 +3242,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/McctTableInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -3120,28 +3296,32 @@ paths:
           type: integer
           format: int32
         example: 400
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "422":
           description: "VPL5SQL05S - SERVICE COULD NOT OBTAIN STORAGE AREA \n\nVPL5SQL06S\
             \ - SERVICE INPUT LENGTH IS INCORRECT \n\nVPL5SQL09S - APPLICATION IN\
@@ -3154,12 +3334,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "404":
+          description: Not Found
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/LogoInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -3220,26 +3404,32 @@ paths:
           type: integer
           format: int32
         example: 1
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -3248,6 +3438,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LogoBlockCodeInquiryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -3354,18 +3546,24 @@ paths:
           type: integer
           format: int32
         example: 1
-      - name: X-ClientID
+      - name: apikey
         in: header
+        description: API Key
         required: true
         schema:
           type: string
+      - name: X-ClientID
+        in: header
+        description: Client ID
+        required: true
+        schema:
+          type: string
+        example: 00970
       responses:
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "422":
           description: "VPLBSHI01S-USER HAS NOT SIGNED ON - PLEASE SIGNON \n\nVPLBSHI02S-APPLICATION\
             \ IN NO-PROCESSING STATUS RE-TRY IN A FEW MINUTES \n\nVPLBSHI03E-ORG NUMBER\
@@ -3388,14 +3586,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "400":
-          description: Bad Request
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
         "200":
@@ -3404,6 +3602,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EnrollHistoryResponse"
+        "403":
+          description: Forbidden
         "500":
           description: Backend Error
           content:
@@ -3492,14 +3692,20 @@ paths:
           format: int32
         example: 1
       responses:
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
         "200":
           description: Success
           content:
@@ -3508,14 +3714,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/InstallmentTermsInquiryResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
@@ -6013,7 +6213,9 @@ components:
           type: string
           description: "* Max Length: 19 \n\nUnique identifier or token associated\
             \ with the card number or payment instrument FirstVision PAN Token). \n\
-            \nVisionPLUS Service Data: AZXTDO-CARD-NBR"
+            For Financial Institutions without PAN Token enabled, the cardNumber will\
+            \ be shown masked (e.g., 0581xxxxxxx5846).\n\nVisionPLUS Service Data:\
+            \ AZXTDO-CARD-NBR"
           example: 000123456ID5IXX12345
         cardSequence:
           type: integer
@@ -6510,6 +6712,7 @@ components:
             * Max Length: 19
 
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
+            For Financial Institutions without PAN Token enabled, the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).
 
             VisionPLUS Service Data: ARXPQO-CARD-NBR
           example: 000540208ID5IXX3865
@@ -7580,6 +7783,7 @@ components:
 
             Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
             Card number of the authorization.
+            For Financial Institutions without PAN Token enabled, the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).
 
             VisionPLUS Service Data: OZXOAO-CARD-NBR
           example: 000012345XXXX12345
@@ -8586,6 +8790,7 @@ components:
             * Max Length: 19
 
             Unique identifier or token associated with the card number or payment instrument FirstVision PAN Token.
+            For Financial Institutions without PAN Token enabled, the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).
 
             VisionPLUS Service Data: ASXNHO-CARD-NBR
           example: 000540208ID5IXX3865
@@ -9370,7 +9575,8 @@ components:
           type: string
           description: "* Max Length: 19\n\nUnique identifier or token associated\
             \ with the card number or payment instrument (FirstVision PAN Token).\n\
-            \nVisionPLUS Service Data: "
+            For Financial Institutions without PAN Token enabled, the cardNumber will\
+            \ be shown masked (e.g., 0581xxxxxxx5846).\n\nVisionPLUS Service Data: "
           example: 000540208ID5IXX3865
         cardSequenceNumber:
           type: string
@@ -21087,49 +21293,13 @@ components:
 
             VisionPLUS Service Data: ARXQOO-TKN-SVC-MSG
           example: ABC.DEFGHIJKLM.OPQ
+        holidayDate4:
+          type: string
+          format: date
         holidayDate1:
           type: string
           format: date
         holidayDate2:
-          type: string
-          format: date
-        holidayDate6:
-          type: string
-          format: date
-        holidayDate16:
-          type: string
-          format: date
-        holidayDate17:
-          type: string
-          format: date
-        holidayDate9:
-          type: string
-          format: date
-        holidayDate11:
-          type: string
-          format: date
-        holidayDate14:
-          type: string
-          format: date
-        holidayDate8:
-          type: string
-          format: date
-        holidayDate13:
-          type: string
-          format: date
-        holidayDate7:
-          type: string
-          format: date
-        holidayDate18:
-          type: string
-          format: date
-        holidayDate10:
-          type: string
-          format: date
-        holidayDate12:
-          type: string
-          format: date
-        holidayDate4:
           type: string
           format: date
         holidayDate3:
@@ -21138,28 +21308,64 @@ components:
         holidayDate5:
           type: string
           format: date
-        holidayDate15:
-          type: string
-          format: date
-        holidayDate19:
-          type: string
-          format: date
-        holidayDate23:
-          type: string
-          format: date
-        holidayDate25:
+        holidayDate18:
           type: string
           format: date
         holidayDate20:
           type: string
           format: date
-        holidayDate22:
+        holidayDate14:
+          type: string
+          format: date
+        holidayDate7:
+          type: string
+          format: date
+        holidayDate13:
+          type: string
+          format: date
+        holidayDate12:
+          type: string
+          format: date
+        holidayDate15:
+          type: string
+          format: date
+        holidayDate6:
+          type: string
+          format: date
+        holidayDate19:
+          type: string
+          format: date
+        holidayDate21:
+          type: string
+          format: date
+        holidayDate9:
+          type: string
+          format: date
+        holidayDate8:
+          type: string
+          format: date
+        holidayDate11:
+          type: string
+          format: date
+        holidayDate16:
+          type: string
+          format: date
+        holidayDate10:
+          type: string
+          format: date
+        holidayDate17:
+          type: string
+          format: date
+        holidayDate23:
           type: string
           format: date
         holidayDate24:
           type: string
           format: date
-        holidayDate21:
+        holidayDate22:
+          type: string
+          format: date
+        holidayDate25:
           type: string
           format: date
     OfferInquiryResponse:
@@ -30085,3 +30291,5 @@ components:
           description: "* Max Length: 13\n\nInstallment Fee Amount.\n\nVisionPLUS\
             \ Service Data: AZXZ5I-INST-FEE-AMT "
           example: 54321
+x-config:
+  tryItOut: 'true'
