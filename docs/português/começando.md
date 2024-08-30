@@ -51,6 +51,12 @@ Você pode ver as diferentes APIs disponíveis para o grupo correspondente. No l
 
 ### 5. Exemplo de campos de resposta
 
+“hasError” - booleano que indica se houve algum erro durante a execução.
+
+“errors” - array que contém o detalhe do erro. Será preenchido somente em caso de erro.
+
+“data” - conterá a resposta do endpoint em caso de sucesso.
+
 ![image](https://user-images.githubusercontent.com/111396588/223824287-f11215ff-a306-4522-ad54-9c254e24dd5b.png)
 
 ### 6. Exemplo de códigos de erro
@@ -58,6 +64,10 @@ Você pode ver as diferentes APIs disponíveis para o grupo correspondente. No l
 ![image](https://user-images.githubusercontent.com/111396588/223824322-689bbbd6-c8b5-4d85-8f14-70fb6a7bf91e.png)
 
 ### 7. Exemplo de seção de teste
+
+É importante preencher os cabeçalhos antes de Try out.
+
+**NOTA:** Sandbox é uma plataforma limitada de prática e demonstração que não deve ser usada para desenvolver funcionalidade real.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824344-69875caf-2cae-4b95-bac5-1b8d715bef43.png)
 
