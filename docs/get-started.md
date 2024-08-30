@@ -68,5 +68,6 @@ You can see the different APIs available for the corresponding group, on the rig
 ### 7. Example of try out section
 
 Is important to fill the headers before Try out.
+Sandbox is a limited practice and demonstration platform that should not be used to develop real functionality.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824344-69875caf-2cae-4b95-bac5-1b8d715bef43.png)
