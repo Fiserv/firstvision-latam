@@ -47,15 +47,15 @@ Puede ver las diferentes APIs disponibles para el grupo correspondiente. En el l
 
 ### 4. Ejemplo de campos del cuerpo
 
+![image](https://user-images.githubusercontent.com/111396588/223824246-d2174d9c-9d0a-4e1b-a287-2ba18d02514d.png)
+
+### 5. Ejemplo de campos de la respuesta
+
 “hasError” - booleano que indica si hubo un error durante la ejecución.
 
 “errors”: matriz que contiene los detalles del error. Sólo se rellenará en caso de error.
 
 “datos”: contendrá la respuesta del punto final en caso de éxito.
-
-![image](https://user-images.githubusercontent.com/111396588/223824246-d2174d9c-9d0a-4e1b-a287-2ba18d02514d.png)
-
-### 5. Ejemplo de campos de la respuesta
 
 ![image](https://user-images.githubusercontent.com/111396588/223824287-f11215ff-a306-4522-ad54-9c254e24dd5b.png)
 
