@@ -321,27 +321,34 @@ paths:
           type: integer
           format: int32
         example: 1
-      - name: X-ClientID
+      - name: apikey
         in: header
-        description: Sign-on name.
+        description: API Key
         required: true
         schema:
           type: string
-        example: 00000WEBUSER
-      - name: security-context
+      - name: X-ClientID
         in: header
-        description: User’s sign-on in security system.
-        required: false
+        description: Client ID
+        required: true
         schema:
           type: string
-        example: 00000APIUSER950
-      - name: username
+        example: 00970
+      - name: Signature
         in: header
-        description: Username for the application.
-        required: false
+        description: HMAC signature used to verify the authenticity and integrity
+          of data transmitted
+        required: true
         schema:
           type: string
-        example: 00000APIUSER950
+        example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+        example: Bearer vAbsh53JHFSTR23esEtrUI864tt
       requestBody:
         content:
           application/json:
