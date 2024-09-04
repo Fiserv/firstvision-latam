@@ -8,6 +8,8 @@ Este portal contém os documentos da API e o guia de referência para entendê-l
 
 Após essas etapas, você estará pronto para começar a testar a API de pagamentos
 
+Se você já é cliente da Fiserv ou está se tornando um, entre em contato com o gerente de relacionamento para obter mais especificações técnicas sobre como integrar seu negócio com as APIs da FirstVision.
+
 ## Passo 1: Obtenha sua chave de API
 
 1. Envie o nome do banco ou instituição financeira, o nome completo do usuário ou usuários e um endereço de e-mail para <latamAPIs@fiserv.com> e seu gerente de contas ou representante comercial designado
