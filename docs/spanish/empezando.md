@@ -69,7 +69,7 @@ Puede ver las diferentes APIs disponibles para el grupo correspondiente. En el l
 
 Es importante completar los encabezados antes de probar.
 
-**NOTA:** Sandbox es una plataforma de práctica y demostración limitada que no debe usarse para desarrollar funcionalidades reales.
+**NOTA:** Sandbox es una plataforma práctica y de demostración limitada que no debe usarse para desarrollar funciones.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824344-69875caf-2cae-4b95-bac5-1b8d715bef43.png)
 
