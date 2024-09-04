@@ -8,6 +8,8 @@ Este portal contém os documentos da API e o guia de referência para entendê-l
 
 Após essas etapas, você estará pronto para começar a testar a API de pagamentos
 
+**OBSERVAÇÃO:** Se você já é cliente da Fiserv ou está se tornando um, entre em contato com o gerente de relacionamento para obter mais especificações técnicas sobre como integrar seu negócio com as APIs da FirstVision.
+
 ## Passo 1: Obtenha sua chave de API
 
 1. Envie o nome do banco ou instituição financeira, o nome completo do usuário ou usuários e um endereço de e-mail para <latamAPIs@fiserv.com> e seu gerente de contas ou representante comercial designado
@@ -67,7 +69,7 @@ Você pode ver as diferentes APIs disponíveis para o grupo correspondente. No l
 
 É importante preencher os cabeçalhos antes de Try out.
 
-**NOTA:** Sandbox é uma plataforma limitada de prática e demonstração que não deve ser usada para desenvolver funcionalidade real.
+**NOTA:** Sandbox é uma plataforma limitada de demonstração e prática e não deve ser usada para desenvolver funcionalidades.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824344-69875caf-2cae-4b95-bac5-1b8d715bef43.png)
 
