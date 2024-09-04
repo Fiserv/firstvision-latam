@@ -71,7 +71,7 @@ You can see the different APIs available for the corresponding group, on the rig
 
 Is important to fill the headers before Try out.
 
-**NOTE:** Sandbox is a limited practice and demonstration platform that should not be used to develop real functionality.
+**NOTE: **Sandbox is a limited practice and demonstration platform that should not be used to develop functionalities.
 
 ![image](https://user-images.githubusercontent.com/111396588/223824344-69875caf-2cae-4b95-bac5-1b8d715bef43.png)
 
