@@ -15,17 +15,17 @@ paths:
   /notifications/v3/authorization:
     post:
       summary: Authorization
-      description: "Event 1 - Authorization: Notifies of authorizations carried out. Configuration options include:\r\n1. Only approved authorizations,\r\n2. Only denied authorizations,\r\n3. Both approved and denied authorizations.\r\n\r\nA minimum authorization value threshold may also be set to trigger notifications.\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
+      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n1 - Authorization event"
       operationId: authorization
       parameters:
-        - name: x-api-key
+        - name: apikey
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
           schema:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection. The field value is sent masked showing only some characters.'
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
           schema:
             type: string
         - name: organizationNumber
@@ -279,7 +279,7 @@ paths:
                         example: Message value
                 encryptedData:
                   type: string
-                  description: "Encrypted sensitive informatiom in the payload.\r\n\r\nNote: Depending on the sensitive data, the decrypted string may differ but, an example of what it could look like is: { \"email\": \"fiserv@domain.com\", \"phone\": \"5515154242\", \"cardNumber\": \"0001234470000077890\"}"
+                  description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
@@ -360,21 +360,20 @@ paths:
     post:
       summary: Account Life Cycle
       description: |-
-        Event 2 - Payment Due Date: Notifies the due date of the next invoice “x” days in advance (x is a configurable number of days).
-
-        Event 3 - Account Cycle: Notifies the date of the account cycle.
-
         Note: This API must be implemented and published by the Client following this standard specification.
+
+        2 - Payment Due Date Event
+        3 - Account Cycle Event
       operationId: paymentCycle
       parameters:
-        - name: x-api-key
+        - name: apikey
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
           schema:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection. The field value is sent masked showing only some characters'
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
           schema:
             type: string
         - name: organizationNumber
@@ -534,7 +533,7 @@ paths:
                         example: Message value
                 encryptedData:
                   type: string
-                  description: "Encrypted sensitive informatiom in the payload.\r\n\r\nNote: Depending on the sensitive data, the decrypted string may differ but, an example of what it could look like is: { \"email\": \"fiserv@domain.com\", \"phone\": \"5515154242\", \"cardNumber\": \"0001234470000077890\"}"
+                  description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
@@ -615,27 +614,23 @@ paths:
     post:
       summary: Account Management
       description: |-
-        Event 4 - Available Credit: Notifies the available credit limit each time it is updated.
-
-        Event 5 - Payment Posted: Notifies when a payment transaction is posted to the account.
-
-        Event 6 - Change of Address: Notifies when there is a change in any address field.
-
-        Event 10 - Payment Due Date Change: Notifies of any changes to the invoice due date.
-
-        Event 11 - Credit Limit Change: Notifies of any changes to the credit limit, whether an increase or a decrease.
-
         Note: This API must be implemented and published by the Client following this standard specification.
+
+        4 - Available Credit Event
+        5 - Payment Posted Event
+        6 - Change of Address
+        10 - Payment Due Date Change
+        11 - Credit Limit Change
       operationId: cardManagement
       parameters:
-        - name: x-api-key
+        - name: apikey
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
           schema:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection. The field value is sent masked showing only some characters'
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
           schema:
             type: string
         - name: organizationNumber
@@ -787,7 +782,7 @@ paths:
                         example: Message value
                 encryptedData:
                   type: string
-                  description: "Encrypted sensitive informatiom in the payload.\r\n\r\nNote: Depending on the sensitive data, the decrypted string may differ but, an example of what it could look like is: { \"email\": \"fiserv@domain.com\", \"phone\": \"5515154242\", \"cardNumber\": \"0001234470000077890\"}"
+                  description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
@@ -868,30 +863,21 @@ paths:
     post:
       summary: Card Life Cycle
       description: |-
-        Event 7 - Card Blocking (declined/Pick up authorization actions only): 
-
-        Configuration options include:
-        1. Only account blocking,
-        2. Only card blocking,
-        3. Both account and card blocking.
-
-        This event is only triggered when an authorization is denied due to account and/or card blocking.
-
-        Event 8 - Card Activation: Notifies when a physical card is activated. This does not apply to digital cards as they are created in an activated state.
-
-        Event 9 - Card Embossing: Notifies when a card is embossed.
-
         Note: This API must be implemented and published by the Client following this standard specification.
+
+        7 - Card Blocked Message
+        8 - Activation Message
+        9 - Card Action/Embossing
       operationId: cardLifeCycle
       parameters:
-        - name: x-api-key
+        - name: apikey
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
           schema:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection. The field value is sent masked showing only some characters'
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
           schema:
             type: string
         - name: organizationNumber
@@ -991,16 +977,14 @@ paths:
                         VMX: M_LINE_8
                       maxLength: 65
                       example: 'Y'
-                    blockCode:
+                    blockReason:
                       type: string
                       description: |-
-                        Block code indicator.
+                        Block code reason.
 
                         VMX: M_LINE_7
                       maxLength: 65
-                      x-stoplight:
-                        id: zc8r8ar8s92vc
-                      example: B
+                      example: TEST MERCHANT
                     eventDate:
                       type: string
                       description: |-
@@ -1073,7 +1057,7 @@ paths:
                         example: Message value
                 encryptedData:
                   type: string
-                  description: "Encrypted sensitive informatiom in the payload.\r\n\r\nNote: Depending on the sensitive data, the decrypted string may differ but, an example of what it could look like is: { \"email\": \"fiserv@domain.com\", \"phone\": \"5515154242\", \"cardNumber\": \"0001234470000077890\"}"
+                  description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
@@ -1153,12 +1137,12 @@ paths:
   /notifications/v3/fraudAuthorization:
     post:
       summary: Fraud Authorization
-      description: "Event 12a - Fraud Authorization: Notifies based on Falcon rules during authorization\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
+      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n12a - Fraud Authorization Event"
       operationId: fraudAuthorization
       parameters:
-        - name: x-api-key
+        - name: apikey
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
           schema:
             type: string
         - name: Authorization
@@ -1355,7 +1339,7 @@ paths:
                         example: Message value
                 encryptedData:
                   type: string
-                  description: "Encrypted sensitive informatiom in the payload.\r\n\r\nNote: Depending on the sensitive data, the decrypted string may differ but, an example of what it could look like is: { \"email\": \"fiserv@domain.com\", \"phone\": \"5515154242\", \"cardNumber\": \"0001234470000077890\"}"
+                  description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
@@ -1435,12 +1419,12 @@ paths:
   /notifications/v3/fraudBlock:
     post:
       summary: Fraud Block
-      description: "Event 12b - Fraud Block Code Update: Notifies based on Falcon rules during card level blocks.\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
+      description: "Note: This API must be implemented and published by the Client following this standard specification.\r\n\r\n12b - Fraud Block Code Update"
       operationId: fraudBlock
       parameters:
-        - name: x-api-key
+        - name: apikey
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
           schema:
             type: string
         - name: Authorization
@@ -1465,7 +1449,7 @@ paths:
             type: string
         - name: channelType
           in: header
-          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH both  – Send information to customer by email and SMS. print – Send information to customer by letter. The field value is sent masked showing only some characters'
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
           schema:
             type: string
             enum:
@@ -1621,7 +1605,7 @@ paths:
                         example: Message value
                 encryptedData:
                   type: string
-                  description: "Encrypted sensitive informatiom in the payload.\r\n\r\nNote: Depending on the sensitive data, the decrypted string may differ but, an example of what it could look like is: { \"email\": \"fiserv@domain.com\", \"phone\": \"5515154242\", \"cardNumber\": \"0001234470000077890\"}"
+                  description: Encrypted sensitive informatiom in the payload.
                   example: KkyQW/yaW/yxgZz2YFMbKR5lgVmguE/PhF+ScALrceoP5aiTFK9QhfKDeADRRar9M9SY5bkIBT3n5DA9QzzsSV0LWtV3MMTu3b6WfPYcFwRm9Eey/TUkVf/iXImMq2EURiw8loQNdIsyYLzLebDt+HgEfC/CoYAgLoK+m5j1Cbo=
       responses:
         '200':
