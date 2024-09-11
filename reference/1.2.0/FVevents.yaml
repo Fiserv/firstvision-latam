@@ -16,17 +16,16 @@ paths:
     post:
       summary: Authorization
       description: "Event 1 - Authorization: Notifies of authorizations carried out. Configuration options include:\r\n1. Only approved authorizations,\r\n2. Only denied authorizations,\r\n3. Both approved and denied authorizations.\r\n\r\nA minimum authorization value threshold may also be set to trigger notifications.\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
-      
       operationId: authorization
       parameters:
-        - name: apikey
+        - name: x-api-key
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection. The field value is sent masked showing only some characters.'
           schema:
             type: string
         - name: organizationNumber
@@ -368,14 +367,14 @@ paths:
         Note: This API must be implemented and published by the Client following this standard specification.
       operationId: paymentCycle
       parameters:
-        - name: apikey
+        - name: x-api-key
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: organizationNumber
@@ -629,14 +628,14 @@ paths:
         Note: This API must be implemented and published by the Client following this standard specification.
       operationId: cardManagement
       parameters:
-        - name: apikey
+        - name: x-api-key
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: organizationNumber
@@ -870,7 +869,7 @@ paths:
       summary: Card Life Cycle
       description: |-
         Event 7 - Card Blocking (declined/Pick up authorization actions only): 
-        
+
         Configuration options include:
         1. Only account blocking,
         2. Only card blocking,
@@ -885,14 +884,14 @@ paths:
         Note: This API must be implemented and published by the Client following this standard specification.
       operationId: cardLifeCycle
       parameters:
-        - name: apikey
+        - name: x-api-key
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: Authorization
           in: header
-          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection.'
+          description: 'Authorization Bearer token. This header will be populated only if issuer has selected OAuth as authorization method. OAuth authentication method is required for internet connection, optional for private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: organizationNumber
@@ -1154,14 +1153,12 @@ paths:
   /notifications/v3/fraudAuthorization:
     post:
       summary: Fraud Authorization
-      
       description: "Event 12a - Fraud Authorization: Notifies based on Falcon rules during authorization\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
-
       operationId: fraudAuthorization
       parameters:
-        - name: apikey
+        - name: x-api-key
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: Authorization
@@ -1441,9 +1438,9 @@ paths:
       description: "Event 12b - Fraud Block Code Update: Notifies based on Falcon rules during card level blocks.\r\n\r\nNote: This API must be implemented and published by the Client following this standard specification."
       operationId: fraudBlock
       parameters:
-        - name: apikey
+        - name: x-api-key
           in: header
-          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection.'
+          description: 'This header will be populated only if the issuer has selected apikey as authorization method, it will be populated with the apikey shared by the issuer. Apikey authorization method can be selected only for issuers with private connection. The field value is sent masked showing only some characters'
           schema:
             type: string
         - name: Authorization
@@ -1468,7 +1465,7 @@ paths:
             type: string
         - name: channelType
           in: header
-          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH both  – Send information to customer by email and SMS. print – Send information to customer by letter.'
+          description: 'Channel selected to send information to customer. VMX: M_CHANNEL_TYP Max length: 5. Example: BOTH both  – Send information to customer by email and SMS. print – Send information to customer by letter. The field value is sent masked showing only some characters'
           schema:
             type: string
             enum:
