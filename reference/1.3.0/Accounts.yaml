@@ -9,105 +9,6 @@ info:
 servers:
 - url: https://int.api.firstdata.com/latam-gfs-apis/portal
 paths:
-  /account/v2/balance:
-    put:
-      tags:
-      - Account
-      summary: "Purchase and Cash Advance – Cash In Cash Out. VMX Service: M.ASM.MONETARY.ACT,\
-        \ L8V6"
-      description: "Credits (cash in) or Debits (cash out) transactions from available\
-        \ funds or credit open to buy in an Account.Can integrate Cash-in & Cash-out\
-        \ transaction information to be used in Fraud Prevention Rules. VMX Service:\
-        \ M.ASM.MONETARY.ACT, L8V6"
-      operationId: Balance Update (Cash-in & Cash-out)
-      parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
-      - name: X-ClientID
-        in: header
-        description: Client ID
-        required: true
-        schema:
-          type: string
-        example: 00970
-      - name: Signature
-        in: header
-        description: HMAC signature used to verify the authenticity and integrity
-          of data transmitted
-        required: true
-        schema:
-          type: string
-        example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
-      - name: Authorization
-        in: header
-        description: Authorization Bearer Token
-        required: true
-        schema:
-          type: string
-        example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest"
-        required: true
-      responses:
-        "422":
-          description: |-
-            Unprocessable Entity
-
-            VPJ8SMA01S - OTB CHECK FLAG IS AL-NUMERIC, VALID VALUES ARE SPACES/ 0/ 1
-
-            VPJ8SMA02S - SPNDLT ECOM FLAG IS AL-NUMERIC, VALID VALUES ARE SPACES/ 0/ 1
-
-            VPJ8SMA03S - PMNT ACC-REJ FLAG IS AL-NUMERIC, VALID VALUES ARE SPACES/ 0/ 1
-
-            VPJ8SMA04S - SERVICE IP TXN AMOUNT > ARME06:INTERNET PURCHASE:SNGL TXN LMT
-
-            VPJ8SMA05S - ARME23:ACCUMULATED AUTH NBR ACCUM > ARME06:AUTH INTR NBR
-
-            VPJ8SMA06S - ARME23:ACCUMULATED AUTH AMT ACCUM > ARME06:AUTH INTR AMT
-
-            VPJ8SMA07S - ARME06: AUTH INTR NBR / AUTH INTR AMT IS NOT > ZEROES
-
-            VPJ8SMA08S - MAX PAYMENT ALLOWD VALUE IS LESS THAN SERVICE INPUT TXN AMOUNT
-          content:
-            application/json: {}
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "405":
-          description: Method Not Allowed
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PurchaseAndCashAdvanceResponse"
-        "400":
-          description: Bad Request
-      x-proxy-name: Balance Update (Cash-in & Cash-out)
-      x-group-name: Account
-      x-child-product-name: Accounts
   /account/v1/link:
     put:
       tags:
@@ -126,24 +27,18 @@ paths:
         VMX Service: M.CMS.LINK.CREDIT.ROTATIVO.UPD, L8V1
       operationId: Account Linking/Unlinking Update.
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
+        description: X-ClientID.
         required: true
         schema:
           type: string
-        example: 00970
+        example: "00991"
       - name: Signature
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -154,6 +49,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -167,6 +68,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
         "422":
           description: |-
             Unprocessable Entity
@@ -206,26 +121,12 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "401":
           description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "405":
-          description: Method Not Allowed
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/LinkUnlinkAccountResponse"
-        "400":
-          description: Bad Request
       x-proxy-name: Account Link Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -249,24 +150,18 @@ paths:
         VMX Service: CMS.ACCT.TAX.EXCLUSION.UPD, L8V1
       operationId: Account Tax Exclusion Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
+        description: X-ClientID.
         required: true
         schema:
           type: string
-        example: 00970
+        example: "00991"
       - name: Signature
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -277,6 +172,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -290,14 +191,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "400":
+          description: Bad Request
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "422":
           description: |-
+            Unprocessable Entity
+
             VPJ5STX01S ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998.
 
             VPJ5STX02S REQUESTED ACCOUNT NUMBER IS NOT NOT NUMERIC OR EQUAL TO SPACES.
@@ -325,22 +238,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "405":
-          description: Method Not Allowed
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/TaxExclusionUpdateResponseL8V1"
-        "400":
-          description: Bad Request
       x-proxy-name: Account Tax Exclusion Update
       x-group-name: Account
       x-child-product-name: Accounts
@@ -358,12 +261,6 @@ paths:
         Creates a card, account and customer in a single request. VMX Service: M.CMS.CUST.ACCT.CRD.DRV, L8V5
       operationId: Account Boarding Driver Request
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -375,7 +272,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -386,6 +283,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -399,75 +302,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "422":
-          description: |-
-            VPL5SZ103E -ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-            VPL5SZ104E - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
-            VPL5SZ105E - CUSTOMER CREATE FLAG SHOULD BE Y OR N
-            VPL5SZ106E - WHEN CUSTOMER CREATE FLAG IS N CUST NBR IS REQUIRED
-            VPL5SZ107E - ACCOUNT CREATE FLAG SHOULD BE Y OR N
-            VPL5SZ108E - WHEN ACCOUNT CREATE FLAG IS Y ACCT NBR NOT REQUIRED
-            VPL5SZ109E - WHEN ACCOUNT CREATE FLAG IS N ACCT NBR IS REQUIRED
-            VPL5SZ110E - WHEN ACCOUNT CREATE FLAG IS Y CREDIT LIMIT IS REQUIRED
-            VPL5SZ111E - WHEN ACCOUNT CREATE FLAG IS Y BILLING CYCLE IS REQUIRED
-            VPL5SZ112E - WHEN ACCOUNT CREATE FLAG IS Y OWNING BRANCH NBR IS REQUIRED
-            VPL5SZ113E - ADMIN BRANCH IS NOT NUMERIC
-            VPL5SZ114E - FIRST ISS BRANCH IS NOT NUMERIC
-            VPL5SZ115E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS DDA RTNG NBR REQUIRED
-            VPL5SZ116E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS DDA ACCT NBR REQUIRED
-            VPL5SZ117E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS SAV RTNG NBR REQUIRED
-            VPL5SZ118E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS SAV ACCT NBR REQUIRED
-            VPL5SZ119E - CARD CREATE FLAG (1) SHOULD BE Y OR N
-            VPL5SZ120E - CARD TECHNOLOGY (1) SHOULD BE 0 OR 1 OR 2 OR 3
-            VPL5SZ121E - WHEN CARD CREATE FLAG (1) IS Y EMBOSSER NAME (1) IS REQUIRED
-            VPL5SZ122E - POS SERVICE CODE (1) SHOULD BE VALID
-            VPL5SZ123E - POS SERVICE CODE (1) SHOULD BE NUMERIC
-            VPL5SZ123E - POS SERVICE CODE (1) SHOULD BE NUMERIC
-            VPL5SZ124E - DIG CARD IND (1) SHOULD BE 0 OR 1
-            VPL5SZ125E - CARD CREATE FLAG (2) SHOULD BE Y OR N
-            VPL5SZ126E - CARD TECHNOLOGY (2) SHOULD BE 0 OR 1 OR 2 OR 3
-            VPL5SZ127E - WHEN CARD CREATE FLAG (2) IS Y EMBOSSER NAME (2) IS REQUIRED
-            VPL5SZ128E - POS SERVICE CODE (2) SHOULD BE VALID
-            VPL5SZ129E - POS SERVICE CODE (2) SHOULD BE NUMERIC
-            VPL5SZ130E - DIG CARD IND (2) SHOULD BE 0 OR 1
-            VPL5SZ134S - SYSTEM RECORD IS NOT FOUND
-            VPL5SZ135S - ORGANIZATION NOT ON FILE OR IN PENDING STATUS
-            VPL5SZ136S - LOGO NOT ON FILE OR IN PENDING STATUS
-            VPL5SZ137E - POS SERVICE CODE (1) MUST BE VALID FOR MASTERCARD AFFILIATE
-            VPL5SZ138E - POS SERVICE CODE (1) MUST BE VALID FOR VISA AFFILIATE
-            VPL5SZ139E - POS SERVICE CODE (1) MUST BE VALID FOR AFFILIATE
-            VPL5SZ140E - POS SERVICE CODE (2) MUST BE VALID FOR MASTERCARD AFFILIATE
-            VPL5SZ141E - POS SERVICE CODE (2) MUST BE VALID FOR VISA AFFILIATE
-            VPL5SZ142E - POS SERVICE CODE (2) MUST BE VALID FOR AFFILIATE
-            VPL5SZ145E - CUSTOMER RECORD NOT FOUND OR IN PENDING STATUS
-            VPL5SZ148E - ACCOUNT RECORD NOT FOUND OR IN PENDING STATUS
-            VPL5SZ151S - LOGO LEVEL ETK TYPE/ZONE FIELDS SHLD HAVE KMS ACTIVE
-            VPL5SZ158S - NO REPONSE FOR VCM SERVICE WITH NULL VALUES
-            VPL5SZ159E - ACCT ALREADY PRESENT FOR GIVEN DDA ACCT
-            VPL5SZ160E - ACCT ALREADY PRESENT FOR GIVEN SAV ACCT
-            VPL5SZ161E - NO VALID ACCT PRSENT FOR GIVEN CUSTMER ACCT
-            VPL5SZ15AE - VALID CUSTOMER MAKER FOREIGN IND IS SPACE, 0, 1, 2
-            VPL5SZ15BE - VALID CUSTOMER CO-MAKER FOREIGN IND IS SPACE, 0, 1, 2
-            VPL5SZ162E - COMBINST IND MUST BE Y OR N
-            VPL5SZ163E - COMBINST CREDIT LIMIT IS NOT NUMERIC
-            VPL5SZ164E - VALID COMB INST SWEEP ACCT LOGO NEEDS TO BE PROVIDED
-            VPL5SZ165E - VALID COMB INST ACCT CRLIM NEEDS TO BE PROVIDED
-            VPL5SZ166E - COMBINST CREDIT LIMIT MUST BE ZEROS WHEN COMBINST IND IS 'N'
-            VPL5SZ167E - SWEEP INDICATOR IS NOT NUMERIC
-            VPL5SZ168E - VALID VALUE IS 6 FOR I/P ROTV ACCT & 7 FOR I/P CRDT ACCT BOARDING
-            VPL5SZ169E - SWEEP ACCOUNT NBR NOT FOUND OR ADD-PENDING
-            VPL5SZ170E - SWEEP ACCT CUST NBR NOT MATCHING WITH NEW BOARDED ACCT CUST NBR
-            VPL5SZ172E - CLABE CREATE FLAG MUST BE Y OR N
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
+        "400":
+          description: Bad Request
         "300":
           description: Redirection
           content:
@@ -476,14 +316,134 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "405":
           description: Method Not Allowed
+        "422":
+          description: |-
+            Unprocessable Entity
+
+            VPL5SZ103E -ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+            VPL5SZ104E - LOGO NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+
+            VPL5SZ105E - CUSTOMER CREATE FLAG SHOULD BE Y OR N
+
+            VPL5SZ106E - WHEN CUSTOMER CREATE FLAG IS N CUST NBR IS REQUIRED
+
+            VPL5SZ107E - ACCOUNT CREATE FLAG SHOULD BE Y OR N
+
+            VPL5SZ108E - WHEN ACCOUNT CREATE FLAG IS Y ACCT NBR NOT REQUIRED
+
+            VPL5SZ109E - WHEN ACCOUNT CREATE FLAG IS N ACCT NBR IS REQUIRED
+
+            VPL5SZ110E - WHEN ACCOUNT CREATE FLAG IS Y CREDIT LIMIT IS REQUIRED
+
+            VPL5SZ111E - WHEN ACCOUNT CREATE FLAG IS Y BILLING CYCLE IS REQUIRED
+
+            VPL5SZ112E - WHEN ACCOUNT CREATE FLAG IS Y OWNING BRANCH NBR IS REQUIRED
+
+            VPL5SZ113E - ADMIN BRANCH IS NOT NUMERIC
+
+            VPL5SZ114E - FIRST ISS BRANCH IS NOT NUMERIC
+
+            VPL5SZ115E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS DDA RTNG NBR REQUIRED
+
+            VPL5SZ116E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS DDA ACCT NBR REQUIRED
+
+            VPL5SZ117E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS SAV RTNG NBR REQUIRED
+
+            VPL5SZ118E - WHEN ACCT CREATE FLAG IS Y AND DFLT ACCT IS SAV ACCT NBR REQUIRED
+
+            VPL5SZ119E - CARD CREATE FLAG (1) SHOULD BE Y OR N
+
+            VPL5SZ120E - CARD TECHNOLOGY (1) SHOULD BE 0 OR 1 OR 2 OR 3
+
+            VPL5SZ121E - WHEN CARD CREATE FLAG (1) IS Y EMBOSSER NAME (1) IS REQUIRED
+
+            VPL5SZ122E - POS SERVICE CODE (1) SHOULD BE VALID
+
+            VPL5SZ123E - POS SERVICE CODE (1) SHOULD BE NUMERIC
+
+            VPL5SZ123E - POS SERVICE CODE (1) SHOULD BE NUMERIC
+
+            VPL5SZ124E - DIG CARD IND (1) SHOULD BE 0 OR 1
+
+            VPL5SZ125E - CARD CREATE FLAG (2) SHOULD BE Y OR N
+
+            VPL5SZ126E - CARD TECHNOLOGY (2) SHOULD BE 0 OR 1 OR 2 OR 3
+
+            VPL5SZ127E - WHEN CARD CREATE FLAG (2) IS Y EMBOSSER NAME (2) IS REQUIRED
+
+            VPL5SZ128E - POS SERVICE CODE (2) SHOULD BE VALID
+
+            VPL5SZ129E - POS SERVICE CODE (2) SHOULD BE NUMERIC
+
+            VPL5SZ130E - DIG CARD IND (2) SHOULD BE 0 OR 1
+
+            VPL5SZ134S - SYSTEM RECORD IS NOT FOUND
+
+            VPL5SZ135S - ORGANIZATION NOT ON FILE OR IN PENDING STATUS
+
+            VPL5SZ136S - LOGO NOT ON FILE OR IN PENDING STATUS
+
+            VPL5SZ137E - POS SERVICE CODE (1) MUST BE VALID FOR MASTERCARD AFFILIATE
+
+            VPL5SZ138E - POS SERVICE CODE (1) MUST BE VALID FOR VISA AFFILIATE
+
+            VPL5SZ139E - POS SERVICE CODE (1) MUST BE VALID FOR AFFILIATE
+
+            VPL5SZ140E - POS SERVICE CODE (2) MUST BE VALID FOR MASTERCARD AFFILIATE
+
+            VPL5SZ141E - POS SERVICE CODE (2) MUST BE VALID FOR VISA AFFILIATE
+
+            VPL5SZ142E - POS SERVICE CODE (2) MUST BE VALID FOR AFFILIATE
+
+            VPL5SZ145E - CUSTOMER RECORD NOT FOUND OR IN PENDING STATUS
+
+            VPL5SZ148E - ACCOUNT RECORD NOT FOUND OR IN PENDING STATUS
+
+            VPL5SZ151S - LOGO LEVEL ETK TYPE/ZONE FIELDS SHLD HAVE KMS ACTIVE
+
+            VPL5SZ158S - NO REPONSE FOR VCM SERVICE WITH NULL VALUES
+
+            VPL5SZ159E - ACCT ALREADY PRESENT FOR GIVEN DDA ACCT
+
+            VPL5SZ160E - ACCT ALREADY PRESENT FOR GIVEN SAV ACCT
+
+            VPL5SZ161E - NO VALID ACCT PRSENT FOR GIVEN CUSTMER ACCT
+
+            VPL5SZ15AE - VALID CUSTOMER MAKER FOREIGN IND IS SPACE, 0, 1, 2
+
+            VPL5SZ15BE - VALID CUSTOMER CO-MAKER FOREIGN IND IS SPACE, 0, 1, 2
+
+            VPL5SZ162E - COMBINST IND MUST BE Y OR N
+
+            VPL5SZ163E - COMBINST CREDIT LIMIT IS NOT NUMERIC
+
+            VPL5SZ164E - VALID COMB INST SWEEP ACCT LOGO NEEDS TO BE PROVIDED
+
+            VPL5SZ165E - VALID COMB INST ACCT CRLIM NEEDS TO BE PROVIDED
+
+            VPL5SZ166E - COMBINST CREDIT LIMIT MUST BE ZEROS WHEN COMBINST IND IS 'N'
+
+            VPL5SZ167E - SWEEP INDICATOR IS NOT NUMERIC
+
+            VPL5SZ168E - VALID VALUE IS 6 FOR I/P ROTV ACCT & 7 FOR I/P CRDT ACCT BOARDING
+
+            VPL5SZ169E - SWEEP ACCOUNT NBR NOT FOUND OR ADD-PENDING
+
+            VPL5SZ170E - SWEEP ACCT CUST NBR NOT MATCHING WITH NEW BOARDED ACCT CUST NBR
+
+            VPL5SZ172E - CLABE CREATE FLAG MUST BE Y OR N
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/AccountBoardingDriverResponseL8V5"
-        "400":
-          description: Bad Request
       x-proxy-name: Account Boarding Driver Request
       x-group-name: Account
       x-child-product-name: Accounts
@@ -503,12 +463,6 @@ paths:
         VMX Service: M.CMS.ACCOUNT.INQ, L8VO
       operationId: Account Information Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -520,7 +474,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -531,6 +485,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -544,36 +504,37 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "403":
           description: Forbidden
+        "404":
+          description: Not Found
         "422":
-          description: "VPL5SAI01S - USER HAS NOT SIGNED ON, PLEASE SIGNON \n\nVPL5SAI02S\
-            \ - APPLICATION IN NO-PROCESSING STATUS, RE-TRY IN A FEW MINUTES \n\n\
-            VPL5SAI03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000\
-            \ AND 998 \n\nVPL5SAI04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR\
-            \ EQUAL SPACES \n\nVPL5SAI05E - INVALID FOREIGN USE IND SPECIFIED - VALID\
-            \ VALUES ARE SPACE 0 OR 1 \n\nVPL5SAI07S - ORGANIZATION NOT FOUND ON FILE\
-            \ \n\nVPL5SAI08S - FOREIGN ORGANIZATION NOT FOUND ON FILE \n\nVPL5SAI06S\
-            \ - APPLICATION IN NO-PROCESSING STATUS, RE-TRY IN A FEW MINUTES \n\n\
-            VPL5SAI09S - ACCOUNT NUMBER NOT FOUND \n\nVPL5SAI10S - ACCOUNT NUMBER\
-            \ NOT FOUND ON FILE \n\nVPL5SAI11S - LOGO NOT FOUND ON FILE \n\nVPL5SAI12S\
-            \ - CUSTOMER NOT FOUND ON FILE \n\nVPL5SAI13I - FOREIGN USE ORG UNAVAILABLE\
-            \ PROCESSED LOCAL ORG ACCOUNT DATA \n\nVPL5SAI97E - INPUT PAN NUMBER SHOULD\
-            \ NOT BE SPACES OR ZEROS \n\nVPL5SAI98E - CARD NUM DECRYPTED FROM INPUT\
-            \ PAN TOKEN IS SPACES/ZEROS \n\nVPL5SAI99E - REQUEST FOR PAN TOKEN, BUT\
-            \ ORG LVL PAN TOKEN SW INACTIVE \n\nVPL5SAIA9S - ACCOUNT RECORD IS IN\
-            \ ADD PENDING STATUS \n\nVPL5SAIZ1S - SERVICE COULD NOT OBTAIN STORAGE\
-            \ AREA \n\nVPL5SAIZ2S - SERVICE INPUT TO ACCOUNT INQ SERVICE IS AN INCORRECT\
-            \ LENGTH \n\nVPL5SAIZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED\
-            \ \n\nVPL5SAIZ5S - REQUESTED ORGANIZATION NOT FOUND"
+          description: "Unprocessable Entity\n\nVPL5SAI01S - USER HAS NOT SIGNED ON,\
+            \ PLEASE SIGNON \n\nVPL5SAI02S - APPLICATION IN NO-PROCESSING STATUS,\
+            \ RE-TRY IN A FEW MINUTES \n\nVPL5SAI03E - ORGANIZATION IS NOT NUMERIC\
+            \ OR MUST BE VALUE BETWEEN 000 AND 998 \n\nVPL5SAI04E - REQUESTED CARD/ACCT\
+            \ NUMBER IS NOT NUMERIC OR EQUAL SPACES \n\nVPL5SAI05E - INVALID FOREIGN\
+            \ USE IND SPECIFIED - VALID VALUES ARE SPACE 0 OR 1 \n\nVPL5SAI07S - ORGANIZATION\
+            \ NOT FOUND ON FILE \n\nVPL5SAI08S - FOREIGN ORGANIZATION NOT FOUND ON\
+            \ FILE \n\nVPL5SAI06S - APPLICATION IN NO-PROCESSING STATUS, RE-TRY IN\
+            \ A FEW MINUTES \n\nVPL5SAI09S - ACCOUNT NUMBER NOT FOUND \n\nVPL5SAI10S\
+            \ - ACCOUNT NUMBER NOT FOUND ON FILE \n\nVPL5SAI11S - LOGO NOT FOUND ON\
+            \ FILE \n\nVPL5SAI12S - CUSTOMER NOT FOUND ON FILE \n\nVPL5SAI13I - FOREIGN\
+            \ USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA \n\nVPL5SAI97E\
+            \ - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS \n\nVPL5SAI98E - CARD\
+            \ NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS \n\nVPL5SAI99E -\
+            \ REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE \n\nVPL5SAIA9S\
+            \ - ACCOUNT RECORD IS IN ADD PENDING STATUS \n\nVPL5SAIZ1S - SERVICE COULD\
+            \ NOT OBTAIN STORAGE AREA \n\nVPL5SAIZ2S - SERVICE INPUT TO ACCOUNT INQ\
+            \ SERVICE IS AN INCORRECT LENGTH \n\nVPL5SAIZ4S - REQUESTED ORGANIZATION\
+            \ COULD NOT BE DETERMINED \n\nVPL5SAIZ5S - REQUESTED ORGANIZATION NOT\
+            \ FOUND"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "300":
           description: Redirection
           content:
@@ -582,1071 +543,19 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/AccountForDetailsL8voResponse"
-        "400":
-          description: Bad Request
       x-proxy-name: Account Information Inquiry
       x-group-name: Account
       x-child-product-name: Accounts
 components:
   schemas:
-    ItemRequestString:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-          example: 1
-        value:
-          type: string
-      example:
-        id: 1
-        value: ALPHANUMERIC DATA 1
-    PurchaseAndCashAdvanceRequest:
-      required:
-      - actionCodePriority
-      - organizationNumber
-      - representativeId
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: |-
-            * Min Length: 1
-            * Max Length: 3
-
-            Identification number of the organization associated with the account
-
-            VisionPLUS Service Data: AZXMAI-ASM-ORG
-          format: int32
-          example: 800
-        representativeId:
-          maxLength: 3
-          minLength: 1
-          type: string
-          description: |-
-            ID of Representative
-
-            VisionPLUS Service Data: AZXMAI-ASM-REP
-          example: A00
-        isForeign:
-          type: boolean
-          description: |-
-            The FOREIGN USE indicator is provided in the input message so the requesting source can specify whether the request applies to the local or foreign account when the account is in a dual currency processing organization. The default is to the local account.
-
-            Values:
-            * false = local account;
-            * true = foreign account.
-
-            VisionPLUS Service Data: AZXMAI-FOREIGN-USE-IND
-          example: false
-        accountData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.AccountData"
-        actionCodePriority:
-          type: integer
-          description: "* Min Length: 1\n* Max Length: 1\n\nNotes history priority.\
-            \ If not specified, the priority defined on the action \nrecord is substituted\
-            \ for this value on the history file\nValues:\n* low-values = Unspecified\
-            \ priority;\n* 0 = Unspecified priority;\n* 1 = Low priority;\n* 2 = Medium\
-            \ priority;\n* 3 = High priority.\n\nVisionPLUS Service Data: AZXMAI-ACTION-CODE-PRI"
-          format: int32
-          example: 1
-        hasReferral:
-          type: boolean
-          description: |-
-            Referral Option.
-
-            Values:
-            * false = Referral off;
-            * true = Referral on.
-
-            VisionPLUS Service Data: AZXMAI-REFERRAL-OPTION
-          example: true
-        referralRepresentation:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.ReferralRepresentation"
-        transactionData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.TransactionData"
-        metaData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.MetaData"
-        fraudPreventionData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.FraudPreventionData"
-      description: Purchase and cash advance Request
-    PurchaseAndCashAdvanceRequest.AccountData:
-      required:
-      - number
-      - referenceNumber
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: |-
-            * Min Length: 3
-            * Max Length: 3
-
-            Account organization number.
-
-            VisionPLUS Service Data: AZXMAI-ACCT-ORG
-          format: int32
-          example: 800
-        number:
-          maxLength: 19
-          minLength: 19
-          type: string
-          description: |-
-            Number of Customer’s account.
-
-            VisionPLUS Service Data: AZXMAI-ACCT-NBR
-          example: "9500500180739621112"
-        referenceNumber:
-          maxLength: 19
-          minLength: 0
-          type: string
-          description: |-
-            * Max length: 19
-
-            Additional reference to identify the account number. In México is known as Clabe number.
-
-            VisionPLUS:
-
-            * Service Data: AZXMAI-CLABE-NUMBER
-          example: "9500500180739621111"
-    PurchaseAndCashAdvanceRequest.FraudPreventionData:
-      type: object
-      properties:
-        identifier:
-          maxLength: 4
-          minLength: 1
-          type: string
-          description: |-
-            Where the transaction comes from.
-
-            VisionPLUS Service Data: AZXMAI-IDENTIFIER
-          example: TWU3
-        storeData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.FraudPreventionData.StoreData"
-        senderData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.FraudPreventionData.SenderData"
-        receiverData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.FraudPreventionData.ReceiverData"
-        deviceData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.FraudPreventionData.Device"
-        keyTracing:
-          maxLength: 30
-          minLength: 1
-          type: string
-          description: |-
-            Tracing key.
-
-            VisionPLUS Service Data: AZXMAI-TRACING-KEY
-          example: EFFI202007158252885919
-        paymentDescription:
-          maxLength: 20
-          minLength: 1
-          type: string
-          description: |-
-            Issuer description about the payment.
-
-            VisionPLUS Service Data: AZXMAI-ISSUER-PMT-DESC
-          example: MONEY
-        cardLabelId:
-          maxLength: 22
-          minLength: 1
-          type: string
-          description: |-
-            Card's id label.
-
-            VisionPLUS Service Data: AZXMAI-CARD-LABEL-ID
-          example: tok_test_logo_4242
-    PurchaseAndCashAdvanceRequest.FraudPreventionData.Device:
-      type: object
-      properties:
-        device:
-          maxLength: 32
-          minLength: 0
-          type: string
-          description: |-
-            Unique identifier of the used device.
-
-            VisionPLUS Service Data: AZXMAI-DEVICE
-          example: 898ds-090ds-9d0s9-0ds9d0-0d9sd00
-        ip:
-          maxLength: 15
-          minLength: 0
-          type: string
-          description: |-
-            The ip address that originated the transaction.
-
-            VisionPLUS Service Data: AZXMAI-INTRT-PROTOCOL
-          example: 198*********200
-        locationData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.FraudPreventionData.Device.LocationData"
-    PurchaseAndCashAdvanceRequest.FraudPreventionData.Device.LocationData:
-      type: object
-      properties:
-        latitude:
-          maxLength: 12
-          minLength: 0
-          type: string
-          description: |-
-            The latitude where the transaction originated
-
-            VisionPLUS Service Data: AZXMAI-LATITUDE
-          example: "-109.699951"
-        longitude:
-          maxLength: 10
-          minLength: 0
-          type: string
-          description: |-
-            The longitude where the transaction originated.
-
-            VisionPLUS Service Data: AZXMAI-LONGITUDE
-          example: "23.062283"
-    PurchaseAndCashAdvanceRequest.FraudPreventionData.ReceiverData:
-      type: object
-      properties:
-        recipientName:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: |-
-            Receiver name.
-
-            VisionPLUS Service Data: AZXMAI-RECEIVER-NAME
-          example: Eduardo Martinez
-        beneficiaryAccount:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: |-
-            Receiver account number.
-
-            VisionPLUS Service Data: AZXMAI-RECEIVER-ACCT-NBR
-          example: "012180000000011114"
-        receiverContributorFederalRegister:
-          maxLength: 13
-          minLength: 0
-          type: string
-          description: |-
-            Receiver Federal Register of Contributors.
-
-            VisionPLUS Service Data: AAZXMAI-RECEIVER-RCF
-          example: MAC*******TR3
-        counterpartInstitution:
-          maxLength: 5
-          minLength: 0
-          type: string
-          description: |-
-            Institutions Code where the payment goes to (regarding to catalog).
-
-            VisionPLUS Service Data: AZXMAI-COUNTERPART-INST
-          example: "96545"
-    PurchaseAndCashAdvanceRequest.FraudPreventionData.SenderData:
-      type: object
-      properties:
-        orderingName:
-          maxLength: 30
-          minLength: 0
-          type: string
-          description: |-
-            Issuer name.
-
-            VisionPLUS Service Data: AZXMAI-ISSUE-NAME
-          example: Diego Martinez
-        senderAccount:
-          maxLength: 20
-          minLength: 0
-          type: string
-          description: |-
-            Issuer account number.
-
-            VisionPLUS Service Data: AZXMAI-ISSUER-ACCT-NBR
-          example: "012180000000011114"
-        senderContributorFederalRegister:
-          maxLength: 13
-          minLength: 0
-          type: string
-          description: |-
-            Issuer Federal Register of Contributors.
-
-            VisionPLUS Service Data: AZXMAI-ISSUER-RCF
-          example: MACE881212TR3
-        operatingInstitution:
-          maxLength: 5
-          minLength: 0
-          type: string
-          description: |-
-            Institutions Code where the payment comes from (regarding to catalog).
-
-            VisionPLUS Service Data: AZXMAI-OPERATING-INST
-          example: "90646"
-    PurchaseAndCashAdvanceRequest.FraudPreventionData.StoreData:
-      type: object
-      properties:
-        cashierNumber:
-          maxLength: 1
-          minLength: 0
-          type: string
-          description: |-
-            Cashier number.
-
-            VisionPLUS Service Data: AZXMAI-CASHIER-NBR
-          example: "1"
-        regionIdentifier:
-          maxLength: 5
-          minLength: 0
-          type: string
-          description: |-
-            Region identifier.
-
-            VisionPLUS Service Data: AZXMAI-REGION-IDENTIFIER
-          example: 10MON
-        storeIdentifier:
-          maxLength: 5
-          minLength: 0
-          type: string
-          description: |-
-            Store identifier.
-
-            VisionPLUS Service Data: AZXMAI-STORE-IDENTIFIER
-          example: 50EDI
-    PurchaseAndCashAdvanceRequest.LetterInformation:
-      type: object
-      properties:
-        code:
-          maxLength: 3
-          minLength: 1
-          type: string
-          description: |-
-            Letter Code.
-
-            VisionPLUS Service Data: AZXMAI-LTR-CODE
-          example: G52
-        organization:
-          type: string
-          description: |-
-            Letter organization number.
-
-            VisionPLUS Service Data: AZXMAI-LTR-ORG
-          example: "800"
-    PurchaseAndCashAdvanceRequest.MetaData:
-      type: object
-      properties:
-        memoLine:
-          type: array
-          items:
-            $ref: "#/components/schemas/ItemRequestString"
-    PurchaseAndCashAdvanceRequest.ReferralRepresentation:
-      type: object
-      properties:
-        organization:
-          type: integer
-          description: |-
-            * Min Length: 1
-            * Max Length: 3
-
-            Referral Representation organization. Mandatory if referral is ON.
-
-            VisionPLUS Service Data: AZXMAI-REFERRAL-REP-ORG
-          format: int32
-          example: 800
-        id:
-          maxLength: 3
-          minLength: 1
-          type: string
-          description: |-
-            Referral Representation ID. Mandatory if referral is ON.
-
-            VisionPLUS Service Data: AZXMAI-REFERRAL-REP
-          example: "998"
-    PurchaseAndCashAdvanceRequest.TransactionData:
-      required:
-      - actionCode
-      - authorizationCode
-      - departmentCode
-      - effectiveDate
-      - openToBuyUpdateIndicator
-      - purchaseOrderNumber
-      - referenceNumber
-      - salesClerk
-      - stockKeepingUnitNumber
-      - storeNumber
-      - ticketNumber
-      - transactionAmount
-      - walletId
-      type: object
-      properties:
-        effectiveDate:
-          type: string
-          description: |-
-            Date that specifies when the transaction takes effect in the account in ISO 8601.
-
-            VisionPLUS Service Data: AZXMAI-EFF-DATE
-          format: date
-          example: 2023-10-30
-        transactionAmount:
-          type: number
-          description: |-
-            * Min Length: 1
-            * Max Length: 17
-
-            Transaction Amount in ISO 4217.
-
-            VisionPLUS Service Data: AZXMAI-TXN-AMOUNT
-          example: 100.0
-        planNumber:
-          type: integer
-          description: |-
-            * Max Length: 5
-
-            Plan Number.
-
-            VisionPLUS Service Data: AZXMAI-PLAN-NBR
-          format: int32
-          example: 1
-        planSequence:
-          type: integer
-          description: |-
-            * Max Length: 2
-
-            Plan Sequence.
-
-            VisionPLUS Service Data: AZXMAI-PLAN-SEQ
-          format: int32
-          example: 1
-        departmentCode:
-          maxLength: 4
-          minLength: 1
-          type: string
-          description: "Department Code \n\nVisionPLUS Service Data: AZXMAI-DEPT-CODE"
-          example: PPLD
-        authorizationCode:
-          maxLength: 6
-          minLength: 6
-          type: string
-          description: |-
-            Identifier used to identify the transaction for reconciliation purpose.
-
-            VisionPLUS Service Data: AZXMAI-AUTH-CODE
-          example: "281013"
-        storeNumber:
-          type: integer
-          description: |-
-            * Min Length: 1
-            * Max Length: 9
-
-            Store Number.
-
-            VisionPLUS Service Data: AZXMAI-STORE-NBR
-          format: int32
-          example: 999999998
-        stockKeepingUnitNumber:
-          type: integer
-          description: |-
-            * Min Length: 1
-            * Max Length: 9
-
-            Stock Keeping Unit Number.
-
-            VisionPLUS Service Data: AZXMAI-SKU-NBR
-          format: int32
-          example: 775032483
-        salesClerk:
-          maxLength: 12
-          minLength: 1
-          type: string
-          description: |-
-            Sales clerk.
-
-            VisionPLUS Service Data: AZXMAI-SALES-CLERK
-          example: 6651972850FL
-        letterInformation:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceRequest.LetterInformation"
-        cardNumber:
-          maxLength: 19
-          minLength: 12
-          type: string
-          description: |-
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-
-            VisionPLUS Service Data: AZXMAI-CARD-NBR
-          example: 000540208ID5AXX3865
-        cardSequence:
-          type: integer
-          description: |-
-            * Min Length: 1
-            * Max Length: 4
-
-            Card Sequence.
-
-            VisionPLUS Service Data: AZXMAI-CARD-SEQ
-          format: int32
-          example: 6084
-        ticketNumber:
-          maxLength: 15
-          minLength: 1
-          type: string
-          description: |-
-            Ticket Number.
-
-            VisionPLUS Service Data: AZXMAI-TICKET-NBR
-          example: BN0AD3PMLZJOL7Q
-        purchaseOrderNumber:
-          maxLength: 16
-          minLength: 1
-          type: string
-          description: |-
-            Purchase order number.
-
-            VisionPLUS Service Data: AZXMAI-PURCHASE-ORDER-NBR
-          example: 0BGY7RVF00ADMEU0
-        referenceNumber:
-          type: integer
-          description: |-
-            * Min Length: 1
-            * Max Length: 12
-
-            Reference Number.
-
-            VisionPLUS Service Data: AZXMAI-REF-NUM
-          format: int64
-          example: 292717013062
-        insuranceCode:
-          maxLength: 2
-          minLength: 1
-          type: string
-          description: |-
-            Insurance code.
-
-            VisionPLUS Service Data: AZXMAI-INS-CODE
-          example: 3U
-        actionCode:
-          maxLength: 4
-          minLength: 4
-          type: string
-          description: |-
-            Code that identifies the action to be taken. Values are parameterizable by organization in AMAC file.
-
-            VisionPLUS Service Data: AZXMAI-ACTION-CODE
-          example: FUND
-        installmentNumber:
-          type: integer
-          description: "* Min Length: 1\n* Max Length: 2 \n\nInstallment Number.\n\
-            \nInstallment number should be zero for non-installment plan.\n\nInstallment\
-            \ number should not exceed default instalment number defined at plan level\
-            \ (AMCP-INST-REPMT-DFLT-INST-NBR)\n\nInstalment number should be greater\
-            \ than zero only for sales transaction.\n\nVisionPLUS Service Data: AZXMAI-INST-NBR"
-          format: int32
-          example: 24
-        walletId:
-          maxLength: 3
-          minLength: 1
-          type: string
-          description: |-
-            Currency number Or Wallet ID
-
-            VisionPLUS Service Data: AZXMAI-WALLET-ID
-          example: MXN
-        description:
-          maxLength: 40
-          minLength: 1
-          type: string
-          description: |-
-            Description of the transaction.
-
-            VisionPLUS Service Data: AZXMAI-DESC
-          example: DESCRIPTION
-        resolutionReferenceNumber:
-          maxLength: 14
-          minLength: 1
-          type: string
-          description: |-
-            Resolution Reference Number For Payments Received For Open Billing Accounts.
-
-            VisionPLUS Service Data: AZXMAI-R-REF-NBR
-          example: "05698622426763"
-        openToBuyUpdateIndicator:
-          type: boolean
-          description: |-
-            Open to Buy Update Indicator.
-
-            Values:
-            * false = Do not update Open To Buy;
-            * true = Update Open To Buy.
-
-            VisionPLUS Service Data: AZXMAI-OTB-UPDATE-IND
-          example: true
-        isReversedMemo:
-          type: boolean
-          description: |-
-            Memo Post Indicator must be either true or false.
-
-            Values:
-            * false = Do not post memo;
-            * true = Reverse memo.
-
-            VisionPLUS Service Data: AZXMAI-MEMO-POST-IND
-          example: false
-        monetarySupress:
-          type: boolean
-          description: |-
-            Monetary Supress must be either true or false.
-
-            Values:
-            * false = Do not Suppress Monetary transaction;
-            * true = Suppress Monetary transaction.
-
-            VisionPLUS Service Data: AZXMAI-MON-SUPP
-          example: true
-        accountLevelByPass:
-          type: boolean
-          description: |-
-            Account Level apply the limits of accounts N1 and N2 to the transactions that are triggered from the acquisition.
-
-            Values:
-            * false = Do Not ByPass Account Level Rule Validation;
-            * true = ByPass Account Level Rule Validation.
-
-            VisionPLUS Service Data: AZXMAI-N1N2-BYPASS
-          example: false
-        isOpenToBuy:
-          type: boolean
-          description: |-
-            Open To Buy Flag Switch for Debit Transactions.
-
-            Values:
-            * false = Debit Transaction off;
-            * true = Debit Transaction on.
-
-            VisionPLUS Service Data: AZXMAI-OTB-CHECK-FLAG
-          example: true
-        ecommerceTransactionLimitsIndicator:
-          type: boolean
-          description: |-
-            Flag to check for transaction limits for e-commerce transactions.
-
-            Values:
-            * false = Spending Limits for E-Commerce off;
-            * true = Spending Limits for E-Commerce on.
-
-            VisionPLUS Service Data: AZXMAI-SPND-LIM-ECOM-FLAG
-          example: true
-        paymentAcceptIndicator:
-          type: boolean
-          description: |-
-            Flag to indicate whether service accepts or rejects a payment when the balance of the account exceeds the credit balance.
-
-            Values:
-            * false = Reject Payment;
-            * true = Accept Payment.
-
-            VisionPLUS Service Data: AZXMAI-PMT-ACCP-REJ-FLAG
-          example: true
-    DResponse:
-      type: object
-      properties:
-        hasError:
-          type: boolean
-        errors:
-          type: array
-          items:
-            $ref: "#/components/schemas/Error"
-        data:
-          type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-    PurchaseAndCashAdvanceResponse:
-      type: object
-      properties:
-        account:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceResponse.Account"
-        cardNumber:
-          type: string
-          description: |-
-            * Max Length: 3
-
-            Unique identifier or token associated with the card number or payment instrument (FirstVision PAN Token).
-            For Financial Institutions without PAN Token enabled, the cardNumber will be shown masked (e.g., 0581xxxxxxx5846).
-
-            VisionPLUS Service Data: AZXMAO-CARD-NBR
-          example: 000540208ID5AXX3865
-        cardSequence:
-          type: integer
-          description: |-
-            * Max Length: 5
-
-            Card Sequence Number.
-
-            VisionPLUS Service Data: AZXMAO-CARD-SEQ
-          format: int32
-          example: 5453
-        historyDate:
-          type: string
-          description: |-
-            History date (in ISO 8601).
-            VisionPLUS Service Data: AZXMAO-HIST-DATE
-          format: date
-          example: 2020-10-10
-        historyTime:
-          type: string
-          description: |-
-            * Max Length: 7
-
-            History Time.
-
-            VisionPLUS Service Data: AZXMAO-HIST-TIME
-          example: "1122022"
-        recordType:
-          type: string
-          description: |-
-            * Max Length: 1
-
-            Record Type.
-
-            VisionPLUS Service Data: AZXMAO-RECORD-TYPE
-          example: MONETARY
-          enum:
-          - PREPAID
-          - INFORMATION
-          - MONETARY
-          - NON_MONETARY
-          - TRANSCRIPT
-          - ACTION
-          - MAINTENANCE
-          - MEMO
-        actionDescription:
-          type: string
-          description: |-
-            * Max Length: 20
-
-            Action Code Description.
-
-            VisionPLUS Service Data: AZXMAO-ACTION-DESC
-          example: COMP INST PARCEL AMOUNT
-        collectionSequenceNumber:
-          type: integer
-          description: |-
-            * Max Length: 5
-
-            CTA Sequence Number.
-
-            VisionPLUS Service Data: AZXMAO-CTA-SEQ-NBR
-          format: int32
-          example: 59832
-        status:
-          type: string
-          description: |-
-            * Max Length: 1
-
-            History Record Status.
-
-            VisionPLUS Service Data: AZXMAO-STATUS
-          example: OPEN_REFERRED
-          enum:
-          - OPEN_HELD
-          - CLOSED
-          - OPEN_REFERRED
-          - APPROVED
-          - DECLINED
-        referralAsmOrganization:
-          type: integer
-          description: |-
-            * Max Length: 3
-
-            Referral ASM Organization.
-
-            VisionPLUS Service Data: AZXMAO-REFERRAL-ASM-ORG
-          format: int32
-          example: 800
-        purgeDate:
-          type: string
-          description: |-
-            Purge Date (in ISO 8601).
-
-            VisionPLUS Service Data: AZXMAO-PURGE-DATE
-          format: date
-          example: 2020-10-10
-        actionDate:
-          type: string
-          description: |-
-            Action Date (in ISO 8601).
-
-            VisionPLUS Service Data: AZXMAO-ACTION-DATE
-          format: date
-          example: 2020-10-10
-        retention:
-          type: string
-          description: |-
-            * Max Length: 1
-
-            Retention Code.
-
-            VisionPLUS Service Data: AZXMAO-RETENTION
-          example: DELETE_NEXT_REVIEW
-          enum:
-          - DELETE_NEXT_REVIEW
-          - DELETE_WHEN_SATISFIED
-          - KEEP_FOR_HISTORY
-          - HISTORY
-        ctaFile:
-          type: string
-          description: |-
-            * Max Length: 1
-
-            CTA file.
-
-            VisionPLUS Service Data: AZXMAO-CTA-FILE
-          example: A
-        transactionData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceResponse.TransactionData"
-    PurchaseAndCashAdvanceResponse.Account:
-      type: object
-      properties:
-        organizationNumber:
-          type: integer
-          description: |-
-            * Max Length: 3
-
-            Account Organization.
-
-            VisionPLUS Service Data: AZXMAO-ACCT-ORG
-          format: int32
-          example: 800
-        logo:
-          type: integer
-          description: |-
-            * Max Length: 3
-
-            Account Logo.
-
-            VisionPLUS Service Data: AZXMAO-ACCT-LOGO
-          format: int32
-          example: 801
-    PurchaseAndCashAdvanceResponse.TransactionData:
-      type: object
-      properties:
-        currencyData:
-          $ref: "#/components/schemas/PurchaseAndCashAdvanceResponse.TransactionData.CurrencyData"
-        feeAmount:
-          type: number
-          description: |-
-            * Max Length: 17
-
-            Fee Amount.
-
-            VisionPLUS Service Data: AZXMAO-FEE-AMT
-          example: 100.0
-        transactionCode:
-          type: string
-          description: |-
-            * Max Length: 4
-
-            Transaction Code.
-
-            VisionPLUS Service Data: AZXMAO-TXN-CODE
-          example: "9999"
-        transactionAmount:
-          type: number
-          description: |-
-            * Max Length: 17
-
-            Transaction Amount.
-
-            VisionPLUS Service Data: AZXMAO-TRAN-AMT
-          example: 100.0
-        transactionDescription:
-          type: string
-          description: |-
-            * Max Length: 40
-
-            Transaction Description.
-
-            VisionPLUS Service Data: AZXMAO-TXN-DESC
-          example: COMP INST PARCEL AMOUNT
-        creditLimit:
-          type: number
-          description: |-
-            * Max Length: 17
-
-            Credit Limit.
-
-            VisionPLUS Service Data: AZXMAO-CREDIT-LIMIT
-          example: 100.0
-        openToBuy:
-          type: number
-          description: |-
-            * Max Length: 17
-
-            Open to Buy.
-
-            VisionPLUS Service Data: AZXMAO-OPEN-TO-BUY
-          example: 100.0
-        cashAvailable:
-          type: number
-          description: |-
-            * Max Length: 17
-
-            Available Cash Credit.
-
-            VisionPLUS Service Data: AZXMAO-CASH-AVAIL-CR
-          example: 100.0
-        currentBalance:
-          type: number
-          description: |-
-            * Max Length: 17
-
-            Current Balance.
-
-            VisionPLUS Service Data: AZXMAO-CURR-BAL
-          example: 100.0
-        referenceNumber:
-          type: string
-          description: |-
-            * Max Length: 24
-
-            Reference Number.
-
-            VisionPLUS Service Data: AZXMAO-REFERENCE-NBR
-          example: CA80SLSE1VQK3VOXT14L53JS
-        referralReferenceNumber:
-          type: string
-          description: |-
-            * Max Length: 15
-
-            Referral Reference number.
-
-            VisionPLUS Service Data: AZXMAO-R-REF-NBR
-          example: NYG4S61PEXOBG2L
-        insuranceCode:
-          type: string
-          description: |-
-            * Max Length: 2
-
-            Insurance product associated with the transaction.
-
-            VisionPLUS Service Data: AZXMAO-INS
-          example: G8
-        reviewDate:
-          type: string
-          description: |-
-            Review Date (in ISO 8601).
-
-            VisionPLUS Service Data: AZXMAO-REV-DATE
-          format: date
-          example: 2020-10-10
-        reviewTime:
-          type: string
-          description: |-
-            * Max Length: 7
-
-            Review Time.
-
-            VisionPLUS Service Data: AZXMAO-REV-TIME
-          example: "1122003"
-        storeOrganizationNumber:
-          type: integer
-          description: |-
-            * Max Length: 3
-
-            Store Organization.
-
-            VisionPLUS Service Data: AZXMAO-STORE-ORG
-          format: int32
-          example: 800
-        approvalIndicator:
-          type: boolean
-          description: |-
-            * Max Length: 1
-
-            Approved/declined indicator.
-
-            VisionPLUS Service Data: AZXMAO-APPR-DECL
-          example: true
-        monetaryType:
-          type: string
-          description: |-
-            * Max Length: 1
-
-            Monetary Type.
-
-            VisionPLUS Service Data: AZXMAO-MON-TYPE
-          example: C
-        pointsProgram:
-          type: integer
-          description: |-
-            * Max Length: 1
-
-            Points Program.
-
-            VisionPLUS Service Data: AZXMAO-PTS-PGM
-          format: int32
-          example: 1
-        pointsAmount:
-          type: number
-          description: |-
-            * Max Length: 9
-
-            Points Amount.
-
-            VisionPLUS Service Data: AZXMAO-PTS-AMT
-          example: 100.0
-        fundCard:
-          type: string
-          description: |-
-            * Max Length: 19
-
-            Fund Card.
-
-            VisionPLUS Service Data: AZXMAO-PD-FUND-CARD
-          example: 9I884P4S3RW5BPRMV8D
-        fundCardDeclinedReason:
-          type: string
-          description: |-
-            * Max Length: 30
-
-            Fund Card Declined Reason.
-
-            VisionPLUS Service Data: AZXMAO-PD-DECL-RSN
-          example: HUUO5SP127E3JQSXOJ5OAGHHDX5J1Q
-        authorizationNumber:
-          type: string
-          description: |-
-            * Max Length: 6
-
-            Authorization Number.
-
-            VisionPLUS Service Data: AZXMAO-AUTH-NUMBER
-          example: 31AMJC
-        installmentTermNumber:
-          type: string
-          description: |-
-            * Max Length: 2
-
-            Installment Term Number.
-
-            VisionPLUS Service Data: AZXMAO-INST-TERM
-          example: "12"
-    PurchaseAndCashAdvanceResponse.TransactionData.CurrencyData:
-      type: object
-      properties:
-        currencyCode:
-          type: string
-          description: |-
-            * Max Length: 3
-
-            Currency Code.
-
-            VisionPLUS Service Data: AZXMAO-CURRENCY-CODE
-          example: MXN
     LinkUnlinkAccountRequest:
       required:
       - organizationNumber
@@ -1709,6 +618,24 @@ components:
             * Field: SWEEP ACCOUNT
           example: "0123456789123456789"
       description: Link or Unlink Account Request
+    DResponse:
+      type: object
+      properties:
+        hasError:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/Error"
+        data:
+          type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
     LinkUnlinkAccountResponse:
       type: object
       properties:
@@ -3947,6 +2874,29 @@ components:
             * Service Data: AZXD1I-ED-AUTH-RTL-SNGL-TXN
             * Screen & Field: ARQE06 - RETAIL PURCHASE: SNGL TXN LMTA
           example: 147953578
+    ItemRequestString:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        value:
+          type: string
+      description: |-
+        * Items max length: 40
+
+        * List size: 2
+
+        The line field represents the first line of the postal address associated with a specific location or entity. It provides essential information about the primary address details, such as street name, house number, apartment, or suite number. This field is commonly used in address records to accurately identify and locate the physical location of the address.
+
+        VisionPLUS:
+
+        * Service Data: [AZXD1I-ED-ADDR-1, AZXD1I-ED-ADDR-2]
+        * Screen, Page & Field: ARQE02 - [ADDRESS LINE 1 / ADDRESS LINE 2]
+      example:
+        id: 1
+        value: ALPHANUMERIC DATA 1
     AccountBoardingDriverResponseL8V5:
       type: object
       properties:
