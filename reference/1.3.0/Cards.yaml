@@ -74,12 +74,6 @@ paths:
           minLength: 1
           type: string
         example: 01C
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -91,7 +85,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -102,11 +96,19 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       responses:
         "405":
           description: Method Not Allowed
         "422":
           description: |-
+            Unprocessable Entity
+
             VPL5SQC01E - INVALID ORGANIZATION NUMBER
 
             VPL5SQC02E - NON-NUMERIC INPUT FIELD ORG
@@ -130,12 +132,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
         "300":
           description: Redirection
           content:
@@ -144,12 +140,18 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
         "200":
           description: Success
           content:
@@ -176,12 +178,6 @@ paths:
          VMX Service: M.CMS.MASS.CARD.ISSUE.UPD, L8V6
       operationId: Mass Card Issue Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -193,7 +189,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -204,6 +200,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -213,12 +215,6 @@ paths:
       responses:
         "405":
           description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
         "300":
           description: Redirection
           content:
@@ -227,8 +223,20 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "400":
           description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "422":
           description: |-
+            Unprocessable Entity
+
             VPL5SMC01E - INVALID ORGANIZATION NUMBER
 
             VPL5SMC02E - NON-NUMERIC INPUT FIELD ORG
@@ -358,10 +366,6 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "403":
           description: Forbidden
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
@@ -383,12 +387,6 @@ paths:
         Provides account and other card details such as encrypted card number. VMX Service: M.CMS.ENCR.CARD.PAN.INQ, L8V2
       operationId: PAN Encryption
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -400,7 +398,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -411,6 +409,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -418,6 +422,28 @@ paths:
               $ref: "#/components/schemas/PanEncryptionL8V2Request"
         required: true
       responses:
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "422":
           description: |
             Unprocessable Entity
@@ -455,28 +481,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "405":
-          description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
         "200":
           description: Success
           content:
@@ -498,12 +502,6 @@ paths:
         The GENERIC INSTANT EMBOSSING service will perform the issue process required for embossing. It will link to the HSM module to fetch the security details like PIN, CVV, CVV2, PVV etc. encrypt the information using the keys setup. VMX Service: M.CMS.GEN.INSTANT.EMB, L8V2
       operationId: Generic Instant Embossing
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -515,7 +513,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -526,6 +524,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -608,12 +612,6 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "405":
           description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
         "300":
           description: Redirection
           content:
@@ -622,12 +620,18 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "400":
           description: Bad Request
-        "403":
-          description: Forbidden
         "404":
           description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
         "200":
           description: Success
           content:
