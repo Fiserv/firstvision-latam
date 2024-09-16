@@ -20,12 +20,6 @@ paths:
         \ L8V3"
       operationId: outstandingAuthorizationL8V3
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -37,7 +31,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -48,6 +42,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -55,35 +55,25 @@ paths:
               $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Request"
         required: true
       responses:
-        "403":
-          description: Forbidden
-        "405":
-          description: Method Not Allowed
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
         "422":
-          description: "VPL5SOA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
-            \ BETWEEN 000 AND 998\n\nVPL5SOA07E - ACCOUNT NUMBER IS INVALID\n\nVPL5SOA08E\
-            \ - START TOKEN EFFECTIVE DATE REQUIRED WHEN FUNCTION IS NEXT/PREV\n\n\
-            VPL5SOA09E - START TOKEN EFFECTIVE DATE IS INVALID\n\nVPL5SOA10E - START\
-            \ TOKEN TIME REQUIRED WHEN FUNCTION IS NEXT/PREV\n\nVPL5SOA11E - START\
-            \ TOKEN TIME IS INVALID\n\nVPL5SOA12E - FOREIGN USE FLAG IS INVALID\n\n\
-            VPL5SOA13E - SERVICE FUNCTION CODE IS INVALID\n\nVPL5SOA14E - ACTION FILTER\
-            \ CODE IS INVALID\n\nVPL5SOA15S - REQUESTED ORGANIZATION COULD NOT BE\
-            \ DETERMINED\n\nVPL5SOA16S - REQUESTED ORGANIZATION NOT FOUND\n\nVPL5SOA19S\
-            \ - ORGANIZATION NOT FOUND ON FILE\n\nVPL5SOA20I - FOREIGN USE ORG UNAVAILABLE\
-            \ PROCESSED LOCAL ORG ACCOUNT DATA\n\nVPL5SOA21S - FOREIGN ORGANIZATION\
-            \ NOT FOUND ON FILE \n\nVPL5SOA22S - ACCOUNT NUMBER NOT FOUND\n\nVPL5SOA24S\
-            \ - LOGO NOT FOUND ON FILE\n\nVPL7SOA50I - NO AUTHS RETURNED FOR THIS\
-            \ ACCT"
+          description: "Unprocessable Entity\n\nVPL5SOA06E - ORGANIZATION IS NOT NUMERIC\
+            \ OR MUST BE VALUE BETWEEN 000 AND 998\n\nVPL5SOA07E - ACCOUNT NUMBER\
+            \ IS INVALID\n\nVPL5SOA08E - START TOKEN EFFECTIVE DATE REQUIRED WHEN\
+            \ FUNCTION IS NEXT/PREV\n\nVPL5SOA09E - START TOKEN EFFECTIVE DATE IS\
+            \ INVALID\n\nVPL5SOA10E - START TOKEN TIME REQUIRED WHEN FUNCTION IS NEXT/PREV\n\
+            \nVPL5SOA11E - START TOKEN TIME IS INVALID\n\nVPL5SOA12E - FOREIGN USE\
+            \ FLAG IS INVALID\n\nVPL5SOA13E - SERVICE FUNCTION CODE IS INVALID\n\n\
+            VPL5SOA14E - ACTION FILTER CODE IS INVALID\n\nVPL5SOA15S - REQUESTED ORGANIZATION\
+            \ COULD NOT BE DETERMINED\n\nVPL5SOA16S - REQUESTED ORGANIZATION NOT FOUND\n\
+            \nVPL5SOA19S - ORGANIZATION NOT FOUND ON FILE\n\nVPL5SOA20I - FOREIGN\
+            \ USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA\n\nVPL5SOA21S -\
+            \ FOREIGN ORGANIZATION NOT FOUND ON FILE \n\nVPL5SOA22S - ACCOUNT NUMBER\
+            \ NOT FOUND\n\nVPL5SOA24S - LOGO NOT FOUND ON FILE\n\nVPL7SOA50I - NO\
+            \ AUTHS RETURNED FOR THIS ACCT"
           content:
             application/json:
               schema:
@@ -94,14 +84,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "405":
+          description: Method Not Allowed
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/OutstandingAuthorizationFasL8V3Response"
-        "400":
-          description: Bad Request
       x-proxy-name: Outstanding Authorizations Inquiry
       x-group-name: Transactions
   /transactions/details:
@@ -114,12 +114,6 @@ paths:
         \ R8V6"
       operationId: Transactions Details Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -131,7 +125,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -142,7 +136,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -150,8 +149,16 @@ paths:
               $ref: "#/components/schemas/TransactionsDetailsRequest"
         required: true
       responses:
-        "403":
-          description: Forbidden
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "405":
           description: Method Not Allowed
         "300":
@@ -160,12 +167,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
         "422":
           description: |
+            Unprocessable Entity
+
             VPL5STD01I - NO TRANSACTIONS FOUND FOR REQUEST
             VPL5STD04E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998
             VPL5STD05E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
@@ -205,20 +214,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/TransactionsDetailsResponse"
-        "400":
-          description: Bad Request
       x-proxy-name: Transactions Details Inquiry
       x-group-name: Transactions
 components:
@@ -881,14 +882,14 @@ components:
           format: date
           example: 2023-06-12
         retrievalReferenceNumber:
-          type: number
+          type: integer
           description: |-
             * Max Length: 12
 
             Retrieval reference number.
 
             VisionPLUS Service Data: OZXOAO-REF-NBR
-          format: double
+          format: int64
           example: 100000000000
         transactionCurrencyCode:
           type: integer

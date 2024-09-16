@@ -19,12 +19,6 @@ paths:
         \ M.CMS.CUSTCHANNEL.INQ, L8V4"
       operationId: Cards Details Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -36,7 +30,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -47,7 +41,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -55,14 +54,6 @@ paths:
               $ref: "#/components/schemas/CustomerChannelVersion4Request"
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
@@ -75,8 +66,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "404":
+          description: Not Found
         "403":
           description: Forbidden
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
@@ -94,12 +93,6 @@ paths:
         \ M.CMS.DEMOGRAPHIC.INQ, R8V4"
       operationId: Inquire demographic data
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -111,7 +104,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -122,7 +115,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -130,35 +128,35 @@ paths:
               $ref: "#/components/schemas/DemographicInquiryRequest"
         required: true
       responses:
-        "400":
-          description: Bad Request
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
-        "405":
-          description: Method Not Allowed
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "404":
+          description: Not Found
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "403":
           description: Forbidden
+        "401":
+          description: Unauthorized
+        "405":
+          description: Method Not Allowed
+        "400":
+          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DemographicInquiryResponse"
-      x-proxy-name: Inquire demographic data
+      x-proxy-name: Demographic Inquiry
       x-group-name: Customers
 components:
   schemas:
@@ -1158,7 +1156,7 @@ components:
             Length: 40
             Last name.
             VisionPLUS Service Data: AZXNDO-LAST-NAME
-          example: Sivale
+          example: Simon
         middleName:
           type: string
           description: |-

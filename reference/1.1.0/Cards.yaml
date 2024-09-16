@@ -23,12 +23,6 @@ paths:
         \ M.CMS.EMBOSSER.INQ, L8V6"
       operationId: embosserDetails
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -40,7 +34,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -51,7 +45,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -59,35 +58,35 @@ paths:
               $ref: "#/components/schemas/EmbosserDetailsRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EmbosserDetailsResponse"
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "404":
-          description: Not Found
-      x-proxy-name: Data from the Embosser record
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmbosserDetailsResponse"
+      x-proxy-name: Embosser Inquiry
       x-group-name: Embosser
       x-child-product-name: Cards
   /cards/embosser/:
@@ -99,12 +98,6 @@ paths:
         \ L8V8"
       operationId: addEmbosserL8V8
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -116,7 +109,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -127,7 +120,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -135,60 +133,35 @@ paths:
               $ref: "#/components/schemas/AddEmbosserRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
-          description: |
-            VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
-            VPL5SCL04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
-            VPL5SCL05E - CREDIT LIMIT - DOES NOT CONFORM TO CURRENCY NOD
-            VPL5SCL06E - CREDIT LIMIT MUST BE NUMERIC
-            VPL5SCL07E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0 OR 1
-            VPL5SCL08I - CREDIT LIMIT UNCHANGED, UPDATE BYPASSED
-            VPL5SCL10S - ORGANIZATION NOT FOUND ON FILE
-            VPL5SCL11S - FOREIGN ORGANIZATION NOT FOUND ON FILE
-            VPL5SCL12S - ACCOUNT NOT FOUND ON FILE
-            VPL5SCL13S - RELATIONSHIP ACCOUNT NOT FOUND ON FILE
-            VPL5SCL14S - LOGO NOT FOUND ON FILE
-            VPL5SCL15E - CREDIT LIMIT INVALID FOR PREPAID/DEBIT ACCOUNT TYPES
-            VPL5SCL16E - CREDIT LIMIT INVALID FOR RELATIONSHIP SUB-ACCOUNT
-            VPL5SCL17E - CREDIT LIMIT CAN NOT EXCEED LOGO CREDIT LIMIT
-            VPL5SCL19E - CREDIT LIMIT EXCEEDS SECURED AMOUNT
-            VPL5SCL20E - CREDIT LIMIT CAN NOT EXCEED COMPANY NODE CREDIT AVAILABLE
-            VPL5SCL21E - CREDIT LIMIT CAN NOT EXCEED PARENT NODE CREDIT AVAILABLE
-            VPL5SCL23I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
-            VPL5SCL24E - CREDIT LIMIT SHOULD BE ZERO FOR FOREIGN ACCOUNT
-            VPL5SCL25E - CREDIT LIMIT CANNOT BE LESS THAN ACCT FLOOR LIMIT
-            VPL5SCL40E - DELQ AMT EXCEEDED FOR CREDIT LIMIT INCREASE
-            VPL5SCL41E - DELQ LVL EXCEEDED FOR CREDIT LIMIT INCREASE
-            VPL5SCL42E - ACCT BLOCKED FOR CREDIT LIMIT INCREASE
-            VPL5SCLZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
-            VPL5SCLZ5S - REQUESTED ORGANIZATION NOT FOUND
+          description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
         "405":
           description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddEmbosserResponse"
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "404":
-          description: Not Found
-      x-proxy-name: Add Card Record
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddEmbosserResponse"
+      x-proxy-name: Embosser Add
       x-group-name: Embosser
       x-child-product-name: Cards
 components:
