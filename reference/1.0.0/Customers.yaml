@@ -18,12 +18,6 @@ paths:
         \ the Customer record. \nVMX Service: M.CMS.CUSTOMER.ADD, R8V4"
       operationId: New Customer Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -35,7 +29,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -46,7 +40,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -54,10 +53,18 @@ paths:
               $ref: "#/components/schemas/AddCustomerRequest"
         required: true
       responses:
+        "400":
+          description: Bad Request
         "405":
           description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
         "422":
           description: |-
+            Unprocessable Entity
+
             VPL5SNA03S – N/A SERVICE INPUT AREA IS NOT OF CORRECT SIZE
             VPL5SNA04S – OWNER/CO-OWNER INDICATOR MUST BE 1 OR 2
             VPL5SNA06S – INVALID FOREIGN USE INDICATOR - MUST BE 0 OR 1 ONLY
@@ -119,20 +126,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
         "200":
           description: Success
           content:
@@ -145,7 +146,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-      x-proxy-name: New Customer Add
+      x-proxy-name: Customer Add
       x-group-name: Customers
 components:
   schemas:
@@ -1845,5 +1846,3 @@ components:
           description: |-
             Reserved For Future Use.
             VisionPLUS Service Data: ARXNAO-RESV-AMT-5
-x-config:
-  tryItOut: 'true'

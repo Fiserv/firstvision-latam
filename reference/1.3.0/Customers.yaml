@@ -18,12 +18,6 @@ paths:
         \ L8V1"
       operationId: Customer Reversal Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -35,7 +29,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -46,7 +40,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -66,12 +65,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -80,8 +81,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UpdateCustomerReversalResponse"
-        "401":
-          description: Unauthorized
       x-proxy-name: Customer Reversal Update
       x-group-name: Customers
   /customer/:
@@ -98,12 +97,6 @@ paths:
         VMX Service: M.CMS.CUSTOMER.UPD, R8V5
       operationId: Customer Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -115,7 +108,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -126,6 +119,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -139,16 +138,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "405":
-          description: Method Not Allowed
         "422":
           description: |-
+            Unprocessable Entity
+
             VPL5SGC01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
 
             VPL5SGC01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
@@ -258,10 +251,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "404":
-          description: Not Found
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "403":
           description: Forbidden
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -270,8 +273,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UpdateCustomerResponse"
-        "401":
-          description: Unauthorized
       x-proxy-name: Customer Update
       x-group-name: Customers
   /customer/relationship:
@@ -285,12 +286,6 @@ paths:
         \ R8V2"
       operationId: Relationship Number Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -302,7 +297,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -313,6 +308,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -326,18 +327,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "405":
-          description: Method Not Allowed
-        "404":
-          description: Not Found
         "422":
           description: |-
+            Unprocessable Entity
+
             VPL5SAR03S - CUSTOMER NUMBER IS INVALID
             VPL5SAR06S - ORGANIZATION NUMBER MUST BE PROVIDED
             VPL5SAR07S - REQUESTED ORG NUMBER IS NOT FOUND
@@ -452,8 +445,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "403":
           description: Forbidden
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -462,8 +467,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomerRelationshipDetailsResponse"
-        "401":
-          description: Unauthorized
       x-proxy-name: Relationship Number Add
       x-group-name: Customers
   /customer/l8v2:
@@ -476,12 +479,6 @@ paths:
         \ Service: M.CMS.CUSTOMER.ADD, L8V2"
       operationId: Customer Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -493,7 +490,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -504,6 +501,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -511,26 +514,10 @@ paths:
               $ref: "#/components/schemas/AddCustomerRequestL8V2"
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
-        "405":
-          description: Method Not Allowed
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
         "422":
           description: |-
+            Unprocessable Entity
+
             VPL5SNA01E - USER DATE 3 INVALID
 
             VPL5SNA02E - INCOME SHOULD BE NUMERIC
@@ -554,6 +541,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "500":
+          description: Backend Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "405":
+          description: Method Not Allowed
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -562,8 +569,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AddCustomerResponseL8V2"
-        "401":
-          description: Unauthorized
       x-proxy-name: Customer Add
       x-group-name: Customers
   /customer/generation:
@@ -580,12 +585,6 @@ paths:
         VMX Service: M.CMS.NBRGENERATION.ACT, L8V1
       operationId: Customer and Account Number Generate
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -597,7 +596,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -608,6 +607,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -627,51 +632,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad Request
         "422":
-          description: "VPL5SNG01S - SERVICE INPUT TO N/G SERVICE IS AN INCORRECT\
-            \ LENGTH \n\nVPL5SNG04S - ONLY NUMERIC ACCOUNT NUMBERS ALLOWED FOR AUTO\
-            \ GENERATION \n\nVPL5SNG05S - ORG NUMBER MUST BE NUMERIC BETWEEN 001-998\
-            \ \n\nVPL5SNG06S - LOGO MUST BE NUMERIC BETWEEN 001-998 FOR NBR REQUESTED\
-            \ \n\nVPL5SNG07S - AUTO GENERATION NOT ALLOWED IN THIS ORG \n\nVPL5SNG08S\
-            \ - MAX ATTEMPTS REACHED FOR CUST/REL NUMBER AUTO GEN \n\nVPL5SNG09S -\
-            \ NO NUMBERS AVAILABLE IN THIS ORG \n\nVPL5SNG10S - AUTO GENERATION NOT\
-            \ ALLOWED IN THIS LOGO \n\nVPL5SNG11S - NO NUMBERS AVAILABLE IN THIS LOGO\
-            \ \n\nVPL5SNG12S - LOGO DOES NOT ALLOW BILLING NBR GENERATE \n\nVPL5SNG14S\
-            \ - BILLING/CNTL NBR REQUESTED BUT NOT ACTIVE ON SYSTEM REC \n\nVPL5SNG15S\
-            \ - ORG DOES NOT USE DUAL CURRENCY \n\nVPL5SNG16S - SERVICE COULD NOT\
-            \ OBTAIN STORAGE AREA \n\nVPL5SNG17S - ORGANIZATION NUMBER NOT FOUND \n\
-            \nVPL5SNG18S - INVALID CHECK-DIGIT - POSSIBLE SEED TABLE ERROR \n\nVPL5SNG21E\
-            \ - CUSTOMER NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG22E\
-            \ - RELATIONSHIP NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG23E\
-            \ - ACCOUNT NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG24E -\
-            \ BILLING ACCOUNT NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG25E\
-            \ - CNTL/DIV ACCT NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG26E\
-            \ - CARD NUMBER INDICATOR MUST BE NUMERIC AND 0-10 \n\nVPL5SNG27E - NO\
-            \ FOREIGN ORG EXISTS FOR LOCAL ORG \n\nVPL5SNG28E - INVALID CHECK DIGIT\
-            \ \n\nVPL5SNG29E - DUAL INDICATOR MUST BE 0 OR 1 \n\nVPL5SNG30S - MAX\
-            \ ATTEMPTS REACHED FOR ACCT/CARD NUMBER AUTO GEN \n\nVPL5SNG31S - MAX\
-            \ ATTEMPTS REACHED FOR BILL/CNTL NUMBER AUTO GEN \n\nVPL5SNG32S - LOGO\
-            \ NUMBER NOT FOUND"
+          description: "Unprocessable Entity\n\nVPL5SNG01S - SERVICE INPUT TO N/G\
+            \ SERVICE IS AN INCORRECT LENGTH \n\nVPL5SNG04S - ONLY NUMERIC ACCOUNT\
+            \ NUMBERS ALLOWED FOR AUTO GENERATION \n\nVPL5SNG05S - ORG NUMBER MUST\
+            \ BE NUMERIC BETWEEN 001-998 \n\nVPL5SNG06S - LOGO MUST BE NUMERIC BETWEEN\
+            \ 001-998 FOR NBR REQUESTED \n\nVPL5SNG07S - AUTO GENERATION NOT ALLOWED\
+            \ IN THIS ORG \n\nVPL5SNG08S - MAX ATTEMPTS REACHED FOR CUST/REL NUMBER\
+            \ AUTO GEN \n\nVPL5SNG09S - NO NUMBERS AVAILABLE IN THIS ORG \n\nVPL5SNG10S\
+            \ - AUTO GENERATION NOT ALLOWED IN THIS LOGO \n\nVPL5SNG11S - NO NUMBERS\
+            \ AVAILABLE IN THIS LOGO \n\nVPL5SNG12S - LOGO DOES NOT ALLOW BILLING\
+            \ NBR GENERATE \n\nVPL5SNG14S - BILLING/CNTL NBR REQUESTED BUT NOT ACTIVE\
+            \ ON SYSTEM REC \n\nVPL5SNG15S - ORG DOES NOT USE DUAL CURRENCY \n\nVPL5SNG16S\
+            \ - SERVICE COULD NOT OBTAIN STORAGE AREA \n\nVPL5SNG17S - ORGANIZATION\
+            \ NUMBER NOT FOUND \n\nVPL5SNG18S - INVALID CHECK-DIGIT - POSSIBLE SEED\
+            \ TABLE ERROR \n\nVPL5SNG21E - CUSTOMER NUMBER INDICATOR MUST BE NUMERIC\
+            \ AND 0-10 \n\nVPL5SNG22E - RELATIONSHIP NUMBER INDICATOR MUST BE NUMERIC\
+            \ AND 0-10 \n\nVPL5SNG23E - ACCOUNT NUMBER INDICATOR MUST BE NUMERIC AND\
+            \ 0-10 \n\nVPL5SNG24E - BILLING ACCOUNT NUMBER INDICATOR MUST BE NUMERIC\
+            \ AND 0-10 \n\nVPL5SNG25E - CNTL/DIV ACCT NUMBER INDICATOR MUST BE NUMERIC\
+            \ AND 0-10 \n\nVPL5SNG26E - CARD NUMBER INDICATOR MUST BE NUMERIC AND\
+            \ 0-10 \n\nVPL5SNG27E - NO FOREIGN ORG EXISTS FOR LOCAL ORG \n\nVPL5SNG28E\
+            \ - INVALID CHECK DIGIT \n\nVPL5SNG29E - DUAL INDICATOR MUST BE 0 OR 1\
+            \ \n\nVPL5SNG30S - MAX ATTEMPTS REACHED FOR ACCT/CARD NUMBER AUTO GEN\
+            \ \n\nVPL5SNG31S - MAX ATTEMPTS REACHED FOR BILL/CNTL NUMBER AUTO GEN\
+            \ \n\nVPL5SNG32S - LOGO NUMBER NOT FOUND"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
         "200":
           description: Success
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/CmsNumberGenerationResponse"
-        "401":
-          description: Unauthorized
       x-proxy-name: Customer and Account Number Generate
       x-group-name: Customers
   /customer/demographicData-l8v2:
@@ -686,12 +691,6 @@ paths:
         VMXService:M.CMS.DEMOGRAPHIC.INQ,L8V2
       operationId: Demographic Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -703,7 +702,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -714,6 +713,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -733,14 +738,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "422":
           description: |+
+            Unprocessable Entity
+
             VPL5SZL03S-MAXIMUM ALLOWED RECORDS REQUIRED IS 50 ONLY
 
             VPL5SZL04S-SERVICE TOKEN CANNOT BE LOW VALUES FOR PREV OR NEXT FUNCTION
@@ -791,8 +800,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DemographicInquiryResponseL8V2"
-        "401":
-          description: Unauthorized
       x-proxy-name: Demographic Inquiry
       x-group-name: Customers
   /customer/activation:
@@ -805,12 +812,6 @@ paths:
         \ PAN token. \nVMX Service: M.CMS.CUST.ACTIVATE.ADD, L8V1"
       operationId: Customer with PAN Activation Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -822,7 +823,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -833,7 +834,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -853,12 +859,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -867,8 +875,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AddCustomerActivationResponse"
-        "401":
-          description: Unauthorized
       x-proxy-name: Customer with PAN Activation Add
       x-group-name: Customers
   /customer/accountNumber:
@@ -881,12 +887,6 @@ paths:
         VMX Service: M.CMS.CUST.TO.ACCT.INQ, R8V3"
       operationId: Account Number Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -898,7 +898,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -909,6 +909,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -928,30 +934,32 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
         "422":
-          description: "VPL5SCA01S - SERVICE COULD NOT OBTAIN STORAGE AREA \n\nVPL5SCA02S\
-            \ - SERVICE INPUT TO PLAN VIEWER SERVICE IS AN INC OR RECT LENGTH \n\n\
-            VPL5SCA03S - USER HAS NOT SIGNED ON, PLEASE SIGNON \n\nVPL5SCA04S - FILE-TABLE\
-            \ USED BY THIS SERVICE IS NOT FOUND \n\nVPL5SCA05S - APPLICATION IN NO-PROCESSING\
-            \ STATUS, RE-TRY IN A FEW MINUTES \n\nVPL5SCA06E - ORGANIZATION IS NOT\
-            \ NUMERIC OR MUST BE VALUE BE VALUE BETWEEN 000 AND 998 \n\nVPL5SCA07E\
-            \ - CUSTOMER NUMBER IS INVALID \n\nVPL5SCA08E - INVALID TOKEN DATA PASSED\
-            \ TO SERVICE \n\nVPL5SCA09E - SERVICE FUNCTION CODE IS INVALID \n\nVPL5SCA10S\
-            \ - REQUESTED ORGANIZATION COULD NOT BE DETERMINED \n\nVPL5SCA11S - REQUESTED\
-            \ ORGANIZATION NOT FOUND \n\nVPL5SCA13S - APPLICATION IN NO-PROCESSING\
-            \ STATUS, RE-TRY IN A FEW MINUTES \n\nVPL5SCA14S - ORGANIZATION NOT FOUND\
-            \ ON FILE \n\nVPL5SCA15S - ACCOUNT NUMBER NOT FOUND \n\nVPL5SCA16S - LOGO\
-            \ NOT FOUND ON FILE"
+          description: "Unprocessable Entity\n\nVPL5SCA01S - SERVICE COULD NOT OBTAIN\
+            \ STORAGE AREA \n\nVPL5SCA02S - SERVICE INPUT TO PLAN VIEWER SERVICE IS\
+            \ AN INC OR RECT LENGTH \n\nVPL5SCA03S - USER HAS NOT SIGNED ON, PLEASE\
+            \ SIGNON \n\nVPL5SCA04S - FILE-TABLE USED BY THIS SERVICE IS NOT FOUND\
+            \ \n\nVPL5SCA05S - APPLICATION IN NO-PROCESSING STATUS, RE-TRY IN A FEW\
+            \ MINUTES \n\nVPL5SCA06E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
+            \ BE VALUE BETWEEN 000 AND 998 \n\nVPL5SCA07E - CUSTOMER NUMBER IS INVALID\
+            \ \n\nVPL5SCA08E - INVALID TOKEN DATA PASSED TO SERVICE \n\nVPL5SCA09E\
+            \ - SERVICE FUNCTION CODE IS INVALID \n\nVPL5SCA10S - REQUESTED ORGANIZATION\
+            \ COULD NOT BE DETERMINED \n\nVPL5SCA11S - REQUESTED ORGANIZATION NOT\
+            \ FOUND \n\nVPL5SCA13S - APPLICATION IN NO-PROCESSING STATUS, RE-TRY IN\
+            \ A FEW MINUTES \n\nVPL5SCA14S - ORGANIZATION NOT FOUND ON FILE \n\nVPL5SCA15S\
+            \ - ACCOUNT NUMBER NOT FOUND \n\nVPL5SCA16S - LOGO NOT FOUND ON FILE"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
         "400":
           description: Bad Request
         "200":
@@ -960,8 +968,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomerToAccountInquiryResponse"
-        "401":
-          description: Unauthorized
       x-proxy-name: Account Number Inquiry
       x-group-name: Customers
   /customer/{customerNumber}/relationship:
@@ -1002,12 +1008,6 @@ paths:
           minLength: 19
           type: string
         example: 000012345XXXXX12345
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1019,7 +1019,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1030,6 +1030,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       responses:
         "500":
           description: Backend Error
@@ -1043,20 +1049,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
         "422":
-          description: "VPL5SRC06E - ORG IS NOT NUMERIC \n\nVPL5SRC07E - CUST NBR\
-            \ IS NOT NUMERIC OR NOT SPACES \n\nVPL5SRC13S - ORG INVALID \n\nVPL5SRC07E\
-            \ - CUST NBR IS INVALID"
+          description: "Unprocessable Entity\n\nVPL5SRC06E - ORG IS NOT NUMERIC \n\
+            \nVPL5SRC07E - CUST NBR IS NOT NUMERIC OR NOT SPACES \n\nVPL5SRC13S -\
+            \ ORG INVALID \n\nVPL5SRC07E - CUST NBR IS INVALID"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -1065,8 +1073,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomerRelationshipFindDetailsResponse"
-        "401":
-          description: Unauthorized
       x-proxy-name: Relationship Number Inquiry
       x-group-name: Customers
   /customer/{accountNumber}/current-prior-address:
@@ -1135,12 +1141,6 @@ paths:
           minLength: 0
           type: string
         example: B
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1152,7 +1152,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1163,6 +1163,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       responses:
         "500":
           description: Backend Error
@@ -1176,31 +1182,33 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
+        "404":
+          description: Not Found
         "422":
-          description: "VPL5SAD01S - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE\
-            \ BETWEEN 000 AND 998 \n\nVPL5SAD02E - ACCOUNT NUMBER IS NOT NUMERIC OR\
-            \ EQUAL SPACES \n\nVPL5SAD03E - INVALID OWNER CO-OWNER FLAG \n\nVPL5SAD04E\
-            \ - INVALID CURR/PRIOR ADDRESS FLAG \n\nVPL5SAD05E - CO-OWNER INFO OF\
-            \ PRIOR ADDRESS IS AN INVALID REQUEST \n\nVPL5SAD06E - ORGANIZATION NOT\
-            \ DETERMINED \n\nVPL5SAD07S - REQUESTED ORG NUMBER IS NOT FOUND \n\nVPL5SAD10S\
-            \ - CARD/ACCOUNT NUMBER IS NOT FOUND FOR ORG \n\nVPL5SAD11S - PRIOR MAILER\
-            \ FLAG IS TURNED OFF \n\nVPL5SAD12S - ACCOUNT NOT FOUND ON FILE \n\nVPL5SAD13S\
-            \ - RELATIONSHIP RECORD NOT ON FILE \n\nVPL5SAD14S - CUSTOMER RECORD NOT\
-            \ ON FILE \n\nVPL5SAD15S - ACCOUNT NOT FOUND ON FILE \n\nVPL5SAD16E -\
-            \ CO-OWNER INFO OF PRIOR ADDRESS IS AN INVALID REQUEST \n\nVPL5SAD17E\
-            \ - NO PRIOR MAILER INFORMATION IS AVAILABLE \n\nVPL5SAD18E - NO VALID\
-            \ ACCOUNTS FOUND FOR THE CUSTOMER \n\nVPL5SAD19S - ACCOUNT NOT FOUND ON\
-            \ FILE"
+          description: "Unprocessable Entity\n\nVPL5SAD01S - ORGANIZATION IS NOT NUMERIC\
+            \ OR MUST BE VALUE BETWEEN 000 AND 998 \n\nVPL5SAD02E - ACCOUNT NUMBER\
+            \ IS NOT NUMERIC OR EQUAL SPACES \n\nVPL5SAD03E - INVALID OWNER CO-OWNER\
+            \ FLAG \n\nVPL5SAD04E - INVALID CURR/PRIOR ADDRESS FLAG \n\nVPL5SAD05E\
+            \ - CO-OWNER INFO OF PRIOR ADDRESS IS AN INVALID REQUEST \n\nVPL5SAD06E\
+            \ - ORGANIZATION NOT DETERMINED \n\nVPL5SAD07S - REQUESTED ORG NUMBER\
+            \ IS NOT FOUND \n\nVPL5SAD10S - CARD/ACCOUNT NUMBER IS NOT FOUND FOR ORG\
+            \ \n\nVPL5SAD11S - PRIOR MAILER FLAG IS TURNED OFF \n\nVPL5SAD12S - ACCOUNT\
+            \ NOT FOUND ON FILE \n\nVPL5SAD13S - RELATIONSHIP RECORD NOT ON FILE \n\
+            \nVPL5SAD14S - CUSTOMER RECORD NOT ON FILE \n\nVPL5SAD15S - ACCOUNT NOT\
+            \ FOUND ON FILE \n\nVPL5SAD16E - CO-OWNER INFO OF PRIOR ADDRESS IS AN\
+            \ INVALID REQUEST \n\nVPL5SAD17E - NO PRIOR MAILER INFORMATION IS AVAILABLE\
+            \ \n\nVPL5SAD18E - NO VALID ACCOUNTS FOUND FOR THE CUSTOMER \n\nVPL5SAD19S\
+            \ - ACCOUNT NOT FOUND ON FILE"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "404":
-          description: Not Found
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -1209,8 +1217,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CurrentPriorAddressResponse"
-        "401":
-          description: Unauthorized
       x-proxy-name: Current/Prior Address Inquiry
       x-group-name: Customers
   /customer/v3/cards/details:
@@ -1223,12 +1229,6 @@ paths:
         \ M.CMS.CUSTCHANNEL.INQ, L8V5"
       operationId: Cards Details Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1240,7 +1240,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1251,6 +1251,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       - name: organizationNumber
         in: query
         description: |-
@@ -1350,24 +1356,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
         "422":
-          description: "VPL5SCE06S - ORGANIZATION RECORD NOT FOUND \n\nVPL5SCE07S\
-            \ - ORGANIZATION RECORD NOT FOUND \n\nVPL5SCE09E - INVALID SVC FUNC CODE\
-            \ \n\nVPL5SCE06E - ORGANIZATION RECORD NOT FOUND \n\nVPL5SCE07E - NO VALID\
-            \ CARDS ARE ASSOCIATED WITH THIS CUSTOMER \n\nVPL5SCE08E - START ORG &\
-            \ ACCT SHOULD BE PROVIDED WHEN SVC FUNC CODE IS N OR P \n\nVPL5SCE10S\
-            \ - ORGANIZATION RECORD NOT FOUND \n\nVPL5SCE15S - ACCOUNT NOT FOUND \n\
-            \nVPL5SCE17S - ACCOUNT NOT FOUND IN ACCOUNT/CARD REFERENCE FILE"
+          description: "Unprocessable Entity\n\nVPL5SCE06S - ORGANIZATION RECORD NOT\
+            \ FOUND \n\nVPL5SCE07S - ORGANIZATION RECORD NOT FOUND \n\nVPL5SCE09E\
+            \ - INVALID SVC FUNC CODE \n\nVPL5SCE06E - ORGANIZATION RECORD NOT FOUND\
+            \ \n\nVPL5SCE07E - NO VALID CARDS ARE ASSOCIATED WITH THIS CUSTOMER \n\
+            \nVPL5SCE08E - START ORG & ACCT SHOULD BE PROVIDED WHEN SVC FUNC CODE\
+            \ IS N OR P \n\nVPL5SCE10S - ORGANIZATION RECORD NOT FOUND \n\nVPL5SCE15S\
+            \ - ACCOUNT NOT FOUND \n\nVPL5SCE17S - ACCOUNT NOT FOUND IN ACCOUNT/CARD\
+            \ REFERENCE FILE"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -1376,8 +1385,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomerCardsDetailsResponseV3"
-        "401":
-          description: Unauthorized
       x-proxy-name: Cards Details Inquiry
       x-group-name: Customers
   /customer/v1/cards:
@@ -1394,24 +1401,17 @@ paths:
         VMX Service: M.CMS.CUST.NBR.INQ, L8V1
       operationId: Cards Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
         required: true
         schema:
           type: string
-        example: 00970
       - name: Signature
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1422,6 +1422,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       - name: organizationNumber
         in: header
         description: |-
@@ -1533,12 +1539,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "405":
           description: Method Not Allowed
         "404":
           description: Not Found
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "400":
           description: Bad Request
         "200":
@@ -1547,8 +1555,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OutputArea"
-        "401":
-          description: Unauthorized
       x-proxy-name: Cards Inquiry
       x-group-name: Customers
 components:

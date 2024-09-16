@@ -28,12 +28,6 @@ paths:
         \ L8V6"
       operationId: Embosser Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -45,7 +39,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -56,6 +50,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -69,22 +69,52 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5SEUZ2S - SERVICE INPUT TO CARD\
+            \ UPDATE SERVICE IS AN INCORRECT LENGTH \n\nVPL5SEU01E - ORGANIZATION\
+            \ NUMBER MUST BE NUMERIC AND VALID VALUES ARE 000-998  \n\nVPL5SEU02E\
+            \ - CARD NUMBER IS NOT NUMERIC OR EQUALS ZEROES \n\nVPL5SEU05E - CARD\
+            \ SEQUENCE NUMBER MUST BE NUMERIC, VALID VALUES ARE 0001-9998 \n\nVPL5SEU03E\
+            \ - INVALID FOREIGN USE INDICATOR, VALID VALUES ARE SPACE, 0 OR 1 \n\n\
+            VPL5SEU04S - ORGANIZATION NUMBER NOT FOUND \n\nVPL5SEUZ5S - REQUESTED\
+            \ ORG NUMBER IS NOT FOUND  \n\nVPL5SEU01S - ORGANIZATION NUMBER NOT FOUND\
+            \  \n\nVPL5SEU16I - NO FOREIGN ORG FOUND IN ORG RECORD\n\nVPL5SEU02S -\
+            \ CARD NUMBER NOT FOUND \n\nVPL5SEUZCS - LOGO RECORD NOT FOUND \n\nVPL5SEUZAS\
+            \ - CARD RELATIONSHIP FILE UNAVAILABLE \n\nVPL5SEU07E - CUSTOMER NUMBER\
+            \ ENTERED, BUT NOT A COMMERCIAL RELATIONSHIP ACCT \n\nVPL5SEUZBS - CUSTOMER\
+            \ NAME AND ADDRESS FILE UNAVAILABLE  \n\nVPL5SEU15S - CUSTOMER NAME AND\
+            \ ADDRESS NOT FOUND \n\nVPL5SEU08E - USER 4 FIELD IS NOT NUMERIC  \n\n\
+            VPL5SEU09E - USER DATE 1 IS NOT NUMERIC \n\nVPL5SEU10E - USER DATE 1 IS\
+            \ NOT A VALID DATE\n\nVPL5SEU11E - USER DATE 2 IS NOT NUMERIC \n\nVPL5SEU12E\
+            \ - USER DATE 2 IS NOT A VALID DATE\n\nVPL5SEU13E - CARDHOLDER FLAG INVALID,\
+            \ VALID VALUES ARE SPACE, 0 TO 9 \n\nVPL5SEU18E - CARDHOLDER TYPE INVALID,\
+            \ VALID VALUES ARE SPACE, 0 TO 9 \n\nVPL5SEU19E - INVALID ISO LANGUAGE\
+            \ CODE\n\nVPL5SEU20E - ISSUE DELIVERY OPTION IS NOT NUMERIC \n\nVPL5SEU21E\
+            \ - REISSUE DELIVERY OPTION IS NOT NUMERIC \n\nVPL5SEU22E - ADMIN BRANCH\
+            \ NOT VALID  \n\nVPL5SEU23E - FIRST ISSUE BRANCH NOT VALID\n\nVPL5SEU36E\
+            \ - UPD NOT ALLOWED CRLIM FGN ACTIVE\n\nVPL5SEU40E - PIN CNT RESET INVALID,\
+            \ VALID VALUE IS 1 \n\nVPL5SEU38E - CARD FGN CRLIM IS NOT NUMERIC \n\n\
+            VPL5SEU31E - MARK START DATE MUST BE NUMERIC \n\nVPL5SEU32E - MARK START\
+            \ DATE MUST BE A VALID DATE\n\nVPL5SEU33E - MARK END DATE MUST BE NUMERIC\n\
+            \nVPL5SEU34E - MARK END DATE MUST BE A VALID DATE\n\nVPL5SEU07S - INVALID\
+            \ AUTH CRLIM \n\nVPL5SEUZDS - BASE SEGMENT EMBOSSER CROSS-REFERENCE FILE\
+            \ UNAVAILABLE\n\nVPL5SEUY2S - THIRD PARTY CROSS REFERENCE FILE UNAVAILABLE\n\
+            \nVPL5SEU21S - THIRD PARTY CARD NOT FOUND \n\nVPL5SEU35E - PERSONAL PPD\
+            \ FLAG IS NOT SET AT LOGO LEVEL \n\n"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -104,12 +134,6 @@ paths:
         \ \n\nVMX Service: M.CMS.PREPAIDACCT.ASSIGN.UPD, L8V1"
       operationId: Account Card Assignment
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -121,7 +145,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -132,6 +156,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -145,18 +175,59 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "204":
-          description: Account Card Assignment Successful. No Content.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CardAssignmentResponse"
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5SPSZ6S - ORGANIZATION COULD NOT BE DETERMINED FOR INPUT CARD
+
+            VPL5SPSZ7S - ORGANIZATION COULD NOT BE DETERMINED FOR CUSTOMER ACCT
+
+            VPL5SPSZ8S - INVALID ORGANIZATION NUMBER
+
+            VPL5SPS02E - CUSTOMER ACCT NBR MUST BE NUMERIC AND > ZEROES
+
+            VPL5SPS03E - CARD NBR MUST BE NUMERIC AND > ZEROES
+
+            VPL5SPS04E - CARDHOLDER TYPE MUST BE 0 OR 1
+
+            VPL5SPS05S - LOGO COULD NOT BE DETERMINED FOR FOR INPUT CARD
+
+            VPL5SPS06S - LOGO COULD NOT BE DETERMINED FOR CUSTOMER ACCT
+
+            VPL5SPS07E - ORG & LOGO MUST BE SAME FOR NON-PERSONAL & CUSTOMER ACCT
+
+            VPL5SPS08S - SYSTEM RECORD NOT FOUND
+
+            VPL5SPS09S - ORG RECORD NOT FOUND OR IN ADD PENDING STATUS
+
+            VPL5SPS10S - LOGO RECORD NOT FOUND OR IN ADD PENDING STATUS
+
+            VPL5SPS11E - LOGO MUST BE PREPAID LOGO
+
+            VPL5SPS12S - EMBOSSER RECORD NOT FOUND OR ADD PENDING OR PURGED STATUS
+
+            VPL5SPS13E - CARD MUST NOT BE ACTIVATED
+
+            VPL5SPS15S - NON PERSONAL ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE STATUS
+
+            VPL5SPS16E - NON PERSONAL ACCT ASSOCIATED WITH INPUT CARD MUST BE GENERIC PPD
+
+            VPL5SPS17E - CARD NUMBER DECRYPTED FROM PAN TOKEN IS SPACES/ZEROS
+
+            VPL5SPS17S - CUSTOMER ACCT NOT FOUND/ADD PENDING/CLOSED/PURGE STATUS
+
+            VPL5SPS18E - CARD NUMBER SHOULD NOT BE SPACES
+
+            VPL5SPS19E - ORG LEVEL PAN TOKEN SW INACTIVE
+
+            VPL5SPS19S - CUST NBR ASSOCIATED WITH CUST ACCT NOT FOUND/ADD PENDNG/CLSD/PURG
+
+            VPL5SPS20S - EXISTNG PRIMRY CARD MAPPED TO CUST ACCT IN AMAX,NOT FOUND IN AMED
+
+            VPL5SPS22S - CUSTOMER ACCT NOT FOUND IN BASE SEGMENT FILE
           content:
             application/json:
               schema:
@@ -165,8 +236,16 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "204":
+          description: Account Card Assignment Successful. No Content.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardAssignmentResponse"
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -190,12 +269,6 @@ paths:
         VMX Service: M.CMS.TRAVELIND.UPD, L8V1
       operationId: Travel Indicator Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -207,7 +280,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -218,6 +291,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -231,22 +310,57 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5STV02E - ORG NOT FOUND
+
+            VPL5STV04S - CARD NUMBER NOT FOUND
+
+            VPL5STV06E - FOREIGN USE IND - NON VALID VALUES OTHER THAN ("0","1" & SPACES)
+
+            VPL5STVZ4S - ORG LOGO NOT FOUND
+
+            VPL5STVZ5S - REQUESTED ORGANIZATION NOT FOUND
+
+            VPL5STV14S - ORG REC NOT FOUND
+
+            VPL5STV15I - INCOMING ORG NOT FOUND AND ALSO NOT MATCHING WITH DUAL ORG
+
+            VPL5STV16S - ORG RECORD NOT FOUND OR ORG RECORD STATUS IS PENDING
+
+            VPL5STV18S - CARD NUMBER NOT FOUND OR ADD PENDING OR PURGED
+
+            VPL5STV19S - LOGO RECORD NOT FOUND OR ADD PENDING
+
+            VPL5STV20S - ALPHA COUNTRY NOT FOUND
+
+            VPL5STV08E - INVALID AMED TRAVEL START/END DATE FOR 1ST OCCURANCE
+
+            VPL5STV09E - INVALID AMED TRAVEL START/END DATE FOR 2ND OCCURANCE
+
+            VPL5STV10E - INVALID AMED TRAVEL START/END DATE FOR 3RD OCCURANCE
+
+            VPL5STV11E - INVALID AMED TRAVEL START/END DATE FOR 4TH OCCURANCE
+
+            VPL5STV12E - INVALID AMED TRAVEL START/END DATE FOR 5TH OCCURANCE
+
+            VPL5STV07E - VALID TRAVEL IND VALUES ARE 0,1,OR 2
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -266,12 +380,6 @@ paths:
         \ L8V5"
       operationId: Card Transfer Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -283,7 +391,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -294,6 +402,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -307,22 +421,53 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5S0004E-CARD NUMBER IS NOT NUMERIC\
+            \ \n\nVPL5S1005E-NO ORGANIZATION RECORD ON FILE \n\nVPL5S0006S-REQUESTED\
+            \ ORG NUMBER IS NOT FOUND \n\nVPL5S1020E-FUNCTION MUST BE T, R OR C \n\
+            \nVPL5S1021E-NO REVERSAL ACCOUNT NUMBER ENTERED \n\nVPL5S1022E-TRANSFER\
+            \ TO ACCOUNT NUMBER INVALID \n\nVPL5S1023E-TRANSFER TO CUSTOMER NUMBER\
+            \ INVALID \n\nVPL5S1024E-MUST BE BLOCKED LOST/STOLEN/FRAUD \n\nVPL5S1025E-PLEASE\
+            \ CHECK BLOCK CODES \n\nVPL5S1026E-EFFECTIVE DATE NOT NUMERIC \n\nVPL5S1027E-EFFECTIVE\
+            \ DATE INVALID \n\nVPL5S1028E-EFFECTIVE DATE GREATER THAN NEXT PROCESSING\
+            \ DATE \n\nVPL5S1029E-TRANS TO FRAUD ACCT MUST BE DIFFERENT FROM THE TRANS\
+            \ FROM ACCT \n\nVPL5S1030E-TRANSFER TO FRAUD ACCOUNT MUST BE ON FILE WHEN\
+            \ ENTERED \n\nVPL5S1031E-TRANSFER TO FRAUD ACCOUNT MUST BE ON FILE WHEN\
+            \ ENTERED \n\nVPL5S1032E-CUSTOMER RECORD NOT ON FILE \n\nVPL5S1033E-CUSTOMER\
+            \ RECORD MUST BE ACTIVE \n\nVPL5S1034E-ORGANIZATION NOT DETERMINED \n\n\
+            VPL5S1035E-DETERMINED ORGANIZATION NOT EQUAL TRANSFER FROM ORG \n\nVPL5S1036E-LOGO\
+            \ DOES NOT ALLOW ACCOUNT NUMBER GENERATION \n\nVPL5S1037E-MAXIMUM NUMBER\
+            \ OF 20 ATTEMPTS MADE ON BASE NUMBER \n\nVPL5S1038E-GENERATED ACCOUNT\
+            \ NUMBER GREATER THAN BASE ENDING NUMBER \n\nVPL5S1039E-REVERSAL ACCOUNT\
+            \ NOT ON FILE \n\nVPL5S1040E-INVALID CHECK DIGIT \n\nVPL5S1041E-REVERSAL\
+            \ CANNOT BE PROCESSED DURING END-OF-DAY \n\nVPL5S1043E-VALID VALUES FOR\
+            \ XFR REPLACEMENT INDICATOR ARE: 0/1 \n\nVPL5S1044E-INVALID CUSTOMER NUMBER\
+            \ \n\nVPL5S1045E-TRANSFER FROM AND TRANSFER TO ACCOUNTS MUST BE IN THE\
+            \ SAME LOGO \n\nVPL5S1046E-TRANSFER TO ACCT HAS A BALANCE AND IS NOT A\
+            \ FRAUD STATUS ACCT \n\nVPL5S1061E-TRANSFER TO FRAUD ACCOUNT MUST BE ON\
+            \ FILE WHEN ENTERED- DUAL ORG \n\nVPL5S1062E-TXN FROM AND TXN TO ACCTS\
+            \ MUST BE IN THE SAME LOGO - DUAL ORG \n\nVPL5S1063E-TRANSFER TO ACCOUNT\
+            \ HAS A BALANCE AND NOT A FRAUD ACCT - DUAL ORG \n\nVPL5S1064E-CUSTOMER\
+            \ REC ALREADY ON FILE - DUAL ORG \n\nVPL5S1065E-CUSTOMER REC NOT ON FILE\
+            \ - DUAL ORG \n\nVPL5S1066E-CUSTOMER REC MUST BE ACTIVE - DUAL ORG \n\n\
+            VPL5S1069E-NO EMBOSSER REC ON FILE FOR THE DUAL ORG \n\nVPL5S1071E-ORG\
+            \ DOES NOT ALLOW CUST NBR GENERATION \n\nVPL5S1072E-MAX NBR OF 20 ATTEMPTS\
+            \ MADE ON CUST NBR \n\nVPL5S1073E-GENERATED CUST NBR IS GREATER THAN ENDING\
+            \ CUST NBR "
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -342,12 +487,6 @@ paths:
         \ M.CMS.TEMP.CREDITLIMIT.UPD, R8V1"
       operationId: Temporary Credit Limit Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -359,7 +498,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -370,9 +509,10 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-      - name: signonName
+      - name: apikey
         in: header
-        required: false
+        description: Unique identifier used to authorize the API request
+        required: true
         schema:
           type: string
       requestBody:
@@ -388,12 +528,40 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5SAAM4E - CREDIT LIMIT CAN NOT\
+            \ EXCEED RELATIONSHIP CREDIT LIMIT \n\nVPL5SCL05E - CREDIT LIMIT - DOES\
+            \ NOT CONFORM TO CURRENCY NOD \n\nVPL5SCL08I - CREDIT LIMIT UNCHANGED,\
+            \ UPDATE BYPASSED \n\nVPL5STC03E - ORGANIZATION IS NOT NUMERIC OR MUST\
+            \ BE VALUE BETWEEN 000 AND 998 \n\nVPL5STC04E - REQUESTED CARD/ACCT NUMBER\
+            \ IS NOT NUMERIC OR EQUAL SPACES \n\nVPL5STC05E - INVALID FOREIGN USE\
+            \ INDICATOR - VALID VALUES ARE SPACE, 0 OR 1 \n\nVPL5STC06E - TEMP CREDIT\
+            \ LIMIT - DOES NOT CONFORM TO CURRENCY NOD \n\nVPL5STC07E - TEMP CREDIT\
+            \ LIMIT MUST BE NUMERIC AND GREATER THAN ZEROS \n\nVPL5STC08E - TEMP CREDIT\
+            \ LIMIT EXPIRES DATE IS NOT NUMERIC \n\nVPL5STC09E - EXPIRES DATE MUST\
+            \ BE A VALID DATE AND GREATER THAN ZERO \n\nVPL5STC10E - TEMP CREDIT LIMIT\
+            \ AND EXPIRES DATE ARE REQUIRED INPUT \n\nVPL5STC11I - TEMP CREDIT LIMIT\
+            \ AND EXPIRES DATE UNCHANGED, UPDATE BYPASSED \n\nVPL5STC11S - TEMP CRLIM\
+            \ EXPIRY DATE IS GREATER THAN MAXIMUM ALLOWED \n\nVPL5STC13S - ORGANIZATION\
+            \ NOT FOUND ON FILE \n\nVPL5STC14S - FOREIGN ORGANIZATION NOT FOUND ON\
+            \ FILE \n\nVPL5STC15S - ACCOUNT NOT FOUND ON FILE \n\nVPL5STC16S - RELATIONSHIP\
+            \ ACCOUNT NOT FOUND ON FILE \n\nVPL5STC17S - LOGO NOT FOUND ON FILE \n\
+            \nVPL5STC18E - TEMP CREDIT LIMIT INVALID FOR PREPAID/DEBIT ACCOUNT TYPES\
+            \ \n\nVPL5STC19E - EXPIRES DATE INVALID FOR PREPAID/DEBIT ACCOUNT TYPES\
+            \ \n\nVPL5STC20E - TEMP CREDIT LIMIT INVALID FOR RELATIONSHIP SUB-ACCOUNT\
+            \ \n\nVPL5STC21E - TEMP CREDIT LIMIT CAN NOT EXCEED LOGO CREDIT LIMIT\
+            \ \n\nVPL5STC23I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT\
+            \ DATA \n\nVPL5STC24E - EXPIRES DATE MUST BE EQUAL OR GREATER APPLICATION\
+            \ PROCESSING DT \n\nVPL5STC25E - TEMP CREDIT LIMIT SHOULD BE ZERO FOR\
+            \ FOREIGN ACCOUNT \n\nVPL5STC26E - CREDIT LIMIT INCREASE INVALID DUE TO\
+            \ ACCOUNT DELINQUENCY AMOUNT \n\nVPL5STC27E - CREDIT LIMIT INCREASE INVALID\
+            \ DUE TO ACCOUNT DELINQUENCY LEVEL \n\nVPL5STC28E - CREDIT LIMIT INCREASE\
+            \ INVALID DUE TO BLOCK CODE \n\nVPL5STCZ2S - SERVICE INPUT TO TEMP CRLIMIT\
+            \ SERVICE IS AN INCORRECT LENGTH \n\nVPL5STCZ4S - REQUESTED ORGANIZATION\
+            \ COULD NOT BE DETERMINED \n\nVPL5STCZ5S - REQUESTED ORGANIZATION NOT\
+            \ FOUND "
           content:
             application/json:
               schema:
@@ -402,8 +570,10 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -425,12 +595,6 @@ paths:
         VMX Service: M.CMS.CARD.STATUS.UPD, L8V1
       operationId: Card Status Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -442,7 +606,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -453,6 +617,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -466,12 +636,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5SCSZ2S - SERVICE INPUT TO ACCOUNT\
+            \ INQ SERVICE IS AN INCORRECT LENGTH \n\nVPL5SCSZ6S - REQUESTED ORGANIZATION\
+            \ NOT FOUND \n\nVPL5SCS02S - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID\
+            \ VALUES ARE 000-998 \n\nVPL5SCS03S - CARD NUMBER IS NOT NUMERIC OR EQUALS\
+            \ ZEROES \n\nVPL5SCS04S - CARD SEQUENCE NUMBER MUST BE NUMERIC, VALID\
+            \ VALUES ARE 0001-9998 \n\nVPL5SCS05S - REPRESENTATIVE NOT FOUND OR NOT\
+            \ ACTIVE \n\nVPL5SCS06S - ORG NOT FOUND \n\nVPL5SCS09S - ORGANIZATION\
+            \ NUMBER IS NOT FOUND \n\nVPL5SCS0BS - CARD NUMBER NOT FOUND \n\nVPL5SCS0DS\
+            \ - ACCOUNT NUMBER NOT FOUND \n\nVPL5SCS0ES - LOGO NOT FOUND \n\nVPL5SCS0FE\
+            \ - CARD IS FRAUD,TRANSFERRED OR PURGED AND STATUS NOT UPDATABLE \n\n\
+            VPL5SCS0GE - ACCOUNT IS CLOSED \n\nVPL5SCS0HE - CARD STATUS UPDATE NOT\
+            \ ALLOWED ON THIS ACCT SCHEME \n\nVPL5SCS0IE - INVALID CARD STATUS PROVIDED\
+            \ \n\nVPL5SCS0JE - CURRENT CARD STATUS IS SAME AS NEW STATUS \n\nVPL5SCS0KE\
+            \ - CURRENT CARD STATUS-3 CANNOT BE UPDATED \n\nVPL5SCS0LE - CARD EXPIRED,CANNOT\
+            \ UPDATE STATUS \n\n"
           content:
             application/json:
               schema:
@@ -480,8 +662,10 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -502,12 +686,6 @@ paths:
         \ L8V3"
       operationId: Spending Limits Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -519,7 +697,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -530,6 +708,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -543,28 +727,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SpendLimitsL8V3Response"
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SpendLimitsL8V3Response"
       x-proxy-name: Spending Limits Update
       x-group-name: Card
       x-child-product-name: Cards
@@ -578,12 +762,6 @@ paths:
         \ R8V1"
       operationId: PIN Block/Unblock
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -595,7 +773,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -606,6 +784,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -619,22 +803,49 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5SRP03E - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
+            VPL5SRP04E - CARD NBR MUST BE NUMERIC AND GREATER THAN ZERO
+
+            VPL5SRP05E - CARD SEQUENCE NUMBER NOT NUMERIC OR MUST BE BETWEEN 0001 AND 9998
+
+            VPL5SRP06S - ORGANIZATION NOT FOUND ON FILE
+
+            VPL5SRP07S - CARD NUMBER DOES NOT EXIST
+
+            VPL5SRP08S - CARD LOGO NOT FOUND ON FILE
+
+            VPL5SRP11S - INVALID SERVICE FUNCTION TYPE
+
+            VPL5SRP12S - INVALID CHANNEL ID, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP13S - INVALID CARD STATUS, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP14S - CARD BLOCKED, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP15S - CARD IS NOT ACTIVATED, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP16S - CARD IS EXPIRED, PIN UNBLOCK NOT ALLOWED
+
+            VPL5SRP18S - MANUAL PIN RESET NOT ALLOWED
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -654,12 +865,6 @@ paths:
         \ prepaid cards. \n\nVMX Service: M.CMS.PIN.CHANGE, R8V2"
       operationId: PIN Change
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -671,7 +876,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -682,6 +887,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -695,14 +906,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "500":
           description: Backend Error
           content:
@@ -711,6 +914,14 @@ paths:
                 $ref: "#/components/schemas/DResponse"
         "401":
           description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -733,12 +944,6 @@ paths:
         \ R8V1"
       operationId: PIN Reassign
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -750,7 +955,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -761,6 +966,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -774,22 +985,71 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
+            VPL5SPA04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
+
+            VPL5SPA05S - INVALID NEW PIN BLOCK VALUE
+
+            VPL5SPA06S - CHANNEL MUST BE GREATER THAN SPACES
+
+            VPL5SPA07S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
+
+            VPL5SPA09S - INVALID ACCOUNT STATUS, PIN CHANGED NOT ALLOWED
+
+            VPL5SPA10S - INVALID ACCOUNT TYPE, PIN CHANGED NOT ALLOWED
+
+            VPL5SPA11S - ACCOUNT BLOCKED, PIN CHANGED NOT ALLOWED
+
+            VPL5SPA12S - ACCOUNT DOES NOT HAVE ACTIVE CARDS, PIN CHANGED NOT ALLOWED
+
+            VPL5SPA13S - INVALID CARD STATUS, PIN CHANGED NOT ALLOWED
+
+            VPL5SPA14S - CARD BLOCKED, PIN CHANGED NOT ALLOWED
+
+            VPL5SPA15S - CARD IS NOT ACTIVATED, PIN CHANGED NOT ALLOWED
+
+            VPL5SPA16S - CARD IS EXPIRED, PIN CHANGED NOT ALLOWED
+
+            VPL5SPA17S - INVALID PIN KEY INDEX ON THE EMBOSSER
+
+            VPL5SPA18S - INVALID PIN OFFSET VALUE ON THE EMBOSSER
+
+            VPL5SPA19S - LOGO RECORD NOT FOUND ON FILE
+
+            VPL5SPA20S - INVALID PRODUCT TYPE
+
+            VPL5SPA25S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
+            VPL5SPA26S - REQUESTED ORGANIZATION NOT FOUND
+
+            VPL5SPA27S - REQUESTED PIN NOT ALLOWED, KEY IN A DIFFERENT PIN
+
+            VPL5SPA28S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
+
+            VPL5SPA31S = INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+
+            VPL5SPA32S = CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+
+            VPL5SPA33S = REQUEST CARD NBR IS PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -813,12 +1073,6 @@ paths:
         VMX Service: M.CMS.EMB.CARDACTION.UPD, L8V2
       operationId: Card Action Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -830,7 +1084,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -841,6 +1095,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -854,22 +1114,175 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5SPR04E - INVALID INPUT CARD ACTION - VALID VALUES ARE 0 TO 7
+
+            VPL5SCP29S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
+
+            VPL5SPR01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+
+            VPL5SPR01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
+
+            VPL5SPR02E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
+
+            VPL5SPR02S - ORG NUMBER NOT FOUND
+
+            VPL5SPR03E - CARD SEQUENCE IS NOT NUMERIC
+
+            VPL5SPR03S - REQUEST FOR LOCAL ORG, BUT PASSED FOREIGN ORG
+
+            VPL5SPR04S - CARD NUMBER NOT FOUND
+
+            VPL5SPR05E - NUMBER OF CARDS REQUESTED IS NOT NUMERIC
+
+            VPL5SPR05S - ACCOUNT NUMBER NOT FOUND
+
+            VPL5SPR06E - NUMBER OF CARDS RETURNED IS NOT NUMERIC
+
+            VPL5SPR06S - LOGO NUMBER NOT FOUND
+
+            VPL5SPR07E - VALID BANCOLOMBIA REASON CODES ARE A/B/C/D/E/F/G/K & SPACESVPL5SPR07S - ACTION OF '2' IS NOT ALLOWED FOR SMART CARD
+
+            VPL5SPR08S - ACTION OF '1' ALLOWED ONLY IF THE DATE LAST PLASTIC IS ZERO
+
+            VPL5SPR09S - INVALID ACTION,VALID ACTION IS '0' OR '1' WHEN DATE LAST PLASTIC IS ZERO
+
+            VPL5SPR10S - # CARD REQ MUST BE GREATER THAN ZERO FOR ACTION 1 OR 2 OR 3 OR 6
+
+            VPL5SPR11S - NBR OF CARD RETURNED MUST BE GREATER THAN ZERO WHEN ACTION OF '4'
+
+            VPL5SPR12S - NBR OF CRDS RETURNED CAN NOT BE GREATER THAN THE NBR OUTSTANDING
+
+            VPL5SPR13S - # CARD REQ CAN NOT BE GREATER THAN # OUTSTANDNG FOR ACTION 3 OR 6
+
+            VPL5SPR14S - CARD CANNOT BE REISSUED - SEQ OUT OF RANGE FOR SMART CARD
+
+            VPL5SPR15S - CANNOT REISSUE EMBOSSER WITH STATUS OF 'S' FOR SMART CARD
+
+            VPL5SPR16S - SMART CARD EMBOSSING RECORD NOT FOUND
+
+            VPL5SPR17S - CARD REQUESTED MUST BE ZERO WHEN ACTION 0 OR 4 OR 5
+
+            VPL5SPR18S - ONLY ACTION OF '4' ALLOWED NBR CARD RETURNED GREATER THAN ZERO
+
+            VPL5SPR19S - INVALID NUMBER REQUEST FOR SMART CARD, VALID VALUE IS'1'
+
+            VPL5SPR20S - SMART CARD PROGRAM NOT FOUND
+
+            VPL5SPR21S - INVALID SEQ NBR FOR CARD SCHEME '3' - VALID VALUE IS '0' OR '1'
+
+            VPL5SPR22S - SEQ NBR MUST BE GREATER THAN ZERO FOR CARD SCHEME 0 OR 1 OR 2
+
+            VPL5SPR23S - SDP REQUEST IS IN PROCESS, CARD ACTION CAN NOT BE UPDATED
+
+            VPL5SPR24E - INVALID PROCESS TYPE, VALID VALUES ARE 0,1,SPACES
+
+            VPL5SPR25E - SYSTEM RECORD NOT FOUND
+
+            VPL5SPR26E - SDP REQUEST NOT SUPPORTED BY LOGO
+
+            VPL5SPR27E - SDP REQUEST NOT SUPPORTED BY SYSTEM
+
+            VPL5SPR28S - SDP REQUEST CAN BE 0 OR 1 ONLY IF CARD ACTION IS 1 OR 3 OR 6
+
+            VPL5SPR29S - RANDOM PIN GEN CAN BE ACTIVE ONLY IF CARD ACTION IS 5
+
+            VPL5SPR30S - RANDOM PIN GEN SHOULD BE INACTIVE WHEN OFFLINE PIN IS 1
+
+            VPL5SPRZ1S - SERVICE COULD NOT OBTAIN STORAGE AREA
+
+            VPL5SPRZ2S - SERVICE INPUT TO CARD ACTION UPD SERVICE IS AN INCORRECT LENGTHVPL5SPRZ3S - USER HAS NOT SIGNED ON - PLEASE SIGN ON
+
+            VPL5SPRZ4S - FILE-TABLE USED BY THIS SERVICE IS NOT FOUND
+
+            VPL5SPRZ5S - INVALID ORG
+
+            VPL5SPRZ6S - APPLICATION IN NO-PROCESSING STATUS, RE-TRY IN A FEW MINUTES
+
+            VPL5SPRZ7S - ORGANIZATION FILE UNAVAILABLE
+
+            VPL5SPRZ8S - CARD FILE UNAVAILABLE
+
+            VPL5SPRZ9S - ACCOUNT FILE UNAVAILABLE
+
+            VPL5SPRZAS - LOGO FILE UNAVAILABLE
+
+            VPL5SPR32E - INVALID INSTANT PROCESS TYPE, VALID VALUES ARE 0 AND 1
+
+            VPL5SPR49E - AMEC RECORD NOT FOUND
+
+            VPL5SPR50E - NBR REQUESTED NOT GREATER THAN 0 AND ACTION IS NOT 4 OR 5
+
+            VPL5SPR51E - USER DATA 2 POPULATION RETURN CODE 3
+
+            VPL5SPR52E - USER DATA 2 POPULATION RETURN CODE 4
+
+            VPL5SPR53E - USER DATA 2 POPULATION RETURN CODE 5
+
+            VPL5SPR54E - USER DATA 1 POPULATION RETURN CODE 6
+
+            VPL5SPR55E - USER DATA 1 POPULATION RETURN CODE 7
+
+            VPL5SPR56E - USER DATA 1 POPULATION RETURN CODE 8
+
+            VPL5SPR57E - ETK TYPE AND ZONE ARE SPACES
+
+            VPL5SPR58E - SCKMLK RESPONSE CODE VALUE 2
+
+            VPL5SPR59E - SCKMLK RESPONSE CODE VALUE 3
+
+            VPL5SPR60E - SCKMLK RESPONSE CODE VALUES ARE 4 OR 86
+
+            VPL5SPR61E - SCKMLK RESPONSE CODE OTHER VALUES
+
+            VPL5SPR66E - AMEC ARXVCP1 SERVICE GETMAIN INPUT ERROR
+
+            VPL5SPR67E - AMEC ARXVCP1 SERVICE GETMAIN OUTPUT ERRORVPL5S2001E - HSM CALL FAILS IF LB ETK TYPE/ZONE IS SPACES
+
+            VPL5S2002E - SCKMLK RESPONSE CODE VALUES IS 86
+
+            VPL5S2003E - SCKMLK RESPONSE CODE VALUES IS OTHER THAN 86
+
+            VPL5S2004E - ENCRYPT ROUTINE FAILS FOR ENC ORG EQUAL TO 999
+
+            VPL5S2005E - ENCRYPT ROUTINE FAILS FOR ENC LEN EQUAL TO 99
+
+            VPL5S2006E - ENCRYPT ROUTINE FAILS FOR ENC TXT EQUAL TO ALL 9
+
+            VPL5S2007E - AMCY ARXVCP1 SERVICE GETMAIN INPUT ERROR
+
+            VPL5S2008E - AMCY ARXVCP1 SERVICE GETMAIN OUTPUT ERROR
+
+            VPL5S2000E - INVALID ISSUE TYPE - VALID VALUES ARE SPACE,1,I OR R
+
+            VPL5SPR46E - ENCRYPT ROUTINE FAILS FOR ENC ORG EQUAL TO 999
+
+            VPL5SPR47E - ENCRYPT ROUTINE FAILS FOR ENC LEN EQUAL TO 99
+
+            VPL5SPR48E - ENCRYPT ROUTINE FAILS FOR ENC TXT EQUAL TO ALL 9
+
+            VPL5SIEZ1S - SERVICE COULD NOT OBTAIN STORAGE AREA
+
+            VPL5SIEZ2S - SERVICE INPUT TO PLAN VIEWER SERVICE IS INCORRECT LENGTH
+
+            VPL5SPR28S - SDP REQUEST CAN BE 0 OR 1 ONLY IF CARD ACT IS 1 OR 3 OR 6
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -889,12 +1302,6 @@ paths:
         \ associated to an Account. \nVMX Service: M.CMS.EMB.BLKCD.UPD, R8V1"
       operationId: Embosser Block Code Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -906,7 +1313,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -917,6 +1324,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -930,22 +1343,44 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5SPSZ6S - ORGANIZATION COULD NOT\
+            \ BE DETERMINED FOR INPUT CARD \n\nVPL5SPSZ7S - ORGANIZATION COULD NOT\
+            \ BE DETERMINED FOR CUSTOMER ACCT \n\nVPL5SPSZ8S - INVALID ORGANIZATION\
+            \ NUMBER \n\nVPL5SPS02E - CUSTOMER ACCT NBR MUST BE NUMERIC AND > ZEROES\
+            \ \n\nVPL5SPS03E - CARD NBR MUST BE NUMERIC AND > ZEROES \n\nVPL5SPS04E\
+            \ - CARDHOLDER TYPE MUST BE 0 OR 1 \n\nVPL5SPS05S - LOGO COULD NOT BE\
+            \ DETERMINED FOR FOR INPUT CARD \n\nVPL5SPS06S - LOGO COULD NOT BE DETERMINED\
+            \ FOR CUSTOMER ACCT \n\nVPL5SPS07E - ORG & LOGO MUST BE SAME FOR NON-PERSONAL\
+            \ & CUSTOMER ACCT \n\nVPL5SPS09S - ORG RECORD NOT FOUND OR IN ADD PENDING\
+            \ STATUS \n\nVPL5SPS10S - LOGO RECORD NOT FOUND OR IN ADD PENDING STATUS\
+            \ \n\nVPL5SPS11E - LOGO MUST BE PREPAID LOGO \n\nVPL5SPS12S - EMBOSSER\
+            \ RECORD NOT FOUND OR ADD PENDING OR PURGED STATUS \n\nVPL5SPS13E - CARD\
+            \ MUST NOT BE ACTIVATED \n\nVPL5SPS15S - NON PERSONAL ACCT NOT FOUND/ADD\
+            \ PENDING/CLOSED/PURGE STATUS \n\nVPL5SPS16E - NON PERSONAL ACCT ASSOCIATED\
+            \ WITH INPUT CARD MUST BE GENERIC PPD \n\nVPL5SPS17E - CARD NUMBER DECRYPTED\
+            \ FROM PAN TOKEN IS SPACES/ZEROS \n\nVPL5SPS17S - CUSTOMER ACCT NOT FOUND/ADD\
+            \ PENDING/CLOSED/PURGE STATUS \n\nVPL5SPS18E - CARD NUMBER SHOULD NOT\
+            \ BE SPACES \n\nVPL5SPS19E - ORG LEVEL PAN TOKEN SW INACTIVE \n\nVPL5SPS19S\
+            \ - CUST NBR ASSOCIATED WITH CUST ACCT NOT FOUND/ADD PENDNG/CLSD/PURG\
+            \ \n\nVPL5SPS20S - EXISTNG PRIMARY CARD MAPPED TO CUST ACCT IN AMAX, NOT\
+            \ FOUND IN AMED \n\nVPL5SPS21S - NON PERSONAL ACCT ASSOCIATED WITH INPUT\
+            \ CARD NOT FOUND IN BS FILE \n\nVPL5SPS22S - CUSTOMER ACCT NOT FOUND IN\
+            \ BASE SEGMENT FILE "
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -969,12 +1404,6 @@ paths:
         VMX Service: M.CMS.CREDITLIMIT.UPD, R8V1
       operationId: Credit Limit Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -986,7 +1415,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -997,6 +1426,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1004,28 +1439,80 @@ paths:
               $ref: "#/components/schemas/CreditLimitUpdateRequest"
         required: true
       responses:
-        "500":
-          description: Backend Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
         "300":
           description: Redirection
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
+        "500":
+          description: |+
+            Unprocessable Entity
+
+            VPL5SCL03E - ORGANIZATION IS NOT NUMERIC OR MUST BE VALUE BETWEEN 000 AND 998
+
+            VPL5SCL04E - REQUESTED CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES
+
+            VPL5SCL05E - CREDIT LIMIT - DOES NOT CONFORM TO CURRENCY NOD
+
+            VPL5SCL06E - CREDIT LIMIT MUST BE NUMERIC
+
+            VPL5SCL07E - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE, 0 OR 1
+
+            VPL5SCL08I - CREDIT LIMIT UNCHANGED, UPDATE BYPASSED
+
+            VPL5SCL10S - ORGANIZATION NOT FOUND ON FILE
+
+            VPL5SCL11S - FOREIGN ORGANIZATION NOT FOUND ON FILE
+
+            VPL5SCL12S - ACCOUNT NOT FOUND ON FILE
+
+            VPL5SCL13S - RELATIONSHIP ACCOUNT NOT FOUND ON FILE
+
+            VPL5SCL14S - LOGO NOT FOUND ON FILE
+
+            VPL5SCL15E - CREDIT LIMIT INVALID FOR PREPAID/DEBIT ACCOUNT TYPES
+
+            VPL5SCL16E - CREDIT LIMIT INVALID FOR RELATIONSHIP SUB-ACCOUNT
+
+            VPL5SCL17E - CREDIT LIMIT CAN NOT EXCEED LOGO CREDIT LIMIT
+
+            VPL5SCL19E - CREDIT LIMIT EXCEEDS SECURED AMOUNT
+
+            VPL5SCL20E - CREDIT LIMIT CAN NOT EXCEED COMPANY NODE CREDIT AVAILABLE
+
+            VPL5SCL21E - CREDIT LIMIT CAN NOT EXCEED PARENT NODE CREDIT AVAILABLE
+
+            VPL5SCL23I - FOREIGN USE ORG UNAVAILABLE PROCESSED LOCAL ORG ACCOUNT DATA
+
+            VPL5SCL24E - CREDIT LIMIT SHOULD BE ZERO FOR FOREIGN ACCOUNT
+
+            VPL5SCL25E - CREDIT LIMIT CANNOT BE LESS THAN ACCT FLOOR LIMIT
+
+            VPL5SCL40E - DELQ AMT EXCEEDED FOR CREDIT LIMIT INCREASE
+
+            VPL5SCL41E - DELQ LVL EXCEEDED FOR CREDIT LIMIT INCREASE
+
+            VPL5SCL42E - ACCT BLOCKED FOR CREDIT LIMIT INCREASE
+
+            VPL5SCLZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
+            VPL5SCLZ5S - REQUESTED ORGANIZATION NOT FOUND
+
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1045,12 +1532,6 @@ paths:
         \ R8V3"
       operationId: Card Activation
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1062,7 +1543,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1073,6 +1554,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1086,22 +1573,36 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5SEA01E - ORGANIZATION IS NOT NUMERIC\
+            \ OR MUST BE VALUE BETWEEN 000 AND 998 \n\nVPL5SEA01S - REQUESTED CARD/ACCOUNT\
+            \ NUMBER IS NOT FOUND \n\nVPL5SEA02E - ACCOUNT NUMBER IS NOT NUMERIC OR\
+            \ EQUALS SPACES \n\nVPL5SEA03E - FUNCTION TYPE IS INVALID, VALID VALUES\
+            \ A, S OR T' \n\nVPL5SEA02S - ORGANIZATION NUMBER NOT FOUND \n\nVPL5SEA03E\
+            \ - FUNCTION TYPE IS INVALID, VALID VALUES A OR S \n\nVPL5SEA03S - REQUEST\
+            \ FOR LOCAL ORG, BUT PASSED FOREIGN ORG \n\nVPL5SEA04S - FUNCTION TYPE\
+            \ MUST BE 'A' WHEN ACCOUNT NUMBER IS PROVIDED \n\nVPL5SEA05S - CARD NUMBER\
+            \ NOT FOUND \n\nVPL5SEA06S - ACCOUNT NUMBER NOT FOUND \n\nVPL5SEA07S -\
+            \ CARD CROSS REFERENCE NOT FOUND \n\nVPL5SEA08S - CARD NUMBER NOT FOUND\
+            \ \n\nVPL5SEA09S - LOGO RECORD NOT FOUND \n\nVPL5SEA10S - FUNCTION TYPE\
+            \ MUST BE 'A' WHEN ACCOUNT NUMBER IS PROVIDED \n\nVPL5SEA11S - FOREIGN\
+            \ CARD NUMBER NOT FOUND \n\nVPL5SEA12S - FOREIGN ACCOUNT NUMBER NOT FOUND\
+            \ \n\nVPL5SEA13S - FOREIGN CARD CROSS REFERENCE NOT FOUND \n\nVPL5SEA14S\
+            \ - FOREIGN CARD NUMBER NOT FOUND \n\nVPL5SEAZ5S - INVALID ORG \n\n"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1121,12 +1622,6 @@ paths:
         \ M.CMS.EMBOSSER.INQ, L8VE"
       operationId: Embosser Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1138,7 +1633,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1149,6 +1644,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1162,22 +1663,35 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5SCIZ1S - SERVICE INPUT TO FS SERVICE\
+            \ IS AN INCORRECT LENGTH \n\nVPL5SCIZ3S-FILE-TABLE USED BY THIS SERVICE\
+            \ IS MISSING \n\nVPL5SCI01E - ORGANIZATION NUMBER MUST BE NUMERIC AND\
+            \ VALID VALUES ARE 000-998 \n\nVPL5SCI03E - INPUT CARD NUMBER IS NOT NUMERIC\
+            \ \n\nVPL5SCI04E - CARD SEQUENCE NUMBER IS NOT NUMERIC \n\nVPL5SCI02E\
+            \ - INVALID FOREIGN USE INDICATOR - VALID VALUES ARE SPACE/0/1 \n\nVPL5SCI05S\
+            \ - REQUESTED CARD / ACCOUNT NUMBER IS NOT FOUND \n\nVPL5SAD07S - REQUESTED\
+            \ ORG NUMBER IS NOT FOUND \n\nVPL5SCI07S - ORG RECORD NOT FOUND \n\nVPL5SCI08S\
+            \ - FOREIGN ORG RECORD NOT FOUND \n\nVPL5SCI09S - EMBOSSER RECORD NOT\
+            \ FOUND \n\nVPL5SCIA9S - EMBOSSER RECORD IS IN PURGED STATUS \n\nVPL5SCI11S\
+            \ - ACCOUNT NUMBER NOT FOUND \n\nVPL5SCIA1S - ACCOUNT RECORD IS IN ADD\
+            \ PENDING STATUS \n\nVPL5SCIA2S - ACCOUNT RECORD IS IN CLOSED STATUS \n\
+            \nVPL5SCIA3S - ACCOUNT RECORD IS IN PENDING PURGE STATUS \n\nVPL5SCI06S\
+            \ - LOGO RECORD NOT FOUND \n\n"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1201,24 +1715,18 @@ paths:
         VMX Service: M.CMS.SEC.VALUES.INQ, R8V2
       operationId: securityCodesDetailsV2
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
-        description: Client ID
+        description: Unique client identification.
         required: true
         schema:
           type: string
-        example: 00970
+        example: "00970"
       - name: Signature
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1229,6 +1737,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1242,28 +1756,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SecurityValuesDetailsV2Response"
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SecurityValuesDetailsV2Response"
       x-proxy-name: Security Values Inquiry
       x-group-name: PIN
       x-child-product-name: Cards
@@ -1281,12 +1795,6 @@ paths:
         VMX Service: M.CMS.EMB.LIST.INQ, L8V1
       operationId: Embosser List Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1298,7 +1806,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1309,6 +1817,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1322,22 +1836,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |
+            Unprocessable Entity
+
+            VPL5SEQ01E -  ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+
+            VPL5SEQ02S -  SERVICE INPUT IS OF INCORRECT LENGTH
+
+            VPL5SEQ03E -  INPUT CARD NUMBER IS NOT NUMERIC
+
+            VPL5SEQ04E -  CARD SEQUENCE NUMBER IS NOT NUMERIC
+
+            VPL5SEQ07S -  ORG RECORD NOT FOUND
+
+            VPL5SEQ13S -  NO OF CARDS MUST BE NUMERIC AND VALID VALUES ARE 01-40
+
+            VPL5SEQ14S -  INVALID PAGE-NUMBER. PAGE-NUMBER SHOULD BE NUMERIC
+
+            VPL5SEQ15S -  ORGANIZATION RECORD NOT FOUND
+
+            VPL5SEQ18S -  ORGANIZATION RECORD NOT FOUND
+
+            VPL5SEQ19E -  CARD NOT FOUND OR PURGED
+
+            VPL5SEQ20E -  ACCOUNT NOT FOUND OR PURGED
+
+            VPL5SEQ22S -  PLAN RECORD NOT FOUND
+
+            VPL5SEQ23S -  PAGE NUMBER IS BEYOND EXPECTED VALUE
+
+            VPL5SEQ24S -  LOGO RECORD NOT FOUND
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1360,12 +1903,6 @@ paths:
       operationId: "Instant Embossing Generation. VMX Service: M.CMS.INSTANT.EMB.GEN,\
         \ R8V5"
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1377,7 +1914,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1388,7 +1925,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1402,22 +1944,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "401":
-          description: Unauthorized
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1437,12 +1979,6 @@ paths:
         \ for an Account. \nVMX Service: M.CMS.STATEMENT.INQ, R8V3"
       operationId: Statement Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1454,7 +1990,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1465,6 +2001,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1478,22 +2020,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1517,12 +2059,6 @@ paths:
         VMX Service: M.CMS.STATEMENTDATE.INQ, R8V2
       operationId: Statement Details By Date Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1534,7 +2070,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1545,6 +2081,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1558,22 +2100,30 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\n VPL5SSI15S -ACCOUNT NUMBER NOT FOUND\
+            \ \n\n VPL5SSI07E -CARD/ACCT NUMBER IS NOT NUMERIC OR EQUAL SPACES \n\n\
+            \ VPL5SSI14S -FOREIGN ORGANIZATION NUMBER NOT FOUND \n\n VPL5SSI08E -FOREIGN\
+            \ USE INDICATOR INVALID - MUST BE 0 OR 1 \n\n VPL5SSI16I -NO STATEMENTS\
+            \ FOUND FOR ACCOUNT \n\n VPL5SSI06E -ORGANIZATION NUMBER MUST BE NUMERIC\
+            \ AND VALID VALUES ARE 000-998 \n\n VPL5SSI13S -ORGANIZATION NUMBER NOT\
+            \ FOUND \n\n VPL5SSI09S -REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND \n\
+            \n VPL5SSI10S -REQUESTED ORGANIZATION NOT FOUND \n\n VPL5SSI02S -SERVICE\
+            \ INPUT TO STMT DATES SERVICE IS AN INCORRECT LENGTH"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1593,12 +2143,6 @@ paths:
         \ M.CMS.PIN.VALIDATE, R8V1"
       operationId: PIN Validate
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1610,7 +2154,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1621,6 +2165,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1634,22 +2184,76 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |+
+            Unprocessable Entity
+
+            VPL5SVP03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
+            VPL5SVP04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
+
+            VPL5SVP05S - INVALID CURRENT PIN BLOCK VALUE
+
+            VPL5SVP06S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
+
+            VPL5SVP07S - ORGANIZATION RECORD NOT FOUND
+
+            VPL5SVP08S - INVALID ACCOUNT STATUS
+
+            VPL5SVP09S - INVALID ACCOUNT TYPE
+
+            VPL5SVP10S - ACCOUNT BLOCKED
+
+            VPL5SVP11S - ACCOUNT DOES NOT HAVE ACTIVE CARDS
+
+            VPL5SVP12S - INVALID CARD STATUS
+
+            VPL5SVP13S - CARD BLOCKED
+
+            VPL5SVP14S - CARD IS NOT ACTIVATED
+
+            VPL5SVP15S - CARD IS EXPIRED
+
+            VPL5SVP16S - INVALID PIN KEY INDEX ON THE EMBOSSER
+
+            VPL5SVP17S - INVALID PIN OFFSET VALUE ON THE EMBOSSER
+
+            VPL5SVP18S - LOGO RECORD NOT FOUND ON FILE
+
+            VPL5SVP19S - INVALID PRODUCT TYPE
+
+            VPL5SVP24S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
+            VPL5SVP25S - REQUESTED ORGANIZATION NOT FOUND
+
+            VPL5SVP26S - INCORRECT PIN PROVIDED
+
+            VPL5SVP27S - EXCEEDED NUMBER OF INVALID PIN TRIES
+
+            VPL5SVP28S - FMSC SYSTEM BASE RECORD NOT FOUND
+
+            VPL5SVP29S - PIN SUPPRESSION IS ON, PIN CHANGE NOT ALLOWED
+
+            VPL5SVP31S - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+
+            VPL5SVP32S - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+
+            VPL5SVP33S - REQUEST CARD NBR IS PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
+
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1671,12 +2275,6 @@ paths:
         \ M.CMS.INV.PINTRIES.CTR.INQ, L8V1"
       operationId: Invalid Attempts Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1688,7 +2286,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1699,6 +2297,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1712,22 +2316,39 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |
+            Unprocessable Entity
+
+            VPZ5SPT03S - ORG IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
+            VPZ5SPT04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
+
+            VPZ5SPT06S - ORGANIZATION RECORD NOT ON FILE
+
+            VPZ5SPT09S - CARD NUMBER NOT FOUND ON FILE
+
+            VPZ5SPT10S - CARD SEQUENCE NUMBER IS NOT NUMERIC
+
+            VPZ5SPT11S - LOGO RECORD NOT ON FILE
+
+            VPZ5SPTZ4S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
+            VPZ5SPTZ5S - REQUESTED ORGANIZATION NOT FOUND
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1747,12 +2368,6 @@ paths:
         \ R8V1"
       operationId: Dynamic Values Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1764,7 +2379,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1775,6 +2390,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1788,22 +2409,77 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5SPA03S - ORGANIZATION IS NOT NUMERIC OR MUST BE BETWEEN 000 AND 999
+
+            VPL5SPA04S - CARD NUMBER IS NOT NUMERIC OR EQUAL TO SPACES
+
+            VPL5SPA06S - CHANNEL MUST BE GREATER THAN SPACES
+
+            VPL5SPA07S - KEY ASSOCIATION MUST BE GREATER THAN SPACES
+
+            VPL5SPA09S - INVALID ACCOUNT STATUS, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA10S - INVALID ACCOUNT TYPE, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA11S - ACCOUNT BLOCKED, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA12S - ACCOUNT DOES NOT HAVE ACTIVE CARDS, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA13S - INVALID CARD STATUS, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA14S - CARD BLOCKED, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA15S - CARD IS NOT ACTIVATED, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA16S - CARD IS EXPIRED, GENERATE DCVV2 NOT ALLOWED
+
+            VPL5SPA19S - LOGO RECORD NOT FOUND ON FILE
+
+            VPL5SPA20S - INVALID PRODUCT TYPE
+
+            VPL5SPA25S - REQUESTED ORGANIZATION COULD NOT BE DETERMINED
+
+            VPL5SPA26S - REQUESTED ORGANIZATION NOT FOUND
+
+            VPL5SGD04S - INVALID VALUE IN DISABLE DCVV2 FLAG
+
+            VPL5SGD12S - CARD HAS NOT BEEN ACTIVATED
+
+            VPL5SGD14S - CARD PRODUCT NOT FOUND
+
+            VPL5SGD15S - INVALID CARD PRODUCT TYPE
+
+            VPL5SGD20S - PRODUCT DOES NOT SUPPORT DCVV2
+
+            VPL5SGD24S - ENC-FAILURE INVALID ORG
+
+            VPL5SGD25S - ENC-FAILURE INV LENGTH
+
+            VPL5SGD26S - ENC-TEXT MUST BE NUMERIC
+
+            VPL5SEA04E - INPUT PAN NUMBER SHOULD NOT BE SPACES OR ZEROS
+
+            VPL5SEA05E - CARD NUM DECRYPTED FROM INPUT PAN TOKEN IS SPACES/ZEROS
+
+            VPL5SEA16S - REQUEST FOR PAN TOKEN, BUT ORG LVL PAN TOKEN SW INACTIVE
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1870,12 +2546,6 @@ paths:
           type: integer
           format: int32
         example: 12
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1887,7 +2557,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1898,6 +2568,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       responses:
         "300":
           description: Redirection
@@ -1905,22 +2581,43 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5SQC01E - INVALID ORGANIZATION NUMBER
+
+            VPL5SQC04E - INVALID LOGO NUMBER
+
+            VPL5SQC01S - ORG RECORD NOT FOUND
+
+            VPL5SQC02S - LOGO RECORD NOT FOUND
+
+            VPL5SQC03S - REQUESTED RECORD IS PENDING ADD
+
+            VPL5SQC04S - REQUESTED RECORD NOT ON FILE
+
+            VPL5SQCZ1S - SERVICE INPUT TO INQ MASS CARD SERVICE IS INCORRECT
+
+            VPL5SQC02E - NON-NUMERIC INPUT FIELD ORG
+
+            VPL5SQC03E - REQUESTED RECORD IS PENDING ADD
+
+            VPL5SQC05E - NON-NUMERIC INPUT FIELD CARD_TYPE
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -1941,12 +2638,6 @@ paths:
         \ L8V3"
       operationId: Mass Card Issue Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -1958,7 +2649,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -1969,6 +2660,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -1982,12 +2679,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5SMC01E - INVALID ORGANIZATION\
+            \ NUMBER \n\nVPL5SMC04E - INVALID LOGO NUMBER \n\nVPL5SMC06E - FUNCTION\
+            \ TYPE VALID VALUES ARE A AND M \n\nVPL5SMC07E - STATUS VALID VALUES ARE\
+            \ 1 AND 9 \n\nVPL5SMC07S - NON-NUMERIC INPUT FIELD STATUS \n\nVPL5SMC13E\
+            \ - BLOCK CODE 1 VALUE MUST BE ALPHABETIC \n\nVPL5SMC14E - BLOCK CODE\
+            \ 2 VALUE MUST BE ALPHABETIC \n\nVPL5SMC15E - EMBOSSER CODE VALUE MUST\
+            \ BE ALPHABETIC \n\nVPL5SMC16E - VALID VALUES OF RELATION AMBS ARE ONLY\
+            \ S AND N \n\nVPL5SMC17E - VALID VALUES OF PREPAID FLAG VALUE MUST BE\
+            \ 0 AND 1 \n\nVPL5SMC19E - PROMO CODE VALUE MUST BE ALPHABETIC \n\nVPL5SMC20E\
+            \ - SCHEME VALID VALUES ARE 0, 1, 2 AND 3 \n\nVPL5SMC22E - MSG USER CODE\
+            \ 1 VALUE MUST BE 0 OR 1 \n\nVPL5SMC24E - MSG USER CODE 2 VALUE MUST BE\
+            \ 0 OR 1 \n\nVPL5SMC26E - MSG USER CODE 3 VALUE MUST BE 0 OR 1 \n\nVPL5SMC28E\
+            \ - CUST NO. VALUE MUST BE NON ZERO OR SPACES \n\nVPL5SMC29E - EXPIRATION\
+            \ DATE MUST BE GREATER THAN TODAYS PROCESSING DATE \n\nVPL5SMC30E - ENTER\
+            \ DATE IN DDMMYY FORMAT \n\nVPL5SMC32E - INVENTORY CONTROL VALID VALUES\
+            \ ARE CI,SO AND NO \n\nVPL5SMC33E - INVALID PREPAID PLAN \n\nVPL5SMC34E\
+            \ - PREPAID PLAN NOT ALLOWED FOR THIS LOGO \n\nVPL5SMC36E - VALUES 1 AND\
+            \ 2 IN GLOBAL QUAL ARE ONLY FOR MEXICAN ORG \n\nVPL5SMC37E - VALID VALUES\
+            \ FOR GLOBAL QUAL ARE SPACES, A - Z & 1,2 \n\nVPL5SMC01S - ORG RECORD\
+            \ NOT FOUND \n\nVPL5SMC02S - LOGO RECORD NOT FOUND \n\nVPL5SMC03S - LOGO\
+            \ NOT ELIGIBLE FOR ACCT NBR AUTOGENERATION \n\nVPL5SMC04S - RECORD ALREADY\
+            \ EXISTS ON FILE \n\nVPL5SMC05S - REQUESTED RECORD IS NOT FOUND OR PENDING\
+            \ ADD \n\nVPL5SMCZ1S - SERVICE INPUT TO ADD/UPD MASS CARD SERVICE IS INCORRECT\
+            \ \n\nVPL5SMC02E - NON-NUMERIC INPUT FIELD ORG \n\nVPL5SMC03E - NON-NUMERIC\
+            \ INPUT FIELD LOGO \n\nVPL5SMC05E - NON-NUMERIC INPUT FIELD CARD_TYPE\
+            \ \n\nVPL5SMC08E - NON-NUMERIC INPUT FIELD BANK_ORIGIN \n\nVPL5SMC09E\
+            \ - NON-NUMERIC INPUT FIELD BRANCH \n\nVPL5SMC10E - NON-NUMERIC INPUT\
+            \ FIELD CREDIT_LIMIT \n\nVPL5SMC11E - NON-NUMERIC INPUT FIELD MIN_QUANTITY\
+            \ \n\nVPL5SMC12E - NON-NUMERIC INPUT FIELD QUANTITY_TO_CREATE \n\nVPL5SMC18E\
+            \ - NON-NUMERIC INPUT FIELD PREPAID_FLAG \n\nVPL5SMC21E - NON-NUMERIC\
+            \ INPUT FIELD SCHEME \n\nVPL5SMC23E - NON-NUMERIC INPUT FIELD MES_USER_CODE_1\
+            \ \n\nVPL5SMC25E - NON-NUMERIC INPUT FIELD MES_USER_CODE_2 \n\nVPL5SMC27E\
+            \ - NON-NUMERIC INPUT FIELD MES_USER_CODE_3 \n\nVPL5SMC31E - NON-NUMERIC\
+            \ INPUT FIELD EXP_DATE \n\nVPL5SMC35E - NON-NUMERIC INPUT FIELD PREPAID_PLAN_NBR\
+            \ \n\nVPL5SMC38E - NON-NUMERIC INPUT FIELD EMBLEM \n\nVPL5SMC39E - RELATION\
+            \ NUMBER FIELD SHOULD BE SPACES \n\nVPL5SMC40E - ENTERED RELATION NUMBER\
+            \ IS NOT ACTIVE \n\nVPL5SMC41E - INVALID POS SERVICE CDE, SPACES OR VALID\
+            \ VALUE \n\nVPL5SMC43E - POS/CARD-TECH SHOULD BE IN ALIGNMENT - MAG OR\
+            \ CHIP \n\nVPL5SMC42E - INVALID CARD TECHNOLOGY, SPACES OR VALID VALUE\
+            \ \n\nVPL5SMC48E - UPD NOT ALLOWED AUTH REST NOT ACTIVE \n\nVPL5SMC49E\
+            \ - AUTH REST TBL NOT NUMERIC \n\nVPL5SMC46E - ARL RECORD NOT FOUND \n\
+            \nVPL5SMC47E - AUTH CREDIT LIMIT NOT NUMERIC "
           content:
             application/json:
               schema:
@@ -1996,8 +2732,10 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -2021,12 +2759,6 @@ paths:
         VMX Service: M.CMS.SAMEDAYPLASTIC.UPD, R8V1
       operationId: Same Day Plastic Add/Update
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -2038,7 +2770,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -2049,6 +2781,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2062,22 +2800,53 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5SSP03S - CMS ORG IS INVALID
+
+            VPL5SSP04S - CMS LOGO IS INVALID
+
+            VPL5SSP05S - INVALID CARD NUMBER
+
+            VPL5SSP06E - CARD SEQ IS INVALID
+
+            VPL5SSP07E - VALID CARD ACTION FOR SDP ARE 1, 3 AND 6
+
+            VPL5SSP08E - VALID SDP PROCESS TYPE ARE 0 , 1 OR SPACES
+
+            VPL5SSP09E - CARD ACTION SHOULD BE NUMERIC
+
+            VPL5SSP15E - SDP REQUEST IS IN PENDING STATUS OR OVERRUN
+
+            VPL5SSP16E - SDP CROSS REFERENCE RECORD NOT FOUND
+
+            VPL5SSP10S - REQUESTED ORG LOGO NOT FOUND
+
+            VPL5SSP11S - REQUESTED LOGO NOT FOUND IN CMS
+
+            VPL5SSP14S - SDP NOT ACTIVE AT LOGO LEVEL
+
+            VPL5SSP30S - ORGANIZATION IS ADD PENDING
+
+            VPL5SSP34S - ORGANIZATION NUMBER NOT FOUND
+
+            VPL5SSP36S - REQUESTED ORG NUMBER IS NOT FOUND
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -2097,12 +2866,6 @@ paths:
         \ M.CMS.EMBOSSER.ADD, L8VF"
       operationId: Embosser Add
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -2114,7 +2877,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -2125,6 +2888,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2138,28 +2907,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
         "401":
           description: Unauthorized
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddEmbosserL8VFResponse"
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddEmbosserL8VFResponse"
       x-proxy-name: Embosser Add
       x-group-name: Embosser
       x-child-product-name: Cards
@@ -2181,12 +2950,6 @@ paths:
         VMX Service: M.CMS.CARD.PAN.INQ, L8V2.
       operationId: Card Or PAN Token Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -2198,7 +2961,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -2209,6 +2972,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2222,22 +2991,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -2267,12 +3036,6 @@ paths:
         \ \nVMX Service: M.CMS.ACCT.TO.CARD.INQ, L8V3"
       operationId: Account To Cards Inquiry L8V3
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -2284,7 +3047,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -2295,6 +3058,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2308,22 +3077,36 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |-
+            Unprocessable Entity
+
+            VPL5SAEZ8S - REQUESTED ORG NOT FOUND
+            VPL5SAE01E - ORGANIZATION NUMBER MUST BE NUMERIC AND VALID VALUES ARE 001-998
+            VPL5SAE01S - REQUESTED CARD/ACCOUNT NUMBER IS NOT FOUND
+            VPL5SAE02E - ACCOUNT NUMBER IS NOT NUMERIC OR EQUALS SPACES
+            VPL5SAE02S - ORGANIZATION NUMBER NOT FOUND
+            VPL5SAE03E - SERVICE FUNCTION INVALID - VALID VALUES ARE P N OR SPACE
+            VPL5SAE03S - CARD NUMBER NOT FOUND
+            VPL5SAE04E - INPUT START CARD ORG NOT NUMERIC
+            VPL5SAE04S - ACCOUNT NUMBER NOT FOUND
+            VPL5SAE05E - INPUT START CARD NUMBER NOT NUMERIC
+            VPL5SAE06E - INPUT START CARD SEQ IS NOT VALID
+            VPL5SAE07I - NO VALID CARDS FOUND FOR THE ACCOUNT
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -2344,12 +3127,6 @@ paths:
         VMX Service: M.CMS.CHANNEL.INQ, L8V1
       operationId: Card and Account Details Inquiry
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -2361,7 +3138,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -2372,6 +3149,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -2385,12 +3168,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: "Unprocessable Entity\n\nVPL5SEI03E - ORGANIZATION IS NOT NUMERIC\
+            \ OR VALUE MUST BE BETWEEN 000 AND 999 \n\nVPL5SEI04E - CARD NUMBER IS\
+            \ NOT NUMERIC OR EQUAL TO SPACES \n\nVPL5SEI05S - REQUESTED CARD NUMBER\
+            \ IS NOT FOUND \n\nVPL5SEI06S - ORGANIZATION RECORD NOT FOUND \n\nVPL5SEI07S\
+            \ - ACCOUNT NUMBER NOT FOUND \n\nVPL5SEI08S - PAYMENT HISTORY RECORD NOT\
+            \ FOUND \n\nVPL5SEI09S - FOREIGN ACCOUNT NOT FOUND \n\nVPL5SEIZ2S - SERVICE\
+            \ INPUT IS OF INCORRECT LENGTH \n\nVPL5SVIZ1S - ORGANIZATION RECORD NOT\
+            \ FOUND "
           content:
             application/json:
               schema:
@@ -2399,8 +3187,10 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "401":
-          description: Unauthorized
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -2463,12 +3253,6 @@ paths:
           minLength: 1
           type: string
         example: A
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -2480,7 +3264,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -2491,6 +3275,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       responses:
         "300":
           description: Redirection
@@ -2498,22 +3288,34 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "400":
-          description: Bad Request
-        "405":
-          description: Method Not Allowed
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
+        "401":
+          description: Unauthorized
         "500":
-          description: Backend Error
+          description: |+
+            Unprocessable Entity
+
+            VPL5S0015E - REQUESTED FUNCTION TYPE IS NOT VALID
+
+            VPL5S0027S - REQUESTED FUNCTION CODE IS INVALID INPUT START CARD NUMBER NOT NUMERIC
+
+            VPL5S0028S - REQUESTED START ITEM IS INVALID
+
+            VPL5S0029S - ORG IS NOT NUMERIC OR MUST BE VALUE BETWEEN 001 AND 998
+
+            VPL5S0035S - INPUT CUSTOMER NUMBER IS INVALID
+
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "401":
-          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "200":
           description: Success
           content:
@@ -9211,12 +10013,10 @@ components:
         statementDate:
           type: string
           description: |-
-            * Max Length = 8
-
             Statement Date.
 
             VisionPLUS Service Data: ARXSDI-STATEMENT-DATE
-          example: "20230601"
+          example: 2023-06-01
         statementNumberMonths:
           type: string
           description: |-
@@ -10564,9 +11364,18 @@ components:
 
             VisionPLUS Service Data: ARXGDO-DCVV2
           example: 73063B98B08E8AAA
-        dcvv2GenerationTime:
+        accountType:
           type: string
+          description: |-
+            * Max Length: 10
+
+            Account Type must return 'Debit' or 'Credit'.
+
+            VisionPLUS Service Data: ARXGDO-ACCOUNT-TYPE
+          example: Debit
         dcvv2ExpiryMinutes:
+          type: string
+        dcvv2GenerationTime:
           type: string
     MassCardIssueAddRequestL8V3:
       required:
