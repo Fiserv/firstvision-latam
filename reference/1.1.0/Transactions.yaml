@@ -20,12 +20,6 @@ paths:
         \ L8V2"
       operationId: outstandingAuthorization
       parameters:
-      - name: apikey
-        in: header
-        description: API Key
-        required: true
-        schema:
-          type: string
       - name: X-ClientID
         in: header
         description: Client ID
@@ -37,7 +31,7 @@ paths:
         in: header
         description: HMAC signature used to verify the authenticity and integrity
           of data transmitted
-        required: true
+        required: false
         schema:
           type: string
         example: qsLUH5gnBB5GBpbe9VX+byaTu7LR98pv4H/3g+6h2uk=
@@ -48,7 +42,12 @@ paths:
         schema:
           type: string
         example: Bearer vAbsh53JHFSTR23esEtrUI864tt
-
+      - name: apikey
+        in: header
+        description: Unique identifier used to authorize the API request
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -56,26 +55,20 @@ paths:
               $ref: "#/components/schemas/OutstandingAuthorizationFasRequest"
         required: true
       responses:
-        "400":
-          description: Bad Request
         "500":
           description: Backend Error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DResponse"
-        "300":
-          description: Redirection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DResponse"
+        "400":
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
         "404":
           description: Not Found
         "401":
           description: Unauthorized
-        "405":
-          description: Method Not Allowed
         "403":
           description: Forbidden
         "200":
@@ -84,6 +77,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OutstandingAuthorizationFasResponse"
+        "300":
+          description: Redirection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DResponse"
       x-proxy-name: Outstanding Authorizations
       x-group-name: Transactions
 components:
