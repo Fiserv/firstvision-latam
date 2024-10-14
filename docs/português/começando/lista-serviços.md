@@ -215,6 +215,7 @@ tags: [Começando, VMX, Lista de Serviços, First Vision, Processamento de Cart�
 | [Quote Projections Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/transactions/quote-projections&branch=main&version=1.2.0)                                                                                                                                 | M.CMS.QUOTE.PROJ.UPD         | L8V1    | /transactions/quote-projections                                                                           | PUT    |
 | [Transaction Conversion](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/transactions/installmentConversion&branch=main&version=1.2.0)                                                                                                                               | M.CMS.INST.TRAN.CONV         | R8V1    | /transactions/installmentConversion                                                                       | PUT    |
 | [Transaction Details Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/transactions/summary-details&branch=main&version=1.2.0)                                                                                                                               | M.CMS.TRANSACTIONDETAIL.INQ  | L8V7    | /transactions/summary-details                                                                             | POST   |
+
 ## Versão  1.1.0
 
 ### Account 
