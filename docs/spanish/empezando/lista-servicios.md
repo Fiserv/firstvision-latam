@@ -280,8 +280,8 @@ tags: [Empezando, VMX, Lista de Servicios, First Vision, Emisor, Procesamiento d
 |[Card Activation](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/activation&branch=main&version=1.0.0)|M.CMS.CARDACTIVATION.UPD|R8V3|/cards/activation|PUT|
 |[Card Or PAN Token Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/card-pan-l8v2&branch=main&version=1.0.0)|M.CMS.CARD.PAN.INQ|L8V2|/cards/embosser/card-pan-l8v2|POST|
 |[Credit Limit Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/credit-limit&branch=main&version=1.0.0)|M.CMS.CREDITLIMIT.UPD|R8V1|/cards/credit-limit|PUT|
+|[Embosser Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/details-L8VB&branch=main&version=1.0.0)|M.CMS.EMBOSSER.INQ|L8VB|/cards/embosser/details-L8VB|POST|
 |[Embosser Block Code Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/embosser/block&branch=main&version=1.0.0)|M.CMS.EMB.BLKCD.UPD|R8V1|/cards/embosser/block|PUT|
-|[Data from the Embosser record](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/embosser/details-L8VB&branch=main&version=1.0.0)|M.CMS.EMBOSSER.INQ|L8VB|/cards/embosser/details-L8VB|POST|
 |[PIN Reassign](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/pin/&branch=main&version=1.0.0)|M.CMS.PIN.REASSIGNMENT|R8V1|/cards/pin/|PUT|
 |[Security Values Inquiry](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=post&path=/cards/pin/security-codes&branch=main&version=1.0.0)|M.CMS.SEC.VALUES.INQ|R8V1|/cards/pin/security-codes|POST|
 |[Travel Indicator Update](https://developer.fiserv.com/product/FirstVisionLATAM/api/?type=put&path=/cards/travel&branch=main&version=1.0.0)|M.CMS.TRAVELIND.UPD|L8V1|/cards/travel|PUT| 
