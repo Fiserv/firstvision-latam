@@ -86,7 +86,7 @@ This API allow to a cardholder bring all the relationship numbers already create
 
 Relationship number is a unique number assigned to a Corporate Card, for example Walmart with a customer number 123, is identify with a unique relationship number 567 and under this relationship number many accounts and cards are created for Walmart employs. So using the customer number 123 on this API is possible to get the relationship number 567.
 
-**POST** `/customer/relationshipNumber`
+**POST** `/customer/relationship`
 
 The description of each API field can be found within the specifications defined in the portal.
 
