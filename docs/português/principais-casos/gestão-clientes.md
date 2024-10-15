@@ -40,7 +40,7 @@ Esta API permite que o titular do cartão agrupe todos os números de relacionam
 
 O Número de Relacionamento é um número único atribuído a um Cartão Corporativo; Por exemplo, o Walmart com um número de cliente 123 é identificado com um número de relacionamento exclusivo 567 e muitas contas e cartões para funcionários do Walmart são criados sob esse número de relacionamento. Então, usando o Número do Cliente 123 nesta API, é possível obter o Número do Relacionamento 567.
 
-**POST** `/customer/relationshipNumber`
+**POST** `/customer/relationship`
 
 A descrição de cada campo da API está dentro das especificações definidas no portal.
 
