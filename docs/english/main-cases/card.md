@@ -82,7 +82,7 @@ Cards embossed will not have an embosser name, but card number, expiration and c
 
 The description of each API field can be found within the specifications defined in the portal.
 
-## PIN Validation
+## PIN Validate
 
 Use this API to confirm that current PIN generated is correct.
 
