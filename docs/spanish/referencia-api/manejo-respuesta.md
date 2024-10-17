@@ -12,9 +12,9 @@ Los códigos de respuesta identifican el estado final de la transacción desde l
 
 El estado de la transacción se puede determinar mediante el código de estado HTTP de tres dígitos de la respuesta. Estos códigos de estado se agrupan en tres clases diferentes, y el primer dígito se puede usar para identificar rápidamente la clase de un código de estado.
 
-- **2xx: Correcto** - Indica que se procesó correctamente la solicitud y devolverá el objeto ProcessResponseDetails junto con el `responseCode` y  `responseMessage`. Esta puede ser la respuesta del emisor o una respuesta de error del procesador.
-- **4xx: Error del Cliente** - Indica datos incorrectos en la solicitud y devolverá el objeto `errorResponse` junto con el código, el mensaje y el campo.
-- **5xx: Error del Servidor**  - Indica que el servidor no pudo procesar la solicitud y devolverá el objeto `errorResponse` junto con el código, el mensaje y el campo.
+- **2xx: Success** – Indica que la solicitud se procesó correctamente. La respuesta incluirá el objeto `errors` vacío. Además, la respuesta establecerá `hasError` en false y `data` se completará con los datos de la respuesta. Esta puede ser la respuesta del emisor o una respuesta de error del procesador.
+- **4xx: Client Error** – Indica que hay datos incorrectos en la solicitud. La respuesta incluirá el objeto `errors`, que contiene el `code` y la `description` del error. Además, la respuesta establecerá `hasError` en true y `data` en null.
+- **5xx: Server Error** – Indica que el servidor no pudo procesar la solicitud. La respuesta incluirá el objeto `errors`, que contiene el `code` y la `description` del error. Además, la respuesta establecerá `hasError` en true y `data` en null.
 
 <!--
 type: tab

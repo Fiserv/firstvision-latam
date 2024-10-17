@@ -10,9 +10,9 @@ Os códigos de resposta identificam o status final da transação do gateway, ho
 
 O status da transação pode ser determinado pelo código de status HTTP de três dígitos da resposta. Esses códigos de status são agrupados em três classes diferentes e o primeiro dígito pode ser usado para identificar rapidamente a classe de um código de status.
 
-- **2xx: Sucesso** - Indica que a solicitação com sucesso e retornará o objeto ProcessResponseDetails junto com o `errorResponse` e a `responseMessage`. Esta pode ser a resposta do remetente ou uma resposta de erro do processador.
-- **4xx: Client Error** - Indica dados incorretos na requisição e retornará o objeto `errorResponse` junto com o código, mensagem e campo.
-- **5xx: Erro do Servidor** - Indica que o servidor não conseguiu processar a solicitação e retornará o objeto `errorResponse` junto com o código, a mensagem e o campo.
+- **2xx: Sucesso** – Indica que a solicitação foi processada com sucesso. A resposta incluirá o objeto `errors` vazio. Além disso, a resposta definirá `hasError` como falso e `data` será preenchido com dados de resposta. Esta pode ser a resposta do emissor ou uma resposta de erro do processador.
+- **4xx: Erro do cliente** – Indica que há dados incorretos na solicitação. A resposta incluirá o objeto `errors`, contendo o `code` e a `description` do erro. Além disso, a resposta definirá `hasError` como verdadeiro e `data` como nulo.
+- **5xx: Erro do servidor** – Indica que o servidor não conseguiu processar a solicitação. A resposta incluirá o objeto `errors`, contendo o `code` e a `description` do erro. Além disso, a resposta definirá `hasError` como verdadeiro e `data` como nulo.
 
 <!--
 type: tab
