@@ -22,7 +22,7 @@ To create the header, provide the following values:
 | `Signature`           |  *string* |   N/A  | HMAC signature used to verify the authenticity and integrity of data transmitted.                                                                                        |
 | `X-ClientID`          |  *string* |   N/A  | Client Identifier.                                                                                                                                                       |
 | `Authorization`       |  *string* |   N/A  | Authorization Bearer Token.                                                                                                                                              |
-| `X-Client-Request-Id` |  *string* |   40   | An auto-generated client ID for request tracking and signature creation, unique per request.                     .                                                       |
+| `X-Client-Request-Id` |  *string* |   40   | A client-generated ID for request tracking and signature creation, unique per request.                     .                                                             |
 | `Timestamp`           | *integer* |   N/A  | Epoch timestamp in milliseconds in the request from a client system. Used for Message Signature generation and time limit (5 mins).                                      |
 
 <!--
