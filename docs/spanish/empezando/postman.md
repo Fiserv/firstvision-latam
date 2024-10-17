@@ -45,7 +45,7 @@ La colección Postman, API Key y Client Secret se compartirán con cada cliente 
 
 ![image](https://user-images.githubusercontent.com/111396588/223825174-82bca4fb-bcd5-4b6e-b2ba-f93651088a00.png)
 
-### 8. Si ha seguido los pasos correctamente hasta el momento, el ambiente está listo para enviar solicitudes a las API. Haga clic en "Collections" y seleccione Obtener Token de Acceso a la API para iniciar las pruebas para la API
+### 8. Si ha seguido los pasos correctamente hasta el momento, el ambiente está listo para enviar solicitudes a las API. Haga clic en "Collections" y seleccione "Get Access Token" a la API para iniciar las pruebas para la API
 
 ![image](https://user-images.githubusercontent.com/111396588/223825212-38ced20b-4446-4b54-b3d5-2b1b1f291ec4.png)
 
