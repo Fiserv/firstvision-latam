@@ -9,7 +9,7 @@ Esta sección tiene como objetivo demostrar la configuración inicial que se deb
 Si no ha utilizado la herramienta Postman como cliente HTTP para probar solicitudes, acceda al enlace oficial de la herramienta para obtener más información: 
  [Postman Official](https://www.postman.com/)
  
-La colección Postman se compartirá temporalmente con cada cliente de acuerdo con sus necesidades.
+La colección Postman, API Key y Client Secret se compartirán con cada cliente según sus requisitos una vez que se haya aprovisionado su entorno UAT.
 
 ## Importar Colección
 
@@ -27,7 +27,7 @@ La colección Postman se compartirá temporalmente con cada cliente de acuerdo c
 
 ![image](https://user-images.githubusercontent.com/111396588/223825081-8f5e489e-04b0-4450-9e2e-a2a0adffa375.png)
 
-### 4. Haga clic en el botón nuevamente en la sección de Ambiente para crear un ambiente para ejecutar solicitudes
+### 4. Haga clic en el botón "New" en la sección de Ambiente para crear un ambiente para ejecutar solicitudes
 
 ![image](https://user-images.githubusercontent.com/111396588/223825110-985fce44-fbfd-4713-83f9-ddd85954b08a.png)
 
@@ -37,7 +37,7 @@ La colección Postman se compartirá temporalmente con cada cliente de acuerdo c
 
 ## Configurar el ambiente
 
-### 6. Ahora deberá crear las variables como el siguiente ejemplo con las credenciales enviadas. En este paso puede definir cuáles variables se utilizarán durante el uso de la colección, como punto final, puerto y otros
+### 6. Ahora deberá crear las variables como el siguiente ejemplo con las credenciales enviadas. En este paso puede definir cuáles variables se utilizarán durante el uso de la colección, como punto final, puerto y otros. Clic en el botón "Save"
 
 ![image](https://user-images.githubusercontent.com/111396588/223825150-eae49a0b-c45c-46d5-a365-982e08e69922.png)
 
@@ -45,7 +45,7 @@ La colección Postman se compartirá temporalmente con cada cliente de acuerdo c
 
 ![image](https://user-images.githubusercontent.com/111396588/223825174-82bca4fb-bcd5-4b6e-b2ba-f93651088a00.png)
 
-### 8. Si ha seguido los pasos correctamente hasta el momento, el ambiente está listo para enviar solicitudes a las API. Haga clic en Obtener Token de Acceso a la API para iniciar las pruebas para la API
+### 8. Si ha seguido los pasos correctamente hasta el momento, el ambiente está listo para enviar solicitudes a las API. Haga clic en Collections and seleccione Obtener Token de Acceso a la API para iniciar las pruebas para la API
 
 ![image](https://user-images.githubusercontent.com/111396588/223825212-38ced20b-4446-4b54-b3d5-2b1b1f291ec4.png)
 
