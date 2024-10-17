@@ -27,7 +27,7 @@ A coleção Postman, API Key e Client Secret serão compartilhados com cada clie
 
 ![image](https://user-images.githubusercontent.com/111396588/223825081-8f5e489e-04b0-4450-9e2e-a2a0adffa375.png)
 
-### 4. Clique no botão "Novo" na seção "Environments" para criar um ambiente para executar solicitações
+### 4. Clique no botão "New" na seção "Environments" para criar um ambiente para executar solicitações
 
 ![image](https://user-images.githubusercontent.com/111396588/223825110-985fce44-fbfd-4713-83f9-ddd85954b08a.png)
 
@@ -45,7 +45,7 @@ A coleção Postman, API Key e Client Secret serão compartilhados com cada clie
 
 ![image](https://user-images.githubusercontent.com/111396588/223825174-82bca4fb-bcd5-4b6e-b2ba-f93651088a00.png)
 
-### 8. Se você seguiu as etapas corretamente até agora, seu ambiente está pronto para enviar solicitações de API. Clique em "Collections" e selecione Get Access Token à API para iniciar o teste da API
+### 8. Se você seguiu as etapas corretamente até agora, seu ambiente está pronto para enviar solicitações de API. Clique em "Collections" e selecione "Get Access Token" à API para iniciar o teste da API
 
 ![image](https://user-images.githubusercontent.com/111396588/223825212-38ced20b-4446-4b54-b3d5-2b1b1f291ec4.png)
 
