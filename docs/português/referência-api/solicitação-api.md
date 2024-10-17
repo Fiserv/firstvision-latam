@@ -15,16 +15,15 @@ titles: Cabeçalho, Exemplo de cabeçalho de solicitação
 
 Para criar o cabeçalho, forneça os seguintes valores:
 
-| Variável            | Tipo      | Comprimento | Descrição/Valores                                                                                                                                                                                                                        |
-|---------------------|-----------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Content-Type`      | *string*  | N/A         | Os tipos de conteúdo. Valor Válido (Aplicação/JSON)                                                                                                                                                                    |
-| `Client-Request-Id` | *string*  | N/A         | Um ID gerado pelo cliente para rastreamento de solicitação e criação de assinatura, exclusivo por solicitação. Isso também é usado para o controle da idempotência. Um formato UUID de 128 bits é recomendado.         |
-| `apikey`           | *string*  | N/A         | Chave da API fornecida ao comércio associando as solicitações ao aplicativo apropriado no Portal do desenvolvedor.                                                                                                     |
-| `Timestamp`         | *integer* | N/A         | O registro de data Epoch em milissegundos na solicitação de um sistema do cliente. É utilizado para geração de assinaturas de mensagens e limitação de tempo (5 minutos).                                              |
-| `Accept-Language`   | *string*  | N/A         | O cabeçalho Accept-Language contém informações sobre a preferência de idioma do usuário. Este cabeçalho HTTP é útil para sites multilíngues decidirem o melhor idioma para atender o Cliente. exemplo: en-US ou fr-CA. |
-| `Auth-Token-Type`   | *string*  | N/A         | Indica o tipo de autorização HMAC ou AccessToken.                                                                                                                                                                      |
-| `Authorization`     | *string*  | N/A         | Ele é usado para garantir que a solicitação não seja adulterada durante a transmissão.                                                                                                                                 |
-| `Message-Digest`    | *string*  | N/A         | Requeridos apenas de browser ou app do cliente para a API em pedidos de páginas de pagamento hospedadas.                                                                                                               |
+| Variável              | Tipo      | Comprimento | Descrição/Valores                                                                                                                                                          |
+|-----------------------|-----------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Content-Type`        |  *string* |   N/A       | Os tipos de conteúdo. Valor Válido: Aplicação/JSON                                                                                                                         |
+| `apikey`              |  *string* |   N/A       | API Key fornecida ao comércio associando as solicitações ao aplicativo apropriado no Portal do desenvolvedor.                                                              |
+| `Signature`           |  *string* |   N/A       | Assinatura HMAC usada para verificar a autenticidade e integridade dos dados transmitidos.                                                                                 |
+| `X-ClientID`          |  *string* |   N/A       | Identificador do cliente.                                                                                                                                                  |
+| `Authorization`       |  *string* |   N/A       | Token de Portador de Autorização.                                                                                                                                          |
+| `X-Client-Request-Id` |  *string* |   40        | Um ID gerado pelo cliente para rastreamento de solicitação e criação de assinatura, exclusivo por solicitação.                                                             |
+| `Timestamp`           | *integer* |   N/A       | O registro de data Epoch em milissegundos na solicitação de um sistema do cliente. É utilizado para geração de assinaturas de mensagens e limitação de tempo (5 minutos).  |
 
 <!--
 type: tab
@@ -33,11 +32,12 @@ type: tab
 ```json
 "header": {
   "Content-Type": "application/json",
-  "Client-Request-Id": "CLIENT_REQUEST_ID",
   "apikey": "API_KEY",
-  "Timestamp": "TIMESTAMP",
-  "Auth-Token-Type": "AUTH_TOKEN_TYPE" ,
+  "Signature": "SIGNATURE",
+  "X-ClientID": "X-ClientID",
   "Authorization": "ACCESS_TOKEN"
+  "X-Client-Request-Id": "X-CLIENT_REQUEST_ID",
+  "Timestamp": "TIMESTAMP"
 }
 ```
 
