@@ -13,7 +13,7 @@ La colección Postman, API Key y Client Secret se compartirán con cada cliente 
 
 ## Importar Colección
 
-### 1. Abra Postman y haga clic en el botón de importación para abrir la colección provista
+### 1. Abra Postman y haga clic en el botón "Import" para abrir la colección provista
 
 ![image](https://user-images.githubusercontent.com/111396588/223823808-2d79de52-0b42-4500-b6ee-31bf49c818ad.png)
 
@@ -23,15 +23,15 @@ La colección Postman, API Key y Client Secret se compartirán con cada cliente 
 
 ## Crear el ambiente
 
-### 3. En este paso configuraremos el ambiente necesario para ejecutar solicitudes en Postman de forma dinámica, ya que las solicitudes ya vienen configuradas con variables de ambiente las cuales configuraremos a continuación. Haga clic en el botón de ambientes y siga los siguientes pasos
+### 3. En este paso configuraremos el ambiente necesario para ejecutar solicitudes en Postman de forma dinámica, ya que las solicitudes ya vienen configuradas con variables de ambiente las cuales configuraremos a continuación. Haga clic en el botón "Environments" y siga los siguientes pasos
 
 ![image](https://user-images.githubusercontent.com/111396588/223825081-8f5e489e-04b0-4450-9e2e-a2a0adffa375.png)
 
-### 4. Haga clic en el botón "New" en la sección de Ambiente para crear un ambiente para ejecutar solicitudes
+### 4. Haga clic en el botón "New" en la sección "Environments" para crear un ambiente para ejecutar solicitudes
 
 ![image](https://user-images.githubusercontent.com/111396588/223825110-985fce44-fbfd-4713-83f9-ddd85954b08a.png)
 
-### 5. Haga clic en el ambiente y luego defina el nombre de este ambiente
+### 5. Haga clic en "Environment" y luego defina el nombre de este ambiente
 
 ![image](https://user-images.githubusercontent.com/111396588/223825130-b65824be-7525-4df5-80e5-bc9934e4dcd6.png)
 
@@ -45,13 +45,13 @@ La colección Postman, API Key y Client Secret se compartirán con cada cliente 
 
 ![image](https://user-images.githubusercontent.com/111396588/223825174-82bca4fb-bcd5-4b6e-b2ba-f93651088a00.png)
 
-### 8. Si ha seguido los pasos correctamente hasta el momento, el ambiente está listo para enviar solicitudes a las API. Haga clic en Collections and seleccione Obtener Token de Acceso a la API para iniciar las pruebas para la API
+### 8. Si ha seguido los pasos correctamente hasta el momento, el ambiente está listo para enviar solicitudes a las API. Haga clic en "Collections" y seleccione Obtener Token de Acceso a la API para iniciar las pruebas para la API
 
 ![image](https://user-images.githubusercontent.com/111396588/223825212-38ced20b-4446-4b54-b3d5-2b1b1f291ec4.png)
 
 ## Ejecutar Primera Solicitud
 
-### 9. Haga clic en el botón de Enviar
+### 9. Haga clic en el botón de "Send"
 
 ![image](https://user-images.githubusercontent.com/111396588/223825243-f72d7a6c-89bf-4281-b055-6ff96b718ba6.png)
 
