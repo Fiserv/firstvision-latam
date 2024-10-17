@@ -15,16 +15,15 @@ titles: Header, Ejemplo de Encabezado de Solicitud
 
 To create the header, provide the following values:
 
-| Variable            | Tipo      | Longitud | Descripción/Valores                                                                                                                                                                                                                        |
-|---------------------|-----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Content-Type`      | *string*  | N/A      | Los tipos de contenido. Valor Válido (Aplicación/JSON).                                                                                                                                                                                    |
-| `Client-Request-Id` | *string*  | N/A      | Una identificación generada por el Cliente para el seguimiento de solicitudes y la creación de firmas, única por solicitud. Esto también se utiliza para el control de idempotencia. Se recomienda un Formato UUID de 128 bits.            |
-| `apikey`           | *string*  | N/A      | API Key proporcionada al comercio que asocia las solicitudes con la aplicación adecuada en el Developer Portal.                                                                                                                            |
-| `Timestamp`         | *integer* | N/A      | Marca de tiempo de época en milisegundos en la solicitud de un sistema Cliente. Se utiliza para la generación de firmas de mensajes y el límite de tiempo (5 minutos).                                                                     |
-| `Accept-Language`   | *string*  | N/A      | El encabezado Accept-Language contiene información sobre la preferencia de idioma de un usuario. Este encabezado HTTP es útil para sitios multilingües para decidir el mejor idioma para dar servicios al Cliente. ejemplo: en-US o fr-CA. |
-| `Auth-Token-Type`   | *string*  | N/A      | Indica el tipo de autorización HMAC o AccessToken..                                                                                                                                                                                        |
-| `Authorization`     | *string*  | N/A      | Se utiliza para garantizar que la solicitud no haya sido manipulada durante la transmisión.                                                                                                                                                |
-| `Message-Digest`    | *string*  | N/A      | Solo se necesita desde el navegador o la aplicación del Cliente a la API en las solicitudes de la página de pago hospedada.                                                                                                                |
+| Variable              | Tipo      | Longitud | Descripción/Valores                                                                                                                                                     |
+|-----------------------|-----------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Content-Type`        |  *string* |   N/A    | Los tipos de contenido. Valor Válido application/json                                                                                                                   |
+| `apikey`              |  *string* |   N/A    | API Key proporcionada al comercio que asocia las solicitudes con la aplicación adecuada en el Developer Portal.                                                         |
+| `Signature`           |  *string* |   N/A    | Firma HMAC utilizada para verificar la autenticidad e integridad de los datos transmitidos.                                                                             |
+| `X-ClientID`          |  *string* |   N/A    | Identificador del cliente.                                                                                                                                              |
+| `Authorization`       |  *string* |   N/A    | Token portador de autorización.                                                                                                                                         |
+| `X-Client-Request-Id` |  *string* |   40     | Identificación generada por el cliente para el seguimiento de solicitudes y la creación de firmas, única por solicitud.                                                 |
+| `Timestamp`           | *integer* |   N/A    | Marca de tiempo de época en milisegundos en la solicitud de un sistema Cliente. Se utiliza para la generación de firmas de mensajes y el límite de tiempo (5 minutos).  |
 
 <!--
 type: tab
@@ -33,11 +32,12 @@ type: tab
 ```json
 "header": {
   "Content-Type": "application/json",
-  "Client-Request-Id": "CLIENT_REQUEST_ID",
   "apikey": "API_KEY",
-  "Timestamp": "TIMESTAMP",
-  "Auth-Token-Type": "AUTH_TOKEN_TYPE" ,
+  "Signature": "SIGNATURE",
+  "X-ClientID": "X-ClientID",
   "Authorization": "ACCESS_TOKEN"
+  "X-Client-Request-Id": "X-CLIENT_REQUEST_ID",
+  "Timestamp": "TIMESTAMP"
 }
 ```
 
