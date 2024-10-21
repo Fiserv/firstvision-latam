@@ -6,7 +6,7 @@ tags: [Casos Principales, Cargar Fondos desde una Cuenta Origen, Cuenta Balance,
 
 ## Definición
 
-A través de las API'S actualmente creadas y ubicadas en el portal, es posible cargar dinero de una Cuenta de Tarjeta de Débito a una Cuenta de Tarjeta de Crédito o Tarjeta Prepago, mover dinero de una Cuenta Crédito a una Cuenta Débito o Prepago o realizar cargos de dinero desde una Cuenta de Tarjeta Prepago a otra Cuenta de Tarjeta Prepago.
+A través de las API's actualmente creadas y ubicadas en el portal, es posible cargar dinero de una Cuenta de Tarjeta de Débito a una Cuenta de Tarjeta de Crédito o Tarjeta Prepago, mover dinero de una Cuenta Crédito a una Cuenta Débito o Prepago o realizar cargos de dinero desde una Cuenta de Tarjeta Prepago a otra Cuenta de Tarjeta Prepago.
 
 Estas API están diseñadas para permitir que los clientes potenciales, los clientes y los desarrolladores realicen pruebas en línea y directamente en un ambiente de prueba real, si aún no ha configurado su ambiente de prueba.
 
