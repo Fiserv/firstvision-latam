@@ -6,7 +6,7 @@ tags: [Main Cases, Upload Funds From a Source Account, Account, Balance, Peer-to
 
 ## Definition
 
-Through API'S currently created and located in the portal, it is possible to load money from a Debit account to a Credit or Prepaid account, moving money from a Credit account to a Debit or Prepaid account or carry out charges of money from a prepaid account to another prepaid account.
+Through API's currently created and located in the portal, it is possible to load money from a Debit account to a Credit or Prepaid account, moving money from a Credit account to a Debit or Prepaid account or carry out charges of money from a prepaid account to another prepaid account.
 
 These APIs are designed to allow potential customers, customers and developers to test online and directly in a real testing environment, if you haven't already set up your testing environment.
 
