@@ -6,7 +6,7 @@ tags: [Principais Casos, Carregar Fundos de uma Conta Fonte, Conta, Saldo, Ponto
 
 ## Definição
 
-Através das API'S atualmente criadas e localizadas no portal, é possível carregar dinheiro de uma conta de Débito para uma de Crédito ou Pré-Paga, mover dinheiro de uma conta de Crédito para uma conta de Débito  ou Pré-paga ou movimentar as cobranças de dinheiro de uma conta Pré-paga para outra conta Pré-paga.
+Através das API's atualmente criadas e localizadas no portal, é possível carregar dinheiro de uma conta de Débito para uma de Crédito ou Pré-Paga, mover dinheiro de uma conta de Crédito para uma conta de Débito  ou Pré-paga ou movimentar as cobranças de dinheiro de uma conta Pré-paga para outra conta Pré-paga.
 
 Essas APIs são projetadas para permitir que clientes em potencial, clientes e desenvolvedores testem online e diretamente em um ambiente de teste ao vivo, caso você ainda não tenha configurado seu ambiente de teste.
 
