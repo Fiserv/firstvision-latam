@@ -1,8 +1,8 @@
 ---
-tags: [Main Cases, Upload Founds From a Source Account, Account, Balance, Peer-to-Peer]
+tags: [Main Cases, Upload Funds From a Source Account, Account, Balance, Peer-to-Peer]
 ---
 
-# Upload Founds From a Source Account
+# Upload Funds From a Source Account
 
 ## Definition
 
